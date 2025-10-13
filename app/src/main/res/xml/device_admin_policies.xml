@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device-admin xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-policies>
+        <!-- Lock task mode for kiosk functionality -->
+        <lock-task-mode />
+
+        <!-- Force lock for emergency situations -->
+        <force-lock />
+
+        <!-- Prevent uninstallation -->
+        <disable-uninstall />
+
+        <!-- Camera control for torch functionality -->
+        <disable-camera />
+
+        <!-- Status bar and keyguard control -->
+        <disable-status-bar />
+        <disable-keyguard-features />
+
+        <!-- Screen capture prevention for game integrity -->
+        <disable-screen-capture />
+
+        <!-- Safe boot restriction -->
+        <require-safe-boot />
+    </uses-policies>
+</device-admin>

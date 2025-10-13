@@ -1,0 +1,206 @@
+plugins {
+  id 'com.android.application'
+  id 'org.jetbrains.kotlin.android'
+  id 'kotlin-kapt'
+  id 'jacoco'
+}
+
+android {
+    namespace 'com.helldeck'
+    compileSdk 34
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    defaultConfig {
+    applicationId "com.helldeck"
+    minSdk 21
+    targetSdk 34
+    versionCode 1
+    versionName "1.0.0"
+
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    // Enhanced build config
+    buildConfigField "String", "BUILD_TIME", "\"${new Date().format('yyyy-MM-dd HH:mm:ss')}\""
+    buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled true
+      shrinkResources true
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      buildConfigField "boolean", "DEBUG_MODE", "false"
+
+      // Release signing configuration
+      // signingConfig signingConfigs.release
+
+      // Enable crash reporting for release builds
+      buildConfigField "String", "CRASH_REPORTING_DSN", "\"https://your-crash-reporting-dsn@sentry.io/project-id\""
+    }
+    debug {
+      minifyEnabled false
+      debuggable true
+      buildConfigField "boolean", "DEBUG_MODE", "true"
+      buildConfigField "String", "DEBUG_TAG", "\"HELLDECK_DEBUG\""
+
+      // Use debug signing for development
+      signingConfig signingConfigs.debug
+    }
+  }
+
+  signingConfigs {
+    debug {
+      storeFile file('debug.keystore')
+      storePassword 'android'
+      keyAlias 'androiddebugkey'
+      keyPassword 'android'
+    }
+    release {
+      // Production signing configuration
+      // These should be configured via environment variables or gradle.properties
+      storeFile file(System.getenv('KEYSTORE_PATH') ?: 'release.keystore')
+      storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'default_password'
+      keyAlias System.getenv('KEY_ALIAS') ?: 'helldeck'
+      keyPassword System.getenv('KEY_PASSWORD') ?: 'default_password'
+
+      // Enable v1 and v2 signing
+      v1SigningEnabled true
+      v2SigningEnabled true
+    }
+  }
+
+  buildFeatures {
+    compose true
+    buildConfig true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion '1.5.14'
+  }
+
+  packaging {
+    resources {
+      excludes += [
+        "/META-INF/{AL2.0,LGPL2.1}",
+        "/META-INF/DEPENDENCIES",
+        "/META-INF/ASL2.0",
+        "/META-INF/NOTICE",
+        "/META-INF/LICENSE"
+      ]
+    }
+  }
+
+  // Enhanced lint options
+  lint {
+    abortOnError false
+    checkReleaseBuilds false
+  }
+}
+
+// JaCoCo configuration for code coverage
+jacoco {
+  toolVersion = "0.8.8"
+}
+
+android {
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+      all {
+        jacoco {
+          includeNoLocationClasses = false
+          excludes = ['jdk.internal.*']
+        }
+      }
+    }
+  }
+}
+
+dependencies {
+  // Core Android
+  implementation 'androidx.core:core-ktx:1.13.1'
+  implementation 'androidx.appcompat:appcompat:1.7.0'
+  implementation 'androidx.activity:activity-compose:1.9.2'
+
+  // Compose BOM and UI
+  implementation platform('androidx.compose:compose-bom:2024.06.00')
+  implementation 'androidx.compose.ui:ui'
+  implementation 'androidx.compose.ui:ui-tooling-preview'
+  implementation 'androidx.compose.material3:material3:1.2.1'
+  implementation 'androidx.compose.material:material-icons-extended'
+
+  // Compose Debug
+  debugImplementation 'androidx.compose.ui:ui-tooling'
+  debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+  // Navigation
+  implementation 'androidx.navigation:navigation-compose:2.7.7'
+
+  // Lifecycle
+  implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.8.4'
+  implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4'
+  implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4'
+  implementation 'androidx.lifecycle:lifecycle-process:2.8.4'
+
+  // Room Database
+  implementation 'androidx.room:room-runtime:2.6.1'
+  implementation 'androidx.room:room-ktx:2.6.1'
+  kapt 'androidx.room:room-compiler:2.6.1'
+
+  // Data Processing
+  implementation 'org.yaml:snakeyaml:2.2'
+  implementation 'com.google.code.gson:gson:2.11.0'
+
+  // Utilities
+  implementation 'androidx.datastore:datastore-preferences:1.1.1'
+
+  // Testing (Debug only)
+  debugImplementation 'androidx.test:core:1.6.1'
+  debugImplementation 'androidx.test.ext:junit:1.2.1'
+  debugImplementation 'androidx.test:runner:1.6.1'
+  debugImplementation 'androidx.compose.ui:ui-test-junit4'
+
+  // Enhanced Testing Dependencies
+  testImplementation 'junit:junit:4.13.2'
+  testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+  testImplementation 'io.mockk:mockk:1.13.8'
+  testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3'
+  testImplementation 'app.cash.turbine:turbine:1.0.0'
+  testImplementation 'org.robolectric:robolectric:4.10.3'
+
+  // Compose Testing
+  testImplementation 'androidx.compose.ui:ui-test-junit4:1.5.4'
+  debugImplementation 'androidx.compose.ui:ui-test-manifest:1.5.4'
+
+  // Android Instrumented Testing
+  androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+  androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.5.4'
+  androidTestImplementation 'androidx.test:runner:1.6.1'
+  androidTestImplementation 'androidx.test:rules:1.6.1'
+
+  // Optional: Enhanced animations
+  implementation 'androidx.compose.animation:animation'
+}
+
+// Helper function to get git hash
+def getGitHash() {
+  try {
+    def stdout = new ByteArrayOutputStream()
+    exec {
+      commandLine 'git', 'rev-parse', '--short', 'HEAD'
+      standardOutput = stdout
+    }
+    return stdout.toString().trim()
+  } catch (Exception e) {
+    return "unknown"
+  }
+}

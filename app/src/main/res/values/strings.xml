@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HELLDECK</string>
+    <string name="device_admin_description">HELLDECK Device Administrator for kiosk mode functionality</string>
+
+    <!-- Game UI Strings -->
+    <string name="game_title">HELLDECK</string>
+    <string name="game_subtitle">Single phone. One card per round.</string>
+    <string name="start_round_button">Start Round</string>
+    <string name="next_round_button">Next Round</string>
+    <string name="players_button">Players</string>
+    <string name="rules_button">Rules</string>
+    <string name="scoreboard_button">Scoreboard</string>
+    <string name="export_brain_button">Export Brain</string>
+    <string name="import_brain_button">Import Brain</string>
+
+    <!-- Player Management -->
+    <string name="add_player_title">Add Player</string>
+    <string name="player_name_hint">Name or emoji + name (e.g., 🦊 Pip)</string>
+    <string name="player_name_label">Player Name</string>
+    <string name="afk_button">AFK</string>
+    <string name="back_button">Back</string>
+    <string name="hide_button">Hide</string>
+
+    <!-- Voting Interface -->
+    <string name="skip_vote_button">Skip</string>
+    <string name="lock_vote_button">Lock &amp; Next</string>
+    <string name="finish_voting_button">Finish Voting</string>
+    <string name="voter_label">Voter: %s</string>
+    <string name="judge_label">Judge: %s</string>
+
+    <!-- Feedback -->
+    <string name="feedback_title">Rate that card</string>
+    <string name="feedback_lol">😂 BANGER</string>
+    <string name="feedback_meh">😐 MEH</string>
+    <string name="feedback_trash">🚮 TRASH</string>
+    <string name="feedback_why">✍️ WHY</string>
+    <string name="feedback_note_hint">optional note…</string>
+    <string name="feedback_save">Save</string>
+
+    <!-- Game Mechanics -->
+    <string name="room_heat_bonus">+1 heat bonus</string>
+    <string name="trash_penalty">−2 penalty</string>
+    <string name="win_points">+2 points</string>
+    <string name="correct_guess">+1 point</string>
+
+    <!-- Error Messages -->
+    <string name="error_no_device">No device connected. Enable USB debugging.</string>
+    <string name="error_invalid_apk">Please select a valid APK file</string>
+    <string name="error_install_failed">Installation failed. Check device connection.</string>
+    <string name="error_device_owner_failed">Device owner setup failed. Try on a freshly reset device.</string>
+    <string name="error_export_failed">Export failed. Check storage permissions.</string>
+    <string name="error_import_failed">Import failed. Check file format.</string>
+
+    <!-- Success Messages -->
+    <string name="install_success">APK installed successfully</string>
+    <string name="device_owner_success">Device owner set successfully</string>
+    <string name="reboot_message">Device rebooting into HELLDECK</string>
+    <string name="export_success">Brainpack exported successfully</string>
+    <string name="import_success">Brainpack imported successfully</string>
+
+    <!-- Tips and Help -->
+    <string name="player_count_tip">3–10 players best. 11–16 = teams (1 vote per team).</string>
+    <string name="control_tip">Long-press to draw • two-finger = back</string>
+    <string name="torch_tip">Torch blink means scoring lock</string>
+    <string name="vibrate_tip">Vibration indicates phase change</string>
+
+    <!-- Accessibility -->
+    <string name="content_description_card">Game card content</string>
+    <string name="content_description_avatar">Player avatar</string>
+    <string name="content_description_vote_button">Vote button</string>
+    <string name="content_description_feedback_button">Feedback button</string>
+
+    <!-- Notification Channels -->
+    <string name="notification_channel_game">Game Notifications</string>
+    <string name="notification_channel_game_description">Notifications for game events</string>
+
+    <!-- Settings -->
+    <string name="pref_spicy_mode">Spicy Mode (70% threshold)</string>
+    <string name="pref_chill_mode">Chill Mode (60% threshold)</string>
+    <string name="pref_learning_enabled">Enable Learning</string>
+    <string name="pref_sound_enabled">Enable Sound Effects</string>
+    <string name="pref_haptics_enabled">Enable Haptic Feedback</string>
+
+    <!-- Debug Strings -->
+    <string name="debug_build_timestamp">Build Time: %s</string>
+    <string name="debug_version_info" formatted="false">Version: %s (%d)</string>
+    <string name="debug_database_path">Database: %s</string>
+    <string name="debug_export_path">Export Path: %s</string>
+</resources>

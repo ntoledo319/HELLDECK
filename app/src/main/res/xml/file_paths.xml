@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- External storage paths for export/import -->
+    <external-path name="external_files" path="." />
+
+    <!-- Cache directory for temporary files -->
+    <cache-path name="cache_files" path="." />
+
+    <!-- Internal files directory -->
+    <files-path name="internal_files" path="." />
+
+    <!-- External cache directory -->
+    <external-cache-path name="external_cache" path="." />
+
+    <!-- Helldeck specific exports directory -->
+    <external-path name="helldeck_exports" path="Helldeck/Exports/" />
+
+    <!-- Documents directory for brainpack files -->
+    <external-path name="documents" path="Documents/" />
+</paths>

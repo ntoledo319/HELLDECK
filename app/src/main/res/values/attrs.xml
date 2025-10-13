@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Material Design 3 Attributes -->
+    <attr name="colorPrimary" format="color" />
+    <attr name="colorPrimaryVariant" format="color" />
+    <attr name="colorSecondary" format="color" />
+    <attr name="colorSecondaryVariant" format="color" />
+
+    <!-- Shape Appearance Attributes -->
+    <attr name="cornerFamily" format="enum">
+        <enum name="rounded" value="0" />
+        <enum name="cut" value="1" />
+    </attr>
+    <attr name="cornerSize" format="dimension" />
+
+    <!-- Splash Screen Attributes -->
+    <attr name="windowSplashScreenBackground" format="color" />
+    <attr name="windowSplashScreenAnimatedIcon" format="reference" />
+    <attr name="postSplashScreenTheme" format="reference" />
+</resources>

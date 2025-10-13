@@ -1,0 +1,11 @@
+tkinter
+subprocess
+os
+sys
+time
+threading
+tkinter.messagebox
+tkinter.filedialog
+PIL
+requests
+packaging

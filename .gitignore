@@ -1,0 +1,70 @@
+# Build outputs
+build/
+app/build/
+*.apk
+*.aab
+
+# Gradle
+.gradle/
+gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Android
+*.keystore
+*.jks
+local.properties
+debug.keystore
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+test_output.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Documentation artifacts (keep README.md)
+COMPILATION_FIX_PROGRESS.md
+CURRENT_STATUS.md
+JAVA_INSTALLATION_STATUS.md
+JAVA_VERSION_ISSUE_RESOLVED.md
+QUICK_START.md
+README_TEST_SUITE.md
+TESTING_COMPLETE.md
+TESTING_STATUS_*.md
+TEST_EXECUTION_*.md
+TEST_READINESS_REPORT.md
+TEST_SUMMARY.md
+TEST_VALIDATION_CHECKLIST.md
+testing-implementation-guide.md
+testing-plan.md
+
+# Development artifacts
+backup_*
+phase*
+bulk_fix*
+comprehensive_final_fix*
+final_*
+strategic_fix*
+restore_and_fix*
+fix_all_compilation_errors*
+
+# GitHub
+.github/
+
+# Loader
+loader/helldeck_loader.py
+
+# Scripts
+run_tests.sh

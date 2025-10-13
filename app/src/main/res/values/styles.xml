@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Material Design 3 Theme -->
+    <style name="Theme.Material3.Light" parent="android:Theme.Material.Light">
+        <item name="colorPrimary">@android:color/system_accent1_600</item>
+        <item name="colorPrimaryVariant">@android:color/system_accent1_700</item>
+        <item name="colorSecondary">@android:color/system_accent2_600</item>
+        <item name="colorSecondaryVariant">@android:color/system_accent2_700</item>
+    </style>
+
+    <style name="Theme.Material3.DayNight" parent="Theme.Material3.Light">
+        <item name="colorPrimary">@android:color/system_accent1_600</item>
+        <item name="colorPrimaryVariant">@android:color/system_accent1_700</item>
+        <item name="colorSecondary">@android:color/system_accent2_600</item>
+        <item name="colorSecondaryVariant">@android:color/system_accent2_700</item>
+    </style>
+
+    <!-- HELLDECK App Theme -->
+    <style name="HELLDECK" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/helldeck_red_40</item>
+        <item name="colorPrimaryVariant">@color/helldeck_red_20</item>
+        <item name="colorSecondary">@color/helldeck_orange_40</item>
+        <item name="colorSecondaryVariant">@color/helldeck_orange_20</item>
+    </style>
+
+    <!-- Material Design 3 Shape Appearances -->
+    <style name="ShapeAppearance">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.Corner">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.Corner.Large">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.Corner.Medium">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.Corner.Small">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.LargeComponent" parent="ShapeAppearance.Material3.Corner.Large">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.MediumComponent" parent="ShapeAppearance.Material3.Corner.Medium">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.Material3.SmallComponent" parent="ShapeAppearance.Material3.Corner.Small">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <!-- Additional Material Design 3 Themes -->
+    <style name="Theme.Material3.DayNight.NoActionBar" parent="Theme.Material3.DayNight">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/HELLDECK</item>
+    </style>
+
+    <style name="Theme.SplashScreen" parent="Theme.Material3.DayNight">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+</resources>

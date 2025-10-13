@@ -1,0 +1,37 @@
+learning:
+  alpha: 0.3                    # Learning rate for EMA calculations
+  epsilon_start: 0.25          # Initial exploration rate
+  epsilon_end: 0.05            # Final exploration rate
+  decay_rounds: 20             # Rounds until epsilon reaches minimum
+
+scoring:
+  win: 2                       # Points for winning
+  room_heat_bonus: 1           # Room consensus bonus
+  room_heat_threshold: 0.60    # Heat threshold (0.70 in spicy mode)
+  trash_penalty: -2            # Room trash penalty
+
+timers:
+  vote_binary_ms: 8000         # Binary vote timer
+  vote_avatar_ms: 10000        # Avatar vote timer
+  judge_pick_ms: 6000          # Judge selection timer
+
+players:
+  min_count: 3                 # Minimum players for game
+  max_count: 16                # Maximum players for game
+  max_name_length: 20          # Maximum player name length
+
+mechanics:
+  enable_haptics: true         # Enable vibration feedback
+  enable_torch: true           # Enable flashlight effects
+  enable_sound: false          # Enable sound effects (for testing)
+  enable_kiosk: false          # Enable kiosk mode (for testing)
+
+ui:
+  animation_duration: 300      # Animation duration in ms
+  touch_target_size: 72        # Minimum touch target size in dp
+  card_padding: 16             # Card padding in dp
+
+debug:
+  enable_logging: true         # Enable debug logging
+  enable_performance_monitor: true  # Enable performance monitoring
+  mock_external_dependencies: true  # Mock external services for testing

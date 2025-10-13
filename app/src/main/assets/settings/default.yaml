@@ -1,0 +1,67 @@
+# HELLDECK Game Configuration
+# This file controls game behavior, scoring, and learning parameters
+
+# Learning algorithm parameters
+learning:
+  alpha: 0.3                    # Learning rate for template score updates (0-1)
+  epsilon_start: 0.25          # Initial exploration rate for epsilon-greedy
+  epsilon_end: 0.05            # Final exploration rate after decay
+  decay_rounds: 20             # Rounds over which epsilon decays from start to end
+  diversity_window: 5          # Number of recent families to avoid for variety
+  minhash_threshold: 0.85      # Similarity threshold for template deduplication
+  min_plays_before_learning: 3 # Minimum plays before applying learning updates
+
+# Timer durations (milliseconds)
+timers:
+  vote_binary_ms: 8000         # Time for A/B and True/False votes
+  vote_avatar_ms: 10000        # Time for avatar selection votes
+  judge_pick_ms: 6000          # Time for judge to make selections
+  revote_ms: 3000              # Time for tiebreaker revotes
+  alibi_show_ms: 3000          # Time to show secret words in Alibi
+  title_duel_ms: 15000         # Time for Title Fight duels
+  scatter_time_ms: 10000       # Time for Scatterblast word listing
+
+# Player configuration
+players:
+  sweet_spot_min: 3            # Minimum players for good experience
+  sweet_spot_max: 10           # Maximum players for good experience
+  party_mode_max: 16           # Maximum players before team mode
+  max_afk_rounds: 3            # Rounds before AFK players are hidden
+  team_size_threshold: 11      # Players needed before suggesting teams
+
+# Scoring system
+scoring:
+  win: 2                       # Base points for winning
+  room_heat_bonus: 1           # Bonus for achieving room consensus (lol)
+  room_heat_threshold: 0.60    # Percentage needed for room heat (0.0-1.0)
+  trash_penalty: -2            # Penalty for room consensus (trash)
+  streak_cap: 3                # Maximum streak bonus per round
+  judge_bonus: 1               # Bonus for judge's winning pick
+  fast_laugh_bonus: 0.5        # Bonus for quick laughter (<1.2s)
+  consensus_bonus: 1           # Bonus for room consensus on any vote
+
+# Game mechanics
+mechanics:
+  comeback_last_place_picks_next: true    # Last place player picks next game
+  roast_consensus_guess_cap: 2           # Max points from roast consensus guessing
+  alibi_secrets_per_player: 2            # Secret words per player in Alibi
+  title_fight_rounds: 3                  # Rounds in Title Fight duels
+  scatter_words_required: 3              # Words needed in Scatterblast
+  majority_report_threshold: 0.6         # Threshold for Majority Report prediction
+
+# UI configuration
+ui:
+  show_timer_warning: true               # Show warning when timer low
+  timer_warning_threshold: 0.3          # Warning at 30% time remaining
+  enable_animations: true               # Enable UI animations
+  animation_duration_ms: 300            # Animation duration
+  haptic_feedback_intensity: 1          # Haptic feedback level (0-3)
+  sound_effects_enabled: true           # Enable sound effects
+
+# Debug and development
+debug:
+  enable_logging: true                  # Enable debug logging
+  log_level: "INFO"                     # DEBUG, INFO, WARN, ERROR
+  enable_performance_monitoring: false  # Monitor performance metrics
+  enable_database_query_logging: false  # Log all database queries
+  enable_template_selection_logging: false # Log template selection details
