@@ -14,41 +14,44 @@ import androidx.compose.animation.core.Spring
  * HELLDECK custom color scheme
  */
 private val HelldeckDarkColorScheme = darkColorScheme(
-    primary = Color(0xFFFFD166),        // Yellow
-    onPrimary = Color(0xFF000000),     // Black
+    // Accents
+    primary = Color(0xFFFFD166),
+    onPrimary = Color(0xFF000000),
     primaryContainer = Color(0xFFCCAA44),
     onPrimaryContainer = Color(0xFF000000),
 
-    secondary = Color(0xFF7CFC00),      // Green
-    onSecondary = Color(0xFF000000),   // Black
+    secondary = Color(0xFF7CFC00),
+    onSecondary = Color(0xFF000000),
     secondaryContainer = Color(0xFF66CC00),
     onSecondaryContainer = Color(0xFF000000),
 
-    tertiary = Color(0xFFFF8C00),       // Orange
-    onTertiary = Color(0xFF000000),    // Black
+    tertiary = Color(0xFFFF8C00),
+    onTertiary = Color(0xFF000000),
     tertiaryContainer = Color(0xFFCC7000),
     onTertiaryContainer = Color(0xFF000000),
 
-    error = Color(0xFFFF4444),          // Red
-    onError = Color(0xFF000000),       // Black
+    // Error
+    error = Color(0xFFFF4444),
+    onError = Color(0xFF000000),
     errorContainer = Color(0xFFCC2222),
     onErrorContainer = Color(0xFFFFFFFF),
 
-    background = Color(0xFF000000),     // Black
-    onBackground = Color(0xFFFFFFFF),   // White
+    // Neutrals tuned for readability in dark mode
+    background = Color(0xFF121212),       // Slightly lifted from pure black
+    onBackground = Color(0xFFFFFFFF),
 
-    surface = Color(0xFF0B0B0B),        // Dark gray
-    onSurface = Color(0xFFFFFFFF),      // White
-    surfaceVariant = Color(0xFF151515), // Medium gray
-    onSurfaceVariant = Color(0xFFBBBBBB), // Light gray
+    surface = Color(0xFF1E1E1E),          // Lighter card/containers for contrast
+    onSurface = Color(0xFFFFFFFF),
+    surfaceVariant = Color(0xFF2A2A2A),   // Used for secondary surfaces
+    onSurfaceVariant = Color(0xFFD0D0D0), // Readable secondary text/icons
 
-    outline = Color(0xFF666666),        // Gray
-    outlineVariant = Color(0xFF333333),
+    outline = Color(0xFF666666),
+    outlineVariant = Color(0xFF4D4D4D),
 
-    scrim = Color(0x80000000),         // Semi-transparent black
+    scrim = Color(0x80000000),
 
     inverseSurface = Color(0xFF2A2A2A),
-    inverseOnSurface = Color(0xFF000000),
+    inverseOnSurface = Color(0xFFFFFFFF),
     inversePrimary = Color(0xFFFFD166),
 
     surfaceTint = Color(0xFFFFD166)
@@ -83,8 +86,8 @@ private val HelldeckLightColorScheme = lightColorScheme(
 
     surface = Color(0xFFFFFFFF),
     onSurface = Color(0xFF000000),
-    surfaceVariant = Color(0xFFE0E0E0),
-    onSurfaceVariant = Color(0xFF333333),
+    surfaceVariant = Color(0xFFE9E9E9),
+    onSurfaceVariant = Color(0xFF4D4D4D),
 
     outline = Color(0xFF666666),
     outlineVariant = Color(0xFF999999),
@@ -164,9 +167,10 @@ object HelldeckColors {
 
     // Background colors
     val Black = Color(0xFF000000)
-    val DarkGray = Color(0xFF0B0B0B)
-    val MediumGray = Color(0xFF151515)
-    val LightGray = Color(0xFF2A2A2A)
+    // Neutrals retuned for legibility
+    val DarkGray = Color(0xFF1E1E1E)     // Card/containers on dark bg
+    val MediumGray = Color(0xFF2C2C2C)   // Secondary containers
+    val LightGray = Color(0xFFCFCFCF)    // Secondary text on dark surfaces
 
     // Text colors
     val White = Color(0xFFFFFFFF)
@@ -186,7 +190,7 @@ object HelldeckColors {
 
     // Vote colors
     val VoteSelected = Color(0xFFFFD166)
-    val VoteUnselected = Color(0xFF333333)
+    val VoteUnselected = Color(0xFF5A5A5A)
 
     // Timer colors
     val TimerNormal = Color(0xFFFFD166)
@@ -202,9 +206,9 @@ val ColorScheme.helldeckGreen: Color get() = Color(0xFF7CFC00)
 val ColorScheme.Orange: Color get() = Color(0xFFFF8C00)
 val ColorScheme.helldeckRed: Color get() = Color(0xFFFF4444)
 val ColorScheme.helldeckBlack: Color get() = Color(0xFF000000)
-val ColorScheme.helldeckDarkGray: Color get() = Color(0xFF0B0B0B)
-val ColorScheme.MediumGray: Color get() = Color(0xFF151515)
-val ColorScheme.LightGray: Color get() = Color(0xFF2A2A2A)
+val ColorScheme.helldeckDarkGray: Color get() = Color(0xFF1E1E1E)
+val ColorScheme.MediumGray: Color get() = Color(0xFF2C2C2C)
+val ColorScheme.LightGray: Color get() = Color(0xFFCFCFCF)
 val ColorScheme.helldeckWhite: Color get() = Color(0xFFFFFFFF)
 val ColorScheme.helldeckLol: Color get() = Color(0xFFFFD700)
 val ColorScheme.helldeckMeh: Color get() = Color(0xFF808080)

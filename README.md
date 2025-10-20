@@ -42,7 +42,7 @@ HELLDECK is a party game system designed for 3-16 players using a single Android
    ./gradlew :app:assembleDebug
    ```
 
-3. **Install using Desktop Loader**
+3. **Install using Desktop Loader (optional)**
    ```bash
    # Install Python dependencies
    pip install -r loader/requirements.txt
@@ -135,6 +135,23 @@ The app uses Jetpack Compose with a custom dark theme optimized for party enviro
 - **AvatarVoteFlow**: Player selection voting
 - **ABVoteFlow**: Binary choice voting
 - **JudgePickFlow**: Judge selection interface
+
+### Newly added (2025-10)
+- **RollcallScene**: “Who’s here?” attendance at launch or any time from Home.
+  - Toggle present players, quick add with emoji, swipe-to-delete with confirm + Undo.
+- **Settings** additions:
+  - Toggle “Ask ‘Who’s here?’ at launch”, manage players inline (add/toggle active), and jump to full Players.
+- **Players management**:
+  - Inline name edit (tap name → edit → save/cancel), tap avatar to change emoji via picker.
+  - Swipe-to-delete with confirmation dialog and Undo snackbar.
+- **EmojiPicker** bottom sheet:
+  - 200+ emoji across categories with search (names/keywords) and paste support.
+- **Home polish**:
+  - Top bar quick actions: Rollcall, Scores, Stats, Rules, Settings.
+  - Quick-access buttons row includes Rollcall, Rules, Settings.
+- **Accessibility/legibility**:
+  - Dark theme neutrals retuned; card titles/subtitles now ellipsize and wrap safely.
+  - Progress indicators migrated to the latest Compose API.
 
 ## 🤖 AI Learning System
 

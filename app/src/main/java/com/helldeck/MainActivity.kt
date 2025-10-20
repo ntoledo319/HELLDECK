@@ -14,10 +14,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
-import androidx.lifecycle.lifecycleScope
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.helldeck.data.Repository
 import com.helldeck.engine.Config
-import com.helldeck.ui.Scene
+import com.helldeck.ui.HelldeckTheme
+import com.helldeck.ui.OnboardingWrapper
+import com.helldeck.ui.HelldeckAppUI
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.launch
 
@@ -31,9 +33,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
-            // Install splash screen
-            // installSplashScreen() // TODO: Add splash screen dependency
-
+            installSplashScreen()
             super.onCreate(savedInstanceState)
 
             // Enable edge-to-edge display
@@ -53,7 +53,9 @@ class MainActivity : ComponentActivity() {
 
             // Set content
             setContent {
-                HellDeckAppContent()
+                HelldeckTheme {
+                    HellDeckAppContent()
+                }
             }
 
         } catch (e: Exception) {
@@ -67,6 +69,7 @@ class MainActivity : ComponentActivity() {
     private fun HellDeckAppContent() {
         var isLoading by remember { mutableStateOf(true) }
         var error by remember { mutableStateOf<String?>(null) }
+        val scope = rememberCoroutineScope()
 
         // Initialize app data
         LaunchedEffect(Unit) {
@@ -83,28 +86,34 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        when {
-            isLoading -> {
-                LoadingScreen()
-            }
-            error != null -> {
-                ErrorScreen(error = error!!) {
-                    // Retry initialization
-                    lifecycleScope.launch {
-                        try {
-                            isLoading = true
-                            error = null
-                            initializeApp()
-                            isLoading = false
-                        } catch (e: Exception) {
-                            error = e.message ?: "Unknown error occurred"
-                            isLoading = false
+        Surface(
+            modifier = Modifier
+                .fillMaxSize()
+                .windowInsetsPadding(WindowInsets.systemBars)
+        ) {
+            when {
+                isLoading -> {
+                    LoadingScreen()
+                }
+                error != null -> {
+                    ErrorScreen(error = error!!) {
+                        // Retry initialization
+                        scope.launch {
+                            try {
+                                isLoading = true
+                                error = null
+                                initializeApp()
+                                isLoading = false
+                            } catch (e: Exception) {
+                                error = e.message ?: "Unknown error occurred"
+                                isLoading = false
+                            }
                         }
                     }
                 }
-            }
-            else -> {
-                MainAppContent()
+                else -> {
+                    MainAppContent()
+                }
             }
         }
     }
@@ -112,28 +121,11 @@ class MainActivity : ComponentActivity() {
     /**
      * Main app content composable
      */
+    @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class, androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
     @Composable
     private fun MainAppContent() {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text(
-                text = "HELLDECK",
-                style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.primary
-            )
-    
-            Spacer(modifier = Modifier.height(16.dp))
-    
-            Text(
-                text = "Welcome to HELLDECK!",
-                style = MaterialTheme.typography.bodyLarge,
-                textAlign = TextAlign.Center
-            )
+        OnboardingWrapper {
+            HelldeckAppUI()
         }
     }
 
@@ -144,9 +136,16 @@ class MainActivity : ComponentActivity() {
             // Load configuration
             Config.load(this)
 
-            // Initialize repository and database
+            // Initialize repository and database only if needed
             val repository = Repository.get(this)
-            repository.initialize()
+            try {
+                val needsInit = repository.db.templates().getTotalCount() == 0
+                if (needsInit) {
+                    repository.initialize()
+                }
+            } catch (_: Exception) {
+                repository.initialize()
+            }
 
             Logger.i("App initialization completed successfully")
 

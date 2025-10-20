@@ -12,12 +12,6 @@ buildscript {
 }
 
 // Enhanced build configuration with additional plugins
-allprojects {
-  repositories {
-    google()
-    mavenCentral()
-  }
-}
 
 // Global task to clean and rebuild everything
 task cleanAndRebuild(type: Delete) {

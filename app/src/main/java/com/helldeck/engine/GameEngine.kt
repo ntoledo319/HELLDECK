@@ -99,7 +99,8 @@ class GameEngine(
         judgeWin: Boolean,
         points: Int,
         latencyMs: Int,
-        notes: String? = null
+        notes: String? = null,
+        activePlayerId: String? = null
     ): RoundResult {
         return withContext(Dispatchers.IO) {
             val activePlayers = repo.getActivePlayerCount()
@@ -120,10 +121,11 @@ class GameEngine(
             )
 
             // Record the round
+            val meta = card.meta + (if (activePlayerId != null) mapOf("activePlayerId" to activePlayerId) else emptyMap())
             val roundId = repo.recordRound(
                 game = card.game,
                 templateId = card.templateId,
-                fillsJson = gson.toJson(card.meta),
+                fillsJson = gson.toJson(meta),
                 lol = feedback.lol,
                 meh = feedback.meh,
                 trash = feedback.trash,
@@ -168,6 +170,7 @@ class GameEngine(
     private fun getOptionsFor(gameId: String, filledText: String): List<String> {
         return when (gameId) {
             GameIds.POISON_PITCH, GameIds.MAJORITY -> listOf("A", "B")
+            GameIds.RED_FLAG -> listOf("SMASH", "PASS")
             GameIds.TEXT_TRAP -> listOf("Deadpan", "Feral", "Chaotic", "Wholesome")
             GameIds.TABOO -> extractTabooWords(filledText)
             GameIds.ODD_ONE -> listOf("Option 1", "Option 2", "Option 3")

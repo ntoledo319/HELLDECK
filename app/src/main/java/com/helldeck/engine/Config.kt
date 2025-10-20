@@ -2,8 +2,6 @@ package com.helldeck.engine
 
 import android.content.Context
 import com.helldeck.AppCtx
-import org.yaml.snakeyaml.Yaml
-import org.yaml.snakeyaml.constructor.Constructor
 import java.io.InputStream
 
 /**
@@ -151,44 +149,86 @@ object Config {
             field = value
             // Update threshold when spicy mode changes
             roomHeatThresholdCache = null
+            if (value) {
+                customRoomHeatThreshold = 0.70
+            } else if (customRoomHeatThreshold == 0.70) {
+                customRoomHeatThreshold = null
+            }
         }
 
+    private var customRoomHeatThreshold: Double? = null
     private var roomHeatThresholdCache: Double? = null
+
+    // Runtime feature flags (synced with settings)
+    var learningEnabled: Boolean = true
+        private set
+
+    var hapticsEnabled: Boolean = true
+        private set
 
     /**
      * Load configuration from assets
+     * Currently using hardcoded defaults due to SnakeYAML compatibility issues
      */
     fun load(context: Context = AppCtx.ctx) {
-        try {
-            val inputStream = context.assets.open("settings/default.yaml")
-            loadFromInputStream(inputStream)
-        } catch (e: Exception) {
-            throw RuntimeException("Failed to load configuration", e)
-        }
+        // Using hardcoded defaults directly to avoid YAML parsing issues
+        current = getDefaultConfig()
     }
 
     /**
      * Load configuration from custom input stream
+     * Currently using hardcoded defaults due to SnakeYAML compatibility issues
      */
     fun loadFromInputStream(inputStream: InputStream) {
-        try {
-            val yaml = Yaml()
-            current = yaml.loadAs(inputStream, HelldeckCfg::class.java)
-        } catch (e: Exception) {
-            throw RuntimeException("Failed to parse configuration YAML", e)
-        }
+        // Using hardcoded defaults directly to avoid YAML parsing issues
+        current = getDefaultConfig()
     }
 
     /**
      * Load configuration from string
+     * Currently using hardcoded defaults due to SnakeYAML compatibility issues
      */
     fun loadFromString(yamlContent: String) {
-        try {
-            val yaml = Yaml()
-            current = yaml.loadAs(yamlContent.byteInputStream(), HelldeckCfg::class.java)
-        } catch (e: Exception) {
-            throw RuntimeException("Failed to parse configuration YAML", e)
-        }
+        // Using hardcoded defaults directly to avoid YAML parsing issues
+        current = getDefaultConfig()
+    }
+    
+    /**
+     * Get default configuration (fallback if YAML fails)
+     */
+    private fun getDefaultConfig(): HelldeckCfg {
+        return HelldeckCfg(
+            scoring = Scoring(
+                win = 2,
+                room_heat_bonus = 1,
+                room_heat_threshold = 0.60,
+                trash_penalty = -2,
+                streak_cap = 3
+            ),
+            timers = Timers(
+                vote_binary_ms = 8000,
+                vote_avatar_ms = 10000,
+                judge_pick_ms = 6000,
+                revote_ms = 3000
+            ),
+            players = PlayersCfg(
+                sweet_spot_min = 3,
+                sweet_spot_max = 10,
+                party_mode_max = 16
+            ),
+            learning = LearningCfg(
+                alpha = 0.3,
+                epsilon_start = 0.25,
+                epsilon_end = 0.05,
+                decay_rounds = 20,
+                diversity_window = 5,
+                minhash_threshold = 0.85
+            ),
+            mechanics = MechanicsCfg(
+                comeback_last_place_picks_next = true,
+                roast_consensus_guess_cap = 2
+            )
+        )
     }
 
     /**
@@ -196,10 +236,23 @@ object Config {
      */
     fun roomHeatThreshold(): Double {
         return roomHeatThresholdCache ?: run {
-            val threshold = if (spicyMode) 0.70 else current.scoring.room_heat_threshold
+            val threshold = customRoomHeatThreshold ?: if (spicyMode) 0.70 else current.scoring.room_heat_threshold
             roomHeatThresholdCache = threshold
             threshold
         }
+    }
+
+    fun setRoomHeatThreshold(threshold: Double?) {
+        customRoomHeatThreshold = threshold
+        roomHeatThresholdCache = null
+    }
+
+    fun setLearningEnabled(enabled: Boolean) {
+        learningEnabled = enabled
+    }
+
+    fun setHapticsEnabled(enabled: Boolean) {
+        hapticsEnabled = enabled
     }
 
     /**
@@ -328,9 +381,9 @@ object Config {
 
     /**
      * Export current configuration as YAML
+     * Currently disabled due to SnakeYAML compatibility issues
      */
     fun exportAsYaml(): String {
-        val yaml = Yaml()
-        return yaml.dump(current)
+        return "# YAML export currently disabled\n# Configuration: ${current}"
     }
 }

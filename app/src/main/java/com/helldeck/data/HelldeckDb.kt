@@ -117,9 +117,7 @@ abstract class HelldeckDb : RoomDatabase() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
                 // Database is opened, perform any maintenance tasks
-                db.execSQL("PRAGMA foreign_keys=ON")
-                db.execSQL("PRAGMA journal_mode=WAL")
-                db.execSQL("PRAGMA synchronous=NORMAL")
+                // PRAGMA statements removed - they conflict with Room's query restrictions in onOpen callback
             }
 
             override fun onDestructiveMigration(db: SupportSQLiteDatabase) {

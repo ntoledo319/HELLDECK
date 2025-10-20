@@ -10,6 +10,8 @@ import com.helldeck.utils.Logger
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.first
+import org.json.JSONObject
 import java.io.File
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
@@ -365,7 +367,7 @@ class Repository private constructor(private val ctx: Context) {
     // Initialization
     suspend fun initialize() {
         // Load default templates if database is empty
-        if (db.templates().getCountForGame("*") == 0) {
+        if (db.templates().getTotalCount() == 0) {
             loadTemplatesFromAssets()
         }
 
@@ -431,3 +433,83 @@ fun Repository.getAllPlayersFlow(): Flow<List<PlayerEntity>> {
 }
 
 fun Repository.getAllRoundsFlow(): Flow<List<RoundEntity>> = rounds().getAllRounds()
+
+// Player profiles and fun awards
+data class PlayerProfile(
+    val id: String,
+    val name: String,
+    val avatar: String,
+    val sessionPoints: Int,
+    val totalPoints: Int,
+    val wins: Int,
+    val gamesPlayed: Int,
+    val heatRounds: Int,
+    val quickLaughs: Int,
+    val avgLol: Double,
+    val avgTrash: Double,
+    val awards: List<String>
+)
+
+suspend fun Repository.computePlayerProfiles(maxRounds: Int = 200): List<PlayerProfile> {
+    val players = db.players().getAllPlayers().first()
+    val recentRounds = db.rounds().getLastRounds(maxRounds)
+
+    // Map activePlayerId -> rounds
+    val roundsByActive = recentRounds.groupBy { round ->
+        try {
+            val meta = JSONObject(round.fillsJson)
+            meta.opt("activePlayerId")?.toString()
+        } catch (e: Exception) { null }
+    }
+
+    val profiles = players.map { p ->
+        val theirRounds = roundsByActive[p.id] ?: emptyList()
+        val heatRounds = theirRounds.count { it.roomHeat > 0.5 }
+        val quickLaughs = theirRounds.count { it.latencyMs < 1200 && it.lol > 0 }
+        val avgLol = theirRounds.map { it.lol }.average().takeIf { !it.isNaN() } ?: 0.0
+        val avgTrash = theirRounds.map { it.trash }.average().takeIf { !it.isNaN() } ?: 0.0
+
+        val awards = mutableListOf<String>()
+        // Simple, fun superlatives
+        if (heatRounds >= 3) awards.add("Room Heater 🔥 ($heatRounds)")
+        if (quickLaughs >= 3) awards.add("Quick Laugh ⚡️ ($quickLaughs)")
+        if (p.wins >= 5) awards.add("Judge's Pet 👑 (${p.wins})")
+        if (avgTrash >= 1.5) awards.add("Agent of Chaos 🌀 (${"%.1f".format(avgTrash)})")
+        if (p.totalPoints >= 20) awards.add("Point Vacuum 🧲 (${p.totalPoints})")
+
+        PlayerProfile(
+            id = p.id,
+            name = p.name,
+            avatar = p.avatar,
+            sessionPoints = p.sessionPoints,
+            totalPoints = p.totalPoints,
+            wins = p.wins,
+            gamesPlayed = p.gamesPlayed,
+            heatRounds = heatRounds,
+            quickLaughs = quickLaughs,
+            avgLol = avgLol,
+            avgTrash = avgTrash,
+            awards = awards
+        )
+    }
+
+    // Add relative awards by ranking
+    if (profiles.isNotEmpty()) {
+        val mostHeat = profiles.maxByOrNull { it.heatRounds }?.id
+        val mostQuick = profiles.maxByOrNull { it.quickLaughs }?.id
+        val topPoints = profiles.maxByOrNull { it.totalPoints }?.id
+        val mostWins = profiles.maxByOrNull { it.wins }?.id
+        val mostChaos = profiles.maxByOrNull { it.avgTrash }?.id
+
+        return profiles.map { pr ->
+            val extra = mutableListOf<String>()
+            if (pr.id == mostHeat) extra.add("Certified Heater 🏆")
+            if (pr.id == mostQuick) extra.add("Lightning Laugh 🏆")
+            if (pr.id == topPoints) extra.add("High Roller 🏆")
+            if (pr.id == mostWins) extra.add("Crown Collector 🏆")
+            if (pr.id == mostChaos && pr.avgTrash > 0) extra.add("Chaos Engine 🏆")
+            pr.copy(awards = (pr.awards + extra).distinct())
+        }
+    }
+    return profiles
+}

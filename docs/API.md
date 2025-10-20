@@ -143,6 +143,46 @@ fun FeedbackStrip(
 )
 ```
 
+#### `RollcallScene`
+Attendance screen to mark present players at the start of a session.
+
+Key behaviors:
+- Toggle present/absent per player (updates `PlayerEntity.afk`).
+- Quick add: Inline name + emoji (uses `EmojiPicker`).
+- Swipe-to-delete with confirmation dialog and Undo snackbar.
+- Inline name edit (tap name → edit → save/cancel).
+
+Config toggle: `rollcall_on_launch` (boolean) in settings DB; controlled in Settings.
+
+#### `SettingsScene`
+Settings with player management and rollcall toggle.
+
+- Manage players inline: add (name + emoji), toggle active (AFK), jump to full Players scene.
+- Toggle: Ask “Who’s here?” at launch.
+
+#### `EmojiPicker`
+Bottom sheet for picking avatars from 200+ emoji with categories and search.
+
+```kotlin
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun EmojiPicker(
+    show: Boolean,
+    onDismiss: () -> Unit,
+    onPick: (String) -> Unit
+)
+```
+
+Features:
+- Tabs: Faces, Animals, Food, Activities, Objects, Symbols
+- Search: keywords (e.g., "heart", "pizza", "sports", "fox") and emoji paste
+- Adaptive grid, tap to select
+
+#### Swipe-to-Delete Pattern
+Players and rollcall lists use `SwipeToDismiss` with:
+- End-to-start swipe → confirm dialog → delete → Undo snackbar.
+- Red background affordance with delete icon and label.
+
 ### Configuration
 
 #### `Config`
@@ -160,6 +200,9 @@ object Config
 - `load(context: Context)` - Load configuration from assets
 - `roomHeatThreshold()` - Get current room heat threshold
 - `validate()` - Validate configuration integrity
+
+Additional setting:
+- `rollcall_on_launch` (boolean in settings DB) controls whether RollcallScene opens on startup when players exist.
 
 ### Kiosk Mode
 

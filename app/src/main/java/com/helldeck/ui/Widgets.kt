@@ -202,7 +202,11 @@ fun CardFace(
                     ),
                     color = HelldeckColors.White,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.animateContentSize(animationSpec = spring())
+                    maxLines = 3,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .animateContentSize(animationSpec = spring())
+                        .fillMaxWidth()
                 )
 
                 subtitle?.let { sub ->
@@ -215,7 +219,10 @@ fun CardFace(
                             fontWeight = FontWeight.Medium
                         ),
                         color = HelldeckColors.LightGray,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        maxLines = 2,
+                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                        modifier = Modifier.fillMaxWidth()
                     )
                 }
             }
@@ -467,7 +474,7 @@ fun GameTimer(
             Spacer(modifier = Modifier.height(4.dp))
 
             LinearProgressIndicator(
-                progress = progress,
+                progress = { progress },
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
                     .height(4.dp)

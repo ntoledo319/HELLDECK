@@ -11,6 +11,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,6 +27,12 @@ import androidx.compose.material.icons.filled.Info
 class LoadingStateManager {
     private val _loadingStates = MutableStateFlow<Map<String, LoadingState>>(emptyMap())
     val loadingStates: StateFlow<Map<String, LoadingState>> = _loadingStates.asStateFlow()
+
+    private var autoClearScope: CoroutineScope = MainScope()
+
+    fun setAutoClearScope(scope: CoroutineScope) {
+        autoClearScope = scope
+    }
 
     /**
      * Start a loading operation
@@ -73,8 +81,8 @@ class LoadingStateManager {
             )
             _loadingStates.value = currentStates
 
-            // Auto-clear success state after delay
-            kotlinx.coroutines.GlobalScope.launch {
+            // Auto-clear success state after delay using provided scope
+            autoClearScope.launch {
                 delay(2000)
                 clearLoadingState(operationId)
             }
@@ -164,6 +172,10 @@ fun LoadingOverlay(
     modifier: Modifier = Modifier
 ) {
     val loadingStates by loadingStateManager.loadingStates.collectAsState()
+    val scope = rememberCoroutineScope()
+    LaunchedEffect(Unit) {
+        loadingStateManager.setAutoClearScope(scope)
+    }
 
     if (loadingStates.isEmpty()) return
 
@@ -233,7 +245,7 @@ private fun LoadingContent(state: LoadingState.Loading) {
         state.progress?.let { progress ->
             Spacer(modifier = Modifier.height(8.dp))
             LinearProgressIndicator(
-                progress = progress,
+                progress = { progress },
                 modifier = Modifier.fillMaxWidth()
             )
             Text(

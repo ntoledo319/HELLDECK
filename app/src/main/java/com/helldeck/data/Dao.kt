@@ -44,6 +44,9 @@ interface TemplateDao {
     @Query("SELECT COUNT(*) FROM templates WHERE game = :game")
     suspend fun getCountForGame(game: String): Int
 
+    @Query("SELECT COUNT(*) FROM templates")
+    suspend fun getTotalCount(): Int
+
     // Modification methods
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(template: TemplateEntity): Long
@@ -281,6 +284,16 @@ interface PlayerDao {
 
     @Query("UPDATE players SET elo = :elo WHERE id = :playerId")
     suspend fun updatePlayerElo(playerId: String, elo: Int)
+
+    // Long-term stats
+    @Query("UPDATE players SET total_points = total_points + :points WHERE id = :playerId")
+    suspend fun addTotalPoints(playerId: String, points: Int)
+
+    @Query("UPDATE players SET wins = wins + :wins WHERE id = :playerId")
+    suspend fun addWins(playerId: String, wins: Int = 1)
+
+    @Query("UPDATE players SET games_played = games_played + 1 WHERE id = :playerId")
+    suspend fun incGamesPlayed(playerId: String)
 
     // Transaction helpers
     @Transaction

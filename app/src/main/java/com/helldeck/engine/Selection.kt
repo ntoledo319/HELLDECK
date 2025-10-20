@@ -164,6 +164,12 @@ object Selection {
         roundIdx: Int,
         algorithm: SelectionAlgorithm = SelectionAlgorithm.HYBRID
     ): TemplateEntity {
+        if (!Config.learningEnabled) {
+            // When learning is off, prefer simple random with diversity
+            return candidates.filter { it.family !in recentFamilies }
+                .ifEmpty { candidates }
+                .random()
+        }
         val filteredCandidates = candidates.filter { it.family !in recentFamilies }
             .ifEmpty { candidates }
 

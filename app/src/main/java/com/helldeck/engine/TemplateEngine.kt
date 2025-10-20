@@ -8,7 +8,6 @@ import com.helldeck.AppCtx
 import com.helldeck.data.TemplateDef
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.regex.Pattern
 
 /**
  * Template engine for filling card templates with dynamic content
@@ -19,7 +18,7 @@ class TemplateEngine(private val ctx: Context) {
         .setLenient()
         .create()
 
-    private val slotPattern = Pattern.compile("\\{([a-zA-Z_]+)}")
+    private val slotPattern = Regex("\\{([a-zA-Z_]+)\\}")
     private val templates by lazy { loadTemplates() }
 
     /**
@@ -31,7 +30,8 @@ class TemplateEngine(private val ctx: Context) {
             val type = object : TypeToken<List<TemplateDef>>() {}.type
             gson.fromJson(raw, type)
         } catch (e: Exception) {
-            throw RuntimeException("Failed to load templates", e)
+            com.helldeck.utils.Logger.e("Failed to load templates", e)
+            emptyList()
         }
     }
 
@@ -46,15 +46,10 @@ class TemplateEngine(private val ctx: Context) {
         var result = template.text
 
         // Find all slots in the template
-        val matcher = slotPattern.matcher(template.text)
-        val slots = mutableMapOf<String, String>()
-
-        while (matcher.find()) {
-            val slotName = matcher.group(1)
-            if (slotName != null && !slots.containsKey(slotName)) {
-                slots[slotName] = slotProvider(slotName)
-            }
-        }
+        val slots = slotPattern.findAll(template.text)
+            .mapNotNull { it.groupValues.getOrNull(1) }
+            .distinct()
+            .associateWith { slotProvider(it) }
 
         // Replace slots in the template
         slots.forEach { (slotName, value) ->
@@ -145,9 +140,8 @@ class TemplateEngine(private val ctx: Context) {
         }
 
         // Check for valid slot names
-        val matcher = slotPattern.matcher(template.text)
-        while (matcher.find()) {
-            val slotName = matcher.group(1)
+        slotPattern.findAll(template.text).forEach {
+            val slotName = it.groupValues.getOrNull(1)
             if (slotName.isNullOrBlank()) {
                 errors.add("Empty slot name")
             }
@@ -308,16 +302,9 @@ suspend fun TemplateEngine.fillBatch(
  * Extract slot names from template text
  */
 private fun extractSlotsFromTemplate(templateText: String): Map<String, String> {
-    val pattern = Pattern.compile("\\{([a-zA-Z_]+)}")
-    val matcher = pattern.matcher(templateText)
-    val slots = mutableMapOf<String, String>()
-
-    while (matcher.find()) {
-        val slotName = matcher.group(1)
-        if (slotName != null) {
-            slots[slotName] = "{$slotName}"
-        }
-    }
-
-    return slots
+    val pattern = Regex("\\{([a-zA-Z_]+)}")
+    return pattern.findAll(templateText)
+        .mapNotNull { it.groupValues.getOrNull(1) }
+        .distinct()
+        .associateWith { "{$it}" }
 }
