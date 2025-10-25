@@ -1,371 +1,45 @@
 [
-  {
-    "id": "rc1",
-    "game": "ROAST_CONSENSUS",
-    "text": "Most likely to {sketchy_action} for {tiny_reward}.",
-    "family": "roast_action_reward",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 16
-  },
-  {
-    "id": "rc2",
-    "game": "ROAST_CONSENSUS",
-    "text": "Who would definitely start a cult by accident?",
-    "family": "roast_cult",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "rc3",
-    "game": "ROAST_CONSENSUS",
-    "text": "Most likely to ghost someone after one date.",
-    "family": "roast_ghosting",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 10
-  },
-  {
-    "id": "rc4",
-    "game": "ROAST_CONSENSUS",
-    "text": "Who brings the chaos energy everywhere?",
-    "family": "roast_chaos",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 8
-  },
-  {
-    "id": "rc5",
-    "game": "ROAST_CONSENSUS",
-    "text": "Most likely to survive a zombie apocalypse.",
-    "family": "roast_survival",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 8
-  },
-  {
-    "id": "cc1",
-    "game": "CONFESSION_OR_CAP",
-    "text": "Confess: {guilty_prompt} — or bluff convincingly.",
-    "family": "confess_guilty",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 14
-  },
-  {
-    "id": "cc2",
-    "game": "CONFESSION_OR_CAP",
-    "text": "I've never told anyone this: {guilty_prompt}",
-    "family": "confess_secret",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 12
-  },
-  {
-    "id": "cc3",
-    "game": "CONFESSION_OR_CAP",
-    "text": "The weirdest thing in my search history is {guilty_prompt}",
-    "family": "confess_search",
-    "spice": 3,
-    "locality": 2,
-    "max_words": 14
-  },
-  {
-    "id": "pp1",
-    "game": "POISON_PITCH",
-    "text": "Would you rather {gross} or {social_disaster}?",
-    "family": "wyr_gross_social",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 12
-  },
-  {
-    "id": "pp2",
-    "game": "POISON_PITCH",
-    "text": "Would you rather fight {gross} or date {social_disaster}?",
-    "family": "wyr_fight_date",
-    "spice": 3,
-    "locality": 2,
-    "max_words": 14
-  },
-  {
-    "id": "pp3",
-    "game": "POISON_PITCH",
-    "text": "Would you rather {gross} every day or {social_disaster} once?",
-    "family": "wyr_daily_once",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 14
-  },
-  {
-    "id": "fi1",
-    "game": "FILL_IN_FINISHER",
-    "text": "The ick that ruins a 10/10: {guilty_prompt}",
-    "family": "fill_ick",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 12
-  },
-  {
-    "id": "fi2",
-    "game": "FILL_IN_FINISHER",
-    "text": "Things I judge people for: {guilty_prompt}",
-    "family": "fill_judgment",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 10
-  },
-  {
-    "id": "fi3",
-    "game": "FILL_IN_FINISHER",
-    "text": "My toxic trait: {guilty_prompt}",
-    "family": "fill_toxic",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 8
-  },
-  {
-    "id": "rf1",
-    "game": "RED_FLAG_RALLY",
-    "text": "Date comes with {perk}, but… {red_flag}. Defend it.",
-    "family": "rf_perk_flag",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 16
-  },
-  {
-    "id": "rf2",
-    "game": "RED_FLAG_RALLY",
-    "text": "Partner has {perk} but also {red_flag}. Still smash?",
-    "family": "rf_smash_pass",
-    "spice": 3,
-    "locality": 3,
-    "max_words": 14
-  },
-  {
-    "id": "rf3",
-    "game": "RED_FLAG_RALLY",
-    "text": "They have {perk} but {red_flag}. Date anyway?",
-    "family": "rf_date_anyway",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 12
-  },
-  {
-    "id": "hs1",
-    "game": "HOT_SEAT_IMPOSTER",
-    "text": "As {target_name}: My secret guilty pleasure is {guilty_prompt}",
-    "family": "hs_guilty_pleasure",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 14
-  },
-  {
-    "id": "hs2",
-    "game": "HOT_SEAT_IMPOSTER",
-    "text": "As {target_name}: My biggest fear is {guilty_prompt}",
-    "family": "hs_fear",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "hs3",
-    "game": "HOT_SEAT_IMPOSTER",
-    "text": "As {target_name}: I cry during {guilty_prompt}",
-    "family": "hs_cry",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 10
-  },
-  {
-    "id": "tt1",
-    "game": "TEXT_THREAD_TRAP",
-    "text": "You receive: \"{inbound_text}\". Choose the reply vibe.",
-    "family": "tt_reply_vibe",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 14
-  },
-  {
-    "id": "tt2",
-    "game": "TEXT_THREAD_TRAP",
-    "text": "Group chat: \"{inbound_text}\". How do you respond?",
-    "family": "tt_group_chat",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "tt3",
-    "game": "TEXT_THREAD_TRAP",
-    "text": "Ex texts: \"{inbound_text}\". What's your move?",
-    "family": "tt_ex_text",
-    "spice": 2,
-    "locality": 2,
-    "max_words": 12
-  },
-  {
-    "id": "tb1",
-    "game": "TABOO_TIMER",
-    "text": "Make them guess: {memes}. Forbidden: {memes}, {memes}, {memes}.",
-    "family": "taboo_meme",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 16
-  },
-  {
-    "id": "tb2",
-    "game": "TABOO_TIMER",
-    "text": "Get them to say: {memes}. Can't use: {memes}, {memes}, {memes}.",
-    "family": "taboo_phrase",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 16
-  },
-  {
-    "id": "tb3",
-    "game": "TABOO_TIMER",
-    "text": "Clue-giver: {memes}. Taboos: {memes}, {memes}, {memes}.",
-    "family": "taboo_concept",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 14
-  },
-  {
-    "id": "oo1",
-    "game": "ODD_ONE_OUT",
-    "text": "{memes}, {memes}, {memes} — which is the odd one out, and why?",
-    "family": "ooo_three_things",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 16
-  },
-  {
-    "id": "oo2",
-    "game": "ODD_ONE_OUT",
-    "text": "{memes}, {memes}, {memes} — pick the misfit and explain.",
-    "family": "ooo_misfit",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 14
-  },
-  {
-    "id": "oo3",
-    "game": "ODD_ONE_OUT",
-    "text": "Among {memes}, {memes}, {memes} — which doesn't belong?",
-    "family": "ooo_belong",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 14
-  },
-  {
-    "id": "tf1",
-    "game": "TITLE_FIGHT",
-    "text": "Challenge the title holder in: {memes}. Roll a duel and go.",
-    "family": "tf_challenge",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 16
-  },
-  {
-    "id": "tf2",
-    "game": "TITLE_FIGHT",
-    "text": "Defend your title with: {memes}. Show no mercy.",
-    "family": "tf_defend",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "tf3",
-    "game": "TITLE_FIGHT",
-    "text": "Mini-game duel: {memes}. Winner takes the crown.",
-    "family": "tf_minigame",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "ay1",
-    "game": "HYPE_OR_YIKE",
-    "text": "Pitch a product that fixes: {memes}. Dead serious. 15s.",
-    "family": "hype_product",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 14
-  },
-  {
-    "id": "ay2",
-    "game": "HYPE_OR_YIKE",
-    "text": "Sell me on: {memes}. Make it sound revolutionary.",
-    "family": "hype_revolutionary",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "ay3",
-    "game": "HYPE_OR_YIKE",
-    "text": "Startup idea: {memes}. Why you'll be a billionaire.",
-    "family": "hype_startup",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "sc1",
-    "game": "SCATTERBLAST",
-    "text": "Category: {category}. Letter: {letter}. Say 3 in 10s.",
-    "family": "scatter_category",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 14
-  },
-  {
-    "id": "sc2",
-    "game": "SCATTERBLAST",
-    "text": "{category} starting with {letter}. Go fast!",
-    "family": "scatter_fast",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 10
-  },
-  {
-    "id": "sc3",
-    "game": "SCATTERBLAST",
-    "text": "Three {category} with {letter}. Quick!",
-    "family": "scatter_three",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 8
-  },
-  {
-    "id": "mr1",
-    "game": "MAJORITY_REPORT",
-    "text": "Predict the room: A vs B. Lock it before they vote.",
-    "family": "mr_predict",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 14
-  },
-  {
-    "id": "mr2",
-    "game": "MAJORITY_REPORT",
-    "text": "Room will pick A or B? Bet on it before voting.",
-    "family": "mr_bet",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  },
-  {
-    "id": "mr3",
-    "game": "MAJORITY_REPORT",
-    "text": "Read the room: {memes} or {memes}? Predict first.",
-    "family": "mr_read_room",
-    "spice": 1,
-    "locality": 1,
-    "max_words": 12
-  }
+  { "id": "rc1", "game": "ROAST_CONSENSUS", "text": "Most likely to {sketchy_action} for {tiny_reward}.", "family": "roast_action_reward", "spice": 1, "locality": 1, "max_words": 18, "tags": ["roast","vote","avatar"] },
+  { "id": "rc2", "game": "ROAST_CONSENSUS", "text": "{target_name} would absolutely {sketchy_action} at the {place}.", "family": "roast_person_place", "spice": 2, "locality": 1, "max_words": 18, "tags": ["roast","vote","avatar"] },
+  { "id": "rc3", "game": "ROAST_CONSENSUS", "text": "Which player is getting caught {sketchy_action} on camera?", "family": "roast_action_camera", "spice": 2, "locality": 1, "max_words": 18, "tags": ["roast","vote","avatar"] },
+  { "id": "rc4", "game": "ROAST_CONSENSUS", "text": "Be honest: {target_name} would do {sketchy_action} for {tiny_reward}.", "family": "roast_target_reward", "spice": 2, "locality": 1, "max_words": 18, "tags": ["roast","vote","avatar"] },
+
+  { "id": "coc1", "game": "CONFESSION_OR_CAP", "text": "Confess: {guilty_prompt}.", "family": "confess_simple", "spice": 1, "locality": 1, "max_words": 14, "tags": ["confession","true_false","prepick"] },
+  { "id": "coc2", "game": "CONFESSION_OR_CAP", "text": "Confess: I once {guilty_prompt} and told no one.", "family": "confess_story", "spice": 2, "locality": 1, "max_words": 16, "tags": ["confession","true_false","prepick"] },
+
+  { "id": "pp1", "game": "POISON_PITCH", "text": "Would you rather {gross} or {social_disaster}?", "family": "wyr_gross_social", "spice": 2, "locality": 1, "max_words": 16, "tags": ["wyr","ab","pitch"] },
+  { "id": "pp2", "game": "POISON_PITCH", "text": "Would you rather {social_disaster} or {gross}?", "family": "wyr_social_gross", "spice": 2, "locality": 1, "max_words": 16, "tags": ["wyr","ab","pitch"] },
+
+  { "id": "rif1", "game": "FILL_IN_FINISHER", "text": "Finish it: The ick that ruins a 10/10 is ____.", "family": "ick_finisher_blank", "spice": 1, "locality": 1, "max_words": 16, "tags": ["fill_in","judge"] },
+  { "id": "rif2", "game": "FILL_IN_FINISHER", "text": "Finish it: \"The real red flag is...\" ____", "family": "redflag_finisher_blank", "spice": 1, "locality": 1, "max_words": 14, "tags": ["fill_in","judge"] },
+
+  { "id": "rfr1", "game": "RED_FLAG_RALLY", "text": "They've got {perk}, but… {red_flag}. Smash or pass?", "family": "perk_vs_flag", "spice": 2, "locality": 1, "max_words": 18, "tags": ["dating","smash_pass"] },
+  { "id": "rfr2", "game": "RED_FLAG_RALLY", "text": "Perk: {perk}. Red flag: {red_flag}. Are you smashing or passing?", "family": "perk_flag_alt", "spice": 2, "locality": 1, "max_words": 20, "tags": ["dating","smash_pass"] },
+
+  { "id": "hsi1", "game": "HOT_SEAT_IMPOSTER", "text": "As {target_name}: my secret guilty pleasure is {guilty_prompt:a_an}.", "family": "imposter_guilty", "spice": 1, "locality": 1, "max_words": 20, "tags": ["imposter","target","judge"] },
+  { "id": "hsi2", "game": "HOT_SEAT_IMPOSTER", "text": "As {target_name}: the most 'me' habit is {guilty_prompt:a_an}.", "family": "imposter_habit", "spice": 1, "locality": 1, "max_words": 20, "tags": ["imposter","target","judge"] },
+
+  { "id": "ttt1", "game": "TEXT_THREAD_TRAP", "text": "You receive: \"{inbound_text}\" — pick the perfect reply vibe.", "family": "text_trap", "spice": 1, "locality": 1, "max_words": 20, "tags": ["text","tone","judge"] },
+  { "id": "ttt2", "game": "TEXT_THREAD_TRAP", "text": "{target_name} texts: \"{inbound_text}\" — pick the reply vibe.", "family": "text_trap_target", "spice": 1, "locality": 1, "max_words": 20, "tags": ["text","tone","judge"] },
+
+  { "id": "tab1", "game": "TABOO_TIMER", "text": "Make them guess: {meme}. Forbidden: {meme:unique}, {meme:unique}, {meme:unique}.", "family": "taboo_memes", "spice": 1, "locality": 1, "max_words": 22, "tags": ["taboo","team","timer"] },
+  { "id": "tab2", "game": "TABOO_TIMER", "text": "Target word: {meme}. Taboo: {meme:unique}, {meme:unique}, {meme:unique}.", "family": "taboo_memes_alt", "spice": 1, "locality": 1, "max_words": 22, "tags": ["taboo","team","timer"] },
+
+  { "id": "ooo1", "game": "ODD_ONE_OUT", "text": "{meme}, {meme}, {meme} — which is the odd one out, and why?", "family": "odd_memes", "spice": 1, "locality": 1, "max_words": 22, "tags": ["odd_one","explain","judge"] },
+  { "id": "ooo2", "game": "ODD_ONE_OUT", "text": "{meme}, {meme}, {meme} — pick the misfit and defend it.", "family": "odd_memes_defend", "spice": 1, "locality": 1, "max_words": 20, "tags": ["odd_one","explain","judge"] },
+
+  { "id": "tf1", "game": "TITLE_FIGHT", "text": "Challenge the title holder in: {meme:title}. Roll a duel and go.", "family": "title_challenge", "spice": 1, "locality": 1, "max_words": 18, "tags": ["duel","mini_game","judge"] },
+  { "id": "tf2", "game": "TITLE_FIGHT", "text": "Title bout: {meme:title}. Countdown and duel.", "family": "title_bout", "spice": 1, "locality": 1, "max_words": 14, "tags": ["duel","mini_game","judge"] },
+
+  { "id": "ad1", "game": "ALIBI_DROP", "text": "Hide these in an alibi: {meme#3,sep=' / ',unique}.", "family": "alibi_memes", "spice": 1, "locality": 1, "max_words": 20, "tags": ["smuggle","story","judge"] },
+  { "id": "ad2", "game": "ALIBI_DROP", "text": "Your alibi must include: {meme#3,sep=', ',unique}. Don’t get caught.", "family": "alibi_memes_alt", "spice": 1, "locality": 1, "max_words": 20, "tags": ["smuggle","story","judge"] },
+
+  { "id": "hoy1", "game": "HYPE_OR_YIKE", "text": "Pitch a product that fixes: {meme}. Dead serious. 15s.", "family": "hype_fix", "spice": 1, "locality": 1, "max_words": 16, "tags": ["pitch","sell","vote"] },
+  { "id": "hoy2", "game": "HYPE_OR_YIKE", "text": "Sell us on: {meme}. Serious pitch. 15s.", "family": "hype_sell", "spice": 1, "locality": 1, "max_words": 14, "tags": ["pitch","sell","vote"] },
+
+  { "id": "sb1", "game": "SCATTERBLAST", "text": "Category: {category:title}. Letter: {letter}. Say 3 in 10s.", "family": "scatterblast_basic", "spice": 1, "locality": 1, "max_words": 18, "tags": ["scatter","speed","timer"] },
+  { "id": "sb2", "game": "SCATTERBLAST", "text": "Category: {category:title}. Letter: {letter}. No repeats. 10s.", "family": "scatterblast_norepeat", "spice": 1, "locality": 1, "max_words": 18, "tags": ["scatter","speed","timer"] },
+
+  { "id": "mr1", "game": "MAJORITY_REPORT", "text": "Predict the room: {meme:title} vs {meme:title}.", "family": "majority_ab_clean", "spice": 1, "locality": 1, "max_words": 16, "tags": ["predict","ab","vote"] },
+  { "id": "mr2", "game": "MAJORITY_REPORT", "text": "Predict: {meme:title} vs {meme:title}. Lock before they vote.", "family": "majority_ab_alt", "spice": 1, "locality": 1, "max_words": 16, "tags": ["predict","ab","vote"] }
 ]

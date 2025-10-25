@@ -169,7 +169,12 @@ class ErrorHandlingScope(
 }
 
 /**
- * Extension functions for easier error handling
+ * Extension function for wrapping suspend functions with error handling.
+ *
+ * @param context Description of the context where the error occurred.
+ * @param severity The severity level of the error.
+ * @param block The suspend function to execute.
+ * @return The result if successful, or null if an error occurred.
  */
 suspend fun <T> withErrorHandling(
     context: String,
@@ -179,6 +184,14 @@ suspend fun <T> withErrorHandling(
     return ErrorHandler.withErrorHandling(context, severity, block).getOrNull()
 }
 
+/**
+ * Extension function for wrapping functions with error handling.
+ *
+ * @param context Description of the context where the error occurred.
+ * @param severity The severity level of the error.
+ * @param block The function to execute.
+ * @return The result if successful, or null if an error occurred.
+ */
 fun <T> executeWithErrorHandling(
     context: String,
     severity: ErrorSeverity = ErrorSeverity.MEDIUM,
@@ -188,7 +201,10 @@ fun <T> executeWithErrorHandling(
 }
 
 /**
- * Try-catch extension for cleaner code
+ * Extension function for try-catch operations that returns null on failure.
+ *
+ * @param block The function to execute.
+ * @return The result if successful, or null if an exception occurred.
  */
 inline fun <T> tryOrNull(block: () -> T): T? {
     return try {
@@ -200,7 +216,12 @@ inline fun <T> tryOrNull(block: () -> T): T? {
 }
 
 /**
- * Try-catch extension with error handling
+ * Extension function for try-catch operations with error handling via ErrorHandler.
+ *
+ * @param context Description of the context where the error occurred.
+ * @param severity The severity level of the error.
+ * @param block The function to execute.
+ * @return The result if successful, or null if an error occurred.
  */
 inline fun <T> tryOrHandle(
     context: String,

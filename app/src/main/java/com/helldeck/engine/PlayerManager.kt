@@ -1,6 +1,6 @@
 package com.helldeck.engine
 
-import com.helldeck.data.PlayerEntity
+import com.helldeck.content.model.Player
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,8 +13,8 @@ import java.util.concurrent.ConcurrentHashMap
  */
 object PlayerManager {
 
-    private val _players = MutableStateFlow<List<PlayerEntity>>(emptyList())
-    val players: StateFlow<List<PlayerEntity>> = _players.asStateFlow()
+    private val _players = MutableStateFlow<List<Player>>(emptyList())
+    val players: StateFlow<List<Player>> = _players.asStateFlow()
 
     private val _teams = MutableStateFlow<Map<String, Team>>(emptyMap())
     val teams: StateFlow<Map<String, Team>> = _teams.asStateFlow()
@@ -33,7 +33,7 @@ object PlayerManager {
     /**
      * Add a player to the game
      */
-    fun addPlayer(player: PlayerEntity) {
+    fun addPlayer(player: Player) {
         val currentPlayers = _players.value.toMutableList()
 
         if (currentPlayers.none { it.id == player.id }) {
@@ -71,7 +71,7 @@ object PlayerManager {
     /**
      * Update player information
      */
-    fun updatePlayer(player: PlayerEntity) {
+    fun updatePlayer(player: Player) {
         val currentPlayers = _players.value.toMutableList()
         val index = currentPlayers.indexOfFirst { it.id == player.id }
 
@@ -87,14 +87,14 @@ object PlayerManager {
     /**
      * Get player by ID
      */
-    fun getPlayer(playerId: String): PlayerEntity? {
+    fun getPlayer(playerId: String): Player? {
         return _players.value.find { it.id == playerId }
     }
 
     /**
      * Get player by name
      */
-    fun getPlayerByName(name: String): PlayerEntity? {
+    fun getPlayerByName(name: String): Player? {
         return _players.value.find { it.name == name }
     }
 
@@ -148,7 +148,7 @@ object PlayerManager {
     /**
      * Create two balanced teams
      */
-    private fun createTwoTeams(players: List<PlayerEntity>) {
+    private fun createTwoTeams(players: List<Player>) {
         val sortedPlayers = players.sortedByDescending { it.sessionPoints }
         val midPoint = players.size / 2
 
@@ -167,7 +167,7 @@ object PlayerManager {
     /**
      * Create multiple teams for large groups
      */
-    private fun createMultipleTeams(players: List<PlayerEntity>) {
+    private fun createMultipleTeams(players: List<Player>) {
         val sortedPlayers = players.sortedByDescending { it.sessionPoints }
         val teamSize = 4 // Optimal team size
         val numberOfTeams = (players.size + teamSize - 1) / teamSize // Ceiling division
@@ -194,7 +194,7 @@ object PlayerManager {
     /**
      * Update team membership for a player
      */
-    private fun updateTeamMembership(player: PlayerEntity) {
+    private fun updateTeamMembership(player: Player) {
         val currentTeams = _teams.value.toMutableMap()
 
         // Find which team the player belongs to and update points
@@ -268,7 +268,7 @@ object PlayerManager {
     /**
      * Get next player in turn order
      */
-    fun getNextPlayer(): PlayerEntity? {
+    fun getNextPlayer(): Player? {
         if (turnOrder.isEmpty()) {
             initializeTurnOrder()
         }
@@ -286,7 +286,7 @@ object PlayerManager {
     /**
      * Get current player
      */
-    fun getCurrentPlayer(): PlayerEntity? {
+    fun getCurrentPlayer(): Player? {
         if (turnOrder.isEmpty() || currentTurnIndex == 0) {
             return getNextPlayer()
         }
@@ -311,7 +311,7 @@ object PlayerManager {
     /**
      * Get players in current turn order
      */
-    fun getPlayersInTurnOrder(): List<PlayerEntity> {
+    fun getPlayersInTurnOrder(): List<Player> {
         if (turnOrder.isEmpty()) {
             initializeTurnOrder()
         }
@@ -333,7 +333,7 @@ object PlayerManager {
     /**
      * Get last place players (for comeback mechanic)
      */
-    fun getLastPlacePlayers(): List<PlayerEntity> {
+    fun getLastPlacePlayers(): List<Player> {
         if (_players.value.isEmpty()) return emptyList()
 
         val minPoints = _players.value.minOf { it.sessionPoints }
@@ -343,7 +343,7 @@ object PlayerManager {
     /**
      * Get leaderboard
      */
-    fun getLeaderboard(): List<PlayerEntity> {
+    fun getLeaderboard(): List<Player> {
         return _players.value.sortedByDescending { it.sessionPoints }
     }
 
@@ -474,7 +474,7 @@ object PlayerManager {
             val playersData = data["players"] as? List<Map<String, Any>> ?: emptyList()
 
             val importedPlayers = playersData.map { playerData ->
-                PlayerEntity(
+                Player(
                     id = playerData["id"] as String,
                     name = playerData["name"] as String,
                     avatar = playerData["avatar"] as String,
@@ -602,14 +602,14 @@ enum class VotingLayout {
 /**
  * Player management extensions
  */
-fun List<PlayerEntity>.toTeamMap(): Map<String, Team> {
+fun List<Player>.toTeamMap(): Map<String, Team> {
     return PlayerManager.getTeamLeaderboard().associateBy { it.name }
 }
 
-fun PlayerEntity.getTeam(): Team? {
+fun Player.getTeam(): Team? {
     return PlayerManager.getTeamForPlayer(this.id)
 }
 
-fun PlayerEntity.addPoints(points: Int) {
+fun Player.addPoints(points: Int) {
     PlayerManager.addPointsToPlayer(this.id, points)
 }

@@ -13,72 +13,72 @@ Main orchestrator for game logic and state management.
 
 ```kotlin
 class GameEngine(
-    private val ctx: Context,
-    private val repo: Repository,
-    private val templateEngine: TemplateEngine
+    private val repo: ContentRepository,
+    private val rng: SeededRng
 )
 ```
 
 **Key Methods:**
-- `initialize()` - Initialize the game engine
-- `nextFilledCard(gameId: String): FilledCard` - Generate next card for a game
-- `commitRound(...)` - Process round results and update learning
-- `getGameStats()` - Get game statistics
-- `reset()` - Reset game state
+- `nextFilledCard(req: Request): GameResult` - Generate next card for a game
+- `recordOutcome(sessionId: String, templateId: String, laughsScore01: Double, responseTimeMs: Long, heatPercentage: Double, winner: String?)` - Process round results and update learning
+- `getPlayerScores(sessionId: String): List<PlayerScore>` - Get player scores for a session
+- `getLastPlacePlayer(sessionId: String): String?` - Get the player in last place
+- `resetSession(sessionId: String)` - Reset game state for a session
 
 #### `TemplateEngine`
 Handles template filling with dynamic content.
 
 ```kotlin
-class TemplateEngine(private val ctx: Context)
+class TemplateEngine(
+    private val repo: ContentRepository,
+    private val rng: SeededRng
+)
 ```
 
 **Key Methods:**
-- `fill(template: TemplateDef, slotProvider: suspend (String) -> String): String`
-- `getCandidatesForGame(game: String): List<TemplateDef>`
-- `getTemplateById(id: String): TemplateDef?`
+- `fill(template: Template, ctx: Context): FilledCard` - Fill a template with dynamic content
 
 #### `Selection`
-Template selection algorithms using multi-armed bandit approaches.
+Template selection algorithms using Upper Confidence Bound (UCB) approach.
 
 ```kotlin
-object Selection
+class Selection(
+    private val rng: SeededRng,
+    private val explorationC: Double = 1.4
+)
 ```
 
 **Key Methods:**
-- `pickNext(candidates: List<TemplateEntity>, recentFamilies: List<String>, roundIdx: Int): TemplateEntity`
-- `pickNextEpsilonGreedy(...)` - Epsilon-greedy algorithm
-- `pickNextUCB(...)` - Upper Confidence Bound algorithm
-- `pickNextThompson(...)` - Thompson Sampling algorithm
+- `pickNext(ids: List<String>): String` - Select the next template using UCB algorithm
+- `reward(templateId: String, reward: Double)` - Record a reward for a template
+- `loadPersisted(existing: List<TemplateStatEntity>)` - Load persisted statistics
+- `toEntities(): List<TemplateStatEntity>` - Convert to entity objects for persistence
 
-#### `Learning`
-Machine learning system for template performance optimization.
+#### `ContentEngineProvider`
+Singleton provider for GameEngine and ContentRepository instances.
 
 ```kotlin
-object Learning
+object ContentEngineProvider
 ```
 
 **Key Methods:**
-- `scoreCard(...)` - Calculate score for a card based on feedback
-- `updateTemplateScore(...)` - Update template score using EMA
-- `calculateSelectionScore(...)` - Calculate contextual selection score
+- `get(context: Context, sessionSeed: Long = System.currentTimeMillis()): GameEngine` - Get or create GameEngine instance
+- `getContentRepository(context: Context): ContentRepository` - Get or create ContentRepository instance
 
 ### Data Layer
 
-#### `Repository`
-High-level data access facade.
+#### `ContentRepository`
+High-level data access facade for content and player data.
 
 ```kotlin
-class Repository private constructor(private val ctx: Context)
+class ContentRepository(private val context: Context)
 ```
 
 **Key Methods:**
-- `getActivePlayers(): Flow<List<PlayerEntity>>`
-- `recordRound(...)` - Record a game round
-- `loadTemplatesFromAssets(...)` - Load templates from assets
-- `loadLexiconFromAssets(name: String, assetPath: String)` - Load lexicon data
-- `exportBrainpack(...)` - Export learning data
-- `importBrainpack(...)` - Import learning data
+- `initialize()` - Initialize the repository
+- `templates(): List<Template>` - Get all templates
+- `wordsFor(slot: String): List<String>` - Get words for a slot
+- `statsDao: TemplateStatsDao` - Access to template statistics
 
 #### Database Entities
 - `TemplateEntity` - Game card templates
@@ -91,28 +91,40 @@ class Repository private constructor(private val ctx: Context)
 
 ### UI Components
 
-#### `HelldeckTheme`
-Custom Material Design 3 theme optimized for party environments.
+#### `HelldeckAppUI`
+Main application UI composable managing scene navigation and state.
 
 ```kotlin
 @Composable
-fun HelldeckTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+fun HelldeckAppUI(
+    vm: HelldeckVm = viewModel(),
+    modifier: Modifier = Modifier
 )
 ```
 
-#### `CardFace`
-Main game card display component.
+#### `HelldeckVm`
+ViewModel for managing game state, navigation, and player data.
+
+**Key Methods:**
+- `initOnce()` - Initialize the ViewModel systems
+- `startRound(gameId: String? = null)` - Start a new game round
+- `resolveInteraction()` - Resolve current game interaction
+- `commitFeedbackAndNext()` - Commit feedback and advance to next round
+
+#### `HomeScene`
+Main menu scene displaying game tiles and settings.
 
 ```kotlin
 @Composable
-fun CardFace(
-    title: String,
-    subtitle: String? = null,
-    modifier: Modifier = Modifier,
-    onClick: (() -> Unit)? = null
-)
+fun HomeScene(vm: HelldeckVm)
+```
+
+#### `RollcallScene`
+Attendance scene for selecting present players.
+
+```kotlin
+@Composable
+fun RollcallScene(vm: HelldeckVm)
 ```
 
 #### `BigZones`
@@ -192,14 +204,11 @@ Game configuration management.
 object Config
 ```
 
-**Key Properties:**
-- `current: HelldeckCfg` - Current configuration
-- `spicyMode: Boolean` - Enable spicy mode (70% threshold vs 60%)
-
 **Key Methods:**
 - `load(context: Context)` - Load configuration from assets
 - `roomHeatThreshold()` - Get current room heat threshold
-- `validate()` - Validate configuration integrity
+- `setRoomHeatThreshold(value: Double)` - Set room heat threshold
+- `spicyMode: Boolean` - Enable/disable spicy mode
 
 Additional setting:
 - `rollcall_on_launch` (boolean in settings DB) controls whether RollcallScene opens on startup when players exist.
@@ -529,14 +538,35 @@ Logger.exportLogs(context, logFile)
 
 ### Data Classes
 
-#### `FilledCard`
+#### `GameEngine.Request`
 ```kotlin
-data class FilledCard(
-    val templateId: String,
-    val game: String,
-    val text: String,
-    val options: List<String> = emptyList(),
-    val meta: Map<String, String> = emptyMap()
+data class Request(
+    val gameId: String,
+    val sessionId: String,
+    val spiceMax: Int = 3,
+    val localityMax: Int = 3,
+    val players: List<String> = emptyList(),
+    val inboundTexts: List<String> = emptyList()
+)
+```
+
+#### `GameEngine.GameResult`
+```kotlin
+data class GameResult(
+    val filledCard: FilledCard,
+    val options: GameOptions,
+    val timer: Int,
+    val interactionType: InteractionType
+)
+```
+
+#### `GameEngine.PlayerScore`
+```kotlin
+data class PlayerScore(
+    val playerId: String,
+    val score: Int = 0,
+    val streak: Int = 0,
+    val lastRoundWon: Int = 0
 )
 ```
 

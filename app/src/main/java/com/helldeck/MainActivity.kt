@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.Arrangement
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.helldeck.data.Repository
+import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.engine.Config
 import com.helldeck.ui.HelldeckTheme
 import com.helldeck.ui.OnboardingWrapper
@@ -31,6 +31,13 @@ class MainActivity : ComponentActivity() {
 
     private var isInitialized = false
 
+    /**
+     * Called when the activity is first created.
+     * Sets up the splash screen, enables edge-to-edge display, initializes logging, and sets the content view.
+     * Handles initialization errors gracefully.
+     *
+     * @param savedInstanceState If the activity is being re-initialized after previously being shut down, this Bundle contains the data it most recently supplied.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
             installSplashScreen()
@@ -65,6 +72,10 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * Composable function that manages the main app content, including loading, error, and main UI states.
+     * Handles app initialization asynchronously and displays appropriate screens based on the state.
+     */
     @Composable
     private fun HellDeckAppContent() {
         var isLoading by remember { mutableStateOf(true) }
@@ -119,7 +130,8 @@ class MainActivity : ComponentActivity() {
     }
     
     /**
-     * Main app content composable
+     * Composable function that displays the main application UI after initialization.
+     * Wraps the core UI with onboarding components.
      */
     @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class, androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
     @Composable
@@ -129,6 +141,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * Suspend function to initialize the application asynchronously.
+     * Loads configuration, initializes the content engine, and runs preflight validation.
+     * Throws an exception if initialization fails.
+     */
     private suspend fun initializeApp() {
         try {
             Logger.i("Starting app initialization")
@@ -136,16 +153,8 @@ class MainActivity : ComponentActivity() {
             // Load configuration
             Config.load(this)
 
-            // Initialize repository and database only if needed
-            val repository = Repository.get(this)
-            try {
-                val needsInit = repository.db.templates().getTotalCount() == 0
-                if (needsInit) {
-                    repository.initialize()
-                }
-            } catch (_: Exception) {
-                repository.initialize()
-            }
+            // Initialize new content engine
+            ContentEngineProvider.get(this)
 
             Logger.i("App initialization completed successfully")
 
@@ -155,6 +164,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * Handles initialization errors by logging and displaying an error screen.
+     * Prevents the app from crashing and provides a fallback UI.
+     *
+     * @param error The exception that occurred during initialization.
+     */
     private fun handleInitializationError(error: Exception) {
         // In a production app, you might want to show a crash dialog
         // or send error reports. For now, we'll just log and continue
@@ -169,21 +184,39 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * Called when the activity is resumed from a paused state.
+     * Logs the resume event for debugging.
+     */
     override fun onResume() {
         super.onResume()
         Logger.d("MainActivity resumed")
     }
 
+    /**
+     * Called when the activity is paused.
+     * Logs the pause event for debugging.
+     */
     override fun onPause() {
         super.onPause()
         Logger.d("MainActivity paused")
     }
 
+    /**
+     * Called when the activity is being destroyed.
+     * Logs the destroy event for debugging.
+     */
     override fun onDestroy() {
         super.onDestroy()
         Logger.d("MainActivity destroyed")
     }
 
+    /**
+     * Called when a new intent is delivered to the activity.
+     * Logs the new intent for debugging.
+     *
+     * @param intent The new intent that was started for the activity.
+     */
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         Logger.d("New intent received: ${intent.action}")
@@ -191,7 +224,8 @@ class MainActivity : ComponentActivity() {
 }
 
 /**
- * Loading screen composable
+ * Composable function that displays a loading screen with a progress indicator.
+ * Used while the app is initializing.
  */
 @Composable
 private fun LoadingScreen() {
@@ -206,7 +240,12 @@ private fun LoadingScreen() {
 }
 
 /**
- * Error screen composable
+ * Composable function that displays an error screen with the error message and optional retry button.
+ * Used to show initialization or other errors to the user.
+ *
+ * @param error The error message to display.
+ * @param showRetry Whether to show the retry button.
+ * @param onRetry Callback to execute when the retry button is clicked.
  */
 @Composable
 private fun ErrorScreen(error: String, showRetry: Boolean = true, onRetry: (() -> Unit)? = null) {

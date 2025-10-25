@@ -135,6 +135,15 @@
 # Device admin receiver
 -keep class com.helldeck.admin.** { *; }
 
+# LLM and Augmentation Pipeline
+-keep class com.helldeck.llm.** { *; }
+-keep class com.helldeck.llm.llamacpp.** { *; }
+-keep class com.helldeck.content.engine.augment.** { *; }
+-keep class com.helldeck.content.model.v2.** { *; }
+-keepclassmembers class com.helldeck.llm.llamacpp.LlamaNative {
+    native <methods>;
+}
+
 # Keep all View constructors
 -keepclasseswithmembers class * {
     public <init>(android.content.Context, android.util.AttributeSet);

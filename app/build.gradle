@@ -1,7 +1,8 @@
 plugins {
   id 'com.android.application'
   id 'org.jetbrains.kotlin.android'
-  id 'kotlin-kapt'
+  id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.25'
+  id 'com.google.devtools.ksp' version '1.9.25-1.0.20'
   id 'jacoco'
 }
 
@@ -30,6 +31,19 @@ android {
     // Enhanced build config
     buildConfigField "String", "BUILD_TIME", "\"${new Date().format('yyyy-MM-dd HH:mm:ss')}\""
     buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
+    
+    // NDK configuration for llama.cpp
+    // Only build for arm64-v8a to avoid float16 intrinsics issues on armeabi-v7a
+    ndk {
+      abiFilters 'arm64-v8a'
+    }
+    
+    externalNativeBuild {
+      cmake {
+        cppFlags "-std=c++17 -O3"
+        arguments "-DANDROID_STL=c++_shared"
+      }
+    }
   }
 
   buildTypes {
@@ -83,7 +97,7 @@ android {
   }
 
   composeOptions {
-    kotlinCompilerExtensionVersion '1.5.14'
+    kotlinCompilerExtensionVersion '1.5.15'
   }
 
   packaging {
@@ -95,6 +109,16 @@ android {
         "/META-INF/NOTICE",
         "/META-INF/LICENSE"
       ]
+    }
+    jniLibs {
+      useLegacyPackaging = true
+    }
+  }
+  
+  externalNativeBuild {
+    cmake {
+      path "CMakeLists.txt"
+      version "3.22.1"
     }
   }
 
@@ -157,11 +181,12 @@ dependencies {
   // Room Database
   implementation 'androidx.room:room-runtime:2.6.1'
   implementation 'androidx.room:room-ktx:2.6.1'
-  kapt 'androidx.room:room-compiler:2.6.1'
+  ksp 'androidx.room:room-compiler:2.6.1'
 
   // Data Processing
   implementation 'org.yaml:snakeyaml:2.2'
   implementation 'com.google.code.gson:gson:2.11.0'
+  implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0'
 
   // Utilities
   implementation 'androidx.datastore:datastore-preferences:1.1.1'
@@ -208,4 +233,15 @@ def getGitHash() {
   } catch (Exception e) {
     return "unknown"
   }
+}
+
+// Task to copy models from assets to filesDir
+task copyModels(type: Copy) {
+    from 'src/main/assets/models'
+    into "$buildDir/intermediates/assets/debug/models"
+    include '*.gguf'
+}
+
+afterEvaluate {
+    preBuild.dependsOn(copyModels)
 }

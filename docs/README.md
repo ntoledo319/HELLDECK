@@ -137,6 +137,12 @@ setting:
 - **Throws** - Exception types and conditions
 - **Examples** - Usage examples where helpful
 
+### Code Documentation Standards
+- All public classes, methods, and properties include KDoc comments
+- Private methods include documentation for maintainability
+- Extension functions are documented with usage context
+- Consistent formatting and clear descriptions for all APIs
+
 ## 🔍 Searching Documentation
 
 ### Key Topics

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "roast_consensus_v2_001",
+    "version": 2,
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_classic",
+    "tags": ["voting", "roast", "social"],
+    "spice": 2,
+    "locality": 1,
+    "weight": 1.0,
+    "min_players": 3,
+    "max_words": 18,
+    "text": "Most likely to {sketchy_action} for {tiny_reward}.",
+    "options": {
+      "type": "PlayerVote",
+      "scope": "all"
+    },
+    "slots": [
+      {
+        "name": "sketchy_action",
+        "from": "sketchy_actions"
+      },
+      {
+        "name": "tiny_reward",
+        "from": "tiny_rewards"
+      }
+    ],
+    "constraints": {
+      "distinct_slots": true,
+      "no_recent_repeats": {
+        "horizon": 10
+      }
+    }
+  },
+  {
+    "id": "roast_consensus_v2_002",
+    "version": 2,
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_ick",
+    "tags": ["voting", "roast", "ick"],
+    "spice": 2,
+    "locality": 2,
+    "weight": 1.2,
+    "min_players": 3,
+    "max_words": 15,
+    "text": "Biggest {ick} energy in the room.",
+    "options": {
+      "type": "PlayerVote",
+      "scope": "all"
+    },
+    "slots": [
+      {
+        "name": "ick",
+        "from": "icks"
+      }
+    ],
+    "constraints": {
+      "no_recent_repeats": {
+        "horizon": 15
+      }
+    }
+  }
+]

@@ -199,17 +199,19 @@ object Config {
     private fun getDefaultConfig(): HelldeckCfg {
         return HelldeckCfg(
             scoring = Scoring(
-                win = 2,
-                room_heat_bonus = 1,
-                room_heat_threshold = 0.60,
-                trash_penalty = -2,
-                streak_cap = 3
+                win = 3,                    // Increased from 2 to 3 for better reward
+                room_heat_bonus = 2,            // Increased from 1 to 2
+                room_heat_threshold = 0.65,        // Increased from 0.60 to 0.65 for easier heat
+                trash_penalty = -1,               // Reduced penalty from -2 to -1 (less harsh)
+                streak_cap = 5,                   // Increased from 3 to 5 for longer streaks
+                fast_laugh_bonus = 1.0,          // Increased from 0.5 to 1.0
+                consensus_bonus = 2                 // Increased from 1 to 2
             ),
             timers = Timers(
-                vote_binary_ms = 8000,
-                vote_avatar_ms = 10000,
-                judge_pick_ms = 6000,
-                revote_ms = 3000
+                vote_binary_ms = 6000,             // Reduced from 8000 for faster voting
+                vote_avatar_ms = 8000,             // Reduced from 10000 for faster avatar voting
+                judge_pick_ms = 4000,             // Reduced from 6000 for faster judging
+                revote_ms = 2000                  // Reduced from 3000 for faster revoting
             ),
             players = PlayersCfg(
                 sweet_spot_min = 3,
@@ -217,12 +219,12 @@ object Config {
                 party_mode_max = 16
             ),
             learning = LearningCfg(
-                alpha = 0.3,
-                epsilon_start = 0.25,
-                epsilon_end = 0.05,
-                decay_rounds = 20,
-                diversity_window = 5,
-                minhash_threshold = 0.85
+                alpha = 0.4,                     // Increased from 0.3 for faster learning
+                epsilon_start = 0.30,               // Increased from 0.25 for more exploration
+                epsilon_end = 0.10,                 // Increased from 0.05 for sustained exploration
+                decay_rounds = 15,                 // Reduced from 20 for faster adaptation
+                diversity_window = 3,                 // Reduced from 5 for more variety
+                minhash_threshold = 0.80              // Reduced from 0.85 for more learning
             ),
             mechanics = MechanicsCfg(
                 comeback_last_place_picks_next = true,

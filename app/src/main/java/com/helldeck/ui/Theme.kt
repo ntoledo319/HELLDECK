@@ -156,46 +156,45 @@ object HelldeckTheme {
 }
 
 /**
- * Color roles for HELLDECK
+ * Color roles for HELLDECK with improved contrast
  */
 object HelldeckColors {
-    // Brand colors
-    val Yellow = Color(0xFFFFD166)
-    val Green = Color(0xFF7CFC00)
-    val Orange = Color(0xFFFF8C00)
-    val Red = Color(0xFFFF4444)
+    // Brand colors - brighter for better visibility
+    val Yellow = Color(0xFFFFC107)        // Brighter, more saturated yellow
+    val Green = Color(0xFF66BB6A)         // More readable green
+    val Orange = Color(0xFFFF9800)        // Vibrant orange
+    val Red = Color(0xFFEF5350)           // Softer but visible red
 
-    // Background colors
+    // Background colors - improved contrast
     val Black = Color(0xFF000000)
-    // Neutrals retuned for legibility
-    val DarkGray = Color(0xFF1E1E1E)     // Card/containers on dark bg
-    val MediumGray = Color(0xFF2C2C2C)   // Secondary containers
-    val LightGray = Color(0xFFCFCFCF)    // Secondary text on dark surfaces
+    val DarkGray = Color(0xFF212121)      // Slightly lighter for better contrast
+    val MediumGray = Color(0xFF424242)    // More distinct from DarkGray
+    val LightGray = Color(0xFFE0E0E0)     // Brighter for better readability
 
     // Text colors
     val White = Color(0xFFFFFFFF)
-    val OffWhite = Color(0xFFF5F5F5)
-    val DarkWhite = Color(0xFFE0E0E0)
+    val OffWhite = Color(0xFFFAFAFA)
+    val DarkWhite = Color(0xFFEEEEEE)
 
-    // State colors
-    val Success = Color(0xFF4CAF50)
-    val Warning = Color(0xFFFF9800)
-    val Error = Color(0xFFF44336)
-    val Info = Color(0xFF2196F3)
+    // State colors - improved visibility
+    val Success = Color(0xFF66BB6A)
+    val Warning = Color(0xFFFFB74D)
+    val Error = Color(0xFFEF5350)
+    val Info = Color(0xFF42A5F5)
 
-    // Game-specific colors
-    val Lol = Color(0xFFFFD700)
-    val Meh = Color(0xFF808080)
-    val Trash = Color(0xFF8B0000)
+    // Game-specific colors with better contrast
+    val Lol = Color(0xFFFFC107)           // Bright gold
+    val Meh = Color(0xFF9E9E9E)           // Lighter gray
+    val Trash = Color(0xFFEF5350)         // More visible red
 
-    // Vote colors
-    val VoteSelected = Color(0xFFFFD166)
-    val VoteUnselected = Color(0xFF5A5A5A)
+    // Vote colors - better distinction
+    val VoteSelected = Color(0xFFFFC107)
+    val VoteUnselected = Color(0xFF757575)
 
-    // Timer colors
-    val TimerNormal = Color(0xFFFFD166)
-    val TimerWarning = Color(0xFFFF8C00)
-    val TimerCritical = Color(0xFFFF4444)
+    // Timer colors - enhanced visibility
+    val TimerNormal = Color(0xFFFFC107)
+    val TimerWarning = Color(0xFFFF9800)
+    val TimerCritical = Color(0xFFEF5350)
 }
 
 /**
@@ -218,23 +217,65 @@ val ColorScheme.helldeckTrash: Color get() = Color(0xFF8B0000)
  * Animation specifications for HELLDECK
  */
 object HelldeckAnimations {
-    const val Fast = 150
-    const val Normal = 300
-    const val Slow = 500
+    const val Instant = 100           // Added for immediate transitions
+    const val Fast = 200              // Standardized from 150
+    const val Normal = 300            // Kept as baseline
+    const val Slow = 400              // Reduced from 500 for snappier feel
+    const val Slower = 600             // Added for very slow transitions
 
+    // Standardized spring animations with consistent physics
     val CardEnter = spring<Float>(
-        dampingRatio = 0.8f,
-        stiffness = Spring.StiffnessLow
+        dampingRatio = Spring.DampingRatioMediumBouncy,  // More bouncy and responsive
+        stiffness = Spring.StiffnessMedium,
+        visibilityThreshold = 0.01f
     )
 
     val CardExit = spring<Float>(
-        dampingRatio = 0.9f,
-        stiffness = Spring.StiffnessVeryLow
+        dampingRatio = Spring.DampingRatioMediumBouncy,  // Consistent with enter
+        stiffness = Spring.StiffnessMedium,
+        visibilityThreshold = 0.01f
     )
 
     val ButtonPress = spring<Float>(
-        dampingRatio = 0.7f,
-        stiffness = Spring.StiffnessHigh
+        dampingRatio = Spring.DampingRatioHighBouncy,     // More responsive feedback
+        stiffness = Spring.StiffnessMedium,
+        visibilityThreshold = 0.01f
+    )
+
+    val SceneTransition = spring<Float>(
+        dampingRatio = Spring.DampingRatioLowBouncy,      // Smooth scene transitions
+        stiffness = Spring.StiffnessLow,
+        visibilityThreshold = 0.01f
+    )
+
+    val FadeIn = spring<Float>(
+        dampingRatio = Spring.DampingRatioNoBouncy,        // Clean fade without bounce
+        stiffness = Spring.StiffnessVeryLow,
+        visibilityThreshold = 0.01f
+    )
+
+    val FadeOut = spring<Float>(
+        dampingRatio = Spring.DampingRatioNoBouncy,        // Consistent fade out
+        stiffness = Spring.StiffnessVeryLow,
+        visibilityThreshold = 0.01f
+    )
+
+    val Pulse = spring<Float>(
+        dampingRatio = Spring.DampingRatioMediumBouncy,      // For attention-grabbing pulses
+        stiffness = Spring.StiffnessHigh,
+        visibilityThreshold = 0.01f
+    )
+
+    val SlideIn = spring<Float>(
+        dampingRatio = Spring.DampingRatioMediumBouncy,      // Smooth slide animations
+        stiffness = Spring.StiffnessLow,
+        visibilityThreshold = 0.01f
+    )
+
+    val SlideOut = spring<Float>(
+        dampingRatio = Spring.DampingRatioMediumBouncy,      // Consistent slide out
+        stiffness = Spring.StiffnessLow,
+        visibilityThreshold = 0.01f
     )
 }
 

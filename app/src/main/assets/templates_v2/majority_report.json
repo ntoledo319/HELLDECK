@@ -1,0 +1,62 @@
+[
+  {
+    "id": "majority_report_v2_001",
+    "version": 2,
+    "game": "MAJORITY_REPORT",
+    "family": "majority_ab_choice",
+    "tags": ["voting", "prediction", "ab_choice"],
+    "spice": 1,
+    "locality": 1,
+    "weight": 1.0,
+    "min_players": 3,
+    "max_words": 20,
+    "text": "Which would you rather: {option_a} or {option_b}?",
+    "options": {
+      "type": "AB",
+      "a": {
+        "from": "perks",
+        "transform": []
+      },
+      "b": {
+        "from": "perks",
+        "transform": [],
+        "avoid_same_as": "a"
+      }
+    },
+    "slots": [],
+    "constraints": {
+      "no_recent_repeats": {
+        "horizon": 8
+      }
+    }
+  },
+  {
+    "id": "majority_report_v2_002",
+    "version": 2,
+    "game": "MAJORITY_REPORT",
+    "family": "majority_meme_choice",
+    "tags": ["voting", "prediction", "meme"],
+    "spice": 2,
+    "locality": 1,
+    "weight": 1.1,
+    "min_players": 3,
+    "max_words": 25,
+    "text": "Group vote: {option_a} vs {option_b}",
+    "options": {
+      "type": "AB",
+      "a": {
+        "from": "memes"
+      },
+      "b": {
+        "from": "memes",
+        "avoid_same_as": "a"
+      }
+    },
+    "slots": [],
+    "constraints": {
+      "no_recent_repeats": {
+        "horizon": 12
+      }
+    }
+  }
+]

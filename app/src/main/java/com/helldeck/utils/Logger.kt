@@ -529,11 +529,45 @@ object GameEventLogger {
 }
 
 /**
- * Logging extension functions for cleaner code
+ * Extension function for logging verbose messages with object context.
+ *
+ * @param message The message to log.
  */
 fun Any.logv(message: String) = Logger.v("$this: $message")
+
+/**
+ * Extension function for logging debug messages with object context.
+ *
+ * @param message The message to log.
+ */
 fun Any.logd(message: String) = Logger.d("$this: $message")
+
+/**
+ * Extension function for logging info messages with object context.
+ *
+ * @param message The message to log.
+ */
 fun Any.logi(message: String) = Logger.i("$this: $message")
+
+/**
+ * Extension function for logging warning messages with object context.
+ *
+ * @param message The message to log.
+ */
 fun Any.logw(message: String) = Logger.w("$this: $message")
+
+/**
+ * Extension function for logging error messages with object context.
+ *
+ * @param message The message to log.
+ * @param throwable Optional throwable to include.
+ */
 fun Any.loge(message: String, throwable: Throwable? = null) = Logger.e("$this: $message", throwable)
+
+/**
+ * Extension function for logging fatal messages with object context.
+ *
+ * @param message The message to log.
+ * @param throwable Optional throwable to include.
+ */
 fun Any.logf(message: String, throwable: Throwable? = null) = Logger.f("$this: $message", throwable)

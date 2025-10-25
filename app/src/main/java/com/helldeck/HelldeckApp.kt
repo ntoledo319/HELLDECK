@@ -3,7 +3,7 @@ package com.helldeck
 import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.helldeck.data.Repository
+import com.helldeck.content.data.ContentRepository
 import com.helldeck.engine.Config
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.CoroutineScope
@@ -16,6 +16,10 @@ import kotlinx.coroutines.launch
  */
 class HelldeckApp : Application() {
 
+    /**
+     * Called when the application is starting, before any activity, service, or receiver objects have been created.
+     * Performs global initialization including logging, configuration, and content repository setup.
+     */
     override fun onCreate() {
         super.onCreate()
 
@@ -38,14 +42,14 @@ class HelldeckApp : Application() {
             // Initialize configuration
             Config.load(this)
 
-            // Initialize repository in background
+            // Initialize new content repository in background
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val repository = Repository.get(this@HelldeckApp)
-                    repository.initialize()
-                    Logger.i("Repository initialized successfully")
+                    val contentRepository = ContentRepository(this@HelldeckApp)
+                    contentRepository.initialize()
+                    Logger.i("ContentRepository initialized successfully")
                 } catch (e: Exception) {
-                    Logger.e("Failed to initialize repository", e)
+                    Logger.e("Failed to initialize ContentRepository or preflight validation failed", e)
                 }
             }
 
@@ -56,16 +60,30 @@ class HelldeckApp : Application() {
         }
     }
 
+    /**
+     * Called when the system is running low on memory.
+     * Logs the event and allows the system to handle memory cleanup.
+     */
     override fun onLowMemory() {
         super.onLowMemory()
         Logger.w("Application received low memory warning")
     }
 
+    /**
+     * Called when the system determines that the amount of memory available is low.
+     * Logs the trim level for debugging purposes.
+     *
+     * @param level The trim level, as defined in {@link android.content.ComponentCallbacks2}.
+     */
     override fun onTrimMemory(level: Int) {
         super.onTrimMemory(level)
         Logger.d("Application received trim memory level: $level")
     }
 
+    /**
+     * Called when the application is being terminated.
+     * Logs the termination event.
+     */
     override fun onTerminate() {
         super.onTerminate()
         Logger.i("HelldeckApp terminated")
@@ -73,7 +91,8 @@ class HelldeckApp : Application() {
 }
 
 /**
- * Application context holder for global access
+ * Application context holder for global access.
+ * Provides a singleton instance to access the application context throughout the app.
  */
 object AppCtx {
     lateinit var ctx: Context

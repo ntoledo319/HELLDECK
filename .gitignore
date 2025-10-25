@@ -68,3 +68,7 @@ loader/helldeck_loader.py
 
 # Scripts
 run_tests.sh
+
+# Ignore large local models and native build outputs
+app/.cxx/
+models/**/*.gguf

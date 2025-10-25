@@ -48,7 +48,7 @@ import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.animation.animateContentSize
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.material3.ButtonDefaults
-import com.helldeck.data.PlayerEntity
+import com.helldeck.content.model.Player
 
 /**
  * Big touch zones for easy interaction
@@ -113,6 +113,43 @@ fun BigZones(
 }
 
 /**
+ * Auto-resizing text that shrinks font until it fits within maxLines
+ */
+@Composable
+private fun AutoResizeText(
+    text: String,
+    modifier: Modifier = Modifier,
+    maxLines: Int = 8,
+    maxFontSize: androidx.compose.ui.unit.TextUnit = 44.sp,
+    minFontSize: androidx.compose.ui.unit.TextUnit = 18.sp,
+    step: androidx.compose.ui.unit.TextUnit = 2.sp,
+    color: Color = HelldeckColors.White,
+    textAlign: TextAlign = TextAlign.Center,
+    baseStyle: TextStyle = MaterialTheme.typography.displayMedium.copy(lineHeight = 50.sp, fontWeight = FontWeight.Bold)
+) {
+    var fontSize by remember(text) { mutableStateOf(maxFontSize) }
+    var ready by remember(text) { mutableStateOf(false) }
+
+    Text(
+        text = text,
+        color = color,
+        textAlign = textAlign,
+        maxLines = maxLines,
+        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+        style = baseStyle.copy(fontSize = fontSize),
+        modifier = modifier.fillMaxWidth(),
+        onTextLayout = { result ->
+            if (!ready && result.hasVisualOverflow && fontSize > minFontSize) {
+                val next = (fontSize.value - step.value).coerceAtLeast(minFontSize.value)
+                fontSize = next.sp
+            } else {
+                ready = true
+            }
+        }
+    )
+}
+
+/**
  * Main card face for displaying game content with enhanced visual design
  */
 @Composable
@@ -126,104 +163,150 @@ fun CardFace(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-
-    val cardModifier = modifier
-        .clip(RoundedCornerShape(HelldeckRadius.Large))
-        .background(
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    backgroundColor,
-                    backgroundColor.copy(alpha = 0.9f),
-                    backgroundColor.copy(alpha = 0.8f)
-                )
-            )
-        )
-        .border(
-            BorderStroke(
-                width = if (isPressed) 3.dp else 2.dp,
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        borderColor.copy(alpha = 0.8f),
-                        borderColor,
-                        borderColor.copy(alpha = 0.6f)
-                    )
-                )
-            ),
-            RoundedCornerShape(HelldeckRadius.Large)
-        )
-        .then(
-            if (onClick != null) {
-                Modifier.clickable(
-                    interactionSource = interactionSource,
-                    indication = null
-                ) { onClick() }
-            } else {
-                Modifier
-            }
-        )
-        .padding(16.dp)
-
-    ElevatedCard(
-        modifier = cardModifier.fillMaxWidth(),
-        elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = if (isPressed) 12.dp else 8.dp,
-            pressedElevation = 4.dp
+    
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.98f else 1f,
+        animationSpec = spring(
+            dampingRatio = 0.6f,
+            stiffness = Spring.StiffnessHigh
         ),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = Color.Transparent
-        )
+        label = "card_scale"
+    )
+    
+    val elevation by animateFloatAsState(
+        targetValue = if (isPressed) 4f else 8f,
+        animationSpec = tween(150),
+        label = "card_elevation"
+    )
+
+    Box(
+        modifier = modifier
+            .scale(scale)
+            .shadow(
+                elevation = elevation.dp,
+                shape = RoundedCornerShape(HelldeckRadius.Large),
+                ambientColor = borderColor.copy(alpha = 0.2f),
+                spotColor = borderColor.copy(alpha = 0.3f)
+            )
     ) {
-        Box(
+        ElevatedCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(
-                    brush = Brush.radialGradient(
-                        colors = listOf(
-                            backgroundColor.copy(alpha = 0.1f),
-                            backgroundColor.copy(alpha = 0.05f)
-                        ),
-                        radius = 800f
-                    )
-                )
-                .padding(16.dp),
+                .then(
+                    if (onClick != null) {
+                        Modifier.clickable(
+                            interactionSource = interactionSource,
+                            indication = null
+                        ) { onClick() }
+                    } else {
+                        Modifier
+                    }
+                ),
+            elevation = CardDefaults.elevatedCardElevation(
+                defaultElevation = 0.dp
+            ),
+            colors = CardDefaults.elevatedCardColors(
+                containerColor = Color.Transparent
+            ),
+            shape = RoundedCornerShape(HelldeckRadius.Large)
         ) {
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.displayMedium.copy(
-                        fontSize = 44.sp,
-                        lineHeight = 50.sp,
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    color = HelldeckColors.White,
-                    textAlign = TextAlign.Center,
-                    maxLines = 3,
-                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-                    modifier = Modifier
-                        .animateContentSize(animationSpec = spring())
-                        .fillMaxWidth()
-                )
-
-                subtitle?.let { sub ->
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = sub,
-                        style = MaterialTheme.typography.bodyLarge.copy(
-                            fontSize = 20.sp,
-                            textAlign = TextAlign.Center,
-                            fontWeight = FontWeight.Medium
-                        ),
-                        color = HelldeckColors.LightGray,
-                        textAlign = TextAlign.Center,
-                        maxLines = 2,
-                        overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-                        modifier = Modifier.fillMaxWidth()
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(
+                                backgroundColor.copy(alpha = 0.95f),
+                                backgroundColor.copy(alpha = 0.85f),
+                                backgroundColor.copy(alpha = 0.9f)
+                            )
+                        )
                     )
+                    .border(
+                        BorderStroke(
+                            width = if (isPressed) 3.dp else 2.dp,
+                            brush = Brush.sweepGradient(
+                                colors = listOf(
+                                    borderColor.copy(alpha = 0.9f),
+                                    borderColor.copy(alpha = 0.7f),
+                                    borderColor,
+                                    borderColor.copy(alpha = 0.7f),
+                                    borderColor.copy(alpha = 0.9f)
+                                )
+                            )
+                        ),
+                        RoundedCornerShape(HelldeckRadius.Large)
+                    )
+            ) {
+                // Radial glow overlay
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .matchParentSize()
+                        .background(
+                            brush = Brush.radialGradient(
+                                colors = listOf(
+                                    borderColor.copy(alpha = 0.08f),
+                                    Color.Transparent
+                                ),
+                                radius = 600f
+                            )
+                        )
+                )
+                
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    AutoResizeText(
+                        text = title,
+                        maxLines = 10,
+                        maxFontSize = 44.sp,
+                        minFontSize = 18.sp,
+                        step = 2.sp,
+                        color = HelldeckColors.White,
+                        textAlign = TextAlign.Center,
+                        baseStyle = MaterialTheme.typography.displayMedium.copy(
+                            lineHeight = 48.sp,
+                            fontWeight = FontWeight.Bold,
+                            shadow = androidx.compose.ui.graphics.Shadow(
+                                color = Color.Black.copy(alpha = 0.3f),
+                                offset = androidx.compose.ui.geometry.Offset(2f, 2f),
+                                blurRadius = 4f
+                            )
+                        ),
+                        modifier = Modifier.animateContentSize(
+                            animationSpec = spring(
+                                dampingRatio = 0.7f,
+                                stiffness = Spring.StiffnessMedium
+                            )
+                        )
+                    )
+
+                    subtitle?.let { sub ->
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            text = sub,
+                            style = MaterialTheme.typography.bodyLarge.copy(
+                                fontSize = 20.sp,
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Medium,
+                                shadow = androidx.compose.ui.graphics.Shadow(
+                                    color = Color.Black.copy(alpha = 0.2f),
+                                    offset = androidx.compose.ui.geometry.Offset(1f, 1f),
+                                    blurRadius = 2f
+                                )
+                            ),
+                            color = HelldeckColors.LightGray,
+                            textAlign = TextAlign.Center,
+                            maxLines = 3,
+                            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
             }
         }
@@ -270,7 +353,7 @@ fun AnimatedCardFace(
 }
 
 /**
- * Feedback strip for collecting player reactions
+ * Feedback strip for collecting player reactions with enhanced animations
  */
 @androidx.compose.material3.ExperimentalMaterial3Api
 @androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -288,100 +371,248 @@ fun FeedbackStrip(
     availableTags: List<String> = listOf("tame", "repeat", "inside", "long", "harsh"),
     onTagToggle: (String) -> Unit = {}
 ) {
+    var lolCount by remember { mutableIntStateOf(0) }
+    var mehCount by remember { mutableIntStateOf(0) }
+    var trashCount by remember { mutableIntStateOf(0) }
+    var showCommentSection by remember { mutableStateOf(false) }
+    
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(horizontal = 12.dp, vertical = 8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        // Feedback buttons
+        // Feedback buttons with visual counters
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            FeedbackButton(
-                text = "😂 BANGER",
+            EnhancedFeedbackButton(
+                text = "😂",
+                label = "BANGER",
                 color = HelldeckColors.Lol,
-                onClick = onLol
+                count = lolCount,
+                onClick = {
+                    lolCount++
+                    onLol()
+                }
             )
 
-            FeedbackButton(
-                text = "😐 MEH",
+            EnhancedFeedbackButton(
+                text = "😐",
+                label = "MEH",
                 color = HelldeckColors.Meh,
-                onClick = onMeh
+                count = mehCount,
+                onClick = {
+                    mehCount++
+                    onMeh()
+                }
             )
 
-            FeedbackButton(
-                text = "🚮 TRASH",
+            EnhancedFeedbackButton(
+                text = "🚮",
+                label = "TRASH",
                 color = HelldeckColors.Trash,
-                onClick = onTrash
+                count = trashCount,
+                onClick = {
+                    trashCount++
+                    onTrash()
+                }
             )
 
-            FeedbackButton(
-                text = "✍️ WHY",
+            EnhancedFeedbackButton(
+                text = "✍️",
+                label = "NOTE",
                 color = HelldeckColors.Orange,
-                onClick = { /* Toggle comment section */ }
+                count = null,
+                onClick = { showCommentSection = !showCommentSection }
             )
         }
 
-        // Comment section
-        if (showComments) {
-            Spacer(modifier = Modifier.height(4.dp))
-
-            // Tag selection
-            FlowRow(
+        // Comment section with smooth animation
+        androidx.compose.animation.AnimatedVisibility(
+            visible = showComments || showCommentSection,
+            enter = androidx.compose.animation.expandVertically(
+                animationSpec = spring(
+                    dampingRatio = 0.8f,
+                    stiffness = Spring.StiffnessMedium
+                )
+            ) + androidx.compose.animation.fadeIn(),
+            exit = androidx.compose.animation.shrinkVertically() + androidx.compose.animation.fadeOut()
+        ) {
+            Column(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(2.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                availableTags.forEach { tag ->
-                    val isSelected = selectedTags.contains(tag)
+                // Tag selection with better visual design
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
+                    availableTags.forEach { tag ->
+                        val isSelected = selectedTags.contains(tag)
+                        Surface(
+                            color = if (isSelected) HelldeckColors.Yellow.copy(alpha = 0.2f) else Color.Transparent,
+                            shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
+                            border = BorderStroke(
+                                1.dp,
+                                if (isSelected) HelldeckColors.Yellow else HelldeckColors.LightGray
+                            ),
+                            modifier = Modifier.clickable { onTagToggle(tag) }
+                        ) {
+                            Text(
+                                text = tag,
+                                style = MaterialTheme.typography.bodySmall.copy(
+                                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                                ),
+                                color = if (isSelected) HelldeckColors.Yellow else HelldeckColors.LightGray,
+                                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
+                            )
+                        }
+                    }
+                }
+
+                // Comment text field with improved styling
+                OutlinedTextField(
+                    value = commentText,
+                    onValueChange = onCommentTextChange,
+                    modifier = Modifier.fillMaxWidth(),
+                    placeholder = {
+                        Text(
+                            text = "Why was this card good/bad? (optional)",
+                            color = HelldeckColors.LightGray.copy(alpha = 0.6f),
+                            style = MaterialTheme.typography.bodySmall
+                        )
+                    },
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = HelldeckColors.Yellow,
+                        unfocusedBorderColor = HelldeckColors.LightGray.copy(alpha = 0.5f),
+                        focusedTextColor = HelldeckColors.White,
+                        unfocusedTextColor = HelldeckColors.White,
+                        cursorColor = HelldeckColors.Yellow,
+                        focusedContainerColor = HelldeckColors.DarkGray.copy(alpha = 0.3f),
+                        unfocusedContainerColor = Color.Transparent
+                    ),
+                    maxLines = 3,
+                    shape = RoundedCornerShape(12.dp)
+                )
+
+                // Save button
+                Button(
+                    onClick = { onComment(commentText, selectedTags) },
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = HelldeckColors.Green
+                    ),
+                    elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
+                ) {
                     Text(
-                        text = "${if (isSelected) "■" else "□"} $tag",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = if (isSelected) HelldeckColors.Yellow else HelldeckColors.LightGray,
-                        modifier = Modifier
-                            .clickable { onTagToggle(tag) }
-                            .padding(horizontal = HelldeckSpacing.Tiny.dp, vertical = 2.dp)
+                        text = "💾 Save Feedback",
+                        style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
                     )
                 }
             }
+        }
+    }
+}
 
-            Spacer(modifier = Modifier.height(4.dp))
+@Composable
+private fun EnhancedFeedbackButton(
+    text: String,
+    label: String,
+    color: Color,
+    count: Int?,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+    
+    var clickCount by remember { mutableIntStateOf(0) }
+    
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.9f else 1f,
+        animationSpec = spring(
+            dampingRatio = 0.5f,
+            stiffness = 400f
+        ),
+        label = "feedback_scale"
+    )
+    
+    val glowAlpha by animateFloatAsState(
+        targetValue = if (clickCount > 0) 0.6f else 0.2f,
+        animationSpec = tween(300),
+        label = "glow_alpha"
+    )
 
-            // Comment text field
-            OutlinedTextField(
-                value = commentText,
-                onValueChange = onCommentTextChange,
-                modifier = Modifier.fillMaxWidth(),
-                placeholder = {
-                    Text(
-                        text = "optional note…",
-                        color = HelldeckColors.LightGray
-                    )
-                },
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedBorderColor = HelldeckColors.Yellow,
-                    unfocusedBorderColor = HelldeckColors.LightGray,
-                    focusedTextColor = HelldeckColors.White,
-                    unfocusedTextColor = HelldeckColors.White,
-                    cursorColor = HelldeckColors.Yellow
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        Button(
+            onClick = {
+                clickCount++
+                onClick()
+            },
+            modifier = Modifier
+                .size(72.dp)
+                .scale(scale)
+                .shadow(
+                    elevation = if (clickCount > 0) 8.dp else 4.dp,
+                    shape = androidx.compose.foundation.shape.CircleShape,
+                    spotColor = color.copy(alpha = glowAlpha),
+                    ambientColor = color.copy(alpha = glowAlpha * 0.5f)
                 ),
-                maxLines = 3
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            // Save button
-            Button(
-                onClick = { onComment(commentText, selectedTags) },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = HelldeckColors.Green
+            interactionSource = interactionSource,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = color,
+                contentColor = Color.Black
+            ),
+            shape = androidx.compose.foundation.shape.CircleShape,
+            elevation = ButtonDefaults.buttonElevation(
+                defaultElevation = if (isPressed) 2.dp else 6.dp,
+                pressedElevation = 0.dp
+            ),
+            contentPadding = PaddingValues(0.dp)
+        ) {
+            Box(contentAlignment = Alignment.Center) {
+                Text(
+                    text = text,
+                    style = MaterialTheme.typography.headlineLarge.copy(
+                        fontSize = 32.sp
+                    )
                 )
-            ) {
-                Text(text = "Save Feedback")
+                if (count != null && count > 0) {
+                    Surface(
+                        color = Color.Black,
+                        shape = androidx.compose.foundation.shape.CircleShape,
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .offset(x = 8.dp, y = (-8).dp)
+                            .size(20.dp)
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Text(
+                                text = count.toString(),
+                                style = MaterialTheme.typography.labelSmall,
+                                color = color,
+                                fontWeight = FontWeight.Bold
+                            )
+                        }
+                    }
+                }
             }
         }
+        
+        Spacer(modifier = Modifier.height(4.dp))
+        
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+            color = if (clickCount > 0) color else HelldeckColors.LightGray
+        )
     }
 }
 
@@ -435,7 +666,7 @@ fun FeedbackButton(
 }
 
 /**
- * Game timer display
+ * Game timer display with enhanced animations and pulsing effects
  */
 @Composable
 fun GameTimer(
@@ -445,42 +676,94 @@ fun GameTimer(
     showProgress: Boolean = true
 ) {
     val progress = timeRemainingMs.toFloat() / totalTimeMs.toFloat()
-    val isWarning = progress < 0.3
-    val isCritical = progress < 0.1
+    val isWarning = progress < 0.3f
+    val isCritical = progress < 0.1f
 
-    val timerColor = when {
-        isCritical -> HelldeckColors.Error
-        isWarning -> HelldeckColors.Warning
-        else -> HelldeckColors.Yellow
-    }
+    val timerColor by androidx.compose.animation.animateColorAsState(
+        targetValue = when {
+            isCritical -> HelldeckColors.Error
+            isWarning -> HelldeckColors.Warning
+            else -> HelldeckColors.Yellow
+        },
+        animationSpec = tween(500),
+        label = "timer_color"
+    )
+    
+    // Pulsing animation for critical time
+    val infiniteTransition = rememberInfiniteTransition()
+    val pulseScale by infiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = if (isCritical) 1.15f else 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(600, easing = EaseInOutCubic),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "pulse_scale"
+    )
+    
+    val glowIntensity by infiniteTransition.animateFloat(
+        initialValue = 0.3f,
+        targetValue = if (isCritical) 0.8f else 0.3f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(800, easing = EaseInOutSine),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "glow_intensity"
+    )
 
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Timer text
-        Text(
-            text = formatTime(timeRemainingMs),
-            style = MaterialTheme.typography.displayLarge.copy(
-                fontSize = 48.sp,
-                fontWeight = FontWeight.Bold
-            ),
-            color = timerColor,
-            textAlign = TextAlign.Center
-        )
+        // Timer text with scale animation
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .scale(if (isCritical) pulseScale else 1f)
+                .shadow(
+                    elevation = if (isCritical) 12.dp else 4.dp,
+                    shape = androidx.compose.foundation.shape.CircleShape,
+                    spotColor = timerColor.copy(alpha = glowIntensity),
+                    ambientColor = timerColor.copy(alpha = glowIntensity * 0.5f)
+                )
+        ) {
+            Text(
+                text = formatTime(timeRemainingMs),
+                style = MaterialTheme.typography.displayLarge.copy(
+                    fontSize = if (isCritical) 56.sp else 48.sp,
+                    fontWeight = FontWeight.Bold,
+                    brush = if (isCritical) {
+                        Brush.linearGradient(
+                            colors = listOf(
+                                timerColor,
+                                timerColor.copy(alpha = 0.8f),
+                                timerColor
+                            )
+                        )
+                    } else null
+                ),
+                color = if (!isCritical) timerColor else Color.Unspecified,
+                textAlign = TextAlign.Center
+            )
+        }
 
         // Progress indicator
         if (showProgress) {
-            Spacer(modifier = Modifier.height(4.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             LinearProgressIndicator(
                 progress = { progress },
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
-                    .height(4.dp)
-                    .clip(RoundedCornerShape(2.dp)),
+                    .height(if (isCritical) 6.dp else 4.dp)
+                    .clip(RoundedCornerShape(3.dp))
+                    .shadow(
+                        elevation = if (isCritical) 4.dp else 0.dp,
+                        shape = RoundedCornerShape(3.dp),
+                        spotColor = timerColor.copy(alpha = 0.5f)
+                    ),
                 color = timerColor,
-                trackColor = timerColor.copy(alpha = 0.3f)
+                trackColor = timerColor.copy(alpha = 0.2f)
             )
         }
     }
@@ -541,7 +824,7 @@ fun PlayerAvatar(
 }
 
 /**
- * Vote button for player selection with enhanced interactions
+ * Vote button for player selection with enhanced interactions and glow effects
  */
 @Composable
 fun VoteButton(
@@ -554,25 +837,53 @@ fun VoteButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
-    val borderColor = if (isSelected) {
-        HelldeckColors.Yellow
-    } else {
-        HelldeckColors.MediumGray
-    }
+    val borderColor = if (isSelected) HelldeckColors.Yellow else HelldeckColors.MediumGray
 
     val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.95f else 1f,
+        targetValue = when {
+            isSelected && isPressed -> 0.93f
+            isSelected -> 1.05f
+            isPressed -> 0.95f
+            else -> 1f
+        },
         animationSpec = spring(
-            dampingRatio = 0.7f,
-            stiffness = 400f
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessHigh
         ),
         label = "vote_button_scale"
     )
 
     val glowIntensity by animateFloatAsState(
-        targetValue = if (isSelected) 0.6f else if (isPressed) 0.3f else 0.1f,
-        animationSpec = tween(200),
+        targetValue = if (isSelected) 0.8f else if (isPressed) 0.3f else 0.1f,
+        animationSpec = spring(
+            dampingRatio = 0.7f,
+            stiffness = Spring.StiffnessMedium
+        ),
         label = "glow_intensity"
+    )
+    
+    val backgroundColor by androidx.compose.animation.animateColorAsState(
+        targetValue = if (isSelected) {
+            borderColor.copy(alpha = 0.25f)
+        } else if (isPressed) {
+            borderColor.copy(alpha = 0.15f)
+        } else {
+            Color.Transparent
+        },
+        animationSpec = tween(200),
+        label = "background_color"
+    )
+    
+    // Pulsing glow effect for selected state
+    val infiniteTransition = rememberInfiniteTransition()
+    val selectedPulse by infiniteTransition.animateFloat(
+        initialValue = 0.8f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1200, easing = EaseInOutSine),
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "selected_pulse"
     )
 
     OutlinedButton(
@@ -581,17 +892,11 @@ fun VoteButton(
             .width(120.dp)
             .height(72.dp)
             .scale(scale)
-            .then(
-                if (isSelected) {
-                    Modifier.shadow(
-                        elevation = 8.dp,
-                        shape = RoundedCornerShape(HelldeckRadius.Medium),
-                        ambientColor = borderColor.copy(alpha = glowIntensity),
-                        spotColor = borderColor.copy(alpha = glowIntensity * 0.5f)
-                    )
-                } else {
-                    Modifier
-                }
+            .shadow(
+                elevation = if (isSelected) (8.dp * selectedPulse) else if (isPressed) 4.dp else 2.dp,
+                shape = RoundedCornerShape(HelldeckRadius.Medium),
+                ambientColor = borderColor.copy(alpha = if (isSelected) glowIntensity * selectedPulse else 0.2f),
+                spotColor = borderColor.copy(alpha = if (isSelected) glowIntensity * selectedPulse * 0.6f else 0.1f)
             ),
         interactionSource = interactionSource,
         shape = RoundedCornerShape(HelldeckRadius.Medium),
@@ -599,25 +904,19 @@ fun VoteButton(
             width = if (isSelected) 3.dp else if (isPressed) 2.dp else 1.dp,
             brush = Brush.linearGradient(
                 colors = listOf(
-                    borderColor.copy(alpha = 0.8f),
-                    borderColor,
-                    borderColor.copy(alpha = 0.6f)
+                    borderColor.copy(alpha = if (isSelected) 1f else 0.6f),
+                    borderColor.copy(alpha = if (isSelected) 0.9f else 0.8f),
+                    borderColor.copy(alpha = if (isSelected) 1f else 0.6f)
                 )
             )
         ),
         colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = if (isSelected) {
-                borderColor.copy(alpha = 0.2f)
-            } else if (isPressed) {
-                borderColor.copy(alpha = 0.1f)
-            } else {
-                Color.Transparent
-            },
+            containerColor = backgroundColor,
             contentColor = HelldeckColors.White
         ),
         elevation = ButtonDefaults.elevatedButtonElevation(
-            defaultElevation = if (isSelected) 4.dp else 0.dp,
-            pressedElevation = 0.dp
+            defaultElevation = if (isSelected) 6.dp else 0.dp,
+            pressedElevation = 2.dp
         )
     ) {
         Column(
@@ -628,17 +927,26 @@ fun VoteButton(
             Text(
                 text = playerAvatar,
                 style = MaterialTheme.typography.displaySmall.copy(
-                    fontSize = 24.sp
+                    fontSize = if (isSelected) 28.sp else 24.sp
                 ),
-                modifier = Modifier.animateContentSize()
+                modifier = Modifier.animateContentSize(
+                    animationSpec = spring(
+                        dampingRatio = 0.6f,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                )
             )
+            Spacer(modifier = Modifier.height(2.dp))
             Text(
                 text = playerName,
                 style = MaterialTheme.typography.bodySmall.copy(
-                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                    fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                    fontSize = if (isSelected) 13.sp else 12.sp
                 ),
                 maxLines = 1,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                color = if (isSelected) HelldeckColors.Yellow else HelldeckColors.White,
+                modifier = Modifier.animateContentSize()
             )
         }
     }
@@ -895,7 +1203,7 @@ fun ScoreDisplay(
  */
 @Composable
 fun PodiumSection(
-    topPlayers: List<PlayerEntity>,
+    topPlayers: List<Player>,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -945,7 +1253,7 @@ fun PodiumSection(
  */
 @Composable
 fun PodiumCard(
-    player: PlayerEntity,
+    player: Player,
     position: Int,
     height: Dp,
     modifier: Modifier = Modifier,
@@ -1040,7 +1348,7 @@ fun PodiumCard(
  */
 @Composable
 fun PlayerScoreCard(
-    player: PlayerEntity,
+    player: Player,
     position: Int,
     modifier: Modifier = Modifier,
     isTopThree: Boolean = false

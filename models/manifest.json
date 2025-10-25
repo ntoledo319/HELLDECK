@@ -1,0 +1,21 @@
+{
+  "models": [
+    {
+      "id": "qwen2.5-1.5b-instruct",
+      "name": "Qwen 2.5 1.5B Instruct",
+      "file": "qwen2.5-1.5b-instruct-Q4_K_M.gguf",
+      "size_mb": 1024,
+      "min_ram_gb": 4,
+      "default": true
+    },
+    {
+      "id": "tinyllama-1.1b-chat",
+      "name": "TinyLlama 1.1B Chat",
+      "file": "tinyllama-1.1b-chat-Q4_K_M.gguf",
+      "size_mb": 700,
+      "min_ram_gb": 2,
+      "default": false
+    }
+  ],
+  "version": 1
+}
