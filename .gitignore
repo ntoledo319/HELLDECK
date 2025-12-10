@@ -72,3 +72,5 @@ run_tests.sh
 # Ignore large local models and native build outputs
 app/.cxx/
 models/**/*.gguf
+app/src/main/assets/models/*.gguf
+*.gguf
