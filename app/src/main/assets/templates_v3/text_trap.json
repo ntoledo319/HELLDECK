@@ -1,0 +1,97 @@
+[
+  {
+    "id": "text_trap_blueprint_1",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Pick the perfect reply vibe." }
+    ],
+    "constraints": { "max_words": 12, "distinct_slots": false },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "toneA" },
+        { "from_slot": "toneB" }
+      ]
+    }
+  },
+  {
+    "id": "text_trap_blueprint_2",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Choose your reply energy for the incoming text." }
+    ],
+    "constraints": { "max_words": 12, "distinct_slots": false },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "toneA" },
+        { "from_slot": "toneB" }
+      ]
+    }
+  },
+  {
+    "id": "text_trap_blueprint_3",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_core",
+    "weight": 0.8,
+    "spice_max": 1,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "What vibe should your reply have?" }
+    ],
+    "constraints": { "max_words": 10, "distinct_slots": false },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "toneA" },
+        { "from_slot": "toneB" }
+      ]
+    }
+  },
+  {
+    "id": "text_trap_blueprint_4",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_core",
+    "weight": 0.75,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Pick the reply tone that saves the chat." }
+    ],
+    "constraints": { "max_words": 12, "distinct_slots": false },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "toneA" },
+        { "from_slot": "toneB" }
+      ]
+    }
+  },
+  {
+    "id": "text_trap_blueprint_5",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_core",
+    "weight": 0.7,
+    "spice_max": 1,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Choose the mood for your comeback message." }
+    ],
+    "constraints": { "max_words": 12, "distinct_slots": false },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "toneA" },
+        { "from_slot": "toneB" }
+      ]
+    }
+  }
+]

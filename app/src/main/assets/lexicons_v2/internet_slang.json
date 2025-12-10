@@ -1,0 +1,230 @@
+{
+  "slot_type": "internet_slang",
+  "entries": [
+    {
+      "text": "main character energy",
+      "tags": ["slang", "modern", "personality"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no cap",
+      "tags": ["slang", "modern", "genuine"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "full send energy",
+      "tags": ["slang", "modern", "action"],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "getting caught in 4K",
+      "tags": ["slang", "modern", "busted"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "down bad",
+      "tags": ["slang", "modern", "desperate"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "simp behavior",
+      "tags": ["slang", "modern", "pathetic"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "touch grass",
+      "tags": ["slang", "modern", "advice"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's giving...",
+      "tags": ["slang", "modern", "vibe"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lowkey/highkey",
+      "tags": ["slang", "modern", "intensity"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "rent-free in my head",
+      "tags": ["slang", "modern", "obsessed"],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unhinged behavior",
+      "tags": ["slang", "modern", "chaotic"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "gatekeep, gaslight, girlboss",
+      "tags": ["slang", "modern", "toxic"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "chronically online",
+      "tags": ["slang", "modern", "internet"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the audacity",
+      "tags": ["slang", "modern", "shocked"],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "getting ratio'd constantly",
+      "tags": ["slang", "modern", "social"],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sheesh energy",
+      "tags": ["slang", "modern", "impressive"],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "NPC behavior",
+      "tags": ["slang", "modern", "mindless"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mid at best",
+      "tags": ["slang", "modern", "mediocre"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bussin' no cap",
+      "tags": ["slang", "modern", "good"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "delulu is the solulu",
+      "tags": ["slang", "modern", "delusional"],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "slay mode activated",
+      "tags": ["slang", "modern", "confident"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's the __ for me",
+      "tags": ["slang", "modern", "observation"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "understood the assignment",
+      "tags": ["slang", "modern", "success"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "period pooh",
+      "tags": ["slang", "modern", "emphasis"],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ick collection",
+      "tags": ["slang", "modern", "dating"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "an"
+    }
+  ]
+}

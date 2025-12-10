@@ -2,6 +2,7 @@ package com.helldeck.content.engine
 
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.content.model.v2.TemplateV2
+import com.helldeck.engine.Config
 import kotlin.math.ln
 import kotlin.math.max
 import kotlin.math.pow
@@ -28,6 +29,8 @@ class ContextualSelector(
     private val repo: ContentRepository,
     private val rng: Random
 ) {
+    // Rough round counter to adapt exploration over time
+    private var rounds: Int = 0
     
     /**
      * Context data required for template selection
@@ -43,9 +46,9 @@ class ContextualSelector(
      */
     data class Context(
         val players: List<String>,
-        val activePlayer: String?,
-        val roomHeat: Double,
-        val spiceMax: Int,
+        val activePlayer: String? = null,
+        val roomHeat: Double = 0.0,
+        val spiceMax: Int = 3,
         val wantedGameId: String? = null,
         val recentFamilies: List<String> = emptyList(),
         val avoidIds: Set<String> = emptySet(),
@@ -83,7 +86,7 @@ class ContextualSelector(
     fun update(templateId: String, reward01: Double) {
         val a = alpha.getOrDefault(templateId, 1.0)
         val b = beta.getOrDefault(templateId, 1.0)
-        val gain = 0.6 // Increased learning rate for faster adaptation
+        val gain = Config.current.learning.alpha
         alpha[templateId] = a + reward01 * gain
         beta[templateId] = b + (1 - reward01) * gain
     }
@@ -139,7 +142,16 @@ class ContextualSelector(
             Scored(t, sample + novelty + affinityBonus(t) - diversityPenalty(t))
         }.sortedByDescending { it.score }
         
-        val picked = scored.firstOrNull()?.t ?: filtered.random(rng)
+        val epsilon = Config.getEpsilonForRound(rounds)
+        val picked = if (filtered.isNotEmpty() && rng.nextDouble() < epsilon) {
+            // Explore: pick from top-k or filtered pool
+            val topK = scored.take(maxOf(1, (scored.size * 0.25).toInt())).map { it.t }
+            (topK.ifEmpty { filtered }).random(rng)
+        } else {
+            // Exploit: pick best scored
+            scored.firstOrNull()?.t ?: filtered.random(rng)
+        }
+        rounds++
         repo.addExposure(picked.id)
         return picked
     }

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "taboo_timer_blueprint_1",
+    "game": "TABOO_TIMER",
+    "family": "taboo_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Secret word: " },
+      { "type": "slot", "name": "word", "slot_type": "secret_word" },
+      { "type": "text", "value": ". Forbidden: " },
+      { "type": "slot", "name": "f1", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "f2", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "f3", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 24, "distinct_slots": true }
+  },
+  {
+    "id": "taboo_timer_blueprint_2",
+    "game": "TABOO_TIMER",
+    "family": "taboo_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Describe " },
+      { "type": "slot", "name": "word", "slot_type": "secret_word" },
+      { "type": "text", "value": " without saying: " },
+      { "type": "slot", "name": "f1", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "f2", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "f3", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true }
+  },
+  {
+    "id": "taboo_timer_blueprint_3",
+    "game": "TABOO_TIMER",
+    "family": "taboo_core",
+    "weight": 0.8,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Get the team to guess " },
+      { "type": "slot", "name": "word", "slot_type": "secret_word" },
+      { "type": "text", "value": " but never say " },
+      { "type": "slot", "name": "f1", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "f2", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": " or " },
+      { "type": "slot", "name": "f3", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 24, "distinct_slots": true }
+  },
+  {
+    "id": "taboo_timer_blueprint_4",
+    "game": "TABOO_TIMER",
+    "family": "taboo_core",
+    "weight": 0.7,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Clue up " },
+      { "type": "slot", "name": "word", "slot_type": "secret_word" },
+      { "type": "text", "value": " without slipping " },
+      { "type": "slot", "name": "f1", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "f2", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": " or " },
+      { "type": "slot", "name": "f3", "slot_type": "taboo_forbidden" },
+      { "type": "text", "value": "—good luck." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true }
+  }
+]

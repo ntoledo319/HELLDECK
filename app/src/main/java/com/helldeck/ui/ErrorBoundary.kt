@@ -1,6 +1,9 @@
 package com.helldeck.ui
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.background
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
@@ -394,19 +397,50 @@ fun LoadingWithErrorBoundary(
     modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier = modifier.fillMaxSize()
     ) {
+        // Render content when not loading or showing error; otherwise keep UI visible but block input
+        loadingContent()
+
         when {
             isLoading -> {
-                loadingContent()
+                // Dim the background and show a centered spinner while loading
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.3f))
+                        // Block all interactions while loading to prevent crashes
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember { MutableInteractionSource() }
+                        ) { /* consume clicks */ }
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    // Reuse existing spinner component for consistency
+                    com.helldeck.ui.components.HelldeckLoadingSpinner(text = "Loading...")
+                }
             }
             error != null -> {
-                ErrorBoundary(
-                    error = error,
-                    onRetry = onRetry,
-                    onDismiss = onDismiss
-                )
+                // Show error UI on top of content
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.3f))
+                        // Block interactions while error is displayed
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember { MutableInteractionSource() }
+                        ) { /* consume clicks */ }
+                        .padding(16.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    ErrorBoundary(
+                        error = error,
+                        onRetry = onRetry,
+                        onDismiss = onDismiss
+                    )
+                }
             }
         }
     }

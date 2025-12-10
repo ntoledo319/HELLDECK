@@ -1,0 +1,84 @@
+[
+  {
+    "id": "roast_consensus_blueprint_1",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 1.0,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to " },
+      { "type": "slot", "name": "action", "slot_type": "sketchy_action" },
+      { "type": "text", "value": " because " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 24,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_consensus_blueprint_2",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.8,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Call out whoever would " },
+      { "type": "slot", "name": "action", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " just to impress " },
+      { "type": "slot", "name": "audience", "slot_type": "audience_type" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 22,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_consensus_blueprint_3",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Who would undo the damage from " },
+      { "type": "slot", "name": "action", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " by pretending it never happened?" }
+    ],
+    "constraints": {
+      "max_words": 20,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_consensus_blueprint_4",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.7,
+    "spice_max": 3,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Point at whoever starts every story with 'not to brag, but...'" }
+    ],
+    "constraints": {
+      "max_words": 15,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  }
+]

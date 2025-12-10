@@ -3,17 +3,13 @@
 
     <!-- Device permissions for game features -->
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <!-- Device admin permissions for kiosk mode -->
     <uses-permission android:name="android.permission.BIND_DEVICE_ADMIN" />
 
     <!-- Feature requirements -->
-    <uses-feature android:name="android.hardware.camera.flash" android:required="false" />
+    <!-- Camera flash not required; vibration-only build -->
     <uses-feature android:name="android.hardware.vibrator" android:required="false" />
     <uses-feature android:name="android.hardware.microphone" android:required="false" />
 

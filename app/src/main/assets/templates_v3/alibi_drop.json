@@ -1,0 +1,74 @@
+[
+  {
+    "id": "alibi_blueprint_1",
+    "game": "ALIBI_DROP",
+    "family": "alibi_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Hide these words in your alibi: " },
+      { "type": "slot", "name": "w1", "slot_type": "secret_word" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "w2", "slot_type": "secret_word" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "alibi_blueprint_2",
+    "game": "ALIBI_DROP",
+    "family": "alibi_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Smuggle these into your story: " },
+      { "type": "slot", "name": "w1", "slot_type": "secret_word" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "w2", "slot_type": "secret_word" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 16, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "alibi_blueprint_3",
+    "game": "ALIBI_DROP",
+    "family": "alibi_core",
+    "weight": 0.8,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Weave these into your excuse without blinking: " },
+      { "type": "slot", "name": "w1", "slot_type": "secret_word" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "w2", "slot_type": "secret_word" },
+      { "type": "text", "value": " and " },
+      { "type": "slot", "name": "w3", "slot_type": "secret_word" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "alibi_blueprint_4",
+    "game": "ALIBI_DROP",
+    "family": "alibi_core",
+    "weight": 0.7,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Drop an alibi that casually slips in " },
+      { "type": "slot", "name": "w1", "slot_type": "secret_word" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "w2", "slot_type": "secret_word" },
+      { "type": "text", "value": " and " },
+      { "type": "slot", "name": "w3", "slot_type": "secret_word" },
+      { "type": "text", "value": " without sounding rehearsed." }
+    ],
+    "constraints": { "max_words": 24, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+]

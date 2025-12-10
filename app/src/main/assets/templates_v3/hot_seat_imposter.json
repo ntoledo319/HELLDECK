@@ -1,0 +1,54 @@
+[
+  {
+    "id": "hot_seat_imposter_blueprint_1",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "imposter_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Answer as the target player—match their vibe." }
+    ],
+    "constraints": { "max_words": 16, "distinct_slots": false }
+  },
+  {
+    "id": "hot_seat_imposter_blueprint_2",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "imposter_core",
+    "weight": 0.8,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Blend in—answer exactly like the hot seat player would." }
+    ],
+    "constraints": { "max_words": 14, "distinct_slots": false }
+  },
+  {
+    "id": "hot_seat_imposter_blueprint_3",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "imposter_core",
+    "weight": 0.75,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Channel their " },
+      { "type": "slot", "name": "audience", "slot_type": "audience_type" },
+      { "type": "text", "value": " energy and answer in their voice." }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true }
+  },
+  {
+    "id": "hot_seat_imposter_blueprint_4",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "imposter_core",
+    "weight": 0.7,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Reply with the target's most " },
+      { "type": "slot", "name": "tone", "slot_type": "reply_tone" },
+      { "type": "text", "value": " take possible." }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true }
+  }
+]

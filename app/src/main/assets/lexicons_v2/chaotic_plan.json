@@ -1,0 +1,113 @@
+{
+  "slot_type": "chaotic_plan",
+  "entries": [
+    {
+      "text": "organize a flash mob with zero practice",
+      "tags": ["chaos", "plan"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "replace the office coffee with cold brew concentrate",
+      "tags": ["chaos", "plan"],
+      "tone": "mischief",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a group chat just to leave dramatically",
+      "tags": ["chaos", "plan"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "rearrange all the furniture while everyone sleeps",
+      "tags": ["chaos", "plan"],
+      "tone": "mischief",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "convince everyone brunch is at different times",
+      "tags": ["chaos", "plan"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "screenshot receipts for a burn book",
+      "tags": ["chaos", "plan"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "reply to every text with only emojis for a week",
+      "tags": ["chaos", "plan"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fake a dramatic exit from the friend group",
+      "tags": ["chaos", "plan"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "host a surprise party for someone who hates surprises",
+      "tags": ["chaos", "plan"],
+      "tone": "mischief",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "switch everyone's phone wallpapers at the party",
+      "tags": ["chaos", "plan"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start rumors about a fake celebrity sighting",
+      "tags": ["chaos", "plan"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "reorganize the shared Netflix account into chaos",
+      "tags": ["chaos", "plan"],
+      "tone": "mischief",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

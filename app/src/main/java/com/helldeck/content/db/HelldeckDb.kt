@@ -13,7 +13,7 @@ import androidx.room.RoomDatabase
         com.helldeck.data.PlayerEntity::class
     ],
     version = 4,
-    exportSchema = true
+    exportSchema = false
 )
 abstract class HelldeckDb : RoomDatabase() {
     abstract fun templateStatDao(): TemplateStatDao

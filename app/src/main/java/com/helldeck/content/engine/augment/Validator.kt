@@ -7,7 +7,8 @@ class Validator(
     fun sanitize(s: String): String = s
         .replace(Regex("\\s+"), " ")
         .trim()
-        .removePrefix("\"").removeSuffix("\"")
+        .removeSurrounding("\"")
+        .trim()
 
     fun accepts(s: String, maxWords: Int, spice: Int): Boolean {
         if (s.split(Regex("\\s+")).size > maxWords) return false

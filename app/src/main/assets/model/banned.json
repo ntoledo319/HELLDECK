@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "tokens": [
+    "kill",
+    "suicide",
+    "murder",
+    "slur"
+  ],
+  "phrases": [
+    "call the cops",
+    "commit a crime"
+  ],
+  "categories": {
+    "slurs": [],
+    "protected_classes": [],
+    "minors": [
+      "child",
+      "children",
+      "minor"
+    ]
+  }
+}

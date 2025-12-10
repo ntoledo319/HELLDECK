@@ -1,0 +1,4 @@
+i,game,blueprintId,text,options,generator_v3,pairScore,lowPair,slotsCount,wordCount,repeatRatio,short,long,abEqual,hasPlaceholders
+0,ROAST_CONSENSUS,"roast_consensus_blueprint_1","Most likely to screenshot your story and send it back because they live-tweet their own life.","PlayerVote(players=[Jay, Pip, Mo])",true,0.55,false,2,16,0.06,false,false,false,false
+1,ROAST_CONSENSUS,"roast_consensus_blueprint_1","Most likely to change WiFi password without warning because their camera roll is 90% memes and receipts.","PlayerVote(players=[Jay, Pip, Mo])",true,0.55,false,2,17,0.06,false,false,false,false
+2,ROAST_CONSENSUS,"roast_consensus_blueprint_1","Most likely to post a cryptic Instagram story because they know everyone's zodiac sign by heart.","PlayerVote(players=[Jay, Pip, Mo])",true,0.55,false,2,16,0.06,false,false,false,false

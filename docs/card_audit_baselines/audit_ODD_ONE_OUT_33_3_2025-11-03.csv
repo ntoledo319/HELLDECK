@@ -1,0 +1,4 @@
+i,game,blueprintId,text,options,generator_v3,pairScore,lowPair,slotsCount,wordCount,repeatRatio,short,long,abEqual,hasPlaceholders
+0,ODD_ONE_OUT,"odd_one_blueprint_1","Which is the odd one: American Chopper argument, brain size increases, evil Kermit?","PlayerVote(players=[Jay, Pip, Mo])",true,0.0,false,3,13,0.08,false,false,false,false
+1,ODD_ONE_OUT,"odd_one_blueprint_1","Which is the odd one: change my mind, salt bae, left exit 12?","PlayerVote(players=[Jay, Pip, Mo])",true,0.0,false,3,13,0.08,false,false,false,false
+2,ODD_ONE_OUT,"odd_one_blueprint_3","Pick the odd one out and explain why: expanding brain, galaxy brain, girl explaining to guy.","PlayerVote(players=[Jay, Pip, Mo])",true,0.0,false,3,16,0.13,false,false,false,false

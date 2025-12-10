@@ -1,0 +1,275 @@
+{
+  "slot_type": "relationship_fails",
+  "entries": [
+    {
+      "text": "leaving them on read for three days",
+      "tags": ["relationship", "dating", "fail"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ghosting after six months",
+      "tags": ["relationship", "dating", "fail"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "saying the wrong name in bed",
+      "tags": ["relationship", "dating", "fail", "cringe"],
+      "tone": "cringe",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stalking their ex on social media",
+      "tags": ["relationship", "dating", "fail", "petty"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "comparing them to an ex",
+      "tags": ["relationship", "dating", "fail"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "drunk texting an apology at 2 AM",
+      "tags": ["relationship", "dating", "fail", "messy"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "breaking up via Instagram story",
+      "tags": ["relationship", "dating", "fail", "modern"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crying at a Taco Bell drive-thru",
+      "tags": ["relationship", "fail", "public"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "blocking and unblocking repeatedly",
+      "tags": ["relationship", "dating", "fail", "chaotic"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bringing up marriage on date three",
+      "tags": ["relationship", "dating", "fail"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "introducing them to your parents too soon",
+      "tags": ["relationship", "dating", "fail"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "moving in after two weeks",
+      "tags": ["relationship", "dating", "fail", "impulsive"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cheating with their roommate",
+      "tags": ["relationship", "dating", "fail", "betrayal"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "faking a whole personality",
+      "tags": ["relationship", "dating", "fail"],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "weaponizing couples therapy",
+      "tags": ["relationship", "fail", "toxic"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keeping dating apps active",
+      "tags": ["relationship", "dating", "fail", "modern"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "love-bombing for a week then disappearing",
+      "tags": ["relationship", "dating", "fail", "toxic"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "screening calls in front of them",
+      "tags": ["relationship", "dating", "fail", "rude"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "forgetting their birthday",
+      "tags": ["relationship", "fail"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "liking their ex's thirst traps",
+      "tags": ["relationship", "dating", "fail", "social"],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "showing up uninvited",
+      "tags": ["relationship", "fail", "stalker"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bringing their mom on dates",
+      "tags": ["relationship", "dating", "fail", "weird"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emotional affair with a coworker",
+      "tags": ["relationship", "fail", "workplace"],
+      "tone": "dark",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "posting passive-aggressive quotes",
+      "tags": ["relationship", "fail", "social", "petty"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keeping a backup partner",
+      "tags": ["relationship", "dating", "fail", "toxic"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "sending screenshots to the group chat",
+      "tags": ["relationship", "fail", "modern"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally superliking their cousin",
+      "tags": ["relationship", "dating", "fail", "modern"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "forgetting they're in a relationship",
+      "tags": ["relationship", "fail"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "recycling anniversary gifts",
+      "tags": ["relationship", "fail", "cheap"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "trying to change everything about them",
+      "tags": ["relationship", "fail", "toxic"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

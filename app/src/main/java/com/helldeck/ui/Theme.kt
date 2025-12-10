@@ -286,8 +286,8 @@ object HelldeckSpacing {
     val None = 0
     val Tiny = 4
     val Small = 8
-    val Medium = 16
-    val Large = 24
+    val Medium = 20
+    val Large = 28
     val ExtraLarge = 32
     val Huge = 48
     val Massive = 64

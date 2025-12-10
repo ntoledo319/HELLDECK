@@ -1,0 +1,297 @@
+{
+  "slot_type": "gross_problem",
+  "entries": [
+    {
+      "text": "a fridge haunted by mystery leftovers",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "permanent subway elevator grease",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "weekly mystery soup leaking in the mail",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a gym bag that gained sentience",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bathroom grout that screams at midnight",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a kitchen sponge with a mysterious ecosystem",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "expired yogurt that evolved defense mechanisms",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a drain that coughs back",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mystery stains that follow you to new apartments",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a moldy sandwich that sends threatening texts",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "permanently damp basement carpet",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a shower curtain with its own microbiome",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "trash juice that defies gravity",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a toothbrush that fell behind the toilet last year",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mystery gunk in the sink trap",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a roommate who microwaves fish daily",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sticky keyboard keys of unknown origin",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a trash can that refuses to be emptied",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "old takeout containers breeding new life forms",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a coffee mug with six-month-old residue",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mystery hair clogs that regenerate overnight",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a dishwasher that only makes things worse",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "permanent bathroom funk no candle can defeat",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a washing machine that adds new smells",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crusty oven spills from the previous tenant",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a pet that sheds emotional baggage and fur",
+      "tags": ["gross", "problem"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mystery sticky spots on every surface",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a garbage disposal with trust issues",
+      "tags": ["gross", "problem"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "month-old milk that achieved consciousness",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a bathtub with a permanent ring of shame",
+      "tags": ["gross", "problem"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leftovers that text you threatening messages",
+      "tags": ["gross", "problem"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a couch cushion that's legally a biohazard",
+      "tags": ["gross", "problem"],
+      "tone": "grim",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+    ,
+    {"text": "a microwave that smells like fish forever", "tags":["gross","problem"], "tone":"dry", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "mysterious fridge puddles that reappear", "tags":["gross","problem"], "tone":"grim", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "dish sponges that never dry", "tags":["gross","problem"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"}
+  ]
+}

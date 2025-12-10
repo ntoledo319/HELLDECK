@@ -1,0 +1,1266 @@
+[
+  {
+    "id": "gold_roast_01",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Most likely to bring a suitcase of snacks for a day trip.",
+    "spice": 1,
+    "locality": 1,
+    "options": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "gold_majority_01",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Predict the room: more people would pick pizza over salad.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Pizza", "optionB": "Salad" }
+  },
+  {
+    "id": "gold_redflag_01",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: perfect playlists but they label the milk.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Perfect playlists", "optionB": "Labels the milk" }
+  },
+  {
+    "id": "gold_roast_02",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Who would open a group chat just to ghost it?",
+    "spice": 1,
+    "locality": 1,
+    "options": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "gold_pitch_01",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather live with endless fresh laundry or an apartment that smells like movie theater butter forever?",
+    "spice": 1,
+    "locality": 1,
+    "options": {
+      "type": "AB",
+      "optionA": "Endless fresh laundry",
+      "optionB": "Movie theater butter forever"
+    }
+  },
+  {
+    "id": "gold_pitch_02",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Pick: personal meme curator or a roommate who labels the milk with their name.",
+    "spice": 1,
+    "locality": 1,
+    "options": {
+      "type": "AB",
+      "optionA": "Personal meme curator",
+      "optionB": "Roommate who labels the milk"
+    }
+  },
+  {
+    "id": "gold_roast_03",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Most likely to clap when the plane lands.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_roast_04",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Who would turn a quick story into a trilogy?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_redflag_02",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: perfect texter but replies ‘k’.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Perfect texter", "optionB": "Replies ‘k’" }
+  },
+  {
+    "id": "gold_redflag_03",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: amazing cook but every meal is ‘experimental’.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Amazing cook", "optionB": "Every meal is experimental" }
+  },
+  {
+    "id": "gold_majority_02",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Predict the room: more would pick sunrise over sunset.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Sunrise", "optionB": "Sunset" }
+  },
+  {
+    "id": "gold_pitch_03",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather always find parking or never do dishes again?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Always find parking", "optionB": "Never do dishes" }
+  },
+  {
+    "id": "gold_texttrap_01",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Pick the perfect reply vibe to the incoming text.",
+    "spice": 1,
+    "locality": 1
+  },
+  {
+    "id": "gold_hype_01",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Pitch a straight-faced product to solve an everyday nuisance.",
+    "spice": 1,
+    "locality": 1
+  },
+  {
+    "id": "gold_roast_05",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Who would unironically recommend a podcast after one episode?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_roast_06",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Point at whoever sends voice messages in group chats.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_roast_07",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Most likely to accidentally unmute on a Zoom call.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_roast_08",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Who takes selfies during serious moments?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_roast_09",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Call out whoever has the most chaotic camera roll.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_roast_10",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Who would ghost after saying 'let's hang out soon'?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_roast_11",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Most likely to start a sentence with 'actually'.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "gold_pitch_04",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Pick your nightmare: unlimited coffee but it's always lukewarm or perfect temperature tea that takes 20 minutes to brew.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Unlimited lukewarm coffee", "optionB": "Perfect tea, 20 min wait" }
+  },
+  {
+    "id": "gold_pitch_05",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather have WiFi everywhere but it's always slow or lightning-fast internet only at home?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "WiFi everywhere, slow", "optionB": "Fast internet, home only" }
+  },
+  {
+    "id": "gold_pitch_06",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Choose: free movies forever but only rom-coms or pay full price for everything else.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Free rom-coms forever", "optionB": "Pay for variety" }
+  },
+  {
+    "id": "gold_pitch_07",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Pick one: never wait in line again or never hit a red light.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "No lines ever", "optionB": "No red lights" }
+  },
+  {
+    "id": "gold_pitch_08",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather read minds for 5 minutes a day or turn invisible for 10 minutes once a week?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Read minds daily", "optionB": "Invisible weekly" }
+  },
+  {
+    "id": "gold_pitch_09",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Choose: perfect hair every day but you can't change the style or new hairstyle weekly but it's a gamble.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Perfect locked-in hair", "optionB": "Weekly hair lottery" }
+  },
+  {
+    "id": "gold_pitch_10",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Pick: autopilot commute but you always arrive 10 minutes late or normal driving with perfect timing.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Autopilot, always late", "optionB": "Manual, perfect timing" }
+  },
+  {
+    "id": "gold_majority_03",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Guess: would more people pick cats or dogs?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Cats", "optionB": "Dogs" }
+  },
+  {
+    "id": "gold_majority_04",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Predict the room: summer or winter?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Summer", "optionB": "Winter" }
+  },
+  {
+    "id": "gold_majority_05",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Which would the group choose: movies or books?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Movies", "optionB": "Books" }
+  },
+  {
+    "id": "gold_majority_06",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "More people prefer: texting or calling?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Texting", "optionB": "Calling" }
+  },
+  {
+    "id": "gold_majority_07",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Predict: would the room pick coffee or tea?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Coffee", "optionB": "Tea" }
+  },
+  {
+    "id": "gold_majority_08",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Guess the group's preference: city or countryside?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "City", "optionB": "Countryside" }
+  },
+  {
+    "id": "gold_majority_09",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "More would choose: plan ahead or wing it?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Plan ahead", "optionB": "Wing it" }
+  },
+  {
+    "id": "gold_majority_10",
+    "game": "MAJORITY_REPORT",
+    "family": "majority_gold",
+    "text": "Predict: sweet or savory snacks?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Sweet", "optionB": "Savory" }
+  },
+  {
+    "id": "gold_redflag_04",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: great listener but tells everyone your secrets.",
+    "spice": 2,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Great listener", "optionB": "Tells your secrets" }
+  },
+  {
+    "id": "gold_redflag_05",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Would you date: always on time but leaves you on read for days.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Always punctual", "optionB": "Days on read" }
+  },
+  {
+    "id": "gold_redflag_06",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: amazing sense of humor but laughs at their own jokes for minutes.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Great humor", "optionB": "Laughs too long" }
+  },
+  {
+    "id": "gold_redflag_07",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Date or dodge: they're rich but still split the bill by the penny.",
+    "spice": 2,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Rich partner", "optionB": "Penny-splits bills" }
+  },
+  {
+    "id": "gold_redflag_08",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: perfect style but wears socks with sandals indoors.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Perfect style", "optionB": "Socks with sandals" }
+  },
+  {
+    "id": "gold_redflag_09",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Would you date: gives amazing gifts but expects reciprocation immediately.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Amazing gifts", "optionB": "Expects returns" }
+  },
+  {
+    "id": "gold_redflag_10",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: cooks dinner every night but uses every dish in the kitchen.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Cooks nightly", "optionB": "Disaster kitchen" }
+  },
+  {
+    "id": "gold_texttrap_02",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Someone just texted asking 'wyd?' Choose your reply energy.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Deadpan", "optionB": "Chaotic" }
+  },
+  {
+    "id": "gold_texttrap_03",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Pick the vibe for replying to a missed call text.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Wholesome", "optionB": "Petty" }
+  },
+  {
+    "id": "gold_texttrap_04",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "They sent 'we need to talk.' Match the reply tone.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Feral", "optionB": "Wholesome" }
+  },
+  {
+    "id": "gold_texttrap_05",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Choose your energy for responding to a group chat summons.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Deadpan", "optionB": "Thirsty" }
+  },
+  {
+    "id": "gold_texttrap_06",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Pick the reply vibe for 'sorry, wrong person.'",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Chaotic", "optionB": "Wholesome" }
+  },
+  {
+    "id": "gold_texttrap_07",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Match the tone for replying to an unexpected compliment text.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Petty", "optionB": "Thirsty" }
+  },
+  {
+    "id": "gold_texttrap_08",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "They double-texted after your read receipt. Choose your response energy.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Feral", "optionB": "Deadpan" }
+  },
+  {
+    "id": "gold_texttrap_09",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Pick the vibe for responding to a meme at 3 AM.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Chaotic", "optionB": "Wholesome" }
+  },
+  {
+    "id": "gold_texttrap_10",
+    "game": "TEXT_THREAD_TRAP",
+    "family": "texttrap_gold",
+    "text": "Match your reply energy to 'can I ask you something?'",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Deadpan", "optionB": "Petty" }
+  },
+  {
+    "id": "gold_odd_01",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Which is the odd one: pineapple pizza, ketchup on eggs, milk before cereal?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "ODD_ONE_OUT", "items": ["pineapple pizza", "ketchup on eggs", "milk before cereal"] }
+  },
+  {
+    "id": "gold_odd_02",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Pick the odd one: selfie stick, fidget spinner, slap bracelet.",
+    "spice": 1,
+    "locality": 2,
+    "options": { "type": "ODD_ONE_OUT", "items": ["selfie stick", "fidget spinner", "slap bracelet"] }
+  },
+  {
+    "id": "gold_odd_03",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Find the odd one: TikTok dance, planking, Ice Bucket Challenge.",
+    "spice": 1,
+    "locality": 2,
+    "options": { "type": "ODD_ONE_OUT", "items": ["TikTok dance", "planking", "Ice Bucket Challenge"] }
+  },
+  {
+    "id": "gold_odd_04",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Which doesn't belong: crocs, cargo shorts, fanny pack?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "ODD_ONE_OUT", "items": ["crocs", "cargo shorts", "fanny pack"] }
+  },
+  {
+    "id": "gold_odd_05",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Spot the odd one: Netflix binge, doomscrolling, touching grass.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "ODD_ONE_OUT", "items": ["Netflix binge", "doomscrolling", "touching grass"] }
+  },
+  {
+    "id": "gold_odd_06",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Which is different: side part, middle part, no part (bald)?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "ODD_ONE_OUT", "items": ["side part", "middle part", "no part"] }
+  },
+  {
+    "id": "gold_odd_07",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Pick the outlier: avocado toast, oat milk latte, gas station hot dog.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "ODD_ONE_OUT", "items": ["avocado toast", "oat milk latte", "gas station hot dog"] }
+  },
+  {
+    "id": "gold_odd_08",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Which doesn't fit: vibe check, no cap, groovy?",
+    "spice": 1,
+    "locality": 2,
+    "options": { "type": "ODD_ONE_OUT", "items": ["vibe check", "no cap", "groovy"] }
+  },
+  {
+    "id": "gold_odd_09",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Find the odd one: canceled plans, ghosting, double texting.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "ODD_ONE_OUT", "items": ["canceled plans", "ghosting", "double texting"] }
+  },
+  {
+    "id": "gold_odd_10",
+    "game": "ODD_ONE_OUT",
+    "family": "odd_gold",
+    "text": "Which is the outlier: breakfast for dinner, cereal as a snack, pizza for breakfast?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "ODD_ONE_OUT", "items": ["breakfast for dinner", "cereal as a snack", "pizza for breakfast"] }
+  },
+  {
+    "id": "gold_titlefight_01",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Battle royale: early bird vs night owl.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Early bird", "optionB": "Night owl" }
+  },
+  {
+    "id": "gold_titlefight_02",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Face-off: Netflix vs the gym.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Netflix", "optionB": "Gym" }
+  },
+  {
+    "id": "gold_titlefight_03",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Showdown: group project leader vs silent observer.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Project leader", "optionB": "Silent observer" }
+  },
+  {
+    "id": "gold_titlefight_04",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Clash: brunch enthusiast vs meal prep warrior.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Brunch enthusiast", "optionB": "Meal prep warrior" }
+  },
+  {
+    "id": "gold_titlefight_05",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Showdown: reusable straw crusader vs compost king.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Reusable straw crusader", "optionB": "Compost king" }
+  },
+  {
+    "id": "gold_titlefight_06",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Battle: office playlist DJ vs podcast purist.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Office playlist DJ", "optionB": "Podcast purist" }
+  },
+  {
+    "id": "gold_titlefight_07",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Throwdown: chaos organizer vs chill improviser.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Chaos organizer", "optionB": "Chill improviser" }
+  },
+  {
+    "id": "gold_titlefight_08",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Face-off: hot takes texter vs meme machine.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Hot takes texter", "optionB": "Meme machine" }
+  },
+  {
+    "id": "gold_titlefight_09",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Rumble: plant parent vs dog sitter.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Plant parent", "optionB": "Dog sitter" }
+  },
+  {
+    "id": "gold_titlefight_10",
+    "game": "TITLE_FIGHT",
+    "family": "titlefight_gold",
+    "text": "Final bout: spreadsheet wizard vs whiteboard dreamer.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Spreadsheet wizard", "optionB": "Whiteboard dreamer" }
+  },
+  {
+    "id": "gold_alibi_01",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Tell a story that secretly includes: pineapple, Wednesday.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["pineapple", "Wednesday"] }
+  },
+  {
+    "id": "gold_alibi_02",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Craft an alibi that smuggles in: purple, elevator.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["purple", "elevator"] }
+  },
+  {
+    "id": "gold_alibi_03",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Hide these words in your story: midnight, octopus.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["midnight", "octopus"] }
+  },
+  {
+    "id": "gold_alibi_04",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Sneak in these words: waffle, traffic cone.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["waffle", "traffic cone"] }
+  },
+  {
+    "id": "gold_alibi_05",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Smuggle these into your tale: glitter, library card.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["glitter", "library card"] }
+  },
+  {
+    "id": "gold_alibi_06",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Include without anyone noticing: karaoke, backpack.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["karaoke", "backpack"] }
+  },
+  {
+    "id": "gold_alibi_07",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Hide inside your story: volcano, latte.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["volcano", "latte"] }
+  },
+  {
+    "id": "gold_alibi_08",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Slip in without pause: umbrella, rollercoaster.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["umbrella", "rollercoaster"] }
+  },
+  {
+    "id": "gold_alibi_09",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Weave through your alibi: marshmallow, detective.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["marshmallow", "detective"] }
+  },
+  {
+    "id": "gold_alibi_10",
+    "game": "ALIBI_DROP",
+    "family": "alibi_gold",
+    "text": "Casually drop: telescope, flip-flops.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "HIDDEN_WORDS", "words": ["telescope", "flip-flops"] }
+  },
+  {
+    "id": "gold_taboo_01",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Describe 'pizza' without saying: food, cheese, Italy.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "pizza", "forbidden": ["food", "cheese", "Italy"] }
+  },
+  {
+    "id": "gold_taboo_02",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Explain 'selfie' without: phone, picture, camera.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "selfie", "forbidden": ["phone", "picture", "camera"] }
+  },
+  {
+    "id": "gold_taboo_03",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Describe 'Netflix' without saying: streaming, show, TV.",
+    "spice": 1,
+    "locality": 2,
+    "options": { "type": "TABOO", "word": "Netflix", "forbidden": ["streaming", "show", "TV"] }
+  },
+  {
+    "id": "gold_taboo_04",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Describe 'coffee' without saying: mug, caffeine, morning.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "coffee", "forbidden": ["mug", "caffeine", "morning"] }
+  },
+  {
+    "id": "gold_taboo_05",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Explain 'airplane' without: flight, wing, pilot.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "airplane", "forbidden": ["flight", "wing", "pilot"] }
+  },
+  {
+    "id": "gold_taboo_06",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Describe 'password' without saying: secret, login, letters.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "password", "forbidden": ["secret", "login", "letters"] }
+  },
+  {
+    "id": "gold_taboo_07",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Explain 'sunburn' without: sun, beach, red.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "sunburn", "forbidden": ["sun", "beach", "red"] }
+  },
+  {
+    "id": "gold_taboo_08",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Describe 'podcast' without saying: audio, talk, episode.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "podcast", "forbidden": ["audio", "talk", "episode"] }
+  },
+  {
+    "id": "gold_taboo_09",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Explain 'bicycle' without: ride, pedal, wheel.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "TABOO", "word": "bicycle", "forbidden": ["ride", "pedal", "wheel"] }
+  },
+  {
+    "id": "gold_taboo_10",
+    "game": "TABOO_TIMER",
+    "family": "taboo_gold",
+    "text": "Describe 'thunderstorm' without saying: rain, lightning, cloud.",
+    "spice": 1,
+    "locality": 2,
+    "options": { "type": "TABOO", "word": "thunderstorm", "forbidden": ["rain", "lightning", "cloud"] }
+  },
+  {
+    "id": "gold_scatter_01",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "Name three animals starting with B. Go!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Animals", "letter": "B" }
+  },
+  {
+    "id": "gold_scatter_02",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "List three foods beginning with P. Quick!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Foods", "letter": "P" }
+  },
+  {
+    "id": "gold_scatter_03",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "Three countries starting with C. Fast!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Countries", "letter": "C" }
+  },
+  {
+    "id": "gold_scatter_04",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "Name three movies starting with S. Go!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Movies", "letter": "S" }
+  },
+  {
+    "id": "gold_scatter_05",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "List three sports beginning with L. Quick!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Sports", "letter": "L" }
+  },
+  {
+    "id": "gold_scatter_06",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "Three jobs starting with D. Speed round!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Jobs", "letter": "D" }
+  },
+  {
+    "id": "gold_scatter_07",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "Name three fruits starting with M. Rapid!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Fruits", "letter": "M" }
+  },
+  {
+    "id": "gold_scatter_08",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "List three brands beginning with N. Hurry!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Brands", "letter": "N" }
+  },
+  {
+    "id": "gold_scatter_09",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "Three books starting with H. Fast!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Books", "letter": "H" }
+  },
+  {
+    "id": "gold_scatter_10",
+    "game": "SCATTERBLAST",
+    "family": "scatter_gold",
+    "text": "Drop three video games starting with T. Go!",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "SCATTER", "category": "Video Games", "letter": "T" }
+  },
+  {
+    "id": "gold_hotseat_01",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Answer as them: what's your go-to excuse for being late?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Answer as the target" }
+  },
+  {
+    "id": "gold_hotseat_02",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Channel their energy: what's your comfort food?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Match their vibe" }
+  },
+  {
+    "id": "gold_hotseat_03",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Blend in: what's your most-used emoji?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Think like them" }
+  },
+  {
+    "id": "gold_hotseat_04",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Impersonate them: what's their karaoke anthem?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Sing their heart out" }
+  },
+  {
+    "id": "gold_hotseat_05",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Answer as them: describe their dream vacation.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Travel in character" }
+  },
+  {
+    "id": "gold_hotseat_06",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Stay in character: what petty hill do they die on?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Petty commitment" }
+  },
+  {
+    "id": "gold_hotseat_07",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Respond like them: which app do they open first each morning?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Morning routine" }
+  },
+  {
+    "id": "gold_hotseat_08",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Channel them: what secret talent do they brag about?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Humble brag" }
+  },
+  {
+    "id": "gold_hotseat_09",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Answer as them: what's their chaos purchase this week?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Impulse buy" }
+  },
+  {
+    "id": "gold_hotseat_10",
+    "game": "HOT_SEAT_IMPOSTER",
+    "family": "hotseat_gold",
+    "text": "Blend in: how do they sign off group chats?",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "CHALLENGE", "text": "Group chat exit" }
+  },
+  {
+    "id": "gold_hype_02",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Pitch a deadpan solution for lost TV remotes.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "TV remote finder" }
+  },
+  {
+    "id": "gold_hype_03",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Sell a serious product for awkward elevator rides.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Elevator conversation starter" }
+  },
+  {
+    "id": "gold_hype_04",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Pitch a serious gadget for lost laundry socks.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Sock retriever" }
+  },
+  {
+    "id": "gold_hype_05",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Deadpan sell a subscription for flawless group photos.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Group selfie subscription" }
+  },
+  {
+    "id": "gold_hype_06",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Make deodorant for awkward handshakes sound life-changing.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Handshake reset spray" }
+  },
+  {
+    "id": "gold_hype_07",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Convince us a monthly plan handles mystery fridge smells.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Fridge smell subscription" }
+  },
+  {
+    "id": "gold_hype_08",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Sell investors on wearable post-it notes.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Wearable reminder patches" }
+  },
+  {
+    "id": "gold_hype_09",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Pitch premium nap pods for public transit naps.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Transit nap pods" }
+  },
+  {
+    "id": "gold_hype_10",
+    "game": "HYPE_OR_YIKE",
+    "family": "hype_gold",
+    "text": "Make smart toasters that send breakup texts sound essential.",
+    "spice": 1,
+    "locality": 1,
+    "options": { "type": "PRODUCT", "item": "Smart toaster breakup service" }
+  },
+  {
+    "id": "gold_roast_raunchy_01",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Most likely to get caught aggressively moisturizing in the office bathroom.",
+    "spice": 3,
+    "locality": 1,
+    "options": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "gold_roast_raunchy_02",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Who would accidentally send a nude to their boss?",
+    "spice": 4,
+    "locality": 1,
+    "options": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "gold_roast_raunchy_03",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Point at the person most likely to fart in a silent room and blame it on someone else.",
+    "spice": 2,
+    "locality": 1,
+    "options": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "gold_roast_raunchy_04",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Most likely to have a secret OnlyFans account.",
+    "spice": 3,
+    "locality": 1,
+    "options": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "gold_roast_raunchy_05",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_gold",
+    "text": "Who would get caught watching porn at work?",
+    "spice": 4,
+    "locality": 1,
+    "options": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "gold_pitch_raunchy_01",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather accept everyone knowing your browser history or deal with permanent swamp ass?",
+    "spice": 3,
+    "locality": 1,
+    "options": {
+      "type": "AB",
+      "optionA": "Everyone knows browser history",
+      "optionB": "Permanent swamp ass"
+    }
+  },
+  {
+    "id": "gold_pitch_raunchy_02",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather have to announce every time you masturbate or never be able to use the bathroom alone again?",
+    "spice": 4,
+    "locality": 1,
+    "options": {
+      "type": "AB",
+      "optionA": "Announce every masturbation",
+      "optionB": "Never bathroom alone"
+    }
+  },
+  {
+    "id": "gold_pitch_raunchy_03",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather fight one horse-sized duck or 100 duck-sized horses?",
+    "spice": 2,
+    "locality": 1,
+    "options": {
+      "type": "AB",
+      "optionA": "One horse-sized duck",
+      "optionB": "100 duck-sized horses"
+    }
+  },
+  {
+    "id": "gold_pitch_raunchy_04",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather have nipples for eyes or eyes for nipples?",
+    "spice": 3,
+    "locality": 1,
+    "options": {
+      "type": "AB",
+      "optionA": "Nipples for eyes",
+      "optionB": "Eyes for nipples"
+    }
+  },
+  {
+    "id": "gold_pitch_raunchy_05",
+    "game": "POISON_PITCH",
+    "family": "pitch_gold",
+    "text": "Would you rather be caught masturbating by your parents or have your parents catch you masturbating?",
+    "spice": 4,
+    "locality": 1,
+    "options": {
+      "type": "AB",
+      "optionA": "Caught by parents",
+      "optionB": "Parents catch you"
+    }
+  },
+  {
+    "id": "gold_redflag_raunchy_01",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: perfect in every way but has a foot fetish.",
+    "spice": 3,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Perfect but foot fetish", "optionB": "No foot fetish" }
+  },
+  {
+    "id": "gold_redflag_raunchy_02",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Date or dodge: amazing in bed but talks dirty during sex.",
+    "spice": 4,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Amazing in bed", "optionB": "Talks dirty" }
+  },
+  {
+    "id": "gold_redflag_raunchy_03",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: great personality but has a collection of used condoms.",
+    "spice": 3,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Great personality", "optionB": "Used condom collection" }
+  },
+  {
+    "id": "gold_redflag_raunchy_04",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Would you date: perfect match but has herpes.",
+    "spice": 4,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Perfect match", "optionB": "Has herpes" }
+  },
+  {
+    "id": "gold_redflag_raunchy_05",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_gold",
+    "text": "Smash or pass: hot as hell but has a micropenis.",
+    "spice": 3,
+    "locality": 1,
+    "options": { "type": "AB", "optionA": "Hot as hell", "optionB": "Micropenis" }
+  }
+]

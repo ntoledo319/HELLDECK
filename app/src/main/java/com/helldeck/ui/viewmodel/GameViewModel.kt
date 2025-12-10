@@ -92,12 +92,14 @@ class GameViewModel : ViewModel() {
         val playersList = activePlayers.map { it.name }
         val sessionId = "session_${System.currentTimeMillis()}"
         
+        val baseLocality = Config.generatorLocalityCap()
         val gameResult = engine.next(
             GameEngine.Request(
                 gameId = nextGame,
                 sessionId = sessionId,
                 spiceMax = if (spicy) 3 else 1,
-                players = playersList
+                players = playersList,
+                localityMax = if (spicy) 3 else baseLocality
             )
         )
         currentCard = gameResult.filledCard

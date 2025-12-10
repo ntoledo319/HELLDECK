@@ -10,6 +10,8 @@ import android.os.Build
 import android.os.UserManager
 import android.provider.Settings
 import android.view.View
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
 import com.helldeck.admin.HelldeckDeviceAdminReceiver
@@ -18,6 +20,7 @@ import com.helldeck.admin.HelldeckDeviceAdminReceiver
  * Kiosk mode manager for HELLDECK
  * Handles device lockdown and immersive mode
  */
+@Suppress("DEPRECATION")
 object Kiosk {
 
     private const val SYSTEM_UI_FLAG_IMMERSIVE_STICKY = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -31,6 +34,7 @@ object Kiosk {
      * Enable immersive mode on a view
      */
     fun enableImmersiveMode(decorView: View) {
+        // Back-compat fallback for older APIs
         decorView.systemUiVisibility = (
             SYSTEM_UI_FLAG_LAYOUT_STABLE
             or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -39,6 +43,17 @@ object Kiosk {
             or SYSTEM_UI_FLAG_FULLSCREEN
             or SYSTEM_UI_FLAG_IMMERSIVE_STICKY
         )
+    }
+
+    /**
+     * Preferred immersive mode using WindowInsetsControllerCompat
+     */
+    fun enableImmersiveMode(activity: Activity) {
+        val window = activity.window
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.hide(WindowInsetsCompat.Type.systemBars())
+        controller.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
 
     /**
@@ -103,8 +118,8 @@ object Kiosk {
      * Setup activity for kiosk mode
      */
     fun setupKioskActivity(activity: Activity) {
-        // Hide navigation and status bars
-        enableImmersiveMode(activity.window.decorView)
+        // Hide navigation and status bars (new API)
+        enableImmersiveMode(activity)
 
         // Enable lock task if possible
         enableLockTask(activity)
@@ -113,11 +128,19 @@ object Kiosk {
         startLockTask(activity)
 
         // Setup window flags for fullscreen
-        activity.window.apply {
-            addFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN)
-            addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-            addFlags(android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
-            addFlags(android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
+        val window = activity.window
+        // Modern edge-to-edge behavior
+        androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        // Prefer modern APIs when available
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O_MR1) {
+            activity.setShowWhenLocked(true)
+            activity.setTurnScreenOn(true)
+        } else {
+            // Fallback flags for pre-27
+            window.addFlags(android.view.WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
+            window.addFlags(android.view.WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON)
         }
     }
 
@@ -320,7 +343,7 @@ class KioskBroadcastReceiver : android.content.BroadcastReceiver() {
             Intent.ACTION_SCREEN_ON -> {
                 // Screen turned on - ensure immersive mode
                 val activity = getCurrentActivity(context)
-                activity?.let { Kiosk.enableImmersiveMode(it.window.decorView) }
+                activity?.let { Kiosk.enableImmersiveMode(it) }
             }
             Intent.ACTION_USER_PRESENT -> {
                 // User unlocked device - ensure kiosk mode

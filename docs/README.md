@@ -23,6 +23,11 @@ This directory contains comprehensive documentation for the HELLDECK party game 
 - Code organization
 - Testing strategies
 
+### 🤖 [LLM & Quality Guide](LLM_AND_QUALITY.md)
+- How the on-device LLM is bundled and loaded
+- Running full game quality checks
+- Interpreting reports and tuning
+
 ### 📖 [API Reference](API.md)
 - Complete API documentation
 - Class and method references

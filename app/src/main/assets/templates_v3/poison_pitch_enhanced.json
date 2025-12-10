@@ -1,0 +1,316 @@
+[
+  {
+    "id": "pitch_absurd_1",
+    "game": "POISON_PITCH",
+    "family": "pitch_absurd",
+    "weight": 1.0,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you rather accept " },
+      { "type": "slot", "name": "cost_a", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " or deal with " },
+      { "type": "slot", "name": "bodily", "slot_type": "bodily_functions" },
+      { "type": "text", "value": " for a year?" }
+    ],
+    "constraints": {
+      "max_words": 22,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "cost_a" },
+        { "from_slot": "bodily" }
+      ]
+    }
+  },
+  {
+    "id": "pitch_absurd_2",
+    "game": "POISON_PITCH",
+    "family": "pitch_absurd",
+    "weight": 0.9,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Trade " },
+      { "type": "slot", "name": "innuendo", "slot_type": "sexual_innuendo" },
+      { "type": "text", "value": " privileges to avoid " },
+      { "type": "slot", "name": "cost", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": "?" }
+    ],
+    "constraints": {
+      "max_words": 18,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "innuendo" },
+        { "from_slot": "cost" }
+      ]
+    }
+  },
+  {
+    "id": "pitch_absurd_3",
+    "game": "POISON_PITCH",
+    "family": "pitch_absurd",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Pick your nightmare: " },
+      { "type": "slot", "name": "vice_a", "slot_type": "vices_and_indulgences" },
+      { "type": "text", "value": " becoming public or " },
+      { "type": "slot", "name": "taboo", "slot_type": "taboo_topics" },
+      { "type": "text", "value": " at every family event." }
+    ],
+    "constraints": {
+      "max_words": 20,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "vice_a" },
+        { "from_slot": "taboo" }
+      ]
+    }
+  },
+  {
+    "id": "wdyr_balanced_1",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 1.0,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you rather endure " },
+      { "type": "slot", "name": "cost_a", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " or suffer " },
+      { "type": "slot", "name": "cost_b", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": "?" }
+    ],
+    "constraints": {
+      "max_words": 18,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "cost_a" },
+        { "from_slot": "cost_b" }
+      ]
+    }
+  },
+  {
+    "id": "wdyr_balanced_2",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.9,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Choose your poison: getting caught " },
+      { "type": "slot", "name": "innuendo", "slot_type": "sexual_innuendo" },
+      { "type": "text", "value": " or experiencing " },
+      { "type": "slot", "name": "bodily", "slot_type": "bodily_functions" },
+      { "type": "text", "value": " in public." }
+    ],
+    "constraints": {
+      "max_words": 20,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "innuendo" },
+        { "from_slot": "bodily" }
+      ]
+    }
+  },
+  {
+    "id": "wdyr_balanced_3",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Accept " },
+      { "type": "slot", "name": "cost_social", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " or live with " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " forever?" }
+    ],
+    "constraints": {
+      "max_words": 16,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "cost_social" },
+        { "from_slot": "selfish" }
+      ]
+    }
+  }
+  ,
+  {
+    "id": "wdyr_balanced_4",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.95,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you rather admit " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": " on livestream or " },
+      { "type": "slot", "name": "bodily", "slot_type": "bodily_functions" },
+      { "type": "text", "value": " in front of your boss?" }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "reason"}, {"from_slot": "bodily"} ] }
+  },
+  {
+    "id": "wdyr_balanced_5",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.9,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Choose: live with " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " forever or pay " },
+      { "type": "slot", "name": "cost", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " monthly?" }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "selfish"}, {"from_slot": "cost"} ] }
+  },
+  {
+    "id": "wdyr_balanced_6",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Suffer " },
+      { "type": "slot", "name": "cost_a", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " for a year or confess " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": " publicly once?" }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "cost_a"}, {"from_slot": "reason"} ] }
+  }
+  ,
+  {
+    "id": "wdyr_balanced_7",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you rather reveal " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": " or live with " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " forever?" }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "reason"}, {"from_slot": "selfish"} ] }
+  },
+  {
+    "id": "wdyr_balanced_8",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Pick one: pay " },
+      { "type": "slot", "name": "cost", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " monthly or confess " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": " publicly once." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "cost"}, {"from_slot": "reason"} ] }
+  },
+  {
+    "id": "wdyr_balanced_9",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you rather endure " },
+      { "type": "slot", "name": "bodily", "slot_type": "bodily_functions" },
+      { "type": "text", "value": " weekly or accept " },
+      { "type": "slot", "name": "cost", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " for a year?" }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "bodily"}, {"from_slot": "cost"} ] }
+  }
+  ,
+  {
+    "id": "wdyr_balanced_10",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you rather confess " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": " once or endure " },
+      { "type": "slot", "name": "cost", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " for a year?" }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "reason"}, {"from_slot": "cost"} ] }
+  }
+  ,
+  {
+    "id": "wdyr_balanced_11",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Pick one: live with " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " or pay " },
+      { "type": "slot", "name": "cost", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " forever." }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "selfish"}, {"from_slot": "cost"} ] }
+  }
+  ,
+  {
+    "id": "wdyr_balanced_12",
+    "game": "POISON_PITCH",
+    "family": "wdyr_balanced_dilemmas",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you rather suffer " },
+      { "type": "slot", "name": "bodily", "slot_type": "bodily_functions" },
+      { "type": "text", "value": " in public or admit " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": " to your group?" }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "bodily"}, {"from_slot": "reason"} ] }
+  }
+]

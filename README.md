@@ -68,10 +68,11 @@ HELLDECK is a party game system designed for 3-16 players using a single Android
 
 ## 🧠 Brainpacks
 
-The game learns from your feedback to show funnier content over time.
+The game learns from your feedback to show funnier content over time, and you can now back up that history.
 
-- **Export learned data**: Home → **Export Brain** (creates `.hhdb` file)
-- **Import on new device**: Home → **Import Brain** (select `.hhdb` file)
+- **Export learned data**: Home → **Export Brain** creates a zipped brainpack under the app cache (`cache/brainpacks/<name>.zip`) containing `brainpack.json`.
+- **Import on new device**: Home → **Import Brain** and pick any brainpack `.zip`. Players, template stats, and recent exposures merge into the current database.
+- Brainpacks are human-readable JSON – perfect for versioning or sanity-checking before sharing with other crews.
 
 ## 🏗️ Project Structure
 
@@ -102,28 +103,64 @@ helldeck/
 
 ## 🔧 Development
 
-### Adding New Templates
+### Offline Generator V3 (Blueprints + Lexicons)
 
-Templates are stored in `app/src/main/assets/templates/templates.json`. Each template needs:
-- `id`: unique identifier
-- `game`: which mini-game it belongs to
-- `text`: template with `{slot_name}` placeholders
-- `family`: grouping for variety tracking
-- `spice`: humor intensity (1-3)
-- `locality`: cultural specificity (1-3)
+- Blueprints live under `app/src/main/assets/templates_v3/` (per-game JSON lists).
+- Typed lexicons live under `app/src/main/assets/lexicons_v2/` (each file declares `slot_type` and `entries`).
+- Model artifacts live under `app/src/main/assets/model/` (rules, priors, pairings, logistic weights, banned lists).
 
-### Adding New Lexicons
+Enabling generator V3:
+- In-app: Settings → Developer → Enable Generator V3 (and disable Gold Mode Only).
+- Dev tool: Settings → Developer → Open Card Lab → toggle “Force V3: ON” (auto-restores flags on exit).
 
-Word lists are stored in `app/src/main/assets/lexicons/`. Each JSON file contains an array of strings for a specific slot type (friends, places, memes, etc.).
+Gold fallback:
+- Curated cards live in `app/src/main/assets/gold/gold_cards.json`. Safe-mode serves only these.
+
+Audit & diagnostics:
+- CLI audit: `./gradlew :app:cardAudit -Pgame=POISON_PITCH -Pcount=100 -Pseed=12345` → outputs CSV/JSON/HTML in `app/build/reports/cardlab/`.
+- Compare new audit CSVs to the frozen baselines with `python tools/card_audit_diff.py`; baselines live in `docs/card_audit_baselines/`.
+- Lint lexicons locally with `python tools/lexicon_lint.py` to catch punctuation, article collisions, and emoji/locality hints.
+ - Generate/refresh baselines across many games with `bash tools/gen_audit_baselines.sh`.
+- Card Lab (Settings → Developer → Open Card Lab) supports seed ranges, retry counts, pass/fail stats, per-feature metadata, and banlists. Use “Force V3” to bypass global flags.
+
+Quality sweeps also accept multiple seeds in a single run for faster aggregation:
+
+```
+./gradlew :app:cardQuality -Pcount=80 -Pseeds=701,702,703,704,705,706,707,708 -Pspice=2
+python3 tools/quality_summarize.py  # updates docs/quality_summary.md
+```
 
 ### Configuration
 
-Game behavior is controlled by `app/src/main/assets/settings/default.yaml`:
+Game behavior is controlled by `app/src/main/assets/settings/default.yaml` which is now loaded on startup (with automatic fallback to hard-coded defaults if parsing fails):
 - `learning`: AI adaptation parameters
 - `timers`: phase timing in milliseconds
 - `players`: player count preferences
 - `scoring`: point values and thresholds
 - `mechanics`: game rule toggles
+
+### Local LLMs
+
+- Offline models live in `app/src/main/assets/models/` (e.g. TinyLlama, Qwen) and are bundled with the APK by default. On first launch they copy to internal storage and load on a background thread; the UI remains responsive.
+- The native bridge `helldeck_llama` is shipped in the app. If `third_party/llama.cpp` is present at build time it links to the full implementation; otherwise a safe stub is bundled and the engine falls back to authored copy.
+- Paraphrasing & classification happen automatically once the model is ready — no toggle required. If a model isn’t available the system gracefully falls back.
+
+### Card Generator V3 (offline)
+
+- Blueprints live in `app/src/main/assets/templates_v3/` and describe sentence structures with typed slots.
+- Lexicon V2 assets (`app/src/main/assets/lexicons_v2/`) provide entries with metadata (spice, locality, tone) for each slot type.
+- Offline trained artifacts in `app/src/main/assets/model/` supply blueprint priors, slot pair compatibility weights, a tiny logistic scorer, and safety lists.
+- The generator tries up to three blueprints per card. If all fail validation, it immediately serves a curated gold card from `app/src/main/assets/gold/gold_cards.json`.
+- Runtime flags (in `settings/default.yaml`): `safe_mode_gold_only` forces gold cards; `enable_v3_generator` activates the CSP + scoring pipeline. Thresholds live in `model/rules.yaml`.
+
+### Testing quick-start
+
+- Run `./run_tests.sh` for the focused JVM checks (engine heuristics, YAML loader, brainpack round-trip). Full `./gradlew test` still includes Compose UI suites that require instrumentation; execute those from Android Studio or via `./gradlew connectedAndroidTest` on a device/emulator.
+
+### Cleaning build artifacts
+
+- Use `./gradlew clean` to remove all compiled outputs, including native builds under `app/.cxx` and Gradle intermediates under `app/build`.
+- For a manual nuke of cached brainpacks or models during debugging, clear `cache/brainpacks/` and `files/models/` from the app’s sandbox on device/emulator.
 
 ## 🎨 UI Architecture
 

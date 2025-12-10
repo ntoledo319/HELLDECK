@@ -1,0 +1,384 @@
+[
+  {
+    "id": "roast_taboo_1",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_taboo",
+    "weight": 1.2,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to get caught " },
+      { "type": "slot", "name": "innuendo", "slot_type": "sexual_innuendo" },
+      { "type": "text", "value": " at " },
+      { "type": "slot", "name": "context", "slot_type": "awkward_contexts" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 20,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_consensus_justify_1",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 1.1,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": ", because " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 22,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_taboo_2",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_taboo",
+    "weight": 1.1,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Call out whoever's guilty of " },
+      { "type": "slot", "name": "vice", "slot_type": "vices_and_indulgences" },
+      { "type": "text", "value": " while pretending they have standards." }
+    ],
+    "constraints": {
+      "max_words": 18,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_taboo_3",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_taboo",
+    "weight": 1.0,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Who would blame " },
+      { "type": "slot", "name": "bodily", "slot_type": "bodily_functions" },
+      { "type": "text", "value": " on their dietary restrictions?" }
+    ],
+    "constraints": {
+      "max_words": 16,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_taboo_4",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_taboo",
+    "weight": 0.75,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to defend " },
+      { "type": "slot", "name": "taboo", "slot_type": "taboo_topics" },
+      { "type": "text", "value": " at Thanksgiving dinner." }
+    ],
+    "constraints": {
+      "max_words": 14,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_taboo_5",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_taboo",
+    "weight": 1.0,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Point at whoever's guilty of " },
+      { "type": "slot", "name": "slang", "slot_type": "internet_slang" },
+      { "type": "text", "value": " without the self-awareness." }
+    ],
+    "constraints": {
+      "max_words": 14,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_consensus_dark_1",
+    "game": "ROAST_CONSENSUS",
+    "family": "consensus_dark",
+    "weight": 0.9,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Who's hiding " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " from the group?" }
+    ],
+    "constraints": {
+      "max_words": 12,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_consensus_dark_2",
+    "game": "ROAST_CONSENSUS",
+    "family": "consensus_dark",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to have " },
+      { "type": "slot", "name": "meme", "slot_type": "meme_references" },
+      { "type": "text", "value": " tattooed on their forehead by age 40." }
+    ],
+    "constraints": {
+      "max_words": 16,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  },
+  {
+    "id": "roast_consensus_dark_3",
+    "game": "ROAST_CONSENSUS",
+    "family": "consensus_dark",
+    "weight": 0.9,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Call out whoever's one bad day away from " },
+      { "type": "slot", "name": "taboo", "slot_type": "taboo_topics" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 15,
+      "distinct_slots": false
+    },
+    "option_provider": {
+      "type": "PLAYER_VOTE"
+    }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_2",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 1.0,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " — because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 22,
+      "distinct_slots": true
+    },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_3",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 1.0,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Call out whoever would " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " — because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "roast_consensus_justify_4",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.95,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": ", and we have proof: " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_5",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Who would absolutely " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " — because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "roast_consensus_justify_6",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to be guilty of " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " — because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_7",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Who would totally " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " — because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "roast_consensus_justify_8",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.8,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " — because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_9",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Name the player who would " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": ", because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_10",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Most likely to " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": ". The reason: " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_11",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Who would definitely " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " — specifically because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 24, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+  ,
+  {
+    "id": "roast_consensus_justify_12",
+    "game": "ROAST_CONSENSUS",
+    "family": "roast_core",
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Which player is guilty of " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": ", because " },
+      { "type": "slot", "name": "evidence", "slot_type": "evidence_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+]

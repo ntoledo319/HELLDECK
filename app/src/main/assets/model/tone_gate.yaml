@@ -1,0 +1,12 @@
+version: 1
+profiles:
+  safe:
+    allow: [neutral, playful, witty]
+    deny: [wild]
+  party:
+    allow: [neutral, playful, witty, dry]
+    deny: []
+  unhinged:
+    allow: [neutral, playful, witty, dry, wild]
+    deny: []
+

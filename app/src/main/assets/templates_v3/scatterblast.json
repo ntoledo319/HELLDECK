@@ -1,0 +1,66 @@
+[
+  {
+    "id": "scatterblast_blueprint_1",
+    "game": "SCATTERBLAST",
+    "family": "scatter_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Category: " },
+      { "type": "slot", "name": "category", "slot_type": "categories" },
+      { "type": "text", "value": ". Letter: " },
+      { "type": "slot", "name": "letter", "slot_type": "letters" },
+      { "type": "text", "value": ". List three items fast!" }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true }
+  },
+  {
+    "id": "scatterblast_blueprint_2",
+    "game": "SCATTERBLAST",
+    "family": "scatter_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Name three things in " },
+      { "type": "slot", "name": "category", "slot_type": "categories" },
+      { "type": "text", "value": " starting with " },
+      { "type": "slot", "name": "letter", "slot_type": "letters" },
+      { "type": "text", "value": "!" }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true }
+  },
+  {
+    "id": "scatterblast_blueprint_3",
+    "game": "SCATTERBLAST",
+    "family": "scatter_core",
+    "weight": 0.8,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Rapid-fire round: shout three " },
+      { "type": "slot", "name": "category", "slot_type": "categories" },
+      { "type": "text", "value": " that start with " },
+      { "type": "slot", "name": "letter", "slot_type": "letters" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true }
+  },
+  {
+    "id": "scatterblast_blueprint_4",
+    "game": "SCATTERBLAST",
+    "family": "scatter_core",
+    "weight": 0.7,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Timer's on—drop three " },
+      { "type": "slot", "name": "category", "slot_type": "categories" },
+      { "type": "text", "value": " beginning with " },
+      { "type": "slot", "name": "letter", "slot_type": "letters" },
+      { "type": "text", "value": "!" }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true }
+  }
+]

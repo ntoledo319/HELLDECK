@@ -1,6 +1,15 @@
 # Add project specific ProGuard rules here.
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.
+
+# Keep JNI bridge class and method names (required for name-based resolution)
+-keep class com.helldeck.llm.llamacpp.LlamaCppLLM$LlamaNativeBridge { *; }
+-keepclasseswithmembers class com.helldeck.llm.llamacpp.LlamaCppLLM$LlamaNativeBridge { 
+    native <methods>;
+}
+
+# Keep outer class names to avoid breaking nested JNI owner name
+-keep class com.helldeck.llm.llamacpp.LlamaCppLLM { *; }
 #
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html

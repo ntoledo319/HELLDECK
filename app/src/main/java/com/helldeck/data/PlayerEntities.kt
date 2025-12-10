@@ -82,7 +82,10 @@ data class PlayerProfile(
 interface PlayerDao {
     @Query("SELECT * FROM players ORDER BY totalPoints DESC")
     fun getAllPlayers(): Flow<List<PlayerEntity>>
-    
+
+    @Query("SELECT * FROM players")
+    suspend fun getAllSnapshot(): List<PlayerEntity>
+
     @Query("SELECT * FROM players WHERE id = :id")
     suspend fun getPlayer(id: String): PlayerEntity?
     

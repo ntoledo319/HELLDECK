@@ -36,7 +36,19 @@ class TemplateRepositoryV2(private val assets: AssetManager) {
         } catch (e: Exception) {
             // No V2 templates available yet
         }
-        
+        // Fallback: load legacy bundle at templates/templates.json if no v2 found
+        if (loaded.isEmpty()) {
+            try {
+                assets.open("templates/templates.json").use { ins ->
+                    val text = ins.bufferedReader().use(BufferedReader::readText)
+                    val batch = json.decodeFromString(ListSerializer(TemplateV2.serializer()), text)
+                    loaded.addAll(batch)
+                }
+            } catch (_: Exception) {
+                // Still nothing; leave as empty
+            }
+        }
+
         templates = loaded
         return templates
     }

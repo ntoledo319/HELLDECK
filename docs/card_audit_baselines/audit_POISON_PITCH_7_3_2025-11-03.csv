@@ -1,0 +1,4 @@
+i,game,blueprintId,text,options,generator_v3,pairScore,lowPair,slotsCount,wordCount,repeatRatio,short,long,abEqual,hasPlaceholders
+0,POISON_PITCH,"poison_pitch_blueprint_1","Would you rather live with never bed head or survive a roommate who microwaves fish daily?","AB(optionA=never bed head, optionB=a roommate who microwaves fish daily)",true,0.7,false,2,16,0.06,false,false,false,false
+1,POISON_PITCH,"poison_pitch_blueprint_1","Would you rather live with perfect parallel parking every time or survive a roommate who microwaves fish daily?","AB(optionA=perfect parallel parking every time, optionB=a roommate who microwaves fish daily)",true,0.7,false,2,18,0.06,false,false,false,false
+2,POISON_PITCH,"poison_pitch_blueprint_1","Would you rather live with never hit traffic or survive a bathtub with a permanent ring of shame?","AB(optionA=never hit traffic, optionB=a bathtub with a permanent ring of shame)",true,0.7,false,2,18,0.11,false,false,false,false

@@ -1,0 +1,230 @@
+{
+  "slot_type": "meme_references",
+  "entries": [
+    {
+      "text": "the friend who always says 'let him cook'",
+      "tags": ["meme", "modern", "reference"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "certified sad boy hours",
+      "tags": ["meme", "modern", "mood"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the vibe check failed",
+      "tags": ["meme", "modern", "mood"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no thoughts, head empty energy",
+      "tags": ["meme", "modern", "dumb"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'I'm baby' defense",
+      "tags": ["meme", "modern", "excuse"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "weaponized incompetence",
+      "tags": ["meme", "modern", "toxic"],
+      "tone": "dark",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "this is fine energy",
+      "tags": ["meme", "modern", "denial"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the multiverse of madness we ordered",
+      "tags": ["meme", "modern", "chaos"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "big sad energy",
+      "tags": ["meme", "modern", "depression"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the audacity of this bitch",
+      "tags": ["meme", "modern", "shocked"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emotional damage",
+      "tags": ["meme", "modern", "hurt"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the villain origin story",
+      "tags": ["meme", "modern", "backstory"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "goblin mode activated",
+      "tags": ["meme", "modern", "chaotic"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the group chat investigation",
+      "tags": ["meme", "modern", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the math ain't mathing",
+      "tags": ["meme", "modern", "confused"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "respectfully, no",
+      "tags": ["meme", "modern", "rejection"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the ick has been acquired",
+      "tags": ["meme", "modern", "dating"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "certified lover boy behavior",
+      "tags": ["meme", "modern", "simp"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the clownery of it all",
+      "tags": ["meme", "modern", "foolish"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not the main character moment",
+      "tags": ["meme", "modern", "cringe"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the villain arc begins",
+      "tags": ["meme", "modern", "transformation"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "that's enough internet for today",
+      "tags": ["meme", "modern", "shocked"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the situation is situating",
+      "tags": ["meme", "modern", "chaos"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "weaponized white woman tears",
+      "tags": ["meme", "modern", "manipulation"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the beige flag collection",
+      "tags": ["meme", "modern", "dating"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

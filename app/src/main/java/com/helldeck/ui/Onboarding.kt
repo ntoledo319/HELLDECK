@@ -31,7 +31,7 @@ fun OnboardingFlow(
     val pages = listOf(
         OnboardingPage(
             title = "Welcome to HELLDECK!",
-            description = "The ultimate party game for 3-16 players using a single phone. 14 mini-games that learn what your crew finds funny.",
+            description = "The ultimate party game for 3-16 players using a single phone. 14 unique games that learn what your crew finds funny.",
             icon = "🎮"
         ),
         OnboardingPage(
@@ -83,7 +83,7 @@ fun OnboardingFlow(
         LazyColumn(
             state = listState,
             modifier = Modifier.weight(1f),
-            contentPadding = PaddingValues(16.dp),
+            contentPadding = PaddingValues(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             item {
