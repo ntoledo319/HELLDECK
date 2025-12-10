@@ -5,6 +5,8 @@ import com.helldeck.content.db.HelldeckDb
 import com.helldeck.content.db.TemplateExposureEntity
 import com.helldeck.content.model.v2.TemplateV2
 import kotlinx.coroutines.runBlocking
+import com.helldeck.content.validation.TemplateCatalogueAuditor
+import com.helldeck.utils.Logger
 
 /**
  * ContentRepository provides access to all game content and data.
@@ -33,7 +35,18 @@ class ContentRepository(
     private val templatesV2Repo = TemplateRepositoryV2(assets)
     
     // Lexicon alias mapping for backward compatibility
-    private val aliasMap = mapOf("meme" to "memes")
+    private val aliasMap = mapOf(
+        // Legacy singular keys -> pluralized lexicons
+        "meme" to "memes",
+        "perk" to "perks",
+        "red_flag" to "red_flags",
+        "friend" to "friends",
+        "place" to "places",
+        "letter" to "letters",
+        "guilty_prompt" to "guilty_prompts",
+        "inbound_text" to "inbound_texts",
+        "social_disaster" to "social_disasters"
+    )
 
     /**
      * Initializes the repository.
@@ -42,8 +55,13 @@ class ContentRepository(
      * Could be extended to handle database migrations or version updates.
      */
     fun initialize() {
-        // Nothing heavy: assets are source of truth. Room persists stats & optional caches if needed.
-        // Could migrate versions here if you add asset versioning.
+        val templates = templatesV2Repo.loadAll()
+        val issues = TemplateCatalogueAuditor.audit(templates, lexicons)
+        if (issues.isNotEmpty()) {
+            issues.forEach { issue ->
+                Logger.w("Template audit: ${issue.templateId} -> ${issue.message}")
+            }
+        }
     }
 
     /**

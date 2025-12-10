@@ -1,0 +1,245 @@
+{
+  "slot_type": "red_flag_traits",
+  "entries": [
+    {
+      "text": "they refer to themselves in third person",
+      "tags": ["red_flag", "dating", "weird"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their ex is always crazy",
+      "tags": ["red_flag", "dating", "projection"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they collect knives as a hobby",
+      "tags": ["red_flag", "dating", "creepy"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they track your location constantly",
+      "tags": ["red_flag", "dating", "controlling"],
+      "tone": "dark",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're mean to waitstaff",
+      "tags": ["red_flag", "dating", "rude"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they live with their mom at 35",
+      "tags": ["red_flag", "dating", "immature"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a finsta just for exes",
+      "tags": ["red_flag", "dating", "stalker", "modern"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "they bring up their body count unprompted",
+      "tags": ["red_flag", "dating", "TMI"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're suspicious of all your friends",
+      "tags": ["red_flag", "dating", "jealous"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're in a pyramid scheme",
+      "tags": ["red_flag", "dating", "MLM"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "they ghost for days without explanation",
+      "tags": ["red_flag", "dating", "flaky"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they overshare about their therapist",
+      "tags": ["red_flag", "dating", "TMI"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're still on their ex's phone plan",
+      "tags": ["red_flag", "dating", "messy"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they gatekeep their Spotify playlists",
+      "tags": ["red_flag", "dating", "weird", "modern"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they screenshot every argument",
+      "tags": ["red_flag", "dating", "toxic"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they compare you to their mom",
+      "tags": ["red_flag", "dating", "weird"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're weirdly competitive about everything",
+      "tags": ["red_flag", "dating", "exhausting"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they bring up marriage on date two",
+      "tags": ["red_flag", "dating", "intense"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they refuse to follow you back",
+      "tags": ["red_flag", "dating", "shady", "modern"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a zodiac dealbreaker list",
+      "tags": ["red_flag", "dating", "weird", "modern"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "they call their car their baby",
+      "tags": ["red_flag", "dating", "cringe"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're rude to your pets",
+      "tags": ["red_flag", "dating", "dealbreaker"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they narrate their workouts on social media",
+      "tags": ["red_flag", "dating", "annoying", "modern"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make you pay for everything",
+      "tags": ["red_flag", "dating", "cheap"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they only text during booty call hours",
+      "tags": ["red_flag", "dating", "fuckboy"],
+      "tone": "raunchy",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+    ,
+    {"text": "needs validation from every barista", "tags": ["red_flag","traits"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "argues semantics during apologies", "tags": ["red_flag","traits"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "says 'devil's advocate' unprompted", "tags": ["red_flag","traits"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "collects excuses like souvenir mugs", "tags": ["red_flag","traits"], "tone": "witty", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "treats boundaries like suggestions", "tags": ["red_flag","traits"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "interviews your friends on first date", "tags": ["red_flag","dating"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "keeps score in every conversation", "tags": ["red_flag","traits"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "tests you with silent treatments", "tags": ["red_flag","traits"], "tone": "dark", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "owns eight identical red flags hoodies", "tags": ["red_flag","traits"], "tone": "witty", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "quotes podcasts as medical advice", "tags": ["red_flag","modern"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "flirts by negging like it's 2004", "tags": ["red_flag","dating"], "tone": "witty", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "blocks you during minor disagreements", "tags": ["red_flag","traits"], "tone": "dark", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "introduces you as a 'colleague'", "tags": ["red_flag","dating"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "insists on 'shared' passwords day two", "tags": ["red_flag","traits"], "tone": "dark", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none"}
+  ]
+}

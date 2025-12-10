@@ -1,0 +1,15 @@
+{
+  "slot_type": "reply_tone",
+  "entries": [
+    { "text": "Deadpan", "tags": ["tone"], "tone": "deadpan", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Wholesome", "tags": ["tone"], "tone": "wholesome", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Chaotic", "tags": ["tone"], "tone": "chaotic", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Petty", "tags": ["tone"], "tone": "petty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Feral", "tags": ["tone"], "tone": "feral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Thirsty", "tags": ["tone"], "tone": "thirsty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Sarcastic", "tags": ["tone"], "tone": "sarcastic", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Passive-aggressive", "tags": ["tone"], "tone": "passive", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Unhinged", "tags": ["tone"], "tone": "chaotic", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Corporate", "tags": ["tone"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" }
+  ]
+}

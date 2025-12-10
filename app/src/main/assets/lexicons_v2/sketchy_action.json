@@ -1,0 +1,113 @@
+{
+  "slot_type": "sketchy_action",
+  "entries": [
+    {
+      "text": "steal the aux cord",
+      "tags": ["action", "party"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ghost the group chat for 3 weeks",
+      "tags": ["action", "chaos"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "screenshot your story and send it back",
+      "tags": ["action", "messy"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "reply-all to a mass email",
+      "tags": ["action", "chaos"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leave someone on read for dramatic effect",
+      "tags": ["action", "petty"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "post a cryptic Instagram story",
+      "tags": ["action", "chaotic"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "change WiFi password without warning",
+      "tags": ["action", "chaos"],
+      "tone": "mischief",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "eat the last slice without asking",
+      "tags": ["action", "rude"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start drama in the group chat",
+      "tags": ["action", "messy"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "double-text after being left on read",
+      "tags": ["action", "desperate"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "vague-post about someone in particular",
+      "tags": ["action", "messy"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leave the groupchat dramatically",
+      "tags": ["action", "chaos"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

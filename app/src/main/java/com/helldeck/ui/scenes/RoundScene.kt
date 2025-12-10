@@ -130,7 +130,11 @@ fun RoundScene(vm: HelldeckVm) {
             val abOptions = if (options is GameOptions.AB) listOf(options.optionA, options.optionB) else listOf("A", "B")
             ABVoteFlow(
                 players = vm.activePlayers,
-                preChoiceLabel = "Active picks A/B before votes",
+                preChoiceLabel = when (game.id) {
+                    com.helldeck.engine.GameIds.POISON_PITCH -> "Active pre-picks A/B before votes"
+                    com.helldeck.engine.GameIds.MAJORITY -> "Predict the room: pick A/B before votes"
+                    else -> "Active picks A/B before votes"
+                },
                 preChoices = abOptions,
                 preChoice = vm.preChoice,
                 onPreChoice = vm::onPreChoice,

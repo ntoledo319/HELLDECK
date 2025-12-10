@@ -1,0 +1,360 @@
+{
+  "slot_type": "red_flag_issue",
+  "entries": [
+    {
+      "text": "they insist on business meetings at 6 a.m.",
+      "tags": ["red_flag", "schedule"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their ex is the family travel agent",
+      "tags": ["red_flag", "relationship"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they collect roommates like Funko Pops",
+      "tags": ["red_flag", "living"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they reply with voice notes in professional group chats",
+      "tags": ["red_flag", "communication"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they screenshot everything for receipts",
+      "tags": ["red_flag", "trust"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they bring their own speakers to parties",
+      "tags": ["red_flag", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they correct your grammar mid-argument",
+      "tags": ["red_flag", "communication"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they use air quotes unironically",
+      "tags": ["red_flag", "quirk"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they leave one bite of food to avoid dishes",
+      "tags": ["red_flag", "living"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they play devil's advocate in every conversation",
+      "tags": ["red_flag", "communication"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they ghost then reappear with 'hey stranger'",
+      "tags": ["red_flag", "communication"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they talk during movies at the theater",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they FaceTime in public without headphones",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they overshare on main",
+      "tags": ["red_flag", "social"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they leave read receipts on but take days to reply",
+      "tags": ["red_flag", "communication"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they one-up every story you tell",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they send TikToks instead of texting back",
+      "tags": ["red_flag", "communication"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they bring a yoga mat to every social gathering",
+      "tags": ["red_flag", "quirk"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they eat off your plate without asking",
+      "tags": ["red_flag", "boundaries"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they call timeouts during arguments",
+      "tags": ["red_flag", "communication"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they post Instagram stories of every meal",
+      "tags": ["red_flag", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they wear sunglasses indoors",
+      "tags": ["red_flag", "quirk"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they brag about how little sleep they get",
+      "tags": ["red_flag", "quirk"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they flex their Spotify Wrapped year-round",
+      "tags": ["red_flag", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they start every sentence with 'well, actually'",
+      "tags": ["red_flag", "communication"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they passive-aggressively like old posts",
+      "tags": ["red_flag", "social"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they critique your Spotify playlists uninvited",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they cancel plans via text five minutes before",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they name-drop constantly",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they leave their shopping cart in the parking spot",
+      "tags": ["red_flag", "behavior"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they blast music without headphones on public transit",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they treat service workers poorly",
+      "tags": ["red_flag", "behavior"],
+      "tone": "serious",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they humble-brag disguised as complaints",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make every conversation about their pet",
+      "tags": ["red_flag", "communication"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they record TikToks in inappropriate places",
+      "tags": ["red_flag", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they say 'I'm brutally honest' as an excuse for being rude",
+      "tags": ["red_flag", "communication"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they chew with their mouth open during Zoom calls",
+      "tags": ["red_flag", "behavior"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they share conspiracy theories as facts",
+      "tags": ["red_flag", "behavior"],
+      "tone": "serious",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they borrow money but never pay back",
+      "tags": ["red_flag", "trust"],
+      "tone": "serious",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+    ,
+    {"text": "they keep thirty unread texts as a personality", "tags":["red_flag","communication"], "tone":"playful", "spice":1, "locality":2, "pluralizable":false, "needs_article":"none"},
+    {"text": "they ask for your phone passcode on date two", "tags":["red_flag","trust"], "tone":"serious", "spice":3, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "they clap when the plane lands", "tags":["red_flag","social"], "tone":"witty", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"}
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "slot_type": "selfish_behaviors",
+  "entries": [
+    {
+      "text": "leave one chip in the bag",
+      "tags": ["selfish", "petty", "food"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "finish the leftovers without asking",
+      "tags": ["selfish", "rude", "food"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hog the aux cord",
+      "tags": ["selfish", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "take credit for group work",
+      "tags": ["selfish", "workplace", "social"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "double-dip aggressively",
+      "tags": ["selfish", "gross", "social"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "screenshot-shame in the group chat",
+      "tags": ["selfish", "petty", "modern"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never offer gas money",
+      "tags": ["selfish", "cheap"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make plans and flake",
+      "tags": ["selfish", "flaky", "social"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "monopolize every conversation",
+      "tags": ["selfish", "annoying"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leave shopping carts in parking spots",
+      "tags": ["selfish", "lazy", "public"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "blast music without headphones",
+      "tags": ["selfish", "rude", "public"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "use the last of the toilet paper",
+      "tags": ["selfish", "inconsiderate"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "park across two spots",
+      "tags": ["selfish", "entitled"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bring MLM schemes to hangouts",
+      "tags": ["selfish", "annoying", "modern"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fake being sick to skip events",
+      "tags": ["selfish", "lying"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never tip service workers",
+      "tags": ["selfish", "cheap"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "take the last slice without asking",
+      "tags": ["selfish", "food", "rude"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "return gifts for cash",
+      "tags": ["selfish", "cheap"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leave their mess for others",
+      "tags": ["selfish", "lazy"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "spoil shows without warning",
+      "tags": ["selfish", "rude", "modern"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make everything about themselves",
+      "tags": ["selfish", "narcissist"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "borrow money and 'forget'",
+      "tags": ["selfish", "cheap", "shady"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bring uninvited plus-ones",
+      "tags": ["selfish", "rude", "social"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "order expensive drinks out of revenge",
+      "tags": ["selfish", "petty"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "use expired coupons and argue",
+      "tags": ["selfish", "cheap", "entitled"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+    ,
+    { "text": "claim your seat after you get up", "tags": ["selfish","petty"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    { "text": "bring smelly food to small meetings", "tags": ["selfish","rude"], "tone": "cringe", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    { "text": "pretend not to see the line", "tags": ["selfish","public"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"}
+  ]
+}

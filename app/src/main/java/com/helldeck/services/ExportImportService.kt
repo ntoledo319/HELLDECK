@@ -70,18 +70,22 @@ class ExportImportService : Service() {
         serviceScope.launch {
             try {
                 withContext(Dispatchers.Main) {
-                    progressCallback?.invoke(0, "Starting export...")
+                    progressCallback?.invoke(10, "Collecting data...")
                 }
 
-                // Simulate progress updates
                 val uri = ExportImport.exportBrainpack(this@ExportImportService, filename)
 
                 withContext(Dispatchers.Main) {
-                    progressCallback?.invoke(100, "Export completed successfully")
-                    updateNotification("Export completed", 100, true)
+                    if (uri != null) {
+                        val message = "Exported brainpack to ${uri.path ?: uri}"
+                        progressCallback?.invoke(100, message)
+                        updateNotification(message, 100, true)
+                    } else {
+                        progressCallback?.invoke(-1, "Export failed")
+                        updateNotification("Export failed", -1, false)
+                    }
                 }
 
-                // Stop service after completion
                 stopSelf()
 
             } catch (e: Exception) {

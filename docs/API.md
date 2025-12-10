@@ -1,371 +1,267 @@
-# HELLDECK API Documentation
+# HELLDECK API Reference
 
-## Overview
+Quick reference for HELLDECK's core APIs. For tutorials and examples, see [DEVELOPER.md](DEVELOPER.md).
 
-HELLDECK is a comprehensive party game system with learning capabilities, kiosk mode functionality, and extensive customization options.
+## Core Engine APIs
 
-## Core Components
+### GameEngine
 
-### Game Engine
-
-#### `GameEngine`
 Main orchestrator for game logic and state management.
 
 ```kotlin
 class GameEngine(
-    private val repo: ContentRepository,
-    private val rng: SeededRng
+    repo: ContentRepository,
+    rng: SeededRng,
+    selector: ContextualSelector,
+    augmentor: Augmentor?,
+    modelId: String,
+    cardGeneratorV3: CardGeneratorV3?
 )
 ```
 
-**Key Methods:**
-- `nextFilledCard(req: Request): GameResult` - Generate next card for a game
-- `recordOutcome(sessionId: String, templateId: String, laughsScore01: Double, responseTimeMs: Long, heatPercentage: Double, winner: String?)` - Process round results and update learning
-- `getPlayerScores(sessionId: String): List<PlayerScore>` - Get player scores for a session
-- `getLastPlacePlayer(sessionId: String): String?` - Get the player in last place
-- `resetSession(sessionId: String)` - Reset game state for a session
+**Methods:**
+- `suspend fun next(req: Request): Result` - Generate next game card
+- `fun recordOutcome(templateId: String, reward01: Double)` - Record round result for learning
+- `fun getOptionsFor(card: FilledCard, req: Request): GameOptions` - Get game-specific options
 
-#### `TemplateEngine`
-Handles template filling with dynamic content.
-
+**Data Classes:**
 ```kotlin
-class TemplateEngine(
-    private val repo: ContentRepository,
-    private val rng: SeededRng
+data class Request(
+    val sessionId: String,
+    val gameId: String? = null,
+    val players: List<String> = emptyList(),
+    val spiceMax: Int = 3,
+    val localityMax: Int = 3,
+    val recentFamilies: List<String> = emptyList(),
+    val avoidTemplateIds: Set<String> = emptySet()
+)
+
+data class Result(
+    val filledCard: FilledCard,
+    val options: GameOptions,
+    val timer: Int,
+    val interactionType: InteractionType
 )
 ```
 
-**Key Methods:**
-- `fill(template: Template, ctx: Context): FilledCard` - Fill a template with dynamic content
+### ContentRepository
 
-#### `Selection`
-Template selection algorithms using Upper Confidence Bound (UCB) approach.
+Data access layer for templates, lexicons, and stats.
 
 ```kotlin
-class Selection(
-    private val rng: SeededRng,
-    private val explorationC: Double = 1.4
-)
+class ContentRepository(context: Context)
 ```
 
-**Key Methods:**
-- `pickNext(ids: List<String>): String` - Select the next template using UCB algorithm
-- `reward(templateId: String, reward: Double)` - Record a reward for a template
-- `loadPersisted(existing: List<TemplateStatEntity>)` - Load persisted statistics
-- `toEntities(): List<TemplateStatEntity>` - Convert to entity objects for persistence
+**Methods:**
+- `fun initialize()` - Initialize repository and load assets
+- `fun templates(): List<Template>` - Get legacy templates
+- `fun templatesV2(): List<TemplateV2>` - Get V2 blueprint templates  
+- `fun wordsFor(slot: String): List<String>` - Get lexicon words for slot type
+- `val statsDao: TemplateStatsDao` - Access to template statistics
 
-#### `ContentEngineProvider`
-Singleton provider for GameEngine and ContentRepository instances.
+### ContextualSelector
+
+Thompson Sampling-based template selection algorithm.
 
 ```kotlin
-object ContentEngineProvider
+class ContextualSelector(rng: SeededRng)
 ```
 
-**Key Methods:**
-- `get(context: Context, sessionSeed: Long = System.currentTimeMillis()): GameEngine` - Get or create GameEngine instance
-- `getContentRepository(context: Context): ContentRepository` - Get or create ContentRepository instance
+**Methods:**
+- `fun pick(ctx: Context, pool: List<TemplateV2>): TemplateV2` - Select template using UCB
+- `fun update(templateId: String, reward: Double)` - Update template statistics
 
-### Data Layer
+### CardGeneratorV3
 
-#### `ContentRepository`
-High-level data access facade for content and player data.
+Blueprint-based card generation with quality gating.
 
 ```kotlin
-class ContentRepository(private val context: Context)
+class CardGeneratorV3(repo: RepositoriesV3, rng: SeededRng)
 ```
 
-**Key Methods:**
-- `initialize()` - Initialize the repository
-- `templates(): List<Template>` - Get all templates
-- `wordsFor(slot: String): List<String>` - Get words for a slot
-- `statsDao: TemplateStatsDao` - Access to template statistics
+**Methods:**
+- `fun generate(req: GameEngine.Request, rng: SeededRng): GenerationResult?` - Generate quality-gated card
+- `fun goldOnly(req: GameEngine.Request, rng: SeededRng): GenerationResult?` - Use gold fallback only
 
-#### Database Entities
+## Data Layer
+
+### Database Entities
+
+**Core Entities:**
 - `TemplateEntity` - Game card templates
-- `RoundEntity` - Game round data
-- `PlayerEntity` - Player information and statistics
-- `CommentEntity` - Round feedback comments
-- `LexiconEntity` - Word lists for template filling
-- `SettingEntity` - App configuration
-- `GameSessionEntity` - Game session tracking
+- `TemplateV2Entity` - Blueprint-based templates
+- `LexiconEntity` - Word lists for slot filling
+- `PlayerEntity` - Player data and statistics
+- `RoundEntity` - Round history
+- `TemplateStatEntity` - Template learning stats
+- `GameSessionEntity` - Session tracking
 
-### UI Components
+### DAOs
 
-#### `HelldeckAppUI`
-Main application UI composable managing scene navigation and state.
+**TemplateStatsDao:**
+```kotlin
+interface TemplateStatsDao {
+    suspend fun get(templateId: String): TemplateStatEntity?
+    suspend fun upsert(stat: TemplateStatEntity)
+    suspend fun getAll(): List<TemplateStatEntity>
+}
+```
 
+## UI Components
+
+### Core Composables
+
+**HelldeckAppUI:**
 ```kotlin
 @Composable
-fun HelldeckAppUI(
-    vm: HelldeckVm = viewModel(),
-    modifier: Modifier = Modifier
+fun HelldeckAppUI(vm: HelldeckVm, modifier: Modifier = Modifier)
+```
+
+**Scene Composables:**
+- `HomeScene(vm: HelldeckVm)` - Main menu
+- `RoundScene(vm: HelldeckVm)` - Game round interface
+- `RollcallScene(vm: HelldeckVm)` - Player attendance
+- `SettingsScene(vm: HelldeckVm)` - Settings and configuration
+- `PlayersScene(vm: HelldeckVm)` - Player management
+
+**Interactive Components:**
+- `BigZones(onLeft, onCenter, onRight, onLong)` - Three-zone touch interface
+- `FeedbackStrip(onLol, onMeh, onTrash, onComment)` - Round feedback
+- `EmojiPicker(show, onDismiss, onPick)` - Emoji avatar selection
+
+## Configuration
+
+### Config
+
+Runtime configuration management.
+
+```kotlin
+object Config {
+    val current: ConfigData
+    fun load(context: Context)
+}
+```
+
+**ConfigData Structure:**
+```kotlin
+data class ConfigData(
+    val generator: GeneratorConfig,
+    val scoring: ScoringConfig,
+    val debug: DebugConfig
 )
 ```
 
-#### `HelldeckVm`
-ViewModel for managing game state, navigation, and player data.
+### Template Format
 
-**Key Methods:**
-- `initOnce()` - Initialize the ViewModel systems
-- `startRound(gameId: String? = null)` - Start a new game round
-- `resolveInteraction()` - Resolve current game interaction
-- `commitFeedbackAndNext()` - Commit feedback and advance to next round
-
-#### `HomeScene`
-Main menu scene displaying game tiles and settings.
-
-```kotlin
-@Composable
-fun HomeScene(vm: HelldeckVm)
+**Blueprint V3 (templates_v3/*.json):**
+```json
+{
+  "id": "unique_id",
+  "game": "GAME_ID",
+  "family": "template_family",
+  "weight": 1.0,
+  "spice_max": 2,
+  "locality_max": 2,
+  "blueprint": [
+    {"type": "text", "value": "Static text"},
+    {"type": "slot", "name": "slot1", "slot_type": "lexicon_name"}
+  ],
+  "constraints": {"max_words": 24, "distinct_slots": true}
+}
 ```
 
-#### `RollcallScene`
-Attendance scene for selecting present players.
-
-```kotlin
-@Composable
-fun RollcallScene(vm: HelldeckVm)
+**Lexicon V2 (lexicons_v2/*.json):**
+```json
+{
+  "slot_type": "category_name",
+  "entries": [{
+    "text": "entry",
+    "tags": ["tag1"],
+    "tone": "playful",
+    "spice": 1,
+    "locality": 1,
+    "pluralizable": false,
+    "needs_article": "a"
+  }]
+}
 ```
 
-#### `BigZones`
-Three large touch zones for easy interaction.
+## Kiosk Mode
+
+### Kiosk
+
+Device lockdown for dedicated gameplay.
 
 ```kotlin
-@Composable
-fun BigZones(
-    modifier: Modifier = Modifier,
-    onLeft: () -> Unit = {},
-    onCenter: () -> Unit = {},
-    onRight: () -> Unit = {},
-    onLong: () -> Unit = {}
-)
+object Kiosk {
+    fun enableImmersiveMode(decorView: View)
+    fun startLockTask(activity: ComponentActivity)
+    fun stopLockTask(activity: ComponentActivity)
+    fun isKioskModeConfigured(context: Context): Boolean
+}
 ```
 
-#### `FeedbackStrip`
-Player feedback collection interface.
-
-```kotlin
-@Composable
-fun FeedbackStrip(
-    modifier: Modifier = Modifier,
-    onLol: () -> Unit = {},
-    onMeh: () -> Unit = {},
-    onTrash: () -> Unit = {},
-    onComment: (String, Set<String>) -> Unit = { _, _ -> }
-)
-```
-
-#### `RollcallScene`
-Attendance screen to mark present players at the start of a session.
-
-Key behaviors:
-- Toggle present/absent per player (updates `PlayerEntity.afk`).
-- Quick add: Inline name + emoji (uses `EmojiPicker`).
-- Swipe-to-delete with confirmation dialog and Undo snackbar.
-- Inline name edit (tap name → edit → save/cancel).
-
-Config toggle: `rollcall_on_launch` (boolean) in settings DB; controlled in Settings.
-
-#### `SettingsScene`
-Settings with player management and rollcall toggle.
-
-- Manage players inline: add (name + emoji), toggle active (AFK), jump to full Players scene.
-- Toggle: Ask “Who’s here?” at launch.
-
-#### `EmojiPicker`
-Bottom sheet for picking avatars from 200+ emoji with categories and search.
-
-```kotlin
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun EmojiPicker(
-    show: Boolean,
-    onDismiss: () -> Unit,
-    onPick: (String) -> Unit
-)
-```
-
-Features:
-- Tabs: Faces, Animals, Food, Activities, Objects, Symbols
-- Search: keywords (e.g., "heart", "pizza", "sports", "fox") and emoji paste
-- Adaptive grid, tap to select
-
-#### Swipe-to-Delete Pattern
-Players and rollcall lists use `SwipeToDismiss` with:
-- End-to-start swipe → confirm dialog → delete → Undo snackbar.
-- Red background affordance with delete icon and label.
-
-### Configuration
-
-#### `Config`
-Game configuration management.
-
-```kotlin
-object Config
-```
-
-**Key Methods:**
-- `load(context: Context)` - Load configuration from assets
-- `roomHeatThreshold()` - Get current room heat threshold
-- `setRoomHeatThreshold(value: Double)` - Set room heat threshold
-- `spicyMode: Boolean` - Enable/disable spicy mode
-
-Additional setting:
-- `rollcall_on_launch` (boolean in settings DB) controls whether RollcallScene opens on startup when players exist.
-
-### Kiosk Mode
-
-#### `Kiosk`
-Device lockdown functionality for dedicated gameplay.
-
-```kotlin
-object Kiosk
-```
-
-**Key Methods:**
-- `enableImmersiveMode(decorView: View)` - Enable immersive fullscreen
-- `enableLockTask(context: Context)` - Enable lock task mode
-- `startLockTask(activity: ComponentActivity)` - Start kiosk mode
-- `isKioskModeConfigured(context: Context)` - Check kiosk configuration
-
-#### `HelldeckDeviceAdminReceiver`
-Device administrator for kiosk permissions.
+### HelldeckDeviceAdminReceiver
 
 ```kotlin
 class HelldeckDeviceAdminReceiver : DeviceAdminReceiver()
 ```
 
-### Haptics & Torch
+## Feedback & Haptics
 
-#### `HapticsTorch`
-Vibration and camera flash feedback system.
+### HapticsTorch
 
-```kotlin
-object HapticsTorch
-```
-
-**Key Methods:**
-- `buzz(context: Context, durationMs: Long, intensity: VibrationIntensity)`
-- `flash(context: Context, durationMs: Long, intensity: FlashIntensity)`
-- `buzzPattern(context: Context, pattern: LongArray)`
-- `flashPattern(context: Context, pattern: List<FlashPattern>)`
-
-#### `GameFeedback`
-Coordinated feedback for game events.
+Vibration and camera flash feedback.
 
 ```kotlin
-object GameFeedback
-```
-
-**Key Methods:**
-- `triggerFeedback(context: Context, event: GameEvent)`
-- `triggerRoundResultFeedback(context: Context, result: RoundResult)`
-
-### Export/Import
-
-#### `ExportImport`
-Brainpack file management for learning data transfer.
-
-```kotlin
-object ExportImport
-```
-
-**Key Methods:**
-- `exportBrainpack(context: Context, filename: String): Uri`
-- `importBrainpack(context: Context, uri: Uri): ImportResult`
-
-## Game Flow
-
-### 1. Initialization
-```kotlin
-// Initialize systems
-Config.load(context)
-val repo = Repository.get(context)
-val templateEngine = TemplateEngine(context)
-val engine = GameEngine(context, repo, templateEngine)
-engine.initialize()
-```
-
-### 2. Game Setup
-```kotlin
-// Add players
-val player = repo.addPlayer("Player Name", "😀")
-
-// Load game assets
-repo.loadTemplatesFromAssets()
-repo.loadLexiconFromAssets("friends", "lexicons/friends.json")
-```
-
-### 3. Round Execution
-```kotlin
-// Generate card
-val card = engine.nextFilledCard("ROAST_CONSENSUS")
-
-// Process player interactions
-// ... voting, feedback collection ...
-
-// Commit round
-val result = engine.commitRound(
-    card = card,
-    feedback = Feedback(lol = 2, meh = 1, trash = 0),
-    judgeWin = true,
-    points = 2,
-    latencyMs = 1500
-)
-```
-
-### 4. Learning Update
-```kotlin
-// Learning happens automatically in commitRound()
-// Template scores are updated based on feedback
-// Selection algorithm adapts for future rounds
-```
-
-## Configuration
-
-### Game Configuration (`settings/default.yaml`)
-
-```yaml
-learning:
-  alpha: 0.3                    # Learning rate
-  epsilon_start: 0.25          # Initial exploration
-  epsilon_end: 0.05            # Final exploration
-  decay_rounds: 20             # Exploration decay period
-
-scoring:
-  win: 2                       # Points for winning
-  room_heat_bonus: 1           # Room consensus bonus
-  room_heat_threshold: 0.60    # Heat threshold (0.70 in spicy mode)
-  trash_penalty: -2            # Room trash penalty
-
-timers:
-  vote_binary_ms: 8000         # Binary vote timer
-  vote_avatar_ms: 10000        # Avatar vote timer
-  judge_pick_ms: 6000          # Judge selection timer
-```
-
-### Template Format (`templates/templates.json`)
-
-```json
-{
-  "id": "rc1",
-  "game": "ROAST_CONSENSUS",
-  "text": "Most likely to {sketchy_action} for {tiny_reward}.",
-  "family": "roast_action_reward",
-  "spice": 1,
-  "locality": 1,
-  "max_words": 16
+object HapticsTorch {
+    fun buzz(context: Context, durationMs: Long, intensity: VibrationIntensity)
+    fun flash(context: Context, durationMs: Long, intensity: FlashIntensity)
 }
 ```
 
-### Lexicon Format (`lexicons/*.json`)
+### GameFeedback
 
-```json
-[
-  "word1",
-  "word2",
-  "word3"
-]
+```kotlin
+object GameFeedback {
+    fun triggerFeedback(context: Context, event: GameEvent)
+    fun triggerRoundResultFeedback(context: Context, result: RoundResult)
+}
+```
+
+## Enums
+
+### InteractionType
+- `VOTE_AVATAR` - Vote for player
+- `TRUE_FALSE` - Binary choice
+- `AB_VOTE` - A/B option selection
+- `JUDGE_PICK` - Judge selection
+- `REPLY_TONE` - Text reply tone
+- `TABOO_CLUE` - Taboo word game
+- `ODD_REASON` - Odd one out explanation
+- `PITCH` - Sales pitch
+- `SPEED_LIST` - Quick listing
+
+### GameOptions
+- `PlayerVote(players: List<String>)`
+- `AB(optionA: String, optionB: String)`
+- `Taboo(word: String, forbidden: List<String>)`
+- `Scatter(category: String, letter: String)`
+- `ReplyTone(tones: List<String>)`
+- `OddOneOut(items: List<String>)`
+- `None`
+
+## Export/Import
+
+### ExportImport
+
+Brainpack file management for learning data.
+
+```kotlin
+object ExportImport {
+    fun exportBrainpack(context: Context, filename: String): Uri
+    fun importBrainpack(context: Context, uri: Uri): ImportResult
+}
 ```
 
 ## Error Handling
@@ -376,257 +272,12 @@ timers:
 - `DatabaseException` - Data layer errors
 - `ConfigurationException` - Configuration errors
 
-### Error Recovery
-```kotlin
-try {
-    val card = engine.nextFilledCard(gameId)
-} catch (e: GameEngineException) {
-    // Handle game logic errors
-    Logger.e("Game engine error", e)
-    // Fallback to default template or skip round
-}
-```
+## See Also
 
-## Performance Considerations
-
-### Database Optimization
-- Use Room's built-in query optimization
-- Implement proper indexing on frequently queried columns
-- Use transactions for batch operations
-- Clean up old data periodically
-
-### Memory Management
-- Lazy load large assets (templates, lexicons)
-- Use appropriate data structures for game state
-- Implement object pooling for frequently created objects
-- Monitor memory usage in long game sessions
-
-### UI Performance
-- Use Compose's built-in performance optimizations
-- Implement proper state hoisting
-- Use remember/derivedStateOf for expensive computations
-- Implement proper list virtualization for large datasets
-
-## Testing
-
-### Unit Tests
-```kotlin
-@Test
-fun testTemplateFilling() {
-    val template = TemplateDef("test", "GAME", "Hello {name}", "test")
-    val result = templateEngine.fill(template) { "World" }
-    assertEquals("Hello World", result)
-}
-```
-
-### Integration Tests
-```kotlin
-@Test
-fun testGameRound() {
-    val card = engine.nextFilledCard("ROAST_CONSENSUS")
-    assertNotNull(card)
-    assertTrue(card.text.isNotBlank())
-}
-```
-
-### UI Tests
-```kotlin
-@Test
-fun testGameScene() {
-    composeTestRule.setContent {
-        GameScene(gameState = mockGameState)
-    }
-    // Test UI interactions and state changes
-}
-```
-
-## Deployment
-
-### Build Commands
-```bash
-# Debug build
-./gradlew :app:assembleDebug
-
-# Release build
-./gradlew :app:assembleRelease
-
-# Install via ADB
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-
-# Setup kiosk mode
-python loader/helldeck_loader.py
-```
-
-### Kiosk Setup
-1. Enable Developer Options and USB Debugging
-2. Build and install APK
-3. Run desktop loader for kiosk configuration
-4. Set device owner (fresh device only)
-5. Reboot device
-
-## Troubleshooting
-
-### Common Issues
-
-**APK Installation Fails**
-- Check USB debugging is enabled
-- Verify ADB connection with `adb devices`
-- Ensure no other device admin apps are active
-
-**Kiosk Mode Not Working**
-- Device must be freshly reset for device owner setup
-- Alternative: Use system settings → Security → Screen pinning
-- Check device admin permissions in settings
-
-**Templates Not Loading**
-- Verify assets are properly included in APK
-- Check file paths in assets directory
-- Validate JSON format in template files
-
-**Learning Not Working**
-- Check database integrity
-- Verify feedback is being recorded
-- Export/import brainpack to transfer learned data
-
-### Debug Information
-```kotlin
-// Get app version and device info
-val appVersion = AppUtils.getAppVersion(context)
-val deviceInfo = AppUtils.getDeviceInfo(context)
-
-// Get game statistics
-val stats = engine.getGameStats()
-
-// Export logs for debugging
-Logger.exportLogs(context, logFile)
-```
-
-## API Reference
-
-### Enums
-
-#### `Interaction`
-- `VOTE_AVATAR` - Player avatar voting
-- `TRUE_FALSE` - Binary choice voting
-- `AB_VOTE` - A/B option voting
-- `JUDGE_PICK` - Judge selection
-- `SMASH_PASS` - Smash or pass voting
-- `TARGET_PICK` - Target player selection
-- `REPLY_TONE` - Reply tone selection
-- `TABOO_CLUE` - Taboo word game
-- `ODD_REASON` - Odd one out explanation
-- `DUEL` - Player duel
-- `SMUGGLE` - Hide words in story
-- `PITCH` - Sales pitch
-- `SPEED_LIST` - Quick listing game
-
-#### `RoundPhase`
-- `IDLE` - Waiting to start
-- `DRAW` - Drawing card
-- `PERFORM` - Players performing
-- `RESOLVE` - Resolving results
-- `FEEDBACK` - Collecting feedback
-
-#### `GameEvent`
-- `PHASE_CHANGE` - Game phase changed
-- `SCORING_LOCK` - Scoring locked in
-- `ROOM_HEAT` - Room heat achieved
-- `CARD_DRAW` - New card drawn
-- `VOTE_CONFIRM` - Vote confirmed
-- `ERROR` - Error occurred
-- `WIN` - Player won
-
-### Data Classes
-
-#### `GameEngine.Request`
-```kotlin
-data class Request(
-    val gameId: String,
-    val sessionId: String,
-    val spiceMax: Int = 3,
-    val localityMax: Int = 3,
-    val players: List<String> = emptyList(),
-    val inboundTexts: List<String> = emptyList()
-)
-```
-
-#### `GameEngine.GameResult`
-```kotlin
-data class GameResult(
-    val filledCard: FilledCard,
-    val options: GameOptions,
-    val timer: Int,
-    val interactionType: InteractionType
-)
-```
-
-#### `GameEngine.PlayerScore`
-```kotlin
-data class PlayerScore(
-    val playerId: String,
-    val score: Int = 0,
-    val streak: Int = 0,
-    val lastRoundWon: Int = 0
-)
-```
-
-#### `Feedback`
-```kotlin
-data class Feedback(
-    val lol: Int = 0,
-    val meh: Int = 0,
-    val trash: Int = 0,
-    val latencyMs: Int = 0,
-    val tags: Set<String> = emptySet()
-)
-```
-
-#### `RoundResult`
-```kotlin
-data class RoundResult(
-    val points: Int,
-    val judgeWin: Int = 0,
-    val roundScore: Double = 0.0,
-    val roomHeat: Boolean = false,
-    val roomTrash: Boolean = false,
-    val streakBonus: Int = 0
-)
-```
-
-## Contributing
-
-### Code Style
-- Follow Kotlin coding conventions
-- Use meaningful variable names
-- Add documentation for public APIs
-- Write unit tests for new functionality
-
-### Adding New Games
-1. Add game ID to `GameIds` object
-2. Create game specification in `Games` list
-3. Add templates to `templates.json`
-4. Implement game-specific UI logic
-5. Add game rules to documentation
-
-### Adding New Features
-1. Design API following existing patterns
-2. Implement with proper error handling
-3. Add comprehensive tests
-4. Update documentation
-5. Test on multiple devices
-
-## License
-
-This project is designed for personal and educational use. Game mechanics and assets are custom-created for this implementation.
-
-## Support
-
-For support and questions:
-- Check the troubleshooting section
-- Review the example code
-- Examine the test cases
-- Check the changelog for recent updates
+- [Developer Guide](DEVELOPER.md) - Setup, examples, and tutorials
+- [User Guide](USERGUIDE.md) - Game rules and player documentation
+- [Content Authoring](authoring.md) - Creating templates and lexicons
+- [Troubleshooting](TROUBLESHOOTING.md) - Common issues and solutions
+- [Architecture](ARCHITECTURE.md) - System design and patterns
 
 ---
-
-*Built with ❤️ for party game enthusiasts everywhere*

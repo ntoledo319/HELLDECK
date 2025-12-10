@@ -1,0 +1,245 @@
+{
+  "slot_type": "would_you_rather_costs",
+  "entries": [
+    {
+      "text": "everyone knowing your browser history",
+      "tags": ["cost", "social", "embarrassment"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "giving up coffee forever",
+      "tags": ["cost", "physical", "lifestyle"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "wet socks for a year",
+      "tags": ["cost", "physical", "discomfort"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "having to narrate everything you do",
+      "tags": ["cost", "social", "annoying"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never using social media again",
+      "tags": ["cost", "social", "modern"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always being 10 minutes late",
+      "tags": ["cost", "social", "inconvenience"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "constant hiccups in public",
+      "tags": ["cost", "physical", "embarrassment"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "only speaking in rhyme",
+      "tags": ["cost", "social", "annoying"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "smelling like onions permanently",
+      "tags": ["cost", "social", "gross"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "uncontrollable sneezing during silence",
+      "tags": ["cost", "physical", "embarrassment"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "giving up your phone for a month",
+      "tags": ["cost", "lifestyle", "modern"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mandatory clown makeup daily",
+      "tags": ["cost", "social", "embarrassment"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "reading all texts out loud",
+      "tags": ["cost", "social", "privacy"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never eating your favorite food again",
+      "tags": ["cost", "physical", "lifestyle"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being unable to lie for a year",
+      "tags": ["cost", "moral", "social"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "losing all your photos forever",
+      "tags": ["cost", "emotional", "modern"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "going bald overnight",
+      "tags": ["cost", "physical", "appearance"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "only eating gas station food",
+      "tags": ["cost", "physical", "disgusting"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "public karaoke weekly forever",
+      "tags": ["cost", "social", "embarrassment"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always saying what you're thinking",
+      "tags": ["cost", "social", "chaos"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never watching TV or movies again",
+      "tags": ["cost", "lifestyle", "entertainment"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ugly crying in every photo",
+      "tags": ["cost", "social", "embarrassment"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "giving up music forever",
+      "tags": ["cost", "lifestyle", "sacrifice"],
+      "tone": "dark",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "constant visible pit stains",
+      "tags": ["cost", "physical", "embarrassment"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being filmed 24/7",
+      "tags": ["cost", "privacy", "surveillance"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+    ,
+    {"text": "publicly admitting your most unhinged hot take", "tags":["cost","social"], "tone":"witty", "spice":2, "locality":2, "pluralizable":false, "needs_article":"none"},
+    {"text": "losing your phone in a rideshare twice a month", "tags":["cost","modern"], "tone":"playful", "spice":1, "locality":2, "pluralizable":false, "needs_article":"none"},
+    {"text": "having your group chat projected at work", "tags":["cost","social"], "tone":"wild", "spice":3, "locality":2, "pluralizable":false, "needs_article":"none"},
+    {"text": "no coffee and 7am meetings forever", "tags":["cost","lifestyle"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "speaking in corporate jargon for a week", "tags":["cost","social"], "tone":"playful", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "sharing location with parents for a year", "tags":["cost","privacy"], "tone":"dry", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "only eating beige foods for a month", "tags":["cost","physical"], "tone":"playful", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "giving a toast at every gathering", "tags":["cost","social"], "tone":"cringe", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "no sarcasm allowed for thirty days", "tags":["cost","social"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "handshake selfies with strangers weekly", "tags":["cost","social"], "tone":"playful", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "explaining your search history to grandma", "tags":["cost","social"], "tone":"witty", "spice":3, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "fluorescent office lighting at home", "tags":["cost","comfort"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
+    {"text": "your ex liking every new post", "tags":["cost","social"], "tone":"wild", "spice":3, "locality":2, "pluralizable":false, "needs_article":"none"},
+    {"text": "replying 'per my last email' daily", "tags":["cost","work"], "tone":"dry", "spice":1, "locality":2, "pluralizable":false, "needs_article":"none"}
+  ]
+}

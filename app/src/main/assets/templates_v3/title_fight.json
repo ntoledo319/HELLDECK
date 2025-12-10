@@ -1,0 +1,66 @@
+[
+  {
+    "id": "title_fight_blueprint_1",
+    "game": "TITLE_FIGHT",
+    "family": "duel_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Quick duel: " },
+      { "type": "slot", "name": "a", "slot_type": "meme_item" },
+      { "type": "text", "value": " vs " },
+      { "type": "slot", "name": "b", "slot_type": "meme_item" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 16, "distinct_slots": true }
+  },
+  {
+    "id": "title_fight_blueprint_2",
+    "game": "TITLE_FIGHT",
+    "family": "duel_core",
+    "weight": 0.8,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Battle: " },
+      { "type": "slot", "name": "a", "slot_type": "perks_plus" },
+      { "type": "text", "value": " versus " },
+      { "type": "slot", "name": "b", "slot_type": "perks_plus" },
+      { "type": "text", "value": "!" }
+    ],
+    "constraints": { "max_words": 14, "distinct_slots": true }
+  },
+  {
+    "id": "title_fight_blueprint_3",
+    "game": "TITLE_FIGHT",
+    "family": "duel_core",
+    "weight": 0.75,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Defend the title: " },
+      { "type": "slot", "name": "a", "slot_type": "product_item" },
+      { "type": "text", "value": " vs " },
+      { "type": "slot", "name": "b", "slot_type": "meme_item" },
+      { "type": "text", "value": "—who stays champ?" }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true }
+  },
+  {
+    "id": "title_fight_blueprint_4",
+    "game": "TITLE_FIGHT",
+    "family": "duel_core",
+    "weight": 0.7,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Crown the winner: " },
+      { "type": "slot", "name": "a", "slot_type": "audience_type" },
+      { "type": "text", "value": " champion vs " },
+      { "type": "slot", "name": "b", "slot_type": "audience_type" },
+      { "type": "text", "value": " rebel." }
+    ],
+    "constraints": { "max_words": 20, "distinct_slots": true }
+  }
+]

@@ -1,5 +1,6 @@
 package com.helldeck.ui.scenes
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -48,6 +49,7 @@ import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.HelldeckVm
 import com.helldeck.ui.hdFieldColors
+import com.helldeck.settings.SettingsStore
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -64,19 +66,34 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
 
     var expandedPlayers by remember { mutableStateOf(true) }
     var expandedGame by remember { mutableStateOf(false) }
-    var expandedFeedback by remember { mutableStateOf(false) }
     var expandedDevice by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
-        // NOTE: Settings DAO not implemented yet, using defaults
-        learningEnabled = true
-        hapticsEnabled = true
-        soundEnabled = true
-        heat = Config.roomHeatThreshold().toFloat()
-        rollcallOnLaunch = true
-        Config.setLearningEnabled(learningEnabled)
-        Config.setHapticsEnabled(hapticsEnabled)
-        Config.setRoomHeatThreshold(heat.toDouble())
+        // Load all persisted settings from DataStore
+        try {
+            val (savedGoldOnly, savedV3) = SettingsStore.readFlags()
+            // Enforce single mode: V3 on, gold-only off
+            if (savedGoldOnly != false) scope.launch { SettingsStore.writeSafeGoldOnly(false) }
+            if (savedV3 != true) scope.launch { SettingsStore.writeEnableV3(true) }
+            Config.setSafeModeGoldOnly(false)
+            Config.setEnableV3Generator(true)
+            // Always-on learning
+            learningEnabled = true
+            Config.setLearningEnabled(true)
+            
+            rollcallOnLaunch = SettingsStore.readRollcallOnLaunch()
+            
+            hapticsEnabled = SettingsStore.readHapticsEnabled()
+            Config.setHapticsEnabled(hapticsEnabled)
+            
+            soundEnabled = SettingsStore.readSoundEnabled()
+            
+            heat = Config.roomHeatThreshold().toFloat()
+            // Simplified settings: no explicit performance toggle
+            Config.setAttemptCap(null)
+        } catch (e: Exception) {
+            Log.w("SettingsScene", "Failed to load settings: ${e.message}")
+        }
     }
 
     Scaffold(
@@ -171,7 +188,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                 }
             }
 
-            // Game Section
+            // Game Section (simplified)
             item {
                 SettingsSection(
                     title = "🎮 Game",
@@ -179,15 +196,11 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                     onToggle = { expandedGame = !expandedGame }
                 ) {
                     SettingRow(
-                        label = "Smart Learning",
-                        description = "AI learns which cards players love",
-                        isChecked = learningEnabled,
-                        onCheckedChange = {
-                            learningEnabled = it
-                            Config.setLearningEnabled(it)
-                            // NOTE: Settings DAO not implemented yet
-                            // scope.launch { repo.db.settings().putBoolean("learning_enabled", it) }
-                        }
+                        label = "On-device AI (Auto)",
+                        description = "Paraphrases cards using the bundled model when available.",
+                        isChecked = com.helldeck.content.engine.ContentEngineProvider.isAIEnhancementAvailable(),
+                        onCheckedChange = { /* no-op: AI is automatic by default */ },
+                        enabled = false
                     )
 
                     SettingRow(
@@ -196,59 +209,12 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         isChecked = rollcallOnLaunch,
                         onCheckedChange = {
                             rollcallOnLaunch = it
-                            // NOTE: Settings DAO not implemented yet
-                            // scope.launch { repo.db.settings().putBoolean("rollcall_on_launch", it) }
-                        }
-                    )
-
-                    SettingRow(
-                        label = "AI Enhancements (Offline)",
-                        description = "Use on-device AI to paraphrase cards",
-                        isChecked = com.helldeck.content.engine.ContentEngineProvider.isAIEnhancementAvailable(),
-                        onCheckedChange = {
-                            // This would ideally trigger a restart of the engine or app
+                            scope.launch { SettingsStore.writeRollcallOnLaunch(it) }
                         }
                     )
                 }
             }
 
-            // Feedback Threshold Section
-            item {
-                SettingsSection(
-                    title = "🔥 Feedback Threshold",
-                    isExpanded = expandedFeedback,
-                    onToggle = { expandedFeedback = !expandedFeedback }
-                ) {
-                    Text(
-                        "Room heat threshold: ${(heat * 100).toInt()}%",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = HelldeckColors.Yellow
-                    )
-                    Text(
-                        "Controls when spicy mode activates (≥70%)",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = HelldeckColors.LightGray
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Slider(
-                        value = heat,
-                        onValueChange = { heat = it.coerceIn(0.5f, 0.8f) },
-                        valueRange = 0.5f..0.8f,
-                        steps = 5,
-                        onValueChangeFinished = {
-                            Config.setRoomHeatThreshold(heat.toDouble())
-                            // NOTE: Settings DAO not implemented yet
-                            // scope.launch { repo.db.settings().putFloat("room_heat_threshold", heat) }
-                        },
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = SliderDefaults.colors(
-                            thumbColor = HelldeckColors.Yellow,
-                            activeTrackColor = HelldeckColors.Yellow,
-                            inactiveTrackColor = HelldeckColors.MediumGray
-                        )
-                    )
-                }
-            }
 
             // Device Section
             item {
@@ -264,8 +230,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         onCheckedChange = {
                             hapticsEnabled = it
                             Config.setHapticsEnabled(it)
-                            // NOTE: Settings DAO not implemented yet
-                            // scope.launch { repo.db.settings().putBoolean("haptics_enabled", it) }
+                            scope.launch { SettingsStore.writeHapticsEnabled(it) }
                         }
                     )
 
@@ -275,10 +240,39 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         isChecked = soundEnabled,
                         onCheckedChange = {
                             soundEnabled = it
-                            // NOTE: Settings DAO not implemented yet
-                            // scope.launch { repo.db.settings().putBoolean("sound_enabled", it) }
+                            scope.launch { SettingsStore.writeSoundEnabled(it) }
                         }
                     )
+                    
+                    Spacer(modifier = Modifier.height(12.dp))
+                    OutlinedButton(
+                        onClick = {
+                            scope.launch {
+                                SettingsStore.resetToDefaults()
+                                // Reload settings after reset
+                                learningEnabled = SettingsStore.readLearningEnabled()
+                                hapticsEnabled = SettingsStore.readHapticsEnabled()
+                                soundEnabled = SettingsStore.readSoundEnabled()
+                                rollcallOnLaunch = SettingsStore.readRollcallOnLaunch()
+                                // Enforce single-mode defaults after reset
+                                Config.setSafeModeGoldOnly(false)
+                                Config.setEnableV3Generator(true)
+                                scope.launch {
+                                    SettingsStore.writeSafeGoldOnly(false)
+                                    SettingsStore.writeEnableV3(true)
+                                }
+                                Config.setLearningEnabled(learningEnabled)
+                                Config.setHapticsEnabled(hapticsEnabled)
+                                com.helldeck.content.engine.ContentEngineProvider.reset()
+                            }
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.outlinedButtonColors(
+                            contentColor = HelldeckColors.Red
+                        )
+                    ) {
+                        Text("🔄 Reset to Defaults")
+                    }
                 }
             }
         }
@@ -334,7 +328,8 @@ private fun SettingRow(
     label: String,
     description: String? = null,
     isChecked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
+    enabled: Boolean = true
 ) {
     Row(
         modifier = Modifier
@@ -360,6 +355,7 @@ private fun SettingRow(
         Switch(
             checked = isChecked,
             onCheckedChange = onCheckedChange,
+            enabled = enabled,
             colors = SwitchDefaults.colors(
                 checkedThumbColor = HelldeckColors.Yellow,
                 checkedTrackColor = HelldeckColors.Yellow.copy(alpha = 0.5f),

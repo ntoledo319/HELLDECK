@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "features": {
+    "bias": -0.1,
+    "blueprint:roast_consensus_blueprint_1": 0.4,
+    "blueprint:roast_consensus_blueprint_2": 0.3,
+    "blueprint:poison_pitch_blueprint_1": 0.35,
+    "blueprint:poison_pitch_blueprint_2": 0.32,
+    "slot:sketchy_action": 0.25,
+    "slot:social_reason": 0.22,
+    "slot:perks_plus": 0.2,
+    "slot:gross_problem": 0.2,
+    "slot:red_flag_issue": 0.18,
+    "repetition:high": -0.7,
+    "wordcount:over": -0.6
+  },
+  "threshold": 0.0
+}

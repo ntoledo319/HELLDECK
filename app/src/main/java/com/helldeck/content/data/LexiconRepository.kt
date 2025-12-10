@@ -14,6 +14,18 @@ class LexiconRepository(private val assets: AssetManager) {
         return cache.getOrPut(file) { readArray("lexicons/$file") }
     }
 
+    fun hasLexicon(slotName: String): Boolean {
+        return try {
+            val file = slotToFile(slotName)
+            // Use cache if already loaded
+            if (cache.containsKey(file)) return true
+            assets.open("lexicons/$file").use { } // close immediately; just probing
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     private fun readArray(path: String): List<String> {
         assets.open(path).use { ins ->
             val text = ins.bufferedReader().use(BufferedReader::readText)
@@ -40,6 +52,7 @@ class LexiconRepository(private val assets: AssetManager) {
         "forbidden" -> "forbidden.json"
         "target_name" -> "friends.json" // dynamic preferred; fallback
         "inbound_text" -> "inbound_texts.json" // optional seed list
+        "reply_tone","reply_tones","tone","tones","vibe","vibes" -> "reply_tones.json"
         else -> "$slot.json"
     }
 }

@@ -65,3 +65,8 @@ debug:
   enable_performance_monitoring: false  # Monitor performance metrics
   enable_database_query_logging: false  # Log all database queries
   enable_template_selection_logging: false # Log template selection details
+
+generator:
+  safe_mode_gold_only: false
+  enable_v3_generator: true
+  locality_cap: 2

@@ -22,6 +22,7 @@ import com.helldeck.ui.OnboardingWrapper
 import com.helldeck.ui.HelldeckAppUI
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.launch
+import androidx.tracing.trace
 
 /**
  * Main Activity for HELLDECK application
@@ -150,11 +151,13 @@ class MainActivity : ComponentActivity() {
         try {
             Logger.i("Starting app initialization")
 
-            // Load configuration
-            Config.load(this)
+            trace("Config.load") {
+                Config.load(this)
+            }
 
-            // Initialize new content engine
-            ContentEngineProvider.get(this)
+            trace("ContentEngineProvider.get") {
+                ContentEngineProvider.get(this)
+            }
 
             Logger.i("App initialization completed successfully")
 

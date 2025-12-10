@@ -1,0 +1,230 @@
+{
+  "slot_type": "vices_and_indulgences",
+  "entries": [
+    {
+      "text": "eating an entire pizza alone",
+      "tags": ["vice", "food", "gluttony"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "doomscrolling at 3 AM",
+      "tags": ["vice", "modern", "unhealthy"],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "online shopping while drunk",
+      "tags": ["vice", "money", "impulsive"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "revenge-stalking exes on social media",
+      "tags": ["vice", "modern", "petty"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hitting snooze 12 times",
+      "tags": ["vice", "lazy", "relatable"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "watching entire seasons in one sitting",
+      "tags": ["vice", "entertainment", "binge"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "eating dessert for breakfast",
+      "tags": ["vice", "food", "rebellious"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ghosting their therapist",
+      "tags": ["vice", "avoidance", "unhealthy"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stress-buying candles",
+      "tags": ["vice", "money", "coping"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emotional support takeout",
+      "tags": ["vice", "food", "comfort"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "secret smoking habit",
+      "tags": ["vice", "unhealthy", "secret"],
+      "tone": "dark",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "hoarding delivery apps",
+      "tags": ["vice", "modern", "lazy"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "impulse tattoo collection",
+      "tags": ["vice", "impulsive", "permanent"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "canceling plans to stay in bed",
+      "tags": ["vice", "lazy", "antisocial"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "retail therapy after a breakup",
+      "tags": ["vice", "money", "coping"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "day-drinking on weekdays",
+      "tags": ["vice", "alcohol", "problematic"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keeping snacks hidden from roommates",
+      "tags": ["vice", "food", "selfish"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "procrastinating with elaborate planning",
+      "tags": ["vice", "avoidance", "ironic"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "rage-quitting productive activities",
+      "tags": ["vice", "impulsive", "self-sabotage"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "secret fast food runs",
+      "tags": ["vice", "food", "guilty"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "compulsive phone checking",
+      "tags": ["vice", "modern", "addiction"],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "midnight snack raids",
+      "tags": ["vice", "food", "sneaky"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "collecting dating app matches",
+      "tags": ["vice", "modern", "validation"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "revenge body obsession",
+      "tags": ["vice", "fitness", "toxic"],
+      "tone": "dark",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "hoarding unused subscriptions",
+      "tags": ["vice", "money", "wasteful"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

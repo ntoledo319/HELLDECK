@@ -2,7 +2,11 @@ package com.helldeck.engine
 
 import android.content.Context
 import com.helldeck.AppCtx
+import com.helldeck.utils.Logger
 import java.io.InputStream
+import java.io.InputStreamReader
+import java.nio.charset.StandardCharsets
+import org.yaml.snakeyaml.Yaml
 
 /**
  * Configuration data classes for HELLDECK game settings
@@ -132,7 +136,14 @@ data class HelldeckCfg(
     val learning: LearningCfg,
     val mechanics: MechanicsCfg,
     val ui: UiCfg = UiCfg(),
-    val debug: DebugCfg = DebugCfg()
+    val debug: DebugCfg = DebugCfg(),
+    val generator: GeneratorCfg = GeneratorCfg()
+)
+
+data class GeneratorCfg(
+    val safe_mode_gold_only: Boolean = true,
+    val enable_v3_generator: Boolean = false,
+    val locality_cap: Int = 3
 )
 
 /**
@@ -158,6 +169,8 @@ object Config {
 
     private var customRoomHeatThreshold: Double? = null
     private var roomHeatThresholdCache: Double? = null
+    // Optional attempt cap to speed up generation (set via Settings)
+    private var attemptCapOverride: Int? = null
 
     // Runtime feature flags (synced with settings)
     var learningEnabled: Boolean = true
@@ -167,30 +180,171 @@ object Config {
         private set
 
     /**
-     * Load configuration from assets
-     * Currently using hardcoded defaults due to SnakeYAML compatibility issues
+     * Load configuration from assets (settings/default.yaml) with graceful fallback.
      */
     fun load(context: Context = AppCtx.ctx) {
-        // Using hardcoded defaults directly to avoid YAML parsing issues
-        current = getDefaultConfig()
+        val cfg = try {
+            context.assets.open("settings/default.yaml").use { parseYaml(it) }
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to load settings/default.yaml, using defaults", e)
+            null
+        }
+        current = cfg ?: getDefaultConfig()
+        roomHeatThresholdCache = null
     }
 
     /**
-     * Load configuration from custom input stream
-     * Currently using hardcoded defaults due to SnakeYAML compatibility issues
+     * Load configuration from custom input stream (useful for tests / overrides).
      */
     fun loadFromInputStream(inputStream: InputStream) {
-        // Using hardcoded defaults directly to avoid YAML parsing issues
-        current = getDefaultConfig()
+        current = parseYaml(inputStream) ?: getDefaultConfig()
+        roomHeatThresholdCache = null
     }
 
     /**
-     * Load configuration from string
-     * Currently using hardcoded defaults due to SnakeYAML compatibility issues
+     * Load configuration from raw YAML string.
      */
     fun loadFromString(yamlContent: String) {
-        // Using hardcoded defaults directly to avoid YAML parsing issues
-        current = getDefaultConfig()
+        if (yamlContent.isBlank()) {
+            current = getDefaultConfig()
+        } else {
+            current = parseYaml(yamlContent.byteInputStream()) ?: getDefaultConfig()
+        }
+        roomHeatThresholdCache = null
+    }
+
+    private fun parseYaml(inputStream: InputStream): HelldeckCfg? {
+        return try {
+            inputStream.use { ins ->
+                val reader = InputStreamReader(ins, StandardCharsets.UTF_8)
+                val raw = Yaml().load<Map<String, Any?>>(reader) ?: return null
+                buildConfigFromMap(raw, getDefaultConfig())
+            }
+        } catch (e: Exception) {
+            Logger.e("Config YAML parse failed", e)
+            null
+        }
+    }
+
+    private fun buildConfigFromMap(map: Map<String, Any?>, defaults: HelldeckCfg): HelldeckCfg {
+        val scoringMap = map.section("scoring")
+        val scoring = defaults.scoring.copy(
+            win = scoringMap.int("win", defaults.scoring.win),
+            room_heat_bonus = scoringMap.int("room_heat_bonus", defaults.scoring.room_heat_bonus),
+            room_heat_threshold = scoringMap.double("room_heat_threshold", defaults.scoring.room_heat_threshold),
+            trash_penalty = scoringMap.int("trash_penalty", defaults.scoring.trash_penalty),
+            streak_cap = scoringMap.int("streak_cap", defaults.scoring.streak_cap),
+            judge_bonus = scoringMap.int("judge_bonus", defaults.scoring.judge_bonus),
+            fast_laugh_bonus = scoringMap.double("fast_laugh_bonus", defaults.scoring.fast_laugh_bonus),
+            consensus_bonus = scoringMap.int("consensus_bonus", defaults.scoring.consensus_bonus)
+        )
+
+        val timersMap = map.section("timers")
+        val timers = defaults.timers.copy(
+            vote_binary_ms = timersMap.int("vote_binary_ms", defaults.timers.vote_binary_ms),
+            vote_avatar_ms = timersMap.int("vote_avatar_ms", defaults.timers.vote_avatar_ms),
+            judge_pick_ms = timersMap.int("judge_pick_ms", defaults.timers.judge_pick_ms),
+            revote_ms = timersMap.int("revote_ms", defaults.timers.revote_ms),
+            alibi_show_ms = timersMap.int("alibi_show_ms", defaults.timers.alibi_show_ms),
+            title_duel_ms = timersMap.int("title_duel_ms", defaults.timers.title_duel_ms),
+            scatter_time_ms = timersMap.int("scatter_time_ms", defaults.timers.scatter_time_ms)
+        )
+
+        val playersMap = map.section("players")
+        val players = defaults.players.copy(
+            sweet_spot_min = playersMap.int("sweet_spot_min", defaults.players.sweet_spot_min),
+            sweet_spot_max = playersMap.int("sweet_spot_max", defaults.players.sweet_spot_max),
+            party_mode_max = playersMap.int("party_mode_max", defaults.players.party_mode_max),
+            max_afk_rounds = playersMap.int("max_afk_rounds", defaults.players.max_afk_rounds),
+            team_size_threshold = playersMap.int("team_size_threshold", defaults.players.team_size_threshold)
+        )
+
+        val learningMap = map.section("learning")
+        val learning = defaults.learning.copy(
+            alpha = learningMap.double("alpha", defaults.learning.alpha),
+            epsilon_start = learningMap.double("epsilon_start", defaults.learning.epsilon_start),
+            epsilon_end = learningMap.double("epsilon_end", defaults.learning.epsilon_end),
+            decay_rounds = learningMap.int("decay_rounds", defaults.learning.decay_rounds),
+            diversity_window = learningMap.int("diversity_window", defaults.learning.diversity_window),
+            minhash_threshold = learningMap.double("minhash_threshold", defaults.learning.minhash_threshold),
+            min_plays_before_learning = learningMap.int("min_plays_before_learning", defaults.learning.min_plays_before_learning),
+            score_weight_recent = learningMap.double("score_weight_recent", defaults.learning.score_weight_recent),
+            score_weight_historical = learningMap.double("score_weight_historical", defaults.learning.score_weight_historical)
+        )
+
+        val mechanicsMap = map.section("mechanics")
+        val mechanics = defaults.mechanics.copy(
+            comeback_last_place_picks_next = mechanicsMap.bool("comeback_last_place_picks_next", defaults.mechanics.comeback_last_place_picks_next),
+            roast_consensus_guess_cap = mechanicsMap.int("roast_consensus_guess_cap", defaults.mechanics.roast_consensus_guess_cap),
+            alibi_secrets_per_player = mechanicsMap.int("alibi_secrets_per_player", defaults.mechanics.alibi_secrets_per_player),
+            title_fight_rounds = mechanicsMap.int("title_fight_rounds", defaults.mechanics.title_fight_rounds),
+            scatter_words_required = mechanicsMap.int("scatter_words_required", defaults.mechanics.scatter_words_required),
+            majority_report_threshold = mechanicsMap.double("majority_report_threshold", defaults.mechanics.majority_report_threshold)
+        )
+
+        val uiMap = map.section("ui")
+        val ui = defaults.ui.copy(
+            show_timer_warning = uiMap.bool("show_timer_warning", defaults.ui.show_timer_warning),
+            timer_warning_threshold = uiMap.double("timer_warning_threshold", defaults.ui.timer_warning_threshold),
+            enable_animations = uiMap.bool("enable_animations", defaults.ui.enable_animations),
+            animation_duration_ms = uiMap.int("animation_duration_ms", defaults.ui.animation_duration_ms),
+            haptic_feedback_intensity = uiMap.int("haptic_feedback_intensity", defaults.ui.haptic_feedback_intensity),
+            sound_effects_enabled = uiMap.bool("sound_effects_enabled", defaults.ui.sound_effects_enabled)
+        )
+
+        val debugMap = map.section("debug")
+        val debug = defaults.debug.copy(
+            enable_logging = debugMap.bool("enable_logging", defaults.debug.enable_logging),
+            log_level = debugMap.string("log_level", defaults.debug.log_level),
+            enable_performance_monitoring = debugMap.bool("enable_performance_monitoring", defaults.debug.enable_performance_monitoring),
+            enable_database_query_logging = debugMap.bool("enable_database_query_logging", defaults.debug.enable_database_query_logging),
+            enable_template_selection_logging = debugMap.bool("enable_template_selection_logging", defaults.debug.enable_template_selection_logging)
+        )
+
+        return defaults.copy(
+            scoring = scoring,
+            timers = timers,
+            players = players,
+            learning = learning,
+            mechanics = mechanics,
+            ui = ui,
+            debug = debug
+        )
+    }
+
+    private fun Map<String, Any?>.section(key: String): Map<*, *>? = this[key] as? Map<*, *>
+
+    private fun Map<*, *>?.int(key: String, fallback: Int): Int {
+        val raw = this?.get(key) ?: return fallback
+        return when (raw) {
+            is Number -> raw.toInt()
+            is String -> raw.toDoubleOrNull()?.toInt() ?: fallback
+            else -> fallback
+        }
+    }
+
+    private fun Map<*, *>?.double(key: String, fallback: Double): Double {
+        val raw = this?.get(key) ?: return fallback
+        return when (raw) {
+            is Number -> raw.toDouble()
+            is String -> raw.toDoubleOrNull() ?: fallback
+            else -> fallback
+        }
+    }
+
+    private fun Map<*, *>?.bool(key: String, fallback: Boolean): Boolean {
+        val raw = this?.get(key) ?: return fallback
+        return when (raw) {
+            is Boolean -> raw
+            is Number -> raw.toInt() != 0
+            is String -> raw.equals("true", true) || raw.equals("yes", true) || raw == "1"
+            else -> fallback
+        }
+    }
+
+    private fun Map<*, *>?.string(key: String, fallback: String): String {
+        val raw = this?.get(key) ?: return fallback
+        return raw.toString()
     }
     
     /**
@@ -229,6 +383,11 @@ object Config {
             mechanics = MechanicsCfg(
                 comeback_last_place_picks_next = true,
                 roast_consensus_guess_cap = 2
+            ),
+            generator = GeneratorCfg(
+                safe_mode_gold_only = false,
+                enable_v3_generator = true,
+                locality_cap = 2
             )
         )
     }
@@ -256,6 +415,26 @@ object Config {
     fun setHapticsEnabled(enabled: Boolean) {
         hapticsEnabled = enabled
     }
+
+    fun setSafeModeGoldOnly(enabled: Boolean) {
+        current = current.copy(generator = current.generator.copy(safe_mode_gold_only = enabled))
+    }
+
+    fun setEnableV3Generator(enabled: Boolean) {
+        current = current.copy(generator = current.generator.copy(enable_v3_generator = enabled))
+    }
+
+    fun generatorLocalityCap(): Int = current.generator.locality_cap.coerceIn(1, 3)
+
+    fun setLocalityCap(cap: Int) {
+        current = current.copy(generator = current.generator.copy(locality_cap = cap.coerceIn(1, 3)))
+    }
+
+    fun setAttemptCap(cap: Int?) {
+        attemptCapOverride = cap?.coerceAtLeast(1)
+    }
+
+    fun getAttemptCap(): Int? = attemptCapOverride
 
     /**
      * Get timer for specific interaction
@@ -359,6 +538,10 @@ object Config {
             "spicyMode" to spicyMode,
             "roomHeatThreshold" to roomHeatThreshold(),
             "playerRecommendation" to getPlayerCountRecommendation(),
+            "generator" to mapOf(
+                "safeModeGoldOnly" to current.generator.safe_mode_gold_only,
+                "enableV3" to current.generator.enable_v3_generator
+            ),
             "timers" to mapOf(
                 "voteBinary" to current.timers.vote_binary_ms,
                 "voteAvatar" to current.timers.vote_avatar_ms,

@@ -1,0 +1,230 @@
+{
+  "slot_type": "bodily_functions",
+  "entries": [
+    {
+      "text": "crop-dusting the entire office",
+      "tags": ["bodily", "gross", "workplace"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "burping the alphabet",
+      "tags": ["bodily", "gross", "childish"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lactose intolerance denial",
+      "tags": ["bodily", "gross", "relatable"],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "aggressive sneezing",
+      "tags": ["bodily", "gross"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emergency bathroom situations",
+      "tags": ["bodily", "gross", "relatable"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "public restroom confidence",
+      "tags": ["bodily", "gross", "social"],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stress sweating through three shirts",
+      "tags": ["bodily", "gross", "relatable"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "weaponized morning breath",
+      "tags": ["bodily", "gross"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Dutch oven warfare",
+      "tags": ["bodily", "gross", "relationship"],
+      "tone": "raunchy",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "beer shits on a first date",
+      "tags": ["bodily", "gross", "dating"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hangover dry heaving",
+      "tags": ["bodily", "gross", "party"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "revenge farting",
+      "tags": ["bodily", "gross", "petty"],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "audible digestion",
+      "tags": ["bodily", "gross"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "nervous pooping",
+      "tags": ["bodily", "gross", "relatable"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unclogging a public toilet",
+      "tags": ["bodily", "gross", "public"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "snot rockets",
+      "tags": ["bodily", "gross"],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "period bloodbath situations",
+      "tags": ["bodily", "gross", "relatable"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidental shart",
+      "tags": ["bodily", "gross"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "food poisoning sprints",
+      "tags": ["bodily", "gross", "relatable"],
+      "tone": "cringe",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "picking their nose at red lights",
+      "tags": ["bodily", "gross", "public"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "swamp ass",
+      "tags": ["bodily", "gross"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "visible pit stains",
+      "tags": ["bodily", "gross", "social"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "re-wearing dirty underwear",
+      "tags": ["bodily", "gross", "lazy"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "peeing in the shower",
+      "tags": ["bodily", "gross", "confession"],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "coughing without covering their mouth",
+      "tags": ["bodily", "gross", "rude"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

@@ -5,6 +5,8 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.text.font.FontWeight
 import com.helldeck.ui.GiantButton
 import com.helldeck.ui.HelldeckTheme
+import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.layout.width
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -127,7 +129,7 @@ class GiantButtonTest {
                 GiantButton(onClick = {}) {
                     androidx.compose.foundation.layout.Row {
                         androidx.compose.material3.Text("Icon")
-                        androidx.compose.foundation.layout.Spacer(androidx.compose.ui.Modifier.width(androidx.compose.ui.unit.dp(4)))
+                        androidx.compose.foundation.layout.Spacer(androidx.compose.ui.Modifier.width(4.dp))
                         androidx.compose.material3.Text("Text")
                     }
                 }

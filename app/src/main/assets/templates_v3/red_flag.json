@@ -1,0 +1,146 @@
+[
+  {
+    "id": "red_flag_blueprint_1",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_core",
+    "weight": 1.0,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Smash or pass: " },
+      { "type": "slot", "name": "perk", "slot_type": "perks_plus" },
+      { "type": "text", "value": " but " },
+      { "type": "slot", "name": "flag", "slot_type": "red_flag_issue" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 24,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "perk" },
+        { "from_slot": "flag" }
+      ]
+    }
+  },
+  {
+    "id": "red_flag_blueprint_2",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_core",
+    "weight": 0.8,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you date someone with " },
+      { "type": "slot", "name": "perk", "slot_type": "perks_plus" },
+      { "type": "text", "value": " if they also had " },
+      { "type": "slot", "name": "flag", "slot_type": "red_flag_issue" },
+      { "type": "text", "value": "?" }
+    ],
+    "constraints": {
+      "max_words": 26,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "perk" },
+        { "from_slot": "flag" }
+      ]
+    }
+  },
+  {
+    "id": "red_flag_blueprint_3",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Smash or pass: they bring " },
+      { "type": "slot", "name": "perk", "slot_type": "perks_plus" },
+      { "type": "text", "value": " but also " },
+      { "type": "slot", "name": "flag", "slot_type": "red_flag_issue" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 22,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "perk" },
+        { "from_slot": "flag" }
+      ]
+    }
+  }
+  ,
+  {
+    "id": "red_flag_builder_1",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_core",
+    "weight": 1.0,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Smash or pass: they have " },
+      { "type": "slot", "name": "pro_a", "slot_type": "perks_plus" },
+      { "type": "text", "value": " and " },
+      { "type": "slot", "name": "pro_b", "slot_type": "perks_plus" },
+      { "type": "text", "value": ", but " },
+      { "type": "slot", "name": "flag", "slot_type": "red_flag_traits" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 28, "distinct_slots": true },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "pro_a" },
+        { "from_slot": "flag" }
+      ]
+    }
+  }
+  ,
+  {
+    "id": "red_flag_builder_2",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_core",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Smash or pass: they offer " },
+      { "type": "slot", "name": "pro_a", "slot_type": "perks_plus" },
+      { "type": "text", "value": ", come with " },
+      { "type": "slot", "name": "pro_b", "slot_type": "perks_plus" },
+      { "type": "text", "value": ", but also " },
+      { "type": "slot", "name": "flag", "slot_type": "red_flag_traits" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 30, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "pro_a"}, {"from_slot": "flag"} ] }
+  }
+  ,
+  {
+    "id": "red_flag_builder_3",
+    "game": "RED_FLAG_RALLY",
+    "family": "redflag_core",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Date material: offers " },
+      { "type": "slot", "name": "pro_a", "slot_type": "perks_plus" },
+      { "type": "text", "value": ", plus " },
+      { "type": "slot", "name": "pro_b", "slot_type": "perks_plus" },
+      { "type": "text", "value": "; downside: " },
+      { "type": "slot", "name": "flag", "slot_type": "red_flag_traits" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 28, "distinct_slots": true },
+    "option_provider": { "type": "AB", "options": [ {"from_slot": "pro_b"}, {"from_slot": "flag"} ] }
+  }
+]

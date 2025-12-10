@@ -1,0 +1,28 @@
+version: 1
+coherence_threshold: 0.10
+max_attempts: 4
+max_repetition_ratio: 0.35
+min_word_count: 5
+max_word_count: 32
+spice_locality_cap: 4
+soft_repetition_margin: 0.2       # ratio under max_repetition to flag soft repeat
+near_word_limit_margin: 0.1       # within 10% of max words is 'near'
+humor_threshold: 0.40             # minimum humor score to pass (0.0-1.0)
+enable_humor_scoring: true        # toggle humor quality evaluation
+attempts_by_game:
+  POISON_PITCH: 9
+  ODD_ONE_OUT: 4
+  RED_FLAG_RALLY: 7
+  ROAST_CONSENSUS: 7
+tone_preference_low:
+  - wild
+  - witty
+  - dry
+  - playful
+  - neutral
+tone_preference_high:
+  - wild
+  - witty
+  - dry
+  - playful
+  - neutral

@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "pairs": [
+    {
+      "slot_type": "perks_plus",
+      "compatibility": {
+        "gross_problem": 0.35,
+        "red_flag_issue": 0.45,
+        "sexual_innuendo": 0.25,
+        "bodily_functions": 0.3
+      }
+    },
+    {
+      "slot_type": "gross_problem",
+      "compatibility": {
+        "perks_plus": 0.35,
+        "red_flag_issue": 0.15,
+        "sexual_innuendo": 0.2,
+        "bodily_functions": 0.4
+      }
+    },
+    {
+      "slot_type": "sexual_innuendo",
+      "compatibility": {
+        "perks_plus": 0.25,
+        "gross_problem": 0.2,
+        "red_flag_issue": 0.35,
+        "bodily_functions": 0.15,
+        "taboo_topics": 0.3
+      }
+    },
+    {
+      "slot_type": "bodily_functions",
+      "compatibility": {
+        "perks_plus": 0.3,
+        "gross_problem": 0.4,
+        "sexual_innuendo": 0.15,
+        "red_flag_issue": 0.25
+      }
+    },
+    {
+      "slot_type": "taboo_topics",
+      "compatibility": {
+        "sexual_innuendo": 0.3,
+        "red_flag_issue": 0.4,
+        "gross_problem": 0.2
+      }
+    },
+    {
+      "slot_type": "red_flag_issue",
+      "compatibility": {
+        "perks_plus": 0.45,
+        "gross_problem": 0.15,
+        "sexual_innuendo": 0.35,
+        "bodily_functions": 0.25,
+        "taboo_topics": 0.4
+      }
+    },
+    {
+      "slot_type": "sketchy_action",
+      "compatibility": {
+        "social_reason": 0.55,
+        "audience_type": 0.25
+      }
+    },
+    {
+      "slot_type": "chaotic_plan",
+      "compatibility": {
+        "audience_type": 0.42
+      }
+    },
+    {
+      "slot_type": "meme_item",
+      "compatibility": {
+        "meme_item": -0.1,
+        "product_item": 0.25,
+        "categories": 0.15
+      }
+    },
+    {
+      "slot_type": "secret_word",
+      "compatibility": {
+        "secret_word": -0.05,
+        "taboo_forbidden": 0.1
+      }
+    },
+    {
+      "slot_type": "product_item",
+      "compatibility": {
+        "gross_problem": 0.4,
+        "product_item": -0.15
+      }
+    },
+    {
+      "slot_type": "reply_tone",
+      "compatibility": {
+        "reply_tone": -0.2
+      }
+    },
+    {
+      "slot_type": "categories",
+      "compatibility": {
+        "letters": 0.5,
+        "categories": -0.3
+      }
+    },
+    {
+      "slot_type": "letters",
+      "compatibility": {
+        "categories": 0.5
+      }
+    },
+    {
+      "slot_type": "social_reason",
+      "compatibility": {
+        "would_you_rather_costs": 0.5,
+        "bodily_functions": 0.25,
+        "selfish_behaviors": 0.45,
+        "chaotic_plan": 0.35
+      }
+    },
+    {
+      "slot_type": "would_you_rather_costs",
+      "compatibility": {
+        "social_reason": 0.5,
+        "bodily_functions": 0.4,
+        "selfish_behaviors": 0.35
+      }
+    },
+    {
+      "slot_type": "red_flag_traits",
+      "compatibility": {
+        "perks_plus": 0.5,
+        "sexual_innuendo": 0.25
+      }
+    },
+    {
+      "slot_type": "evidence_reason",
+      "compatibility": {
+        "chaotic_plan": 0.45,
+        "selfish_behaviors": 0.4,
+        "sketchy_action": 0.5
+      }
+    }
+  ]
+}

@@ -93,12 +93,15 @@ import com.helldeck.ui.components.HelldeckBackgroundPattern
 import com.helldeck.ui.components.HelldeckAnimations
 import com.helldeck.ui.components.HelldeckSpacing
 import com.helldeck.content.engine.ContentEngineProvider
+import com.helldeck.ui.LoadingWithErrorBoundary
+import com.helldeck.ui.BackgroundPattern
+import com.helldeck.ui.HelldeckError
 
 /**
  * Scene enumeration for navigation
  */
 enum class Scene {
-    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES
+    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES, CARD_LAB
 }
 
 @Composable
@@ -227,6 +230,7 @@ fun HelldeckAppUI(
                     Scene.SETTINGS -> SettingsScene(onClose = { vm.scene = Scene.HOME }, vm = vm)
                     Scene.PROFILE -> PlayerProfileScene(vm = vm, onClose = { vm.scene = Scene.HOME })
                     Scene.GAME_RULES -> GameRulesScene(vm = vm, onClose = { vm.goBack() })
+                    Scene.CARD_LAB -> com.helldeck.ui.scenes.CardLabScene(onClose = { vm.goBack() })
                 }
             }
             }
@@ -320,7 +324,18 @@ class HelldeckVm : ViewModel() {
         card: com.helldeck.content.model.FilledCard,
         req: com.helldeck.content.engine.GameEngine.Request
     ): com.helldeck.content.model.GameOptions {
-        return engine.getOptionsFor(card, req)
+        return try {
+            if (!::engine.isInitialized) {
+                // Best-effort init to avoid crashes if called early
+                val context = AppCtx.ctx
+                engine = ContentEngineProvider.get(context)
+            }
+            engine.getOptionsFor(card, req)
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("getOptionsFor failed", e)
+            // Return empty fallback to keep UI stable
+            com.helldeck.content.model.GameOptions.None
+        }
     }
 
     /**
@@ -437,6 +452,17 @@ class HelldeckVm : ViewModel() {
      * @param gameId The ID of the game to start, or null for random selection.
      */
     suspend fun startRound(gameId: String? = null) {
+        // Ensure engine is ready before starting a round
+        if (!::engine.isInitialized) {
+            try {
+                initOnce()
+            } catch (e: Exception) {
+                com.helldeck.utils.Logger.e("startRound: initialization failed", e)
+                scene = Scene.HOME
+                return
+            }
+        }
+
         if (activePlayers.size < 2) {
             // Ensure players exist before starting a round
             scene = Scene.PLAYERS
@@ -467,15 +493,22 @@ class HelldeckVm : ViewModel() {
 
         val sessionId = "session_${System.currentTimeMillis()}" // Use a consistent session ID for the round
 
-        val gameResult = engine.next(
-            com.helldeck.content.engine.GameEngine.Request(
-                gameId = nextGame,
-                sessionId = sessionId,
-                spiceMax = if (spicy) 3 else 1,
-                players = playersList
+        try {
+            val gameResult = engine.next(
+                com.helldeck.content.engine.GameEngine.Request(
+                    gameId = nextGame,
+                    sessionId = sessionId,
+                    spiceMax = if (spicy) 3 else 1,
+                    players = playersList
+                )
             )
-        )
-        currentCard = gameResult.filledCard
+            currentCard = gameResult.filledCard
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("startRound: engine.next failed", e)
+            // Fail gracefully back to home
+            scene = Scene.HOME
+            return
+        }
         t0 = System.currentTimeMillis()
 
         // Reset voting state
@@ -770,10 +803,18 @@ class HelldeckVm : ViewModel() {
         val heatPercentage = (lol + trash).toDouble() / (lol + meh + trash).coerceAtLeast(1).toDouble()
         val winnerId = if (judgeWin) activePlayer()?.id else null // Simplified winner logic for now
 
-        engine.recordOutcome(
-            templateId = card.id,
-            reward01 = laughsScore
-        )
+        try {
+            // Record outcome with the engine if available
+            if (!::engine.isInitialized) {
+                initOnce()
+            }
+            engine.recordOutcome(
+                templateId = card.id,
+                reward01 = laughsScore
+            )
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("commitFeedbackAndNext: recordOutcome failed", e)
+        }
 
         // Reset feedback state
         lol = 0

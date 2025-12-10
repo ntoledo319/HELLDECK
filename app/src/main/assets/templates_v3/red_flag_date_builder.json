@@ -1,0 +1,136 @@
+[
+  {
+    "id": "red_flag_builder_1",
+    "game": "RED_FLAG_RALLY",
+    "family": "red_flag_date_builder",
+    "weight": 1.0,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "They're " },
+      { "type": "slot", "name": "green_a", "slot_type": "dating_green_flags" },
+      { "type": "text", "value": " and " },
+      { "type": "slot", "name": "green_b", "slot_type": "dating_green_flags" },
+      { "type": "text", "value": ", but " },
+      { "type": "slot", "name": "red", "slot_type": "red_flag_traits" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 24,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "green_a" },
+        { "from_slot": "red" }
+      ]
+    }
+  },
+  {
+    "id": "red_flag_builder_2",
+    "game": "RED_FLAG_RALLY",
+    "family": "red_flag_date_builder",
+    "weight": 0.9,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Date them: " },
+      { "type": "slot", "name": "green", "slot_type": "dating_green_flags" },
+      { "type": "text", "value": " plus they're secretly into " },
+      { "type": "slot", "name": "vice", "slot_type": "vices_and_indulgences" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 18,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "green" },
+        { "from_slot": "vice" }
+      ]
+    }
+  },
+  {
+    "id": "red_flag_builder_3",
+    "game": "RED_FLAG_RALLY",
+    "family": "red_flag_date_builder",
+    "weight": 0.85,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Smash or pass: " },
+      { "type": "slot", "name": "green", "slot_type": "dating_green_flags" },
+      { "type": "text", "value": " but caught " },
+      { "type": "slot", "name": "innuendo", "slot_type": "sexual_innuendo" },
+      { "type": "text", "value": " at " },
+      { "type": "slot", "name": "context", "slot_type": "awkward_contexts" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 20,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "green" },
+        { "from_slot": "innuendo" }
+      ]
+    }
+  },
+  {
+    "id": "red_flag_builder_4",
+    "game": "RED_FLAG_RALLY",
+    "family": "red_flag_date_builder",
+    "weight": 0.95,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Would you date someone who's " },
+      { "type": "slot", "name": "green", "slot_type": "dating_green_flags" },
+      { "type": "text", "value": " but keeps " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": "?" }
+    ],
+    "constraints": {
+      "max_words": 18,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "green" },
+        { "from_slot": "selfish" }
+      ]
+    }
+  },
+  {
+    "id": "red_flag_builder_5",
+    "game": "RED_FLAG_RALLY",
+    "family": "red_flag_date_builder",
+    "weight": 0.8,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Perfect partner except " },
+      { "type": "slot", "name": "red", "slot_type": "red_flag_traits" },
+      { "type": "text", "value": " and won't stop talking about " },
+      { "type": "slot", "name": "taboo", "slot_type": "taboo_topics" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": {
+      "max_words": 18,
+      "distinct_slots": true
+    },
+    "option_provider": {
+      "type": "AB",
+      "options": [
+        { "from_slot": "red" },
+        { "from_slot": "taboo" }
+      ]
+    }
+  }
+]

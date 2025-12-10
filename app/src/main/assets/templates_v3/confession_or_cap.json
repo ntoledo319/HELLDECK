@@ -1,0 +1,51 @@
+[
+  {
+    "id": "confess_cap_blueprint_1",
+    "game": "CONFESSION_OR_CAP",
+    "family": "confess_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Confession or cap: I once " },
+      { "type": "slot", "name": "action", "slot_type": "sketchy_action" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "confess_cap_blueprint_2",
+    "game": "CONFESSION_OR_CAP",
+    "family": "confess_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Confession or cap: I pulled off " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " just to impress " },
+      { "type": "slot", "name": "audience", "slot_type": "audience_type" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 22, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "confess_cap_blueprint_3",
+    "game": "CONFESSION_OR_CAP",
+    "family": "confess_core",
+    "weight": 0.8,
+    "spice_max": 2,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Confession or cap: I staged " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " because " },
+      { "type": "slot", "name": "reason", "slot_type": "social_reason" },
+      { "type": "text", "value": "." }
+    ],
+    "constraints": { "max_words": 24, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+]

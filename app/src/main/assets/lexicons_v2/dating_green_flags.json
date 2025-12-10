@@ -1,0 +1,230 @@
+{
+  "slot_type": "dating_green_flags",
+  "entries": [
+    {
+      "text": "perfect breakfast cook",
+      "tags": ["green_flag", "dating", "skill"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "emotionally available",
+      "tags": ["green_flag", "dating", "healthy"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "great with animals",
+      "tags": ["green_flag", "dating", "wholesome"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "remembers important dates",
+      "tags": ["green_flag", "dating", "thoughtful"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "excellent texter",
+      "tags": ["green_flag", "dating", "modern"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "financially responsible",
+      "tags": ["green_flag", "dating", "mature"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "killer playlist curator",
+      "tags": ["green_flag", "dating", "modern"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "amazing listener",
+      "tags": ["green_flag", "dating", "communication"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "gives world-class massages",
+      "tags": ["green_flag", "dating", "skill"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "respects boundaries",
+      "tags": ["green_flag", "dating", "healthy"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "perfect travel companion",
+      "tags": ["green_flag", "dating", "adventure"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "amazing cook",
+      "tags": ["green_flag", "dating", "skill"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "great sense of humor",
+      "tags": ["green_flag", "dating", "personality"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "generous tipper",
+      "tags": ["green_flag", "dating", "kind"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "always on time",
+      "tags": ["green_flag", "dating", "reliable"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "talented at [redacted]",
+      "tags": ["green_flag", "dating", "spicy"],
+      "tone": "raunchy",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "great with kids",
+      "tags": ["green_flag", "dating", "family"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "trust fund baby",
+      "tags": ["green_flag", "dating", "wealthy"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "impossibly good-looking",
+      "tags": ["green_flag", "dating", "attractive"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "thoughtful gift-giver",
+      "tags": ["green_flag", "dating", "romantic"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "brings you coffee in bed",
+      "tags": ["green_flag", "dating", "sweet"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "loves your family",
+      "tags": ["green_flag", "dating", "family"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "incredible style",
+      "tags": ["green_flag", "dating", "fashionable"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "speaks multiple languages",
+      "tags": ["green_flag", "dating", "skilled"],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "marathon stamina",
+      "tags": ["green_flag", "dating", "spicy"],
+      "tone": "raunchy",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

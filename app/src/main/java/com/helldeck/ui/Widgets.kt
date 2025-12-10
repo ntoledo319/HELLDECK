@@ -257,7 +257,7 @@ fun CardFace(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(20.dp),
+                        .padding(24.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
@@ -365,16 +365,14 @@ fun FeedbackStrip(
     onTrash: () -> Unit = {},
     onComment: (String, Set<String>) -> Unit = { _, _ -> },
     showComments: Boolean = false,
-    commentText: String = "",
-    onCommentTextChange: (String) -> Unit = {},
-    selectedTags: Set<String> = emptySet(),
-    availableTags: List<String> = listOf("tame", "repeat", "inside", "long", "harsh"),
-    onTagToggle: (String) -> Unit = {}
+    availableTags: List<String> = listOf("tame", "repeat", "inside", "long", "harsh")
 ) {
     var lolCount by remember { mutableIntStateOf(0) }
     var mehCount by remember { mutableIntStateOf(0) }
     var trashCount by remember { mutableIntStateOf(0) }
     var showCommentSection by remember { mutableStateOf(false) }
+    var commentText by remember { mutableStateOf("") }
+    var selectedTags by remember { mutableStateOf<Set<String>>(emptySet()) }
     
     Column(
         modifier = modifier
@@ -460,7 +458,9 @@ fun FeedbackStrip(
                                 1.dp,
                                 if (isSelected) HelldeckColors.Yellow else HelldeckColors.LightGray
                             ),
-                            modifier = Modifier.clickable { onTagToggle(tag) }
+                            modifier = Modifier.clickable {
+                                selectedTags = if (isSelected) selectedTags - tag else selectedTags + tag
+                            }
                         ) {
                             Text(
                                 text = tag,
@@ -477,7 +477,7 @@ fun FeedbackStrip(
                 // Comment text field with improved styling
                 OutlinedTextField(
                     value = commentText,
-                    onValueChange = onCommentTextChange,
+                    onValueChange = { commentText = it },
                     modifier = Modifier.fillMaxWidth(),
                     placeholder = {
                         Text(
@@ -501,7 +501,12 @@ fun FeedbackStrip(
 
                 // Save button
                 Button(
-                    onClick = { onComment(commentText, selectedTags) },
+                    onClick = {
+                        onComment(commentText.trim(), selectedTags)
+                        commentText = ""
+                        selectedTags = emptySet()
+                        showCommentSection = false
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = HelldeckColors.Green

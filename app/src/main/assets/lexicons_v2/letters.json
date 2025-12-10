@@ -1,0 +1,32 @@
+{
+  "slot_type": "letters",
+  "entries": [
+    { "text": "A", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "B", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "C", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "D", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "E", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "F", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "G", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "H", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "J", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "K", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "L", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "M", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "N", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "O", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "P", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Q", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "R", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "S", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "T", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "U", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "V", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "W", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "X", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Y", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Z", "tags": ["letter"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" }
+  ]
+}
+

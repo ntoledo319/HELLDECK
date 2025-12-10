@@ -8,10 +8,15 @@ import com.helldeck.ui.HelldeckTheme
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.robolectric.annotation.Config
 
 /**
  * Comprehensive UI tests for BigZones component
  */
+@RunWith(AndroidJUnit4::class)
+@Config(sdk = [33])
 class BigZonesTest {
 
     @get:Rule

@@ -1,0 +1,45 @@
+[
+  {
+    "id": "fillin_blueprint_1",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 1.0,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Finish the line with the funniest punchline." }
+    ],
+    "constraints": { "max_words": 14, "distinct_slots": false },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "fillin_blueprint_2",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 0.9,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Finish the prompt: \"Nothing says chaos like " },
+      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
+      { "type": "text", "value": " and ___\"." }
+    ],
+    "constraints": { "max_words": 24, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  },
+  {
+    "id": "fillin_blueprint_3",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 0.8,
+    "spice_max": 1,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Complete the confession: \"I realized it was serious when " },
+      { "type": "slot", "name": "meme", "slot_type": "meme_item" },
+      { "type": "text", "value": " beat ___\"." }
+    ],
+    "constraints": { "max_words": 26, "distinct_slots": true },
+    "option_provider": { "type": "PLAYER_VOTE" }
+  }
+]

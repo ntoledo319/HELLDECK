@@ -1,0 +1,129 @@
+{
+  "slot_type": "social_reason",
+  "entries": [
+    {
+      "text": "their main love language is screenshots",
+      "tags": ["reason", "social"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they treat brunch RSVPs like fan fiction",
+      "tags": ["reason", "social"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their notes app apology is already drafted",
+      "tags": ["reason", "social"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they treat every minor inconvenience like content",
+      "tags": ["reason", "social"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Spotify history tells the whole story",
+      "tags": ["reason", "social"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they screenshot everything for the group chat",
+      "tags": ["reason", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their camera roll is 90% memes and receipts",
+      "tags": ["reason", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they know everyone's zodiac sign by heart",
+      "tags": ["reason", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their playlist names are all therapy sessions",
+      "tags": ["reason", "social"],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they live-tweet their own life",
+      "tags": ["reason", "social"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their bio is a cry for help disguised as a joke",
+      "tags": ["reason", "social"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they measure friendship in shared memes",
+      "tags": ["reason", "social"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+    ,
+    {"text": "they say 'no offense' then proceed to offend", "tags": ["reason","social"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "their slideshows have footnotes and sources", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "they keep receipts like an archivist", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "they said 'long story short' and kept talking", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "their calendar has 'drama' blocked out", "tags": ["reason","social"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "they bookmark arguments like favorite songs", "tags": ["reason","social"], "tone": "witty", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "they treat 'seen' as a power move", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "they RSVP 'maybe' to everything", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "their phone face down is policy", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "they narrate drama like a sportscaster", "tags": ["reason","social"], "tone": "witty", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "their compliments always sound like dares", "tags": ["reason","social"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
+    {"text": "they keep 'do not text' hours", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "their inside jokes need a syllabus", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "they treat calendar invites as threats", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
+    {"text": "they whisper 'spill it' on reflex", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"}
+  ]
+}

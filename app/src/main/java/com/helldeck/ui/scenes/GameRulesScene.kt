@@ -78,20 +78,38 @@ fun GameRulesScene(vm: HelldeckVm, onClose: () -> Unit) {
     }
 }
 
-private fun gameHowTo(g: com.helldeck.engine.GameSpec): String {
-    return when (g.interaction) {
-        com.helldeck.engine.Interaction.VOTE_AVATAR -> "Everyone votes the most fitting player. Majority wins; active gets points if applicable."
-        com.helldeck.engine.Interaction.AB_VOTE -> "Room votes A or B. Active may pre-pick to earn bonus if they read the room correctly."
-        com.helldeck.engine.Interaction.TRUE_FALSE -> "Speaker sets TRUTH/BLUFF. Room votes T/F. Points if majority matches the pre-pick."
-        com.helldeck.engine.Interaction.JUDGE_PICK -> "Judge selects the best option. Lock to score."
-        com.helldeck.engine.Interaction.SMASH_PASS -> "Room votes SMASH or PASS. Majority SMASH rewards the active player."
-        com.helldeck.engine.Interaction.TARGET_PICK -> "Pick one target player. Lock to continue; feedback still counts."
-        com.helldeck.engine.Interaction.REPLY_TONE -> "Choose reply vibe (Deadpan, Feral, etc.). Lock to continue; feedback after."
-        com.helldeck.engine.Interaction.TABOO_CLUE -> "Start timer, give clues without forbidden words. Lock when finished."
-        com.helldeck.engine.Interaction.ODD_REASON -> "Pick the misfit among three options and explain why."
-        com.helldeck.engine.Interaction.DUEL -> "Run the mini-duel; choose who won."
-        com.helldeck.engine.Interaction.SMUGGLE -> "Weave secret words into an alibi without detection; Lock when finished."
-        com.helldeck.engine.Interaction.PITCH -> "Pitch your idea. Lock when finished."
-        com.helldeck.engine.Interaction.SPEED_LIST -> "List items quickly until the timer ends. Lock when finished."
+private fun gameHowTo(g: com.helldeck.engine.GameSpec): String = gameHowToDetailed(g)
+
+private fun gameHowToDetailed(g: com.helldeck.engine.GameSpec): String {
+    return when (g.id) {
+        com.helldeck.engine.GameIds.ROAST_CONS -> "Read the roast prompt. Everyone taps the player that fits best. Majority target wins; active may score."
+        com.helldeck.engine.GameIds.CONFESS_CAP -> "Speaker pre-picks TRUTH or BLUFF. Room votes T/F; points if majority matches the pre-pick."
+        com.helldeck.engine.GameIds.POISON_PITCH -> "Would you rather A or B? Active pre-picks, then pitches. Room votes; bonus if majority matches."
+        com.helldeck.engine.GameIds.FILLIN -> "Finish the prompt with the funniest punchline. Judge selects the winner."
+        com.helldeck.engine.GameIds.RED_FLAG -> "Perk vs red flag. Room votes SMASH or PASS. Majority SMASH rewards."
+        com.helldeck.engine.GameIds.HOTSEAT_IMP -> "Answer as the target player; judge picks the most on-brand response."
+        com.helldeck.engine.GameIds.TEXT_TRAP -> "See an inbound text. Pick a reply vibe (Deadpan, Feral, etc.). Lock; feedback after."
+        com.helldeck.engine.GameIds.TABOO -> "Start timer. Give clues without forbidden words. Lock when finished."
+        com.helldeck.engine.GameIds.ODD_ONE -> "From three items, pick the misfit and explain why."
+        com.helldeck.engine.GameIds.TITLE_FIGHT -> "Run a quick duel, then choose who won to keep or steal the crown."
+        com.helldeck.engine.GameIds.ALIBI -> "Smuggle all secret words into an alibi without detection."
+        com.helldeck.engine.GameIds.HYPE_YIKE -> "Pitch a straight-faced product for a ridiculous problem. Lock when done."
+        com.helldeck.engine.GameIds.SCATTER -> "Given a category and letter, say three valid items quickly. No repeats."
+        com.helldeck.engine.GameIds.MAJORITY -> "Predict A/B before the room votes; earn if you read the room."
+        else -> when (g.interaction) {
+            com.helldeck.engine.Interaction.VOTE_AVATAR -> "Everyone votes the most fitting player. Majority wins."
+            com.helldeck.engine.Interaction.AB_VOTE -> "Room votes A or B; active may pre-pick."
+            com.helldeck.engine.Interaction.TRUE_FALSE -> "Speaker sets TRUTH/BLUFF; room votes T/F."
+            com.helldeck.engine.Interaction.JUDGE_PICK -> "Judge selects the best option."
+            com.helldeck.engine.Interaction.SMASH_PASS -> "Room votes SMASH or PASS."
+            com.helldeck.engine.Interaction.TARGET_PICK -> "Pick a target player and continue."
+            com.helldeck.engine.Interaction.REPLY_TONE -> "Choose a reply vibe."
+            com.helldeck.engine.Interaction.TABOO_CLUE -> "Give clues without forbidden words."
+            com.helldeck.engine.Interaction.ODD_REASON -> "Pick the misfit and explain."
+            com.helldeck.engine.Interaction.DUEL -> "Run a quick duel; choose who won."
+            com.helldeck.engine.Interaction.SMUGGLE -> "Smuggle secret words into a story."
+            com.helldeck.engine.Interaction.PITCH -> "Pitch your idea and lock."
+            com.helldeck.engine.Interaction.SPEED_LIST -> "List items quickly until time."
+        }
     }
 }

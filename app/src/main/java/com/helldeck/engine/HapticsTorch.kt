@@ -99,30 +99,8 @@ object HapticsTorch {
         durationMs: Long = 120,
         intensity: FlashIntensity = FlashIntensity.NORMAL
     ) {
-        if (cameraManager == null) initialize(context)
-
-        cameraManager?.let { cm ->
-            try {
-                val cameraId = cm.cameraIdList.firstOrNull { id ->
-                    cm.getCameraCharacteristics(id).get(android.hardware.camera2.CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
-                } ?: return
-
-                // Turn on torch
-                cm.setTorchMode(cameraId, true)
-
-                // Schedule turn off
-                mainHandler?.postDelayed({
-                    try {
-                        cm.setTorchMode(cameraId, false)
-                    } catch (e: Exception) {
-                        // Camera may be unavailable
-                    }
-                }, durationMs)
-
-            } catch (e: Exception) {
-                // Camera or torch not available
-            }
-        }
+        // Vibration-only build: torch feedback disabled (no-op)
+        return
     }
 
     /**
@@ -133,39 +111,8 @@ object HapticsTorch {
         pattern: List<FlashPattern>,
         repeatCount: Int = 0
     ) {
-        if (cameraManager == null) initialize(context)
-
-        cameraManager?.let { cm ->
-            try {
-                val cameraId = cm.cameraIdList.firstOrNull { id ->
-                    cm.getCameraCharacteristics(id).get(android.hardware.camera2.CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
-                } ?: return
-
-                var delay = 0L
-
-                pattern.forEach { flashPattern ->
-                    mainHandler?.postDelayed({
-                        try {
-                            cm.setTorchMode(cameraId, true)
-                            mainHandler?.postDelayed({
-                                try {
-                                    cm.setTorchMode(cameraId, false)
-                                } catch (e: Exception) {
-                                    // Camera may be unavailable
-                                }
-                            }, flashPattern.durationMs)
-                        } catch (e: Exception) {
-                            // Camera may be unavailable
-                        }
-                    }, delay)
-
-                    delay += flashPattern.durationMs + flashPattern.pauseMs
-                }
-
-            } catch (e: Exception) {
-                // Camera not available
-            }
-        }
+        // Vibration-only build: torch feedback disabled (no-op)
+        return
     }
 
     /**
@@ -180,15 +127,8 @@ object HapticsTorch {
      * Check if device has camera flash
      */
     fun hasFlash(context: Context): Boolean {
-        if (cameraManager == null) initialize(context)
-
-        return try {
-            cameraManager?.cameraIdList?.any { cameraId ->
-                cameraManager?.getCameraCharacteristics(cameraId)?.get(android.hardware.camera2.CameraCharacteristics.FLASH_INFO_AVAILABLE) == true
-            } == true
-        } catch (e: Exception) {
-            false
-        }
+        // Vibration-only build
+        return false
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.helldeck.engine
 
 /**
- * Game ID constants for all HELLDECK mini-games
+ * Game ID constants for all HELLDECK games
  */
 object GameIds {
     const val ROAST_CONS = "ROAST_CONSENSUS"
@@ -43,7 +43,7 @@ enum class Interaction(
     ODD_REASON("Explain why something is odd", true, false, false),
 
     // Duel interactions
-    DUEL("Mini-game duel between players", true, false, false),
+    DUEL("Quick duel between players", true, false, false),
     SMUGGLE("Hide words in a story", true, false, false),
     PITCH("Give a sales pitch", true, false, false),
     SPEED_LIST("Quickly list items", true, false, false);

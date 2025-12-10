@@ -1,0 +1,230 @@
+{
+  "slot_type": "taboo_topics",
+  "entries": [
+    {
+      "text": "weaponizing therapy language",
+      "tags": ["taboo", "modern", "toxic"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "faking a mental health diagnosis",
+      "tags": ["taboo", "lying", "problematic"],
+      "tone": "dark",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "joking about generational trauma",
+      "tags": ["taboo", "dark"],
+      "tone": "dark",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "casual conspiracy theories",
+      "tags": ["taboo", "weird"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "awkward political rants at dinner",
+      "tags": ["taboo", "politics", "social"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "performative activism",
+      "tags": ["taboo", "social", "fake"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "telling dead relative stories for sympathy",
+      "tags": ["taboo", "death", "manipulation"],
+      "tone": "dark",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making everything about astrology",
+      "tags": ["taboo", "modern", "annoying"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cancel culture speedrun attempts",
+      "tags": ["taboo", "modern", "drama"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "trauma-dumping on first dates",
+      "tags": ["taboo", "dating", "overshare"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "MLM recruitment disguised as friendship",
+      "tags": ["taboo", "scam", "fake"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making their religion everyone's problem",
+      "tags": ["taboo", "religion", "pushy"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "LinkedIn hustle culture posts",
+      "tags": ["taboo", "modern", "cringe"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crypto evangelism at parties",
+      "tags": ["taboo", "modern", "annoying"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "defending their problematic fave",
+      "tags": ["taboo", "modern", "stubborn"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unsolicited parenting advice",
+      "tags": ["taboo", "annoying", "judgmental"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fetishizing entire ethnicities",
+      "tags": ["taboo", "problematic", "gross"],
+      "tone": "dark",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "poverty cosplay on social media",
+      "tags": ["taboo", "fake", "performative"],
+      "tone": "dark",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "oversharing medical details",
+      "tags": ["taboo", "gross", "TMI"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making funeral selfies",
+      "tags": ["taboo", "death", "inappropriate"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "divorce party TMI",
+      "tags": ["taboo", "overshare", "messy"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bringing up salary unprompted",
+      "tags": ["taboo", "money", "awkward"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "rating people's bodies out loud",
+      "tags": ["taboo", "gross", "rude"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sharing graphic birth stories",
+      "tags": ["taboo", "gross", "overshare"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "detailed bathroom emergency play-by-plays",
+      "tags": ["taboo", "gross", "TMI"],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}
