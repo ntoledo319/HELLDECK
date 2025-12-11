@@ -1,22 +1,36 @@
 {
-  "version": 1,
+  "version": 2,
+  "_comment": "Banned words and phrases. Uses word-boundary matching to avoid false positives.",
   "tokens": [
-    "kill",
     "suicide",
     "murder",
-    "slur"
+    "rape",
+    "molest"
   ],
   "phrases": [
     "call the cops",
-    "commit a crime"
+    "commit a crime",
+    "kill yourself",
+    "end it all"
   ],
   "categories": {
-    "slurs": [],
-    "protected_classes": [],
+    "slurs": [
+      "_comment: Add specific slurs here as needed"
+    ],
+    "protected_classes": [
+      "_comment: Avoid targeting based on race, religion, disability, sexual orientation"
+    ],
     "minors": [
-      "child",
-      "children",
-      "minor"
+      "child abuse",
+      "children in danger",
+      "minor exploitation"
+    ],
+    "violence": [
+      "school shooting",
+      "mass shooting",
+      "terrorist attack"
     ]
-  }
+  },
+  "word_boundary_tokens": true,
+  "_note": "Word boundary matching means 'kill' won't match 'skills' or 'killer'"
 }

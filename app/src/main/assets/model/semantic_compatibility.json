@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "_comment": "Semantic compatibility matrix for slot type combinations",
+  "action_reason_pairs": {
+    "chaotic_plan": {
+      "compatible": ["receipts", "evidence_reason", "selfish_behaviors", "vices_and_indulgences", "social_reason"],
+      "incompatible": ["dating_green_flags", "perks_plus"]
+    },
+    "sketchy_action": {
+      "compatible": ["receipts", "social_reason", "vices_and_indulgences", "selfish_behaviors"],
+      "incompatible": ["dating_green_flags", "perks_plus"]
+    },
+    "sexual_innuendo": {
+      "compatible": ["awkward_contexts", "relationship_fails", "would_you_rather_costs"],
+      "incompatible": ["dating_green_flags", "perks_plus"]
+    },
+    "bodily_functions": {
+      "compatible": ["awkward_contexts", "gross_problem", "would_you_rather_costs"],
+      "incompatible": ["dating_green_flags", "perks_plus", "sexual_innuendo"]
+    },
+    "taboo_topics": {
+      "compatible": ["awkward_contexts", "social_reason", "evidence_reason"],
+      "incompatible": ["dating_green_flags", "perks_plus"]
+    },
+    "selfish_behaviors": {
+      "compatible": ["receipts", "evidence_reason", "social_reason"],
+      "incompatible": ["dating_green_flags"]
+    },
+    "vices_and_indulgences": {
+      "compatible": ["receipts", "evidence_reason", "awkward_contexts"],
+      "incompatible": ["dating_green_flags"]
+    },
+    "relationship_fails": {
+      "compatible": ["receipts", "evidence_reason", "awkward_contexts", "red_flag_traits"],
+      "incompatible": ["dating_green_flags"]
+    },
+    "dating_green_flags": {
+      "compatible": ["red_flag_traits", "red_flag_issue"],
+      "incompatible": ["sexual_innuendo", "bodily_functions", "taboo_topics", "selfish_behaviors", "vices_and_indulgences", "relationship_fails", "gross_problem"]
+    },
+    "red_flag_traits": {
+      "compatible": ["dating_green_flags", "relationship_fails"],
+      "incompatible": []
+    }
+  },
+  "forbidden_pairs": [
+    ["sexual_innuendo", "bodily_functions"],
+    ["bodily_functions", "dating_green_flags"],
+    ["taboo_topics", "dating_green_flags"],
+    ["gross_problem", "dating_green_flags"],
+    ["selfish_behaviors", "perks_plus"],
+    ["vices_and_indulgences", "perks_plus"]
+  ],
+  "domain_categories": {
+    "social": ["chaotic_plan", "sketchy_action", "social_reason", "evidence_reason", "receipts", "selfish_behaviors"],
+    "bodily": ["bodily_functions", "gross_problem"],
+    "sexual": ["sexual_innuendo", "relationship_fails"],
+    "wholesome": ["dating_green_flags", "perks_plus"],
+    "taboo": ["taboo_topics", "vices_and_indulgences"],
+    "awkward": ["awkward_contexts", "red_flag_traits", "red_flag_issue"]
+  }
+}

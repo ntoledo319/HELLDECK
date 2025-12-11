@@ -1,0 +1,455 @@
+{
+  "slot_type": "receipts",
+  "entries": [
+    {
+      "text": "they've done it three times this week",
+      "tags": ["evidence", "frequency"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "we all saw the screenshots",
+      "tags": ["evidence", "proof"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's literally their personality",
+      "tags": ["evidence", "character"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone's thinking it",
+      "tags": ["evidence", "consensus"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally just did it yesterday",
+      "tags": ["evidence", "recent"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Instagram proves it",
+      "tags": ["evidence", "social-media"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "we have a group chat about this",
+      "tags": ["evidence", "gossip"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's in their bio",
+      "tags": ["evidence", "self-proclaimed"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they won't stop talking about it",
+      "tags": ["evidence", "annoying"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their search history would confirm",
+      "tags": ["evidence", "creepy"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've been caught before",
+      "tags": ["evidence", "repeat-offender"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their go-to move",
+      "tags": ["evidence", "pattern"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally admitted it last week",
+      "tags": ["evidence", "confession"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Spotify wrapped exposed them",
+      "tags": ["evidence", "music"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "we've all seen their camera roll",
+      "tags": ["evidence", "photos"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their entire vibe",
+      "tags": ["evidence", "energy"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they do it every single time",
+      "tags": ["evidence", "consistent"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their ex warned us",
+      "tags": ["evidence", "testimony"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally bragged about it",
+      "tags": ["evidence", "proud"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their toxic trait",
+      "tags": ["evidence", "flaw"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've been doing it since high school",
+      "tags": ["evidence", "longterm"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their TikTok FYP is all about it",
+      "tags": ["evidence", "algorithm"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they can't help themselves",
+      "tags": ["evidence", "compulsion"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their brand at this point",
+      "tags": ["evidence", "identity"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally have a reputation",
+      "tags": ["evidence", "known"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Venmo history tells the story",
+      "tags": ["evidence", "financial"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've been subtweeted about it",
+      "tags": ["evidence", "called-out"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their comfort zone",
+      "tags": ["evidence", "habit"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally wrote a thread about it",
+      "tags": ["evidence", "documented"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their therapist probably knows",
+      "tags": ["evidence", "deep"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've made it their whole personality",
+      "tags": ["evidence", "obsessed"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's literally documented",
+      "tags": ["evidence", "proof"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they do it without thinking",
+      "tags": ["evidence", "automatic"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Pinterest board is suspicious",
+      "tags": ["evidence", "planning"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've been called out multiple times",
+      "tags": ["evidence", "notorious"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their signature move",
+      "tags": ["evidence", "trademark"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally can't stop",
+      "tags": ["evidence", "addiction"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Amazon orders prove it",
+      "tags": ["evidence", "shopping"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've been doing it for years",
+      "tags": ["evidence", "veteran"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their coping mechanism",
+      "tags": ["evidence", "psychological"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally have a playlist for it",
+      "tags": ["evidence", "prepared"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone's noticed",
+      "tags": ["evidence", "obvious"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've made TikToks about it",
+      "tags": ["evidence", "public"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their default setting",
+      "tags": ["evidence", "natural"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally have a system",
+      "tags": ["evidence", "organized"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Google calendar is full of it",
+      "tags": ["evidence", "scheduled"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they've been exposed",
+      "tags": ["evidence", "caught"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their comfort activity",
+      "tags": ["evidence", "routine"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they literally have receipts saved",
+      "tags": ["evidence", "prepared"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "it's their Roman Empire",
+      "tags": ["evidence", "obsession"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

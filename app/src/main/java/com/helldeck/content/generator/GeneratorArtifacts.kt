@@ -80,7 +80,11 @@ class GeneratorArtifacts(assetManager: AssetManager) {
                 tonePreferenceLow = (yaml["tone_preference_low"] as? List<*>)?.mapNotNull { it as? String } ?: emptyList(),
                 tonePreferenceHigh = (yaml["tone_preference_high"] as? List<*>)?.mapNotNull { it as? String } ?: emptyList(),
                 humorThreshold = (yaml["humor_threshold"] as? Number)?.toDouble() ?: 0.35,
-                enableHumorScoring = (yaml["enable_humor_scoring"] as? Boolean) ?: true
+                enableHumorScoring = (yaml["enable_humor_scoring"] as? Boolean) ?: true,
+                enableSemanticValidation = (yaml["enable_semantic_validation"] as? Boolean) ?: true,
+                semanticThreshold = (yaml["semantic_threshold"] as? Number)?.toDouble() ?: 0.50,
+                spiceRampPerRound = (yaml["spice_ramp_per_round"] as? Number)?.toDouble() ?: 0.0,
+                spiceRampCap = (yaml["spice_ramp_cap"] as? Number)?.toDouble() ?: 5.0
             )
         }.getOrElse {
             GeneratorRules()
@@ -111,13 +115,17 @@ data class GeneratorRules(
     val maxRepetitionRatio: Double = 0.4,
     val minWordCount: Int = 5,
     val maxWordCount: Int = 30,
-    val softRepetitionMargin: Double = 0.2, // proportion below maxRepetitionRatio to mark as high
-    val nearWordLimitMargin: Double = 0.1,  // proportion of maxWordCount to consider near-limit
+    val softRepetitionMargin: Double = 0.2,
+    val nearWordLimitMargin: Double = 0.1,
     val attemptsByGame: Map<String, Int> = emptyMap(),
     val tonePreferenceLow: List<String> = emptyList(),
     val tonePreferenceHigh: List<String> = emptyList(),
     val humorThreshold: Double = 0.35,
-    val enableHumorScoring: Boolean = true
+    val enableHumorScoring: Boolean = true,
+    val enableSemanticValidation: Boolean = true,
+    val semanticThreshold: Double = 0.50,
+    val spiceRampPerRound: Double = 0.0,
+    val spiceRampCap: Double = 5.0
 )
 
 @Serializable

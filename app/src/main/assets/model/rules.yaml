@@ -1,28 +1,33 @@
 version: 1
-coherence_threshold: 0.10
-max_attempts: 4
-max_repetition_ratio: 0.35
-min_word_count: 5
-max_word_count: 32
+coherence_threshold: 0.25
+max_attempts: 3
+max_repetition_ratio: 0.25
+min_word_count: 6
+max_word_count: 20
 spice_locality_cap: 4
-soft_repetition_margin: 0.2       # ratio under max_repetition to flag soft repeat
-near_word_limit_margin: 0.1       # within 10% of max words is 'near'
-humor_threshold: 0.40             # minimum humor score to pass (0.0-1.0)
-enable_humor_scoring: true        # toggle humor quality evaluation
+soft_repetition_margin: 0.2
+near_word_limit_margin: 0.1
+humor_threshold: 0.55
+enable_humor_scoring: true
+enable_semantic_validation: true
+semantic_threshold: 0.50
+spice_ramp_per_round: 0.05
+spice_ramp_cap: 5.0
 attempts_by_game:
-  POISON_PITCH: 9
+  POISON_PITCH: 5
   ODD_ONE_OUT: 4
-  RED_FLAG_RALLY: 7
-  ROAST_CONSENSUS: 7
+  RED_FLAG_RALLY: 5
+  ROAST_CONSENSUS: 5
+  TEXT_THREAD_TRAP: 4
 tone_preference_low:
-  - wild
-  - witty
-  - dry
   - playful
   - neutral
+  - witty
+  - dry
+  - wild
 tone_preference_high:
   - wild
+  - raunchy
   - witty
   - dry
   - playful
-  - neutral

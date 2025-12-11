@@ -14,33 +14,44 @@ class HumorScorer(
 ) {
     
     data class HumorScore(
-        val absurdity: Double,           // 0.0-1.0: Unexpectedness of combinations
-        val shockValue: Double,          // 0.0-1.0: Taboo element presence
-        val relatability: Double,        // 0.0-1.0: Common social situations
-        val cringeFactor: Double,        // 0.0-1.0: Awkward scenarios
-        val benignViolation: Double,     // 0.0-1.0: Boundary-crossing without malice
-        val overallScore: Double         // Weighted composite
+        val absurdity: Double,
+        val shockValue: Double,
+        val relatability: Double,
+        val cringeFactor: Double,
+        val benignViolation: Double,
+        val surprise: Double,
+        val timing: Double,
+        val specificity: Double,
+        val overallScore: Double
     ) {
         companion object {
-            // Weights for overall score calculation
-            private const val ABSURDITY_WEIGHT = 0.25
-            private const val SHOCK_WEIGHT = 0.20
-            private const val RELATABLE_WEIGHT = 0.25
-            private const val CRINGE_WEIGHT = 0.15
+            private const val ABSURDITY_WEIGHT = 0.20
+            private const val SHOCK_WEIGHT = 0.15
+            private const val RELATABLE_WEIGHT = 0.20
+            private const val CRINGE_WEIGHT = 0.10
             private const val BENIGN_VIOLATION_WEIGHT = 0.15
+            private const val SURPRISE_WEIGHT = 0.10
+            private const val TIMING_WEIGHT = 0.05
+            private const val SPECIFICITY_WEIGHT = 0.05
             
             fun calculate(
                 absurdity: Double,
                 shock: Double,
                 relatable: Double,
                 cringe: Double,
-                benignViolation: Double
+                benignViolation: Double,
+                surprise: Double,
+                timing: Double,
+                specificity: Double
             ): HumorScore {
                 val overall = (absurdity * ABSURDITY_WEIGHT) +
                              (shock * SHOCK_WEIGHT) +
                              (relatable * RELATABLE_WEIGHT) +
                              (cringe * CRINGE_WEIGHT) +
-                             (benignViolation * BENIGN_VIOLATION_WEIGHT)
+                             (benignViolation * BENIGN_VIOLATION_WEIGHT) +
+                             (surprise * SURPRISE_WEIGHT) +
+                             (timing * TIMING_WEIGHT) +
+                             (specificity * SPECIFICITY_WEIGHT)
                 
                 return HumorScore(
                     absurdity = absurdity,
@@ -48,6 +59,9 @@ class HumorScorer(
                     relatability = relatable,
                     cringeFactor = cringe,
                     benignViolation = benignViolation,
+                    surprise = surprise,
+                    timing = timing,
+                    specificity = specificity,
                     overallScore = overall.coerceIn(0.0, 1.0)
                 )
             }
@@ -57,7 +71,6 @@ class HumorScorer(
     /**
      * Evaluate humor quality of a filled card
      */
-    @Suppress("UNUSED_PARAMETER")
     fun evaluate(
         text: String,
         blueprint: TemplateBlueprint,
@@ -68,8 +81,14 @@ class HumorScorer(
         val relatable = calculateRelatability(slots, blueprint)
         val cringe = calculateCringe(slots)
         val benignViolation = calculateBenignViolation(slots, shock)
+        val surprise = calculateSurprise(slots, text)
+        val timing = calculateTiming(text, slots, blueprint)
+        val specificity = calculateSpecificity(slots)
         
-        return HumorScore.calculate(absurdity, shock, relatable, cringe, benignViolation)
+        return HumorScore.calculate(
+            absurdity, shock, relatable, cringe, benignViolation,
+            surprise, timing, specificity
+        )
     }
     
     /**
@@ -108,6 +127,7 @@ class HumorScorer(
     
     /**
      * Shock Value: Measures taboo element presence and spice levels
+     * Updated to use max spice with decay instead of average
      */
     private fun calculateShockValue(slots: Map<String, SlotData>, blueprint: TemplateBlueprint): Double {
         var shockScore = 0.0
@@ -116,12 +136,19 @@ class HumorScorer(
         val tabooCount = slots.values.count { it.slotType in TABOO_TYPES }
         shockScore += (tabooCount * 0.25)
         
-        // High spice entries increase shock
-        val avgSpice = slots.values.map { it.spice }.average().let { if (it.isFinite()) it else 0.0 }
-        shockScore += (avgSpice / 5.0) * 0.5
+        // Use max spice with decay, not average (one extreme element matters more)
+        val spices = slots.values.map { it.spice }.sortedDescending()
+        val maxSpice = spices.firstOrNull() ?: 0
+        shockScore += (maxSpice / 5.0) * 0.4
+        
+        // Add decayed contribution from other spicy elements
+        val spiceDecay = spices.drop(1).mapIndexed { i, s ->
+            s * kotlin.math.exp(-0.3 * i)
+        }.sum()
+        shockScore += (spiceDecay / (5.0 * slots.size.coerceAtLeast(1))) * 0.2
         
         // Blueprint spice max indicates intended shock level
-        shockScore += (blueprint.spice_max / 5.0) * 0.25
+        shockScore += (blueprint.spice_max / 5.0) * 0.15
         
         return shockScore.coerceIn(0.0, 1.0)
     }
@@ -175,28 +202,130 @@ class HumorScorer(
     /**
      * Benign Violation: Boundary-crossing humor that's taboo but playful
      * McGraw's Benign Violation Theory: humor occurs when something seems wrong but safe
+     * Updated to require playful framing for high scores
      */
-    @Suppress("UNUSED_PARAMETER")
     private fun calculateBenignViolation(slots: Map<String, SlotData>, shockValue: Double): Double {
         // Need taboo elements (violation)
         val hasTaboo = slots.values.any { it.slotType in TABOO_TYPES }
-        if (!hasTaboo) return 0.2
+        if (!hasTaboo) return 0.2 // No violation
         
-        // But not too extreme (needs benign framing)
+        // Check for playful tone markers (benign framing)
+        val hasPlayful = slots.values.any { it.tone in PLAYFUL_TONES }
+        
+        // Calculate average spice
         val avgSpice = slots.values.map { it.spice }.average()
         
-        // Sweet spot: spice 2-4 with taboo content = benign violation
+        // Benign violation requires BOTH taboo content AND playful framing
         val benignScore = when {
-            avgSpice < 2.0 -> 0.3 // Too tame
-            avgSpice in 2.0..4.0 -> 0.8 // Perfect balance
-            else -> 0.4 // Too extreme, less funny
+            !hasPlayful -> 0.3 // Violation without benign framing (dark, not funny)
+            hasTaboo && hasPlayful && avgSpice in 2.0..4.0 -> 0.9 // Perfect benign violation
+            hasTaboo && hasPlayful && avgSpice < 2.0 -> 0.5 // Too tame
+            hasTaboo && hasPlayful -> 0.6 // Too extreme but has playful framing
+            else -> 0.4
         }
         
-        // Check for playful tone markers
-        val hasPlayful = slots.values.any { it.tone in PLAYFUL_TONES }
-        val bonus = if (hasPlayful) 0.2 else 0.0
+        // Bonus for mixing taboo with innocent (classic benign violation)
+        val hasInnocent = slots.values.any { it.slotType in INNOCENT_TYPES }
+        val mixBonus = if (hasTaboo && hasInnocent && hasPlayful) 0.1 else 0.0
         
-        return (benignScore + bonus).coerceIn(0.0, 1.0)
+        return (benignScore + mixBonus).coerceIn(0.0, 1.0)
+    }
+    
+    /**
+     * Surprise Metric: Measures novelty and unexpectedness of combinations.
+     */
+    private fun calculateSurprise(slots: Map<String, SlotData>, text: String): Double {
+        var surpriseScore = 0.5 // Base score
+        
+        // Check for unexpected word combinations
+        val words = text.lowercase().split(Regex("\\s+"))
+        val hasUnexpectedPair = words.zipWithNext().any { (w1, w2) ->
+            // Simple heuristic: words from different semantic domains
+            val isUnexpected = (w1.length > 4 && w2.length > 4) && 
+                              !w1.startsWith(w2.take(3)) && 
+                              !w2.startsWith(w1.take(3))
+            isUnexpected
+        }
+        
+        if (hasUnexpectedPair) surpriseScore += 0.2
+        
+        // Bonus for mixing incompatible slot types (controlled absurdity)
+        val slotTypes = slots.values.map { it.slotType }.distinct()
+        if (slotTypes.size >= 3) surpriseScore += 0.2
+        
+        // Bonus for specific, concrete details (more surprising than vague)
+        val hasNumbers = text.contains(Regex("\\d+"))
+        val hasProperNoun = text.split(" ").any { it.firstOrNull()?.isUpperCase() == true }
+        if (hasNumbers || hasProperNoun) surpriseScore += 0.1
+        
+        return surpriseScore.coerceIn(0.0, 1.0)
+    }
+    
+    /**
+     * Timing Metric: Validates punchline position and comedic pacing.
+     */
+    private fun calculateTiming(text: String, slots: Map<String, SlotData>, blueprint: TemplateBlueprint): Double {
+        val words = text.split(Regex("\\s+"))
+        if (words.size < 5) return 0.5 // Too short to evaluate timing
+        
+        var timingScore = 0.5
+        
+        // Check if punchline is at the end (last 30% of text)
+        val lastSlotText = slots.values.lastOrNull()?.text
+        if (lastSlotText != null) {
+            val punchlinePosition = text.lastIndexOf(lastSlotText)
+            val relativePosition = punchlinePosition.toDouble() / text.length
+            
+            if (relativePosition > 0.7) {
+                timingScore = 1.0 // Perfect punchline placement
+            } else if (relativePosition > 0.5) {
+                timingScore = 0.7 // Acceptable placement
+            } else {
+                timingScore = 0.3 // Punchline too early
+            }
+        }
+        
+        // Bonus for ending with punctuation that adds emphasis
+        if (text.endsWith("!") || text.endsWith("?")) {
+            timingScore += 0.1
+        }
+        
+        return timingScore.coerceIn(0.0, 1.0)
+    }
+    
+    /**
+     * Specificity Metric: Rewards concrete details over vague descriptions.
+     */
+    private fun calculateSpecificity(slots: Map<String, SlotData>): Double {
+        val specificityScores = slots.values.map { slot ->
+            val text = slot.text
+            var score = 0.5
+            
+            // Multi-word entries are more specific
+            val wordCount = text.split(Regex("\\s+")).size
+            if (wordCount > 3) score += 0.2
+            else if (wordCount > 1) score += 0.1
+            
+            // Numbers add specificity
+            if (text.contains(Regex("\\d+"))) score += 0.2
+            
+            // Proper nouns are specific
+            if (text.firstOrNull()?.isUpperCase() == true) score += 0.1
+            
+            // Possessives and contractions indicate specificity
+            if (text.contains("'")) score += 0.1
+            
+            // Longer text tends to be more specific
+            if (text.length > 30) score += 0.1
+            
+            score.coerceIn(0.0, 1.0)
+        }
+        
+        return if (specificityScores.isNotEmpty()) {
+            specificityScores.average()
+        } else {
+            0.5
+        }
     }
     
     data class SlotData(
@@ -219,7 +348,7 @@ class HumorScorer(
         
         private val RELATABLE_TYPES = setOf(
             "awkward_contexts", "selfish_behaviors", "relationship_fails",
-            "internet_slang", "meme_references", "social_reason"
+            "internet_slang", "meme_references", "social_reason", "receipts"
         )
         
         private val EVERYDAY_TYPES = setOf(

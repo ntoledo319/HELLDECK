@@ -108,6 +108,348 @@
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
+    },
+    {
+      "text": "like their ex's photos from 2015",
+      "tags": ["action", "messy"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "drunk-text their boss",
+      "tags": ["action", "reckless"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a fight in the comments section",
+      "tags": ["action", "chaos"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "slide into DMs with a pickup line from 2012",
+      "tags": ["action", "cringe"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "subtweet someone sitting next to them",
+      "tags": ["action", "petty"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "block someone then immediately unblock them",
+      "tags": ["action", "messy"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fake-laugh at their own jokes",
+      "tags": ["action", "cringe"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "correct someone's grammar in a flirty text",
+      "tags": ["action", "petty"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "send a risky text to the wrong person",
+      "tags": ["action", "reckless"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "air their dirty laundry on social media",
+      "tags": ["action", "messy"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pretend they didn't see someone waving at them",
+      "tags": ["action", "awkward"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unmatch someone mid-conversation",
+      "tags": ["action", "petty"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stalk their crush's entire Instagram history",
+      "tags": ["action", "creepy"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pretend to be asleep to avoid conversation",
+      "tags": ["action", "avoidant"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fake an emergency to leave a bad date",
+      "tags": ["action", "escape"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "check their phone during a serious conversation",
+      "tags": ["action", "rude"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "screenshot a private conversation",
+      "tags": ["action", "betrayal"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pretend they never got the message",
+      "tags": ["action", "avoidant"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cancel plans last minute with a fake excuse",
+      "tags": ["action", "flaky"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "one-up everyone's stories",
+      "tags": ["action", "annoying"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "talk loudly on the phone in public",
+      "tags": ["action", "rude"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "show up uninvited to a party",
+      "tags": ["action", "bold"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "steal someone's joke and tell it louder",
+      "tags": ["action", "petty"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pretend to know a celebrity they've never met",
+      "tags": ["action", "liar"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "use someone else's Netflix without asking",
+      "tags": ["action", "moocher"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leave a party without saying goodbye",
+      "tags": ["action", "irish-exit"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bring up an ex in every conversation",
+      "tags": ["action", "annoying"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make everything about their zodiac sign",
+      "tags": ["action", "annoying"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "overshare medical details at dinner",
+      "tags": ["action", "gross"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "play devil's advocate for no reason",
+      "tags": ["action", "annoying"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "humble-brag about their problems",
+      "tags": ["action", "annoying"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "send voice messages instead of texting",
+      "tags": ["action", "annoying"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "spoil a movie they haven't seen yet",
+      "tags": ["action", "rude"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "take credit for someone else's idea",
+      "tags": ["action", "shady"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a sentence with 'actually'",
+      "tags": ["action", "annoying"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "chew with their mouth open",
+      "tags": ["action", "gross"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "interrupt people to finish their sentences",
+      "tags": ["action", "rude"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make plans they have no intention of keeping",
+      "tags": ["action", "flaky"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
     }
   ]
 }
