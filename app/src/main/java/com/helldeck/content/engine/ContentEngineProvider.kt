@@ -100,7 +100,10 @@ object ContentEngineProvider {
             val artifacts = GeneratorArtifacts(context.assets)
             val goldBank = GoldBank(context.assets)
             val banlist = CardLabBanlist.load(context)
-            CardGeneratorV3(blueprintRepo, lexiconRepo, artifacts, goldBank, banlist)
+            val semanticValidator = runCatching {
+                com.helldeck.content.validation.SemanticValidator(context.assets)
+            }.getOrNull()
+            CardGeneratorV3(blueprintRepo, lexiconRepo, artifacts, goldBank, banlist, semanticValidator)
         }.getOrElse {
             Logger.w("Card generator V3 unavailable: ${it.message}")
             null

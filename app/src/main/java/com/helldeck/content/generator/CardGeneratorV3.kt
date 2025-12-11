@@ -18,7 +18,8 @@ class CardGeneratorV3(
     private val lexiconRepository: LexiconRepositoryV2,
     private val artifacts: GeneratorArtifacts,
     private val goldBank: GoldBank,
-    private var banlist: CardLabBanlist? = null
+    private var banlist: CardLabBanlist? = null,
+    private val semanticValidator: com.helldeck.content.validation.SemanticValidator? = null
 ) {
     // Performance optimization: reuse regex objects and pre-compute lowercase lists
     private val whitespaceRegex = Regex("\\s+")
@@ -112,6 +113,21 @@ class CardGeneratorV3(
         val sessionCards = recentCards[sessionKey]
         if (sessionCards?.contains(text) == true) {
             return null // Reject duplicate card
+        }
+        
+        // Semantic validation (prevents nonsensical combinations)
+        if (artifacts.rules.enableSemanticValidation && semanticValidator != null) {
+            val semanticSlots = slots.mapValues { (_, fill) ->
+                com.helldeck.content.validation.SlotFill(
+                    slotType = fill.slotType,
+                    originalText = fill.originalText,
+                    displayText = fill.displayText
+                )
+            }
+            val semanticScore = semanticValidator.validateCoherence(semanticSlots)
+            if (semanticScore < artifacts.rules.semanticThreshold) {
+                return null // Reject semantically incoherent card
+            }
         }
         
         val gate = evaluateCoherence(text, blueprint, slots)
