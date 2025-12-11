@@ -1,48 +1,894 @@
 {
   "slot_type": "meme_item",
   "entries": [
-    { "text": "distracted boyfriend", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "woman yelling at cat", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "this is fine dog", "tags": ["meme"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Hide the Pain Harold", "tags": ["meme"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Drake hotline bling", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "expanding brain", "tags": ["meme"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "surprised Pikachu", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Bernie Sanders mittens", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "two buttons dilemma", "tags": ["meme"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "stonks guy", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Roll Safe thinking", "tags": ["meme"], "tone": "witty", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "success kid", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "evil Kermit", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "galaxy brain", "tags": ["meme"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "blinking white guy", "tags": ["meme"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "mocking SpongeBob", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "change my mind", "tags": ["meme"], "tone": "neutral", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "disaster girl", "tags": ["meme"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "wojak crying", "tags": ["meme"], "tone": "sad", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Chad yes", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "slaps roof of car", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "they're the same picture", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "trade offer", "tags": ["meme"], "tone": "witty", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "left exit 12", "tags": ["meme"], "tone": "neutral", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "American Chopper argument", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "monkey puppet", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "running away balloon", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "is this a pigeon", "tags": ["meme"], "tone": "witty", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "doge", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "cheems", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Y U NO guy", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "one does not simply", "tags": ["meme"], "tone": "neutral", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Batman slapping Robin", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "NPC Wojak", "tags": ["meme"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "brain size increases", "tags": ["meme"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Bugs Bunny no", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Leonardo DiCaprio pointing", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "always has been astronaut", "tags": ["meme"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Gru's plan", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "girl explaining to guy", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Pepe the Frog", "tags": ["meme"], "tone": "neutral", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "salt bae", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Spider-Man pointing", "tags": ["meme"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" }
+    {
+      "text": "distracted boyfriend",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "woman yelling at cat",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "this is fine dog",
+      "tags": [
+        "meme"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Hide the Pain Harold",
+      "tags": [
+        "meme"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Drake hotline bling",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "expanding brain",
+      "tags": [
+        "meme"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "surprised Pikachu",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Bernie Sanders mittens",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "two buttons dilemma",
+      "tags": [
+        "meme"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stonks guy",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Roll Safe thinking",
+      "tags": [
+        "meme"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "success kid",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "evil Kermit",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "galaxy brain",
+      "tags": [
+        "meme"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "blinking white guy",
+      "tags": [
+        "meme"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mocking SpongeBob",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "change my mind",
+      "tags": [
+        "meme"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "disaster girl",
+      "tags": [
+        "meme"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "wojak crying",
+      "tags": [
+        "meme"
+      ],
+      "tone": "sad",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Chad yes",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "slaps roof of car",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're the same picture",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "trade offer",
+      "tags": [
+        "meme"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "left exit 12",
+      "tags": [
+        "meme"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "American Chopper argument",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "monkey puppet",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "running away balloon",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "is this a pigeon",
+      "tags": [
+        "meme"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "doge",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cheems",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Y U NO guy",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "one does not simply",
+      "tags": [
+        "meme"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Batman slapping Robin",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "NPC Wojak",
+      "tags": [
+        "meme"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "brain size increases",
+      "tags": [
+        "meme"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Bugs Bunny no",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Leonardo DiCaprio pointing",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always has been astronaut",
+      "tags": [
+        "meme"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Gru's plan",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "girl explaining to guy",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Pepe the Frog",
+      "tags": [
+        "meme"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "salt bae",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Spider-Man pointing",
+      "tags": [
+        "meme"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the friend who says 'let him cook'",
+      "tags": [
+        "meme",
+        "friend",
+        "supportive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one with main character energy",
+      "tags": [
+        "meme",
+        "personality",
+        "confident"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the chronically online one",
+      "tags": [
+        "meme",
+        "personality",
+        "internet"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the delulu one",
+      "tags": [
+        "meme",
+        "personality",
+        "delusional"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one with W rizz",
+      "tags": [
+        "meme",
+        "personality",
+        "charismatic"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one with L rizz",
+      "tags": [
+        "meme",
+        "personality",
+        "awkward"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the NPC friend",
+      "tags": [
+        "meme",
+        "personality",
+        "boring"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who's always in their villain era",
+      "tags": [
+        "meme",
+        "mood",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one in their healing era",
+      "tags": [
+        "meme",
+        "mood",
+        "growth"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one in their flop era",
+      "tags": [
+        "meme",
+        "mood",
+        "struggling"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the golden retriever friend",
+      "tags": [
+        "meme",
+        "personality",
+        "happy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the black cat friend",
+      "tags": [
+        "meme",
+        "personality",
+        "mysterious"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the himbo of the group",
+      "tags": [
+        "meme",
+        "personality",
+        "lovable"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the bimbo of the group",
+      "tags": [
+        "meme",
+        "personality",
+        "lovable"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the theater kid",
+      "tags": [
+        "meme",
+        "personality",
+        "dramatic"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the band kid",
+      "tags": [
+        "meme",
+        "personality",
+        "quirky"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the horse girl",
+      "tags": [
+        "meme",
+        "personality",
+        "unique"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one with goblin mode activated",
+      "tags": [
+        "meme",
+        "mood",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the pick me friend",
+      "tags": [
+        "meme",
+        "personality",
+        "annoying"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who's always down bad",
+      "tags": [
+        "meme",
+        "mood",
+        "desperate"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the simp",
+      "tags": [
+        "meme",
+        "personality",
+        "desperate"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who needs to touch grass",
+      "tags": [
+        "meme",
+        "personality",
+        "online"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who's mid at best",
+      "tags": [
+        "meme",
+        "personality",
+        "mediocre"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who's bussin",
+      "tags": [
+        "meme",
+        "personality",
+        "cool"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who understood the assignment",
+      "tags": [
+        "meme",
+        "personality",
+        "successful"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who ate and left no crumbs",
+      "tags": [
+        "meme",
+        "personality",
+        "successful"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one living rent free in everyone's head",
+      "tags": [
+        "meme",
+        "personality",
+        "memorable"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the unhinged one",
+      "tags": [
+        "meme",
+        "personality",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the feral one",
+      "tags": [
+        "meme",
+        "personality",
+        "wild"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one with no thoughts head empty",
+      "tags": [
+        "meme",
+        "personality",
+        "airhead"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one with one brain cell",
+      "tags": [
+        "meme",
+        "personality",
+        "dumb"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the smooth brain",
+      "tags": [
+        "meme",
+        "personality",
+        "dumb"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }

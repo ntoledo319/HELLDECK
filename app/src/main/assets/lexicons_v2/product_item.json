@@ -1,47 +1,896 @@
 {
   "slot_type": "product_item",
   "entries": [
-    { "text": "lost sock tracker", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "queue jumper pass", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "a" },
-    { "text": "meeting translator for vague emails", "tags": ["product"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "ghost unfollower for social media", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "procrastination alarm that actually motivates", "tags": ["product"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "automatic reply generator for awkward texts", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "passive aggressive note printer", "tags": ["product"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "excuse generator for canceled plans", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "eavesdrop blocker for open offices", "tags": ["product"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "small talk escape button", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "typo fixer for sent messages", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "midnight snack silencer", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "cringe memory eraser", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "awkward silence filler", "tags": ["product"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "group chat mute scheduler", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "automated birthday reminder with gift suggestions", "tags": ["product"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "laundry reminder that actually works", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "roommate chore enforcer", "tags": ["product"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "spam caller auto-roaster", "tags": ["product"], "tone": "playful", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "earphone untangler", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "WiFi password sharer for guests", "tags": ["product"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "automatic door holder for delivery drivers", "tags": ["product"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "grocery list sync across roommates", "tags": ["product"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "playlist mood matcher", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "meme recommendation engine", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "a" },
-    { "text": "autocomplete for real-life conversations", "tags": ["product"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "friend drama mediator bot", "tags": ["product"], "tone": "playful", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "hangover prevention pill", "tags": ["product"], "tone": "neutral", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "relationship red flag detector", "tags": ["product"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "bad haircut reverser", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "outfit confidence booster", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "food delivery tracker with ETA accuracy", "tags": ["product"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "social battery level indicator", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "parking spot finder for crowded lots", "tags": ["product"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "second-hand embarrassment blocker", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "auto-reply for read receipts", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "weekend plan optimizer", "tags": ["product"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "impulse purchase blocker", "tags": ["product"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "notification noise customizer by sender", "tags": ["product"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "dream recorder and playback device", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" },
-    { "text": "argument winner script generator", "tags": ["product"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "an" },
-    { "text": "compliment generator for awkward moments", "tags": ["product"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a" }
+    {
+      "text": "lost sock tracker",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "queue jumper pass",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "meeting translator for vague emails",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "ghost unfollower for social media",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "procrastination alarm that actually motivates",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "automatic reply generator for awkward texts",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "passive aggressive note printer",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "excuse generator for canceled plans",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "eavesdrop blocker for open offices",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "small talk escape button",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "typo fixer for sent messages",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "midnight snack silencer",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "cringe memory eraser",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "awkward silence filler",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "group chat mute scheduler",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "automated birthday reminder with gift suggestions",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "laundry reminder that actually works",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "roommate chore enforcer",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "spam caller auto-roaster",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "earphone untangler",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "WiFi password sharer for guests",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "automatic door holder for delivery drivers",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "grocery list sync across roommates",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "playlist mood matcher",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "meme recommendation engine",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "autocomplete for real-life conversations",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "friend drama mediator bot",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "hangover prevention pill",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "relationship red flag detector",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "bad haircut reverser",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "outfit confidence booster",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "food delivery tracker with ETA accuracy",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "social battery level indicator",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "parking spot finder for crowded lots",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "second-hand embarrassment blocker",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "auto-reply for read receipts",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "weekend plan optimizer",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "impulse purchase blocker",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "notification noise customizer by sender",
+      "tags": [
+        "product"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "dream recorder and playback device",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "argument winner script generator",
+      "tags": [
+        "product"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "compliment generator for awkward moments",
+      "tags": [
+        "product"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "iPhone",
+      "tags": [
+        "product",
+        "tech",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "AirPods",
+      "tags": [
+        "product",
+        "tech",
+        "trendy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Apple Watch",
+      "tags": [
+        "product",
+        "tech",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "MacBook",
+      "tags": [
+        "product",
+        "tech",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "iPad",
+      "tags": [
+        "product",
+        "tech",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "PlayStation 5",
+      "tags": [
+        "product",
+        "gaming",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Xbox",
+      "tags": [
+        "product",
+        "gaming",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Nintendo Switch",
+      "tags": [
+        "product",
+        "gaming",
+        "popular"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Tesla",
+      "tags": [
+        "product",
+        "car",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Rolex",
+      "tags": [
+        "product",
+        "luxury",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Louis Vuitton bag",
+      "tags": [
+        "product",
+        "luxury",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Gucci belt",
+      "tags": [
+        "product",
+        "luxury",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Balenciaga shoes",
+      "tags": [
+        "product",
+        "luxury",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Yeezy sneakers",
+      "tags": [
+        "product",
+        "fashion",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Jordan 1s",
+      "tags": [
+        "product",
+        "fashion",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Crocs",
+      "tags": [
+        "product",
+        "fashion",
+        "controversial"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Birkenstock sandals",
+      "tags": [
+        "product",
+        "fashion",
+        "trendy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Ugg boots",
+      "tags": [
+        "product",
+        "fashion",
+        "basic"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Canada Goose jacket",
+      "tags": [
+        "product",
+        "fashion",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Patagonia vest",
+      "tags": [
+        "product",
+        "fashion",
+        "basic"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Stanley cup",
+      "tags": [
+        "product",
+        "lifestyle",
+        "trendy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Hydro Flask",
+      "tags": [
+        "product",
+        "lifestyle",
+        "trendy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Dyson Airwrap",
+      "tags": [
+        "product",
+        "beauty",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Olaplex",
+      "tags": [
+        "product",
+        "beauty",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Drunk Elephant skincare",
+      "tags": [
+        "product",
+        "beauty",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "La Mer cream",
+      "tags": [
+        "product",
+        "beauty",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Peloton bike",
+      "tags": [
+        "product",
+        "fitness",
+        "expensive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Lululemon leggings",
+      "tags": [
+        "product",
+        "fitness",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Alo Yoga set",
+      "tags": [
+        "product",
+        "fitness",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Theragun",
+      "tags": [
+        "product",
+        "fitness",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Vitamix blender",
+      "tags": [
+        "product",
+        "kitchen",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Le Creuset pot",
+      "tags": [
+        "product",
+        "kitchen",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Nespresso machine",
+      "tags": [
+        "product",
+        "kitchen",
+        "expensive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }

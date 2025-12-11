@@ -3,7 +3,10 @@
   "entries": [
     {
       "text": "their main love language is screenshots",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 1,
@@ -12,7 +15,10 @@
     },
     {
       "text": "they treat brunch RSVPs like fan fiction",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -21,7 +27,10 @@
     },
     {
       "text": "their notes app apology is already drafted",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -30,7 +39,10 @@
     },
     {
       "text": "they treat every minor inconvenience like content",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 2,
@@ -39,7 +51,10 @@
     },
     {
       "text": "their Spotify history tells the whole story",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 2,
@@ -48,7 +63,10 @@
     },
     {
       "text": "they screenshot everything for the group chat",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -57,7 +75,10 @@
     },
     {
       "text": "their camera roll is 90% memes and receipts",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -66,7 +87,10 @@
     },
     {
       "text": "they know everyone's zodiac sign by heart",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -75,7 +99,10 @@
     },
     {
       "text": "their playlist names are all therapy sessions",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 2,
@@ -84,7 +111,10 @@
     },
     {
       "text": "they live-tweet their own life",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 2,
@@ -93,7 +123,10 @@
     },
     {
       "text": "their bio is a cry for help disguised as a joke",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 2,
@@ -102,28 +135,819 @@
     },
     {
       "text": "they measure friendship in shared memes",
-      "tags": ["reason", "social"],
+      "tags": [
+        "reason",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
+    },
+    {
+      "text": "they say 'no offense' then proceed to offend",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their slideshows have footnotes and sources",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they keep receipts like an archivist",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they said 'long story short' and kept talking",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their calendar has 'drama' blocked out",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they bookmark arguments like favorite songs",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they treat 'seen' as a power move",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they RSVP 'maybe' to everything",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their phone face down is policy",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they narrate drama like a sportscaster",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their compliments always sound like dares",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they keep 'do not text' hours",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their inside jokes need a syllabus",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they treat calendar invites as threats",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they whisper 'spill it' on reflex",
+      "tags": [
+        "reason",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're always starting drama",
+      "tags": [
+        "social",
+        "negative",
+        "toxic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never text back",
+      "tags": [
+        "social",
+        "negative",
+        "flaky"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're chronically late",
+      "tags": [
+        "social",
+        "negative",
+        "unreliable"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they overshare everything",
+      "tags": [
+        "social",
+        "negative",
+        "tmi"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make everything about them",
+      "tags": [
+        "social",
+        "negative",
+        "narcissistic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're always on their phone",
+      "tags": [
+        "social",
+        "negative",
+        "distracted"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they interrupt constantly",
+      "tags": [
+        "social",
+        "negative",
+        "rude"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they one-up every story",
+      "tags": [
+        "social",
+        "negative",
+        "competitive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never listen",
+      "tags": [
+        "social",
+        "negative",
+        "selfish"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're fake nice",
+      "tags": [
+        "social",
+        "negative",
+        "two-faced"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they gossip about everyone",
+      "tags": [
+        "social",
+        "negative",
+        "untrustworthy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're always complaining",
+      "tags": [
+        "social",
+        "negative",
+        "negative"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never take responsibility",
+      "tags": [
+        "social",
+        "negative",
+        "immature"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they blame everyone else",
+      "tags": [
+        "social",
+        "negative",
+        "victim"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're passive aggressive",
+      "tags": [
+        "social",
+        "negative",
+        "toxic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they give backhanded compliments",
+      "tags": [
+        "social",
+        "negative",
+        "mean"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're always judging",
+      "tags": [
+        "social",
+        "negative",
+        "critical"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they can't keep secrets",
+      "tags": [
+        "social",
+        "negative",
+        "untrustworthy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're energy vampires",
+      "tags": [
+        "social",
+        "negative",
+        "draining"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they trauma dump immediately",
+      "tags": [
+        "social",
+        "negative",
+        "tmi"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're always the victim",
+      "tags": [
+        "social",
+        "negative",
+        "manipulative"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never apologize",
+      "tags": [
+        "social",
+        "negative",
+        "stubborn"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're too competitive",
+      "tags": [
+        "social",
+        "negative",
+        "intense"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make everything a competition",
+      "tags": [
+        "social",
+        "negative",
+        "exhausting"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're always flexing",
+      "tags": [
+        "social",
+        "negative",
+        "show-off"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they humble brag constantly",
+      "tags": [
+        "social",
+        "negative",
+        "annoying"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're attention seekers",
+      "tags": [
+        "social",
+        "negative",
+        "needy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they fish for compliments",
+      "tags": [
+        "social",
+        "negative",
+        "insecure"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're pick me energy",
+      "tags": [
+        "social",
+        "negative",
+        "desperate"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they try too hard",
+      "tags": [
+        "social",
+        "negative",
+        "cringe"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're main character syndrome",
+      "tags": [
+        "social",
+        "negative",
+        "delusional"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they think they're the main character",
+      "tags": [
+        "social",
+        "negative",
+        "narcissistic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're chronically online",
+      "tags": [
+        "social",
+        "negative",
+        "terminally-online"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have no filter",
+      "tags": [
+        "social",
+        "negative",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're too honest",
+      "tags": [
+        "social",
+        "negative",
+        "tactless"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they overstep boundaries",
+      "tags": [
+        "social",
+        "negative",
+        "invasive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're nosy about everything",
+      "tags": [
+        "social",
+        "negative",
+        "intrusive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they ask too many questions",
+      "tags": [
+        "social",
+        "negative",
+        "annoying"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they give unsolicited advice",
+      "tags": [
+        "social",
+        "negative",
+        "know-it-all"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they mansplain everything",
+      "tags": [
+        "social",
+        "negative",
+        "condescending"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're know-it-alls",
+      "tags": [
+        "social",
+        "negative",
+        "arrogant"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they correct everyone",
+      "tags": [
+        "social",
+        "negative",
+        "annoying"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're grammar police",
+      "tags": [
+        "social",
+        "negative",
+        "pedantic"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're always right",
+      "tags": [
+        "social",
+        "negative",
+        "stubborn"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never admit mistakes",
+      "tags": [
+        "social",
+        "negative",
+        "prideful"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're too proud",
+      "tags": [
+        "social",
+        "negative",
+        "arrogant"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have main character energy",
+      "tags": [
+        "social",
+        "negative",
+        "self-centered"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they think rules don't apply to them",
+      "tags": [
+        "social",
+        "negative",
+        "entitled"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
     }
-    ,
-    {"text": "they say 'no offense' then proceed to offend", "tags": ["reason","social"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    {"text": "their slideshows have footnotes and sources", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "they keep receipts like an archivist", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "they said 'long story short' and kept talking", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "their calendar has 'drama' blocked out", "tags": ["reason","social"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    {"text": "they bookmark arguments like favorite songs", "tags": ["reason","social"], "tone": "witty", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "they treat 'seen' as a power move", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "they RSVP 'maybe' to everything", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    {"text": "their phone face down is policy", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    {"text": "they narrate drama like a sportscaster", "tags": ["reason","social"], "tone": "witty", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    {"text": "their compliments always sound like dares", "tags": ["reason","social"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    {"text": "they keep 'do not text' hours", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "their inside jokes need a syllabus", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "they treat calendar invites as threats", "tags": ["reason","social"], "tone": "dry", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    {"text": "they whisper 'spill it' on reflex", "tags": ["reason","social"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"}
   ]
 }

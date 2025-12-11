@@ -3,7 +3,11 @@
   "entries": [
     {
       "text": "leaving them on read for three days",
-      "tags": ["relationship", "dating", "fail"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -12,7 +16,11 @@
     },
     {
       "text": "ghosting after six months",
-      "tags": ["relationship", "dating", "fail"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -21,7 +29,12 @@
     },
     {
       "text": "saying the wrong name in bed",
-      "tags": ["relationship", "dating", "fail", "cringe"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "cringe"
+      ],
       "tone": "cringe",
       "spice": 4,
       "locality": 1,
@@ -30,7 +43,12 @@
     },
     {
       "text": "stalking their ex on social media",
-      "tags": ["relationship", "dating", "fail", "petty"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "petty"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -39,7 +57,11 @@
     },
     {
       "text": "comparing them to an ex",
-      "tags": ["relationship", "dating", "fail"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -48,7 +70,12 @@
     },
     {
       "text": "drunk texting an apology at 2 AM",
-      "tags": ["relationship", "dating", "fail", "messy"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "messy"
+      ],
       "tone": "cringe",
       "spice": 3,
       "locality": 1,
@@ -57,7 +84,12 @@
     },
     {
       "text": "breaking up via Instagram story",
-      "tags": ["relationship", "dating", "fail", "modern"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "modern"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 2,
@@ -66,7 +98,11 @@
     },
     {
       "text": "crying at a Taco Bell drive-thru",
-      "tags": ["relationship", "fail", "public"],
+      "tags": [
+        "relationship",
+        "fail",
+        "public"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 2,
@@ -75,7 +111,12 @@
     },
     {
       "text": "blocking and unblocking repeatedly",
-      "tags": ["relationship", "dating", "fail", "chaotic"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "chaotic"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -84,7 +125,11 @@
     },
     {
       "text": "bringing up marriage on date three",
-      "tags": ["relationship", "dating", "fail"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -93,7 +138,11 @@
     },
     {
       "text": "introducing them to your parents too soon",
-      "tags": ["relationship", "dating", "fail"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -102,7 +151,12 @@
     },
     {
       "text": "moving in after two weeks",
-      "tags": ["relationship", "dating", "fail", "impulsive"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "impulsive"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -111,7 +165,12 @@
     },
     {
       "text": "cheating with their roommate",
-      "tags": ["relationship", "dating", "fail", "betrayal"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "betrayal"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
@@ -120,7 +179,11 @@
     },
     {
       "text": "faking a whole personality",
-      "tags": ["relationship", "dating", "fail"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail"
+      ],
       "tone": "dry",
       "spice": 3,
       "locality": 1,
@@ -129,7 +192,11 @@
     },
     {
       "text": "weaponizing couples therapy",
-      "tags": ["relationship", "fail", "toxic"],
+      "tags": [
+        "relationship",
+        "fail",
+        "toxic"
+      ],
       "tone": "dark",
       "spice": 3,
       "locality": 1,
@@ -138,7 +205,12 @@
     },
     {
       "text": "keeping dating apps active",
-      "tags": ["relationship", "dating", "fail", "modern"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "modern"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 2,
@@ -147,7 +219,12 @@
     },
     {
       "text": "love-bombing for a week then disappearing",
-      "tags": ["relationship", "dating", "fail", "toxic"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "toxic"
+      ],
       "tone": "dark",
       "spice": 3,
       "locality": 1,
@@ -156,7 +233,12 @@
     },
     {
       "text": "screening calls in front of them",
-      "tags": ["relationship", "dating", "fail", "rude"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "rude"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -165,7 +247,10 @@
     },
     {
       "text": "forgetting their birthday",
-      "tags": ["relationship", "fail"],
+      "tags": [
+        "relationship",
+        "fail"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -174,7 +259,12 @@
     },
     {
       "text": "liking their ex's thirst traps",
-      "tags": ["relationship", "dating", "fail", "social"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "social"
+      ],
       "tone": "playful",
       "spice": 3,
       "locality": 2,
@@ -183,7 +273,11 @@
     },
     {
       "text": "showing up uninvited",
-      "tags": ["relationship", "fail", "stalker"],
+      "tags": [
+        "relationship",
+        "fail",
+        "stalker"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -192,7 +286,12 @@
     },
     {
       "text": "bringing their mom on dates",
-      "tags": ["relationship", "dating", "fail", "weird"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "weird"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -201,7 +300,11 @@
     },
     {
       "text": "emotional affair with a coworker",
-      "tags": ["relationship", "fail", "workplace"],
+      "tags": [
+        "relationship",
+        "fail",
+        "workplace"
+      ],
       "tone": "dark",
       "spice": 4,
       "locality": 1,
@@ -210,7 +313,12 @@
     },
     {
       "text": "posting passive-aggressive quotes",
-      "tags": ["relationship", "fail", "social", "petty"],
+      "tags": [
+        "relationship",
+        "fail",
+        "social",
+        "petty"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -219,7 +327,12 @@
     },
     {
       "text": "keeping a backup partner",
-      "tags": ["relationship", "dating", "fail", "toxic"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "toxic"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
@@ -228,7 +341,11 @@
     },
     {
       "text": "sending screenshots to the group chat",
-      "tags": ["relationship", "fail", "modern"],
+      "tags": [
+        "relationship",
+        "fail",
+        "modern"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -237,7 +354,12 @@
     },
     {
       "text": "accidentally superliking their cousin",
-      "tags": ["relationship", "dating", "fail", "modern"],
+      "tags": [
+        "relationship",
+        "dating",
+        "fail",
+        "modern"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 2,
@@ -246,7 +368,10 @@
     },
     {
       "text": "forgetting they're in a relationship",
-      "tags": ["relationship", "fail"],
+      "tags": [
+        "relationship",
+        "fail"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -255,7 +380,11 @@
     },
     {
       "text": "recycling anniversary gifts",
-      "tags": ["relationship", "fail", "cheap"],
+      "tags": [
+        "relationship",
+        "fail",
+        "cheap"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -264,10 +393,599 @@
     },
     {
       "text": "trying to change everything about them",
-      "tags": ["relationship", "fail", "toxic"],
+      "tags": [
+        "relationship",
+        "fail",
+        "toxic"
+      ],
       "tone": "dark",
       "spice": 3,
       "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "forgetting anniversary",
+      "tags": [
+        "relationship",
+        "fail",
+        "forgetful"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "forgetting birthday",
+      "tags": [
+        "relationship",
+        "fail",
+        "forgetful"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "calling them by ex's name",
+      "tags": [
+        "relationship",
+        "fail",
+        "awkward"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "liking ex's posts",
+      "tags": [
+        "relationship",
+        "fail",
+        "suspicious"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "still texting ex",
+      "tags": [
+        "relationship",
+        "fail",
+        "red-flag"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "comparing to ex",
+      "tags": [
+        "relationship",
+        "fail",
+        "hurtful"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "talking about ex constantly",
+      "tags": [
+        "relationship",
+        "fail",
+        "annoying"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keeping ex's photos",
+      "tags": [
+        "relationship",
+        "fail",
+        "suspicious"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "wearing ex's hoodie",
+      "tags": [
+        "relationship",
+        "fail",
+        "weird"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not posting them on social media",
+      "tags": [
+        "relationship",
+        "fail",
+        "hiding"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hiding relationship status",
+      "tags": [
+        "relationship",
+        "fail",
+        "suspicious"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not introducing to friends",
+      "tags": [
+        "relationship",
+        "fail",
+        "hiding"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not introducing to family",
+      "tags": [
+        "relationship",
+        "fail",
+        "serious"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "flirting with others",
+      "tags": [
+        "relationship",
+        "fail",
+        "cheating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keeping dating apps",
+      "tags": [
+        "relationship",
+        "fail",
+        "cheating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "having backup options",
+      "tags": [
+        "relationship",
+        "fail",
+        "cheating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emotional cheating",
+      "tags": [
+        "relationship",
+        "fail",
+        "betrayal"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lying about whereabouts",
+      "tags": [
+        "relationship",
+        "fail",
+        "dishonest"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hiding phone",
+      "tags": [
+        "relationship",
+        "fail",
+        "suspicious"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "deleting messages",
+      "tags": [
+        "relationship",
+        "fail",
+        "suspicious"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being secretive",
+      "tags": [
+        "relationship",
+        "fail",
+        "suspicious"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not making time",
+      "tags": [
+        "relationship",
+        "fail",
+        "neglectful"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always canceling plans",
+      "tags": [
+        "relationship",
+        "fail",
+        "flaky"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "prioritizing friends over them",
+      "tags": [
+        "relationship",
+        "fail",
+        "hurtful"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not supporting their goals",
+      "tags": [
+        "relationship",
+        "fail",
+        "unsupportive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being jealous of success",
+      "tags": [
+        "relationship",
+        "fail",
+        "insecure"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not celebrating wins",
+      "tags": [
+        "relationship",
+        "fail",
+        "unsupportive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "dismissing feelings",
+      "tags": [
+        "relationship",
+        "fail",
+        "invalidating"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "gaslighting",
+      "tags": [
+        "relationship",
+        "fail",
+        "toxic"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "love bombing then ghosting",
+      "tags": [
+        "relationship",
+        "fail",
+        "manipulative"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hot and cold behavior",
+      "tags": [
+        "relationship",
+        "fail",
+        "confusing"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "breadcrumbing",
+      "tags": [
+        "relationship",
+        "fail",
+        "manipulative"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "future faking",
+      "tags": [
+        "relationship",
+        "fail",
+        "manipulative"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making empty promises",
+      "tags": [
+        "relationship",
+        "fail",
+        "unreliable"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never following through",
+      "tags": [
+        "relationship",
+        "fail",
+        "unreliable"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being emotionally unavailable",
+      "tags": [
+        "relationship",
+        "fail",
+        "distant"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "refusing to communicate",
+      "tags": [
+        "relationship",
+        "fail",
+        "stonewalling"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "giving silent treatment",
+      "tags": [
+        "relationship",
+        "fail",
+        "immature"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "passive aggressive behavior",
+      "tags": [
+        "relationship",
+        "fail",
+        "toxic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keeping score",
+      "tags": [
+        "relationship",
+        "fail",
+        "petty"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bringing up past mistakes",
+      "tags": [
+        "relationship",
+        "fail",
+        "resentful"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never apologizing",
+      "tags": [
+        "relationship",
+        "fail",
+        "stubborn"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "blaming them for everything",
+      "tags": [
+        "relationship",
+        "fail",
+        "unfair"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "not taking accountability",
+      "tags": [
+        "relationship",
+        "fail",
+        "immature"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making them feel crazy",
+      "tags": [
+        "relationship",
+        "fail",
+        "gaslighting"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
       "pluralizable": false,
       "needs_article": "none"
     }

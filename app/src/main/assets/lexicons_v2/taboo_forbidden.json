@@ -1,45 +1,902 @@
 {
   "slot_type": "taboo_forbidden",
   "entries": [
-    { "text": "related", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "rhymes", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "sounds like", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "opposite", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "thing", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "place", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "person", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "brand", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "slogan", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "animal", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "color", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "shape", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "size", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "number", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "similar", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "synonym", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "antonym", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "contains", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "starts with", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "ends with", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "verb", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "noun", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "adjective", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "example", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "type", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "kind", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "famous", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "popular", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "common", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "material", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "made of", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "used for", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "found in", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "category", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "part", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "piece", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "function", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "purpose", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "also", "tags": ["taboo"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" }
+    {
+      "text": "related",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "rhymes",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sounds like",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "opposite",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "thing",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "place",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "person",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "brand",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "slogan",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "animal",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "color",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "shape",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "size",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "similar",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "synonym",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "antonym",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "contains",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "starts with",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ends with",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "verb",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "noun",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "adjective",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "example",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "type",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "kind",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "famous",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "popular",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "common",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "material",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "made of",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "used for",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "found in",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "category",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "part",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "piece",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "function",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "purpose",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "also",
+      "tags": [
+        "taboo"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your mom",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your dad",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your sibling",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your cousin",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your ex's best friend",
+      "tags": [
+        "taboo",
+        "social",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your best friend's ex",
+      "tags": [
+        "taboo",
+        "social",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your boss",
+      "tags": [
+        "taboo",
+        "professional",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your employee",
+      "tags": [
+        "taboo",
+        "professional",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your teacher",
+      "tags": [
+        "taboo",
+        "professional",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your student",
+      "tags": [
+        "taboo",
+        "professional",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your therapist",
+      "tags": [
+        "taboo",
+        "professional",
+        "unethical"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your doctor",
+      "tags": [
+        "taboo",
+        "professional",
+        "unethical"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your lawyer",
+      "tags": [
+        "taboo",
+        "professional",
+        "unethical"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone married",
+      "tags": [
+        "taboo",
+        "dating",
+        "cheating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone engaged",
+      "tags": [
+        "taboo",
+        "dating",
+        "cheating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone in relationship",
+      "tags": [
+        "taboo",
+        "dating",
+        "cheating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your friend's crush",
+      "tags": [
+        "taboo",
+        "social",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your roommate's ex",
+      "tags": [
+        "taboo",
+        "social",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your coworker",
+      "tags": [
+        "taboo",
+        "professional",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your neighbor",
+      "tags": [
+        "taboo",
+        "living",
+        "awkward"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your landlord",
+      "tags": [
+        "taboo",
+        "living",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your tenant",
+      "tags": [
+        "taboo",
+        "living",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your Uber driver",
+      "tags": [
+        "taboo",
+        "service",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your delivery person",
+      "tags": [
+        "taboo",
+        "service",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your barista",
+      "tags": [
+        "taboo",
+        "service",
+        "awkward"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your bartender",
+      "tags": [
+        "taboo",
+        "service",
+        "awkward"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your waiter",
+      "tags": [
+        "taboo",
+        "service",
+        "awkward"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone underage",
+      "tags": [
+        "taboo",
+        "illegal",
+        "criminal"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone way too young",
+      "tags": [
+        "taboo",
+        "age-gap",
+        "creepy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone way too old",
+      "tags": [
+        "taboo",
+        "age-gap",
+        "weird"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your friend's parent",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your parent's friend",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your step-sibling",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your in-law",
+      "tags": [
+        "taboo",
+        "family",
+        "inappropriate"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your ex's sibling",
+      "tags": [
+        "taboo",
+        "family",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your sibling's ex",
+      "tags": [
+        "taboo",
+        "family",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }
-

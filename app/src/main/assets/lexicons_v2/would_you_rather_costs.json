@@ -3,7 +3,11 @@
   "entries": [
     {
       "text": "everyone knowing your browser history",
-      "tags": ["cost", "social", "embarrassment"],
+      "tags": [
+        "cost",
+        "social",
+        "embarrassment"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
@@ -12,7 +16,11 @@
     },
     {
       "text": "giving up coffee forever",
-      "tags": ["cost", "physical", "lifestyle"],
+      "tags": [
+        "cost",
+        "physical",
+        "lifestyle"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -21,7 +29,11 @@
     },
     {
       "text": "wet socks for a year",
-      "tags": ["cost", "physical", "discomfort"],
+      "tags": [
+        "cost",
+        "physical",
+        "discomfort"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -30,7 +42,11 @@
     },
     {
       "text": "having to narrate everything you do",
-      "tags": ["cost", "social", "annoying"],
+      "tags": [
+        "cost",
+        "social",
+        "annoying"
+      ],
       "tone": "witty",
       "spice": 2,
       "locality": 1,
@@ -39,7 +55,11 @@
     },
     {
       "text": "never using social media again",
-      "tags": ["cost", "social", "modern"],
+      "tags": [
+        "cost",
+        "social",
+        "modern"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -48,7 +68,11 @@
     },
     {
       "text": "always being 10 minutes late",
-      "tags": ["cost", "social", "inconvenience"],
+      "tags": [
+        "cost",
+        "social",
+        "inconvenience"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -57,7 +81,11 @@
     },
     {
       "text": "constant hiccups in public",
-      "tags": ["cost", "physical", "embarrassment"],
+      "tags": [
+        "cost",
+        "physical",
+        "embarrassment"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -66,7 +94,11 @@
     },
     {
       "text": "only speaking in rhyme",
-      "tags": ["cost", "social", "annoying"],
+      "tags": [
+        "cost",
+        "social",
+        "annoying"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -75,7 +107,11 @@
     },
     {
       "text": "smelling like onions permanently",
-      "tags": ["cost", "social", "gross"],
+      "tags": [
+        "cost",
+        "social",
+        "gross"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -84,7 +120,11 @@
     },
     {
       "text": "uncontrollable sneezing during silence",
-      "tags": ["cost", "physical", "embarrassment"],
+      "tags": [
+        "cost",
+        "physical",
+        "embarrassment"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -93,7 +133,11 @@
     },
     {
       "text": "giving up your phone for a month",
-      "tags": ["cost", "lifestyle", "modern"],
+      "tags": [
+        "cost",
+        "lifestyle",
+        "modern"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -102,7 +146,11 @@
     },
     {
       "text": "mandatory clown makeup daily",
-      "tags": ["cost", "social", "embarrassment"],
+      "tags": [
+        "cost",
+        "social",
+        "embarrassment"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -111,7 +159,11 @@
     },
     {
       "text": "reading all texts out loud",
-      "tags": ["cost", "social", "privacy"],
+      "tags": [
+        "cost",
+        "social",
+        "privacy"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -120,7 +172,11 @@
     },
     {
       "text": "never eating your favorite food again",
-      "tags": ["cost", "physical", "lifestyle"],
+      "tags": [
+        "cost",
+        "physical",
+        "lifestyle"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -129,7 +185,11 @@
     },
     {
       "text": "being unable to lie for a year",
-      "tags": ["cost", "moral", "social"],
+      "tags": [
+        "cost",
+        "moral",
+        "social"
+      ],
       "tone": "dark",
       "spice": 3,
       "locality": 1,
@@ -138,7 +198,11 @@
     },
     {
       "text": "losing all your photos forever",
-      "tags": ["cost", "emotional", "modern"],
+      "tags": [
+        "cost",
+        "emotional",
+        "modern"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 2,
@@ -147,7 +211,11 @@
     },
     {
       "text": "going bald overnight",
-      "tags": ["cost", "physical", "appearance"],
+      "tags": [
+        "cost",
+        "physical",
+        "appearance"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -156,7 +224,11 @@
     },
     {
       "text": "only eating gas station food",
-      "tags": ["cost", "physical", "disgusting"],
+      "tags": [
+        "cost",
+        "physical",
+        "disgusting"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -165,7 +237,11 @@
     },
     {
       "text": "public karaoke weekly forever",
-      "tags": ["cost", "social", "embarrassment"],
+      "tags": [
+        "cost",
+        "social",
+        "embarrassment"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -174,7 +250,11 @@
     },
     {
       "text": "always saying what you're thinking",
-      "tags": ["cost", "social", "chaos"],
+      "tags": [
+        "cost",
+        "social",
+        "chaos"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -183,7 +263,11 @@
     },
     {
       "text": "never watching TV or movies again",
-      "tags": ["cost", "lifestyle", "entertainment"],
+      "tags": [
+        "cost",
+        "lifestyle",
+        "entertainment"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -192,7 +276,11 @@
     },
     {
       "text": "ugly crying in every photo",
-      "tags": ["cost", "social", "embarrassment"],
+      "tags": [
+        "cost",
+        "social",
+        "embarrassment"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -201,7 +289,11 @@
     },
     {
       "text": "giving up music forever",
-      "tags": ["cost", "lifestyle", "sacrifice"],
+      "tags": [
+        "cost",
+        "lifestyle",
+        "sacrifice"
+      ],
       "tone": "dark",
       "spice": 2,
       "locality": 1,
@@ -210,7 +302,11 @@
     },
     {
       "text": "constant visible pit stains",
-      "tags": ["cost", "physical", "embarrassment"],
+      "tags": [
+        "cost",
+        "physical",
+        "embarrassment"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 1,
@@ -219,27 +315,652 @@
     },
     {
       "text": "being filmed 24/7",
-      "tags": ["cost", "privacy", "surveillance"],
+      "tags": [
+        "cost",
+        "privacy",
+        "surveillance"
+      ],
       "tone": "dark",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
+    },
+    {
+      "text": "publicly admitting your most unhinged hot take",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "losing your phone in a rideshare twice a month",
+      "tags": [
+        "cost",
+        "modern"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "having your group chat projected at work",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no coffee and 7am meetings forever",
+      "tags": [
+        "cost",
+        "lifestyle"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "speaking in corporate jargon for a week",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sharing location with parents for a year",
+      "tags": [
+        "cost",
+        "privacy"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "only eating beige foods for a month",
+      "tags": [
+        "cost",
+        "physical"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "giving a toast at every gathering",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no sarcasm allowed for thirty days",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "handshake selfies with strangers weekly",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "explaining your search history to grandma",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fluorescent office lighting at home",
+      "tags": [
+        "cost",
+        "comfort"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your ex liking every new post",
+      "tags": [
+        "cost",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "replying 'per my last email' daily",
+      "tags": [
+        "cost",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never use social media again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you lose all your followers",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never post again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but everyone sees your search history",
+      "tags": [
+        "cost",
+        "embarrassing",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but your camera roll gets leaked",
+      "tags": [
+        "cost",
+        "embarrassing",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but your DMs get exposed",
+      "tags": [
+        "cost",
+        "embarrassing",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never listen to music again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "entertainment"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never watch TV again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "entertainment"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never watch movies again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "entertainment"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never play video games again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "entertainment"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never read books again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "entertainment"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never eat your favorite food again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "food"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never eat dessert again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "food"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never drink alcohol again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "food"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never drink coffee again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "food"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never eat fast food again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "food"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you gain 50 pounds",
+      "tags": [
+        "cost",
+        "physical",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you lose all your hair",
+      "tags": [
+        "cost",
+        "physical",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you age 10 years",
+      "tags": [
+        "cost",
+        "physical",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you shrink 6 inches",
+      "tags": [
+        "cost",
+        "physical",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never work out again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "fitness"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you have to work out every day",
+      "tags": [
+        "cost",
+        "obligation",
+        "fitness"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never sleep in again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "sleep"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never nap again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "sleep"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you have to wake up at 5am every day",
+      "tags": [
+        "cost",
+        "obligation",
+        "sleep"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never travel again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "travel"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never leave your city again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "travel"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never fly again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "travel"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never drive again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "travel"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you lose your best friend",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never see your family again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never date again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never have sex again",
+      "tags": [
+        "cost",
+        "sacrifice",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but everyone knows your secrets",
+      "tags": [
+        "cost",
+        "embarrassing",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you have to tell the truth always",
+      "tags": [
+        "cost",
+        "obligation",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "but you can never lie again",
+      "tags": [
+        "cost",
+        "obligation",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
     }
-    ,
-    {"text": "publicly admitting your most unhinged hot take", "tags":["cost","social"], "tone":"witty", "spice":2, "locality":2, "pluralizable":false, "needs_article":"none"},
-    {"text": "losing your phone in a rideshare twice a month", "tags":["cost","modern"], "tone":"playful", "spice":1, "locality":2, "pluralizable":false, "needs_article":"none"},
-    {"text": "having your group chat projected at work", "tags":["cost","social"], "tone":"wild", "spice":3, "locality":2, "pluralizable":false, "needs_article":"none"},
-    {"text": "no coffee and 7am meetings forever", "tags":["cost","lifestyle"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "speaking in corporate jargon for a week", "tags":["cost","social"], "tone":"playful", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "sharing location with parents for a year", "tags":["cost","privacy"], "tone":"dry", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "only eating beige foods for a month", "tags":["cost","physical"], "tone":"playful", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "giving a toast at every gathering", "tags":["cost","social"], "tone":"cringe", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "no sarcasm allowed for thirty days", "tags":["cost","social"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "handshake selfies with strangers weekly", "tags":["cost","social"], "tone":"playful", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "explaining your search history to grandma", "tags":["cost","social"], "tone":"witty", "spice":3, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "fluorescent office lighting at home", "tags":["cost","comfort"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "your ex liking every new post", "tags":["cost","social"], "tone":"wild", "spice":3, "locality":2, "pluralizable":false, "needs_article":"none"},
-    {"text": "replying 'per my last email' daily", "tags":["cost","work"], "tone":"dry", "spice":1, "locality":2, "pluralizable":false, "needs_article":"none"}
   ]
 }

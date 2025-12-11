@@ -3,7 +3,10 @@
   "entries": [
     {
       "text": "a fridge haunted by mystery leftovers",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -12,7 +15,10 @@
     },
     {
       "text": "permanent subway elevator grease",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 2,
       "locality": 2,
@@ -21,7 +27,10 @@
     },
     {
       "text": "weekly mystery soup leaking in the mail",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 2,
@@ -30,7 +39,10 @@
     },
     {
       "text": "a gym bag that gained sentience",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -39,7 +51,10 @@
     },
     {
       "text": "bathroom grout that screams at midnight",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -48,7 +63,10 @@
     },
     {
       "text": "a kitchen sponge with a mysterious ecosystem",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 3,
       "locality": 1,
@@ -57,7 +75,10 @@
     },
     {
       "text": "expired yogurt that evolved defense mechanisms",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -66,7 +87,10 @@
     },
     {
       "text": "a drain that coughs back",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 3,
       "locality": 1,
@@ -75,7 +99,10 @@
     },
     {
       "text": "mystery stains that follow you to new apartments",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -84,7 +111,10 @@
     },
     {
       "text": "a moldy sandwich that sends threatening texts",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -93,7 +123,10 @@
     },
     {
       "text": "permanently damp basement carpet",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 2,
       "locality": 1,
@@ -102,7 +135,10 @@
     },
     {
       "text": "a shower curtain with its own microbiome",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 3,
       "locality": 1,
@@ -111,7 +147,10 @@
     },
     {
       "text": "trash juice that defies gravity",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -120,7 +159,10 @@
     },
     {
       "text": "a toothbrush that fell behind the toilet last year",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 2,
       "locality": 1,
@@ -129,7 +171,10 @@
     },
     {
       "text": "mystery gunk in the sink trap",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 3,
       "locality": 1,
@@ -138,7 +183,10 @@
     },
     {
       "text": "a roommate who microwaves fish daily",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -147,7 +195,10 @@
     },
     {
       "text": "sticky keyboard keys of unknown origin",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -156,7 +207,10 @@
     },
     {
       "text": "a trash can that refuses to be emptied",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -165,7 +219,10 @@
     },
     {
       "text": "old takeout containers breeding new life forms",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 3,
       "locality": 1,
@@ -174,7 +231,10 @@
     },
     {
       "text": "a coffee mug with six-month-old residue",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 2,
       "locality": 1,
@@ -183,7 +243,10 @@
     },
     {
       "text": "mystery hair clogs that regenerate overnight",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -192,7 +255,10 @@
     },
     {
       "text": "a dishwasher that only makes things worse",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -201,7 +267,10 @@
     },
     {
       "text": "permanent bathroom funk no candle can defeat",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 2,
       "locality": 1,
@@ -210,7 +279,10 @@
     },
     {
       "text": "a washing machine that adds new smells",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -219,7 +291,10 @@
     },
     {
       "text": "crusty oven spills from the previous tenant",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 2,
       "locality": 1,
@@ -228,7 +303,10 @@
     },
     {
       "text": "a pet that sheds emotional baggage and fur",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -237,7 +315,10 @@
     },
     {
       "text": "mystery sticky spots on every surface",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -246,7 +327,10 @@
     },
     {
       "text": "a garbage disposal with trust issues",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -255,7 +339,10 @@
     },
     {
       "text": "month-old milk that achieved consciousness",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -264,7 +351,10 @@
     },
     {
       "text": "a bathtub with a permanent ring of shame",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -273,7 +363,10 @@
     },
     {
       "text": "leftovers that text you threatening messages",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -282,16 +375,571 @@
     },
     {
       "text": "a couch cushion that's legally a biohazard",
-      "tags": ["gross", "problem"],
+      "tags": [
+        "gross",
+        "problem"
+      ],
       "tone": "grim",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
+    },
+    {
+      "text": "a microwave that smells like fish forever",
+      "tags": [
+        "gross",
+        "problem"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mysterious fridge puddles that reappear",
+      "tags": [
+        "gross",
+        "problem"
+      ],
+      "tone": "grim",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "dish sponges that never dry",
+      "tags": [
+        "gross",
+        "problem"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "visible nose hair",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ear wax buildup",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crusty eyes",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sleep crust",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "morning breath",
+      "tags": [
+        "gross",
+        "hygiene",
+        "smell"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "body odor",
+      "tags": [
+        "gross",
+        "hygiene",
+        "smell"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "foot odor",
+      "tags": [
+        "gross",
+        "hygiene",
+        "smell"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bad breath",
+      "tags": [
+        "gross",
+        "hygiene",
+        "smell"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "visible dandruff",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "greasy hair",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "dirty nails",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "long toenails",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crusty feet",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "peeling sunburn",
+      "tags": [
+        "gross",
+        "body",
+        "skin"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "picking scabs",
+      "tags": [
+        "gross",
+        "habit",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "popping pimples in public",
+      "tags": [
+        "gross",
+        "habit",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "biting nails",
+      "tags": [
+        "gross",
+        "habit",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "picking nose",
+      "tags": [
+        "gross",
+        "habit",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "visible boogers",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "food in teeth",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "spinach in teeth",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lipstick on teeth",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "chapped lips",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cracked lips",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "peeling lips",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "visible acne",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "back acne",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "chest acne",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sweat stains",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pit stains",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "visible sweat",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "dripping sweat",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sweaty handshake",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "clammy hands",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "wet socks",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "soggy shoes",
+      "tags": [
+        "gross",
+        "hygiene",
+        "body"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "moldy shower",
+      "tags": [
+        "gross",
+        "hygiene",
+        "living"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "dirty bathroom",
+      "tags": [
+        "gross",
+        "hygiene",
+        "living"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "clogged drain",
+      "tags": [
+        "gross",
+        "hygiene",
+        "living"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hair in drain",
+      "tags": [
+        "gross",
+        "hygiene",
+        "living"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
     }
-    ,
-    {"text": "a microwave that smells like fish forever", "tags":["gross","problem"], "tone":"dry", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "mysterious fridge puddles that reappear", "tags":["gross","problem"], "tone":"grim", "spice":2, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "dish sponges that never dry", "tags":["gross","problem"], "tone":"dry", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"}
   ]
 }

@@ -3,7 +3,11 @@
   "entries": [
     {
       "text": "main character energy",
-      "tags": ["slang", "modern", "personality"],
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -12,7 +16,11 @@
     },
     {
       "text": "no cap",
-      "tags": ["slang", "modern", "genuine"],
+      "tags": [
+        "slang",
+        "modern",
+        "genuine"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 2,
@@ -21,7 +29,11 @@
     },
     {
       "text": "full send energy",
-      "tags": ["slang", "modern", "action"],
+      "tags": [
+        "slang",
+        "modern",
+        "action"
+      ],
       "tone": "wild",
       "spice": 1,
       "locality": 2,
@@ -30,7 +42,11 @@
     },
     {
       "text": "getting caught in 4K",
-      "tags": ["slang", "modern", "busted"],
+      "tags": [
+        "slang",
+        "modern",
+        "busted"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 2,
@@ -39,7 +55,11 @@
     },
     {
       "text": "down bad",
-      "tags": ["slang", "modern", "desperate"],
+      "tags": [
+        "slang",
+        "modern",
+        "desperate"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 2,
@@ -48,7 +68,11 @@
     },
     {
       "text": "simp behavior",
-      "tags": ["slang", "modern", "pathetic"],
+      "tags": [
+        "slang",
+        "modern",
+        "pathetic"
+      ],
       "tone": "cringe",
       "spice": 2,
       "locality": 2,
@@ -57,7 +81,11 @@
     },
     {
       "text": "touch grass",
-      "tags": ["slang", "modern", "advice"],
+      "tags": [
+        "slang",
+        "modern",
+        "advice"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 2,
@@ -66,7 +94,11 @@
     },
     {
       "text": "it's giving...",
-      "tags": ["slang", "modern", "vibe"],
+      "tags": [
+        "slang",
+        "modern",
+        "vibe"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 2,
@@ -75,7 +107,11 @@
     },
     {
       "text": "lowkey/highkey",
-      "tags": ["slang", "modern", "intensity"],
+      "tags": [
+        "slang",
+        "modern",
+        "intensity"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 2,
@@ -84,7 +120,11 @@
     },
     {
       "text": "rent-free in my head",
-      "tags": ["slang", "modern", "obsessed"],
+      "tags": [
+        "slang",
+        "modern",
+        "obsessed"
+      ],
       "tone": "cringe",
       "spice": 1,
       "locality": 2,
@@ -93,7 +133,11 @@
     },
     {
       "text": "unhinged behavior",
-      "tags": ["slang", "modern", "chaotic"],
+      "tags": [
+        "slang",
+        "modern",
+        "chaotic"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 2,
@@ -102,7 +146,11 @@
     },
     {
       "text": "gatekeep, gaslight, girlboss",
-      "tags": ["slang", "modern", "toxic"],
+      "tags": [
+        "slang",
+        "modern",
+        "toxic"
+      ],
       "tone": "witty",
       "spice": 2,
       "locality": 2,
@@ -111,7 +159,11 @@
     },
     {
       "text": "chronically online",
-      "tags": ["slang", "modern", "internet"],
+      "tags": [
+        "slang",
+        "modern",
+        "internet"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 2,
@@ -120,7 +172,11 @@
     },
     {
       "text": "the audacity",
-      "tags": ["slang", "modern", "shocked"],
+      "tags": [
+        "slang",
+        "modern",
+        "shocked"
+      ],
       "tone": "wild",
       "spice": 1,
       "locality": 2,
@@ -129,7 +185,11 @@
     },
     {
       "text": "getting ratio'd constantly",
-      "tags": ["slang", "modern", "social"],
+      "tags": [
+        "slang",
+        "modern",
+        "social"
+      ],
       "tone": "wild",
       "spice": 1,
       "locality": 2,
@@ -138,7 +198,11 @@
     },
     {
       "text": "sheesh energy",
-      "tags": ["slang", "modern", "impressive"],
+      "tags": [
+        "slang",
+        "modern",
+        "impressive"
+      ],
       "tone": "wild",
       "spice": 1,
       "locality": 2,
@@ -147,7 +211,11 @@
     },
     {
       "text": "NPC behavior",
-      "tags": ["slang", "modern", "mindless"],
+      "tags": [
+        "slang",
+        "modern",
+        "mindless"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 2,
@@ -156,7 +224,11 @@
     },
     {
       "text": "mid at best",
-      "tags": ["slang", "modern", "mediocre"],
+      "tags": [
+        "slang",
+        "modern",
+        "mediocre"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 2,
@@ -165,7 +237,11 @@
     },
     {
       "text": "bussin' no cap",
-      "tags": ["slang", "modern", "good"],
+      "tags": [
+        "slang",
+        "modern",
+        "good"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -174,7 +250,11 @@
     },
     {
       "text": "delulu is the solulu",
-      "tags": ["slang", "modern", "delusional"],
+      "tags": [
+        "slang",
+        "modern",
+        "delusional"
+      ],
       "tone": "cringe",
       "spice": 1,
       "locality": 2,
@@ -183,7 +263,11 @@
     },
     {
       "text": "slay mode activated",
-      "tags": ["slang", "modern", "confident"],
+      "tags": [
+        "slang",
+        "modern",
+        "confident"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -192,7 +276,11 @@
     },
     {
       "text": "it's the __ for me",
-      "tags": ["slang", "modern", "observation"],
+      "tags": [
+        "slang",
+        "modern",
+        "observation"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 2,
@@ -201,7 +289,11 @@
     },
     {
       "text": "understood the assignment",
-      "tags": ["slang", "modern", "success"],
+      "tags": [
+        "slang",
+        "modern",
+        "success"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -210,7 +302,11 @@
     },
     {
       "text": "period pooh",
-      "tags": ["slang", "modern", "emphasis"],
+      "tags": [
+        "slang",
+        "modern",
+        "emphasis"
+      ],
       "tone": "wild",
       "spice": 1,
       "locality": 2,
@@ -219,12 +315,666 @@
     },
     {
       "text": "ick collection",
-      "tags": ["slang", "modern", "dating"],
+      "tags": [
+        "slang",
+        "modern",
+        "dating"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
       "pluralizable": false,
       "needs_article": "an"
+    },
+    {
+      "text": "caught lacking",
+      "tags": [
+        "slang",
+        "modern",
+        "unprepared"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "W rizz",
+      "tags": [
+        "slang",
+        "modern",
+        "charisma"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "L + ratio + fell off",
+      "tags": [
+        "slang",
+        "modern",
+        "insult"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "aura points",
+      "tags": [
+        "slang",
+        "modern",
+        "status"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "sigma grindset",
+      "tags": [
+        "slang",
+        "modern",
+        "hustle"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "beta male energy",
+      "tags": [
+        "slang",
+        "modern",
+        "weak"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "alpha mindset",
+      "tags": [
+        "slang",
+        "modern",
+        "dominant"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "pick me behavior",
+      "tags": [
+        "slang",
+        "modern",
+        "desperate"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "goblin mode activated",
+      "tags": [
+        "slang",
+        "modern",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Roman Empire",
+      "tags": [
+        "slang",
+        "modern",
+        "obsession"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "orange peel theory",
+      "tags": [
+        "slang",
+        "modern",
+        "dating"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "the"
+    },
+    {
+      "text": "golden retriever energy",
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "black cat energy",
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "malewife material",
+      "tags": [
+        "slang",
+        "modern",
+        "dating"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "girlboss era",
+      "tags": [
+        "slang",
+        "modern",
+        "empowerment"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "himbo vibes",
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bimbo energy",
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "theater kid energy",
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "band kid behavior",
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "horse girl coded",
+      "tags": [
+        "slang",
+        "modern",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "art hoe aesthetic",
+      "tags": [
+        "slang",
+        "modern",
+        "style"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "clean girl aesthetic",
+      "tags": [
+        "slang",
+        "modern",
+        "style"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "mob wife era",
+      "tags": [
+        "slang",
+        "modern",
+        "style"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "rat girl summer",
+      "tags": [
+        "slang",
+        "modern",
+        "style"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "hot girl walk",
+      "tags": [
+        "slang",
+        "modern",
+        "activity"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "villain era",
+      "tags": [
+        "slang",
+        "modern",
+        "mindset"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "healing era",
+      "tags": [
+        "slang",
+        "modern",
+        "mindset"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "no thoughts head empty",
+      "tags": [
+        "slang",
+        "modern",
+        "mindless"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "one brain cell energy",
+      "tags": [
+        "slang",
+        "modern",
+        "dumb"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "smooth brain moment",
+      "tags": [
+        "slang",
+        "modern",
+        "dumb"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "big brain time",
+      "tags": [
+        "slang",
+        "modern",
+        "smart"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "galaxy brain take",
+      "tags": [
+        "slang",
+        "modern",
+        "smart"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "5D chess move",
+      "tags": [
+        "slang",
+        "modern",
+        "strategic"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "4D chess player",
+      "tags": [
+        "slang",
+        "modern",
+        "strategic"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "playing checkers while everyone else plays chess",
+      "tags": [
+        "slang",
+        "modern",
+        "outmatched"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "built different",
+      "tags": [
+        "slang",
+        "modern",
+        "unique"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "different breed",
+      "tags": [
+        "slang",
+        "modern",
+        "unique"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "not like other girls",
+      "tags": [
+        "slang",
+        "modern",
+        "cringe"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "quirky personality",
+      "tags": [
+        "slang",
+        "modern",
+        "cringe"
+      ],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "unhinged posting",
+      "tags": [
+        "slang",
+        "modern",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "feral posting hours",
+      "tags": [
+        "slang",
+        "modern",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "3am thoughts",
+      "tags": [
+        "slang",
+        "modern",
+        "weird"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "intrusive thoughts won",
+      "tags": [
+        "slang",
+        "modern",
+        "impulsive"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no filter mode",
+      "tags": [
+        "slang",
+        "modern",
+        "honest"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "raw dogging life",
+      "tags": [
+        "slang",
+        "modern",
+        "reckless"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "living dangerously",
+      "tags": [
+        "slang",
+        "modern",
+        "reckless"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "yolo energy",
+      "tags": [
+        "slang",
+        "modern",
+        "reckless"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sending it",
+      "tags": [
+        "slang",
+        "modern",
+        "action"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "full send mode",
+      "tags": [
+        "slang",
+        "modern",
+        "action"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no half measures",
+      "tags": [
+        "slang",
+        "modern",
+        "committed"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
     }
   ]
 }

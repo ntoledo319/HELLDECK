@@ -3,7 +3,10 @@
   "entries": [
     {
       "text": "aggressively moisturizing",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "raunchy",
       "spice": 3,
       "locality": 1,
@@ -12,7 +15,10 @@
     },
     {
       "text": "polishing the trophy",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
@@ -21,7 +27,10 @@
     },
     {
       "text": "testing the merchandise",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "raunchy",
       "spice": 4,
       "locality": 1,
@@ -30,7 +39,10 @@
     },
     {
       "text": "charging their battery",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "playful",
       "spice": 3,
       "locality": 1,
@@ -39,7 +51,10 @@
     },
     {
       "text": "reorganizing the sock drawer",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "dry",
       "spice": 3,
       "locality": 1,
@@ -48,7 +63,10 @@
     },
     {
       "text": "filing paperwork alone",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "witty",
       "spice": 3,
       "locality": 1,
@@ -57,7 +75,10 @@
     },
     {
       "text": "practicing their signature move",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "playful",
       "spice": 4,
       "locality": 1,
@@ -66,7 +87,10 @@
     },
     {
       "text": "having a private meeting",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "dry",
       "spice": 3,
       "locality": 1,
@@ -75,7 +99,10 @@
     },
     {
       "text": "quality-testing their equipment",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "raunchy",
       "spice": 4,
       "locality": 1,
@@ -84,7 +111,10 @@
     },
     {
       "text": "doing their own plumbing",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "witty",
       "spice": 3,
       "locality": 1,
@@ -93,7 +123,10 @@
     },
     {
       "text": "self-care Sunday activities",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "playful",
       "spice": 3,
       "locality": 2,
@@ -102,7 +135,10 @@
     },
     {
       "text": "doing unauthorized personal research",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
@@ -111,7 +147,10 @@
     },
     {
       "text": "testing product durability",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "raunchy",
       "spice": 4,
       "locality": 1,
@@ -120,7 +159,10 @@
     },
     {
       "text": "performing routine maintenance",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "dry",
       "spice": 3,
       "locality": 1,
@@ -129,7 +171,10 @@
     },
     {
       "text": "doing stretching exercises",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "playful",
       "spice": 3,
       "locality": 1,
@@ -138,7 +183,11 @@
     },
     {
       "text": "Netflix and chill",
-      "tags": ["innuendo", "suggestive", "modern"],
+      "tags": [
+        "innuendo",
+        "suggestive",
+        "modern"
+      ],
       "tone": "witty",
       "spice": 3,
       "locality": 2,
@@ -147,7 +196,11 @@
     },
     {
       "text": "arranging late-night Uber rides",
-      "tags": ["innuendo", "suggestive", "modern"],
+      "tags": [
+        "innuendo",
+        "suggestive",
+        "modern"
+      ],
       "tone": "playful",
       "spice": 3,
       "locality": 2,
@@ -156,7 +209,10 @@
     },
     {
       "text": "doing horizontal cardio",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "raunchy",
       "spice": 4,
       "locality": 1,
@@ -165,7 +221,10 @@
     },
     {
       "text": "aggressively cuddling",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "playful",
       "spice": 3,
       "locality": 1,
@@ -174,7 +233,10 @@
     },
     {
       "text": "testing compatibility",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "witty",
       "spice": 3,
       "locality": 1,
@@ -183,7 +245,10 @@
     },
     {
       "text": "reviewing the menu thoroughly",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "raunchy",
       "spice": 4,
       "locality": 1,
@@ -192,7 +257,10 @@
     },
     {
       "text": "practicing parallel parking",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "dry",
       "spice": 3,
       "locality": 1,
@@ -201,7 +269,10 @@
     },
     {
       "text": "plugging in the charger",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "playful",
       "spice": 3,
       "locality": 1,
@@ -210,7 +281,10 @@
     },
     {
       "text": "doing hands-on research",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "witty",
       "spice": 3,
       "locality": 1,
@@ -219,10 +293,663 @@
     },
     {
       "text": "in a wrestling match that got weird",
-      "tags": ["innuendo", "suggestive"],
+      "tags": [
+        "innuendo",
+        "suggestive"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Netflix and chill",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "come over and watch a movie",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "wanna see my etchings",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "come up for coffee",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "help me move furniture",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "study session",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "late night snack",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "midnight swim",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "hot tub party",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "massage exchange",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "private yoga session",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "wine tasting for two",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cooking lesson",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "private dance lesson",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "bedroom eyes",
+      "tags": [
+        "sexual",
+        "classic",
+        "obvious"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "come hither look",
+      "tags": [
+        "sexual",
+        "classic",
+        "obvious"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "undressing with eyes",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "eye fucking",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fuck me eyes",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lip biting",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hair playing",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "neck touching",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "thigh grazing",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidental touching",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lingering hug",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "hand on lower back",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "whispering in ear",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "breath on neck",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "slow dancing",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "grinding on dance floor",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "body rolling",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "twerking",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lap sitting",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "straddling",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making out",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "heavy petting",
+      "tags": [
+        "sexual",
+        "classic",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fooling around",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hooking up",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "friends with benefits",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no strings attached",
+      "tags": [
+        "sexual",
+        "modern",
+        "obvious"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "casual fun",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "good time",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "fun night",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "wild night",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "crazy night",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "memorable evening",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "special time",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "intimate moment",
+      "tags": [
+        "sexual",
+        "classic",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "private time",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "alone time",
+      "tags": [
+        "sexual",
+        "modern",
+        "subtle"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
       "pluralizable": false,
       "needs_article": "none"
     }

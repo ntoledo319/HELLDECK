@@ -3,7 +3,10 @@
   "entries": [
     {
       "text": "they insist on business meetings at 6 a.m.",
-      "tags": ["red_flag", "schedule"],
+      "tags": [
+        "red_flag",
+        "schedule"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -12,7 +15,10 @@
     },
     {
       "text": "their ex is the family travel agent",
-      "tags": ["red_flag", "relationship"],
+      "tags": [
+        "red_flag",
+        "relationship"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -21,7 +27,10 @@
     },
     {
       "text": "they collect roommates like Funko Pops",
-      "tags": ["red_flag", "living"],
+      "tags": [
+        "red_flag",
+        "living"
+      ],
       "tone": "witty",
       "spice": 2,
       "locality": 2,
@@ -30,7 +39,10 @@
     },
     {
       "text": "they reply with voice notes in professional group chats",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -39,7 +51,10 @@
     },
     {
       "text": "they screenshot everything for receipts",
-      "tags": ["red_flag", "trust"],
+      "tags": [
+        "red_flag",
+        "trust"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -48,7 +63,10 @@
     },
     {
       "text": "they bring their own speakers to parties",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -57,7 +75,10 @@
     },
     {
       "text": "they correct your grammar mid-argument",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -66,7 +87,10 @@
     },
     {
       "text": "they use air quotes unironically",
-      "tags": ["red_flag", "quirk"],
+      "tags": [
+        "red_flag",
+        "quirk"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 1,
@@ -75,7 +99,10 @@
     },
     {
       "text": "they leave one bite of food to avoid dishes",
-      "tags": ["red_flag", "living"],
+      "tags": [
+        "red_flag",
+        "living"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -84,7 +111,10 @@
     },
     {
       "text": "they play devil's advocate in every conversation",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -93,7 +123,10 @@
     },
     {
       "text": "they ghost then reappear with 'hey stranger'",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -102,7 +135,10 @@
     },
     {
       "text": "they talk during movies at the theater",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -111,7 +147,10 @@
     },
     {
       "text": "they FaceTime in public without headphones",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -120,7 +159,10 @@
     },
     {
       "text": "they overshare on main",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -129,7 +171,10 @@
     },
     {
       "text": "they leave read receipts on but take days to reply",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -138,7 +183,10 @@
     },
     {
       "text": "they one-up every story you tell",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -147,7 +195,10 @@
     },
     {
       "text": "they send TikToks instead of texting back",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -156,7 +207,10 @@
     },
     {
       "text": "they bring a yoga mat to every social gathering",
-      "tags": ["red_flag", "quirk"],
+      "tags": [
+        "red_flag",
+        "quirk"
+      ],
       "tone": "witty",
       "spice": 1,
       "locality": 1,
@@ -165,7 +219,10 @@
     },
     {
       "text": "they eat off your plate without asking",
-      "tags": ["red_flag", "boundaries"],
+      "tags": [
+        "red_flag",
+        "boundaries"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -174,7 +231,10 @@
     },
     {
       "text": "they call timeouts during arguments",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -183,7 +243,10 @@
     },
     {
       "text": "they post Instagram stories of every meal",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -192,7 +255,10 @@
     },
     {
       "text": "they wear sunglasses indoors",
-      "tags": ["red_flag", "quirk"],
+      "tags": [
+        "red_flag",
+        "quirk"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -201,7 +267,10 @@
     },
     {
       "text": "they brag about how little sleep they get",
-      "tags": ["red_flag", "quirk"],
+      "tags": [
+        "red_flag",
+        "quirk"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -210,7 +279,10 @@
     },
     {
       "text": "they flex their Spotify Wrapped year-round",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 2,
@@ -219,7 +291,10 @@
     },
     {
       "text": "they start every sentence with 'well, actually'",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -228,7 +303,10 @@
     },
     {
       "text": "they passive-aggressively like old posts",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 2,
@@ -237,7 +315,10 @@
     },
     {
       "text": "they critique your Spotify playlists uninvited",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 2,
@@ -246,7 +327,10 @@
     },
     {
       "text": "they cancel plans via text five minutes before",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -255,7 +339,10 @@
     },
     {
       "text": "they name-drop constantly",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -264,7 +351,10 @@
     },
     {
       "text": "they leave their shopping cart in the parking spot",
-      "tags": ["red_flag", "behavior"],
+      "tags": [
+        "red_flag",
+        "behavior"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -273,7 +363,10 @@
     },
     {
       "text": "they blast music without headphones on public transit",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -282,7 +375,10 @@
     },
     {
       "text": "they treat service workers poorly",
-      "tags": ["red_flag", "behavior"],
+      "tags": [
+        "red_flag",
+        "behavior"
+      ],
       "tone": "serious",
       "spice": 3,
       "locality": 1,
@@ -291,7 +387,10 @@
     },
     {
       "text": "they humble-brag disguised as complaints",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -300,7 +399,10 @@
     },
     {
       "text": "they make every conversation about their pet",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -309,7 +411,10 @@
     },
     {
       "text": "they record TikToks in inappropriate places",
-      "tags": ["red_flag", "social"],
+      "tags": [
+        "red_flag",
+        "social"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 2,
@@ -318,7 +423,10 @@
     },
     {
       "text": "they say 'I'm brutally honest' as an excuse for being rude",
-      "tags": ["red_flag", "communication"],
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -327,7 +435,10 @@
     },
     {
       "text": "they chew with their mouth open during Zoom calls",
-      "tags": ["red_flag", "behavior"],
+      "tags": [
+        "red_flag",
+        "behavior"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -336,7 +447,10 @@
     },
     {
       "text": "they share conspiracy theories as facts",
-      "tags": ["red_flag", "behavior"],
+      "tags": [
+        "red_flag",
+        "behavior"
+      ],
       "tone": "serious",
       "spice": 2,
       "locality": 1,
@@ -345,16 +459,480 @@
     },
     {
       "text": "they borrow money but never pay back",
-      "tags": ["red_flag", "trust"],
+      "tags": [
+        "red_flag",
+        "trust"
+      ],
       "tone": "serious",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
+    },
+    {
+      "text": "they keep thirty unread texts as a personality",
+      "tags": [
+        "red_flag",
+        "communication"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they ask for your phone passcode on date two",
+      "tags": [
+        "red_flag",
+        "trust"
+      ],
+      "tone": "serious",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they clap when the plane lands",
+      "tags": [
+        "red_flag",
+        "social"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "still lives with parents at 35",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "immature"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "has no friends",
+      "tags": [
+        "red-flag",
+        "social",
+        "isolated"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hates all their exes",
+      "tags": [
+        "red-flag",
+        "dating",
+        "pattern"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bad relationship with family",
+      "tags": [
+        "red-flag",
+        "family",
+        "concerning"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no relationship with family",
+      "tags": [
+        "red-flag",
+        "family",
+        "concerning"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "estranged from everyone",
+      "tags": [
+        "red-flag",
+        "social",
+        "isolated"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no long-term friendships",
+      "tags": [
+        "red-flag",
+        "social",
+        "pattern"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "burns every bridge",
+      "tags": [
+        "red-flag",
+        "social",
+        "toxic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always the victim",
+      "tags": [
+        "red-flag",
+        "mindset",
+        "manipulative"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "never takes accountability",
+      "tags": [
+        "red-flag",
+        "mindset",
+        "immature"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "blames everyone else",
+      "tags": [
+        "red-flag",
+        "mindset",
+        "immature"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "has no goals",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "unmotivated"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no ambition",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "unmotivated"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "no job",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "unemployed"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "can't keep a job",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "unstable"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fired from every job",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "pattern"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "terrible with money",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "irresponsible"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always broke",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "financial"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in massive debt",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "financial"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "gambles constantly",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "addiction"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "drinks every day",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "addiction"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "can't go out without drinking",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "addiction"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "does drugs regularly",
+      "tags": [
+        "red-flag",
+        "lifestyle",
+        "addiction"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "has anger issues",
+      "tags": [
+        "red-flag",
+        "behavior",
+        "dangerous"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "punches walls",
+      "tags": [
+        "red-flag",
+        "behavior",
+        "violent"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "breaks things when angry",
+      "tags": [
+        "red-flag",
+        "behavior",
+        "violent"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "yells at service workers",
+      "tags": [
+        "red-flag",
+        "behavior",
+        "mean"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "rude to everyone",
+      "tags": [
+        "red-flag",
+        "behavior",
+        "mean"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mean to animals",
+      "tags": [
+        "red-flag",
+        "behavior",
+        "cruel"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "mean to kids",
+      "tags": [
+        "red-flag",
+        "behavior",
+        "cruel"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "has restraining order",
+      "tags": [
+        "red-flag",
+        "legal",
+        "dangerous"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "multiple restraining orders",
+      "tags": [
+        "red-flag",
+        "legal",
+        "dangerous"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "criminal record",
+      "tags": [
+        "red-flag",
+        "legal",
+        "concerning"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
     }
-    ,
-    {"text": "they keep thirty unread texts as a personality", "tags":["red_flag","communication"], "tone":"playful", "spice":1, "locality":2, "pluralizable":false, "needs_article":"none"},
-    {"text": "they ask for your phone passcode on date two", "tags":["red_flag","trust"], "tone":"serious", "spice":3, "locality":1, "pluralizable":false, "needs_article":"none"},
-    {"text": "they clap when the plane lands", "tags":["red_flag","social"], "tone":"witty", "spice":1, "locality":1, "pluralizable":false, "needs_article":"none"}
   ]
 }
