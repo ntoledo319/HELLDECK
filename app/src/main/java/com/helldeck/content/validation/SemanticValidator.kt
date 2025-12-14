@@ -23,33 +23,39 @@ class SemanticValidator(assetManager: AssetManager) {
     /**
      * Validates coherence of slot combinations.
      * Returns score 0.0-1.0 where 1.0 is perfectly coherent.
+     * FIX: Now uses slot TYPES from values, not slot NAMES from keys.
      */
     fun validateCoherence(slots: Map<String, SlotFill>): Double {
         if (slots.size < 2) return 1.0 // Single slot always coherent
-        
+
         var score = 1.0
-        
+
+        // Extract slot types (NOT slot names)
+        val slotTypes = slots.values.map { it.slotType }
+        val typePairs = slotTypes.pairs()
+
         // Check forbidden pairs (hard fail)
-        for ((typeA, typeB) in slots.keys.pairs()) {
+        for ((typeA, typeB) in typePairs) {
             if (isForbidden(typeA, typeB)) {
                 return 0.0 // Immediate rejection
             }
         }
-        
+
         // Check compatibility (soft penalty)
-        for ((typeA, typeB) in slots.keys.pairs()) {
+        for ((typeA, typeB) in typePairs) {
             if (!isCompatible(typeA, typeB)) {
                 score *= 0.7 // Penalize incompatible pairs
             }
         }
         
         // Check domain mixing (bonus for good cross-domain pairs)
-        val domains = slots.keys.mapNotNull { getDomain(it) }.distinct()
+        // FIX: Use slot types, not names
+        val domains = slotTypes.mapNotNull { getDomain(it) }.distinct()
         if (domains.size >= 2) {
             // Multiple domains can be good (absurdity) or bad (nonsensical)
             val hasSocialAndTaboo = domains.contains("social") && domains.contains("taboo")
             val hasWholesomeAndTaboo = domains.contains("wholesome") && domains.contains("taboo")
-            
+
             if (hasSocialAndTaboo) {
                 score *= 1.1 // Bonus for social + taboo (good absurdity)
             } else if (hasWholesomeAndTaboo) {
@@ -142,11 +148,10 @@ class SemanticValidator(assetManager: AssetManager) {
     /**
      * Extension function to get all pairs from a collection.
      */
-    private fun <T> Collection<T>.pairs(): List<Pair<T, T>> {
-        val list = this.toList()
-        return list.indices.flatMap { i ->
-            (i + 1 until list.size).map { j ->
-                list[i] to list[j]
+    private fun <T> List<T>.pairs(): List<Pair<T, T>> {
+        return this.indices.flatMap { i ->
+            (i + 1 until this.size).map { j ->
+                this[i] to this[j]
             }
         }
     }
