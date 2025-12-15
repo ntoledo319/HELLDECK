@@ -651,30 +651,109 @@ class HelldeckVm : ViewModel() {
 
     /**
      * Resolves the current game interaction, awards points, and transitions to feedback phase.
+     * NOW USES: InteractionType from roundState (not legacy Interaction enum)
      */
     fun resolveInteraction() {
-        val game = currentGame ?: return
-
-        when (game.interaction) {
-            Interaction.VOTE_AVATAR -> resolveRoastConsensus()
-            Interaction.TRUE_FALSE -> resolveConfession()
-            Interaction.AB_VOTE -> resolveAB()
-            Interaction.SMASH_PASS -> resolveSmashPass()
-            Interaction.JUDGE_PICK -> {
-                judgeWin = true
-                points = Config.current.scoring.win
-                awardActive(points)
+        val state = roundState
+        if (state != null) {
+            // NEW PATH: Use InteractionType from authoritative roundState
+            when (state.interactionType) {
+                com.helldeck.engine.InteractionType.VOTE_PLAYER -> resolveRoastConsensus()
+                com.helldeck.engine.InteractionType.TRUE_FALSE -> resolveConfession()
+                com.helldeck.engine.InteractionType.A_B_CHOICE -> resolveAB()
+                com.helldeck.engine.InteractionType.PREDICT_VOTE -> resolveAB() // Same as A/B
+                com.helldeck.engine.InteractionType.SMASH_PASS -> resolveSmashPass()
+                com.helldeck.engine.InteractionType.JUDGE_PICK -> {
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
+                else -> {
+                    // Default resolution for other types
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
             }
-            else -> {
-                // Default resolution
-                judgeWin = true
-                points = Config.current.scoring.win
-                awardActive(points)
+        } else {
+            // LEGACY FALLBACK: Use old Interaction enum if roundState not available
+            val game = currentGame ?: return
+            when (game.interaction) {
+                Interaction.VOTE_AVATAR -> resolveRoastConsensus()
+                Interaction.TRUE_FALSE -> resolveConfession()
+                Interaction.AB_VOTE -> resolveAB()
+                Interaction.SMASH_PASS -> resolveSmashPass()
+                Interaction.JUDGE_PICK -> {
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
+                else -> {
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
             }
         }
 
         phase = RoundPhase.FEEDBACK
         scene = Scene.FEEDBACK
+    }
+
+    /**
+     * Handles round events from UI interactions.
+     * Central event processor for type-safe interaction handling.
+     */
+    fun handleRoundEvent(event: com.helldeck.ui.events.RoundEvent) {
+        when (event) {
+            is com.helldeck.ui.events.RoundEvent.PickAB -> {
+                onABVote(activePlayer()?.id ?: "", event.choice)
+            }
+            is com.helldeck.ui.events.RoundEvent.VotePlayer -> {
+                val voterId = activePlayer()?.id ?: return
+                val targetId = activePlayers.getOrNull(event.playerIndex)?.id ?: return
+                onAvatarVote(voterId, targetId)
+            }
+            is com.helldeck.ui.events.RoundEvent.PreChoice -> {
+                onPreChoice(event.choice)
+            }
+            is com.helldeck.ui.events.RoundEvent.SelectTarget -> {
+                val targetId = activePlayers.getOrNull(event.playerIndex)?.id
+                com.helldeck.utils.Logger.d("Target selected: $targetId")
+            }
+            is com.helldeck.ui.events.RoundEvent.RateCard -> {
+                when (event.rating) {
+                    com.helldeck.content.quality.Rating.LOL -> feedbackLol()
+                    com.helldeck.content.quality.Rating.MEH -> feedbackMeh()
+                    com.helldeck.content.quality.Rating.TRASH -> feedbackTrash()
+                }
+            }
+            is com.helldeck.ui.events.RoundEvent.AdvancePhase -> {
+                roundState?.let { state ->
+                    when (state.phase) {
+                        com.helldeck.ui.state.RoundPhase.INTRO -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.INPUT)
+                        }
+                        com.helldeck.ui.state.RoundPhase.INPUT -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.REVEAL)
+                        }
+                        com.helldeck.ui.state.RoundPhase.REVEAL -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.FEEDBACK)
+                            scene = Scene.FEEDBACK
+                        }
+                        com.helldeck.ui.state.RoundPhase.FEEDBACK -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.DONE)
+                        }
+                        com.helldeck.ui.state.RoundPhase.DONE -> {
+                            viewModelScope.launch { commitFeedbackAndNext() }
+                        }
+                    }
+                }
+            }
+            else -> {
+                com.helldeck.utils.Logger.w("Unhandled round event: $event")
+            }
+        }
     }
 
     /**
