@@ -28,8 +28,8 @@ fun TargetSelectRenderer(
     ) {
         Text(text = "Select target player", style = MaterialTheme.typography.headlineSmall)
 
-        val playerNames = when (val opts = roundState.options) {
-            is com.helldeck.content.model.GameOptions.VoteAvatar -> opts.players
+        val playerNames: List<String> = when (val opts = roundState.options) {
+            is com.helldeck.content.model.GameOptions.PlayerSelect -> opts.players
             else -> emptyList()
         }
 
@@ -39,7 +39,7 @@ fun TargetSelectRenderer(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            itemsIndexed(playerNames) { index, playerName ->
+            itemsIndexed(items = playerNames) { index, playerName ->
                 Card(
                     modifier = Modifier.fillMaxWidth().clickable {
                         selectedIndex = index

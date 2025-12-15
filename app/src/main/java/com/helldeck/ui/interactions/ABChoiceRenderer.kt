@@ -38,7 +38,7 @@ fun ABChoiceRenderer(
 
         // Get option labels
         val (optA, optB) = when (val opts = roundState.options) {
-            is com.helldeck.content.model.GameOptions.ABChoice -> opts.a to opts.b
+            is com.helldeck.content.model.GameOptions.AB -> opts.optionA to opts.optionB
             else -> "A" to "B"
         }
 

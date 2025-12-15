@@ -21,7 +21,7 @@ fun JudgePickRenderer(
     ) {
         Text(text = "Judge picks the winner", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { onEvent(RoundEvent.AdvancePhase()) }) {
+        Button(onClick = { onEvent(RoundEvent.AdvancePhase) }) {
             Text("Continue")
         }
     }

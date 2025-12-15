@@ -23,12 +23,12 @@ sealed class RoundEvent {
 
     // Taboo events
     data class SubmitTabooGuess(val guess: String) : RoundEvent()
-    data class StartTabooTimer() : RoundEvent()
+    object StartTabooTimer : RoundEvent()
 
     // Navigation/Phase events
-    data class ConfirmReveal() : RoundEvent()
-    data class AdvancePhase() : RoundEvent()
-    data class Skip() : RoundEvent()
+    object ConfirmReveal : RoundEvent()
+    object AdvancePhase : RoundEvent()
+    object Skip : RoundEvent()
 
     // Feedback events
     data class RateCard(val rating: Rating) : RoundEvent()
@@ -43,5 +43,5 @@ sealed class RoundEvent {
     data class DuelWinner(val winnerIndex: Int) : RoundEvent()
 
     // Lock-in for timed activities
-    data class LockIn() : RoundEvent()
+    object LockIn : RoundEvent()
 }

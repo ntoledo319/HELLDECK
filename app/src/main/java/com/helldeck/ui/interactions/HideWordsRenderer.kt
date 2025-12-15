@@ -22,7 +22,7 @@ fun HideWordsRenderer(
         Text(text = "Try to hide these words in conversation", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(16.dp))
 
-        Button(onClick = { onEvent(RoundEvent.LockIn()) }) {
+        Button(onClick = { onEvent(RoundEvent.LockIn) }) {
             Text("Ready")
         }
     }
