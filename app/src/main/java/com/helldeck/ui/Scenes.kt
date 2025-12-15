@@ -266,14 +266,20 @@ class HelldeckVm : ViewModel() {
     private var turnIdx by mutableStateOf(0)
     private var starterPicked = false
 
+    // Persistent session ID for a game night (prevents card repetition)
+    var gameNightSessionId by mutableStateOf("session_${System.currentTimeMillis()}")
+
     // Rollcall / attendance
     private var didRollcall = false
     private var askRollcallOnLaunch = true
 
-    // Current round state
+    // Current round state (LEGACY - being replaced by roundState)
     var currentCard by mutableStateOf<com.helldeck.content.model.FilledCard?>(null)
     var currentGame by mutableStateOf<GameInfo?>(null)
     var phase by mutableStateOf(RoundPhase.DRAW)
+
+    // NEW: Authoritative round state from engine
+    var roundState by mutableStateOf<com.helldeck.ui.state.RoundState?>(null)
 
     // Voting state
     var preChoice by mutableStateOf<String?>(null)
@@ -293,17 +299,22 @@ class HelldeckVm : ViewModel() {
     private lateinit var repo: ContentRepository
     private lateinit var engine: com.helldeck.content.engine.GameEngine
 
+    // Initialization guard
+    private var isInitialized = false
+
     /**
      * Initializes the ViewModel systems on first use.
      * Sets up the content repository, game engine, and loads initial data.
+     * Can be called multiple times safely.
      */
     suspend fun initOnce() {
-        if (::engine.isInitialized) return
+        if (isInitialized) return
         isLoading = true
 
         val context = AppCtx.ctx
         repo = ContentRepository(context)
         engine = ContentEngineProvider.get(context)
+        isInitialized = true
 
         // Load initial data
         reloadPlayers()
@@ -319,16 +330,17 @@ class HelldeckVm : ViewModel() {
 
     /**
      * Convenience wrapper to expose options for a filled card without leaking engine.
+     * DEPRECATED: UI should use options from RoundState instead of recomputing.
      */
+    @Deprecated("Use options from RoundState instead", ReplaceWith("roundState?.options"))
     fun getOptionsFor(
         card: com.helldeck.content.model.FilledCard,
         req: com.helldeck.content.engine.GameEngine.Request
     ): com.helldeck.content.model.GameOptions {
         return try {
-            if (!::engine.isInitialized) {
-                // Best-effort init to avoid crashes if called early
-                val context = AppCtx.ctx
-                engine = ContentEngineProvider.get(context)
+            if (!isInitialized) {
+                com.helldeck.utils.Logger.w("getOptionsFor called before initialization")
+                return com.helldeck.content.model.GameOptions.None
             }
             engine.getOptionsFor(card, req)
         } catch (e: Exception) {
@@ -343,8 +355,13 @@ class HelldeckVm : ViewModel() {
      * Adds default players if none exist.
      */
     suspend fun reloadPlayers() {
-       players = repo.db.players().getAllPlayers().first().map { it.toPlayer() }
-       activePlayers = players.filter { p -> p.afk == 0 }
+        if (!isInitialized) {
+            com.helldeck.utils.Logger.w("reloadPlayers called before initialization")
+            return
+        }
+
+        players = repo.db.players().getAllPlayers().first().map { it.toPlayer() }
+        activePlayers = players.filter { p -> p.afk == 0 }
 
         // Add default players if none exist
         if (players.isEmpty()) {
@@ -425,6 +442,18 @@ class HelldeckVm : ViewModel() {
     }
 
     /**
+     * Starts a new game night session with fresh session ID.
+     * This resets anti-repetition tracking and allows previously seen cards.
+     */
+    fun startNewGameNight() {
+        gameNightSessionId = "session_${System.currentTimeMillis()}"
+        turnIdx = 0
+        starterPicked = false
+        didRollcall = false
+        com.helldeck.utils.Logger.i("New game night started: $gameNightSessionId")
+    }
+
+    /**
      * Marks the rollcall as completed.
      */
     fun markRollcallDone() {
@@ -485,13 +514,14 @@ class HelldeckVm : ViewModel() {
         }
 
         // Generate card
-        val playersList = activePlayers.map { it.name } // Assuming player names are used for target_name
+        val playersList = activePlayers.map { it.name }
         val activePlayerId = activePlayer()?.id
         val targetPlayerId = if (currentGame?.interaction == Interaction.TARGET_PICK) {
-            activePlayers.randomOrNull()?.id // Simple random target for now
+            activePlayers.randomOrNull()?.id
         } else null
 
-        val sessionId = "session_${System.currentTimeMillis()}" // Use a consistent session ID for the round
+        // Use persistent session ID (will be fixed in STEP 4)
+        val sessionId = gameNightSessionId
 
         try {
             val gameResult = engine.next(
@@ -502,10 +532,30 @@ class HelldeckVm : ViewModel() {
                     players = playersList
                 )
             )
+
+            // Create authoritative RoundState from engine result
+            roundState = com.helldeck.ui.state.RoundState(
+                gameId = nextGame,
+                filledCard = gameResult.filledCard,
+                options = gameResult.options,
+                timerSec = gameResult.timer,
+                interactionType = gameResult.interactionType,
+                activePlayerIndex = turnIdx,
+                judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK) {
+                    (turnIdx + 1) % activePlayers.size
+                } else null,
+                targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK) {
+                    activePlayers.indexOfFirst { it.id == targetPlayerId }
+                } else null,
+                phase = com.helldeck.ui.state.RoundPhase.INTRO,
+                sessionId = sessionId
+            )
+
+            // Keep legacy fields for backward compatibility during transition
             currentCard = gameResult.filledCard
+
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("startRound: engine.next failed", e)
-            // Fail gracefully back to home
             scene = Scene.HOME
             return
         }
@@ -601,30 +651,109 @@ class HelldeckVm : ViewModel() {
 
     /**
      * Resolves the current game interaction, awards points, and transitions to feedback phase.
+     * NOW USES: InteractionType from roundState (not legacy Interaction enum)
      */
     fun resolveInteraction() {
-        val game = currentGame ?: return
-
-        when (game.interaction) {
-            Interaction.VOTE_AVATAR -> resolveRoastConsensus()
-            Interaction.TRUE_FALSE -> resolveConfession()
-            Interaction.AB_VOTE -> resolveAB()
-            Interaction.SMASH_PASS -> resolveSmashPass()
-            Interaction.JUDGE_PICK -> {
-                judgeWin = true
-                points = Config.current.scoring.win
-                awardActive(points)
+        val state = roundState
+        if (state != null) {
+            // NEW PATH: Use InteractionType from authoritative roundState
+            when (state.interactionType) {
+                com.helldeck.engine.InteractionType.VOTE_PLAYER -> resolveRoastConsensus()
+                com.helldeck.engine.InteractionType.TRUE_FALSE -> resolveConfession()
+                com.helldeck.engine.InteractionType.A_B_CHOICE -> resolveAB()
+                com.helldeck.engine.InteractionType.PREDICT_VOTE -> resolveAB() // Same as A/B
+                com.helldeck.engine.InteractionType.SMASH_PASS -> resolveSmashPass()
+                com.helldeck.engine.InteractionType.JUDGE_PICK -> {
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
+                else -> {
+                    // Default resolution for other types
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
             }
-            else -> {
-                // Default resolution
-                judgeWin = true
-                points = Config.current.scoring.win
-                awardActive(points)
+        } else {
+            // LEGACY FALLBACK: Use old Interaction enum if roundState not available
+            val game = currentGame ?: return
+            when (game.interaction) {
+                Interaction.VOTE_AVATAR -> resolveRoastConsensus()
+                Interaction.TRUE_FALSE -> resolveConfession()
+                Interaction.AB_VOTE -> resolveAB()
+                Interaction.SMASH_PASS -> resolveSmashPass()
+                Interaction.JUDGE_PICK -> {
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
+                else -> {
+                    judgeWin = true
+                    points = Config.current.scoring.win
+                    awardActive(points)
+                }
             }
         }
 
         phase = RoundPhase.FEEDBACK
         scene = Scene.FEEDBACK
+    }
+
+    /**
+     * Handles round events from UI interactions.
+     * Central event processor for type-safe interaction handling.
+     */
+    fun handleRoundEvent(event: com.helldeck.ui.events.RoundEvent) {
+        when (event) {
+            is com.helldeck.ui.events.RoundEvent.PickAB -> {
+                onABVote(activePlayer()?.id ?: "", event.choice)
+            }
+            is com.helldeck.ui.events.RoundEvent.VotePlayer -> {
+                val voterId = activePlayer()?.id ?: return
+                val targetId = activePlayers.getOrNull(event.playerIndex)?.id ?: return
+                onAvatarVote(voterId, targetId)
+            }
+            is com.helldeck.ui.events.RoundEvent.PreChoice -> {
+                onPreChoice(event.choice)
+            }
+            is com.helldeck.ui.events.RoundEvent.SelectTarget -> {
+                val targetId = activePlayers.getOrNull(event.playerIndex)?.id
+                com.helldeck.utils.Logger.d("Target selected: $targetId")
+            }
+            is com.helldeck.ui.events.RoundEvent.RateCard -> {
+                when (event.rating) {
+                    com.helldeck.content.quality.Rating.LOL -> feedbackLol()
+                    com.helldeck.content.quality.Rating.MEH -> feedbackMeh()
+                    com.helldeck.content.quality.Rating.TRASH -> feedbackTrash()
+                }
+            }
+            is com.helldeck.ui.events.RoundEvent.AdvancePhase -> {
+                roundState?.let { state ->
+                    when (state.phase) {
+                        com.helldeck.ui.state.RoundPhase.INTRO -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.INPUT)
+                        }
+                        com.helldeck.ui.state.RoundPhase.INPUT -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.REVEAL)
+                        }
+                        com.helldeck.ui.state.RoundPhase.REVEAL -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.FEEDBACK)
+                            scene = Scene.FEEDBACK
+                        }
+                        com.helldeck.ui.state.RoundPhase.FEEDBACK -> {
+                            roundState = state.withPhase(com.helldeck.ui.state.RoundPhase.DONE)
+                        }
+                        com.helldeck.ui.state.RoundPhase.DONE -> {
+                            viewModelScope.launch { commitFeedbackAndNext() }
+                        }
+                    }
+                }
+            }
+            else -> {
+                com.helldeck.utils.Logger.w("Unhandled round event: $event")
+            }
+        }
     }
 
     /**
@@ -750,10 +879,14 @@ class HelldeckVm : ViewModel() {
         }
         players = updated
         // Persist session points to DB
-        viewModelScope.launch {
-            try {
-                repo?.db?.players()?.addPointsToPlayer(playerId, delta)
-            } catch (_: Exception) {}
+        if (isInitialized) {
+            viewModelScope.launch {
+                try {
+                    repo.db.players().addPointsToPlayer(playerId, delta)
+                } catch (e: Exception) {
+                    com.helldeck.utils.Logger.e("Failed to persist points", e)
+                }
+            }
         }
     }
 
@@ -798,20 +931,23 @@ class HelldeckVm : ViewModel() {
         val card = currentCard ?: return
         val latency = (System.currentTimeMillis() - t0).toInt()
 
-        val laughsScore = calculateLaughsScore(lol, meh, trash)
+        // Use new Rewards system for consistent reward calculation
+        val laughsScore = com.helldeck.content.quality.Rewards.fromCounts(lol, meh, trash)
         val responseTimeMs = System.currentTimeMillis() - t0
         val heatPercentage = (lol + trash).toDouble() / (lol + meh + trash).coerceAtLeast(1).toDouble()
-        val winnerId = if (judgeWin) activePlayer()?.id else null // Simplified winner logic for now
+        val winnerId = if (judgeWin) activePlayer()?.id else null
 
         try {
             // Record outcome with the engine if available
-            if (!::engine.isInitialized) {
-                initOnce()
+            if (!isInitialized) {
+                com.helldeck.utils.Logger.w("Skipping outcome recording: not initialized")
+            } else {
+                engine.recordOutcome(
+                    templateId = card.id,
+                    reward01 = laughsScore
+                )
+                com.helldeck.utils.Logger.i("Recorded outcome for ${card.id}: reward=$laughsScore (LOL:$lol, MEH:$meh, TRASH:$trash)")
             }
-            engine.recordOutcome(
-                templateId = card.id,
-                reward01 = laughsScore
-            )
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("commitFeedbackAndNext: recordOutcome failed", e)
         }
@@ -827,15 +963,19 @@ class HelldeckVm : ViewModel() {
         // Persist long-term player stats
         // NOTE: Player scoring is now handled by GameEngine.recordOutcome, but we still need to update
         // the local player list and persist long-term stats like wins/games played.
-        activePlayer()?.id?.let { pid ->
-            repo?.let { r ->
-                r.db.players().incGamesPlayed(pid)
-                if (judgeWin) r.db.players().addWins(pid, 1)
-                if (points != 0) r.db.players().addTotalPoints(pid, points)
+        if (isInitialized) {
+            activePlayer()?.id?.let { pid ->
+                try {
+                    repo.db.players().incGamesPlayed(pid)
+                    if (judgeWin) repo.db.players().addWins(pid, 1)
+                    if (points != 0) repo.db.players().addTotalPoints(pid, points)
+                } catch (e: Exception) {
+                    com.helldeck.utils.Logger.e("Failed to persist player stats", e)
+                }
             }
+            // Reload players to get updated scores
+            reloadPlayers()
         }
-        // Reload players to get updated scores from GameEngine's internal state (which is not persisted to DB yet)
-        reloadPlayers()
 
         // Advance turn and start next round
         endRoundAdvanceTurn()
@@ -850,18 +990,11 @@ class HelldeckVm : ViewModel() {
      */
     /**
      * Calculates laughs score based on feedback counts
+     * @deprecated Use Rewards.fromCounts instead
      */
+    @Deprecated("Use Rewards.fromCounts", ReplaceWith("com.helldeck.content.quality.Rewards.fromCounts(lol, meh, trash)"))
     private fun calculateLaughsScore(lol: Int, meh: Int, trash: Int): Double {
-        val total = lol + meh + trash
-        if (total == 0) return 0.0
-        
-        // Weighted scoring: more positive feedback = higher score
-        val lolWeight = 1.0
-        val mehWeight = 0.3
-        val trashWeight = -0.5
-        
-        val weightedSum = (lol * lolWeight) + (meh * mehWeight) + (trash * trashWeight)
-        return weightedSum / total
+        return com.helldeck.content.quality.Rewards.fromCounts(lol, meh, trash)
     }
 
     /**
@@ -878,6 +1011,10 @@ class HelldeckVm : ViewModel() {
     }
 
     suspend fun computePlayerProfiles(): List<com.helldeck.data.PlayerProfile> {
-        return repo.computePlayerProfiles()
+        return if (isInitialized) {
+            repo.computePlayerProfiles()
+        } else {
+            emptyList()
+        }
     }
 }
