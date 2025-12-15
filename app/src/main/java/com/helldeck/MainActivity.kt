@@ -159,6 +159,14 @@ class MainActivity : ComponentActivity() {
                 ContentEngineProvider.get(this)
             }
 
+            // HELLDECK 2.0: Route validation in DEBUG builds
+            if (BuildConfig.DEBUG) {
+                val routeIssues = com.helldeck.ui.nav.RouteAudit.validate()
+                if (routeIssues.isNotEmpty()) {
+                    Logger.w("RouteAudit found issues: ${routeIssues.joinToString("; ")}")
+                }
+            }
+
             Logger.i("App initialization completed successfully")
 
         } catch (e: Exception) {

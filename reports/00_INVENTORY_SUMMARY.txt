@@ -1,0 +1,96 @@
+HELLDECK 2.0 REBUILD - INVENTORY FINDINGS
+==========================================
+
+Date: 2025-12-15
+Task: Phase 1 - Inventory and duplicate detection
+
+CRITICAL DUPLICATES FOUND:
+==========================
+
+1. DUPLICATE VIEWMODELS (CRITICAL):
+   - HelldeckVm (Scenes.kt:245) - ACTIVELY USED
+   - GameViewModel (viewmodel/GameViewModel.kt:20) - UNUSED
+   - HelldeckViewModelCoordinator (viewmodel/HelldeckViewModelCoordinator.kt:19) - UNUSED
+   
+   STATUS: App uses HelldeckVm. GameViewModel + Coordinator appear to be an abandoned refactor.
+   ACTION: Delete GameViewModel + Coordinator, keep HelldeckVm as base, rename to GameNightViewModel
+
+2. NAVIGATION SYSTEM:
+   - Custom router with Scene enum in Scenes.kt
+   - No Navigation Compose detected
+   - Clean and centralized
+   ACTION: Keep custom router, formalize with Screen.kt sealed class
+
+3. FILES WITH VERSION SUFFIXES:
+   - TemplateV2.kt (content/model/v2/)
+   - TemplateRepositoryV2.kt (content/data/)
+   STATUS: Likely legitimate content model migration, need to verify
+
+4. MISSING CORE COMPONENTS:
+   - No InteractionRenderer found
+   - No DebugHarnessScene
+   - No HouseRulesScene, GroupDnaScene, PacksScene, RolesScene, HighlightsScene
+   
+5. EXISTING SCREENS (10 found):
+   ✓ CardLabScene.kt
+   ✓ FeedbackScene.kt
+   ✓ GameRulesScene.kt
+   ✓ HomeScene.kt
+   ✓ PlayerProfileScene.kt
+   ✓ PlayersScene.kt
+   ✓ RollcallScene.kt
+   ✓ RoundScene.kt
+   ✓ SettingsScene.kt
+   ✓ StatsScene.kt
+
+6. DATABASE:
+   ✓ Single HelldeckDb - no duplicates
+   ✓ Clean Room implementation
+
+RESOLUTION PLAN:
+================
+
+Phase 1: Delete duplicate VMs
+   - Delete GameViewModel.kt
+   - Delete HelldeckViewModelCoordinator.kt
+   - Delete NavigationViewModel.kt (if exists)
+   - Delete PlayerViewModel.kt (if exists)
+
+Phase 2: Consolidate to GameNightViewModel
+   - Rename HelldeckVm to GameNightViewModel
+   - Move to ui/vm/ package
+   - Enhance with all upgrade features
+
+Phase 3: Build missing components
+   - InteractionRenderer
+   - 6 new screens for upgrades
+   - DebugHarnessScene
+
+Phase 4: Route formalization
+   - Create ui/nav/Screen.kt
+   - Create ui/nav/RouteAudit.kt
+   - Update Scenes.kt to use new Screen definitions
+
+CONFIRMED DUPLICATE VIEWMODELS (ALL UNUSED):
+=============================================
+app/src/main/java/com/helldeck/ui/viewmodel/GameViewModel.kt
+app/src/main/java/com/helldeck/ui/viewmodel/HelldeckViewModelCoordinator.kt
+app/src/main/java/com/helldeck/ui/viewmodel/NavigationViewModel.kt
+app/src/main/java/com/helldeck/ui/viewmodel/PlayerViewModel.kt
+
+These will ALL be deleted in Phase 5.
+Only HelldeckVm (Scenes.kt) is actually used by the app.
+
+NO DUPLICATES IN:
+=================
+- Screen files (each scene exists exactly once)
+- Database (single HelldeckDb)
+- Interaction system (doesn't exist yet, will create)
+
+V2 FILES TO INVESTIGATE:
+========================
+- content/model/v2/TemplateV2.kt
+- content/data/TemplateRepositoryV2.kt
+(Likely legitimate content model versioning - will verify in Phase 4)
+
+INVENTORY COMPLETE: 2025-12-15
