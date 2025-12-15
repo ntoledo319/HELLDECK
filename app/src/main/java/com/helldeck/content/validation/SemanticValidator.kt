@@ -65,7 +65,7 @@ class SemanticValidator(assetManager: AssetManager) {
         
         // Check semantic distance using simple heuristics
         // (In production, could use word embeddings for better accuracy)
-        for ((slotA, slotB) in slots.values.pairs()) {
+        for ((slotA, slotB) in slots.values.toList().pairs()) {
             val distance = calculateSimpleSemanticDistance(slotA.originalText, slotB.originalText)
             
             // Penalize if too similar (boring) or too different (nonsensical)

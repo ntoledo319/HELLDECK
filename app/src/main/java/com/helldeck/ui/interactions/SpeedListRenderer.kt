@@ -50,7 +50,7 @@ fun SpeedListRenderer(
                 Text("Add")
             }
 
-            Button(onClick = { onEvent(RoundEvent.LockIn()) }) {
+            Button(onClick = { onEvent(RoundEvent.LockIn) }) {
                 Text("Done")
             }
         }

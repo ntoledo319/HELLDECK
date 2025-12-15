@@ -15,7 +15,7 @@ fun GroupDnaScreen(
 ) {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontalAlignment
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Group DNA", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))

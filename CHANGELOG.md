@@ -86,6 +86,20 @@
   - All repo access now guards against uninitialized state
   - Prevents `UninitializedPropertyAccessException`
 
+- **Fixed all compilation errors for successful build (December 2024)**
+  - **GameEngine.kt**: Fixed `compileOptions()` calls to use `optionsCompiler.compile()`
+  - **SemanticValidator.kt**: Fixed `pairs()` extension by converting collection to list
+  - **RoundEvent.kt**: Converted parameterless data classes to objects (`StartTabooTimer`, `ConfirmReveal`, `AdvancePhase`, `Skip`, `LockIn`)
+  - **TemplateLint.kt**: Fixed string interpolation syntax and comment parsing issues
+  - **ABChoiceRenderer.kt & PredictVoteRenderer.kt**: Fixed `GameOptions.ABChoice` to `GameOptions.AB` and property access
+  - **ReplyToneRenderer.kt**: Fixed `GameOptions.ToneSelect` to `GameOptions.ReplyTone`
+  - **TargetSelectRenderer.kt & VotePlayerRenderer.kt**: Fixed type inference and `GameOptions` references
+  - **RouteAudit.kt**: Fixed nullable receiver issue with safe call operator
+  - **GroupDnaScreen.kt**: Fixed `CenterHorizontalAlignment` to `Alignment.CenterHorizontally`
+  - **GameNightViewModel.kt**: Fixed `RoundPhase.DRAW` to `RoundPhase.INTRO`
+  - **HideWordsRenderer.kt, JudgePickRenderer.kt, SpeedListRenderer.kt**: Fixed object invocations (removed parentheses)
+  - Build now compiles successfully for both debug and release variants
+
 #### Error Handling
 - **No silent exception swallowing**
   - All catch blocks now log errors with context

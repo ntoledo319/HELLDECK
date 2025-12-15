@@ -18,7 +18,7 @@ fun ReplyToneRenderer(
     var selectedTone by remember { mutableStateOf<String?>(null) }
 
     val tones = when (val opts = roundState.options) {
-        is com.helldeck.content.model.GameOptions.ToneSelect -> opts.tones
+        is com.helldeck.content.model.GameOptions.ReplyTone -> opts.tones
         else -> listOf("Funny", "Serious", "Sarcastic", "Kind")
     }
 

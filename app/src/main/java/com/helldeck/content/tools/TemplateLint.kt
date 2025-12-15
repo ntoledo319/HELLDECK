@@ -10,7 +10,7 @@ import kotlinx.serialization.json.jsonPrimitive
 
 /**
  * Template lint tool for V3 blueprints.
- * Validates templates_v3/*.json files for correctness.
+ * Validates templates_v3 JSON files for correctness.
  */
 object TemplateLint {
 
@@ -59,19 +59,19 @@ object TemplateLint {
 
                 // Required fields
                 if (!template.containsKey("id")) {
-                    errors.add("[$templateId] Missing required field: id")
+                    errors.add("[${templateId}] Missing required field: id")
                 }
                 if (!template.containsKey("game")) {
-                    errors.add("[$templateId] Missing required field: game")
+                    errors.add("[${templateId}] Missing required field: game")
                 }
                 if (!template.containsKey("blueprint")) {
-                    errors.add("[$templateId] Missing required field: blueprint")
+                    errors.add("[${templateId}] Missing required field: blueprint")
                 }
 
                 // Validate blueprint
                 template["blueprint"]?.jsonArray?.let { blueprint ->
                     if (blueprint.isEmpty()) {
-                        errors.add("[$templateId] Empty blueprint")
+                        errors.add("[${templateId}] Empty blueprint")
                     }
 
                     blueprint.forEach { segment ->
@@ -82,24 +82,24 @@ object TemplateLint {
                             "text" -> {
                                 val value = segmentObj["value"]?.jsonPrimitive?.content
                                 if (value.isNullOrBlank()) {
-                                    warnings.add("[$templateId] Empty text segment")
+                                    warnings.add("[${templateId}] Empty text segment")
                                 }
                                 // Check for unresolved placeholders
                                 if (value?.contains("{") == true || value?.contains("}") == true) {
-                                    errors.add("[$templateId] Text segment contains placeholder: $value")
+                                    errors.add("[${templateId}] Text segment contains placeholder: $value")
                                 }
                             }
                             "slot" -> {
                                 if (!segmentObj.containsKey("slot_type")) {
-                                    errors.add("[$templateId] Slot missing slot_type")
+                                    errors.add("[${templateId}] Slot missing slot_type")
                                 }
                                 val slotType = segmentObj["slot_type"]?.jsonPrimitive?.content
                                 if (slotType.isNullOrBlank()) {
-                                    errors.add("[$templateId] Empty slot_type")
+                                    errors.add("[${templateId}] Empty slot_type")
                                 }
                             }
                             null -> {
-                                errors.add("[$templateId] Blueprint segment missing type")
+                                errors.add("[${templateId}] Blueprint segment missing type")
                             }
                         }
                     }
@@ -109,29 +109,29 @@ object TemplateLint {
                 template["constraints"]?.jsonObject?.let { constraints ->
                     val maxWords = constraints["max_words"]?.jsonPrimitive?.content?.toIntOrNull()
                     if (maxWords != null && maxWords > 100) {
-                        warnings.add("[$templateId] Very high max_words: $maxWords")
+                        warnings.add("[${templateId}] Very high max_words: $maxWords")
                     }
                     if (maxWords != null && maxWords < 5) {
-                        warnings.add("[$templateId] Very low max_words: $maxWords")
+                        warnings.add("[${templateId}] Very low max_words: $maxWords")
                     }
                 }
 
                 // Validate spice level
                 val spiceMax = template["spice_max"]?.jsonPrimitive?.content?.toIntOrNull()
                 if (spiceMax != null && (spiceMax < 1 || spiceMax > 3)) {
-                    warnings.add("[$templateId] Invalid spice_max: $spiceMax (should be 1-3)")
+                    warnings.add("[${templateId}] Invalid spice_max: $spiceMax (should be 1-3)")
                 }
 
                 // Validate weight
                 val weight = template["weight"]?.jsonPrimitive?.content?.toDoubleOrNull()
                 if (weight != null && weight <= 0) {
-                    warnings.add("[$templateId] Invalid weight: $weight (should be > 0)")
+                    warnings.add("[${templateId}] Invalid weight: $weight (should be > 0)")
                 }
 
                 // Check for game ID existence (basic check)
                 val gameId = template["game"]?.jsonPrimitive?.content
                 if (gameId != null && !isValidGameId(gameId)) {
-                    errors.add("[$templateId] Unknown game ID: $gameId")
+                    errors.add("[${templateId}] Unknown game ID: $gameId")
                 }
             }
 

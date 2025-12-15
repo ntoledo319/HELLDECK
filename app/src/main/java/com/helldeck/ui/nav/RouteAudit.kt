@@ -68,7 +68,7 @@ object RouteAudit {
         sb.appendLine()
         sb.appendLine("Routes:")
         Screen.ALL.forEach { screen ->
-            sb.appendLine("  ${screen::class.simpleName.padEnd(20)} -> ${screen.route}")
+            sb.appendLine("  ${(screen::class.simpleName ?: "Unknown").padEnd(20)} -> ${screen.route}")
         }
         sb.appendLine()
 

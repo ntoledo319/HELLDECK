@@ -67,7 +67,7 @@ class GameNightViewModel : ViewModel() {
     // Legacy fields (kept for backward compatibility during transition)
     var currentCard by mutableStateOf<FilledCard?>(null)
     var currentGame by mutableStateOf<GameInfo?>(null)
-    var phase by mutableStateOf(RoundPhase.DRAW)
+    var phase by mutableStateOf(RoundPhase.INTRO)
 
     // ========== VOTING STATE ==========
     var preChoice by mutableStateOf<String?>(null)
@@ -250,7 +250,7 @@ class GameNightViewModel : ViewModel() {
         }
 
         scene = Scene.ROUND
-        phase = RoundPhase.DRAW
+        phase = RoundPhase.INTRO
 
         Config.spicyMode = spicy
 

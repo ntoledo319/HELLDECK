@@ -101,7 +101,7 @@ class GameEngine(
             val chosen = selector.pick(ctx, pool)
             val filled = fill(chosen, req)
             val augmented = augment(chosen, filled, req)
-            var options = compileOptions(chosen, augmented, req)
+            var options = optionsCompiler.compile(chosen, augmented, req.players)
 
             if (isSensible(augmented, options)) {
                 val timer = timerFor(chosen.game)
@@ -110,7 +110,7 @@ class GameEngine(
             }
 
             // If augmentation made it worse, fallback to original fill once
-            options = compileOptions(chosen, filled, req)
+            options = optionsCompiler.compile(chosen, filled, req.players)
             if (isSensible(filled, options)) {
                 val timer = timerFor(chosen.game)
                 val interaction = interactionFor(chosen.game)
@@ -135,7 +135,7 @@ class GameEngine(
         val chosen = selector.pick(ctx, pool)
         val filled = fill(chosen, req)
         val augmented = augment(chosen, filled, req)
-        val options = compileOptions(chosen, augmented, req)
+        val options = optionsCompiler.compile(chosen, augmented, req.players)
         val timer = timerFor(chosen.game)
         val interaction = interactionFor(chosen.game)
         val lastAttempt = Result(augmented, options, timer, interaction)

@@ -40,8 +40,8 @@ fun VotePlayerRenderer(
         )
 
         // Get player names from options
-        val playerNames = when (val opts = roundState.options) {
-            is com.helldeck.content.model.GameOptions.VoteAvatar -> opts.players
+        val playerNames: List<String> = when (val opts = roundState.options) {
+            is com.helldeck.content.model.GameOptions.PlayerVote -> opts.players
             else -> emptyList()
         }
 
@@ -51,7 +51,7 @@ fun VotePlayerRenderer(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            itemsIndexed(playerNames) { index, playerName ->
+            itemsIndexed(items = playerNames) { index, playerName ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()

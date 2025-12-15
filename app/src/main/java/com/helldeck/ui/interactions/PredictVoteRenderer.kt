@@ -26,7 +26,8 @@ fun PredictVoteRenderer(
         Text(text = "Predict the majority vote", style = MaterialTheme.typography.headlineSmall)
 
         val (optA, optB) = when (val opts = roundState.options) {
-            is com.helldeck.content.model.GameOptions.ABChoice -> opts.a to opts.b
+            is com.helldeck.content.model.GameOptions.AB -> opts.optionA to opts.optionB
+            is com.helldeck.content.model.GameOptions.PredictVote -> opts.optionA to opts.optionB
             else -> "A" to "B"
         }
 
