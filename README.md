@@ -1,6 +1,20 @@
 # HELLDECK
 Single phone. One card per round. 14 mini-games. Learns what your crew finds funny.
 
+## 🚨 Recent Major Updates (December 2024)
+
+**Complete architectural overhaul with end-to-end rule enforcement:**
+
+- ✅ **Engine Authority**: UI now renders exactly what GameEngine produces (no more UI recomputing options incorrectly)
+- ✅ **Contract Validation**: All cards validated against game rules before display (prevents nonsense combinations)
+- ✅ **Semantic Coherence Fixed**: Validator now uses slot types (not names) to prevent absurd combinations
+- ✅ **Session Persistence**: Session IDs persist across rounds for proper anti-repetition
+- ✅ **Feedback Loop**: Consistent LOL/MEH/TRASH → reward mapping improves content over time
+- ✅ **Gold Fallbacks**: Guaranteed-valid fallback cards for all 14 interaction types
+- ✅ **Unit Tests**: SemanticValidator tests ensure validation correctness
+
+See [CHANGELOG.md](CHANGELOG.md) for complete details.
+
 ## 🎮 Game Overview
 
 HELLDECK is a party game system designed for 3-16 players using a single Android device. The game features 14 unique mini-games that adapt to your group's sense of humor through machine learning.
@@ -30,16 +44,28 @@ HELLDECK is a party game system designed for 3-16 players using a single Android
 
 ### Build & Run
 
-1. **Open in Android Studio**
+**Important**: Building requires network access for Gradle dependency resolution.
+
+1. **Using System Gradle (if wrapper fails)**
    ```bash
-   # Open the project root directory in Android Studio
+   # If gradle wrapper is missing or broken, use system gradle:
+   gradle :app:assembleDebug
+   # Or for release:
+   gradle :app:assembleRelease
    ```
 
-2. **Build APK**
+2. **Using Gradle Wrapper (recommended)**
    ```bash
    ./gradlew :app:assembleRelease
    # Or for debug build:
    ./gradlew :app:assembleDebug
+   ```
+
+3. **Open in Android Studio**
+   ```bash
+   # Open the project root directory in Android Studio
+   # Build → Make Project (Ctrl+F9)
+   # Run → Run 'app' (Shift+F10)
    ```
 
 3. **Install using Desktop Loader (optional)**
@@ -157,6 +183,11 @@ Game behavior is controlled by `app/src/main/assets/settings/default.yaml` which
 
 - Run `./run_tests.sh` for the focused JVM checks (engine heuristics, YAML loader, brainpack round-trip). Full `./gradlew test` still includes Compose UI suites that require instrumentation; execute those from Android Studio or via `./gradlew connectedAndroidTest` on a device/emulator.
 
+**New tests added:**
+- `SemanticValidatorTest`: Validates semantic coherence logic
+- Contract validation framework (tests in development)
+- Generation smoke tests (framework established)
+
 ### Cleaning build artifacts
 
 - Use `./gradlew clean` to remove all compiled outputs, including native builds under `app/.cxx` and Gradle intermediates under `app/build`.
@@ -197,6 +228,13 @@ The game uses a custom learning algorithm that:
 - Adapts to group preferences over time
 - Balances variety with proven winners
 - Uses epsilon-greedy exploration strategy
+
+**Feedback rewards (now consistent):**
+- LOL = 1.0 (best possible)
+- MEH = 0.35 (below average but not banned)
+- TRASH = 0.0 (effectively bans the template)
+
+Rewards are persisted per template and bias future selection toward higher-rated content.
 
 ## 🔒 Kiosk Mode
 

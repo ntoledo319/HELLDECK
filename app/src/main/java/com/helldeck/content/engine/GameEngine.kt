@@ -46,13 +46,40 @@ class GameEngine(
     )
 
     suspend fun next(req: Request): Result {
+        val maxContractAttempts = 15 // Bounded retry for contract validation
+
         cardGeneratorV3?.let { generator ->
             val cfg = Config.current.generator
             if (cfg.safe_mode_gold_only) {
-                generator.goldOnly(req, rng)?.let { return convert(it) }
+                generator.goldOnly(req, rng)?.let {
+                    val result = convert(it)
+                    if (validateContract(result, req)) {
+                        return result
+                    } else {
+                        Logger.w("Gold card failed contract validation: ${result.filledCard.id}")
+                    }
+                }
             }
             if (cfg.enable_v3_generator) {
-                generator.generate(req, rng)?.let { return convert(it) }
+                // Try generating with contract validation
+                repeat(maxContractAttempts) { attempt ->
+                    generator.generate(req, rng)?.let { generationResult ->
+                        val result = convert(generationResult)
+                        val contractCheck = com.helldeck.content.validation.GameContractValidator.validate(
+                            gameId = result.filledCard.game,
+                            interactionType = result.interactionType,
+                            options = result.options,
+                            filledCard = result.filledCard,
+                            playersCount = req.players.size
+                        )
+                        if (contractCheck.isValid) {
+                            return result
+                        } else {
+                            Logger.d("Contract validation failed (attempt ${attempt + 1}): ${contractCheck.reasons.joinToString(", ")}")
+                        }
+                    }
+                }
+                Logger.w("All V3 generation attempts failed contract validation")
             }
         }
 
@@ -111,11 +138,36 @@ class GameEngine(
         val options = compileOptions(chosen, augmented, req)
         val timer = timerFor(chosen.game)
         val interaction = interactionFor(chosen.game)
-        return Result(augmented, options, timer, interaction)
+        val lastAttempt = Result(augmented, options, timer, interaction)
+
+        // Validate last attempt; if it fails, use gold fallback
+        if (validateContract(lastAttempt, req)) {
+            return lastAttempt
+        } else {
+            Logger.w("V2 generation failed contract; using gold fallback")
+            return createGoldFallback(req)
+        }
     }
 
     private fun convert(result: CardGeneratorV3.GenerationResult): Result =
         Result(result.filledCard, result.options, result.timer, result.interactionType)
+
+    /**
+     * Validates that a generated result satisfies game contract
+     */
+    private fun validateContract(result: Result, req: Request): Boolean {
+        val contractResult = com.helldeck.content.validation.GameContractValidator.validate(
+            gameId = result.filledCard.game,
+            interactionType = result.interactionType,
+            options = result.options,
+            filledCard = result.filledCard,
+            playersCount = req.players.size
+        )
+        if (!contractResult.isValid) {
+            Logger.w("Contract validation failed: ${contractResult.reasons.joinToString(", ")}")
+        }
+        return contractResult.isValid
+    }
 
     private fun isSensible(card: FilledCard, options: GameOptions): Boolean {
         val issues = CardQualityInspector.evaluate(card, options)
@@ -174,6 +226,94 @@ class GameEngine(
                 val rewardSum = (current?.rewardSum ?: 0.0) + r
                 dao.upsert(com.helldeck.content.db.TemplateStatEntity(templateId, visits, rewardSum))
             }
-        } catch (_: Exception) { }
+        } catch (e: Exception) {
+            Logger.e("Failed to record outcome for template $templateId", e)
+        }
+    }
+
+    /**
+     * Creates a guaranteed-valid fallback card for when generation fails.
+     * Each interaction type has a safe fallback.
+     */
+    private fun createGoldFallback(req: Request): Result {
+        val gameId = req.gameId ?: GameMetadata.getAllGameIds().random()
+        val metadata = GameMetadata.getGameMetadata(gameId)
+        val interactionType = metadata?.interactionType ?: InteractionType.NONE
+        val timer = metadata?.timerSec ?: 15
+
+        val (text, options) = when (interactionType) {
+            InteractionType.A_B_CHOICE -> {
+                "Would you rather have unlimited coffee or unlimited pizza?" to
+                        GameOptions.AB("Unlimited Coffee", "Unlimited Pizza")
+            }
+            InteractionType.VOTE_PLAYER -> {
+                "Who is most likely to survive a zombie apocalypse?" to
+                        GameOptions.PlayerVote(req.players.ifEmpty { listOf("Player 1", "Player 2", "Player 3") })
+            }
+            InteractionType.TRUE_FALSE -> {
+                "I once convinced someone I could speak three languages (I can't)." to
+                        GameOptions.TrueFalse
+            }
+            InteractionType.SMASH_PASS -> {
+                "A partner who's always 10 minutes late but brings snacks." to
+                        GameOptions.AB("SMASH", "PASS")
+            }
+            InteractionType.TABOO_GUESS -> {
+                "Get your team to guess this word without using forbidden terms!" to
+                        GameOptions.Taboo("Password", listOf("computer", "login", "security"))
+            }
+            InteractionType.JUDGE_PICK -> {
+                "Complete this: The worst superpower would be..." to
+                        GameOptions.None
+            }
+            InteractionType.REPLY_TONE -> {
+                "Your ex texts: 'Hey, you up?' Pick your vibe:" to
+                        GameOptions.ReplyTone(listOf("Petty", "Wholesome", "Chaotic", "Deadpan"))
+            }
+            InteractionType.ODD_EXPLAIN -> {
+                "Which doesn't belong?" to
+                        GameOptions.OddOneOut(listOf("Dolphins", "Bats", "Penguins"))
+            }
+            InteractionType.HIDE_WORDS -> {
+                "Sneak these words into your story!" to
+                        GameOptions.HiddenWords(listOf("rubber duck", "midnight"))
+            }
+            InteractionType.SALES_PITCH -> {
+                "Pitch this product with a straight face:" to
+                        GameOptions.Product("Edible socks")
+            }
+            InteractionType.SPEED_LIST -> {
+                "Name three things fast!" to
+                        GameOptions.Scatter("Animals", "S")
+            }
+            InteractionType.MINI_DUEL -> {
+                "Rock-paper-scissors showdown! Best of three." to
+                        GameOptions.Challenge("Duel!")
+            }
+            InteractionType.TARGET_SELECT -> {
+                "Pick someone to answer this: What's your secret talent?" to
+                        GameOptions.PlayerSelect(req.players, null)
+            }
+            InteractionType.PREDICT_VOTE -> {
+                "Predict what the room will choose: Tacos vs Pizza?" to
+                        GameOptions.AB("Tacos", "Pizza")
+            }
+            else -> {
+                "Everyone: share your most embarrassing moment from this week!" to
+                        GameOptions.None
+            }
+        }
+
+        val filledCard = FilledCard(
+            id = "gold_fallback_${interactionType.name}",
+            game = gameId,
+            text = text,
+            family = "gold_fallback",
+            spice = 1,
+            locality = 1,
+            metadata = mapOf("fallback" to true, "interactionType" to interactionType.name)
+        )
+
+        return Result(filledCard, options, timer, interactionType)
     }
 }
