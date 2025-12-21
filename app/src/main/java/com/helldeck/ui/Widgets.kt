@@ -161,12 +161,13 @@ fun CardFace(
     borderColor: Color = HelldeckColors.Yellow,
     onClick: (() -> Unit)? = null
 ) {
+    val reducedMotion = LocalReducedMotion.current
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     
     val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.98f else 1f,
-        animationSpec = spring(
+        targetValue = if (reducedMotion) 1f else if (isPressed) 0.98f else 1f,
+        animationSpec = if (reducedMotion) tween(HelldeckAnimations.Instant) else spring(
             dampingRatio = 0.6f,
             stiffness = Spring.StiffnessHigh
         ),
@@ -174,8 +175,8 @@ fun CardFace(
     )
     
     val elevation by animateFloatAsState(
-        targetValue = if (isPressed) 4f else 8f,
-        animationSpec = tween(150),
+        targetValue = if (reducedMotion) 6f else if (isPressed) 4f else 8f,
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
         label = "card_elevation"
     )
 
@@ -325,23 +326,28 @@ fun AnimatedCardFace(
     onClick: (() -> Unit)? = null
 ) {
     var visible by remember { mutableStateOf(false) }
+    val reducedMotion = LocalReducedMotion.current
 
     LaunchedEffect(Unit) {
-        delay(delayMs.toLong())
+        delay((if (reducedMotion) 0 else delayMs).toLong())
         visible = true
     }
 
     androidx.compose.animation.AnimatedVisibility(
         visible = visible,
-        enter = androidx.compose.animation.fadeIn(
-            animationSpec = tween(HelldeckAnimations.Normal)
-        ) + androidx.compose.animation.slideInVertically(
-            animationSpec = spring(
-                dampingRatio = 0.6f,
-                stiffness = Spring.StiffnessLow
-            ),
-            initialOffsetY = { it / 2 }
-        ),
+        enter = if (reducedMotion) {
+            androidx.compose.animation.fadeIn(animationSpec = tween(HelldeckAnimations.Instant))
+        } else {
+            androidx.compose.animation.fadeIn(
+                animationSpec = tween(HelldeckAnimations.Normal)
+            ) + androidx.compose.animation.slideInVertically(
+                animationSpec = spring(
+                    dampingRatio = 0.6f,
+                    stiffness = Spring.StiffnessLow
+                ),
+                initialOffsetY = { it / 2 }
+            )
+        },
         modifier = modifier
     ) {
         CardFace(
@@ -367,6 +373,7 @@ fun FeedbackStrip(
     showComments: Boolean = false,
     availableTags: List<String> = listOf("tame", "repeat", "inside", "long", "harsh")
 ) {
+    val reducedMotion = LocalReducedMotion.current
     var lolCount by remember { mutableIntStateOf(0) }
     var mehCount by remember { mutableIntStateOf(0) }
     var trashCount by remember { mutableIntStateOf(0) }
@@ -431,13 +438,21 @@ fun FeedbackStrip(
         // Comment section with smooth animation
         androidx.compose.animation.AnimatedVisibility(
             visible = showComments || showCommentSection,
-            enter = androidx.compose.animation.expandVertically(
-                animationSpec = spring(
-                    dampingRatio = 0.8f,
-                    stiffness = Spring.StiffnessMedium
-                )
-            ) + androidx.compose.animation.fadeIn(),
-            exit = androidx.compose.animation.shrinkVertically() + androidx.compose.animation.fadeOut()
+            enter = if (reducedMotion) {
+                androidx.compose.animation.fadeIn(animationSpec = tween(HelldeckAnimations.Instant))
+            } else {
+                androidx.compose.animation.expandVertically(
+                    animationSpec = spring(
+                        dampingRatio = 0.8f,
+                        stiffness = Spring.StiffnessMedium
+                    )
+                ) + androidx.compose.animation.fadeIn()
+            },
+            exit = if (reducedMotion) {
+                androidx.compose.animation.fadeOut(animationSpec = tween(HelldeckAnimations.Instant))
+            } else {
+                androidx.compose.animation.shrinkVertically() + androidx.compose.animation.fadeOut()
+            }
         ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
@@ -532,14 +547,15 @@ private fun EnhancedFeedbackButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val reducedMotion = LocalReducedMotion.current
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     
     var clickCount by remember { mutableIntStateOf(0) }
     
     val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.9f else 1f,
-        animationSpec = spring(
+        targetValue = if (reducedMotion) 1f else if (isPressed) 0.9f else 1f,
+        animationSpec = if (reducedMotion) tween(HelldeckAnimations.Instant) else spring(
             dampingRatio = 0.5f,
             stiffness = 400f
         ),
@@ -548,7 +564,7 @@ private fun EnhancedFeedbackButton(
     
     val glowAlpha by animateFloatAsState(
         targetValue = if (clickCount > 0) 0.6f else 0.2f,
-        animationSpec = tween(300),
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Normal),
         label = "glow_alpha"
     )
 
@@ -680,6 +696,7 @@ fun GameTimer(
     modifier: Modifier = Modifier,
     showProgress: Boolean = true
 ) {
+    val reducedMotion = LocalReducedMotion.current
     val progress = timeRemainingMs.toFloat() / totalTimeMs.toFloat()
     val isWarning = progress < 0.3f
     val isCritical = progress < 0.1f
@@ -690,7 +707,7 @@ fun GameTimer(
             isWarning -> HelldeckColors.Warning
             else -> HelldeckColors.Yellow
         },
-        animationSpec = tween(500),
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else 500),
         label = "timer_color"
     )
     
@@ -698,21 +715,29 @@ fun GameTimer(
     val infiniteTransition = rememberInfiniteTransition()
     val pulseScale by infiniteTransition.animateFloat(
         initialValue = 1f,
-        targetValue = if (isCritical) 1.15f else 1f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(600, easing = EaseInOutCubic),
-            repeatMode = RepeatMode.Reverse
-        ),
+        targetValue = if (reducedMotion) 1f else if (isCritical) 1.15f else 1f,
+        animationSpec = if (reducedMotion) {
+            infiniteRepeatable(animation = tween(HelldeckAnimations.Instant), repeatMode = RepeatMode.Restart)
+        } else {
+            infiniteRepeatable(
+                animation = tween(600, easing = EaseInOutCubic),
+                repeatMode = RepeatMode.Reverse
+            )
+        },
         label = "pulse_scale"
     )
     
     val glowIntensity by infiniteTransition.animateFloat(
         initialValue = 0.3f,
-        targetValue = if (isCritical) 0.8f else 0.3f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(800, easing = EaseInOutSine),
-            repeatMode = RepeatMode.Reverse
-        ),
+        targetValue = if (reducedMotion) 0.3f else if (isCritical) 0.8f else 0.3f,
+        animationSpec = if (reducedMotion) {
+            infiniteRepeatable(animation = tween(HelldeckAnimations.Instant), repeatMode = RepeatMode.Restart)
+        } else {
+            infiniteRepeatable(
+                animation = tween(800, easing = EaseInOutSine),
+                repeatMode = RepeatMode.Reverse
+            )
+        },
         label = "glow_intensity"
     )
 
@@ -724,12 +749,14 @@ fun GameTimer(
         Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
-                .scale(if (isCritical) pulseScale else 1f)
-                .shadow(
-                    elevation = if (isCritical) 12.dp else 4.dp,
-                    shape = androidx.compose.foundation.shape.CircleShape,
-                    spotColor = timerColor.copy(alpha = glowIntensity),
-                    ambientColor = timerColor.copy(alpha = glowIntensity * 0.5f)
+                .scale(if (reducedMotion) 1f else if (isCritical) pulseScale else 1f)
+                .then(
+                    if (reducedMotion) Modifier else Modifier.shadow(
+                        elevation = if (isCritical) 12.dp else 4.dp,
+                        shape = androidx.compose.foundation.shape.CircleShape,
+                        spotColor = timerColor.copy(alpha = glowIntensity),
+                        ambientColor = timerColor.copy(alpha = glowIntensity * 0.5f)
+                    )
                 )
         ) {
             Text(
@@ -737,7 +764,7 @@ fun GameTimer(
                 style = MaterialTheme.typography.displayLarge.copy(
                     fontSize = if (isCritical) 56.sp else 48.sp,
                     fontWeight = FontWeight.Bold,
-                    brush = if (isCritical) {
+                    brush = if (!reducedMotion && isCritical) {
                         Brush.linearGradient(
                             colors = listOf(
                                 timerColor,
@@ -1271,9 +1298,9 @@ fun PodiumCard(
     )
 
     val positionColors = listOf(
-        Color(0xFFFFD700), // Gold
-        Color(0xFFC0C0C0), // Silver
-        Color(0xFFCD7F32)  // Bronze
+        HelldeckColors.Lol,        // Gold
+        HelldeckColors.LightGray,  // Silver-ish
+        HelldeckColors.Orange      // Bronze-ish
     )
 
     val cardColor = if (isWinner) {

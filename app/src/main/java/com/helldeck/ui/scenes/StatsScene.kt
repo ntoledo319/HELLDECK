@@ -235,9 +235,9 @@ private fun EnhancedPlayerCard(
     onClick: () -> Unit
 ) {
     val rankColor = when (rank) {
-        1 -> Color(0xFFFFD700)  // Gold
-        2 -> Color(0xFFC0C0C0)  // Silver
-        3 -> Color(0xFFCD7F32)  // Bronze
+        1 -> HelldeckColors.Yellow     // Gold
+        2 -> HelldeckColors.LightGray  // Silver-ish
+        3 -> HelldeckColors.Orange     // Bronze-ish
         else -> HelldeckColors.MediumGray
     }
 

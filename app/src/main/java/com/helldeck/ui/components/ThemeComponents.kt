@@ -1,111 +1,104 @@
 package com.helldeck.ui.components
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.helldeck.ui.BackgroundPattern
+import com.helldeck.ui.HelldeckHeights
+import com.helldeck.ui.HelldeckRadius
 
 /**
- * Helldeck color palette
+ * @context_boundary
+ * Compatibility bridge for older imports under `com.helldeck.ui.components.*`.
+ *
+ * Canonical tokens live in `com.helldeck.ui.Theme.kt`.
+ * This file must not define new colors/spacing/animation values.
  */
 object HelldeckColors {
-    val Yellow = Color(0xFFFFD700)
-    val Orange = Color(0xFFFF8C00)
-    val Red = Color(0xFFFF4444)
-    val Green = Color(0xFF4CAF50)
-    val White = Color.White
-    val DarkGray = Color(0xFF2B2B2B)
-    val MediumGray = Color(0xFF4A4A4A)
-    val LightGray = Color(0xFF9E9E9E)
-    val Black = Color.Black
+    val Yellow get() = com.helldeck.ui.HelldeckColors.Yellow
+    val Orange get() = com.helldeck.ui.HelldeckColors.Orange
+    val Red get() = com.helldeck.ui.HelldeckColors.Red
+    val Green get() = com.helldeck.ui.HelldeckColors.Green
+    val White get() = com.helldeck.ui.HelldeckColors.White
+    val DarkGray get() = com.helldeck.ui.HelldeckColors.DarkGray
+    val MediumGray get() = com.helldeck.ui.HelldeckColors.MediumGray
+    val LightGray get() = com.helldeck.ui.HelldeckColors.LightGray
+    val Black get() = com.helldeck.ui.HelldeckColors.Black
 }
 
-/**
- * Helldeck spacing constants
- */
 object HelldeckSpacing {
-    const val Small = 8
-    const val Medium = 16
-    const val Large = 24
-    const val XLarge = 32
+    val Small get() = com.helldeck.ui.HelldeckSpacing.Small
+    val Medium get() = com.helldeck.ui.HelldeckSpacing.Medium
+    val Large get() = com.helldeck.ui.HelldeckSpacing.Large
+    val XLarge get() = com.helldeck.ui.HelldeckSpacing.Huge
 }
 
-/**
- * Helldeck animation specifications
- */
 object HelldeckAnimations {
-    const val DefaultDurationMs = 300
-    const val FastDurationMs = 150
-    const val SlowDurationMs = 500
+    val DefaultDurationMs get() = com.helldeck.ui.HelldeckAnimations.Normal
+    val FastDurationMs get() = com.helldeck.ui.HelldeckAnimations.Fast
+    val SlowDurationMs get() = com.helldeck.ui.HelldeckAnimations.Slow
 }
 
-/**
- * Loading spinner component
- */
 @Composable
 fun HelldeckLoadingSpinner(
     modifier: Modifier = Modifier,
-    text: String = "Loading..."
+    text: String = "Loading…"
 ) {
-    Box(
-        modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            CircularProgressIndicator(
-                color = HelldeckColors.Orange
-            )
-            if (text.isNotEmpty()) {
-                Text(
-                    text = text,
-                    color = HelldeckColors.LightGray
-                )
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+            CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            if (text.isNotBlank()) {
+                Text(text = text, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
     }
 }
 
-/**
- * Background pattern component
- */
 @Composable
 fun HelldeckBackgroundPattern(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    pattern: BackgroundPattern = BackgroundPattern.DOTS,
+    opacity: Float = 0.05f
 ) {
-    // Stub implementation - background pattern placeholder
-    Box(modifier = modifier.fillMaxSize())
+    com.helldeck.ui.HelldeckBackgroundPattern(
+        modifier = modifier,
+        pattern = pattern,
+        opacity = opacity
+    )
 }
 
-/**
- * Giant button component for primary actions
- */
 @Composable
 fun GiantButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = HelldeckColors.Orange
-    )
+    colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
 ) {
     Button(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
-            .height(56.dp),
+            .height(HelldeckHeights.Button.dp),
         enabled = enabled,
-        colors = colors
+        colors = colors,
+        shape = androidx.compose.foundation.shape.RoundedCornerShape(HelldeckRadius.Pill)
     ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.titleMedium
-        )
+        Text(text = text, style = MaterialTheme.typography.labelLarge)
     }
 }
