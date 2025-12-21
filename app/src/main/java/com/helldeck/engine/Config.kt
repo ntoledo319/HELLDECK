@@ -180,6 +180,26 @@ object Config {
         private set
 
     /**
+     * Accessibility/safety runtime flags (synced with SettingsStore).
+     *
+     * These flags are UI-facing and MUST NOT change engine/content semantics.
+     * They are read by Compose UI to adapt rendering/animation and device effects.
+     */
+    var reducedMotion: Boolean = false
+        private set
+
+    var highContrast: Boolean = false
+        private set
+
+    /**
+     * When true, any torch/flash-based feedback should be disabled.
+     * (Currently torch feedback is a no-op in this build, but we keep the flag
+     * to preserve a stable API and future-proof the behavior.)
+     */
+    var noFlash: Boolean = true
+        private set
+
+    /**
      * Load configuration from assets (settings/default.yaml) with graceful fallback.
      */
     fun load(context: Context = AppCtx.ctx) {
@@ -414,6 +434,18 @@ object Config {
 
     fun setHapticsEnabled(enabled: Boolean) {
         hapticsEnabled = enabled
+    }
+
+    fun setReducedMotion(enabled: Boolean) {
+        reducedMotion = enabled
+    }
+
+    fun setHighContrast(enabled: Boolean) {
+        highContrast = enabled
+    }
+
+    fun setNoFlash(enabled: Boolean) {
+        noFlash = enabled
     }
 
     fun setSafeModeGoldOnly(enabled: Boolean) {

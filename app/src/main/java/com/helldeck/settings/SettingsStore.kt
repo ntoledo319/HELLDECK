@@ -7,6 +7,7 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import com.helldeck.AppCtx
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
@@ -28,6 +29,11 @@ object SettingsStore {
     
     // AI Enhancement
     private val KEY_AI_ENHANCEMENT = booleanPreferencesKey("ai_enhancement_enabled")
+
+    // Accessibility / safety
+    private val KEY_REDUCED_MOTION = booleanPreferencesKey("reduced_motion")
+    private val KEY_HIGH_CONTRAST = booleanPreferencesKey("high_contrast")
+    private val KEY_NO_FLASH = booleanPreferencesKey("no_flash")
 
     // Generator Flags
     suspend fun readFlags(): Pair<Boolean?, Boolean?> {
@@ -100,6 +106,46 @@ object SettingsStore {
     suspend fun writeAIEnhancement(value: Boolean) {
         AppCtx.ctx.settingsDataStore.edit { it[KEY_AI_ENHANCEMENT] = value }
     }
+
+    // Accessibility / safety
+    suspend fun readReducedMotion(): Boolean {
+        val prefs = AppCtx.ctx.settingsDataStore.data.first()
+        return prefs[KEY_REDUCED_MOTION] ?: false
+    }
+
+    suspend fun writeReducedMotion(value: Boolean) {
+        AppCtx.ctx.settingsDataStore.edit { it[KEY_REDUCED_MOTION] = value }
+    }
+
+    fun reducedMotionFlow(): Flow<Boolean> {
+        return AppCtx.ctx.settingsDataStore.data.map { prefs -> prefs[KEY_REDUCED_MOTION] ?: false }
+    }
+
+    suspend fun readHighContrast(): Boolean {
+        val prefs = AppCtx.ctx.settingsDataStore.data.first()
+        return prefs[KEY_HIGH_CONTRAST] ?: false
+    }
+
+    suspend fun writeHighContrast(value: Boolean) {
+        AppCtx.ctx.settingsDataStore.edit { it[KEY_HIGH_CONTRAST] = value }
+    }
+
+    fun highContrastFlow(): Flow<Boolean> {
+        return AppCtx.ctx.settingsDataStore.data.map { prefs -> prefs[KEY_HIGH_CONTRAST] ?: false }
+    }
+
+    suspend fun readNoFlash(): Boolean {
+        val prefs = AppCtx.ctx.settingsDataStore.data.first()
+        return prefs[KEY_NO_FLASH] ?: true
+    }
+
+    suspend fun writeNoFlash(value: Boolean) {
+        AppCtx.ctx.settingsDataStore.edit { it[KEY_NO_FLASH] = value }
+    }
+
+    fun noFlashFlow(): Flow<Boolean> {
+        return AppCtx.ctx.settingsDataStore.data.map { prefs -> prefs[KEY_NO_FLASH] ?: true }
+    }
     
     // Reset all settings to defaults
     suspend fun resetToDefaults() {
@@ -114,6 +160,10 @@ object SettingsStore {
             prefs[KEY_SOUND_ENABLED] = true
             prefs[KEY_AI_ENHANCEMENT] = false
             prefs[KEY_PERFORMANCE_MODE] = false
+            // Accessibility / safety defaults: readable, low-risk.
+            prefs[KEY_REDUCED_MOTION] = false
+            prefs[KEY_HIGH_CONTRAST] = false
+            prefs[KEY_NO_FLASH] = true
         }
     }
 }

@@ -1,11 +1,8 @@
 package com.helldeck.ui.scenes
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,9 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
@@ -26,38 +21,38 @@ import androidx.compose.material.icons.rounded.Leaderboard
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.helldeck.AppCtx
-import com.helldeck.content.data.ContentRepository
 import com.helldeck.engine.Config
 import com.helldeck.ui.*
 import com.helldeck.ui.components.GameTile
-import com.helldeck.ui.theme.HelldeckColors
 import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.launch
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.animation.core.tween
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScene(vm: HelldeckVm) {
     val ctx = LocalContext.current
     val scope = rememberCoroutineScope()
-    val repo = remember { ContentRepository(AppCtx.ctx) }
     val games = remember { (0 until com.helldeck.engine.Games.size).map { com.helldeck.engine.Games[it] } }
+    var showGames by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("HELLDECK") },
+                title = { Text("HELLDECK", fontWeight = FontWeight.Black) },
                 actions = {
                     IconButton(onClick = { vm.navigateTo(Scene.ROLLCALL) }) {
                         Icon(Icons.Rounded.HowToReg, contentDescription = "Rollcall")
@@ -85,181 +80,172 @@ fun HomeScene(vm: HelldeckVm) {
                 .padding(HelldeckSpacing.Large.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            HeroCard(
-                title = "Single phone. One card per round.",
-                subtitle = "Long-press to draw • two-finger tap = back",
-                onRollcall = { vm.navigateTo(Scene.ROLLCALL) }
-            )
+            HellTitleCard()
 
-            Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
+            Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-            QuickActionsRow(
-                onRollcall = { vm.navigateTo(Scene.ROLLCALL) },
-                onRules = { vm.navigateTo(Scene.RULES) },
-                onSettings = { vm.navigateTo(Scene.SETTINGS) },
-                onStats = { vm.navigateTo(Scene.STATS) }
-            )
+            // Dominant CTA: random game, existing engine flow.
+            Button(
+                onClick = { scope.launch { vm.startRound(null) } },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(HelldeckHeights.Button.dp),
+                shape = RoundedCornerShape(HelldeckRadius.Pill),
+                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.colorPrimary)
+            ) {
+                Text(
+                    text = "Start Chaos",
+                    style = MaterialTheme.typography.labelLarge,
+                    color = HelldeckColors.colorOnDark
+                )
+            }
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
-            Text(
-                text = "Games",
-                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.SemiBold),
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 220.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f, fill = true),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                contentPadding = PaddingValues(bottom = 16.dp)
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                items(games, key = { it.id }) { game ->
-                    GameTile(
-                        title = game.title,
-                        subtitle = game.description,
-                        icon = gameIconFor(game.id),
-                        onClick = { scope.launch { vm.startRound(game.id) } },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    )
-                }
+                SecondaryActionButton(
+                    icon = "🎮",
+                    title = "Mini Games",
+                    subtitle = "Pick a specific game",
+                    onClick = { showGames = !showGames }
+                )
+                SecondaryActionButton(
+                    icon = "🧠",
+                    title = "Crew Brain",
+                    subtitle = "Stats, highlights, and learning",
+                    onClick = { vm.navigateTo(Scene.STATS) }
+                )
+                SecondaryActionButton(
+                    icon = "🛟",
+                    title = "Safety & Filters",
+                    subtitle = "Chaos level, reduced motion, high contrast",
+                    onClick = { vm.navigateTo(Scene.SETTINGS) }
+                )
             }
 
-            HeatCard(
-                heat = vm.heatThreshold,
-                onHeatChanged = {
-                    vm.heatThreshold = it
-                    Config.setRoomHeatThreshold(it.toDouble())
-                    vm.spicy = it >= 0.70f
-                    Config.spicyMode = vm.spicy
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+
+            androidx.compose.animation.AnimatedVisibility(
+                visible = showGames,
+                enter = androidx.compose.animation.fadeIn(
+                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
+                ) + androidx.compose.animation.expandVertically(
+                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
+                ),
+                exit = androidx.compose.animation.fadeOut(
+                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
+                ) + androidx.compose.animation.shrinkVertically(
+                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
+                ),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                LazyVerticalGrid(
+                    columns = GridCells.Adaptive(minSize = 240.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f, fill = true),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    contentPadding = PaddingValues(bottom = 16.dp)
+                ) {
+                    items(games, key = { it.id }) { game ->
+                        GameTile(
+                            title = game.title,
+                            subtitle = game.description,
+                            icon = gameIconFor(game.id),
+                            onClick = { scope.launch { vm.startRound(game.id) } },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
                 }
-            )
+            }
 
             if (vm.showScores) {
                 ScoreboardOverlay(vm.players) { vm.toggleScores() }
             }
+
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+            Text(
+                text = "Single-phone party game • 3–12 players • 14 mini-games",
+                style = MaterialTheme.typography.labelSmall,
+                color = HelldeckColors.colorMuted
+            )
         }
     }
 }
 
 @Composable
-private fun HeroCard(title: String, subtitle: String, onRollcall: () -> Unit) {
+private fun HellTitleCard() {
     Surface(
         modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(24.dp),
-        tonalElevation = 6.dp
+        shape = RoundedCornerShape(HelldeckRadius.Large),
+        tonalElevation = 2.dp,
+        color = MaterialTheme.colorScheme.surfaceVariant
     ) {
-        Box(
+        Column(
             modifier = Modifier
+                .fillMaxWidth()
                 .background(
                     Brush.linearGradient(
                         listOf(
-                            MaterialTheme.colorScheme.primary.copy(alpha = 0.85f),
-                            MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.75f)
+                            HelldeckColors.colorPrimary.copy(alpha = 0.95f),
+                            HelldeckColors.colorAccentCool.copy(alpha = 0.45f),
+                            HelldeckColors.colorSecondary.copy(alpha = 0.20f)
                         )
                     )
                 )
-                .padding(vertical = 24.dp, horizontal = 20.dp)
+                .padding(vertical = 22.dp, horizontal = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.headlineMedium.copy(color = Color.Black, fontWeight = FontWeight.Bold)
-                )
-                Text(
-                    text = subtitle,
-                    style = MaterialTheme.typography.bodyMedium.copy(color = Color.Black.copy(alpha = 0.8f))
-                )
-                AssistChip(
-                    onClick = onRollcall,
-                    label = { Text("Start rollcall", color = MaterialTheme.colorScheme.primary) },
-                    leadingIcon = {
-                        Icon(Icons.Rounded.HowToReg, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
-                    },
-                    colors = AssistChipDefaults.assistChipColors(containerColor = Color.White)
-                )
-            }
+            Text(
+                text = "HELLDECK",
+                style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.Black),
+                color = HelldeckColors.colorOnDark
+            )
+            Text(
+                text = "One possessed phone. The room is the controller.",
+                style = MaterialTheme.typography.bodyMedium,
+                color = HelldeckColors.colorOnDark.copy(alpha = 0.9f)
+            )
         }
-    }
-}
-
-@Composable
-@OptIn(ExperimentalLayoutApi::class)
-private fun QuickActionsRow(
-    onRollcall: () -> Unit,
-    onRules: () -> Unit,
-    onSettings: () -> Unit,
-    onStats: () -> Unit
-) {
-    FlowRow(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
-    ) {
-        QuickActionChip(icon = Icons.Rounded.HowToReg, label = "Rollcall", onClick = onRollcall)
-        QuickActionChip(icon = Icons.AutoMirrored.Rounded.MenuBook, label = "Rules", onClick = onRules)
-        QuickActionChip(icon = Icons.Rounded.Settings, label = "Settings", onClick = onSettings)
-        QuickActionChip(icon = Icons.Rounded.Insights, label = "Stats", onClick = onStats)
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun QuickActionChip(icon: ImageVector, label: String, onClick: () -> Unit) {
+private fun SecondaryActionButton(
+    icon: String,
+    title: String,
+    subtitle: String,
+    onClick: () -> Unit
+) {
     Surface(
-        modifier = Modifier,
-        shape = RoundedCornerShape(16.dp),
-        tonalElevation = 4.dp,
-        color = MaterialTheme.colorScheme.surfaceVariant,
-        onClick = onClick
-    ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Icon(icon, contentDescription = label, tint = MaterialTheme.colorScheme.primary)
-            Text(text = label, style = MaterialTheme.typography.labelLarge)
-        }
-    }
-}
-
-@Composable
-private fun HeatCard(heat: Float, onHeatChanged: (Float) -> Unit) {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 12.dp),
-        shape = RoundedCornerShape(20.dp),
-        tonalElevation = 4.dp,
-        color = MaterialTheme.colorScheme.surfaceVariant
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(HelldeckRadius.Medium),
+        tonalElevation = 1.dp,
+        color = MaterialTheme.colorScheme.surface,
+        onClick = onClick,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant)
     ) {
         Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 14.dp),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Text(
-                text = "Heat threshold: ${(heat * 100).toInt()}%",
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Slider(
-                value = heat,
-                onValueChange = { onHeatChanged(it.coerceIn(0.5f, 0.8f)) },
-                valueRange = 0.5f..0.8f,
-                steps = 5,
-                colors = SliderDefaults.colors(
-                    thumbColor = MaterialTheme.colorScheme.primary,
-                    activeTrackColor = MaterialTheme.colorScheme.primary,
-                    inactiveTrackColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)
-                )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                Text(text = icon, style = MaterialTheme.typography.headlineMedium)
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(text = title, style = MaterialTheme.typography.titleMedium, color = HelldeckColors.colorOnDark)
+                    Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = HelldeckColors.colorMuted)
+                }
+                Text(text = "›", style = MaterialTheme.typography.headlineMedium, color = HelldeckColors.colorMuted)
             )
         }
     }

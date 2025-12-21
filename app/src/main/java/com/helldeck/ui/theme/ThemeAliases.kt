@@ -4,6 +4,21 @@ import androidx.compose.ui.graphics.Color
 
 // Bridge aliases so files importing com.helldeck.ui.theme.* compile
 object HelldeckColors {
+    // Hell's Living Room token surface (new)
+    val background get() = com.helldeck.ui.HelldeckColors.background
+    val surfacePrimary get() = com.helldeck.ui.HelldeckColors.surfacePrimary
+    val surfaceElevated get() = com.helldeck.ui.HelldeckColors.surfaceElevated
+    val colorPrimary get() = com.helldeck.ui.HelldeckColors.colorPrimary
+    val colorPrimaryVariant get() = com.helldeck.ui.HelldeckColors.colorPrimaryVariant
+    val colorSecondary get() = com.helldeck.ui.HelldeckColors.colorSecondary
+    val colorSecondaryVariant get() = com.helldeck.ui.HelldeckColors.colorSecondaryVariant
+    val colorAccentWarm get() = com.helldeck.ui.HelldeckColors.colorAccentWarm
+    val colorAccentCool get() = com.helldeck.ui.HelldeckColors.colorAccentCool
+    val colorOnDark get() = com.helldeck.ui.HelldeckColors.colorOnDark
+    val colorMuted get() = com.helldeck.ui.HelldeckColors.colorMuted
+    val colorDangerText get() = com.helldeck.ui.HelldeckColors.colorDangerText
+
+    // Compatibility aliases (old names)
     val Yellow get() = com.helldeck.ui.HelldeckColors.Yellow
     val Green get() = com.helldeck.ui.HelldeckColors.Green
     val Orange get() = com.helldeck.ui.HelldeckColors.Orange

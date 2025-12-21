@@ -254,10 +254,10 @@ fun ScoreboardOverlay(
                                 fontSize = 32.sp,
                                 brush = Brush.linearGradient(
                                     colors = listOf(
-                                        Color(0xFFFFD700),
+                                        HelldeckColors.Yellow,
                                         HelldeckColors.Yellow,
                                         HelldeckColors.Orange,
-                                        Color(0xFFFFD700)
+                                        HelldeckColors.Yellow
                                     )
                                 ),
                                 shadow = androidx.compose.ui.graphics.Shadow(

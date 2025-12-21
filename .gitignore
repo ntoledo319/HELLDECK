@@ -6,8 +6,6 @@ app/build/
 
 # Gradle
 .gradle/
-gradle-wrapper.jar
-gradle-wrapper.properties
 
 # Android
 *.keystore

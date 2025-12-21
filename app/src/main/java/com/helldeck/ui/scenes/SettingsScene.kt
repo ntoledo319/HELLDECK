@@ -63,10 +63,14 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
     var heat by remember { mutableStateOf(Config.roomHeatThreshold().toFloat()) }
     var soundEnabled by remember { mutableStateOf(true) }
     var rollcallOnLaunch by remember { mutableStateOf(true) }
+    var reducedMotion by remember { mutableStateOf(false) }
+    var highContrast by remember { mutableStateOf(false) }
+    var noFlash by remember { mutableStateOf(true) }
 
     var expandedPlayers by remember { mutableStateOf(true) }
     var expandedGame by remember { mutableStateOf(false) }
     var expandedDevice by remember { mutableStateOf(false) }
+    var expandedSafety by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
         // Load all persisted settings from DataStore
@@ -87,6 +91,13 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
             Config.setHapticsEnabled(hapticsEnabled)
             
             soundEnabled = SettingsStore.readSoundEnabled()
+
+            reducedMotion = SettingsStore.readReducedMotion()
+            Config.setReducedMotion(reducedMotion)
+            highContrast = SettingsStore.readHighContrast()
+            Config.setHighContrast(highContrast)
+            noFlash = SettingsStore.readNoFlash()
+            Config.setNoFlash(noFlash)
             
             heat = Config.roomHeatThreshold().toFloat()
             // Simplified settings: no explicit performance toggle
@@ -111,6 +122,92 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                 .fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
+            // Safety & Filters (party-proof)
+            item {
+                SettingsSection(
+                    title = "🛟 Safety & Filters",
+                    isExpanded = expandedSafety,
+                    onToggle = { expandedSafety = !expandedSafety }
+                ) {
+                    // Content filter: simple 3-step chaos slider (Soft / Mixed / Spicy).
+                    Text(
+                        text = "Chaos level",
+                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                        color = HelldeckColors.Yellow
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    val chaosLabel = when {
+                        heat < 0.62f -> "Soft"
+                        heat < 0.72f -> "Mixed"
+                        else -> "Spicy"
+                    }
+                    Text(
+                        text = "$chaosLabel (${(heat * 100).toInt()}%)",
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = HelldeckColors.White
+                    )
+                    Slider(
+                        value = heat.coerceIn(0.55f, 0.78f),
+                        onValueChange = { v ->
+                            // Snap to 3 stable positions.
+                            val snapped = when {
+                                v < 0.62f -> 0.58f
+                                v < 0.72f -> 0.67f
+                                else -> 0.76f
+                            }
+                            heat = snapped
+                            vm.heatThreshold = snapped
+                            Config.setRoomHeatThreshold(snapped.toDouble())
+                            vm.spicy = snapped >= 0.72f
+                            Config.spicyMode = vm.spicy
+                        },
+                        valueRange = 0.55f..0.78f,
+                        steps = 2,
+                        colors = SliderDefaults.colors(
+                            thumbColor = HelldeckColors.Yellow,
+                            activeTrackColor = HelldeckColors.Yellow,
+                            inactiveTrackColor = HelldeckColors.LightGray.copy(alpha = 0.3f)
+                        )
+                    )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    SettingRow(
+                        label = "High contrast",
+                        description = "Bigger separation between text and surfaces",
+                        isChecked = highContrast,
+                        onCheckedChange = {
+                            highContrast = it
+                            Config.setHighContrast(it)
+                            scope.launch { SettingsStore.writeHighContrast(it) }
+                        }
+                    )
+
+                    SettingRow(
+                        label = "Reduced motion",
+                        description = "Disables non-essential animations",
+                        isChecked = reducedMotion,
+                        onCheckedChange = {
+                            reducedMotion = it
+                            Config.setReducedMotion(it)
+                            scope.launch { SettingsStore.writeReducedMotion(it) }
+                        }
+                    )
+
+                    SettingRow(
+                        label = "No flash",
+                        description = "Disables camera flash effects (safety)",
+                        isChecked = noFlash,
+                        onCheckedChange = {
+                            noFlash = it
+                            Config.setNoFlash(it)
+                            scope.launch { SettingsStore.writeNoFlash(it) }
+                        }
+                    )
+                }
+            }
+
             // Players Section
             item {
                 SettingsSection(
@@ -254,6 +351,9 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                                 hapticsEnabled = SettingsStore.readHapticsEnabled()
                                 soundEnabled = SettingsStore.readSoundEnabled()
                                 rollcallOnLaunch = SettingsStore.readRollcallOnLaunch()
+                                reducedMotion = SettingsStore.readReducedMotion()
+                                highContrast = SettingsStore.readHighContrast()
+                                noFlash = SettingsStore.readNoFlash()
                                 // Enforce single-mode defaults after reset
                                 Config.setSafeModeGoldOnly(false)
                                 Config.setEnableV3Generator(true)
@@ -263,6 +363,9 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                                 }
                                 Config.setLearningEnabled(learningEnabled)
                                 Config.setHapticsEnabled(hapticsEnabled)
+                                Config.setReducedMotion(reducedMotion)
+                                Config.setHighContrast(highContrast)
+                                Config.setNoFlash(noFlash)
                                 com.helldeck.content.engine.ContentEngineProvider.reset()
                             }
                         },

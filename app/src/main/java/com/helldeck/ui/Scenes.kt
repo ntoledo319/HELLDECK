@@ -194,27 +194,26 @@ fun HelldeckAppUI(
 
                 // Scene transitions with smooth animations
                 com.helldeck.utils.Logger.i("HelldeckAppUI: Current scene: ${vm.scene}")
+                val reducedMotion = LocalReducedMotion.current
     AnimatedContent(
         targetState = vm.scene,
                     transitionSpec = {
-                    // Fade and slide transitions between scenes
-                    androidx.compose.animation.fadeIn(
-                        animationSpec = tween(300)
-                    ) + androidx.compose.animation.slideInHorizontally(
-                        animationSpec = spring(
-                            dampingRatio = 0.8f,
-                            stiffness = Spring.StiffnessLow
-                        ),
-                        initialOffsetX = { it / 2 }
-                    ) togetherWith androidx.compose.animation.fadeOut(
-                        animationSpec = tween(150)
-                    ) + androidx.compose.animation.slideOutHorizontally(
-                        animationSpec = spring(
-                            dampingRatio = 0.8f,
-                            stiffness = Spring.StiffnessLow
-                        ),
-                        targetOffsetX = { -it / 2 }
-                    )
+                    // Hell’s Living Room: fast, directional, consistent.
+                    if (reducedMotion) {
+                        fadeIn(animationSpec = tween(HelldeckAnimations.Instant)) togetherWith
+                            fadeOut(animationSpec = tween(HelldeckAnimations.Instant))
+                    } else {
+                        (fadeIn(animationSpec = tween(HelldeckAnimations.Fast)) +
+                            slideInHorizontally(
+                                animationSpec = tween(HelldeckAnimations.Normal, easing = EaseInOutSine),
+                                initialOffsetX = { it / 8 }
+                            )) togetherWith
+                            (fadeOut(animationSpec = tween(HelldeckAnimations.Fast)) +
+                                slideOutHorizontally(
+                                    animationSpec = tween(HelldeckAnimations.Normal, easing = EaseInOutSine),
+                                    targetOffsetX = { -it / 8 }
+                                ))
+                    }
                 },
                 modifier = Modifier.fillMaxSize()
             ) { targetScene ->
@@ -696,6 +695,8 @@ class HelldeckVm : ViewModel() {
             }
         }
 
+        // Keep authoritative RoundState in sync with scene transitions.
+        roundState = roundState?.withPhase(com.helldeck.ui.state.RoundPhase.FEEDBACK)
         phase = RoundPhase.FEEDBACK
         scene = Scene.FEEDBACK
     }
@@ -837,6 +838,7 @@ class HelldeckVm : ViewModel() {
     fun goToFeedbackNoPoints() {
         judgeWin = false
         points = 0
+        roundState = roundState?.withPhase(com.helldeck.ui.state.RoundPhase.FEEDBACK)
         phase = RoundPhase.FEEDBACK
         scene = Scene.FEEDBACK
     }
@@ -850,6 +852,7 @@ class HelldeckVm : ViewModel() {
         awardActive(pts)
         judgeWin = true
         points = pts
+        roundState = roundState?.withPhase(com.helldeck.ui.state.RoundPhase.FEEDBACK)
         phase = RoundPhase.FEEDBACK
         scene = Scene.FEEDBACK
     }

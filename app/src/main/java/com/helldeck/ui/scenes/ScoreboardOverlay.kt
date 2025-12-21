@@ -88,10 +88,10 @@ fun ScoreboardOverlay(
                                 fontSize = 32.sp,
                                 brush = Brush.linearGradient(
                                     colors = listOf(
-                                        Color(0xFFFFD700),
+                                        HelldeckColors.Yellow,
                                         HelldeckColors.Yellow,
                                         HelldeckColors.Orange,
-                                        Color(0xFFFFD700)
+                                        HelldeckColors.Yellow
                                     )
                                 ),
                                 shadow = androidx.compose.ui.graphics.Shadow(
@@ -260,9 +260,9 @@ private fun EnhancedPodiumCard(
     isWinner: Boolean = false
 ) {
     val podiumColors = listOf(
-        Color(0xFFFFD700),      // Gold
-        Color(0xFFC0C0C0),      // Silver
-        Color(0xFFCD7F32)       // Bronze
+        HelldeckColors.Yellow,     // Gold
+        HelldeckColors.LightGray,  // Silver-ish
+        HelldeckColors.Orange      // Bronze-ish
     )
 
     val cardColor = podiumColors.getOrElse(position - 1) { HelldeckColors.MediumGray }
