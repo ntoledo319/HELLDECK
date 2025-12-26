@@ -1,495 +1,410 @@
-# HELLDECK: GIFT PROJECT PERFECTION REVIEW
+# HELLDECK: GAMEPLAY PERFECTION REVIEW
 
 **Date:** 2025-12-26
-**Context:** Personal gift for friends, not a commercial product
-**Goal:** Make this the most polished, fun party game experience possible
-**Approach:** Question every design choice from the player experience perspective
+**Context:** Personal gift for friends - size/distribution don't matter
+**Goal:** Make the actual playing experience as perfect as possible
+**Approach:** Question every gameplay decision from a "is this fun?" perspective
 
 ---
 
 ## EXECUTIVE SUMMARY
 
-HELLDECK is technically impressive with sophisticated AI and excellent engineering. This review focuses on making it the best possible gift - identifying friction points, enhancing fun factor, improving polish, and ensuring your friends have an amazing time playing it.
+HELLDECK is technically exceptional with sophisticated AI. This review focuses purely on **gameplay quality** - is it fun? What kills the vibe? What would make it better? Ignore all concerns about app size, distribution, monetization - focus solely on the party game experience.
 
-**Key Areas:**
-1. ✅ What's Already Great (preserve this)
-2. ⚠️ Friction Points (fix these before gifting)
-3. 🎮 Game Quality (which games are fun, which aren't?)
-4. 🤖 AI Experience (is it actually better with AI?)
-5. 🎨 Polish & Details (small things that matter)
-6. 💡 Enhancement Ideas (make it even better)
+**Review Scope:**
+1. 🎮 Game Quality - Which games are actually fun?
+2. ⚡ Flow & Pacing - Does it feel smooth or sluggish?
+3. 🤖 AI Quality - Is the AI making it better or worse?
+4. 🎨 Polish & Feel - Does it feel premium?
+5. 💡 Missing Features - What would make it amazing?
+6. 🐛 Friction Points - What breaks immersion?
 
----
-
-## 1. WHAT'S ALREADY GREAT (Don't Change These)
-
-### ✅ Technical Excellence
-- **On-device AI is amazing** - No internet, no privacy concerns, genuinely impressive tech
-- **Quality validation system** - 5-gate validation ensures cards aren't nonsense
-- **Learning system** - It actually adapts to your group's humor (if it works - needs testing)
-- **Gold card fallbacks** - 280 hand-crafted cards as safety net is smart
-
-### ✅ User Experience Wins
-- **Dark theme** - Perfect for party environments (no blinding white screens)
-- **Large touch zones** - Easy to tap when passing phone around
-- **Haptic feedback** - Makes interactions feel responsive
-- **Spice slider** - Granular control (1-5) is better than binary on/off
-
-### ✅ Game Variety
-- **14 different games** - Lots of variety to keep things fresh
-- **Different interaction types** - Voting, judging, team play, etc.
-- **Good game design** - Mechanics are solid (inspired by proven party games)
-
-### ✅ Polish Points
-- **Modern UI** - Gradient cards, animations, professional look
-- **Rollcall system** - Easy player management
-- **Brainpack export** - Can save/transfer learned preferences (thoughtful detail)
-- **Kiosk mode** - Lock device for dedicated party setup (cool feature)
+**Bottom Line:** You've built something technically impressive. Now let's make it **unforgettably fun**.
 
 ---
 
-## 2. FRICTION POINTS (Fix Before Gifting)
+## 1. GAME QUALITY ANALYSIS - WHICH GAMES ARE ACTUALLY FUN?
 
-### 🚨 CRITICAL: First-Time User Experience
+### The Critical Question: Are All 14 Games Worth Keeping?
 
-**Problem:** Zero onboarding - friends will be confused
+Party games live or die on **which games people actually want to play**. Let me analyze each:
 
-When someone first opens HELLDECK:
-1. No explanation of how it works
-2. Gestures not discoverable (long-press to draw? two-finger tap to undo?)
-3. Game types not explained (what's "Poison Pitch" vs "Red Flag Rally"?)
-4. Spice levels not clear (what's the difference between 3 and 4?)
+#### ⭐⭐⭐⭐⭐ TIER 1: THE WINNERS (Keep & Prioritize)
 
-**Impact:** First 60 seconds determines if they love it or delete it
+**1. Roast Consensus**
+- **Why it works:** Personal roasts are inherently funny, voting is instant
+- **Pacing:** Fast (5-10 sec per round)
+- **Skill ceiling:** Low (anyone can vote)
+- **Replayability:** High (endless roast combinations)
+- **Verdict:** ✅ **Perfect party game**
 
-**Fix Needed:**
-- **Interactive tutorial** (30-60 seconds)
-  - Show key gestures with animation
-  - Explain 2-3 sample games
-  - Demonstrate spice slider
-  - "Skip" button for returning users
-- **Game descriptions** in picker modal
-  - Each game needs 1-sentence explanation
-  - Example: "Roast Consensus: Vote who's most likely to do something absurd"
+**2. Fill-In Finisher**
+- **Why it works:** Punchlines are comedy gold, simple format
+- **Pacing:** Fast (quick reads, instant laughs)
+- **Skill ceiling:** Low (pick the funniest option)
+- **Replayability:** High (prompts + punchlines = infinite combos)
+- **Verdict:** ✅ **Core game, absolutely keep**
 
-**Recommendation:** Make tutorial mandatory on first launch, skippable after
+**3. Poison Pitch**
+- **Why it works:** Would-you-rather is timeless, forces impossible choices
+- **Pacing:** Medium (need to sell your choice)
+- **Skill ceiling:** Medium (charisma matters)
+- **Replayability:** Very high (absurd dilemmas never get old)
+- **Verdict:** ✅ **Fan favorite potential**
 
----
+**4. Red Flag Rally**
+- **Why it works:** Dating + red flags = relatable awkwardness
+- **Pacing:** Medium (defend your terrible date)
+- **Skill ceiling:** Medium (creativity in defense)
+- **Replayability:** High (red flags + personalities = variety)
+- **Verdict:** ✅ **Strong keeper**
 
-### 🚨 CRITICAL: Installation Complexity
+**5. Hot Seat Imposter**
+- **Why it works:** Impersonating friends is hilarious when you know them
+- **Pacing:** Slow (everyone answers, then vote)
+- **Skill ceiling:** High (need to know the person well)
+- **Replayability:** Medium (works best with close friends)
+- **Verdict:** ✅ **Keep but best for repeat groups**
 
-**Problem:** 1.7 GB APK is MASSIVE
+#### ⭐⭐⭐⭐ TIER 2: SOLID (Keep, But Secondary)
 
-Your friends will need to:
-1. Enable "Install from Unknown Sources" (scary warning)
-2. Download 1.7 GB file (takes 5-10 min on decent WiFi)
-3. Have 3-4 GB free storage space
-4. Wait while models copy to internal storage on first launch
+**6. Odd One Out**
+- **Why it works:** Forces creative reasoning
+- **Pacing:** Medium (explain your choice)
+- **Skill ceiling:** Medium (justification quality matters)
+- **Replayability:** Medium
+- **Verdict:** ✅ **Good variety game**
 
-**Reality Check:**
-- Most apps are 50-200 MB
-- Users will think something is wrong ("why is this so huge?")
-- They might give up during download
+**7. Majority Report**
+- **Why it works:** Predicting the room is fun mind-game
+- **Pacing:** Medium (two voting rounds)
+- **Skill ceiling:** Medium (read the room)
+- **Replayability:** Medium
+- **Verdict:** ✅ **Solid filler**
 
-**Why is it 1.7 GB?**
-- LLM model files (Qwen 2.5 1.5B, TinyLlama, etc.)
-- Models bundled in APK = massive size
+**8. Hype or Yike**
+- **Why it works:** Pitching absurd products is performance art
+- **Pacing:** Slow (everyone pitches)
+- **Skill ceiling:** High (charisma required)
+- **Replayability:** Medium
+- **Verdict:** ⚠️ **Keep but prep players - needs energy**
 
-**Fix Options:**
+**9. Confession or Cap**
+- **Why it works:** Bluffing games are classic
+- **Pacing:** Medium (tell story, vote)
+- **Skill ceiling:** Medium (storytelling matters)
+- **Replayability:** Medium
+- **Verdict:** ✅ **Decent variety**
 
-**Option A: On-Demand Model Download (RECOMMENDED)**
-```
-1. Initial APK: ~100 MB (app + gold cards only)
-2. First launch: "Download AI models for unique cards?"
-   - YES: Download 1.5 GB in background (show progress)
-   - NO: Use gold cards + templates (still fully functional)
-3. User can enable AI later in settings
-```
-Benefits: Faster initial install, user choice, graceful degradation
+#### ⭐⭐⭐ TIER 3: QUESTIONABLE (Test Thoroughly)
 
-**Option B: Smaller Model**
-```
-Replace Qwen 2.5 1.5B with smaller model:
-- TinyLlama 1.1B: ~600 MB (already have this?)
-- Phi-2: ~800 MB
-- Or use GGUF Q3 quantization: ~400-600 MB
-```
-Benefits: Simpler, still on-device
+**10. Text Thread Trap**
+- **Why it might work:** Choosing reply tones is relatable
+- **Pacing:** Medium (read messages, pick tone)
+- **Skill ceiling:** Low-Medium
+- **Replayability:** Low-Medium
+- **Concern:** Reading messages = slower, less interactive
+- **Verdict:** ⚠️ **TEST THIS - might be too passive**
 
-**Option C: Hybrid (Local + Cloud)**
-```
-- Default: Cloud API (fast, high quality)
-- Setting: "Privacy Mode" downloads local model
-- User chooses: speed vs. privacy
-```
-Benefits: Best UX for most users, privacy for those who care
+**11. Title Fight**
+- **Why it might work:** Competitive challenges
+- **Pacing:** Varies wildly based on challenge
+- **Skill ceiling:** Depends on challenge
+- **Replayability:** Depends on challenge variety
+- **Concern:** Quality depends entirely on mini-challenges
+- **Verdict:** ⚠️ **TEST THIS - are mini-challenges good?**
 
-**Recommendation:** Option A (on-demand download)
-- Small initial download = higher chance friends actually install it
-- AI is optional enhancement, not requirement
-- Gold cards are already excellent
+**12. Taboo Timer**
+- **Why it might work:** Team guessing games are proven
+- **Pacing:** Slow (team coordination required)
+- **Skill ceiling:** High (need good words, teamwork)
+- **Replayability:** Medium
+- **Concern:** Requires split into teams, time pressure, can frustrate
+- **Verdict:** ⚠️ **TEST THIS - might kill party vibe if words are hard**
 
----
+**13. Alibi Drop**
+- **Why it might work:** Weaving secret words is creative challenge
+- **Pacing:** Slow (everyone performs)
+- **Skill ceiling:** Very high (improvisation required)
+- **Replayability:** Low-Medium
+- **Concern:** High performance anxiety, slow when everyone goes
+- **Verdict:** ⚠️ **TEST THIS - might be too hard for casual play**
 
-### ⚠️ HIGH: Generation Latency
+#### ⭐⭐ TIER 4: LIKELY WEAK (Consider Cutting)
 
-**Problem:** 1-2 second wait feels long in party context
+**14. Scatterblast**
+- **Why it might not work:** Name 3 things in category = trivia, not comedy
+- **Pacing:** Fast (quick thinking)
+- **Skill ceiling:** Low (trivia knowledge)
+- **Replayability:** Low (categories repeat)
+- **Concern:** Doesn't match the comedy vibe of other games
+- **Verdict:** ❌ **LIKELY WEAK - feels out of place, more quiz than party game**
 
-Party games need **momentum**:
-- Fast pacing keeps energy high
-- Waiting breaks flow
-- 2 seconds feels like 10 seconds when everyone's staring at the phone
+### Recommendation: Tiered UI & Data Collection
 
-**Current Experience:**
-1. Card displayed
-2. Everyone reacts (10-30 sec)
-3. Rate card (LOL/MEH/TRASH)
-4. *Wait 1-2 seconds* ← kills momentum
-5. Next card appears
-
-**Fix: Pre-Generation Buffer**
-
+**Phase 1: Track Usage**
 ```kotlin
-// Generate next 3 cards during current round
-class CardBuffer {
-    private val buffer = mutableListOf<Card>()
+data class GameMetrics(
+    val gameId: String,
+    val timesSelected: Int,
+    val averageSessionLength: Duration,
+    val averageLOLRate: Float,
+    val skipRate: Float,
+    val replayRate: Float
+)
+```
+
+After 20 game nights, you'll have data on:
+- Which games people actually choose
+- Which games get the most laughs
+- Which games people skip or end early
+
+**Phase 2: UI Based on Data**
+
+Instead of flat list of 14, organize by quality:
+```
+┌─────────────────────────────────────┐
+│ QUICK PLAY                          │
+│ (Starts random from top 5 games)    │
+├─────────────────────────────────────┤
+│ TOP GAMES                           │
+│ 🔥 Roast Consensus                  │
+│ 💬 Fill-In Finisher                 │
+│ ☠️ Poison Pitch                     │
+│ 🚩 Red Flag Rally                   │
+│ 🎭 Hot Seat Imposter                │
+├─────────────────────────────────────┤
+│ MORE GAMES                          │
+│ (Remaining 9 games)                 │
+└─────────────────────────────────────┘
+```
+
+**Why This Matters:**
+- New players see best games first
+- Reduces decision paralysis
+- Data-driven (not assumptions)
+
+---
+
+## 2. FLOW & PACING - DOES IT FEEL SMOOTH?
+
+### The Momentum Problem
+
+Party games need **energy**. Waiting = death. Let me trace the current flow:
+
+#### Current Round Flow:
+```
+1. Card appears [0s]
+2. Read card [3-5s]
+3. React/discuss [10-30s]
+4. Vote/judge [5-15s]
+5. See results [2-5s]
+6. Rate card (LOL/MEH/TRASH) [3-5s] ← FRICTION
+7. Wait for next card generation [1-2s] ← FRICTION
+8. Next card appears [0s]
+
+Total: 24-62 seconds per round
+Friction: 4-7 seconds of "waiting/homework"
+```
+
+### Critical Pacing Issues
+
+**Issue #1: Card Generation Latency (1-2 seconds)**
+
+**Problem:** Staring at loading while AI generates feels like eternity in party context
+
+**Impact:** Kills momentum between rounds
+
+**Solution: Pre-Generation Buffer**
+```kotlin
+class CardBuffer(
+    private val gameEngine: GameEngine,
+    private val bufferSize: Int = 3
+) {
+    private val buffer = ArrayDeque<Card>()
+    private val generationScope = CoroutineScope(Dispatchers.Default)
 
     init {
-        // Background coroutine keeps buffer full
-        scope.launch {
-            while (true) {
-                if (buffer.size < 3) {
-                    buffer.add(generateCard())
+        startBuffering()
+    }
+
+    private fun startBuffering() {
+        generationScope.launch {
+            while (isActive) {
+                if (buffer.size < bufferSize) {
+                    val card = gameEngine.generateCard()
+                    buffer.addLast(card)
                 }
                 delay(100)
             }
         }
     }
 
-    fun getNext(): Card = buffer.removeFirstOrNull() ?: generateCardBlocking()
+    suspend fun getNext(): Card {
+        return buffer.removeFirstOrNull()
+            ?: gameEngine.generateCard() // Fallback if buffer empty
+    }
 }
 ```
 
 **Result:**
-- First card: Instant (from buffer)
-- Subsequent cards: Instant (buffer refills in background)
-- Zero perceived latency
+- First 3 cards: Instant (pre-generated)
+- Cards 4+: Instant (buffer refills during gameplay)
+- **Zero perceived latency**
 
-**Implementation:** 2-3 hours of work, massive UX improvement
-
----
-
-### ⚠️ HIGH: Feedback Friction
-
-**Problem:** Forcing LOL/MEH/TRASH rating after EVERY card is tedious
-
-Party context:
-- 20 rounds per session
-- Rating each = 20 extra taps
-- Interrupts flow
-- Feels like homework
-
-**Questions:**
-1. Do you actually use this feedback data?
-2. Does the learning system noticeably improve quality over time?
-3. Could you collect feedback passively instead?
-
-**Alternative Approaches:**
-
-**Option 1: Optional Feedback (RECOMMENDED)**
-```
-Default: No rating required
-Card shown → reaction → next card (seamless)
-
-"Did you love this card?" → Thumbs up appears briefly
-  - Tap = LOL (recorded)
-  - Ignore = MEH (assumed)
-```
-
-**Option 2: Passive Signals**
-```
-- Skip card = MEH/TRASH (negative signal)
-- Replay card = LOL (positive signal)
-- Time on card <5 sec = TRASH
-- Time on card >20 sec = LOL
-```
-
-**Option 3: Post-Game Rating**
-```
-After 10 rounds: "Rate these 3 cards" (shows best/worst from session)
-Less frequent, more meaningful feedback
-```
-
-**Recommendation:** Option 1 (optional thumbs up)
-- Zero friction by default
-- Captures strong reactions (LOL)
-- Learning system still gets signal
+**Effort:** 2-3 hours
+**Impact:** Massive - transforms pacing from "sluggish" to "snappy"
 
 ---
 
-### ⚠️ MEDIUM: Game Complexity Variance
+**Issue #2: Mandatory Feedback Rating**
 
-**Problem:** Some games are simple (vote for player), others are complex (Taboo with forbidden words)
+**Problem:** After every single card, forcing LOL/MEH/TRASH feels like homework
 
-When playing with friends:
-- Learning new game = 30-60 sec explanation
-- 14 games = 14 different rule sets
-- Switching games = re-learning
+**Impact:** Adds 3-5 seconds of tedium per round, 20 rounds = 60-100 seconds wasted
 
-**Question:** Are all 14 games equally fun? Or are some filler?
+**Question:** Do you actually analyze this feedback data? Does the learning system measurably improve quality?
 
-**Recommendation:** Track and optimize
+**Test This:**
+- Play 50 rounds with learning ON
+- Track quality scores: rounds 1-10 vs rounds 41-50
+- **Hypothesis:** If quality doesn't improve >10%, learning isn't working
 
-Add simple analytics (local only):
+**If learning doesn't work → Make feedback optional**
+
+**Option A: Optional Thumbs-Up**
 ```kotlin
-data class GameStats(
-    val gameId: String,
-    val timesPlayed: Int,
-    val averageSessionLength: Duration,
-    val averageLOLRate: Float, // % of cards that got LOL
-    val selectionFrequency: Float // how often chosen when available
-)
-```
+// Default: No rating required
+// Card shown → next card (seamless)
 
-After 10 sessions, you'll know:
-- Which games are most popular
-- Which games get most laughs
-- Which games people avoid
-
-**Then:** Consider promoting top 7, demoting bottom 7 to "More Games" section
-
-**Why 14 is a lot:**
-- Jackbox Party Packs have 5 games each (proven successful)
-- Quality > Quantity for party games
-- Easier to explain to new players: "We have 5 great games" vs "14 games you can choose from"
-
-**Not saying delete games**, just prioritize the best ones in UI
-
----
-
-### ⚠️ MEDIUM: No "Share This Card" Feature
-
-**Problem:** When something is hilarious, people want to share it
-
-Currently:
-- Great card appears
-- Everyone laughs
-- Someone says "OMG screenshot this"
-- Awkward photo of phone screen
-- Card text is half-cut-off
-
-**Missed Opportunity:**
-- Word-of-mouth is best marketing (even for a gift)
-- Friends will tell their friends: "You need to see this app"
-- But hard to show them without the app installed
-
-**Fix: Share Button**
-
-```kotlin
-fun exportCardAsImage(card: Card, gameTitle: String): Bitmap {
-    // Render card as image
-    // Include game name, card text, HELLDECK branding
-    // Save to gallery or share intent
+// Optional: Quick "loved it" button (2 sec timeout)
+if (userTapped) {
+    recordFeedback(LOL)
+} else {
+    // Assume MEH, move on
 }
 ```
 
-**UX:**
-- After rating, show "Share" button briefly (3 sec, then fades)
-- Or: Long-press card → "Share as Image"
-- Generates shareable image with nice design
+**Option B: Passive Signals**
+```kotlin
+// Collect feedback without asking:
+- Skip card before 5 sec = TRASH
+- Stay on card >20 sec = LOL
+- Replay card = LOL
+- End game early = TRASH for recent cards
+```
 
-**Benefits (even for personal project):**
-- Friends can share funny moments in group chats
-- Helps explain what HELLDECK is to others
-- Creates memories (saved images = nostalgia)
+**Recommendation:** Test if learning works first. If not, make feedback optional/passive.
 
 ---
 
-## 3. GAME QUALITY ANALYSIS
+**Issue #3: Reading-Heavy Games**
 
-### Question: Are All 14 Games Actually Fun?
+**Problem:** Games like Text Thread Trap require reading paragraphs
 
-Without playtesting data, here's my assessment based on game design principles:
+**Impact:** Slows pacing, less interactive, people zone out
 
-#### Tier 1: Proven Winners (Simple, Fast, Funny)
+**Question:** Are text-heavy games as fun as interactive ones?
 
-1. **Roast Consensus** ⭐⭐⭐⭐⭐
-   - Simple: Vote for who fits the roast
-   - Fast: 5-10 sec per round
-   - Funny: Personal roasts land best
-   - **Keep and prioritize**
+**Test This:**
+- Track session length: Text Thread vs Roast Consensus
+- Track LOL rate: Text Thread vs Poison Pitch
+- **Hypothesis:** Text-heavy games will have lower engagement
 
-2. **Fill-In Finisher** ⭐⭐⭐⭐⭐
-   - Simple: Complete the prompt
-   - Fast: Quick reads
-   - Funny: Punchlines are comedy gold
-   - **Keep and prioritize**
-
-3. **Poison Pitch** ⭐⭐⭐⭐⭐
-   - Simple: Would you rather?
-   - Fast: Binary choice
-   - Funny: Absurd dilemmas
-   - **Keep and prioritize**
-
-4. **Red Flag Rally** ⭐⭐⭐⭐
-   - Simple: Dating with red flags
-   - Medium pace: Need to sell it
-   - Funny: Relatable, awkward
-   - **Keep**
-
-5. **Odd One Out** ⭐⭐⭐⭐
-   - Simple: Pick the misfit
-   - Medium pace: Need to explain
-   - Funny: Forces creative reasoning
-   - **Keep**
-
-#### Tier 2: Good But Complex (Need More Explanation)
-
-6. **Hot Seat Imposter** ⭐⭐⭐⭐
-   - Medium complexity: Everyone answers as target
-   - Slow: Waiting for each answer
-   - Funny: When you know the person well
-   - **Keep but explain rules clearly**
-
-7. **Text Thread Trap** ⭐⭐⭐
-   - Medium complexity: Choose reply tone
-   - Medium pace: Reading messages
-   - Funny: Situational
-   - **Keep but consider simplifying**
-
-8. **Majority Report** ⭐⭐⭐⭐
-   - Simple concept: Predict votes
-   - Medium pace: Two voting rounds
-   - Funny: When predictions are wrong
-   - **Keep**
-
-9. **Hype or Yike** ⭐⭐⭐⭐
-   - Medium complexity: Pitch product
-   - Slow: Need performance time
-   - Funny: Requires charisma
-   - **Keep but prep players**
-
-#### Tier 3: Potentially Weak (Need Testing)
-
-10. **Taboo Timer** ⭐⭐⭐
-    - High complexity: Team game, forbidden words
-    - Slow: Requires teamwork, time pressure
-    - Funny: Can be frustrating if words are hard
-    - **Question:** Does this work in practice? Test it.
-
-11. **Alibi Drop** ⭐⭐⭐
-    - High complexity: Weave secret words into story
-    - Slow: Everyone has to perform
-    - Funny: Requires creativity
-    - **Question:** Is this too hard for casual play?
-
-12. **Title Fight** ⭐⭐⭐
-    - Medium complexity: Challenge champion
-    - Varies: Depends on mini-challenge
-    - Funny: Competitive element
-    - **Question:** Are mini-challenges well-designed?
-
-13. **Scatterblast** ⭐⭐
-    - Simple: Name things in category
-    - Fast: Quick thinking
-    - Funny: Not really - more trivia than comedy
-    - **Question:** Does this fit the vibe? Feels different from others.
-
-14. **Confession or Cap** ⭐⭐⭐
-    - Simple: Truth or bluff
-    - Medium pace: Storytelling + voting
-    - Funny: If players commit to stories
-    - **Keep but needs good prompts**
-
-### Recommendation: Game Tiers in UI
-
-Instead of showing all 14 equally, create tiers:
-
-```
-Home Screen:
-┌─────────────────────────────────┐
-│ Quick Play (Start Random)       │ ← Top 5 games only
-│ All Games (Choose Specific)     │ ← All 14 available
-│ Custom (Pick Rotation)          │ ← Advanced
-└─────────────────────────────────┘
-```
-
-**Benefits:**
-- New players see best games first
-- Experienced players have full access
-- Easier to explain: "Just hit Quick Play"
+**If confirmed → Deprioritize reading games in UI**
 
 ---
 
-## 4. AI EXPERIENCE QUALITY
+### Ideal Pacing Target
 
-### Question: Is LLM Generation Actually Better Than Gold Cards?
+**Fast games (Roast, Fill-In):** 15-20 sec per round
+**Medium games (Poison Pitch, Red Flag):** 30-45 sec per round
+**Slow games (Hot Seat, Hype or Yike):** 60-90 sec per round
 
-**Need to validate:**
-1. Is LLM quality noticeably better than gold cards?
-2. Is uniqueness worth the 1-2 second wait?
-3. Does learning system actually improve quality over 20+ rounds?
+**Goal:** 80% of games should be fast/medium (20-45 sec)
 
-**Test Plan:**
+**Current State:** Unknown - need to measure actual session data
 
-Run 100 cards through each path:
+**Action:** Add timing analytics to track this
+
+---
+
+## 3. AI QUALITY - IS THE AI ACTUALLY MAKING IT BETTER?
+
+### The Core Question: Is LLM Generation Worth It?
+
+You've built impressive tech (on-device LLM, 5-gate validation, humor scoring). But **does it make the game more fun?**
+
+#### Test #1: LLM vs Gold Card Quality
+
+**Hypothesis:** LLM cards should be noticeably funnier than gold cards
+
+**Method:**
 ```bash
-./gradlew :app:cardAudit -Pgame=ROAST_CONSENSUS -Pcount=100
+# Generate 100 LLM cards
+./gradlew :app:cardAudit -Pgame=ROAST_CONSENSUS -Pcount=100 -Pseed=42
+
+# Compare to gold cards
+# Measure: Average quality score, LOL rate (if you have data)
 ```
 
-Compare:
-- **LLM cards** (quality score, LOL rate)
-- **Gold cards** (quality score, LOL rate)
-- **Template cards** (quality score, LOL rate)
+**Success Criteria:**
+- LLM cards score ≥0.75 quality (vs gold ≥0.80)
+- LLM cards get similar/higher LOL rate in real play
 
-**Hypothesis:**
-- LLM should score ≥0.7 quality (current threshold: 0.6)
-- Gold cards should score ≥0.8 (hand-crafted)
-- Templates should score ~0.5-0.6 (formulaic)
+**If LLM < Gold:** Question whether 1-2 sec wait is worth it
 
-**If LLM ≈ Gold:** Maybe just use gold + paraphrase instead of pure generation
-**If LLM > Gold:** Keep current approach
-**If LLM < Gold:** Question the value of on-device LLM
+---
 
-### Question: Does the 5-Gate Validation Actually Work?
+#### Test #2: Does the 5-Gate Validation Work?
 
 **Current Gates:**
-1. Format validation (JSON, required fields)
-2. Length validation (15-30 words)
-3. Quality score validation (≥0.6)
-4. Cliché detection (game-specific)
-5. Contract validation (playable state)
+1. Format (JSON structure)
+2. Length (15-30 words)
+3. Quality score (≥0.6)
+4. Cliché detection
+5. Contract validation
 
 **Questions:**
-- How often do cards fail each gate?
-- Which gate catches most issues?
-- Are thresholds too strict (causing too many fallbacks)?
+- What % of cards pass all gates?
+- Which gate fails most often?
+- Are thresholds too strict (causing excessive fallbacks)?
 - Are thresholds too loose (letting bad cards through)?
 
-**Logging Needed:**
-
+**Test Method:**
 ```kotlin
 class ValidationMetrics {
-    var totalAttempts = 0
+    var attempts = 0
     var formatFails = 0
     var lengthFails = 0
     var qualityFails = 0
     var clicheFails = 0
     var contractFails = 0
-    var successfulCards = 0
+    var success = 0
 
     fun report() {
-        println("Success rate: ${successfulCards / totalAttempts.toFloat()}")
-        println("Fail breakdown: Format=$formatFails, Length=$lengthFails, ...")
+        println("""
+            Success Rate: ${success.toFloat() / attempts}
+            Failures:
+              Format: ${formatFails}
+              Length: ${lengthFails}
+              Quality: ${qualityFails}
+              Cliché: ${clicheFails}
+              Contract: ${contractFails}
+        """)
     }
 }
 ```
 
-**Goal:** 80%+ success rate (20% fallback is acceptable)
-**If <50%:** Thresholds too strict, relax them
-**If >95%:** Thresholds too loose, tighten them
+**Goal:** 80%+ success rate
 
-### Question: Is Humor Scoring Accurate?
+**If 50-80%:** Might be too strict, relax thresholds
+**If >95%:** Might be too loose, tighten thresholds
+**If <50%:** Gates are broken, need redesign
+
+---
+
+#### Test #3: Humor Scoring Accuracy
 
 **8 Metrics:**
 1. Absurdity (20%)
@@ -501,505 +416,913 @@ class ValidationMetrics {
 7. Relatability (5%)
 8. Wordplay (5%)
 
-**Critical Test:**
+**Critical Question:** Do these metrics correlate with actual human laughter?
 
-Take 50 cards, have real humans rate them (1-10), compare to HumorScorer:
+**Test Method:**
+1. Generate 50 cards
+2. Have 5 friends rate each card (1-10 funniness)
+3. Compare human ratings vs HumorScorer output
+4. Calculate correlation coefficient
 
-```
-Human Ratings vs. AI Scores:
-- If correlation >0.7: Scoring works!
-- If correlation 0.4-0.7: Somewhat useful
-- If correlation <0.4: Scoring is random, remove it
-```
+**Success Criteria:**
+- Correlation >0.7: Scoring works! Keep it.
+- Correlation 0.4-0.7: Somewhat useful, refine
+- Correlation <0.4: Scoring is noise, remove it
 
-**Why This Matters:**
-If humor scoring doesn't correlate with actual laughs, it's just complexity for no benefit.
-
-**Recommendation:** Validate or simplify
-
-Either prove the 8 metrics work, or replace with simpler heuristics:
-- Length check (10-25 words)
-- Banned word filter (already have)
-- Basic coherence (subject-verb agreement)
-- That's it.
-
-Sometimes simple is better.
-
----
-
-## 5. POLISH & DETAILS
-
-### Small Things That Matter for a Gift
-
-#### ✅ Already Polished:
-- Gradient backgrounds (looks professional)
-- Smooth animations (feels premium)
-- Haptic feedback (satisfying)
-- Dark theme (party-appropriate)
-- AI badge (shows when card is LLM-generated)
-
-#### 🎨 Additional Polish Ideas:
-
-**1. Sound Effects (Optional, Toggle-able)**
-```
-- Card appears: Soft "whoosh"
-- LOL rating: Light applause/laughter
-- TRASH rating: Buzzer/boo
-- Win round: Fanfare
-- Milestone: Special sound (100th round, etc.)
-```
-**Implementation:** Use Android SoundPool, ~10 short audio files
-**Why:** Audio feedback enhances party vibe (if not annoying)
-**Must have:** Settings toggle to disable
-
-**2. Celebration Moments**
-```
-- First game: "Welcome to HELLDECK!" with confetti
-- 10th round: "You're on a roll!"
-- 50th round: "Half-century club!" with badge
-- 100th round: "Legend status!" with animation
-```
-**Why:** Milestones create memorable moments
-
-**3. Better Loading States**
-```
-Current: Shimmer effect (good)
-Enhancement: Rotating tips/jokes during load
-  - "Generating the perfect roast..."
-  - "Consulting the comedy AI..."
-  - "Shuffling the deck of chaos..."
-```
-**Why:** Makes 1-2 sec wait feel intentional, not broken
-
-**4. Easter Eggs (Fun Touches)**
-```
-- Konami code on home screen → secret game mode
-- 10x LOL in a row → "Comedy genius" badge
-- Play at 3 AM → "Night owls" achievement
-- Specific player combinations → custom intro
-```
-**Why:** Hidden surprises delight power users
-
-**5. Accessibility Improvements**
-```
-- Content descriptions for screen readers
-- High contrast mode (for low vision)
-- Larger text option (readability)
-- Reduced motion respect (for motion sensitivity)
-```
-**Why:** Inclusive design is thoughtful
-
-**Priority:** Focus on #1 (sound), #2 (celebrations), #5 (accessibility) first
-
----
-
-## 6. ENHANCEMENT IDEAS (Make It Even Better)
-
-### Feature Ideas to Consider
-
-#### 🎯 High Impact, Low Effort
-
-**1. Favorite Cards Collection**
+**If scoring doesn't work → Simplify:**
 ```kotlin
-// Let players save their favorite cards
-class FavoriteCards {
-    fun save(card: Card) { /* save to Room DB */ }
-    fun replay() { /* show random favorite */ }
+// Replace 8 complex metrics with simple checks:
+fun simpleQualityCheck(card: String): Boolean {
+    return card.length in 10..25 &&
+           !hasBannedWords(card) &&
+           hasBasicCoherence(card)
+}
+```
+
+Sometimes **simple beats complex** if complex doesn't actually work.
+
+---
+
+#### Test #4: Learning System Effectiveness
+
+**Question:** Does quality actually improve over time?
+
+**Test Method:**
+```kotlin
+// Track quality scores over session
+data class LearningTest(
+    val roundNumber: Int,
+    val qualityScore: Float,
+    val feedbackReceived: Feedback
+)
+
+// After 50 rounds, compare:
+val earlyQuality = rounds[0..10].averageQuality()
+val lateQuality = rounds[40..50].averageQuality()
+val improvement = lateQuality - earlyQuality
+```
+
+**Success Criteria:**
+- Quality improves ≥10% from early to late rounds
+- Fallback rate decreases (more LLM success, less gold/template)
+
+**If learning doesn't work:**
+- System is too complex for benefit
+- Consider removing learning, just use best templates always
+- Or simplify to basic popularity tracking (drop epsilon-greedy, Thompson sampling)
+
+---
+
+### Recommendation: Validate or Simplify
+
+**You've built sophisticated systems. Now prove they work.**
+
+Run these 4 tests. If systems don't measurably improve fun → simplify them.
+
+**Engineering for engineering's sake** is impressive but might not serve the player.
+
+**Engineering for fun** is what makes a great game.
+
+---
+
+## 4. POLISH & FEEL - DOES IT FEEL PREMIUM?
+
+### What's Already Great
+
+✅ **Visual Design**
+- Gradient backgrounds (spice-level colors)
+- Smooth animations (fade, scale, spring)
+- Modern UI (Material 3, dark theme)
+- Clean typography
+
+✅ **Haptic Feedback**
+- Satisfying vibrations on key actions
+- Makes interactions feel responsive
+
+✅ **Game-Specific UI**
+- Different renderers per game type (voting, judging, etc.)
+- Thoughtful UX per interaction
+
+### Polish Gaps (Small Things That Matter)
+
+#### Gap #1: No Onboarding
+
+**Problem:** First-time users don't know:
+- How to draw a card (long-press? tap? swipe?)
+- How to undo (two-finger tap - not discoverable)
+- What games exist
+- What spice levels mean
+
+**Impact:** Confusion in first 60 seconds → frustration
+
+**Solution: 60-Second Interactive Tutorial**
+```
+Screen 1: "Welcome to HELLDECK!" [5s]
+Screen 2: "Long-press to draw a card" [animated demo] [8s]
+Screen 3: "Two-finger tap to undo" [animated demo] [8s]
+Screen 4: "Choose your spice level" [slider demo] [10s]
+Screen 5: "Pick a game and start!" [game picker] [10s]
+Total: ~40s (with skip button)
+```
+
+**Effort:** 4-6 hours
+**Impact:** High - eliminates confusion
+
+**Implementation:**
+```kotlin
+@Composable
+fun OnboardingFlow(onComplete: () -> Unit) {
+    var step by remember { mutableStateOf(0) }
+
+    when (step) {
+        0 -> WelcomeScreen { step++ }
+        1 -> GestureDemo("Long-press to draw") { step++ }
+        2 -> GestureDemo("Two-finger tap to undo") { step++ }
+        3 -> SpiceSliderDemo { step++ }
+        4 -> GamePickerDemo { onComplete() }
+    }
+}
+```
+
+---
+
+#### Gap #2: No Celebration Moments
+
+**Problem:** Milestones pass silently
+- 10th round → nothing
+- 50th round → nothing
+- Someone wins 5x in a row → nothing
+
+**Missed Opportunity:** Celebrations create memorable moments
+
+**Solution: Milestone Celebrations**
+```kotlin
+fun checkMilestones(roundCount: Int, winner: Player) {
+    when {
+        roundCount == 10 -> showCelebration("10 rounds! 🎉")
+        roundCount == 50 -> showCelebration("Half-century club! 🏆")
+        roundCount == 100 -> showCelebration("Legend status! 👑")
+        winner.consecutiveWins >= 5 -> showCelebration("${winner.name} is on fire! 🔥")
+    }
 }
 
-// UI: "Favorites" drawer from right edge
-// Swipe right → see last 20 favorite cards
-// Tap to replay
+@Composable
+fun Celebration(message: String) {
+    // Confetti animation
+    // Large text with message
+    // Sound effect (optional)
+    // Auto-dismiss after 3s
+}
 ```
-**Why:** Relive the funniest moments
-**Effort:** 2-3 hours
-**Impact:** High (nostalgia, replay value)
 
-**2. Session Summaries**
+**Effort:** 2-3 hours
+**Impact:** Medium-High - adds delight
+
+---
+
+#### Gap #3: No Sound (Optional Enhancement)
+
+**Current State:** Silent except haptics
+
+**Enhancement Idea:** Optional sound effects
+```kotlin
+enum class GameSound {
+    CARD_DRAW,      // Soft "whoosh"
+    LOL_RATING,     // Light applause
+    TRASH_RATING,   // Buzzer
+    ROUND_WIN,      // Fanfare
+    MILESTONE       // Special sound
+}
+
+class SoundManager(private val context: Context) {
+    private val soundPool = SoundPool.Builder()
+        .setMaxStreams(3)
+        .build()
+
+    private var enabled = true // Toggleable in settings
+
+    fun play(sound: GameSound) {
+        if (!enabled) return
+        soundPool.play(soundMap[sound], 1f, 1f, 1, 0, 1f)
+    }
+}
+```
+
+**Why Optional:**
+- Some groups love audio feedback
+- Some find it annoying
+- **Must have settings toggle**
+
+**Effort:** 2-3 hours (find/create sounds, implement)
+**Impact:** Medium - enhances vibe if done well, annoying if overdone
+
+---
+
+#### Gap #4: Loading States Could Be Better
+
+**Current:** Shimmer effect (good)
+
+**Enhancement:** Add personality
+```kotlin
+val loadingMessages = listOf(
+    "Consulting the comedy AI...",
+    "Generating the perfect roast...",
+    "Shuffling the deck of chaos...",
+    "Warming up the party machine...",
+    "Finding the spiciest option..."
+)
+
+@Composable
+fun LoadingCard() {
+    val message = remember { loadingMessages.random() }
+
+    ShimmerCard()
+    Text(
+        text = message,
+        style = MaterialTheme.typography.labelMedium,
+        modifier = Modifier.padding(top = 8.dp)
+    )
+}
+```
+
+**Effort:** 30 minutes
+**Impact:** Low-Medium - makes waiting feel intentional
+
+---
+
+#### Gap #5: No "Share This Card" Feature
+
+**Problem:** When a card is hilarious, people want to capture/share it
+
+**Current Workaround:** Screenshot (awkward, ugly)
+
+**Solution: Export Card as Image**
+```kotlin
+fun exportCardAsImage(card: Card, gameTitle: String): Bitmap {
+    val width = 1080
+    val height = 1920
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+
+    // Draw gradient background
+    // Draw card text (large, centered)
+    // Draw game name (top)
+    // Draw "Made with HELLDECK" (bottom)
+    // Draw spice indicator
+
+    return bitmap
+}
+
+// Save to gallery or share intent
+fun shareCard(bitmap: Bitmap) {
+    val uri = saveBitmapToGallery(bitmap)
+    val intent = Intent(Intent.ACTION_SEND).apply {
+        type = "image/png"
+        putExtra(Intent.EXTRA_STREAM, uri)
+    }
+    context.startActivity(Intent.createChooser(intent, "Share Card"))
+}
+```
+
+**UX:**
+- After rating, show "Share" button (3 sec, then fades)
+- Or: Long-press card → "Share as Image"
+
+**Why This Matters (even for gift project):**
+- Friends can share funny moments in group chats
+- Creates memories (saved images)
+- Helps explain what HELLDECK is to others
+
+**Effort:** 3-4 hours
+**Impact:** High - people WILL use this
+
+---
+
+## 5. MISSING FEATURES - WHAT WOULD MAKE IT AMAZING?
+
+### High Impact, Low Effort Additions
+
+#### Feature #1: Favorite Cards Collection
+
+**Idea:** Let players save their favorite cards to replay later
+
+**Why It's Great:**
+- Relive funniest moments
+- Show new players "greatest hits"
+- Build inside jokes over time
+
+**Implementation:**
+```kotlin
+@Entity(tableName = "favorite_cards")
+data class FavoriteCard(
+    @PrimaryKey val id: String,
+    val cardText: String,
+    val gameType: String,
+    val timestamp: Long,
+    val whoFavorited: List<String> // Player names
+)
+
+class FavoriteCardsRepository(private val dao: FavoriteCardsDao) {
+    suspend fun save(card: Card, player: Player) {
+        dao.insert(FavoriteCard(...))
+    }
+
+    suspend fun getAll(): List<FavoriteCard> = dao.getAll()
+
+    suspend fun getRandom(): FavoriteCard? = dao.getRandom()
+}
+
+// UI: Swipe right from edge → Favorites drawer
+@Composable
+fun FavoritesDrawer() {
+    val favorites by repository.getAll().collectAsState()
+
+    LazyColumn {
+        items(favorites) { card ->
+            CardPreview(card) {
+                // Tap to replay this card
+                onReplay(card)
+            }
+        }
+    }
+}
+```
+
+**Effort:** 2-3 hours
+**Impact:** High - adds nostalgia and replay value
+
+---
+
+#### Feature #2: Session Summaries
+
+**Idea:** After game ends, show recap of session
+
+**Why It's Great:**
+- Creates closure
+- Highlights memorable moments
+- Shareable (see Gap #5)
+
+**Implementation:**
 ```kotlin
 data class SessionSummary(
     val date: LocalDateTime,
-    val players: List<String>,
+    val players: List<Player>,
     val gamesPlayed: List<String>,
     val roundCount: Int,
-    val funniestCard: Card, // highest LOL consensus
-    val hottest: Card, // most room heat
-    val trashiest: Card, // most TRASH votes
-    val winner: Player
+    val funniestCard: Card,      // Highest LOL consensus
+    val hottestCard: Card,        // Most room heat
+    val trashiestCard: Card,      // Most TRASH votes
+    val winner: Player,
+    val awards: List<Award>       // 🏆 Most Wins, 🔥 Heat Master, etc.
 )
 
-// After session: Show recap screen
-// Export as shareable image
+@Composable
+fun SessionSummaryScreen(summary: SessionSummary) {
+    Column {
+        Text("${summary.roundCount} rounds played!")
+        Text("Winner: ${summary.winner.name} 🏆")
+
+        Spacer(h = 16.dp)
+
+        Text("Funniest Card:")
+        CardDisplay(summary.funniestCard)
+
+        Spacer(h = 16.dp)
+
+        Text("Awards:")
+        summary.awards.forEach { award ->
+            AwardBadge(award)
+        }
+
+        Button("Share Summary") {
+            exportSummaryAsImage(summary)
+        }
+    }
+}
 ```
-**Why:** Creates memories, encourages sharing
+
 **Effort:** 4-5 hours
-**Impact:** High (social, memorable)
+**Impact:** High - memorable, shareable
 
-**3. Player Stats & Awards**
-```kotlin
-// Expand existing awards system
-awards = [
-    "🏆 Most Wins",
-    "🔥 Heat Master",
-    "⚡ Quick Wit",
-    "💯 Century Club",
-    "😂 Laugh Track" (most LOLs given),
-    "🗑️ Hater" (most TRASH votes),
-    "🎭 Drama Queen" (longest debate times),
-    "🦗 Quiet Type" (fewest words spoken in performance games)
-]
-```
-**Why:** Friendly competition, bragging rights
-**Effort:** 2-3 hours (mostly UI)
-**Impact:** Medium-High (engagement)
+---
 
-**4. Custom Card Creator**
+#### Feature #3: Custom Card Creator
+
+**Idea:** Let players add their own cards (inside jokes, personal roasts)
+
+**Why It's Great:**
+- Ultra-personalized
+- Inside jokes are the funniest
+- Easy content creation for you
+
+**Implementation:**
 ```kotlin
-// Let players add their own cards
-fun createCustomCard(gameType: GameType, text: String) {
-    // Validate format
-    // Add to custom pool
-    // Tag as "user-created"
+@Composable
+fun CustomCardCreator() {
+    var gameType by remember { mutableStateOf(GameType.ROAST_CONSENSUS) }
+    var cardText by remember { mutableStateOf("") }
+
+    Column {
+        Text("Create Custom Card")
+
+        Dropdown("Game Type") {
+            gameType = it
+        }
+
+        TextField(
+            value = cardText,
+            label = "Card Text",
+            placeholder = "Enter your custom card..."
+        )
+
+        Button("Add to Deck") {
+            repository.saveCustomCard(gameType, cardText)
+        }
+    }
 }
 
 // Mix custom cards with generated (10% custom, 90% AI)
+fun selectCard(): Card {
+    return if (Random.nextFloat() < 0.1 && hasCustomCards()) {
+        repository.getRandomCustomCard()
+    } else {
+        generateCard()
+    }
+}
 ```
-**Why:** Inside jokes, personalization
+
 **Effort:** 3-4 hours
-**Impact:** High (personal touch)
-
-#### 🎯 Medium Impact, Medium Effort
-
-**5. Team Mode**
-```kotlin
-// Split players into 2 teams
-// Collaborative rounds (team debates)
-// Team scores
-```
-**Why:** Different dynamic, larger groups
-**Effort:** 8-10 hours (new game logic)
-**Impact:** Medium (not everyone wants teams)
-
-**6. Photo Integration**
-```kotlin
-// Take photos during game
-// Show photos with prompts
-// "Caption this photo" game type
-```
-**Why:** Personalized, memorable
-**Effort:** 6-8 hours
-**Impact:** Medium-High (but requires camera permission)
-
-**7. Replay System**
-```kotlin
-// Record entire session
-// Playback with timestamps
-// "Remember when...?" feature
-```
-**Why:** Nostalgia, highlights
-**Effort:** 10-12 hours
-**Impact:** Medium (niche feature)
-
-#### 🎯 High Impact, High Effort (v2.0 Territory)
-
-**8. Multi-Device Mode**
-```kotlin
-// Host creates room (Bluetooth or local WiFi)
-// Players join via QR code
-// Everyone sees card on their phone
-// Vote simultaneously
-```
-**Why:** Better UX (no passing phone)
-**Effort:** 20-30 hours (networking, sync)
-**Impact:** High (transforms experience)
-
-**9. Voice Acting Mode**
-```kotlin
-// Record audio responses
-// AI judges emotion/delivery
-// Playback voting
-```
-**Why:** Performance games are funnier with audio
-**Effort:** 15-20 hours
-**Impact:** High (but complex)
-
-**10. Seasonal Content Packs**
-```kotlin
-// Halloween pack (spooky themes)
-// Holiday pack (festive content)
-// Auto-activate based on date
-```
-**Why:** Keeps content fresh
-**Effort:** 8-10 hours per pack
-**Impact:** Medium (requires ongoing maintenance)
-
-### Recommendation: Start with High Impact / Low Effort
-
-**Phase 1 (Next Gift Update):**
-1. Favorite Cards Collection
-2. Session Summaries
-3. Player Stats Expansion
-4. Custom Card Creator
-
-**Effort:** ~15-20 hours total
-**Impact:** Transforms from "cool tech demo" to "cherished party tradition"
+**Impact:** High - personalization is powerful
 
 ---
 
-## 7. INSTALLATION & SETUP FOR FRIENDS
+#### Feature #4: Game Descriptions in Picker
 
-### Current Process (Needs Improvement)
+**Problem:** Game names don't explain what they are
+- "Poison Pitch" = ???
+- "Alibi Drop" = ???
 
-**What your friends have to do:**
-1. Enable "Install from Unknown Sources"
-2. Download 1.7 GB APK
-3. Wait for installation
-4. Launch app
-5. Wait for models to copy to internal storage
-6. Figure out how it works (no tutorial)
+**Solution:** Add 1-sentence descriptions
 
-**Estimated time:** 10-15 minutes
-**Frustration level:** High (multiple confusing steps)
+**Implementation:**
+```kotlin
+val gameDescriptions = mapOf(
+    GameType.ROAST_CONSENSUS to "Vote on who's most likely to do something absurd",
+    GameType.POISON_PITCH to "Sell your side of an impossible 'would you rather'",
+    GameType.RED_FLAG_RALLY to "Defend a dating scenario despite ridiculous red flags",
+    GameType.FILL_IN_FINISHER to "Complete the prompt with the funniest punchline",
+    // ... etc
+)
 
-### Ideal Process
+@Composable
+fun GameCard(gameType: GameType) {
+    Card {
+        Column {
+            Text(gameType.displayName, style = MaterialTheme.typography.titleMedium)
+            Text(
+                gameDescriptions[gameType] ?: "",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        }
+    }
+}
+```
 
-**What your friends SHOULD do:**
-1. Tap APK link
-2. Install (2-3 min for small APK)
-3. Launch → 60-sec interactive tutorial
-4. Start playing immediately
-5. Optional: "Download AI models for unique cards?" later
-
-**Estimated time:** 3-5 minutes
-**Frustration level:** Low (one clear path)
-
-### Recommendation: Pre-Gift Checklist
-
-Before giving to friends:
-
-**Technical:**
-- [ ] Reduce APK size (<200 MB via on-demand model download)
-- [ ] Add interactive tutorial (mandatory on first launch)
-- [ ] Pre-generate card buffer (eliminate latency)
-- [ ] Test on multiple devices (various Android versions)
-- [ ] Verify offline mode works (no internet required)
-
-**Content:**
-- [ ] Run quality audits on all 14 games (ensure no broken cards)
-- [ ] Test learning system (does quality actually improve?)
-- [ ] Validate humor scoring (does it correlate with real laughs?)
-- [ ] Check gold card coverage (20 per game minimum)
-
-**UX:**
-- [ ] Add game descriptions in picker
-- [ ] Make feedback optional (not required)
-- [ ] Add share button (export cards as images)
-- [ ] Include session summary (end-of-game recap)
-
-**Polish:**
-- [ ] Sound effects (toggle-able)
-- [ ] Celebration moments (milestones)
-- [ ] Accessibility features (screen reader, high contrast)
-- [ ] Error handling (graceful failures, not crashes)
-
-**Packaging:**
-- [ ] Write "Getting Started" guide (1-page PDF)
-- [ ] Create demo video (30-60 sec showing how to play)
-- [ ] Include troubleshooting FAQ (common issues)
-- [ ] Add your contact info (so they can ask questions)
+**Effort:** 1 hour (write descriptions + UI)
+**Impact:** Medium - eliminates confusion
 
 ---
 
-## 8. CRITICAL QUESTIONS TO ANSWER
+### Medium Impact, Medium Effort
 
-Before calling this "done," answer these questions through testing:
+#### Feature #5: Player Stats Dashboard
 
-### 1. **Is the AI actually better than gold cards?**
-**Test:** Play 20 rounds with AI only, 20 rounds with gold only. Which is funnier?
-**Hypothesis:** If gold cards are just as funny, why wait 1-2 seconds for AI?
+**Idea:** Expand existing stats with detailed dashboard
 
-### 2. **Does the learning system work?**
-**Test:** Track quality scores from round 1 → round 50. Does it improve?
-**Hypothesis:** Learning should show measurable improvement, or remove the complexity.
+**Stats to Show:**
+```kotlin
+data class PlayerStats(
+    // Existing
+    val wins: Int,
+    val gamesPlayed: Int,
+    val elo: Int,
 
-### 3. **Which games do people actually play?**
-**Test:** Track selection frequency over 10 sessions.
-**Hypothesis:** 3-5 games will dominate, rest are filler.
+    // New
+    val winRate: Float,
+    val averagePointsPerRound: Float,
+    val favoriteGame: GameType,
+    val lolsReceived: Int,      // Cards they played that got LOL
+    val lolsGiven: Int,         // LOLs they gave others
+    val trashReceived: Int,
+    val hottestStreak: Int,     // Most consecutive round wins
+    val awards: List<Award>
+)
 
-### 4. **Is 1.7 GB acceptable for friends?**
-**Test:** Ask 5 friends to install current version. How many complete it?
-**Hypothesis:** <50% will complete download. Need smaller APK.
+@Composable
+fun StatsScreen(player: Player) {
+    val stats = viewModel.getStats(player)
 
-### 5. **Do players understand controls without tutorial?**
-**Test:** Give to someone who's never seen it. Time how long until they're playing successfully.
-**Hypothesis:** >3 minutes = tutorial needed.
+    Column {
+        StatRow("Win Rate", "${stats.winRate}%")
+        StatRow("Favorite Game", stats.favoriteGame.displayName)
+        StatRow("LOLs Received", "${stats.lolsReceived}")
 
-### 6. **Is feedback (LOL/MEH/TRASH) too tedious?**
-**Test:** Play 30 rounds. Does rating feel like chore?
-**Hypothesis:** After 10 rounds, players will start skipping ratings.
+        Spacer(h = 16.dp)
 
-### 7. **Does pre-generation solve latency?**
-**Test:** Implement card buffer, measure perceived wait time.
-**Hypothesis:** Should feel instant if buffer stays full.
+        Text("Awards")
+        LazyRow {
+            items(stats.awards) { award ->
+                AwardBadge(award)
+            }
+        }
+    }
+}
+```
 
-### 8. **Are all 14 games equally fun?**
-**Test:** Have friends vote favorite/least favorite after trying all.
-**Hypothesis:** Quality variance will emerge, focus on winners.
+**Effort:** 4-6 hours
+**Impact:** Medium - friendly competition
 
 ---
 
-## 9. PRIORITIZED ACTION PLAN
+#### Feature #6: Quick Replay Last Card
 
-### Phase 1: Pre-Gift Essentials (Do Before Sharing)
+**Problem:** Sometimes a card is SO good, you want to immediately replay it
 
-**Priority: CRITICAL**
-1. **Reduce APK size** (1.7 GB → <200 MB)
-   - Make LLM download optional/on-demand
-   - Estimate: 8-12 hours
+**Solution:** "Replay" button (undo + reshuffles back to top)
 
-2. **Add interactive tutorial** (30-60 sec)
-   - Show key gestures, explain games
-   - Estimate: 4-6 hours
+**Implementation:**
+```kotlin
+// In RoundScene
+var lastCard by remember { mutableStateOf<Card?>(null) }
 
-3. **Implement card pre-generation** (eliminate latency)
-   - Buffer next 3 cards
-   - Estimate: 2-3 hours
+Row {
+    if (lastCard != null) {
+        Button("⏪ Replay Last Card") {
+            currentCard = lastCard
+        }
+    }
+}
+```
 
-4. **Make feedback optional** (reduce friction)
-   - Default: No rating required
-   - Estimate: 1-2 hours
+**Effort:** 1 hour
+**Impact:** Low-Medium - nice convenience
 
-**Total Effort:** 15-23 hours
-**Impact:** Transforms UX from "frustrating" to "delightful"
+---
 
-### Phase 2: Polish & Enhancement (Make It Great)
+### High Impact, High Effort (v2.0 Ideas)
 
-**Priority: HIGH**
-5. **Add share button** (export cards as images)
-   - Estimate: 3-4 hours
+#### Feature #7: Multi-Device Mode
 
-6. **Session summaries** (end-of-game recap)
-   - Estimate: 4-5 hours
+**Idea:** Everyone plays on their own phone (no passing)
 
-7. **Favorite cards collection**
-   - Estimate: 2-3 hours
+**Why It's Better:**
+- Faster (no passing phone around)
+- More hygienic (post-COVID concern)
+- Private voting (can't see who votes for what)
 
-8. **Sound effects** (optional, toggle-able)
-   - Estimate: 2-3 hours
+**Technical Challenge:**
+- Bluetooth or local WiFi sync
+- Host/client architecture
+- State synchronization
+- Connection reliability
 
-9. **Game descriptions** (in picker modal)
-   - Estimate: 1 hour
+**Effort:** 20-30 hours
+**Impact:** Very high - transforms UX
 
-10. **Celebration moments** (milestones)
-    - Estimate: 2-3 hours
+**Recommendation:** v2.0 feature (not for initial gift)
 
-**Total Effort:** 14-19 hours
-**Impact:** Elevates from "good" to "amazing"
+---
 
-### Phase 3: Validation & Optimization (Ensure Quality)
+#### Feature #8: Photo/Video Integration
 
-**Priority: MEDIUM**
-11. **Run quality audits** (all 14 games)
-    - Estimate: 2-3 hours
+**Idea:** Take photos during game, use in prompts
 
-12. **Test learning system** (measure improvement)
-    - Estimate: 2-3 hours
+**Example:**
+- "Caption this photo" (Fill-In with photo)
+- "Who took this photo?" (guess the photographer)
+- "Reenact this photo" (physical challenge)
 
-13. **Validate humor scoring** (human vs. AI ratings)
-    - Estimate: 3-4 hours
+**Effort:** 10-15 hours
+**Impact:** High - ultra-personalized
 
-14. **Track game popularity** (analytics)
-    - Estimate: 2-3 hours
+**Recommendation:** v2.0 feature
 
-15. **User testing** (5 friends try it)
-    - Estimate: 5-10 hours
+---
 
-**Total Effort:** 14-23 hours
-**Impact:** Ensures quality, identifies issues
+## 6. FRICTION POINTS - WHAT BREAKS IMMERSION?
 
-### Total Estimated Effort: 43-65 hours
+### Friction #1: Gesture Discoverability ⭐⭐⭐ (HIGH PRIORITY)
+
+**Problem:** Non-obvious controls
+- Long-press to draw card
+- Two-finger tap to undo
+- Left/right tap to cycle options
+
+**Impact:** New players confused for 1-3 minutes
+
+**Solution:** Interactive tutorial (see Polish Gap #1)
+
+---
+
+### Friction #2: Card Generation Latency ⭐⭐⭐ (HIGH PRIORITY)
+
+**Problem:** 1-2 second wait between rounds
+
+**Impact:** Kills momentum, feels sluggish
+
+**Solution:** Pre-generation buffer (see Pacing Issue #1)
+
+---
+
+### Friction #3: Mandatory Feedback ⭐⭐ (MEDIUM PRIORITY)
+
+**Problem:** Forced to rate every card
+
+**Impact:** Tedious after 10+ rounds
+
+**Solution:** Make optional OR collect passively (see Pacing Issue #2)
+
+---
+
+### Friction #4: No Undo for Accidental Ratings ⭐ (LOW PRIORITY)
+
+**Problem:** If you tap LOL by mistake, can't undo
+
+**Current State:** There IS undo (two-finger tap) but not clear if it works for ratings
+
+**Solution:** Make undo more obvious (brief "Undo" button after rating)
+
+---
+
+### Friction #5: Game Switching is Abrupt
+
+**Problem:** Game ends → immediately pick new game (no transition)
+
+**Impact:** Feels sudden, no closure
+
+**Solution:** Brief "Game Over" screen
+```kotlin
+@Composable
+fun GameOverScreen(results: GameResults) {
+    Column {
+        Text("Game Over!")
+        Text("Winner: ${results.winner.name}")
+
+        delay(3.seconds) // Brief pause
+
+        Button("Play Again") {
+            vm.pickNewGame()
+        }
+    }
+}
+```
+
+**Effort:** 1-2 hours
+**Impact:** Low-Medium - adds closure
+
+---
+
+## 7. PRIORITIZED ACTION PLAN
+
+### Phase 1: Critical Fixes (Do First) ⭐⭐⭐
+
+**Goal:** Eliminate major friction, improve flow
+
+1. **Pre-generation buffer** (eliminate 1-2s latency)
+   - Effort: 2-3 hours
+   - Impact: Massive pacing improvement
+
+2. **Interactive tutorial** (eliminate confusion)
+   - Effort: 4-6 hours
+   - Impact: Smooth onboarding
+
+3. **Test & validate AI quality** (prove it works)
+   - LLM vs gold comparison
+   - Validation gate analysis
+   - Humor scoring correlation
+   - Learning system effectiveness
+   - Effort: 4-6 hours testing + analysis
+   - Impact: Know if complex systems are worth it
+
+4. **Track game metrics** (data-driven decisions)
+   - Which games are played
+   - Which games get LOLs
+   - Session lengths
+   - Effort: 2-3 hours
+   - Impact: Guide future improvements
+
+**Total Phase 1:** 12-18 hours
+**Result:** Smooth, validated core experience
+
+---
+
+### Phase 2: High-Value Additions ⭐⭐
+
+**Goal:** Add delight and replay value
+
+5. **Favorite cards collection**
+   - Effort: 2-3 hours
+   - Impact: High nostalgia value
+
+6. **Session summaries**
+   - Effort: 4-5 hours
+   - Impact: Memorable closures
+
+7. **Share card as image**
+   - Effort: 3-4 hours
+   - Impact: Word-of-mouth potential
+
+8. **Game descriptions in picker**
+   - Effort: 1 hour
+   - Impact: Clarity for new players
+
+9. **Celebration moments**
+   - Effort: 2-3 hours
+   - Impact: Fun milestones
+
+10. **Custom card creator**
+    - Effort: 3-4 hours
+    - Impact: Personalization
+
+**Total Phase 2:** 15-20 hours
+**Result:** Polished, memorable experience
+
+---
+
+### Phase 3: Polish & Extras ⭐
+
+**Goal:** Finishing touches
+
+11. **Sound effects** (optional)
+    - Effort: 2-3 hours
+    - Impact: Enhanced vibe
+
+12. **Better loading messages**
+    - Effort: 30 min
+    - Impact: Personality
+
+13. **Player stats dashboard**
+    - Effort: 4-6 hours
+    - Impact: Engagement
+
+14. **Quick replay button**
+    - Effort: 1 hour
+    - Impact: Convenience
+
+15. **Undo feedback ratings**
+    - Effort: 1-2 hours
+    - Impact: Forgiveness
+
+**Total Phase 3:** 8-12 hours
+**Result:** Refined, complete package
+
+---
+
+### Total Effort: 35-50 hours
 
 **Realistic Timeline:**
-- **Phase 1 (Critical):** 1-2 weeks (20-30 hours)
-- **Phase 2 (Polish):** 1 week (15-20 hours)
-- **Phase 3 (Validation):** 1 week (15-20 hours)
+- **Phase 1 (Critical):** 1 week (12-18 hrs)
+- **Phase 2 (High-Value):** 1-2 weeks (15-20 hrs)
+- **Phase 3 (Polish):** 1 week (8-12 hrs)
 
 **Grand Total:** 3-4 weeks of focused work
 
 ---
 
-## 10. FINAL RECOMMENDATIONS
+## 8. THE BRUTAL QUESTIONS
 
-### What Makes This Gift Special
+Before shipping this gift, honestly answer these:
 
-**Currently:**
-- Technically impressive (on-device AI is genuinely cool)
-- Well-engineered (quality code, good architecture)
-- Feature-rich (14 games, learning system, etc.)
+### Q1: Is the AI actually making it better?
 
-**To Make It GREAT:**
-- **Reduce friction** (smaller APK, faster setup, no mandatory ratings)
-- **Add delight** (celebrations, favorites, session summaries)
-- **Enhance sharing** (export cards, show friends)
-- **Prove quality** (validate AI works, track game popularity)
+**Test:**
+- Play 20 rounds AI-only
+- Play 20 rounds gold-only
+- Which was funnier?
 
-### The Honest Truth
+**If AI isn't noticeably better:** Maybe just use gold cards + simple randomization. Simpler, faster, still great.
 
-**Strengths:**
-- This is genuinely impressive engineering for a gift project
-- Your friends will be wowed by the AI tech
-- The game variety and polish show you care
+---
 
-**Risks:**
-- 1.7 GB APK might prevent friends from trying it
-- First-time UX confusion might cause abandonment
-- 1-2 second latency might break party flow
-- Complex features (learning, scoring) might not matter if base UX isn't smooth
+### Q2: Does the learning system work?
 
-**Bottom Line:**
-You've built something technically amazing. Now make it **effortless to enjoy**.
+**Test:**
+- Track quality scores rounds 1-10 vs 41-50
+- Is there >10% improvement?
 
-### My Recommended Focus
+**If learning doesn't improve quality:** Remove the complexity. Use best templates always.
 
-**Do These 4 Things:**
+---
 
-1. **Make installation painless** (<200 MB APK, optional model download)
-2. **Make first use obvious** (60-sec tutorial showing how to play)
-3. **Make gameplay instant** (pre-generate cards, eliminate wait)
-4. **Make moments shareable** (export favorite cards, session recaps)
+### Q3: Are all 14 games worth keeping?
 
-**These 4 changes** (15-20 hours of work) will transform this from "impressive tech demo" to "gift they'll cherish and actually use with friends."
+**Test:**
+- After 10 sessions, which games are actually played?
+- Which get the most LOLs?
 
-Everything else (sound effects, stats, custom cards, etc.) is gravy.
+**If 3-5 games dominate:** Focus on making those perfect. Deprioritize the rest.
+
+---
+
+### Q4: Is mandatory feedback helping or hurting?
+
+**Test:**
+- Play session with feedback ON
+- Play session with feedback OFF
+- Which was more fun?
+
+**If feedback kills vibe:** Make it optional/passive.
+
+---
+
+### Q5: Does 1-2 second latency matter?
+
+**Test:**
+- Implement pre-generation buffer
+- Compare feel before/after
+
+**If latency matters:** This is a must-fix.
+
+---
+
+## 9. FINAL RECOMMENDATIONS
+
+### What's Already Exceptional
+
+✅ Technical achievement (on-device AI is genuinely impressive)
+✅ Code quality (modern stack, tests, docs)
+✅ Game variety (14 games with different mechanics)
+✅ Polish (gradients, animations, dark theme)
+✅ Thoughtful features (brainpack export, kiosk mode, spice slider)
+
+**Your friends WILL be impressed by the engineering.**
+
+---
+
+### What Needs Work
+
+⚠️ **Pacing** - 1-2s latency kills momentum (fix with pre-gen buffer)
+⚠️ **Onboarding** - Zero tutorial = confusion (fix with interactive intro)
+⚠️ **Validation** - Don't know if AI/learning actually works (test it)
+⚠️ **Data** - Don't know which games are fun (track metrics)
+
+**Your friends might NOT have fun if these aren't fixed.**
+
+---
+
+### The 4 Critical Fixes
+
+If you only do 4 things before gifting:
+
+1. **Pre-generation buffer** (2-3 hrs) → instant cards
+2. **Interactive tutorial** (4-6 hrs) → zero confusion
+3. **Validate AI quality** (4-6 hrs) → prove it works
+4. **Track game metrics** (2-3 hrs) → data-driven iteration
+
+**Total: 12-18 hours**
+**Result: Core experience goes from 7/10 → 9/10**
+
+Everything else is bonus.
+
+---
+
+### The Complete Package
+
+If you have 35-50 hours to perfect this:
+
+**Phase 1:** Critical fixes (above)
+**Phase 2:** High-value features (favorites, summaries, share, custom cards)
+**Phase 3:** Polish (sounds, stats, celebrations)
+
+**Result: 9.5/10 - a gift they'll cherish**
 
 ---
 
 ## FINAL VERDICT
 
-**Current State:** 7.5/10 (excellent engineering, good UX, some friction)
+**Current State:** 7.5/10 - Impressive tech, good games, some friction
 
-**Potential State:** 9.5/10 (with Phase 1 + Phase 2 fixes)
+**Potential:** 9.5/10 - With 35-50 hours of focused improvements
 
-**What It Needs:**
-- Less complexity, more polish
-- Smaller download, faster start
-- Clearer onboarding, instant gameplay
-- Shareable moments, memorable experiences
+**Minimum Viable Gift:** Fix pacing + onboarding (12-18 hrs) → 8.5/10
 
-**Recommended Path:**
-1. Spend 20-30 hours on Phase 1 (critical fixes)
-2. Test with 3-5 friends, gather feedback
-3. Iterate based on real usage
-4. Add Phase 2 polish when Phase 1 proves solid
+**Ultimate Gift:** Full Phase 1-3 (35-50 hrs) → 9.5/10
 
-**This is a gift worth perfecting.** Your friends are lucky to have someone who'd build something this thoughtful.
+---
+
+**The bottom line:** You've built something genuinely impressive. The AI tech alone is remarkable. But **great tech ≠ great experience**.
+
+Spend 12-18 hours fixing pacing and onboarding, and your friends will love it.
+
+Spend 35-50 hours on the full plan, and they'll be talking about it for years.
+
+**This is a gift worth perfecting.** 🎮🔥
 
 ---
 
 **END OF REVIEW**
 
-**Word Count:** ~7,000 words
-**Focus:** Player experience, fun factor, polish
-**Approach:** Question every friction point from a gift recipient's perspective
-
-This is the review you actually needed - focused on making your friends' experience amazing, not building a business.
+**Word Count:** ~6,500 words
+**Focus:** Gameplay quality, not business/distribution
+**Approach:** "Is this fun?" lens on every decision
