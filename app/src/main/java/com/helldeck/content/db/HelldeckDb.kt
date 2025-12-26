@@ -20,9 +20,10 @@ import androidx.room.RoomDatabase
         com.helldeck.data.FraudQuarantineEntity::class,
         com.helldeck.data.SessionMetricsEntity::class,
         com.helldeck.data.RoundMetricsEntity::class,
-        com.helldeck.data.FavoriteCardEntity::class
+        com.helldeck.data.FavoriteCardEntity::class,
+        com.helldeck.data.CustomCardEntity::class
     ],
-    version = 7,
+    version = 8,
     exportSchema = false
 )
 abstract class HelldeckDb : RoomDatabase() {
@@ -40,6 +41,7 @@ abstract class HelldeckDb : RoomDatabase() {
     abstract fun sessionMetrics(): com.helldeck.data.SessionMetricsDao
     abstract fun roundMetrics(): com.helldeck.data.RoundMetricsDao
     abstract fun favorites(): com.helldeck.data.FavoritesDao
+    abstract fun customCards(): com.helldeck.data.CustomCardsDao
 
     companion object {
         @Volatile private var INSTANCE: HelldeckDb? = null
