@@ -60,6 +60,13 @@ class GameNightViewModel : ViewModel() {
     var gameNightSessionId by mutableStateOf("session_${System.currentTimeMillis()}")
     private var didRollcall = false
     private var askRollcallOnLaunch = true
+    private var sessionStartTimeMs = System.currentTimeMillis()
+
+    // ========== MILESTONE TRACKING ==========
+    var pendingMilestone by mutableStateOf<com.helldeck.ui.components.Milestone?>(null)
+    private var consecutiveWins = 0
+    private val gamesPlayedThisSession = mutableSetOf<String>()
+    private var totalRoundsThisSession = 0
 
     // ========== ROUND STATE (AUTHORITATIVE) ==========
     var roundState by mutableStateOf<RoundState?>(null)
@@ -249,6 +256,10 @@ class GameNightViewModel : ViewModel() {
         turnIdx = 0
         starterPicked = false
         didRollcall = false
+        sessionStartTimeMs = System.currentTimeMillis()
+        totalRoundsThisSession = 0
+        consecutiveWins = 0
+        gamesPlayedThisSession.clear()
         com.helldeck.utils.Logger.i("New game night started: $gameNightSessionId")
 
         // Start metrics tracking for new session
@@ -674,6 +685,23 @@ class GameNightViewModel : ViewModel() {
             }
         }
 
+        // Track milestones
+        totalRoundsThisSession++
+        currentGame?.id?.let { gamesPlayedThisSession.add(it) }
+
+        // Update win streak
+        if (judgeWin && points > 0) {
+            consecutiveWins++
+        } else {
+            consecutiveWins = 0
+        }
+
+        // Check for milestone achievements
+        checkMilestones(
+            isFirstWin = judgeWin && activePlayer()?.wins == 0,
+            isPerfectScore = lol > 0 && meh == 0 && trash == 0
+        )
+
         // Reset feedback state
         lol = 0
         meh = 0
@@ -762,5 +790,47 @@ class GameNightViewModel : ViewModel() {
         } catch (e: Exception) {
             false
         }
+    }
+
+    // ========== MILESTONES ==========
+
+    /**
+     * Checks for milestone achievements and queues celebration
+     */
+    private fun checkMilestones(isFirstWin: Boolean, isPerfectScore: Boolean) {
+        try {
+            val sessionDuration = System.currentTimeMillis() - sessionStartTimeMs
+            val favoritesCount = if (isInitialized) {
+                viewModelScope.launch {
+                    repo.db.favorites().getFavoriteCount()
+                }
+                0 // TODO: Get actual count
+            } else 0
+
+            val milestones = com.helldeck.ui.components.MilestoneTracker.checkMilestones(
+                totalRounds = totalRoundsThisSession,
+                consecutiveWins = consecutiveWins,
+                gamesPlayedSet = gamesPlayedThisSession,
+                favoritesCount = favoritesCount,
+                sessionDurationMs = sessionDuration,
+                isFirstWin = isFirstWin,
+                isPerfectScore = isPerfectScore
+            )
+
+            // Show first milestone if any
+            if (milestones.isNotEmpty() && pendingMilestone == null) {
+                pendingMilestone = milestones.first()
+                com.helldeck.utils.Logger.i("Milestone achieved: ${milestones.first().title}")
+            }
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to check milestones", e)
+        }
+    }
+
+    /**
+     * Clears the pending milestone (after showing celebration)
+     */
+    fun clearPendingMilestone() {
+        pendingMilestone = null
     }
 }
