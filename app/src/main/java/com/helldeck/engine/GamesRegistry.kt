@@ -8,6 +8,8 @@ object GameIds {
     const val CONFESS_CAP = "CONFESSION_OR_CAP"
     const val POISON_PITCH = "POISON_PITCH"
     const val FILLIN = "FILL_IN_FINISHER"
+    // Back-compat alias for older callers
+    const val FILL_IN = FILLIN
     const val RED_FLAG = "RED_FLAG_RALLY"
     const val HOTSEAT_IMP = "HOT_SEAT_IMPOSTER"
     const val TEXT_TRAP = "TEXT_THREAD_TRAP"

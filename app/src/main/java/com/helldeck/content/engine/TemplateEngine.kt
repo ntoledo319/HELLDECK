@@ -132,9 +132,7 @@ class TemplateEngine(
         val maxWords = template.max_words ?: 100
         val wc = wordsList.size
         if (wc > maxWords) {
-            // Soft clamp instead of throwing to avoid hard failures in generation
-            val clamped = wordsList.take(maxWords).joinToString(" ")
-            text = sanitizePlain(clamped)
+            throw IllegalArgumentException("Template ${template.id} exceeds max_words ($wc > $maxWords)")
         }
 
         return FilledCard(

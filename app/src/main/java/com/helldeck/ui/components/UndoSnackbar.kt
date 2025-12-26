@@ -98,15 +98,14 @@ private fun UndoSnackbarContent(
         }
 
         // Progress indicator
-        LinearProgressIndicator(
-            progress = (timeLeftMs / 3000f).coerceIn(0f, 1f),
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(3.dp)
-                .align(Alignment.BottomCenter),
-            color = MaterialTheme.colorScheme.primary,
-            trackColor = Color.Transparent
-        )
+    LinearProgressIndicator(
+        progress = (timeLeftMs / 3000f).coerceIn(0f, 1f),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(3.dp),
+        color = MaterialTheme.colorScheme.primary,
+        trackColor = Color.Transparent
+    )
     }
 }
 

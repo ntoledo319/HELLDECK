@@ -1,6 +1,4 @@
 package com.helldeck.ui
-
-import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -8,17 +6,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.flow.first
+import com.helldeck.settings.SettingsStore
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.preferencesDataStore
 
 /**
  * Onboarding flow for first-time users
@@ -222,30 +214,17 @@ private fun OnboardingPageContent(
 /**
  * Check if user has completed onboarding
  */
-private val Context.helldeckDataStore: DataStore<Preferences> by preferencesDataStore(name = "helldeck_prefs")
+class OnboardingManager {
+    fun shouldShowOnboardingFlow() = SettingsStore.hasSeenOnboardingFlow().map { seen -> !seen }
 
-class OnboardingManager(private val context: Context) {
-    private val key = booleanPreferencesKey("onboarding_completed")
-
-    fun shouldShowOnboardingFlow() = context.helldeckDataStore.data.map { prefs ->
-        !(prefs[key] ?: false)
-    }
-
-    suspend fun isOnboardingCompleted(): Boolean {
-        val prefs = context.helldeckDataStore.data.first()
-        return prefs[key] ?: false
-    }
+    suspend fun isOnboardingCompleted(): Boolean = SettingsStore.readHasSeenOnboarding()
 
     suspend fun markOnboardingCompleted() {
-        context.helldeckDataStore.edit { prefs ->
-            prefs[key] = true
-        }
+        SettingsStore.writeHasSeenOnboarding(true)
     }
 
     suspend fun resetOnboarding() {
-        context.helldeckDataStore.edit { prefs ->
-            prefs.remove(key)
-        }
+        SettingsStore.writeHasSeenOnboarding(false)
     }
 }
 
@@ -256,8 +235,7 @@ class OnboardingManager(private val context: Context) {
 fun OnboardingWrapper(
     content: @Composable () -> Unit
 ) {
-    val context = LocalContext.current
-    val onboardingManager = remember { OnboardingManager(context) }
+    val onboardingManager = remember { OnboardingManager() }
     val scope = rememberCoroutineScope()
     val showOnboarding by onboardingManager.shouldShowOnboardingFlow().collectAsState(initial = true)
 

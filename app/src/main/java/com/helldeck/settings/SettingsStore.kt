@@ -74,6 +74,10 @@ object SettingsStore {
         return prefs[KEY_HAS_SEEN_ONBOARDING] ?: false
     }
 
+    fun hasSeenOnboardingFlow(): Flow<Boolean> {
+        return AppCtx.ctx.settingsDataStore.data.map { prefs -> prefs[KEY_HAS_SEEN_ONBOARDING] ?: false }
+    }
+
     suspend fun writeHasSeenOnboarding(value: Boolean) {
         AppCtx.ctx.settingsDataStore.edit { it[KEY_HAS_SEEN_ONBOARDING] = value }
     }

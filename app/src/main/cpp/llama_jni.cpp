@@ -17,6 +17,9 @@ struct llama_holder {
 #ifdef HAVE_LLAMA_CPP
     llama_model* model = nullptr;
     llama_context* ctx = nullptr;
+#else
+    // Keep struct non-empty for C compatibility when llama.cpp is stubbed
+    void* unused = nullptr;
 #endif
 };
 

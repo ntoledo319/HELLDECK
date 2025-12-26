@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -56,7 +57,7 @@ fun ModernCardDisplay(
     val gradientColors = when (spiceLevel) {
         1 -> listOf(Color(0xFF667eea), Color(0xFF764ba2)) // Wholesome purple
         2 -> listOf(Color(0xFFf093fb), Color(0xFFf5576c)) // Playful pink
-        3 -> listOf(0xFFfa709a), Color(0xFFfee140)) // Edgy orange
+        3 -> listOf(Color(0xFFfa709a), Color(0xFFfee140)) // Edgy orange
         4 -> listOf(Color(0xFFff0844), Color(0xFFffb199)) // Wild red
         5 -> listOf(Color(0xFF4facfe), Color(0xFF00f2fe)) // Chaos neon
         else -> listOf(Color(0xFF667eea), Color(0xFF764ba2))

@@ -72,7 +72,7 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                     text = if (selectedGameId.isEmpty()) {
                         "Select Game Type"
                     } else {
-                        GameMetadata.getGameMetadata(selectedGameId)?.name ?: "Select Game Type"
+                        GameMetadata.getGameMetadata(selectedGameId)?.title ?: "Select Game Type"
                     }
                 )
             }
@@ -198,7 +198,7 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text(
-                                text = game?.name ?: gameId,
+                                text = game?.title ?: gameId,
                                 modifier = Modifier.fillMaxWidth()
                             )
                         }
@@ -238,7 +238,7 @@ private fun CustomCardItem(
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = "${GameMetadata.getGameMetadata(card.gameId)?.name ?: card.gameId} • Used ${card.timesUsed} times",
+                    text = "${GameMetadata.getGameMetadata(card.gameId)?.title ?: card.gameId} • Used ${card.timesUsed} times",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

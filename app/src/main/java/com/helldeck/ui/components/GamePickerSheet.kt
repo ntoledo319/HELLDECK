@@ -90,7 +90,7 @@ private fun GameCard(
     onClick: () -> Unit
 ) {
     val metadata = GameMetadata.getGameMetadata(gameId)
-    val gameName = metadata?.name ?: gameId
+    val gameName = metadata?.title ?: gameId
     val gameDescription = metadata?.description ?: ""
     val gameEmoji = getGameEmoji(gameId)
 
