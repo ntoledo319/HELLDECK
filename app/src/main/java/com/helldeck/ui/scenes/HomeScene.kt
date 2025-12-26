@@ -21,6 +21,7 @@ import androidx.compose.material.icons.rounded.Leaderboard
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,9 +32,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.engine.Config
 import com.helldeck.ui.*
+import com.helldeck.ui.components.GamePickerSheet
 import com.helldeck.ui.components.GameTile
+import com.helldeck.ui.components.SpiceSlider
 import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.launch
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,7 +51,9 @@ fun HomeScene(vm: HelldeckVm) {
     val ctx = LocalContext.current
     val scope = rememberCoroutineScope()
     val games = remember { (0 until com.helldeck.engine.Games.size).map { com.helldeck.engine.Games[it] } }
-    var showGames by remember { mutableStateOf(false) }
+    var showGamePicker by remember { mutableStateOf(false) }
+    val spiceLevel by vm.spiceLevel.collectAsState()
+    val isAIAvailable = remember { ContentEngineProvider.isAIEnhancementAvailable() }
 
     Scaffold(
         topBar = {
@@ -84,7 +90,41 @@ fun HomeScene(vm: HelldeckVm) {
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-            // Dominant CTA: random game, existing engine flow.
+            // AI Enhancement Indicator
+            if (isAIAvailable) {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(HelldeckRadius.Small),
+                    color = MaterialTheme.colorScheme.tertiaryContainer
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 12.dp, vertical = 8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text("✨", style = MaterialTheme.typography.bodyMedium)
+                        Text(
+                            text = "AI Enhancement Active",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+            }
+
+            // Spice Level Slider
+            SpiceSlider(
+                spiceLevel = spiceLevel,
+                onSpiceLevelChanged = { vm.updateSpiceLevel(it) },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
+
+            // Primary CTA: Start random game
             Button(
                 onClick = { scope.launch { vm.startRound(null) } },
                 modifier = Modifier
@@ -110,7 +150,7 @@ fun HomeScene(vm: HelldeckVm) {
                     icon = "🎮",
                     title = "Mini Games",
                     subtitle = "Pick a specific game",
-                    onClick = { showGames = !showGames }
+                    onClick = { showGamePicker = true }
                 )
                 SecondaryActionButton(
                     icon = "🧠",
@@ -126,53 +166,31 @@ fun HomeScene(vm: HelldeckVm) {
                 )
             }
 
-            Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+            Spacer(modifier = Modifier.weight(1f))
 
-            androidx.compose.animation.AnimatedVisibility(
-                visible = showGames,
-                enter = androidx.compose.animation.fadeIn(
-                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
-                ) + androidx.compose.animation.expandVertically(
-                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
-                ),
-                exit = androidx.compose.animation.fadeOut(
-                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
-                ) + androidx.compose.animation.shrinkVertically(
-                    animationSpec = tween(if (LocalReducedMotion.current) HelldeckAnimations.Instant else HelldeckAnimations.Fast)
-                ),
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 240.dp),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f, fill = true),
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    contentPadding = PaddingValues(bottom = 16.dp)
-                ) {
-                    items(games, key = { it.id }) { game ->
-                        GameTile(
-                            title = game.title,
-                            subtitle = game.description,
-                            icon = gameIconFor(game.id),
-                            onClick = { scope.launch { vm.startRound(game.id) } },
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
-                }
-            }
-
-            if (vm.showScores) {
-                ScoreboardOverlay(vm.players) { vm.toggleScores() }
-            }
-
-            Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
             Text(
                 text = "Single-phone party game • 3–12 players • 14 mini-games",
                 style = MaterialTheme.typography.labelSmall,
                 color = HelldeckColors.colorMuted
             )
+
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+        }
+
+        // Game Picker Modal Sheet
+        if (showGamePicker) {
+            GamePickerSheet(
+                onGameSelected = { gameId ->
+                    showGamePicker = false
+                    scope.launch { vm.startRound(gameId) }
+                },
+                onDismiss = { showGamePicker = false }
+            )
+        }
+
+        // Scoreboard Overlay
+        if (vm.showScores) {
+            ScoreboardOverlay(vm.players) { vm.toggleScores() }
         }
     }
 }
