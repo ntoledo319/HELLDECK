@@ -164,6 +164,12 @@ fun HomeScene(vm: HelldeckVm) {
                     subtitle = "Chaos level, reduced motion, high contrast",
                     onClick = { vm.navigateTo(Scene.SETTINGS) }
                 )
+                SecondaryActionButton(
+                    icon = "✏️",
+                    title = "Custom Cards",
+                    subtitle = "Create personalized cards for your group",
+                    onClick = { vm.navigateTo(Scene.CUSTOM_CARDS) }
+                )
             }
 
             Spacer(modifier = Modifier.weight(1f))

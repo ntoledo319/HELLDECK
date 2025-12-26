@@ -937,4 +937,74 @@ class GameNightViewModel : ViewModel() {
      * Checks if replay is available
      */
     fun canReplay(): Boolean = lastCard != null && lastGameId != null
+
+    // ========== CUSTOM CARDS ==========
+
+    /**
+     * Saves a custom card to the database
+     */
+    suspend fun saveCustomCard(gameId: String, cardText: String) {
+        if (!isInitialized) return
+
+        val player = activePlayer()
+        val customCard = com.helldeck.data.CustomCardEntity(
+            id = "custom_${System.currentTimeMillis()}_${kotlin.random.Random.nextInt(1000)}",
+            gameId = gameId,
+            cardText = cardText,
+            createdBy = player?.id,
+            creatorName = player?.name,
+            createdAtMs = System.currentTimeMillis()
+        )
+
+        try {
+            repo.db.customCards().insert(customCard)
+            com.helldeck.utils.Logger.i("Saved custom card: ${customCard.id} for game $gameId")
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to save custom card", e)
+            throw e
+        }
+    }
+
+    /**
+     * Gets all active custom cards
+     */
+    suspend fun getAllCustomCards(): List<com.helldeck.data.CustomCardEntity> {
+        if (!isInitialized) return emptyList()
+
+        return try {
+            repo.db.customCards().getAllActiveCardsSnapshot()
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to load custom cards", e)
+            emptyList()
+        }
+    }
+
+    /**
+     * Deletes a custom card
+     */
+    suspend fun deleteCustomCard(cardId: String) {
+        if (!isInitialized) return
+
+        try {
+            repo.db.customCards().deleteById(cardId)
+            com.helldeck.utils.Logger.i("Deleted custom card: $cardId")
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to delete custom card", e)
+            throw e
+        }
+    }
+
+    /**
+     * Gets custom cards for a specific game
+     */
+    suspend fun getCustomCardsForGame(gameId: String): List<com.helldeck.data.CustomCardEntity> {
+        if (!isInitialized) return emptyList()
+
+        return try {
+            repo.db.customCards().getCardsForGame(gameId)
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to load custom cards for game", e)
+            emptyList()
+        }
+    }
 }
