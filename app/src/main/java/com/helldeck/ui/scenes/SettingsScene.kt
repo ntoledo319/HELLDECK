@@ -38,6 +38,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helldeck.AppCtx
@@ -58,6 +59,7 @@ import kotlin.random.Random
 fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
     val repo = remember { ContentRepository(AppCtx.ctx) }
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     var learningEnabled by remember { mutableStateOf(true) }
     var hapticsEnabled by remember { mutableStateOf(true) }
     var heat by remember { mutableStateOf(Config.roomHeatThreshold().toFloat()) }

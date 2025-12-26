@@ -37,20 +37,19 @@ class LLMCardGenerator(
     )
 
     suspend fun generate(request: GenerationRequest): GenerationResult? {
-        // Try LLM first if available
+        var result: GenerationResult? = null
+
         if (llm?.isReady == true) {
             try {
-                // Timeout after 2 seconds to keep game flowing
-                withTimeout(2000) {
-                    generateWithLLM(request)?.let { return it }
+                result = withTimeout(2000) {
+                    generateWithLLM(request)
                 }
             } catch (e: Exception) {
                 Logger.w("LLM generation failed: ${e.message}, falling back to templates")
             }
         }
 
-        // Fallback to template system
-        return fallbackToTemplates(request)
+        return result ?: fallbackToTemplates(request)
     }
 
     private suspend fun generateWithLLM(request: GenerationRequest): GenerationResult? {

@@ -29,6 +29,7 @@ import kotlinx.coroutines.delay
  *
  * Total time: ~40 seconds (with skip button)
  */
+@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun OnboardingFlow(
     onComplete: () -> Unit,

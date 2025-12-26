@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.theme.HelldeckTheme
+import com.helldeck.ui.HelldeckTheme
 import java.io.File
 import java.io.FileOutputStream
 

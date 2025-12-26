@@ -266,7 +266,7 @@ class MetricsTracker(
             gamesMap[gameId] = (gamesMap[gameId] ?: 0) + 1
 
             val updated = session.copy(
-                gamesPlayed = JSONObject(gamesMap).toString()
+                gamesPlayed = JSONObject(gamesMap as Map<*, *>).toString()
             )
             repo.db.sessionMetrics().upsert(updated)
         } catch (e: Exception) {

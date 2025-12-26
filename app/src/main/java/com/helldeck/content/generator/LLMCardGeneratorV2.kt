@@ -40,18 +40,19 @@ class LLMCardGeneratorV2(
     )
 
     suspend fun generate(request: GenerationRequest): GenerationResult? {
-        // Try LLM generation with retries
+        var llmResult: GenerationResult? = null
+
         if (llm?.isReady == true) {
             repeat(3) { attempt ->
                 try {
-                    withTimeout(2500) {  // 2.5 sec timeout
-                        generateWithLLM(request, attempt)?.let { result ->
-                            if (validateQuality(result)) {
-                                return result
-                            } else {
-                                Logger.d("LLM card failed quality check (attempt ${attempt + 1})")
-                            }
-                        }
+                    val candidate = withTimeout(2500) {  // 2.5 sec timeout
+                        generateWithLLM(request, attempt)
+                    }
+                    if (candidate != null && validateQuality(candidate)) {
+                        llmResult = candidate
+                        return@repeat
+                    } else if (candidate != null) {
+                        Logger.d("LLM card failed quality check (attempt ${attempt + 1})")
                     }
                 } catch (e: Exception) {
                     Logger.w("LLM generation attempt ${attempt + 1} failed: ${e.message}")
@@ -60,7 +61,7 @@ class LLMCardGeneratorV2(
         }
 
         // Fallback: try gold cards first, then templates
-        return fallbackToGold(request) ?: fallbackToTemplates(request)
+        return llmResult ?: fallbackToGold(request) ?: fallbackToTemplates(request)
     }
 
     private suspend fun generateWithLLM(request: GenerationRequest, attempt: Int): GenerationResult? {
@@ -604,7 +605,7 @@ Generate ONE confession in JSON format."""
         // Options quality (for applicable games)
         when (options) {
             is GameOptions.AB -> {
-                if (options.a.isNotBlank() && options.b.isNotBlank()) score += 0.1
+                if (options.optionA.isNotBlank() && options.optionB.isNotBlank()) score += 0.1
             }
             is GameOptions.Taboo -> {
                 if (options.forbidden.size == 3) score += 0.1

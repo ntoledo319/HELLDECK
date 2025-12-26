@@ -75,7 +75,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                                 com.helldeck.utils.ShareUtils.shareCardAsImage(
                                     context = context,
                                     cardText = card.text,
-                                    gameName = game.name,
+                                    gameName = game.title,
                                     playerName = player?.name
                                 )
                             }

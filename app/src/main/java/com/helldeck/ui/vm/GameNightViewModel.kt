@@ -23,6 +23,9 @@ import com.helldeck.ui.Scene
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundPhase
 import com.helldeck.ui.state.RoundState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -49,6 +52,8 @@ class GameNightViewModel : ViewModel() {
     // ========== GAME CONFIGURATION ==========
     var spicy by mutableStateOf(false)
     var heatThreshold by mutableStateOf(Config.roomHeatThreshold().toFloat())
+    private val _spiceLevel = MutableStateFlow(3) // 1-5 slider for content heat
+    val spiceLevel: StateFlow<Int> = _spiceLevel.asStateFlow()
 
     // ========== PLAYER DATA ==========
     var players by mutableStateOf(listOf<Player>())
@@ -259,6 +264,11 @@ class GameNightViewModel : ViewModel() {
         }
     }
 
+    fun updateSpiceLevel(level: Int) {
+        _spiceLevel.value = level.coerceIn(1, 5)
+        spicy = _spiceLevel.value >= 3
+    }
+
     fun goPlayers() {
         scene = Scene.PLAYERS
     }
@@ -314,7 +324,7 @@ class GameNightViewModel : ViewModel() {
         scene = Scene.ROUND
         phase = RoundPhase.INTRO
 
-        Config.spicyMode = spicy
+        Config.spicyMode = _spiceLevel.value >= 3
 
         // Pick next game (random or selected)
         val nextGame = gameId ?: pickNextGame()
@@ -340,7 +350,7 @@ class GameNightViewModel : ViewModel() {
             val request = GameEngine.Request(
                 gameId = nextGame,
                 sessionId = sessionId,
-                spiceMax = if (spicy) 3 else 1,
+                spiceMax = _spiceLevel.value,
                 players = playersList
             )
 
@@ -388,7 +398,7 @@ class GameNightViewModel : ViewModel() {
                     cardId = gameResult.filledCard.id,
                     cardText = gameResult.filledCard.text,
                     activePlayerId = activePlayer()?.id ?: "unknown",
-                    spiceLevel = if (spicy) 3 else 1
+                    spiceLevel = _spiceLevel.value
                 )
             }
 
@@ -812,7 +822,7 @@ class GameNightViewModel : ViewModel() {
                     cardId = card.id,
                     cardText = card.text,
                     gameId = game.id,
-                    gameName = game.name,
+                    gameName = game.title,
                     sessionId = gameNightSessionId,
                     playerId = player?.id,
                     playerName = player?.name,
@@ -912,7 +922,7 @@ class GameNightViewModel : ViewModel() {
             options = engine.getOptionsFor(lastCard!!, GameEngine.Request(
                 gameId = lastGameId!!,
                 sessionId = gameNightSessionId,
-                spiceMax = if (spicy) 3 else 1,
+                spiceMax = _spiceLevel.value,
                 players = playersList
             )),
             timerSec = currentGame?.timerSec ?: 6,

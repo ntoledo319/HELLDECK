@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.MenuBook
 import androidx.compose.material.icons.rounded.HowToReg
@@ -270,7 +271,7 @@ private fun SecondaryActionButton(
                     Text(text = subtitle, style = MaterialTheme.typography.bodySmall, color = HelldeckColors.colorMuted)
                 }
                 Text(text = "›", style = MaterialTheme.typography.headlineMedium, color = HelldeckColors.colorMuted)
-            )
+            }
         }
     }
 }

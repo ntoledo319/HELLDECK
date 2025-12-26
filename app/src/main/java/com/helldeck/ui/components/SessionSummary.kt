@@ -140,9 +140,9 @@ private fun SessionSummaryContent(analytics: SessionAnalytics) {
             )
         )
 
-        // Top game
-        analytics.topGame?.let { (gameId, count) ->
-            val gameName = GameMetadata.getGameMetadata(gameId)?.name ?: gameId
+    // Top game
+    analytics.topGame?.let { (gameId, count) ->
+            val gameName = GameMetadata.getGameMetadata(gameId)?.title ?: gameId
             SummaryCard(
                 title = "Most Played",
                 items = listOf(
@@ -212,7 +212,7 @@ private fun SummaryCard(
  */
 private fun generateSummaryText(analytics: SessionAnalytics): String {
     val gameName = analytics.topGame?.let { (gameId, _) ->
-        GameMetadata.getGameMetadata(gameId)?.name ?: gameId
+        GameMetadata.getGameMetadata(gameId)?.title ?: gameId
     } ?: "Various games"
 
     return buildString {
