@@ -46,6 +46,8 @@ fun CelebrationDialog(
     milestone: Milestone,
     onDismiss: () -> Unit
 ) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+
     // Pulse animation for emoji
     val infiniteTransition = rememberInfiniteTransition(label = "celebration")
     val scale by infiniteTransition.animateFloat(
@@ -57,6 +59,11 @@ fun CelebrationDialog(
         ),
         label = "pulse"
     )
+
+    // Play milestone sound
+    LaunchedEffect(milestone) {
+        com.helldeck.audio.SoundManager.play(context, com.helldeck.audio.GameSound.MILESTONE)
+    }
 
     // Auto-dismiss after 3 seconds
     LaunchedEffect(milestone) {

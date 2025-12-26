@@ -333,11 +333,15 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
 
                     SettingRow(
                         label = "Sound Effects",
-                        description = "Audio feedback (coming soon)",
+                        description = "Audio feedback for ratings and milestones",
                         isChecked = soundEnabled,
                         onCheckedChange = {
                             soundEnabled = it
-                            scope.launch { SettingsStore.writeSoundEnabled(it) }
+                            scope.launch {
+                                SettingsStore.writeSoundEnabled(it)
+                                // Update SoundManager
+                                com.helldeck.audio.SoundManager.get(context).enabled = it
+                            }
                         }
                     )
                     

@@ -136,14 +136,17 @@ fun FeedbackScene(vm: HelldeckVm) {
                 onLol = {
                     vm.feedbackLol()
                     GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
+                    com.helldeck.audio.SoundManager.play(context, com.helldeck.audio.GameSound.LOL_RATING)
                 },
                 onMeh = {
                     vm.feedbackMeh()
                     GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
+                    com.helldeck.audio.SoundManager.play(context, com.helldeck.audio.GameSound.MEH_RATING)
                 },
                 onTrash = {
                     vm.feedbackTrash()
                     GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
+                    com.helldeck.audio.SoundManager.play(context, com.helldeck.audio.GameSound.TRASH_RATING)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
