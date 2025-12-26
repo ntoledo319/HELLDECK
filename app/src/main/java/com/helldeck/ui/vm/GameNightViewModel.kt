@@ -94,6 +94,15 @@ class GameNightViewModel : ViewModel() {
     private var points = 0
     private var t0 = 0L
 
+    // Undo state for feedback ratings
+    private data class FeedbackSnapshot(
+        val lol: Int,
+        val meh: Int,
+        val trash: Int
+    )
+    private var feedbackSnapshot: FeedbackSnapshot? = null
+    var canUndoFeedback by mutableStateOf(false)
+
     // ========== CORE SYSTEMS ==========
     private lateinit var repo: ContentRepository
     private lateinit var engine: GameEngine
@@ -637,16 +646,40 @@ class GameNightViewModel : ViewModel() {
 
     // ========== FEEDBACK ==========
 
+    private fun saveSnapshot() {
+        feedbackSnapshot = FeedbackSnapshot(lol, meh, trash)
+    }
+
     fun feedbackLol() {
+        saveSnapshot()
         lol++
+        canUndoFeedback = true
     }
 
     fun feedbackMeh() {
+        saveSnapshot()
         meh++
+        canUndoFeedback = true
     }
 
     fun feedbackTrash() {
+        saveSnapshot()
         trash++
+        canUndoFeedback = true
+    }
+
+    /**
+     * Undoes the last feedback rating
+     */
+    fun undoLastRating() {
+        feedbackSnapshot?.let { snapshot ->
+            lol = snapshot.lol
+            meh = snapshot.meh
+            trash = snapshot.trash
+            canUndoFeedback = false
+            feedbackSnapshot = null
+            com.helldeck.utils.Logger.d("Undid last rating: LOL=$lol, MEH=$meh, TRASH=$trash")
+        }
     }
 
     fun addComment(text: String, t: Set<String>) {
@@ -717,6 +750,8 @@ class GameNightViewModel : ViewModel() {
         tags.clear()
         judgeWin = false
         points = 0
+        feedbackSnapshot = null
+        canUndoFeedback = false
 
         if (isInitialized) {
             activePlayer()?.id?.let { pid ->

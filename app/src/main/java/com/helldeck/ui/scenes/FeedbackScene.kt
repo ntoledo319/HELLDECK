@@ -150,6 +150,23 @@ fun FeedbackScene(vm: HelldeckVm) {
                     .padding(horizontal = HelldeckSpacing.Large.dp)
             )
 
+            // Undo button (appears after rating)
+            if (vm.canUndoFeedback) {
+                TextButton(
+                    onClick = {
+                        vm.undoLastRating()
+                        GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
+                    },
+                    modifier = Modifier.padding(top = 4.dp)
+                ) {
+                    Text(
+                        text = "↶ UNDO LAST RATING",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.primary
+                    )
+                }
+            }
+
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
             // Replay button (if available)
