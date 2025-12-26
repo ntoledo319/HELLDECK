@@ -138,6 +138,32 @@ class LoadingStateManager {
 }
 
 /**
+ * Personality-filled loading messages
+ */
+object LoadingMessages {
+    val funMessages = listOf(
+        "Consulting the comedy AI...",
+        "Generating the perfect roast...",
+        "Shuffling the deck of chaos...",
+        "Warming up the party machine...",
+        "Finding the spiciest option...",
+        "Summoning the entertainment gods...",
+        "Mixing truth with mischief...",
+        "Loading your next embarrassment...",
+        "Crafting chaos with care...",
+        "Stirring the drama pot...",
+        "Charging the awkward meters...",
+        "Preparing social destruction...",
+        "Calculating maximum cringe...",
+        "Unleashing controlled chaos..."
+    )
+
+    fun getRandomMessage(): String {
+        return funMessages.random()
+    }
+}
+
+/**
  * Loading state sealed class
  */
 sealed class LoadingState {
@@ -212,6 +238,9 @@ fun LoadingOverlay(
  */
 @Composable
 private fun LoadingContent(state: LoadingState.Loading) {
+    // Generate a fun message once and remember it
+    val funMessage = remember { LoadingMessages.getRandomMessage() }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -236,8 +265,9 @@ private fun LoadingContent(state: LoadingState.Loading) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // Show fun message if available, otherwise show state message
         Text(
-            text = state.message,
+            text = if (state.message == "Loading...") funMessage else state.message,
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center
         )
