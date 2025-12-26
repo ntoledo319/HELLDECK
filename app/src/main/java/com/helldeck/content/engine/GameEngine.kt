@@ -21,7 +21,8 @@ class GameEngine(
     private val selector: ContextualSelector,
     private val augmentor: Augmentor?,
     private val modelId: String,
-    private val cardGeneratorV3: CardGeneratorV3?
+    private val cardGeneratorV3: CardGeneratorV3?,
+    private val llmCardGeneratorV2: com.helldeck.content.generator.LLMCardGeneratorV2? = null
 ) {
     private val optionsCompiler = OptionsCompiler(repo, rng)
     
@@ -48,6 +49,33 @@ class GameEngine(
     suspend fun next(req: Request): Result {
         val maxContractAttempts = 15 // Bounded retry for contract validation
 
+        // PRIORITY 1: Try LLM Card Generator V2 (quality-first with gold examples)
+        llmCardGeneratorV2?.let { llmGen ->
+            val llmRequest = com.helldeck.content.generator.LLMCardGeneratorV2.GenerationRequest(
+                gameId = req.gameId ?: return@let,
+                players = req.players,
+                spiceMax = req.spiceMax,
+                sessionId = req.sessionId,
+                roomHeat = req.roomHeat
+            )
+
+            llmGen.generate(llmRequest)?.let { llmResult ->
+                val result = Result(
+                    filledCard = llmResult.filledCard,
+                    options = llmResult.options,
+                    timer = llmResult.timer,
+                    interactionType = llmResult.interactionType
+                )
+                if (validateContract(result, req)) {
+                    Logger.d("LLM V2 generated card with quality score: ${llmResult.qualityScore}")
+                    return result
+                } else {
+                    Logger.w("LLM V2 card failed contract validation, falling back")
+                }
+            }
+        }
+
+        // PRIORITY 2: Fall back to Card Generator V3 (template system)
         cardGeneratorV3?.let { generator ->
             val cfg = Config.current.generator
             if (cfg.safe_mode_gold_only) {
