@@ -104,7 +104,7 @@ import com.helldeck.ui.HelldeckError
  * Scene enumeration for navigation
  */
 enum class Scene {
-    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES, CARD_LAB
+    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES, CARD_LAB, ONBOARDING
 }
 
 @Composable
@@ -222,6 +222,14 @@ fun HelldeckAppUI(
             ) { targetScene ->
                 when (targetScene) {
                     Scene.HOME -> HomeScene(vm)
+                    Scene.ONBOARDING -> com.helldeck.ui.components.OnboardingFlow(
+                        onComplete = {
+                            coroutineScope.launch {
+                                com.helldeck.settings.SettingsStore.writeHasSeenOnboarding(true)
+                                vm.scene = Scene.HOME
+                            }
+                        }
+                    )
                     Scene.ROLLCALL -> RollcallScene(vm)
                     Scene.PLAYERS -> PlayersScene(vm)
                     Scene.ROUND -> RoundScene(vm)

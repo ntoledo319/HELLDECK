@@ -21,6 +21,7 @@ object SettingsStore {
     // Game settings
     private val KEY_LEARNING_ENABLED = booleanPreferencesKey("learning_enabled")
     private val KEY_ROLLCALL_ON_LAUNCH = booleanPreferencesKey("rollcall_on_launch")
+    private val KEY_HAS_SEEN_ONBOARDING = booleanPreferencesKey("has_seen_onboarding")
     
     // Device settings
     private val KEY_HAPTICS_ENABLED = booleanPreferencesKey("haptics_enabled")
@@ -67,7 +68,16 @@ object SettingsStore {
     suspend fun writeRollcallOnLaunch(value: Boolean) {
         AppCtx.ctx.settingsDataStore.edit { it[KEY_ROLLCALL_ON_LAUNCH] = value }
     }
-    
+
+    suspend fun readHasSeenOnboarding(): Boolean {
+        val prefs = AppCtx.ctx.settingsDataStore.data.first()
+        return prefs[KEY_HAS_SEEN_ONBOARDING] ?: false
+    }
+
+    suspend fun writeHasSeenOnboarding(value: Boolean) {
+        AppCtx.ctx.settingsDataStore.edit { it[KEY_HAS_SEEN_ONBOARDING] = value }
+    }
+
     // Device Settings
     suspend fun readHapticsEnabled(): Boolean {
         val prefs = AppCtx.ctx.settingsDataStore.data.first()
