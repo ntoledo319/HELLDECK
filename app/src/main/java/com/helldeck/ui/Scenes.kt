@@ -244,6 +244,14 @@ fun HelldeckAppUI(
                     Scene.FAVORITES -> com.helldeck.ui.scenes.FavoritesScene(vm = vm, onClose = { vm.goBack() })
                 }
             }
+
+                // Celebration dialog overlay (shows on top of any scene)
+                vm.pendingMilestone?.let { milestone ->
+                    com.helldeck.ui.components.CelebrationDialog(
+                        milestone = milestone,
+                        onDismiss = { vm.clearPendingMilestone() }
+                    )
+                }
             }
         )
     }
