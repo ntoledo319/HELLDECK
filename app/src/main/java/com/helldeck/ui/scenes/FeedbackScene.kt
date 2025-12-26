@@ -152,6 +152,24 @@ fun FeedbackScene(vm: HelldeckVm) {
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
+            // Replay button (if available)
+            if (vm.canReplay()) {
+                OutlinedButton(
+                    onClick = { scope.launch { vm.replayLastCard() } },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(HelldeckHeights.Button.dp)
+                        .padding(horizontal = HelldeckSpacing.Large.dp),
+                    colors = ButtonDefaults.outlinedButtonColors(
+                        contentColor = HelldeckColors.colorPrimary
+                    )
+                ) {
+                    Text(text = "🔄 REPLAY THIS CARD", style = MaterialTheme.typography.labelMedium)
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+            }
+
             // Auto-advance countdown with skip button
             Row(
                 modifier = Modifier
