@@ -133,6 +133,11 @@ class GameNightViewModel : ViewModel() {
         metricsTracker = com.helldeck.analytics.MetricsTracker(repo)
         isInitialized = true
 
+        // Initialize sound system
+        val soundEnabled = com.helldeck.settings.SettingsStore.readSoundEnabled()
+        val soundManager = com.helldeck.audio.SoundManager.get(context)
+        soundManager.enabled = soundEnabled
+
         // Load initial data
         reloadPlayers()
 
