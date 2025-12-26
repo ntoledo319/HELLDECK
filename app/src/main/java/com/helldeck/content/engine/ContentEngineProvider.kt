@@ -13,6 +13,7 @@ import com.helldeck.content.generator.CardGeneratorV3
 import com.helldeck.content.generator.CardLabBanlist
 import com.helldeck.content.generator.GeneratorArtifacts
 import com.helldeck.content.generator.LexiconRepositoryV2
+import com.helldeck.content.generator.LLMCardGeneratorV2
 import com.helldeck.content.generator.gold.GoldBank
 import com.helldeck.content.validation.AssetValidator
 import com.helldeck.engine.Config
@@ -40,6 +41,7 @@ object ContentEngineProvider {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private var llmPrepJob: Job? = null
     private var cardGeneratorV3: CardGeneratorV3? = null
+    private var llmCardGeneratorV2: LLMCardGeneratorV2? = null
 
     private data class ModelAsset(val filename: String, val ctxSize: Int)
 
@@ -109,6 +111,18 @@ object ContentEngineProvider {
             null
         }
 
+        // Initialize quality-first LLM card generator
+        llmCardGeneratorV2 = if (cardGeneratorV3 != null) {
+            runCatching {
+                LLMCardGeneratorV2(localLLM, context.applicationContext, cardGeneratorV3!!)
+            }.getOrElse {
+                Logger.w("LLM Card Generator V2 unavailable: ${it.message}")
+                null
+            }
+        } else {
+            null
+        }
+
         // Seed selector priors from persisted stats for lasting quality
         runBlocking {
             try {
@@ -129,7 +143,8 @@ object ContentEngineProvider {
             selector = selector,
             augmentor = augmentor,
             modelId = localLLM?.modelId ?: "none",
-            cardGeneratorV3 = cardGeneratorV3
+            cardGeneratorV3 = cardGeneratorV3,
+            llmCardGeneratorV2 = llmCardGeneratorV2
         )
     }
 
@@ -177,6 +192,7 @@ object ContentEngineProvider {
             llmPrepJob?.cancel()
             llmPrepJob = null
             cardGeneratorV3 = null
+            llmCardGeneratorV2 = null
         }
     }
     
