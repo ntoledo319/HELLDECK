@@ -86,6 +86,8 @@ class GameNightViewModel : ViewModel() {
     // ========== CORE SYSTEMS ==========
     private lateinit var repo: ContentRepository
     private lateinit var engine: GameEngine
+    private lateinit var cardBuffer: com.helldeck.content.engine.CardBuffer
+    private lateinit var metricsTracker: com.helldeck.analytics.MetricsTracker
     private var isInitialized = false
 
     // ========== UPGRADE STATE (NEW FOR 2.0) ==========
@@ -107,14 +109,20 @@ class GameNightViewModel : ViewModel() {
         val context = AppCtx.ctx
         repo = ContentRepository(context)
         engine = ContentEngineProvider.get(context)
+        cardBuffer = com.helldeck.content.engine.CardBuffer(engine, bufferSize = 3)
+        metricsTracker = com.helldeck.analytics.MetricsTracker(repo)
         isInitialized = true
 
         // Load initial data
         reloadPlayers()
 
-        // Determine if we should ask for rollcall on launch
-        askRollcallOnLaunch = true
-        if (askRollcallOnLaunch && !didRollcall && players.isNotEmpty()) {
+        // Check if should show onboarding for first-time users
+        val hasSeenOnboarding = com.helldeck.settings.SettingsStore.readHasSeenOnboarding()
+        if (!hasSeenOnboarding) {
+            scene = Scene.ONBOARDING
+        } else if (askRollcallOnLaunch && !didRollcall && players.isNotEmpty()) {
+            // Determine if we should ask for rollcall on launch
+            askRollcallOnLaunch = true
             scene = Scene.ROLLCALL
         }
         isLoading = false
@@ -207,6 +215,23 @@ class GameNightViewModel : ViewModel() {
     fun goHome() {
         navStack.clear()
         scene = Scene.HOME
+
+        // Stop card buffering when leaving game
+        if (::cardBuffer.isInitialized) {
+            cardBuffer.stop()
+            com.helldeck.utils.Logger.d("CardBuffer stopped: ${cardBuffer.getStats()}")
+        }
+
+        // End metrics tracking when leaving game
+        if (::metricsTracker.isInitialized) {
+            viewModelScope.launch {
+                try {
+                    metricsTracker.endSession(gameNightSessionId)
+                } catch (e: Exception) {
+                    com.helldeck.utils.Logger.e("Failed to end session metrics", e)
+                }
+            }
+        }
     }
 
     fun goPlayers() {
@@ -225,6 +250,14 @@ class GameNightViewModel : ViewModel() {
         starterPicked = false
         didRollcall = false
         com.helldeck.utils.Logger.i("New game night started: $gameNightSessionId")
+
+        // Start metrics tracking for new session
+        if (isInitialized && ::metricsTracker.isInitialized) {
+            viewModelScope.launch {
+                val playerIds = activePlayers.map { it.id }
+                metricsTracker.startSession(gameNightSessionId, playerIds)
+            }
+        }
     }
 
     fun markRollcallDone() {
@@ -274,14 +307,23 @@ class GameNightViewModel : ViewModel() {
         val sessionId = gameNightSessionId
 
         try {
-            val gameResult = engine.next(
-                GameEngine.Request(
-                    gameId = nextGame,
-                    sessionId = sessionId,
-                    spiceMax = if (spicy) 3 else 1,
-                    players = playersList
-                )
+            // Create request for card generation
+            val request = GameEngine.Request(
+                gameId = nextGame,
+                sessionId = sessionId,
+                spiceMax = if (spicy) 3 else 1,
+                players = playersList
             )
+
+            // Start buffering for this game if not already started
+            if (!::cardBuffer.isInitialized || gameId != null) {
+                // New game or game change - restart buffer
+                cardBuffer.stop()
+                cardBuffer.start(request)
+            }
+
+            // Get card from buffer (instant if buffer ready, otherwise generates on-demand)
+            val gameResult = cardBuffer.getNext()
 
             // Create authoritative RoundState from engine result
             roundState = RoundState(
@@ -302,6 +344,20 @@ class GameNightViewModel : ViewModel() {
             )
 
             currentCard = gameResult.filledCard
+
+            // Start metrics tracking for this round
+            if (::metricsTracker.isInitialized) {
+                val roundId = "round_${System.currentTimeMillis()}_${kotlin.random.Random.nextInt(1000)}"
+                metricsTracker.startRound(
+                    roundId = roundId,
+                    sessionId = sessionId,
+                    gameId = nextGame,
+                    cardId = gameResult.filledCard.id,
+                    cardText = gameResult.filledCard.text,
+                    activePlayerId = activePlayer()?.id ?: "unknown",
+                    spiceLevel = if (spicy) 3 else 1
+                )
+            }
 
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("startRound: engine.next failed", e)
@@ -602,6 +658,20 @@ class GameNightViewModel : ViewModel() {
             }
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("commitFeedbackAndNext: recordOutcome failed", e)
+        }
+
+        // Record round metrics
+        if (::metricsTracker.isInitialized) {
+            try {
+                metricsTracker.completeRound(
+                    lolCount = lol,
+                    mehCount = meh,
+                    trashCount = trash,
+                    points = points
+                )
+            } catch (e: Exception) {
+                com.helldeck.utils.Logger.e("Failed to record round metrics", e)
+            }
         }
 
         // Reset feedback state
