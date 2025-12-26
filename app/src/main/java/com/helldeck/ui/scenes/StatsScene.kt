@@ -234,6 +234,15 @@ private fun EnhancedPlayerCard(
     rank: Int,
     onClick: () -> Unit
 ) {
+    // Calculate enhanced stats
+    val winRate = if (profile.gamesPlayed > 0) {
+        (profile.wins.toFloat() / profile.gamesPlayed * 100).toInt()
+    } else 0
+
+    val avgPointsPerRound = if (profile.gamesPlayed > 0) {
+        (profile.totalPoints.toFloat() / profile.gamesPlayed)
+    } else 0f
+
     val rankColor = when (rank) {
         1 -> HelldeckColors.Yellow     // Gold
         2 -> HelldeckColors.LightGray  // Silver-ish
@@ -327,15 +336,47 @@ private fun EnhancedPlayerCard(
                                 style = MaterialTheme.typography.bodySmall,
                                 color = HelldeckColors.LightGray
                             )
+                            Text(
+                                "📊 $winRate% win rate",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = HelldeckColors.LightGray
+                            )
+                        }
+                        // Enhanced stats row
+                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text(
+                                "⚡ ${String.format("%.1f", avgPointsPerRound)} avg pts",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = HelldeckColors.LightGray
+                            )
+                            Text(
+                                "😂 ${String.format("%.1f", profile.avgLol)} LOLs",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = HelldeckColors.LightGray
+                            )
+                            Text(
+                                "🔥 ${profile.heatRounds} heat",
+                                style = MaterialTheme.typography.bodySmall,
+                                color = HelldeckColors.LightGray
+                            )
                         }
                     }
                 }
 
-                Text(
-                    "${profile.totalPoints}",
-                    style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                    color = HelldeckColors.Yellow
-                )
+                Column(
+                    horizontalAlignment = Alignment.End
+                ) {
+                    Text(
+                        "${profile.totalPoints}",
+                        style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
+                        color = HelldeckColors.Yellow
+                    )
+                    Text(
+                        "points",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = HelldeckColors.LightGray
+                    )
+                }
             }
         }
     }
