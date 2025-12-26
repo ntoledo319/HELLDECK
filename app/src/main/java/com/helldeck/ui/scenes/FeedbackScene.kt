@@ -3,6 +3,7 @@ package com.helldeck.ui.scenes
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -64,6 +65,30 @@ fun FeedbackScene(vm: HelldeckVm) {
                 title = { Text("FEEDBACK", style = MaterialTheme.typography.titleMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Black) },
                 navigationIcon = { TextButton(onClick = { vm.goBack() }) { Text("Back") } },
                 actions = {
+                    // Share card as image
+                    IconButton(
+                        onClick = {
+                            val card = vm.currentCard
+                            val game = vm.currentGame
+                            val player = vm.activePlayer()
+                            if (card != null && game != null) {
+                                com.helldeck.utils.ShareUtils.shareCardAsImage(
+                                    context = context,
+                                    cardText = card.text,
+                                    gameName = game.name,
+                                    playerName = player?.name
+                                )
+                            }
+                        }
+                    ) {
+                        Icon(
+                            Icons.Filled.Share,
+                            contentDescription = "Share card",
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+
+                    // Favorite button
                     IconButton(
                         onClick = {
                             scope.launch {
@@ -78,6 +103,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                             tint = if (isFavorited) HelldeckColors.Lol else MaterialTheme.colorScheme.onSurface
                         )
                     }
+
                     TextButton(onClick = { vm.goHome() }) { Text("Home") }
                 }
             )
