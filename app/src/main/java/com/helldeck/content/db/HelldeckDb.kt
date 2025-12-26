@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.helldeck.settings.CrewBrainStore
 
 @Database(
     entities = [
@@ -44,15 +45,42 @@ abstract class HelldeckDb : RoomDatabase() {
     abstract fun customCards(): com.helldeck.data.CustomCardsDao
 
     companion object {
-        @Volatile private var INSTANCE: HelldeckDb? = null
+        @Volatile private var instances: MutableMap<String, HelldeckDb> = mutableMapOf()
 
-        fun get(context: Context): HelldeckDb =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: Room.databaseBuilder(
+        private fun dbNameFor(brainId: String): String {
+            return if (brainId == CrewBrainStore.DEFAULT_BRAIN_ID) {
+                "helldeck.db"
+            } else {
+                "helldeck_${brainId}.db"
+            }
+        }
+
+        private fun currentBrainId(): String {
+            return runCatching { CrewBrainStore.activeBrainIdSync() }
+                .getOrDefault(CrewBrainStore.DEFAULT_BRAIN_ID)
+                .ifBlank { CrewBrainStore.DEFAULT_BRAIN_ID }
+        }
+
+        fun get(context: Context): HelldeckDb = getForBrain(context, currentBrainId())
+
+        fun getForBrain(context: Context, brainId: String): HelldeckDb {
+            val key = brainId.ifBlank { CrewBrainStore.DEFAULT_BRAIN_ID }
+            return instances[key] ?: synchronized(this) {
+                instances[key] ?: Room.databaseBuilder(
                     context.applicationContext,
                     HelldeckDb::class.java,
-                    "helldeck.db"
-                ).fallbackToDestructiveMigration().build().also { INSTANCE = it }
+                    dbNameFor(key)
+                ).fallbackToDestructiveMigration().build().also { db ->
+                    instances[key] = db
+                }
             }
+        }
+
+        fun clearCache() {
+            synchronized(this) {
+                instances.values.forEach { it.close() }
+                instances.clear()
+            }
+        }
     }
 }

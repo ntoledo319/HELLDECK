@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,10 +22,15 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -32,6 +38,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -49,10 +56,13 @@ import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.data.PlayerProfile
 import com.helldeck.data.computePlayerProfiles
+import com.helldeck.settings.CrewBrain
+import com.helldeck.settings.CrewBrainStore
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckLoadingSpinner
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.HelldeckVm
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -63,8 +73,18 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
     var templates by remember { mutableStateOf(0) }
     var profiles by remember { mutableStateOf<List<PlayerProfile>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
+    val brains by CrewBrainStore.brainsFlow().collectAsState(initial = vm.crewBrains)
+    val activeBrainId by CrewBrainStore.activeBrainIdFlow()
+        .collectAsState(initial = vm.activeCrewBrainId ?: CrewBrainStore.DEFAULT_BRAIN_ID)
+    var showBrainDialog by remember { mutableStateOf(false) }
+    var newBrainName by remember { mutableStateOf("") }
+    var newBrainEmoji by remember { mutableStateOf("🧠") }
+    var brainError by remember { mutableStateOf<String?>(null) }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(activeBrainId, brains) {
+        vm.activeCrewBrainId = activeBrainId
+        vm.crewBrains = brains
+        isLoading = true
         stats = vm.getGameStats()
         val repo = ContentRepository(AppCtx.ctx)
         players = repo.statsDao.getAll().size
@@ -72,6 +92,8 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
         profiles = repo.computePlayerProfiles()
         isLoading = false
     }
+
+    val busy = isLoading || vm.isLoading
 
     Scaffold(
         topBar = {
@@ -83,7 +105,7 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
             )
         }
     ) { padding ->
-        if (isLoading) {
+        if (busy) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -96,10 +118,24 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
             LazyColumn(
                 modifier = Modifier
                     .padding(padding)
-                    .padding(HelldeckSpacing.Medium.dp)
-                    .fillMaxSize(),
+                .padding(HelldeckSpacing.Medium.dp)
+                .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
+                item {
+                    CrewBrainSelector(
+                        brains = brains,
+                        activeBrainId = activeBrainId,
+                        isBusy = busy,
+                        onSelect = { id ->
+                            if (id != activeBrainId) {
+                                isLoading = true
+                                scope.launch { vm.switchCrewBrain(id) }
+                            }
+                        },
+                        onAdd = { showBrainDialog = true }
+                    )
+                }
                 // Overview Cards
                 item {
                     Row(
@@ -160,6 +196,188 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                         onClick = { vm.openProfile(pr.id) }
                     )
                 }
+            }
+        }
+    }
+
+    if (showBrainDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                if (!vm.isLoading) {
+                    showBrainDialog = false
+                    brainError = null
+                }
+            },
+            title = { Text("New Crew Brain") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    OutlinedTextField(
+                        value = newBrainName,
+                        onValueChange = { newBrainName = it },
+                        label = { Text("Name") },
+                        singleLine = true
+                    )
+                    OutlinedTextField(
+                        value = newBrainEmoji,
+                        onValueChange = { newBrainEmoji = it.take(2) },
+                        label = { Text("Emoji") },
+                        singleLine = true
+                    )
+                    Text(
+                        text = "Keep up to ${CrewBrainStore.MAX_BRAINS} brains for different crews.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
+                    brainError?.let { err ->
+                        Text(
+                            text = err,
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.error
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                Button(
+                    enabled = !vm.isLoading,
+                    onClick = {
+                        scope.launch {
+                            brainError = null
+                            isLoading = true
+                            val created = vm.createCrewBrain(newBrainName, newBrainEmoji)
+                            if (created == null) {
+                                brainError = "Unable to add another crew brain right now."
+                                isLoading = false
+                            } else {
+                                newBrainName = ""
+                                newBrainEmoji = "🧠"
+                                showBrainDialog = false
+                            }
+                        }
+                    }
+                ) {
+                    Text("Create")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    if (!vm.isLoading) {
+                        showBrainDialog = false
+                        brainError = null
+                    }
+                }) {
+                    Text("Cancel")
+                }
+            }
+        )
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun CrewBrainSelector(
+    brains: List<CrewBrain>,
+    activeBrainId: String?,
+    isBusy: Boolean,
+    onSelect: (String) -> Unit,
+    onAdd: () -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(
+            "Crew Brains",
+            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+            color = HelldeckColors.Yellow
+        )
+        FlowRow(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            brains.forEach { brain ->
+                CrewBrainChip(
+                    brain = brain,
+                    selected = brain.id == activeBrainId,
+                    isBusy = isBusy,
+                    onClick = { onSelect(brain.id) }
+                )
+            }
+            if (brains.size < CrewBrainStore.MAX_BRAINS) {
+                AddCrewBrainChip(enabled = !isBusy, onClick = onAdd)
+            }
+        }
+    }
+}
+
+@Composable
+private fun CrewBrainChip(
+    brain: CrewBrain,
+    selected: Boolean,
+    isBusy: Boolean,
+    onClick: () -> Unit
+) {
+    val container = if (selected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant
+    val textColor = if (selected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
+    Surface(
+        shape = RoundedCornerShape(14.dp),
+        border = BorderStroke(
+            1.dp,
+            if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline.copy(alpha = 0.6f)
+        ),
+        color = container,
+        tonalElevation = if (selected) 4.dp else 0.dp,
+        modifier = Modifier.clickable(enabled = !isBusy, onClick = onClick)
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(brain.emoji, style = MaterialTheme.typography.titleMedium)
+            Column {
+                Text(
+                    brain.name,
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
+                    color = textColor
+                )
+                Text(
+                    if (selected) "Active crew brain" else "Tap to switch",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = if (selected) MaterialTheme.colorScheme.primary else HelldeckColors.LightGray
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun AddCrewBrainChip(
+    enabled: Boolean,
+    onClick: () -> Unit
+) {
+    Surface(
+        shape = RoundedCornerShape(14.dp),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.6f)),
+        color = Color.Transparent,
+        tonalElevation = 0.dp,
+        modifier = Modifier.clickable(enabled = enabled, onClick = onClick)
+    ) {
+        Row(
+            modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("➕", style = MaterialTheme.typography.titleMedium)
+            Column {
+                Text(
+                    "Add Crew Brain",
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                Text(
+                    "Max ${CrewBrainStore.MAX_BRAINS}",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HelldeckColors.LightGray
+                )
             }
         }
     }
