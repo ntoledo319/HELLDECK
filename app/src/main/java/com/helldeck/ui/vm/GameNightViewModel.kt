@@ -14,6 +14,7 @@ import com.helldeck.content.model.GameOptions
 import com.helldeck.content.model.Player
 import com.helldeck.content.quality.Rating
 import com.helldeck.content.quality.Rewards
+import com.helldeck.content.db.HelldeckDb
 import com.helldeck.data.PlayerEntity
 import com.helldeck.data.computePlayerProfiles
 import com.helldeck.data.toEntity
@@ -23,6 +24,8 @@ import com.helldeck.ui.Scene
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundPhase
 import com.helldeck.ui.state.RoundState
+import com.helldeck.settings.CrewBrain
+import com.helldeck.settings.CrewBrainStore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -122,6 +125,19 @@ class GameNightViewModel : ViewModel() {
     var selectedPacks by mutableStateOf(setOf<String>())
     var playerRoles by mutableStateOf(mapOf<String, String>())
 
+    // ========== CREW BRAIN MANAGEMENT ==========
+    var crewBrains by mutableStateOf<List<CrewBrain>>(emptyList())
+    var activeCrewBrainId by mutableStateOf<String?>(null)
+
+    private suspend fun buildCoreSystems() {
+        val context = AppCtx.ctx
+        repo = ContentRepository(context)
+        repo.initialize()
+        engine = ContentEngineProvider.get(context)
+        cardBuffer = com.helldeck.content.engine.CardBuffer(engine, bufferSize = 3)
+        metricsTracker = com.helldeck.analytics.MetricsTracker(repo)
+    }
+
     /**
      * Initializes the ViewModel systems on first use.
      * Sets up the content repository, game engine, and loads initial data.
@@ -132,30 +148,34 @@ class GameNightViewModel : ViewModel() {
         isLoading = true
 
         val context = AppCtx.ctx
-        repo = ContentRepository(context)
-        engine = ContentEngineProvider.get(context)
-        cardBuffer = com.helldeck.content.engine.CardBuffer(engine, bufferSize = 3)
-        metricsTracker = com.helldeck.analytics.MetricsTracker(repo)
-        isInitialized = true
+        val (brains, activeId) = CrewBrainStore.ensureInitialized()
+        crewBrains = brains
+        activeCrewBrainId = activeId
 
-        // Initialize sound system
-        val soundEnabled = com.helldeck.settings.SettingsStore.readSoundEnabled()
-        val soundManager = com.helldeck.audio.SoundManager.get(context)
-        soundManager.enabled = soundEnabled
+        try {
+            buildCoreSystems()
+            isInitialized = true
 
-        // Load initial data
-        reloadPlayers()
+            // Initialize sound system
+            val soundEnabled = com.helldeck.settings.SettingsStore.readSoundEnabled()
+            val soundManager = com.helldeck.audio.SoundManager.get(context)
+            soundManager.enabled = soundEnabled
 
-        // Check if should show onboarding for first-time users
-        val hasSeenOnboarding = com.helldeck.settings.SettingsStore.readHasSeenOnboarding()
-        if (!hasSeenOnboarding) {
-            scene = Scene.ONBOARDING
-        } else if (askRollcallOnLaunch && !didRollcall && players.isNotEmpty()) {
-            // Determine if we should ask for rollcall on launch
-            askRollcallOnLaunch = true
-            scene = Scene.ROLLCALL
+            // Load initial data
+            reloadPlayers()
+
+            // Check if should show onboarding for first-time users
+            val hasSeenOnboarding = com.helldeck.settings.SettingsStore.readHasSeenOnboarding()
+            if (!hasSeenOnboarding) {
+                scene = Scene.ONBOARDING
+            } else if (askRollcallOnLaunch && !didRollcall && players.isNotEmpty()) {
+                // Determine if we should ask for rollcall on launch
+                askRollcallOnLaunch = true
+                scene = Scene.ROLLCALL
+            }
+        } finally {
+            isLoading = false
         }
-        isLoading = false
     }
 
     /**
@@ -210,6 +230,50 @@ class GameNightViewModel : ViewModel() {
 
             players = repo.db.players().getAllPlayers().first().map { it.toPlayer() }
             activePlayers = players.filter { p -> p.afk == 0 }
+        }
+    }
+
+    suspend fun switchCrewBrain(brainId: String) {
+        isLoading = true
+        try {
+            CrewBrainStore.setActiveBrain(brainId)
+            crewBrains = CrewBrainStore.getBrains()
+            activeCrewBrainId = brainId
+
+            if (::cardBuffer.isInitialized) {
+                cardBuffer.stop()
+            }
+            ContentEngineProvider.reset()
+            HelldeckDb.clearCache()
+            buildCoreSystems()
+            isInitialized = true
+
+            roundState = null
+            currentCard = null
+            currentGame = null
+            preChoice = null
+            votesAvatar = emptyMap()
+            votesAB = emptyMap()
+
+            reloadPlayers()
+            startNewGameNight()
+            navStack.clear()
+            scene = Scene.HOME
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to switch crew brain", e)
+        } finally {
+            isLoading = false
+        }
+    }
+
+    suspend fun createCrewBrain(name: String, emoji: String): CrewBrain? {
+        return try {
+            val brain = CrewBrainStore.createBrain(name, emoji)
+            switchCrewBrain(brain.id)
+            brain
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to create crew brain", e)
+            null
         }
     }
 
