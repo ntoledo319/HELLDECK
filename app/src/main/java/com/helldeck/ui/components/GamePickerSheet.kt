@@ -91,12 +91,13 @@ private fun GameCard(
 ) {
     val metadata = GameMetadata.getGameMetadata(gameId)
     val gameName = metadata?.name ?: gameId
+    val gameDescription = metadata?.description ?: ""
     val gameEmoji = getGameEmoji(gameId)
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .height(140.dp)
+            .height(180.dp)
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
@@ -107,33 +108,40 @@ private fun GameCard(
             pressedElevation = 6.dp
         )
     ) {
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
-            contentAlignment = Alignment.Center
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = gameEmoji,
-                    fontSize = 40.sp,
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
+            // Emoji
+            Text(
+                text = gameEmoji,
+                fontSize = 36.sp
+            )
 
-                Text(
-                    text = gameName,
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    fontSize = 14.sp,
-                    lineHeight = 18.sp,
-                    maxLines = 2
-                )
-            }
+            // Game name
+            Text(
+                text = gameName,
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                fontSize = 14.sp,
+                lineHeight = 18.sp,
+                maxLines = 2
+            )
+
+            // Description
+            Text(
+                text = gameDescription,
+                style = MaterialTheme.typography.bodySmall,
+                textAlign = TextAlign.Center,
+                fontSize = 11.sp,
+                lineHeight = 14.sp,
+                maxLines = 3,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }
