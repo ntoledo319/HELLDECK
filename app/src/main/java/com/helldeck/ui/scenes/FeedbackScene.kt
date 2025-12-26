@@ -1,6 +1,9 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -34,8 +37,12 @@ fun FeedbackScene(vm: HelldeckVm) {
     var secondsRemaining by remember { mutableStateOf(5) }
     var isAutoAdvancing by remember { mutableStateOf(true) }
 
+    // Favorite state
+    var isFavorited by remember { mutableStateOf(false) }
+
     LaunchedEffect(roundState?.filledCard?.id ?: vm.currentCard?.id) {
         GameFeedback.triggerFeedback(context, HapticEvent.ROUND_END, useHaptics = hapticsEnabled)
+        isFavorited = vm.isCurrentCardFavorited()
     }
 
     // Auto-advance timer
@@ -56,7 +63,23 @@ fun FeedbackScene(vm: HelldeckVm) {
             TopAppBar(
                 title = { Text("FEEDBACK", style = MaterialTheme.typography.titleMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Black) },
                 navigationIcon = { TextButton(onClick = { vm.goBack() }) { Text("Back") } },
-                actions = { TextButton(onClick = { vm.goHome() }) { Text("Home") } }
+                actions = {
+                    IconButton(
+                        onClick = {
+                            scope.launch {
+                                isFavorited = vm.toggleFavorite()
+                                GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
+                            }
+                        }
+                    ) {
+                        Icon(
+                            if (isFavorited) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                            contentDescription = if (isFavorited) "Remove from favorites" else "Add to favorites",
+                            tint = if (isFavorited) HelldeckColors.Lol else MaterialTheme.colorScheme.onSurface
+                        )
+                    }
+                    TextButton(onClick = { vm.goHome() }) { Text("Home") }
+                }
             )
         }
     ) { padding ->
