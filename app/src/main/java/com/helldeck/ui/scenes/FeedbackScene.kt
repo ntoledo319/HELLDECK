@@ -30,8 +30,25 @@ fun FeedbackScene(vm: HelldeckVm) {
     val hapticsEnabled = Config.hapticsEnabled
     val roundState = vm.roundState
 
+    // Auto-advance countdown (5 seconds)
+    var secondsRemaining by remember { mutableStateOf(5) }
+    var isAutoAdvancing by remember { mutableStateOf(true) }
+
     LaunchedEffect(roundState?.filledCard?.id ?: vm.currentCard?.id) {
         GameFeedback.triggerFeedback(context, HapticEvent.ROUND_END, useHaptics = hapticsEnabled)
+    }
+
+    // Auto-advance timer
+    LaunchedEffect(isAutoAdvancing) {
+        if (isAutoAdvancing) {
+            while (secondsRemaining > 0) {
+                kotlinx.coroutines.delay(1000)
+                secondsRemaining--
+            }
+            if (secondsRemaining == 0) {
+                vm.commitFeedbackAndNext()
+            }
+        }
     }
 
     Scaffold(
@@ -58,6 +75,14 @@ fun FeedbackScene(vm: HelldeckVm) {
                     .padding(HelldeckSpacing.Medium.dp)
             )
 
+            // Optional rating buttons (non-blocking)
+            Text(
+                text = "Rate this card (optional)",
+                style = MaterialTheme.typography.labelMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+
             RatingRail(
                 onLol = {
                     vm.feedbackLol()
@@ -78,18 +103,48 @@ fun FeedbackScene(vm: HelldeckVm) {
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
-            Button(
-                onClick = { scope.launch { vm.commitFeedbackAndNext() } },
+            // Auto-advance countdown with skip button
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(HelldeckHeights.Button.dp)
                     .padding(horizontal = HelldeckSpacing.Large.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = HelldeckColors.colorSecondary
-                )
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Text(text = "NEXT ROUND", style = MaterialTheme.typography.labelLarge, color = HelldeckColors.Black)
+                // Skip button (instant advance)
+                OutlinedButton(
+                    onClick = { scope.launch { vm.commitFeedbackAndNext() } },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(HelldeckHeights.Button.dp)
+                ) {
+                    Text(text = "SKIP", style = MaterialTheme.typography.labelLarge)
+                }
+
+                // Auto-advance countdown button
+                Button(
+                    onClick = { scope.launch { vm.commitFeedbackAndNext() } },
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(HelldeckHeights.Button.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = HelldeckColors.colorSecondary
+                    )
+                ) {
+                    Text(
+                        text = if (secondsRemaining > 0) "NEXT ($secondsRemaining)" else "NEXT",
+                        style = MaterialTheme.typography.labelLarge,
+                        color = HelldeckColors.Black
+                    )
+                }
             }
+
+            // Small hint text
+            Text(
+                text = "Auto-advancing in ${secondsRemaining}s • Tap SKIP to go faster",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(top = 8.dp)
+            )
         }
     }
 }
