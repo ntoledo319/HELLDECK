@@ -71,6 +71,9 @@ import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import com.helldeck.data.PlayerEntity
@@ -251,6 +254,10 @@ class HelldeckVm : ViewModel() {
     // Game configuration
     var spicy by mutableStateOf(false)
     var heatThreshold by mutableStateOf(Config.roomHeatThreshold().toFloat())
+
+    // Spice level (1-5) for granular content control
+    private val _spiceLevel = MutableStateFlow(3) // Default: medium spice
+    val spiceLevel: StateFlow<Int> = _spiceLevel.asStateFlow()
 
     // Selection / profile
     var selectedPlayerId by mutableStateOf<String?>(null)
@@ -467,6 +474,16 @@ class HelldeckVm : ViewModel() {
     }
 
     /**
+     * Updates the spice level for content generation.
+     *
+     * @param level The new spice level (1-5)
+     */
+    fun updateSpiceLevel(level: Int) {
+        _spiceLevel.value = level.coerceIn(1, 5)
+        com.helldeck.utils.Logger.d("Spice level updated to: ${_spiceLevel.value}")
+    }
+
+    /**
      * Navigates to the players management scene.
      */
     fun goPlayers() {
@@ -527,7 +544,7 @@ class HelldeckVm : ViewModel() {
                 com.helldeck.content.engine.GameEngine.Request(
                     gameId = nextGame,
                     sessionId = sessionId,
-                    spiceMax = if (spicy) 3 else 1,
+                    spiceMax = _spiceLevel.value,
                     players = playersList
                 )
             )
