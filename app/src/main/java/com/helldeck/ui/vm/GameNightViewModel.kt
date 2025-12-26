@@ -76,6 +76,10 @@ class GameNightViewModel : ViewModel() {
     var currentGame by mutableStateOf<GameInfo?>(null)
     var phase by mutableStateOf(RoundPhase.INTRO)
 
+    // Last card for replay functionality
+    private var lastCard: FilledCard? = null
+    private var lastGameId: String? = null
+
     // ========== VOTING STATE ==========
     var preChoice by mutableStateOf<String?>(null)
     var votesAvatar by mutableStateOf<Map<String, String>>(emptyMap())
@@ -355,6 +359,10 @@ class GameNightViewModel : ViewModel() {
             )
 
             currentCard = gameResult.filledCard
+
+            // Save for replay
+            lastCard = gameResult.filledCard
+            lastGameId = nextGame
 
             // Start metrics tracking for this round
             if (::metricsTracker.isInitialized) {
@@ -833,4 +841,65 @@ class GameNightViewModel : ViewModel() {
     fun clearPendingMilestone() {
         pendingMilestone = null
     }
+
+    // ========== REPLAY ==========
+
+    /**
+     * Replays the last card without advancing
+     */
+    suspend fun replayLastCard() {
+        if (lastCard == null || lastGameId == null) {
+            com.helldeck.utils.Logger.w("No last card to replay")
+            return
+        }
+
+        // Reset scene to round with same card
+        scene = Scene.ROUND
+        phase = RoundPhase.INTRO
+
+        currentCard = lastCard
+        currentGame = GameMetadata.getGameMetadata(lastGameId!!)
+
+        // Create new round state with same card
+        val playersList = activePlayers.map { it.name }
+        val targetPlayerId = if (currentGame?.interaction == Interaction.TARGET_PICK) {
+            activePlayers.randomOrNull()?.id
+        } else null
+
+        roundState = RoundState(
+            gameId = lastGameId!!,
+            filledCard = lastCard!!,
+            options = engine.getOptionsFor(lastCard!!, GameEngine.Request(
+                gameId = lastGameId!!,
+                sessionId = gameNightSessionId,
+                spiceMax = if (spicy) 3 else 1,
+                players = playersList
+            )),
+            timerSec = currentGame?.timerSec ?: 6,
+            interactionType = currentGame?.interactionType ?: InteractionType.JUDGE_PICK,
+            activePlayerIndex = turnIdx,
+            judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK) {
+                (turnIdx + 1) % activePlayers.size
+            } else null,
+            targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK) {
+                activePlayers.indexOfFirst { it.id == targetPlayerId }
+            } else null,
+            phase = com.helldeck.ui.state.RoundPhase.INTRO,
+            sessionId = gameNightSessionId
+        )
+
+        t0 = System.currentTimeMillis()
+
+        // Reset voting state
+        preChoice = null
+        votesAvatar = emptyMap()
+        votesAB = emptyMap()
+
+        com.helldeck.utils.Logger.i("Replaying last card: ${lastCard?.text}")
+    }
+
+    /**
+     * Checks if replay is available
+     */
+    fun canReplay(): Boolean = lastCard != null && lastGameId != null
 }
