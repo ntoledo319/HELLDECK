@@ -710,4 +710,57 @@ class GameNightViewModel : ViewModel() {
             emptyList()
         }
     }
+
+    // ========== FAVORITES ==========
+
+    /**
+     * Toggles favorite status for the current card.
+     * Returns true if favorited, false if unfavorited.
+     */
+    suspend fun toggleFavorite(): Boolean {
+        val card = currentCard ?: return false
+        val game = currentGame ?: return false
+        val player = activePlayer()
+
+        return try {
+            val existing = repo.db.favorites().isFavorited(card.id, gameNightSessionId)
+            if (existing != null) {
+                // Unfavorite
+                repo.db.favorites().delete(existing)
+                com.helldeck.utils.Logger.d("Unfavorited card: ${card.id}")
+                false
+            } else {
+                // Favorite
+                val favorite = com.helldeck.data.FavoriteCardEntity(
+                    id = "fav_${System.currentTimeMillis()}_${card.id}",
+                    cardId = card.id,
+                    cardText = card.text,
+                    gameId = game.id,
+                    gameName = game.name,
+                    sessionId = gameNightSessionId,
+                    playerId = player?.id,
+                    playerName = player?.name,
+                    lolCount = lol
+                )
+                repo.db.favorites().insert(favorite)
+                com.helldeck.utils.Logger.d("Favorited card: ${card.id}")
+                true
+            }
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to toggle favorite", e)
+            false
+        }
+    }
+
+    /**
+     * Checks if the current card is favorited.
+     */
+    suspend fun isCurrentCardFavorited(): Boolean {
+        val card = currentCard ?: return false
+        return try {
+            repo.db.favorites().isFavorited(card.id, gameNightSessionId) != null
+        } catch (e: Exception) {
+            false
+        }
+    }
 }

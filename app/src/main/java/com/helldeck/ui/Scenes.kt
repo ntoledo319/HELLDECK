@@ -104,7 +104,7 @@ import com.helldeck.ui.HelldeckError
  * Scene enumeration for navigation
  */
 enum class Scene {
-    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES, CARD_LAB, ONBOARDING
+    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES, CARD_LAB, ONBOARDING, FAVORITES
 }
 
 @Composable
@@ -241,6 +241,7 @@ fun HelldeckAppUI(
                     Scene.PROFILE -> PlayerProfileScene(vm = vm, onClose = { vm.scene = Scene.HOME })
                     Scene.GAME_RULES -> GameRulesScene(vm = vm, onClose = { vm.goBack() })
                     Scene.CARD_LAB -> com.helldeck.ui.scenes.CardLabScene(onClose = { vm.goBack() })
+                    Scene.FAVORITES -> com.helldeck.ui.scenes.FavoritesScene(vm = vm, onClose = { vm.goBack() })
                 }
             }
             }
