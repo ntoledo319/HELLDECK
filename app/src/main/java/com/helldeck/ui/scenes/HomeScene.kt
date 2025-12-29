@@ -39,7 +39,9 @@ import com.helldeck.ui.*
 import com.helldeck.ui.components.GamePickerSheet
 import com.helldeck.ui.components.GameTile
 import com.helldeck.ui.components.SpiceSlider
+import com.helldeck.ui.components.PrimaryButton
 import com.helldeck.ui.theme.HelldeckSpacing
+import com.helldeck.engine.GameMetadata
 import kotlinx.coroutines.launch
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.BorderStroke
@@ -126,20 +128,14 @@ fun HomeScene(vm: HelldeckVm) {
             Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
 
             // Primary CTA: Start random game
-            Button(
+            PrimaryButton(
+                text = "Start Chaos",
                 onClick = { scope.launch { vm.startRound(null) } },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(HelldeckHeights.Button.dp),
-                shape = RoundedCornerShape(HelldeckRadius.Pill),
-                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.colorPrimary)
-            ) {
-                Text(
-                    text = "Start Chaos",
-                    style = MaterialTheme.typography.labelLarge,
-                    color = HelldeckColors.colorOnDark
-                )
-            }
+                modifier = Modifier.fillMaxWidth(),
+                icon = {
+                    Text("🎲", style = MaterialTheme.typography.bodyLarge)
+                }
+            )
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
@@ -176,7 +172,7 @@ fun HomeScene(vm: HelldeckVm) {
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
-                text = "Single-phone party game • 3–12 players • 14 mini-games",
+                text = "Single-phone party game • 3–16 players • ${GameMetadata.getAllGames().size} mini-games",
                 style = MaterialTheme.typography.labelSmall,
                 color = HelldeckColors.colorMuted
             )

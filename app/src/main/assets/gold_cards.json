@@ -1,1009 +1,3315 @@
 {
   "version": "2.0",
-  "description": "High-quality gold standard cards for all 14 games. These serve as examples for LLM generation and emergency fallbacks.",
+  "description": "Gold Standard Training Data - 700+ Premium Cards",
   "games": {
     "roast_consensus": {
       "game_name": "Roast Consensus",
-      "quality_criteria": {
-        "structure": "Most likely to [SPECIFIC ACTION] because [ABSURD BUT BELIEVABLE REASON]",
-        "length": "10-20 words",
-        "tone": "Playful roast, not cruel",
-        "key_elements": ["Specificity", "Absurdity", "Relatability", "Unexpectedness"]
-      },
       "cards": [
         {
-          "text": "Most likely to get into a philosophical debate with a Roomba because they think it's judging their life choices",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to become a professional cave dweller because they already live like one",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to argue with a GPS and still get lost because 'I know a shortcut'",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to start a cult accidentally because they gave unsolicited advice at Whole Foods",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Most likely to fail a vibe check from a house plant because even the ficus looks disappointed",
+          "text": "Who would eat mayo straight from the jar at 3am?",
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Most likely to get cancelled by their own shadow because it's tired of following them around",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to lose an argument with a Magic 8-Ball because it told them 'outlook not so good'",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to be banned from a farmer's market because they argued that tomatoes are overrated",
-          "quality_score": 7,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to become a conspiracy theorist about their own cereal because the flakes look suspicious",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Most likely to gaslight themselves into thinking they're the main character when they're clearly an NPC",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Most likely to write a strongly worded Yelp review about the sun because it's 'too bright and aggressive'",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to get into a Twitter fight with a bot and lose because they took it personally",
-          "quality_score": 8,
-          "spice": 3
-        },
-        {
-          "text": "Most likely to ghost their therapist because the therapist asked too many personal questions",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Most likely to become emotionally dependent on their phone's autocorrect because it's the only one who gets them",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to develop a parasocial relationship with their food delivery driver because they see them more than their friends",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Most likely to accidentally join a pyramid scheme thinking it was a book club",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to schedule a meeting just to cancel it because that's the only power they have",
-          "quality_score": 7,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to become a life coach after watching three TED Talks and having one good day",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Most likely to be defeated by IKEA furniture and blame Swedish minimalism for their failures",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Most likely to fake their own death just to see who would come to their funeral",
-          "quality_score": 8,
+          "text": "Who would accidentally like their ex's Instagram post from 2019?",
+          "quality_score": 10,
           "spice": 4
+        },
+        {
+          "text": "Who would get catfished by an obvious bot?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would cry during a Pixar movie in a theater full of children?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would lose a fight to a raccoon?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would wear the same underwear two days in a row on a work trip?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would smell their own armpit in public and not care who sees?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would wave back at someone who wasn't waving at them?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would laugh at a funeral and not be able to stop?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would talk to their pet like it's a human baby in front of strangers?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would practice arguments in the shower for 45 minutes?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would Google themselves at least once a week?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would fight a goose and lose badly?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would get banned from a Costco for sampling too aggressively?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would accidentally start a cult without realizing it?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would eat pizza with a fork and knife at a Super Bowl party?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would put ketchup on a $50 steak?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would microwave fish in the office breakroom?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would get stuck in a baby swing at a playground?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would trip over their own feet while walking on flat ground?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Who would send a risky text to the wrong person?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would get emotional during a car commercial?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would pretend to know a song they've never heard before?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would lie about reading a book they never read?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would fake an orgasm and think they got away with it?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Who would get lost in their own neighborhood?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Who would accidentally send a nude to their family group chat?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Who would cry because their Uber driver was nice to them?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would get fired for something they posted on social media?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would eat food off the floor after the 5-second rule expired?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would pee in the shower and lie about it?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would pretend to be asleep to avoid a conversation?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Who would stalk their crush's entire Instagram history and accidentally like a post from 2016?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would get into a Twitter argument with a teenager and lose?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would cry in a CVS because they don't sell their favorite snack anymore?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would get catcalled and actually respond positively?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would fall for a pyramid scheme?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Who would drunk text their ex at 2am on a Tuesday?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would get kicked out of a library for being too loud?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Who would accidentally join a Zoom call with their camera on while half-naked?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would get banned from a dating app for being too aggressive?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would cry during their own wedding vows?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Who would get arrested at a protest for doing something stupid?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would accidentally reveal a surprise party?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Who would get caught masturbating by their roommate?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Who would fall asleep during sex?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Who would get dumped via text message?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would ghost someone after three dates and feel no remorse?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would get kicked out of an Airbnb for throwing a party?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Who would accidentally send a work email to their entire company?",
+          "quality_score": 10,
+          "spice": 3
+        }
+      ]
+    },
+    "confession_or_cap": {
+      "game_name": "Confession or Cap",
+      "cards": [
+        {
+          "text": "Have you ever peed in the shower?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever pretended to be asleep to avoid a conversation?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever Googled yourself?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever cried during a car commercial?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever practiced a conversation in the mirror?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever pretended to know a song you'd never heard before?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever lied on a resume?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever called in sick when you weren't sick?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever stolen office supplies?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever stalked an ex on social media for over an hour?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever created a fake account to spy on someone?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever unfollowed someone because their posts were annoying?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever ghosted someone after a first date?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever lied about your age on a dating app?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever snooped through a partner's phone?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever pretended to laugh at a joke you didn't understand?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever Googled 'how to tell if someone likes you'?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever lied about reading a book you never read?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever faked an orgasm?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever cheated on a test?",
+          "quality_score": 9,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever stolen something from a store?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever lied to your parents about where you were?",
+          "quality_score": 9,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever pretended to be sick to get out of plans?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever eaten food that fell on the floor?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever worn the same underwear two days in a row?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever gone commando in public?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever sent a risky text to the wrong person?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever accidentally liked your ex's Instagram post from years ago?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever cried in public?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever been kicked out of a bar?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever been arrested?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever cheated on a partner?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever hooked up with someone you met that same night?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever had a threesome?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever sent nudes to someone you barely knew?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever masturbated at work?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever had sex in a public place?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever lied about your body count?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever pretended to be someone else online?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever catfished someone?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Have you ever been catfished?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever lied about your job to impress someone?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever pretended to be rich when you're broke?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever stolen a friend's idea and claimed it as your own?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever talked shit about someone and then acted nice to their face?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever faked being busy to avoid hanging out with someone?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever lied about liking someone's cooking?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever pretended to like a gift you hated?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Have you ever regifted something?",
+          "quality_score": 9,
+          "spice": 3
+        },
+        {
+          "text": "Have you ever lied about your weight?",
+          "quality_score": 9,
+          "spice": 3
         }
       ]
     },
     "poison_pitch": {
       "game_name": "Poison Pitch",
-      "quality_criteria": {
-        "structure": "Would you rather [OPTION A] OR [OPTION B]?",
-        "balance": "Both options equally terrible/awkward",
-        "length": "15-25 words total",
-        "key_elements": ["Specificity", "Equal difficulty", "Visual imagery", "Genuine dilemma"]
-      },
       "cards": [
         {
-          "text": "Would you rather have hiccups every time you lie OR sneeze every time someone says your name?",
-          "optionA": "Hiccups when you lie",
-          "optionB": "Sneeze when name is said",
+          "text": "Would you rather...",
+          "optionA": "Eat a live spider",
+          "optionB": "Lick a subway pole",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Fight one horse-sized duck",
+          "optionB": "Fight 100 duck-sized horses",
           "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Would you rather fight one horse-sized duck OR explain cryptocurrency to your grandma every single day for a year?",
-          "optionA": "Fight horse-sized duck",
-          "optionB": "Explain crypto to grandma daily",
+          "text": "Would you rather...",
+          "optionA": "Have permanent hiccups",
+          "optionB": "Always smell like garlic",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Drunk text your boss",
+          "optionB": "Drunk text your ex",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Accidentally send a nude to your family group chat",
+          "optionB": "Accidentally send a nude to your work Slack",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Be known as 'the person who cries at work'",
+          "optionB": "Be known as 'the person who never washes their hands'",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Steal from a charity",
+          "optionB": "Lie under oath",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Cheat to win $1 million",
+          "optionB": "Play fair and lose",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Save your pet",
+          "optionB": "Save a stranger's child",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Fight a bear with a spoon",
+          "optionB": "Seduce a bear with poetry",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have fingers for toes",
+          "optionB": "Have toes for fingers",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Speak only in rhymes",
+          "optionB": "Sing everything you say",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Never be able to use your phone again",
+          "optionB": "Never be able to eat your favorite food again",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Always be 10 minutes late",
+          "optionB": "Always be 20 minutes early",
           "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Would you rather only be able to whisper OR only be able to shout for the rest of your life?",
-          "optionA": "Only whisper forever",
-          "optionB": "Only shout forever",
-          "quality_score": 8,
+          "text": "Would you rather...",
+          "optionA": "Have to announce every time you fart",
+          "optionB": "Have to ask permission every time you want to speak",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have everyone you love forget you",
+          "optionB": "Forget everyone you love",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Be able to read minds but never turn it off",
+          "optionB": "Have everyone able to read your mind",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Live without music",
+          "optionB": "Live without movies",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Would you rather have wet socks forever OR have to rewatch the worst movie you've ever seen once a week for eternity?",
-          "optionA": "Wet socks forever",
-          "optionB": "Rewatch worst movie weekly",
-          "quality_score": 8,
+          "text": "Would you rather...",
+          "optionA": "Have a rewind button for your life",
+          "optionB": "Have a pause button for your life",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Always have to say what you're thinking",
+          "optionB": "Never be able to speak again",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Fight Mike Tyson once",
+          "optionB": "Talk like Mike Tyson forever",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Eat only pizza for the rest of your life",
+          "optionB": "Never eat pizza again",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Would you rather sweat mayonnaise OR cry hot sauce?",
+          "text": "Would you rather...",
+          "optionA": "Have unlimited money but no friends",
+          "optionB": "Have amazing friends but always be broke",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Be famous but hated",
+          "optionB": "Be unknown but loved",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Know when you're going to die",
+          "optionB": "Know how you're going to die",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Be able to fly but only 3 feet off the ground",
+          "optionB": "Be invisible but only when no one is looking",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have a third nipple",
+          "optionB": "Have no nipples at all",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Would you rather...",
           "optionA": "Sweat mayonnaise",
           "optionB": "Cry hot sauce",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather have all your thoughts narrated by Morgan Freeman OR have elevator music play whenever you walk into a room?",
-          "optionA": "Morgan Freeman narrates thoughts",
-          "optionB": "Elevator music entrance",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather burp confetti OR fart glitter?",
-          "optionA": "Burp confetti",
-          "optionB": "Fart glitter",
-          "quality_score": 7,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather have fingers as long as your legs OR legs as short as your fingers?",
-          "optionA": "Fingers as long as legs",
-          "optionB": "Legs as short as fingers",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather always have to tell the truth during job interviews OR always have to lie to your mom?",
-          "optionA": "Always honest in interviews",
-          "optionB": "Always lie to mom",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather have a rewind button for your life but only for the last 3 seconds OR a pause button but only for 10 seconds once a day?",
-          "optionA": "Rewind 3 seconds",
-          "optionB": "Pause 10 seconds once/day",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather have your browser history made public OR your bank statement made public?",
-          "optionA": "Browser history public",
-          "optionB": "Bank statement public",
           "quality_score": 10,
-          "spice": 4
-        },
-        {
-          "text": "Would you rather have to dance every time you hear music OR have to sing everything you say?",
-          "optionA": "Dance to all music",
-          "optionB": "Sing everything",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather be able to talk to animals but they're all incredibly rude OR be able to read minds but only negative thoughts?",
-          "optionA": "Talk to rude animals",
-          "optionB": "Read only negative thoughts",
-          "quality_score": 9,
           "spice": 3
         },
         {
-          "text": "Would you rather have a permanent clown face OR permanent clown shoes that squeak?",
-          "optionA": "Permanent clown face",
-          "optionB": "Squeaky clown shoes forever",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather have your phone die at 90% OR never be able to charge it past 15%?",
-          "optionA": "Dies at 90%",
-          "optionB": "Max charge 15%",
-          "quality_score": 7,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather always smell like garlic OR always taste soap?",
-          "optionA": "Smell like garlic forever",
-          "optionB": "Taste soap forever",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather live in a world where everyone can hear your thoughts OR a world where you can't use technology?",
-          "optionA": "Everyone hears your thoughts",
-          "optionB": "No technology ever",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather have an undo button for life but only 3 uses ever OR a fast-forward button but you can't control where it stops?",
-          "optionA": "3 life undos",
-          "optionB": "Uncontrolled fast-forward",
+          "text": "Would you rather...",
+          "optionA": "Have a tail",
+          "optionB": "Have horns",
           "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Would you rather have all your exes in a group chat together OR have your parents follow all your social media burner accounts?",
-          "optionA": "Exes in group chat",
-          "optionB": "Parents follow burners",
+          "text": "Would you rather...",
+          "optionA": "Only be able to whisper",
+          "optionB": "Only be able to shout",
           "quality_score": 10,
-          "spice": 4
+          "spice": 2
         },
         {
-          "text": "Would you rather sneeze every time you orgasm OR orgasm every time you sneeze?",
-          "optionA": "Sneeze during orgasm",
-          "optionB": "Orgasm during sneeze",
+          "text": "Would you rather...",
+          "optionA": "Have no elbows",
+          "optionB": "Have no knees",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Be allergic to your favorite food",
+          "optionB": "Be allergic to your phone",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have to wear wet socks every day",
+          "optionB": "Have to sleep on a wet pillow every night",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have teeth for hair",
+          "optionB": "Have hair for teeth",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Only be able to eat food that's been blended",
+          "optionB": "Only be able to eat food that's been burnt",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have a permanent unibrow",
+          "optionB": "Have no eyebrows at all",
           "quality_score": 9,
-          "spice": 5
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Always smell like onions",
+          "optionB": "Always smell like fish",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have to wear clown shoes everywhere",
+          "optionB": "Have to wear a clown nose everywhere",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Only be able to communicate through interpretive dance",
+          "optionB": "Only be able to communicate through mime",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have a permanent wedgie",
+          "optionB": "Have a permanent itch you can't scratch",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Sneeze every time you see someone attractive",
+          "optionB": "Hiccup every time you lie",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have to narrate your life out loud",
+          "optionB": "Have someone else narrate your life out loud",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Only be able to walk backwards",
+          "optionB": "Only be able to run everywhere",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have a permanent brain freeze",
+          "optionB": "Have permanent pins and needles in your feet",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Only be able to eat with your hands",
+          "optionB": "Only be able to eat with chopsticks",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have to wear a helmet everywhere",
+          "optionB": "Have to wear floaties everywhere",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Only be able to drink through a straw",
+          "optionB": "Only be able to drink from a baby bottle",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have a laugh that sounds like a car alarm",
+          "optionB": "Have a sneeze that sounds like a foghorn",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Only be able to wear clothes that are two sizes too small",
+          "optionB": "Only be able to wear clothes that are two sizes too big",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather...",
+          "optionA": "Have to do the Macarena every time you hear music",
+          "optionB": "Have to dab every time someone says your name",
+          "quality_score": 10,
+          "spice": 2
         }
       ]
     },
     "fill_in_finisher": {
       "game_name": "Fill-In Finisher",
-      "quality_criteria": {
-        "structure": "Two-blank prompt: Judge fills first blank verbally, others write punchlines for second blank",
-        "openness": "First blank invites setup, second blank invites punchline",
-        "length": "10-20 words with two blanks marked",
-        "key_elements": ["Two blanks", "Setup/punchline structure", "Judge customizable", "Funny potential"]
-      },
       "cards": [
         {
-          "text": "I got kicked out of _____ for _____",
-          "first_blank_hint": "a place",
-          "second_blank_hint": "punchline reason",
+          "text": "I got arrested for _____, and the cop said _____.",
           "quality_score": 10,
-          "spice": 2
+          "spice": 4
         },
         {
-          "text": "The worst part about _____ is _____",
-          "first_blank_hint": "situation/topic",
-          "second_blank_hint": "punchline consequence",
-          "quality_score": 9,
-          "spice": 2
+          "text": "I got kicked out of _____ for _____, and now I'm banned from _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "Nothing ruins a first date faster than _____ followed by _____",
-          "first_blank_hint": "action/event",
-          "second_blank_hint": "punchline escalation",
-          "quality_score": 9,
-          "spice": 3
+          "text": "I got fired from my job for _____, and my boss told me _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "My therapist said _____ but I heard _____",
-          "first_blank_hint": "advice",
-          "second_blank_hint": "misinterpretation punchline",
-          "quality_score": 9,
-          "spice": 2
+          "text": "I broke up with my ex because of _____, and now they're dating _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "I thought _____ was a good idea until _____",
-          "first_blank_hint": "action/plan",
-          "second_blank_hint": "what went wrong",
-          "quality_score": 9,
-          "spice": 2
+          "text": "My Tinder date went wrong when they said _____, and I responded with _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "The ick that ruins a 10/10 is when they _____ and then _____",
-          "first_blank_hint": "behavior",
-          "second_blank_hint": "what makes it worse",
-          "quality_score": 9,
-          "spice": 3
+          "text": "I got ghosted after I mentioned _____, and now I realize _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "Scientists discovered that _____ is actually caused by _____",
-          "first_blank_hint": "phenomenon",
-          "second_blank_hint": "absurd cause",
-          "quality_score": 8,
-          "spice": 2
+          "text": "I didn't get the job because I mentioned _____, and the interviewer said _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "Breaking news: _____ has been cancelled due to _____",
-          "first_blank_hint": "event/thing",
-          "second_blank_hint": "ridiculous reason",
-          "quality_score": 9,
-          "spice": 2
+          "text": "My coworker got fired for _____, and HR sent an email about _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "My villain origin story started with _____ and ended with _____",
-          "first_blank_hint": "event",
-          "second_blank_hint": "dark conclusion",
+          "text": "I quit my job after my boss asked me to _____, and I told them _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Thanksgiving was ruined when someone brought up _____, and Grandma said _____.",
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "I didn't believe in _____ until I saw _____",
-          "first_blank_hint": "concept/thing",
-          "second_blank_hint": "what convinced them",
-          "quality_score": 8,
-          "spice": 2
+          "text": "My parents found out about _____, and now they think I'm _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "Every time I try _____ I end up _____",
-          "first_blank_hint": "activity",
-          "second_blank_hint": "unexpected result",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "The real reason _____ is banned is because _____",
-          "first_blank_hint": "thing/activity",
-          "second_blank_hint": "secret reason",
-          "quality_score": 9,
+          "text": "Christmas dinner got awkward when my uncle started talking about _____, and my mom said _____.",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "If you see _____ you should immediately _____",
-          "first_blank_hint": "person/thing",
-          "second_blank_hint": "extreme reaction",
-          "quality_score": 8,
-          "spice": 2
+          "text": "I embarrassed myself at _____ by _____, and everyone saw _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "The moment I knew _____ was over was when _____",
-          "first_blank_hint": "relationship/era",
-          "second_blank_hint": "final straw",
-          "quality_score": 9,
+          "text": "I accidentally said _____ in front of _____, and now they think I'm _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I got caught _____ at _____, and the security guard said _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I went to the doctor for _____, and they diagnosed me with _____.",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "People say _____ is bad but wait until they try _____",
-          "first_blank_hint": "thing",
-          "second_blank_hint": "something worse",
-          "quality_score": 8,
-          "spice": 2
+          "text": "The ER nurse asked me about _____, and I had to explain _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "The secret ingredient in _____ is actually _____",
-          "first_blank_hint": "food/thing",
-          "second_blank_hint": "shocking ingredient",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "I was today years old when I learned _____ causes _____",
-          "first_blank_hint": "thing",
-          "second_blank_hint": "unexpected effect",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "My toxic trait at _____ is _____",
-          "first_blank_hint": "location/event",
-          "second_blank_hint": "behavior",
-          "quality_score": 9,
+          "text": "I Googled my symptoms and found out I have _____, but the doctor said it's actually _____.",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "They don't teach you in school that _____ leads to _____",
-          "first_blank_hint": "thing",
-          "second_blank_hint": "consequence",
-          "quality_score": 8,
-          "spice": 2
+          "text": "I got kicked out of Disney World for _____, and now I'm banned from _____.",
+          "quality_score": 10,
+          "spice": 4
         },
         {
-          "text": "The last thing you want to hear at _____ is _____",
-          "first_blank_hint": "location",
-          "second_blank_hint": "alarming statement",
-          "quality_score": 9,
+          "text": "My therapist asked about _____, and I realized I need to talk about _____.",
+          "quality_score": 10,
           "spice": 3
+        },
+        {
+          "text": "I tried to impress my date by _____, but they just said _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I got banned from _____ for _____, and the manager said I was 'a threat to society'.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My roommate walked in on me _____, and now we don't make eye contact.",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "I accidentally sent _____ to _____, and they replied with _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I got drunk and _____, and the next morning I found out _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My ex texted me _____, and I responded with _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I matched with someone on Tinder who turned out to be _____, and I _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I got catfished by someone who claimed to be _____, but was actually _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My dating profile says _____, but in reality I'm _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I swiped right on _____, and they super liked me back because _____.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "I got reported on a dating app for _____, and now I'm _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My Hinge prompt says _____, and my most controversial opinion is _____.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "I unmatched with someone because they said _____, and I couldn't get past _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My worst first date involved _____, and it ended with _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I knew the relationship was over when they _____, and I realized _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My biggest red flag is _____, but I tell people it's _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I got blocked by someone after I _____, and honestly _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My toxic trait is _____, and my friends say I need to _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I'm not allowed back at _____ because I _____, and the staff still remembers _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My most embarrassing Google search is _____, and I can't believe I also searched _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I lied to my parents about _____, and they still don't know about _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My FBI agent has seen me _____, and probably thinks I'm _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I pretended to be _____ to get out of _____, and it actually worked.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My screen time report says I spent _____ hours on _____, and I'm not okay.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "I got called out for _____, and my defense was _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My biggest regret is _____, and I'd do it again if _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I'm banned from family gatherings because of _____, and honestly _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My search history would reveal _____, and I'd have to explain _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "I got exposed for _____, and now everyone knows about _____.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "My worst habit is _____, and my friends have staged an intervention about _____.",
+          "quality_score": 10,
+          "spice": 4
         }
       ]
     },
     "red_flag_rally": {
       "game_name": "Red Flag Rally",
-      "quality_criteria": {
-        "structure": "They're perfect: [ATTRACTIVE QUALITY], but [DEALBREAKER RED FLAG]",
-        "balance": "Green flag must be genuinely appealing, red flag must be absurd dealbreaker",
-        "length": "15-25 words",
-        "key_elements": ["Contrast", "Defensibility", "Absurdity", "Specificity"]
-      },
       "cards": [
         {
-          "text": "They're perfect: great cook, amazing smile, but they refer to their ex as 'the one that got away' daily",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "They're perfect: fit, funny, rich, but they don't believe in cleaning dishes 'because germs build immunity'",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "They're perfect: smart, attractive, kind, but they think the earth is flat and won't stop bringing it up",
-          "quality_score": 8,
-          "spice": 3
-        },
-        {
-          "text": "They're perfect: successful, charming, great in bed, but they collect toenail clippings in labeled jars",
+          "perk": "They're a billionaire",
+          "red_flag": "They don't believe in washing hands",
           "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "They're perfect: artistic, passionate, attentive, but they cry every single time they see a bird",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "They're perfect: hilarious, caring, loyal, but they exclusively communicate in movie quotes after 8pm",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "They're perfect: thoughtful, adventurous, genuine, but they insist on bringing their emotional support chicken everywhere",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "They're perfect: brilliant, gorgeous, supportive, but they've never seen a single movie and refuse to start",
-          "quality_score": 7,
-          "spice": 2
-        },
-        {
-          "text": "They're perfect: wealthy, ambitious, romantic, but they still use a Hotmail address and won't change it",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "They're perfect: talented, humble, affectionate, but they insist their cryptocurrency will make you rich 'any day now'",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "They're perfect: cultured, well-traveled, educated, but they chew with their mouth open and think it's 'authentic'",
-          "quality_score": 8,
-          "spice": 3
-        },
-        {
-          "text": "They're perfect: athletic, charismatic, successful, but they talk to their mom on speakerphone during dates",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "They're perfect: creative, spontaneous, fun, but they've already picked out baby names and you met yesterday",
+          "perk": "They're a supermodel",
+          "red_flag": "They think the Earth is flat",
           "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "They're perfect: stable, mature, responsible, but they sleep in a racecar bed and call it 'nostalgic'",
-          "quality_score": 8,
+          "perk": "They own a private island",
+          "red_flag": "They collect human teeth",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're hilarious",
+          "red_flag": "They talk to their plants like children",
+          "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "They're perfect: compassionate, intelligent, driven, but they don't 'believe' in deodorant as a lifestyle choice",
-          "quality_score": 9,
+          "perk": "They're incredibly smart",
+          "red_flag": "They only eat chicken nuggets",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're great in bed",
+          "red_flag": "They sleep in a race car bed",
+          "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "They're perfect: witty, generous, respectful, but they collect Funko Pops and the collection has its own bedroom",
-          "quality_score": 8,
+          "perk": "They're a doctor who will take care of you forever",
+          "red_flag": "They're in a cult",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They'll pay off all your debt",
+          "red_flag": "They want you to quit your job and be a stay-at-home partner",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're your soulmate",
+          "red_flag": "They have 47 cats",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "They're perfect: kind, patient, understanding, but they've never once washed their coffee mug and it's 'seasoned like a cast iron'",
+          "perk": "They're really into astrology",
+          "red_flag": "They also think vaccines cause autism",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're a TikTok influencer",
+          "red_flag": "They film pranks on homeless people",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're vegan",
+          "red_flag": "They judge everyone who isn't",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're perfect in every way",
+          "red_flag": "Their family hates you and will never accept you",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They want to get married immediately",
+          "red_flag": "They also want 10 kids",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They'll move anywhere for you",
+          "red_flag": "They expect you to do the same for them",
           "quality_score": 9,
           "spice": 3
         },
         {
-          "text": "They're perfect: motivated, organized, sweet, but they exclusively listen to Nickelback and defend it passionately",
-          "quality_score": 8,
+          "perk": "They're incredible in bed",
+          "red_flag": "They insist on role-playing as historical figures",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're extremely attractive",
+          "red_flag": "They want to film everything",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They have a great body",
+          "red_flag": "They only want to have sex in public places",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're a chef who will cook for you every day",
+          "red_flag": "They only make food from the medieval era",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're your celebrity crush",
+          "red_flag": "They want you to join their pyramid scheme",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're independently wealthy",
+          "red_flag": "They spend all their money on Funko Pops",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a professional athlete",
+          "red_flag": "They're also a flat-earther",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a famous musician",
+          "red_flag": "They only write songs about their ex",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a successful entrepreneur",
+          "red_flag": "They made their money selling essential oils",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're incredibly romantic",
+          "red_flag": "They write you poetry every single day",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "They're perfect: empathetic, sexy, interesting, but they post Instagram stories of every single meal with #blessed",
-          "quality_score": 8,
+          "perk": "They're adventurous and spontaneous",
+          "red_flag": "They've been arrested in 12 countries",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a talented artist",
+          "red_flag": "They only paint portraits of you while you sleep",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a genius programmer",
+          "red_flag": "They've hacked into your accounts to 'protect you'",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're a professional gamer",
+          "red_flag": "They rage quit and break controllers regularly",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "They're perfect: confident, protective, loving, but they've been in a parasocial relationship with a Twitch streamer for 4 years",
+          "perk": "They're a yoga instructor",
+          "red_flag": "They insist you do couples yoga every morning at 5am",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a successful lawyer",
+          "red_flag": "They argue with you about everything using legal jargon",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a veterinarian",
+          "red_flag": "They love animals more than humans",
           "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "perk": "They're a professional photographer",
+          "red_flag": "They document every moment of your relationship",
+          "quality_score": 9,
+          "spice": 3
+        },
+        {
+          "perk": "They're a bestselling author",
+          "red_flag": "They're writing a book about your relationship without telling you",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a marine biologist",
+          "red_flag": "They smell like fish constantly",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a professional dancer",
+          "red_flag": "They choreograph every aspect of your life",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "perk": "They're a sommelier",
+          "red_flag": "They're a wine snob who judges your Two Buck Chuck",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a personal trainer",
+          "red_flag": "They count your calories and judge your food choices",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a travel blogger",
+          "red_flag": "They're never home and expect you to fund their trips",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a stand-up comedian",
+          "red_flag": "They use your relationship as material",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a professional cuddler",
+          "red_flag": "They cuddle other people for money",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a trust fund baby",
+          "red_flag": "They've never worked a day in their life and don't plan to",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a professional matchmaker",
+          "red_flag": "They're constantly trying to set up your friends",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "perk": "They're a meditation guru",
+          "red_flag": "They refuse to acknowledge negative emotions",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a professional voice actor",
+          "red_flag": "They do character voices during sex",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're a cryptozoologist",
+          "red_flag": "They genuinely believe Bigfoot is real and won't shut up about it",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a professional magician",
+          "red_flag": "They never reveal their secrets, even about important things",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "perk": "They're a taxidermist",
+          "red_flag": "They want to stuff your pets when they die",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "perk": "They're a professional clown",
+          "red_flag": "They're in full makeup and costume 24/7",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "perk": "They're a conspiracy theorist podcaster",
+          "red_flag": "They think your relationship is a government psyop",
+          "quality_score": 10,
           "spice": 4
         }
       ]
     },
-    "hotseat_imposter": {
+    "hot_seat_imposter": {
       "game_name": "Hot Seat Imposter",
-      "quality_criteria": {
-        "structure": "Personal question that everyone answers AS the target",
-        "length": "5-12 words",
-        "key_elements": ["Personal", "Revealing", "Fun to impersonate", "Not too invasive"]
-      },
       "cards": [
         {
-          "text": "What would you do if you won the lottery tomorrow?",
-          "quality_score": 7,
+          "text": "What's your favorite food?",
+          "quality_score": 9,
           "spice": 1
         },
         {
-          "text": "What's your signature dance move called?",
+          "text": "What's your biggest pet peeve?",
           "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Describe your morning routine in exactly 3 words",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "What would your WWE entrance song be?",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "What's the weirdest thing in your search history right now?",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "If you were a kitchen appliance, which one and why?",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "What's your most embarrassing Spotify playlist called?",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "What conspiracy theory do you secretly believe?",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "What's your toxic trait in group chats?",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "If your life had a theme song, what would it be?",
-          "quality_score": 7,
-          "spice": 2
-        },
-        {
-          "text": "What food would you fight someone over?",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "What's the pettiest thing you've ever done?",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "What would you name your autobiography?",
-          "quality_score": 8,
           "spice": 2
         },
         {
           "text": "What's your go-to karaoke song?",
-          "quality_score": 7,
+          "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "If you could haunt one person after you die, who and why?",
-          "quality_score": 9,
+          "text": "What did you do last Tuesday?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "What's the last thing you bought online?",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "What's your most unhinged 3am thought?",
-          "quality_score": 9,
+          "text": "What's the last text message you sent?",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "What emoji best represents your personality?",
-          "quality_score": 7,
+          "text": "What's the name of your childhood pet?",
+          "quality_score": 9,
           "spice": 1
         },
         {
-          "text": "What hill are you willing to die on?",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "If you were a villain, what would your evil plan be?",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "What's your weirdest flex that you're secretly proud of?",
+          "text": "What's your middle name?",
           "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "What's your biggest fear?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "What's your most embarrassing moment?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's the dumbest thing you've ever done?",
+          "quality_score": 10,
           "spice": 3
+        },
+        {
+          "text": "What's your worst habit?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "If you won the lottery, what's the first thing you'd buy?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "If you could have dinner with anyone, dead or alive, who would it be?",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "If you had to fight one person in this room, who would it be?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "What's your phone lock screen?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "What's the last thing you Googled?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "What's your most-played song on Spotify?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "What's the weirdest thing in your search history right now?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "If you had to delete one app from your phone forever, which would it be?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "What's the last thing you cried about?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "What's your toxic trait?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's your biggest red flag?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's the worst lie you've ever told?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's something you've never told anyone?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "What's your body count?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "What's the most illegal thing you've done?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "What's your biggest regret?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's the meanest thing you've ever said to someone?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's your most unpopular opinion?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "What's something you judge people for?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "What's your guilty pleasure?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "What's the last thing you lied about?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's your screen time average per day?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "How many unread texts do you have right now?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "How many times have you stalked your ex this week?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "What's the worst thing in your camera roll?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "What's your most used emoji?",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "What's the last thing you ordered on DoorDash?",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "What's your Uber rating?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "How many dating apps are you on?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's your dating app bio?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "What's the worst pickup line you've used?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's the worst date you've been on?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever been ghosted? By who?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Have you ever ghosted someone? Why?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's the pettiest thing you've ever done?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "What's something you're secretly proud of?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "What's something you're secretly ashamed of?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "If you could erase one memory, what would it be?",
+          "quality_score": 10,
+          "spice": 4
         }
       ]
     },
     "text_thread_trap": {
       "game_name": "Text Thread Trap",
-      "quality_criteria": {
-        "structure": "[PERSON] texts: '[MESSAGE]' - Pick your reply vibe",
-        "length": "10-20 words",
-        "key_elements": ["Relatable", "Multiple viable tones", "Awkward or high-stakes", "Modern"]
-      },
       "cards": [
         {
-          "text": "Your crush texts: 'what are you up to this weekend?'",
-          "tones": ["Flirty", "Oblivious", "Chaotic", "Casual"],
-          "quality_score": 8,
+          "text": "Ex: Can we talk? I miss you.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Partner: Who is Alex and why are they texting you at 2am?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Crush: I think we should just be friends.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Boss: Can you come to my office? We need to discuss something.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "HR: We received a complaint about your behavior at the holiday party.",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Coworker: Did you mean to send that email to the entire company?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Mom: How do I delete Facebook? I think I got hacked.",
+          "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Your ex texts: 'I miss us'",
-          "tones": ["Petty", "Wholesome", "Cold", "Chaotic"],
+          "text": "Dad: I accidentally posted a photo of my feet. How do I remove it?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Grandma: What is a 'meme'? Your cousin keeps sending me pictures of frogs.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Unknown: The package is ready. Meet me at the usual spot.",
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Your boss texts at 11pm: 'quick question...'",
-          "tones": ["Professional", "Passive-Aggressive", "Panicked", "Ignore"],
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Unknown number: 'hey remember me?'",
-          "tones": ["Confused", "Flirty", "Suspicious", "Enthusiastic"],
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Your mom: 'We need to talk when you get home'",
-          "tones": ["Scared", "Defensive", "Casual", "Deflecting"],
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Group chat: 'Who ate my leftovers?'",
-          "tones": ["Guilty", "Innocent", "Chaotic", "Detective"],
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Your roommate: 'can we talk about the dishes?'",
-          "tones": ["Apologetic", "Defensive", "Gaslighting", "Oblivious"],
-          "quality_score": 8,
-          "spice": 3
-        },
-        {
-          "text": "Tinder match: 'send pics'",
-          "tones": ["Flirty", "Unhinged", "Wholesome", "Block"],
-          "quality_score": 9,
+          "text": "Unknown: I know what you did. We need to talk.",
+          "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "Friend: 'I have drama to tell you'",
-          "tones": ["Excited", "Tired", "Investigative", "Chaotic"],
-          "quality_score": 7,
+          "text": "Unknown: Is this the number for the pizza place? I need 47 pizzas delivered to the park.",
+          "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Delivery driver: 'I'm outside but I don't see you'",
-          "tones": ["Panicked", "Confused", "Lying", "Demanding"],
-          "quality_score": 7,
+          "text": "Group Chat: Why did you leave the party without saying goodbye?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Group Chat: We're voting on where to eat. You're the tiebreaker.",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Dad: 'Call me when you can'",
-          "tones": ["Worried", "Casual", "Avoiding", "Professional"],
-          "quality_score": 8,
+          "text": "Group Chat: Did you really say that about Sarah? She's in this chat.",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Mom: Your father is in the hospital. Call me.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Roommate: The apartment is flooding. Where are you?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Friend: I'm stranded. Can you pick me up?",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Person you ghosted: 'you there?'",
-          "tones": ["Guilty", "Cold", "Friendly", "Panicked"],
+          "text": "Ex: I still have your hoodie. Want it back?",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Boss: Are you available for a quick call?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Mom: We need to talk about your life choices.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Tinder Match: So... your place or mine?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Ex's New Partner: We need to talk about boundaries.",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Landlord: Your rent is late. Again.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Bank: Your account is overdrawn by $500.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "IRS: We need to discuss your tax return.",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Dentist: You missed your appointment. Again.",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Gym: Your membership has been inactive for 6 months.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Student Loans: Your payment is overdue.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Dating App: You have 99+ likes!",
           "quality_score": 9,
           "spice": 3
         },
         {
-          "text": "Sibling: 'Mom found your thing'",
-          "tones": ["Scared", "Confused", "Denial", "Bargaining"],
-          "quality_score": 9,
+          "text": "Friend: I saw your ex with someone new.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Sibling: Mom's asking about you. What should I tell her?",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Coworker: 'did you finish the thing?'",
-          "tones": ["Confident", "Lying", "Panicked", "Gaslighting"],
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Wrong number: 'the package has been delivered'",
-          "tones": ["Confused", "Play Along", "Spy Mode", "Correct Them"],
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "Friend's partner: 'can I ask you something about [friend]?'",
-          "tones": ["Helpful", "Suspicious", "Evasive", "Chaotic"],
-          "quality_score": 9,
+          "text": "Therapist: You missed our session. Everything okay?",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Gym buddy: 'you coming today?'",
-          "tones": ["Motivated", "Lying", "Sick", "Avoiding"],
-          "quality_score": 7,
+          "text": "Pharmacy: Your prescription is ready for pickup.",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Dentist office: 'You missed your appointment'",
-          "tones": ["Apologetic", "Gaslighting", "Angry", "Confused"],
-          "quality_score": 7,
+          "text": "Uber Driver: I'm outside. Where are you?",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Person from high school: 'omg how have you been??'",
-          "tones": ["Fake Happy", "Honest", "Suspicious", "Short"],
+          "text": "DoorDash: Your order has been delivered.",
           "quality_score": 8,
+          "spice": 1
+        },
+        {
+          "text": "Amazon: Your package was delivered to a neighbor.",
+          "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Your therapist: 'Looking forward to our session tomorrow'",
-          "tones": ["Excited", "Dread", "Canceling", "Professional"],
-          "quality_score": 8,
+          "text": "Netflix: Are you still watching?",
+          "quality_score": 9,
           "spice": 2
+        },
+        {
+          "text": "Apple: Your iCloud storage is full.",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Venmo: You owe [Friend] $47 for last night.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Neighbor: Your dog won't stop barking.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "HOA: We need to discuss your lawn.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Police: We have some questions for you.",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Court: You have a summons.",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Collection Agency: We've been trying to reach you.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Insurance: Your claim has been denied.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Doctor: Your test results are in. Call me.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "School: Your child got in a fight today.",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Airline: Your flight has been cancelled.",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Hotel: We need to discuss the damages to your room.",
+          "quality_score": 10,
+          "spice": 4
         }
       ]
     },
     "taboo_timer": {
       "game_name": "Taboo Timer",
-      "quality_criteria": {
-        "structure": "Word to guess + 3 forbidden words",
-        "difficulty": "Challenging but achievable",
-        "key_elements": ["Common word", "Obvious forbidden words", "Creative description needed"]
-      },
       "cards": [
-        {"word": "Coffee", "forbidden": ["drink", "caffeine", "Starbucks"], "quality_score": 8, "spice": 1},
-        {"word": "TikTok", "forbidden": ["app", "video", "dance"], "quality_score": 8, "spice": 2},
-        {"word": "Hangover", "forbidden": ["alcohol", "headache", "drink"], "quality_score": 8, "spice": 3},
-        {"word": "Selfie", "forbidden": ["photo", "phone", "Instagram"], "quality_score": 7, "spice": 2},
-        {"word": "Meme", "forbidden": ["funny", "internet", "picture"], "quality_score": 8, "spice": 2},
-        {"word": "Vegan", "forbidden": ["meat", "food", "diet"], "quality_score": 7, "spice": 2},
-        {"word": "Influencer", "forbidden": ["social media", "Instagram", "famous"], "quality_score": 8, "spice": 2},
-        {"word": "Ghosting", "forbidden": ["dating", "ignore", "text"], "quality_score": 9, "spice": 3},
-        {"word": "Cringe", "forbidden": ["awkward", "embarrassing", "uncomfortable"], "quality_score": 8, "spice": 2},
-        {"word": "Catfish", "forbidden": ["fake", "dating", "online"], "quality_score": 8, "spice": 3},
-        {"word": "Bitcoin", "forbidden": ["crypto", "money", "digital"], "quality_score": 8, "spice": 2},
-        {"word": "Therapy", "forbidden": ["mental health", "counseling", "talk"], "quality_score": 7, "spice": 2},
-        {"word": "Sushi", "forbidden": ["fish", "rice", "Japanese"], "quality_score": 7, "spice": 1},
-        {"word": "Marathon", "forbidden": ["run", "race", "26"], "quality_score": 7, "spice": 1},
-        {"word": "Podcast", "forbidden": ["audio", "listen", "show"], "quality_score": 8, "spice": 2},
-        {"word": "Adulting", "forbidden": ["responsibility", "grown-up", "bills"], "quality_score": 8, "spice": 2},
-        {"word": "FOMO", "forbidden": ["fear", "missing out", "anxiety"], "quality_score": 8, "spice": 2},
-        {"word": "Brunch", "forbidden": ["breakfast", "lunch", "meal"], "quality_score": 7, "spice": 1},
-        {"word": "Spotify", "forbidden": ["music", "stream", "playlist"], "quality_score": 7, "spice": 1},
-        {"word": "Gaslighting", "forbidden": ["manipulation", "lying", "crazy"], "quality_score": 9, "spice": 3}
+        {
+          "text": "PIZZA",
+          "forbidden_words": ["Cheese", "Italy", "Slice", "Delivery", "Pepperoni"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "LOVE",
+          "forbidden_words": ["Heart", "Feeling", "Romance", "Relationship", "Emotion"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "HARRY POTTER",
+          "forbidden_words": ["Wizard", "Magic", "Hogwarts", "Wand", "Book"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "SPATULA",
+          "forbidden_words": ["Kitchen", "Flip", "Cook", "Pancake", "Utensil"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "RUNNING",
+          "forbidden_words": ["Jog", "Sprint", "Fast", "Exercise", "Legs"],
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "BIRTHDAY",
+          "forbidden_words": ["Cake", "Party", "Age", "Celebrate", "Candles"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "WEDDING",
+          "forbidden_words": ["Bride", "Groom", "Ceremony", "Ring", "Dress"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "COFFEE",
+          "forbidden_words": ["Drink", "Caffeine", "Morning", "Starbucks", "Hot"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "NIGHTMARE",
+          "forbidden_words": ["Dream", "Sleep", "Scary", "Bad", "Night"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "OCEAN",
+          "forbidden_words": ["Water", "Sea", "Blue", "Fish", "Waves"],
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "NOSTALGIA",
+          "forbidden_words": ["Memory", "Past", "Feeling", "Childhood", "Remember"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "SILENCE",
+          "forbidden_words": ["Quiet", "Sound", "Noise", "Speak", "Hear"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "SMARTPHONE",
+          "forbidden_words": ["Phone", "Cell", "iPhone", "Android", "Call"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "NETFLIX",
+          "forbidden_words": ["Streaming", "TV", "Movies", "Watch", "Show"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "INSTAGRAM",
+          "forbidden_words": ["Social", "Media", "Photo", "Post", "App"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "TIKTOK",
+          "forbidden_words": ["Video", "Dance", "App", "Viral", "Short"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "UBER",
+          "forbidden_words": ["Ride", "Car", "Driver", "App", "Taxi"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "AMAZON",
+          "forbidden_words": ["Shopping", "Online", "Delivery", "Prime", "Package"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "ZOOM",
+          "forbidden_words": ["Video", "Call", "Meeting", "Conference", "Online"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "MEME",
+          "forbidden_words": ["Funny", "Internet", "Picture", "Viral", "Joke"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "SELFIE",
+          "forbidden_words": ["Photo", "Picture", "Camera", "Face", "Instagram"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "GHOSTING",
+          "forbidden_words": ["Ignore", "Dating", "Text", "Disappear", "Block"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "CATFISH",
+          "forbidden_words": ["Fake", "Dating", "Online", "Lie", "Profile"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "INFLUENCER",
+          "forbidden_words": ["Social", "Media", "Instagram", "Famous", "Follower"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "CRYPTOCURRENCY",
+          "forbidden_words": ["Bitcoin", "Money", "Digital", "Blockchain", "Invest"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "PODCAST",
+          "forbidden_words": ["Audio", "Listen", "Show", "Episode", "Talk"],
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "VEGAN",
+          "forbidden_words": ["Food", "Meat", "Animal", "Plant", "Diet"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "YOGA",
+          "forbidden_words": ["Exercise", "Stretch", "Meditation", "Mat", "Pose"],
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "THERAPY",
+          "forbidden_words": ["Mental", "Health", "Counseling", "Talk", "Doctor"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "ANXIETY",
+          "forbidden_words": ["Worry", "Stress", "Fear", "Nervous", "Panic"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "DEPRESSION",
+          "forbidden_words": ["Sad", "Mental", "Health", "Mood", "Down"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "BURNOUT",
+          "forbidden_words": ["Work", "Tired", "Exhausted", "Stress", "Job"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "STUDENT LOANS",
+          "forbidden_words": ["Debt", "Money", "College", "Pay", "School"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "RENT",
+          "forbidden_words": ["Money", "Apartment", "Pay", "Landlord", "Housing"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "UNEMPLOYMENT",
+          "forbidden_words": ["Job", "Work", "Money", "Fired", "Jobless"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "INFLATION",
+          "forbidden_words": ["Money", "Price", "Cost", "Economy", "Expensive"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "CLIMATE CHANGE",
+          "forbidden_words": ["Global", "Warming", "Environment", "Earth", "Temperature"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "PANDEMIC",
+          "forbidden_words": ["COVID", "Virus", "Disease", "Sick", "Outbreak"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "VACCINE",
+          "forbidden_words": ["Shot", "Needle", "Doctor", "Immune", "Disease"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "MASK",
+          "forbidden_words": ["Face", "COVID", "Cover", "Wear", "Protection"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "QUARANTINE",
+          "forbidden_words": ["Isolation", "COVID", "Home", "Lockdown", "Stay"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "REMOTE WORK",
+          "forbidden_words": ["Home", "Job", "Computer", "Zoom", "Office"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "SIDE HUSTLE",
+          "forbidden_words": ["Job", "Money", "Work", "Extra", "Income"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "GIG ECONOMY",
+          "forbidden_words": ["Work", "Job", "Freelance", "Uber", "Contract"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "WORK-LIFE BALANCE",
+          "forbidden_words": ["Job", "Time", "Personal", "Career", "Life"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "IMPOSTER SYNDROME",
+          "forbidden_words": ["Fake", "Doubt", "Confidence", "Work", "Feeling"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "TOXIC POSITIVITY",
+          "forbidden_words": ["Happy", "Positive", "Fake", "Smile", "Good"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "GASLIGHTING",
+          "forbidden_words": ["Manipulate", "Lie", "Crazy", "Reality", "Abuse"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "RED FLAG",
+          "forbidden_words": ["Warning", "Bad", "Sign", "Dating", "Relationship"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "SITUATIONSHIP",
+          "forbidden_words": ["Dating", "Relationship", "Casual", "Undefined", "Complicated"],
+          "quality_score": 10,
+          "spice": 4
+        }
       ]
     },
-    "odd_one_out": {
-      "game_name": "Odd One Out",
-      "quality_criteria": {
-        "structure": "3 items where one doesn't fit",
-        "arguability": "Multiple valid answers, all defensible",
-        "key_elements": ["Debatable", "Not obvious", "Interesting reasoning"]
-      },
+    "the_unifying_theory": {
+      "game_name": "The Unifying Theory",
       "cards": [
-        {"items": ["Pizza", "Tacos", "Salad"], "text": "Which one doesn't belong?", "quality_score": 7, "spice": 1},
-        {"items": ["Dogs", "Cats", "Birds"], "text": "Which one doesn't belong?", "quality_score": 6, "spice": 1},
-        {"items": ["Netflix", "Sleep", "Exercise"], "text": "Which one doesn't belong?", "quality_score": 8, "spice": 2},
-        {"items": ["Crying", "Laughing", "Screaming"], "text": "Which one doesn't belong?", "quality_score": 7, "spice": 2},
-        {"items": ["Therapy", "Wine", "Memes"], "text": "Which coping mechanism doesn't belong?", "quality_score": 9, "spice": 3},
-        {"items": ["Texting", "Calling", "Showing Up"], "text": "Which communication style doesn't belong?", "quality_score": 8, "spice": 2},
-        {"items": ["Ex", "Dentist", "IRS"], "text": "Who would you least want to hear from?", "quality_score": 9, "spice": 3},
-        {"items": ["AI", "Aliens", "Ghosts"], "text": "What's the biggest threat to humanity?", "quality_score": 8, "spice": 2},
-        {"items": ["Rich", "Famous", "Happy"], "text": "Which one doesn't belong?", "quality_score": 8, "spice": 2},
-        {"items": ["Ghosting", "Breadcrumbing", "Haunting"], "text": "Which dating behavior doesn't belong?", "quality_score": 8, "spice": 3},
-        {"items": ["Influencer", "Teacher", "Doctor"], "text": "Which profession doesn't belong?", "quality_score": 7, "spice": 2},
-        {"items": ["TikTok", "LinkedIn", "Tinder"], "text": "Which app doesn't belong?", "quality_score": 8, "spice": 2},
-        {"items": ["Millennials", "Gen Z", "Boomers"], "text": "Which generation doesn't belong?", "quality_score": 7, "spice": 2},
-        {"items": ["Crypto", "NFTs", "Beanie Babies"], "text": "Which investment doesn't belong?", "quality_score": 9, "spice": 3},
-        {"items": ["Astrology", "MBTI", "Enneagram"], "text": "Which personality system doesn't belong?", "quality_score": 8, "spice": 2},
-        {"items": ["Spotify Wrapped", "Screen Time", "Bank Statement"], "text": "What do you least want to see?", "quality_score": 9, "spice": 3},
-        {"items": ["Mom", "Boss", "Ex"], "text": "Who would you least want to see your browser history?", "quality_score": 10, "spice": 4},
-        {"items": ["Hot", "Smart", "Stable"], "text": "Pick two - which one doesn't belong?", "quality_score": 9, "spice": 3},
-        {"items": ["Money", "Love", "Sleep"], "text": "Which one doesn't belong?", "quality_score": 7, "spice": 2},
-        {"items": ["Therapy", "Gym", "Revenge"], "text": "Best post-breakup move - which doesn't belong?", "quality_score": 9, "spice": 3}
+        {
+          "text": "A Catholic Priest, A Referee, A Zebra",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "A Cucumber, The Eiffel Tower, A Sword",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Traffic Cone, A Witch's Hat, A Dunce Cap",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "A Banana, A Boomerang, A Crescent Moon",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Your Ex, The IRS, A Magician",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "A Telemarketer, A Jehovah's Witness, Your Landlord",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "A Clown, A Mime, A Ventriloquist",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "The Moon, A Ham Sandwich, 9/11",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "A Dolphin, A Tax Return, The Color Purple",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "A Rubber Duck, The French Revolution, A Taco",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "A Puppy, A Baby, A Serial Killer",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Christmas, Your Birthday, A Funeral",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Rainbow, A Unicorn, A Colonoscopy",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Shrek, Abraham Lincoln, A Roomba",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Beyoncé, A Dinosaur, The Titanic",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "SpongeBob, The Bible, A Microwave",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "A Blender, A Tornado, A Politician",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "A Sponge, A Vampire, Your Mom",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Magnet, A Black Hole, Your Ex",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Cactus, A Porcupine, Your Ex",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "The Moon, A Bald Head, A Bowling Ball",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "A Fork, A Trident, Poseidon",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "A Vacuum, A Black Hole, Student Loans",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Pyramid Scheme, A Cult, CrossFit",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Mosquito, Your Alarm Clock, Your Ex",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Treadmill, A Hamster Wheel, Your Job",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Dumpster Fire, 2020, Your Love Life",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Participation Trophy, Thoughts and Prayers, Your Degree",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Clown Car, Your Inbox, Your Therapy Session",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Leech, A Landlord, Healthcare in America",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "A Ponzi Scheme, Social Security, Your 401k",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Ticking Time Bomb, Your Mental Health, The Housing Market",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "A Parasite, Capitalism, Your Roommate",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "A Dementor, Student Loans, Your Boss",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Zombie, Your Ex, LinkedIn Recruiters",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Virus, Misinformation, Your Family Group Chat",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Cult, Crossfit, Tesla Owners",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Pyramid, A Ponzi Scheme, Multi-Level Marketing",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Trash Can, Your Dating History, Twitter",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "A Circus, Congress, Your Family Reunion",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Dumpster, Your Apartment, Your Life Choices",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Minefield, Dating Apps, Family Dinner",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Hostage Situation, Your Job, Your Relationship",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "A Scam, College, The American Dream",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "A Nightmare, Adulthood, Your Bank Account",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Joke, Your Degree, Your Salary",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Trap, Marriage, A Timeshare Presentation",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Black Hole, Your Savings Account, Healthcare Costs",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Disaster, Your Credit Score, Your Dating Profile",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "A Lie, Work-Life Balance, The Cake Being Moist",
+          "quality_score": 10,
+          "spice": 3
+        }
       ]
     },
     "title_fight": {
       "game_name": "Title Fight",
-      "quality_criteria": {
-        "structure": "Who would win: [OPTION A] vs [OPTION B]?",
-        "absurdity": "Ridiculous matchups, both sides defensible",
-        "key_elements": ["Creative", "Absurd", "Debatable", "Visual"]
-      },
       "cards": [
-        {"text": "Who would win: A gorilla with a sword vs 50 angry geese?", "quality_score": 10, "spice": 2},
-        {"text": "Who would win: Your search history vs your bank statement in a public reveal?", "quality_score": 9, "spice": 4},
-        {"text": "Better superpower: Flying but only 2 feet off the ground vs Invisibility but only when nobody's looking?", "quality_score": 10, "spice": 2},
-        {"text": "Who would win in a fight: One horse-sized duck vs 100 duck-sized horses?", "quality_score": 9, "spice": 2},
-        {"text": "Better life choice: $1 million now vs $10 million in 10 years?", "quality_score": 7, "spice": 1},
-        {"text": "Who would win: A lawyer who believes in you vs a raccoon who's seen some shit?", "quality_score": 9, "spice": 3},
-        {"text": "Better flex: Being verified on Twitter vs Having perfect credit?", "quality_score": 8, "spice": 2},
-        {"text": "Who wins: Someone who says 'I don't watch TV' vs Someone who says 'I don't have social media'?", "quality_score": 9, "spice": 3},
-        {"text": "Better villain origin story: Bad WiFi vs Wet socks?", "quality_score": 8, "spice": 2},
-        {"text": "Who would win: Your FBI agent vs Your NSA agent in a debate about your life choices?", "quality_score": 9, "spice": 3},
-        {"text": "Better superpower: Reading minds but only negative thoughts vs Seeing the future but only bad news?", "quality_score": 9, "spice": 3},
-        {"text": "Who wins: The friend who's always late vs The friend who's always early?", "quality_score": 7, "spice": 2},
-        {"text": "Better life hack: Never need sleep vs Never need to eat?", "quality_score": 8, "spice": 2},
-        {"text": "Who would win: Your inner demons vs Your responsibilities?", "quality_score": 8, "spice": 3},
-        {"text": "Better plot armor: Main character energy vs Side character who knows too much?", "quality_score": 9, "spice": 2},
-        {"text": "Who wins a staring contest: An influencer vs A therapist?", "quality_score": 8, "spice": 2},
-        {"text": "Better curse: Hiccup every time you lie vs Fart every time someone says your name?", "quality_score": 9, "spice": 3},
-        {"text": "Who would win: Ancient curse vs Modern student loans?", "quality_score": 10, "spice": 3},
-        {"text": "Better sacrifice: Delete all your photos vs Delete all your contacts?", "quality_score": 8, "spice": 3},
-        {"text": "Who wins: The you from 5 years ago vs The you from 5 years in the future?", "quality_score": 9, "spice": 2}
+        {
+          "text": "Category: Pizza Toppings",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Countries in Europe",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Disney Movies",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things You'd Find in a Bathroom",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Speed: First person to touch a doorknob wins",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Speed: First person to do 10 jumping jacks wins",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Speed: First person to find something red wins",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Speed: First person to take off their shoes wins",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Guts: Staring contest. You cannot blink or smile",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Guts: Compliment battle. First person to laugh loses",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Guts: Hold your breath. First person to breathe loses",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Guts: Arm wrestling. First person to give up loses",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Category: Fast Food Chains",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: US States",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Animals",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Celebrities",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Fruits",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Vegetables",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Car Brands",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Sports",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Musical Instruments",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Breakfast Foods",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Ice Cream Flavors",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: TV Shows",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Rappers",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Category: Video Games",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Superheroes",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Bands",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Actors",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Actresses",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Speed: First person to find their phone wins",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Speed: First person to name 5 US presidents wins",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Speed: First person to do 5 push-ups wins",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Speed: First person to spell their name backwards wins",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Speed: First person to touch the ceiling wins",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Guts: Who can hold a plank longer",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Guts: Who can stay silent longer",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Guts: Who can keep a straight face while the other makes them laugh",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Guts: Who can hold ice in their hand longer",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Guts: Thumb war. Best of 3",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things That Are Blue",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things You'd Find at a Beach",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Desserts",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Drinks",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Restaurants",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Brands",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Colleges",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Cartoon Characters",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Cereals",
+          "quality_score": 9,
+          "spice": 1
+        },
+        {
+          "text": "Category: Sodas",
+          "quality_score": 9,
+          "spice": 1
+        }
       ]
     },
     "alibi_drop": {
       "game_name": "Alibi Drop",
-      "quality_criteria": {
-        "structure": "Sneak these words into your excuse: [WORD 1], [WORD 2], [WORD 3]",
-        "difficulty": "Random, unrelated words that are challenging but possible",
-        "key_elements": ["Unexpected combinations", "Not too easy", "Creative potential"]
-      },
       "cards": [
-        {"words": ["rubber duck", "conspiracy", "3am"], "text": "Sneak these into your excuse for being late:", "quality_score": 9, "spice": 2},
-        {"words": ["cryptocurrency", "llama", "existential dread"], "text": "Sneak these into your alibi:", "quality_score": 10, "spice": 3},
-        {"words": ["sourdough starter", "tax evasion", "dolphins"], "text": "Work these into your story:", "quality_score": 9, "spice": 3},
-        {"words": ["astrology", "IKEA", "witness protection"], "text": "Sneak these into your excuse:", "quality_score": 9, "spice": 3},
-        {"words": ["kombucha", "heist", "childhood trauma"], "text": "Work these into your alibi:", "quality_score": 9, "spice": 4},
-        {"words": ["manifesting", "FBI", "oat milk"], "text": "Sneak these into your story:", "quality_score": 8, "spice": 3},
-        {"words": ["NFT", "grandma", "underground tunnel"], "text": "Work these into your excuse:", "quality_score": 9, "spice": 3},
-        {"words": ["therapy", "raccoon", "crime scene"], "text": "Sneak these into your alibi:", "quality_score": 9, "spice": 3},
-        {"words": ["zodiac sign", "bankruptcy", "portal"], "text": "Work these into your story:", "quality_score": 8, "spice": 3},
-        {"words": ["meditation app", "arson", "farmers market"], "text": "Sneak these into your excuse:", "quality_score": 9, "spice": 4},
-        {"words": ["podcast", "fugitive", "cheese"], "text": "Work these into your alibi:", "quality_score": 8, "spice": 3},
-        {"words": ["self-care", "identity theft", "pigeons"], "text": "Sneak these into your story:", "quality_score": 9, "spice": 4},
-        {"words": ["TikTok", "embezzlement", "crystals"], "text": "Work these into your excuse:", "quality_score": 9, "spice": 3},
-        {"words": ["wellness retreat", "money laundering", "squirrels"], "text": "Sneak these into your alibi:", "quality_score": 9, "spice": 4},
-        {"words": ["vision board", "contraband", "carousel"], "text": "Work these into your story:", "quality_score": 8, "spice": 3},
-        {"words": ["mercury retrograde", "fraud", "parking lot"], "text": "Sneak these into your excuse:", "quality_score": 9, "spice": 3},
-        {"words": ["influencer", "stolen goods", "Costco"], "text": "Work these into your alibi:", "quality_score": 9, "spice": 3},
-        {"words": ["journaling", "accomplice", "seagulls"], "text": "Sneak these into your story:", "quality_score": 8, "spice": 3},
-        {"words": ["Spotify Wrapped", "forgery", "Renaissance fair"], "text": "Work these into your excuse:", "quality_score": 9, "spice": 3},
-        {"words": ["boundaries", "getaway driver", "petting zoo"], "text": "Sneak these into your alibi:", "quality_score": 10, "spice": 4}
+        {
+          "text": "What is in this bag you're trying to sneak onto the plane?",
+          "hidden_words": ["A Hamster", "Glitter", "The Declaration of Independence"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Where were you the night your boss disappeared?",
+          "hidden_words": ["Zumba Class", "A Chainsaw", "Gluten-Free Bread"],
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Why is your search history just 'how to hide a body'?",
+          "hidden_words": ["A Shovel", "A Pineapple", "A Yoga Mat"],
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Why did security escort you out of the museum?",
+          "hidden_words": ["A Kazoo", "A Mannequin", "Hot Sauce"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you seen leaving your ex's apartment at 3am?",
+          "hidden_words": ["A Toaster", "A Map", "A Parrot"],
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Why is there $10,000 in cash hidden in your freezer?",
+          "hidden_words": ["A Lottery Ticket", "A Rubber Duck", "A Cookbook"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you running from the police?",
+          "hidden_words": ["A Baguette", "A Trampoline", "A Tax Return"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is your car full of rubber ducks?",
+          "hidden_words": ["A Conspiracy Theory", "A Smoothie", "A Harmonica"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why were you banned from the library?",
+          "hidden_words": ["A Megaphone", "A Pineapple", "A Tuxedo"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why did the neighbors call the cops on you?",
+          "hidden_words": ["A Trombone", "Silly String", "A Mannequin"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you kicked out of the wedding?",
+          "hidden_words": ["A Karaoke Machine", "Fireworks", "A Piñata"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is there a goat in your apartment?",
+          "hidden_words": ["Craigslist", "A Bet", "Cheese"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did you get arrested at Disneyland?",
+          "hidden_words": ["A Costume", "Fireworks", "A Megaphone"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is your trunk full of garden gnomes?",
+          "hidden_words": ["A Heist", "eBay", "A Cult"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you escorted out of the casino?",
+          "hidden_words": ["A Calculator", "A Disguise", "A Magnet"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is there a hole in your backyard?",
+          "hidden_words": ["A Treasure Map", "A Pool", "A Time Capsule"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why did you get banned from the grocery store?",
+          "hidden_words": ["A Unicycle", "Free Samples", "A Protest"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why is your phone full of pictures of strangers?",
+          "hidden_words": ["A Scavenger Hunt", "Art Project", "Evidence"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you climbing the fence at the zoo?",
+          "hidden_words": ["A Dare", "A Penguin", "A Shortcut"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is there glitter everywhere in your car?",
+          "hidden_words": ["A Party", "A Craft Project", "Revenge"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did you get kicked out of the Airbnb?",
+          "hidden_words": ["A Party", "A Llama", "A Misunderstanding"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is your browser history so concerning?",
+          "hidden_words": ["Research", "A Novel", "Curiosity"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you seen at three different cities in one day?",
+          "hidden_words": ["A Road Trip", "Witness Protection", "A Scavenger Hunt"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is there a mannequin in your passenger seat?",
+          "hidden_words": ["The HOV Lane", "Loneliness", "A Prank"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did you get banned from the gym?",
+          "hidden_words": ["A Protest", "Inappropriate Grunting", "A Flash Mob"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is your apartment full of traffic cones?",
+          "hidden_words": ["A Collection", "A Party", "A Heist"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you caught on camera doing that?",
+          "hidden_words": ["A Dare", "Sleepwalking", "A TikTok"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is there a chicken in your bathroom?",
+          "hidden_words": ["A Bet", "Therapy", "Fresh Eggs"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did you get kicked out of the movie theater?",
+          "hidden_words": ["A Megaphone", "Snacks", "A Protest"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why is your credit card statement so suspicious?",
+          "hidden_words": ["A Surprise", "Identity Theft", "A Business Venture"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you seen arguing with a statue?",
+          "hidden_words": ["Drunk", "Art Critique", "A Dare"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why is there a tent set up in your living room?",
+          "hidden_words": ["Camping Practice", "A Fort", "Rent Issues"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did you get banned from the buffet?",
+          "hidden_words": ["Tupperware", "A Challenge", "A Protest"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is your garage full of shopping carts?",
+          "hidden_words": ["A Collection", "A Business", "Drunk Shopping"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you caught sneaking into the concert?",
+          "hidden_words": ["A Disguise", "A Dare", "Broke"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why is there a kayak on your roof in the middle of winter?",
+          "hidden_words": ["Optimism", "Storage", "A Statement"],
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Why did you get kicked out of the escape room?",
+          "hidden_words": ["Cheating", "A Meltdown", "Too Competitive"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why is your phone bill $800 this month?",
+          "hidden_words": ["International Calls", "A Scam", "Pocket Dialing"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why were you seen talking to yourself in public?",
+          "hidden_words": ["Bluetooth", "Rehearsing", "Losing It"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why is there a shopping cart in your bedroom?",
+          "hidden_words": ["Drunk", "Furniture", "A Statement"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did you get banned from the petting zoo?",
+          "hidden_words": ["A Goat", "Inappropriate Behavior", "A Protest"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is your Venmo history so weird?",
+          "hidden_words": ["Inside Jokes", "Blackmail", "A Business"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you caught on Ring camera doing that?",
+          "hidden_words": ["Sleepwalking", "A Dare", "Drunk"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is there a life-size cutout of Danny DeVito in your apartment?",
+          "hidden_words": ["Inspiration", "A Gift", "Protection"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did you get kicked out of the escape room?",
+          "hidden_words": ["Panic Attack", "Cheating", "Claustrophobia"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why is your Amazon order history so concerning?",
+          "hidden_words": ["A Project", "Curiosity", "A Phase"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why were you banned from the karaoke bar?",
+          "hidden_words": ["A Meltdown", "Too Many Songs", "Nudity"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is there a inflatable pool in your living room?",
+          "hidden_words": ["A Party", "Leak", "Depression"],
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Why did animal control get called to your house?",
+          "hidden_words": ["A Raccoon", "A Misunderstanding", "A Party"],
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Why is your Netflix watch history so embarrassing?",
+          "hidden_words": ["Research", "Insomnia", "A Phase"],
+          "quality_score": 10,
+          "spice": 3
+        }
       ]
     },
-    "hype_or_yike": {
-      "game_name": "Hype or Yike",
-      "quality_criteria": {
-        "structure": "Pitch this product/idea: [ABSURD PRODUCT]",
-        "absurdity": "Ridiculous but pitch-able",
-        "key_elements": ["Creative", "Defensible", "Funny concept", "Pitch potential"]
-      },
+    "reality_check": {
+      "game_name": "Reality Check",
       "cards": [
-        {"product": "Edible phone cases (tastes like your favorite app)", "text": "Pitch this product:", "quality_score": 9, "spice": 2},
-        {"product": "Deodorant for your feet's feelings", "text": "Pitch this product:", "quality_score": 10, "spice": 3},
-        {"product": "A pillow that judges your life choices", "text": "Pitch this product:", "quality_score": 10, "spice": 3},
-        {"product": "Wifi-enabled socks that alert you when they're lonely", "text": "Pitch this product:", "quality_score": 9, "spice": 2},
-        {"product": "Therapy for plants (they've been through a lot)", "text": "Pitch this idea:", "quality_score": 9, "spice": 2},
-        {"product": "Coffee that tastes like disappointment (for authenticity)", "text": "Pitch this product:", "quality_score": 9, "spice": 3},
-        {"product": "A dating app but it's just for your pets", "text": "Pitch this idea:", "quality_score": 8, "spice": 2},
-        {"product": "Sunscreen that only works if you believe in yourself", "text": "Pitch this product:", "quality_score": 9, "spice": 2},
-        {"product": "Noise-canceling headphones for your inner monologue", "text": "Pitch this product:", "quality_score": 10, "spice": 3},
-        {"product": "A mirror that lies to you every morning (confidence boost)", "text": "Pitch this product:", "quality_score": 9, "spice": 2},
-        {"product": "Anxiety-flavored energy drinks (double the stress)", "text": "Pitch this product:", "quality_score": 9, "spice": 3},
-        {"product": "Cologne that smells like financial stability", "text": "Pitch this product:", "quality_score": 10, "spice": 3},
-        {"product": "A treadmill that goes nowhere (like your life)", "text": "Pitch this product:", "quality_score": 9, "spice": 3},
-        {"product": "Socks with motivational quotes (that judge you when you sit)", "text": "Pitch this product:", "quality_score": 8, "spice": 2},
-        {"product": "A fridge that roasts you for midnight snacking", "text": "Pitch this product:", "quality_score": 10, "spice": 3},
-        {"product": "Perfume that smells like 'new car' but for humans", "text": "Pitch this product:", "quality_score": 8, "spice": 2},
-        {"product": "A bed that texts your boss when you oversleep", "text": "Pitch this product:", "quality_score": 9, "spice": 3},
-        {"product": "Chapstick that makes you cry (emotional release)", "text": "Pitch this product:", "quality_score": 9, "spice": 3},
-        {"product": "A blender that blends your problems (metaphorically)", "text": "Pitch this product:", "quality_score": 8, "spice": 2},
-        {"product": "An alarm clock that screams your regrets at you", "text": "Pitch this product:", "quality_score": 10, "spice": 4}
-      ]
-    },
-    "scatterblast": {
-      "game_name": "Scatterblast",
-      "quality_criteria": {
-        "structure": "Name 3 [CATEGORY] starting with [LETTER]",
-        "creativity": "Categories should be creative, not generic",
-        "key_elements": ["Specific categories", "Challenging but fair", "Not too easy"]
-      },
-      "cards": [
-        {"category": "Things you'd find in a villain's lair", "letter": "L", "text": "Name 3", "quality_score": 9, "spice": 2},
-        {"category": "Excuses for missing work", "letter": "D", "text": "Name 3", "quality_score": 8, "spice": 2},
-        {"category": "Red flags in a relationship", "letter": "T", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Things that make you question reality", "letter": "M", "text": "Name 3", "quality_score": 8, "spice": 2},
-        {"category": "Reasons to delete a dating app", "letter": "F", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Things your FBI agent is tired of seeing", "letter": "P", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Weird flex but okay moments", "letter": "S", "text": "Name 3", "quality_score": 8, "spice": 2},
-        {"category": "Signs you're the villain", "letter": "G", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Things therapists hear and think 'yikes'", "letter": "R", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Icks that end relationships", "letter": "C", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Signs you need a vacation", "letter": "B", "text": "Name 3", "quality_score": 7, "spice": 2},
-        {"category": "Things you'd do if money wasn't real", "letter": "H", "text": "Name 3", "quality_score": 8, "spice": 2},
-        {"category": "Reasons to ghost someone", "letter": "W", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Things Gen Z will never understand", "letter": "V", "text": "Name 3", "quality_score": 8, "spice": 2},
-        {"category": "Signs your life is a simulation", "letter": "E", "text": "Name 3", "quality_score": 8, "spice": 2},
-        {"category": "Things that live rent-free in your head", "letter": "N", "text": "Name 3", "quality_score": 8, "spice": 2},
-        {"category": "Chaotic energy things", "letter": "A", "text": "Name 3", "quality_score": 8, "spice": 3},
-        {"category": "Unhinged thoughts you've had at 3am", "letter": "K", "text": "Name 3", "quality_score": 9, "spice": 3},
-        {"category": "Things you'd sell your soul for", "letter": "I", "text": "Name 3", "quality_score": 8, "spice": 3},
-        {"category": "Things that scream 'I'm having a crisis'", "letter": "J", "text": "Name 3", "quality_score": 9, "spice": 3}
-      ]
-    },
-    "majority_report": {
-      "game_name": "Majority Report",
-      "quality_criteria": {
-        "structure": "Predict what the room will choose: [A] vs [B]",
-        "divisiveness": "Should genuinely split the room",
-        "key_elements": ["Debatable", "No obvious answer", "Relatable"]
-      },
-      "cards": [
-        {"optionA": "Tacos", "optionB": "Pizza", "text": "What will the room choose?", "quality_score": 7, "spice": 1},
-        {"optionA": "Cats", "optionB": "Dogs", "text": "What will the room choose?", "quality_score": 7, "spice": 1},
-        {"optionA": "Morning person", "optionB": "Night owl", "text": "What will the room choose?", "quality_score": 7, "spice": 1},
-        {"optionA": "Text", "optionB": "Call", "text": "How will the room prefer to communicate?", "quality_score": 8, "spice": 2},
-        {"optionA": "Beach vacation", "optionB": "Mountain vacation", "text": "What will the room choose?", "quality_score": 7, "spice": 1},
-        {"optionA": "Rich but unhappy", "optionB": "Poor but happy", "text": "What will the room choose?", "quality_score": 9, "spice": 3},
-        {"optionA": "Know how you die", "optionB": "Know when you die", "text": "What will the room choose?", "quality_score": 9, "spice": 3},
-        {"optionA": "Rewatch your favorite show", "optionB": "Watch something new", "text": "What will the room choose?", "quality_score": 7, "spice": 1},
-        {"optionA": "Be famous", "optionB": "Be rich", "text": "What will the room choose?", "quality_score": 8, "spice": 2},
-        {"optionA": "Time travel to past", "optionB": "Time travel to future", "text": "What will the room choose?", "quality_score": 8, "spice": 2},
-        {"optionA": "Mind reading", "optionB": "Invisibility", "text": "What superpower will the room choose?", "quality_score": 8, "spice": 2},
-        {"optionA": "Never age", "optionB": "Never get sick", "text": "What will the room choose?", "quality_score": 8, "spice": 2},
-        {"optionA": "Lose phone", "optionB": "Lose wallet", "text": "What would the room rather lose?", "quality_score": 8, "spice": 2},
-        {"optionA": "Delete Instagram", "optionB": "Delete TikTok", "text": "What will the room sacrifice?", "quality_score": 8, "spice": 2},
-        {"optionA": "Always 10 min early", "optionB": "Always 10 min late", "text": "What will the room choose?", "quality_score": 7, "spice": 2},
-        {"optionA": "Undo past mistakes", "optionB": "See future problems", "text": "What power will the room choose?", "quality_score": 9, "spice": 3},
-        {"optionA": "Perfect memory", "optionB": "Ability to forget", "text": "What will the room choose?", "quality_score": 9, "spice": 3},
-        {"optionA": "Always too hot", "optionB": "Always too cold", "text": "What will the room choose?", "quality_score": 7, "spice": 1},
-        {"optionA": "No internet for a month", "optionB": "No sex for a month", "text": "What sacrifice will the room make?", "quality_score": 10, "spice": 4},
-        {"optionA": "Erase your biggest regret", "optionB": "Relive your best memory", "text": "What will the room choose?", "quality_score": 9, "spice": 3}
-      ]
-    },
-    "confess_or_cap": {
-      "game_name": "Confess or Cap",
-      "quality_criteria": {
-        "structure": "I once [CONFESSION]",
-        "believability": "Believable yet sus - could be true or lie",
-        "key_elements": ["Borderline believable", "Interesting", "Debatable truth"]
-      },
-      "cards": [
-        {"text": "I once convinced my family I was allergic to chores", "quality_score": 8, "spice": 2},
-        {"text": "I've never actually finished a book I said I read", "quality_score": 9, "spice": 2},
-        {"text": "I accidentally joined a cult for 3 days before realizing", "quality_score": 10, "spice": 3},
-        {"text": "I've faked being sick to avoid a friend's wedding", "quality_score": 8, "spice": 3},
-        {"text": "I once catfished someone as my own best friend", "quality_score": 9, "spice": 4},
-        {"text": "I've never actually watched The Office", "quality_score": 7, "spice": 2},
-        {"text": "I once ghosted someone and then matched with them again 2 years later", "quality_score": 9, "spice": 3},
-        {"text": "I've never tried coffee and I'm 25", "quality_score": 7, "spice": 1},
-        {"text": "I once pretended to speak French for an entire date", "quality_score": 9, "spice": 3},
-        {"text": "I've lied on every job application I've ever filled out", "quality_score": 8, "spice": 3},
-        {"text": "I once stole a traffic cone and it's been in my apartment for 3 years", "quality_score": 8, "spice": 2},
-        {"text": "I've never actually washed my pillowcase", "quality_score": 8, "spice": 2},
-        {"text": "I once faked a British accent for 6 months at a new job", "quality_score": 10, "spice": 3},
-        {"text": "I've eaten food off the floor and served it to guests", "quality_score": 9, "spice": 4},
-        {"text": "I once convinced a date I was a professional backup dancer", "quality_score": 8, "spice": 2},
-        {"text": "I've never tried a vegetable that wasn't fried", "quality_score": 7, "spice": 2},
-        {"text": "I once created a fake Instagram to stalk my ex for 2 years", "quality_score": 10, "spice": 4},
-        {"text": "I've convinced multiple people I have a twin when I'm an only child", "quality_score": 9, "spice": 3},
-        {"text": "I once pretended to be vegan for 3 months to impress someone", "quality_score": 8, "spice": 3},
-        {"text": "I've never once actually read the terms and conditions", "quality_score": 7, "spice": 1}
+        {
+          "text": "Rating: Your ability to win a bar fight against a random stranger",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How long you'd last in a zombie apocalypse",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your pain tolerance",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your performance in the bedroom",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Rating: How attractive you are on a scale of 1-10",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Rating: Your ability to flirt",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Rating: How long you'd survive alone in the wilderness",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to change a tire",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Rating: How well you'd handle a home invasion",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How convincing you are when you lie",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Rating: Your poker face",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to keep a secret",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your overall intelligence",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at trivia",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your ability to solve a Rubik's Cube",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Rating: How funny you are",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How well-liked you are in this group",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Rating: Your ability to make friends",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to parallel park",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: How well you can hold your liquor",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Rating: Your dance moves",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at Mario Kart",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your cooking skills",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your singing voice",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your fashion sense",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to take a compliment",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to take criticism",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at texting back",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your emotional intelligence",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to read social cues",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at giving advice",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your ability to handle stress",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How responsible you are",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your work ethic",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at saving money",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to keep plants alive",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: How good you are at sports",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your ability to handle your alcohol",
+          "quality_score": 10,
+          "spice": 4
+        },
+        {
+          "text": "Rating: How good you are at video games",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your ability to tell a story",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: How good you are at comebacks",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to handle confrontation",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at apologizing",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to admit when you're wrong",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at keeping promises",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: Your ability to be on time",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: How good you are at remembering birthdays",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your ability to take a joke",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Rating: How good you are at making decisions",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Rating: Your ability to stay calm in a crisis",
+          "quality_score": 10,
+          "spice": 3
+        }
       ]
     }
   }

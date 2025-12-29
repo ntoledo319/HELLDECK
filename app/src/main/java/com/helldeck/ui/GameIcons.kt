@@ -17,6 +17,9 @@ fun gameIconFor(id: String): String = when (id) {
     GameIds.HYPE_YIKE -> "📣"
     GameIds.SCATTER -> "🔤"
     GameIds.MAJORITY -> "📊"
+    GameIds.UNIFYING_THEORY -> "📐"
+    GameIds.REALITY_CHECK -> "🪞"
+    GameIds.OVER_UNDER -> "📉"
     else -> "🎮"
 }
 

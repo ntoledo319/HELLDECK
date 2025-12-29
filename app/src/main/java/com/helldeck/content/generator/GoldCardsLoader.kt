@@ -80,49 +80,86 @@ object GoldCardsLoader {
         return loaded
     }
 
-    fun getExamplesForGame(context: Context, gameId: String, count: Int = 5): List<GoldCard> {
+    fun getExamplesForGame(
+        context: Context,
+        gameId: String,
+        count: Int = 10,  // Increased from 5 to 10
+        seed: Int? = null  // Optional seed for deterministic rotation
+    ): List<GoldCard> {
         val allCards = load(context)
         val gameKey = when (gameId) {
             GameIds.ROAST_CONS -> "roast_consensus"
+            GameIds.CONFESS_CAP -> "confession_or_cap"
             GameIds.POISON_PITCH -> "poison_pitch"
             GameIds.FILL_IN -> "fill_in_finisher"
             GameIds.RED_FLAG -> "red_flag_rally"
-            GameIds.HOTSEAT_IMP -> "hotseat_imposter"
+            GameIds.HOTSEAT_IMP -> "hot_seat_imposter"
             GameIds.TEXT_TRAP -> "text_thread_trap"
             GameIds.TABOO -> "taboo_timer"
-            GameIds.ODD_ONE -> "odd_one_out"
             GameIds.TITLE_FIGHT -> "title_fight"
             GameIds.ALIBI -> "alibi_drop"
-            GameIds.HYPE_YIKE -> "hype_or_yike"
             GameIds.SCATTER -> "scatterblast"
-            GameIds.MAJORITY -> "majority_report"
-            GameIds.CONFESS_CAP -> "confess_or_cap"
+            
+            // New games from HDRealRules.md
+            GameIds.UNIFYING_THEORY -> "the_unifying_theory"
+            GameIds.REALITY_CHECK -> "reality_check"
+            GameIds.OVER_UNDER -> "over_under"  // Note: not in current gold_cards.json yet
+            
             else -> return emptyList()
         }
 
-        return allCards[gameKey]
-            ?.sortedByDescending { it.quality_score }
-            ?.take(count)
-            ?: emptyList()
+        val eligible = allCards[gameKey]
+            ?.filter { it.quality_score >= 7 }  // Only gold-tier cards (7+)
+            ?: return emptyList()
+
+        if (eligible.isEmpty()) return emptyList()
+
+        // If no seed provided, use top cards sorted by quality (for consistency/testing)
+        if (seed == null) {
+            return eligible
+                .sortedByDescending { it.quality_score }
+                .take(count)
+        }
+
+        // Weighted random selection: higher quality scores = higher probability
+        // This ensures ALL cards can train the AI, but better cards appear more often
+        val rng = kotlin.random.Random(seed)
+        
+        return eligible
+            .map { card ->
+                // Weight calculation: quality_score * (0.5 to 1.0 random factor)
+                // Score 10: weight 5.0-10.0
+                // Score 9:  weight 4.5-9.0
+                // Score 8:  weight 4.0-8.0
+                // Score 7:  weight 3.5-7.0
+                val weight = card.quality_score * (0.5 + rng.nextDouble() * 0.5)
+                card to weight
+            }
+            .sortedByDescending { it.second }  // Sort by weight
+            .take(count)  // Take top N weighted cards
+            .map { it.first }  // Extract the cards
     }
 
     fun getRandomFallback(context: Context, gameId: String): GoldCard? {
         val allCards = load(context)
         val gameKey = when (gameId) {
             GameIds.ROAST_CONS -> "roast_consensus"
+            GameIds.CONFESS_CAP -> "confession_or_cap"
             GameIds.POISON_PITCH -> "poison_pitch"
             GameIds.FILL_IN -> "fill_in_finisher"
             GameIds.RED_FLAG -> "red_flag_rally"
-            GameIds.HOTSEAT_IMP -> "hotseat_imposter"
+            GameIds.HOTSEAT_IMP -> "hot_seat_imposter"
             GameIds.TEXT_TRAP -> "text_thread_trap"
             GameIds.TABOO -> "taboo_timer"
-            GameIds.ODD_ONE -> "odd_one_out"
             GameIds.TITLE_FIGHT -> "title_fight"
             GameIds.ALIBI -> "alibi_drop"
-            GameIds.HYPE_YIKE -> "hype_or_yike"
             GameIds.SCATTER -> "scatterblast"
-            GameIds.MAJORITY -> "majority_report"
-            GameIds.CONFESS_CAP -> "confess_or_cap"
+            
+            // New games
+            GameIds.UNIFYING_THEORY -> "the_unifying_theory"
+            GameIds.REALITY_CHECK -> "reality_check"
+            GameIds.OVER_UNDER -> "over_under"
+            
             else -> return null
         }
 
