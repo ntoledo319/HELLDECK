@@ -4,42 +4,139 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 1.0,
-    "spice_max": 1,
+    "spice_max": 2,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Finish the line with the funniest punchline." }
+      { "type": "text", "value": "I got kicked out of _____ for _____" }
     ],
-    "constraints": { "max_words": 14, "distinct_slots": false },
-    "option_provider": { "type": "PLAYER_VOTE" }
+    "instructions": "Judge fills in the first blank verbally (a place), then others write punchlines for the second blank.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
   },
   {
     "id": "fillin_blueprint_2",
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
-    "weight": 0.9,
-    "spice_max": 1,
+    "weight": 1.0,
+    "spice_max": 2,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Finish the prompt: \"Nothing says chaos like " },
-      { "type": "slot", "name": "plan", "slot_type": "chaotic_plan" },
-      { "type": "text", "value": " and ___\"." }
+      { "type": "text", "value": "The worst part about _____ is _____" }
     ],
-    "constraints": { "max_words": 24, "distinct_slots": true },
-    "option_provider": { "type": "PLAYER_VOTE" }
+    "instructions": "Judge fills in the first blank verbally (a situation/topic), then others write punchlines for the second blank.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
   },
   {
     "id": "fillin_blueprint_3",
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
-    "weight": 0.8,
-    "spice_max": 1,
+    "weight": 1.0,
+    "spice_max": 2,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Complete the confession: \"I realized it was serious when " },
-      { "type": "slot", "name": "meme", "slot_type": "meme_item" },
-      { "type": "text", "value": " beat ___\"." }
+      { "type": "text", "value": "Nothing ruins a first date faster than _____ followed by _____" }
     ],
-    "constraints": { "max_words": 26, "distinct_slots": true },
-    "option_provider": { "type": "PLAYER_VOTE" }
+    "instructions": "Judge fills in the first blank verbally (an action/event), then others write punchlines for the second blank.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "fillin_blueprint_4",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 1.0,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "My therapist said _____ but I heard _____" }
+    ],
+    "instructions": "Judge fills in the first blank verbally (advice), then others write punchlines for what they 'heard' instead.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "fillin_blueprint_5",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 1.0,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "I thought _____ was a good idea until _____" }
+    ],
+    "instructions": "Judge fills in the first blank verbally (an action/plan), then others write what went wrong.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "fillin_blueprint_6",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 0.9,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "The ick that ruins a 10/10 is when they _____ and then _____" }
+    ],
+    "instructions": "Judge fills in the first blank verbally (a behavior), then others write what makes it worse.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "fillin_blueprint_7",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Scientists discovered that _____ is actually caused by _____" }
+    ],
+    "instructions": "Judge fills in the first blank verbally (a phenomenon), then others write absurd causes.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "fillin_blueprint_8",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 0.9,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Breaking news: _____ has been cancelled due to _____" }
+    ],
+    "instructions": "Judge fills in the first blank verbally (an event/thing), then others write ridiculous reasons.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "fillin_blueprint_9",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 0.8,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "My villain origin story started with _____ and ended with _____" }
+    ],
+    "instructions": "Judge fills in the first blank verbally (an event), then others write the dark conclusion.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "fillin_blueprint_10",
+    "game": "FILL_IN_FINISHER",
+    "family": "fillin_core",
+    "weight": 0.8,
+    "spice_max": 2,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "I didn't believe in _____ until I saw _____" }
+    ],
+    "instructions": "Judge fills in the first blank verbally (a concept/thing), then others write what convinced them.",
+    "constraints": { "max_words": 20, "distinct_slots": false },
+    "option_provider": { "type": "JUDGE_PICK" }
   }
 ]

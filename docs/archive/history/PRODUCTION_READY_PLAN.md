@@ -347,7 +347,7 @@
 3. `app/src/main/java/com/helldeck/ui/HelldeckVm.kt` - Add missing methods
 4. `app/src/main/java/com/helldeck/ui/HelldeckAppUI.kt` - Update navigation
 5. `app/src/main/java/com/helldeck/content/generator/LLMCardGeneratorV2.kt` - Refinements
-6. `app/src/main/assets/gold_cards_v2.json` - Expand to 50 per game
+6. `app/src/main/assets/gold_cards.json` - Expand to 50 per game
 
 ### **Files to Delete:**
 

@@ -85,7 +85,7 @@ private fun gameHowToDetailed(g: com.helldeck.engine.GameSpec): String {
         com.helldeck.engine.GameIds.ROAST_CONS -> "Read the roast prompt. Everyone taps the player that fits best. Majority target wins; active may score."
         com.helldeck.engine.GameIds.CONFESS_CAP -> "Speaker pre-picks TRUTH or BLUFF. Room votes T/F; points if majority matches the pre-pick."
         com.helldeck.engine.GameIds.POISON_PITCH -> "Would you rather A or B? Active pre-picks, then pitches. Room votes; bonus if majority matches."
-        com.helldeck.engine.GameIds.FILLIN -> "Finish the prompt with the funniest punchline. Judge selects the winner."
+        com.helldeck.engine.GameIds.FILLIN -> "Judge reads prompt aloud and fills in the first blank verbally. Others have 60s to write punchlines. Judge reads all answers aloud and picks the winner. +1 point to winner; judge rotates left."
         com.helldeck.engine.GameIds.RED_FLAG -> "Perk vs red flag. Room votes SMASH or PASS. Majority SMASH rewards."
         com.helldeck.engine.GameIds.HOTSEAT_IMP -> "Answer as the target player; judge picks the most on-brand response."
         com.helldeck.engine.GameIds.TEXT_TRAP -> "See an inbound text. Pick a reply vibe (Deadpan, Feral, etc.). Lock; feedback after."

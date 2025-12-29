@@ -10,8 +10,11 @@
   { "id": "pp1", "game": "POISON_PITCH", "text": "Would you rather {gross} or {social_disaster}?", "family": "wyr_gross_social", "spice": 2, "locality": 1, "max_words": 16, "tags": ["wyr","ab","pitch"] },
   { "id": "pp2", "game": "POISON_PITCH", "text": "Would you rather {social_disaster} or {gross}?", "family": "wyr_social_gross", "spice": 2, "locality": 1, "max_words": 16, "tags": ["wyr","ab","pitch"] },
 
-  { "id": "rif1", "game": "FILL_IN_FINISHER", "text": "Finish it: The ick that ruins a 10/10 is ____.", "family": "ick_finisher_blank", "spice": 1, "locality": 1, "max_words": 16, "tags": ["fill_in","judge"] },
-  { "id": "rif2", "game": "FILL_IN_FINISHER", "text": "Finish it: \"The real red flag is...\" ____", "family": "redflag_finisher_blank", "spice": 1, "locality": 1, "max_words": 14, "tags": ["fill_in","judge"] },
+  { "id": "rif1", "game": "FILL_IN_FINISHER", "text": "I got kicked out of _____ for _____", "family": "fillin_kickout", "spice": 2, "locality": 1, "max_words": 20, "tags": ["fill_in","judge","write"], "instructions": "Judge fills first blank verbally, others write punchline" },
+  { "id": "rif2", "game": "FILL_IN_FINISHER", "text": "The worst part about _____ is _____", "family": "fillin_worstpart", "spice": 2, "locality": 1, "max_words": 20, "tags": ["fill_in","judge","write"], "instructions": "Judge fills first blank verbally, others write punchline" },
+  { "id": "rif3", "game": "FILL_IN_FINISHER", "text": "Nothing ruins a first date faster than _____ followed by _____", "family": "fillin_firstdate", "spice": 3, "locality": 1, "max_words": 20, "tags": ["fill_in","judge","write"], "instructions": "Judge fills first blank verbally, others write punchline" },
+  { "id": "rif4", "game": "FILL_IN_FINISHER", "text": "My therapist said _____ but I heard _____", "family": "fillin_therapist", "spice": 2, "locality": 1, "max_words": 20, "tags": ["fill_in","judge","write"], "instructions": "Judge fills first blank verbally, others write punchline" },
+  { "id": "rif5", "game": "FILL_IN_FINISHER", "text": "I thought _____ was a good idea until _____", "family": "fillin_goodidea", "spice": 2, "locality": 1, "max_words": 20, "tags": ["fill_in","judge","write"], "instructions": "Judge fills first blank verbally, others write punchline" },
 
   { "id": "rfr1", "game": "RED_FLAG_RALLY", "text": "They've got {perk}, but… {red_flag}. Smash or pass?", "family": "perk_vs_flag", "spice": 2, "locality": 1, "max_words": 18, "tags": ["dating","smash_pass"] },
   { "id": "rfr2", "game": "RED_FLAG_RALLY", "text": "Perk: {perk}. Red flag: {red_flag}. Are you smashing or passing?", "family": "perk_flag_alt", "spice": 2, "locality": 1, "max_words": 20, "tags": ["dating","smash_pass"] },

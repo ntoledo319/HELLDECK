@@ -2,36 +2,37 @@
 
 ## Introduction
 
-HELLDECK is a party game system featuring 14 interactive mini-games designed for groups of 3-8 players. Each game combines social dynamics, creativity, and humor to create memorable party experiences.
+HELLDECK is a single-phone party game featuring 14 interactive mini-games for groups of 3–16 players (sweet spot: 3–10). Each round you play a prompt together, then everyone rates the card (LOL / MEH / TRASH) so the deck adapts to what your crew finds funny over time.
 
 ## Getting Started
 
 ### First Time Setup
 1. Launch HELLDECK app
-2. Complete onboarding tutorial
-3. Add players (names + emoji avatars)
-4. Adjust settings (spice level, timers)
-5. Start your first game!
+2. Complete the onboarding screens (first launch)
+3. Open "Who's Here?" to mark who’s playing today
+4. Add/edit players (names + emoji avatars)
+5. Set your Spice Level (1–5) on the Home screen
+6. Tap "Start Chaos" to begin
 
 ### Player Management
-- **Add Players:** Settings → Players → Add New
-- **Quick Rollcall:** Tap "Who's Here?" on launch
-- **Edit Players:** Tap player name to edit
-- **Remove Players:** Swipe left on player card
+- **Rollcall (attendance):** Home → "Who's Here?" (toggle who’s present)
+- **Add Players:** Rollcall → "Add Player" (or Settings → Players → "Add Player")
+- **Edit Players:** Settings → Players → "Manage Players" (tap name to rename, tap emoji to change avatar)
+- **Remove Players:** Swipe left on a player in Rollcall or Players
 
 ## Game Controls
 
 ### Universal Controls
-- **Big Zones:** Three large touch areas (Left/Center/Right)
-- **Voting:** Tap player avatars or option buttons
-- **Feedback:** React with 😂 (LOL), 😐 (Meh), or 🗑️ (Trash)
-- **Navigation:** Back button or swipe gestures
+- **Round flow:** Intro → Input → Reveal → Feedback (use the main button to advance)
+- **Choices:** Tap player avatars or option buttons on screen
+- **Rules:** Tap `?` during a round to see the current game rules
+- **Feedback:** Everyone taps once: 😂 (LOL), 😐 (MEH), 🗑️ (TRASH)
+- **Navigation:** Top bar Back/Home buttons (device back also works)
 
 ### Scoring System
-- **Win Points:** 2 points per round win
-- **Room Heat Bonus:** +1 point when entire room agrees
-- **Streaks:** Bonus points for consecutive wins
-- **Room Trash Penalty:** -2 points for unanimous trash votes
+- **Session points:** Tap the 🏆 icon on Home to view the scoreboard
+- **Default win value:** Most wins award 2 points (configurable in `app/src/main/assets/settings/default.yaml` via `scoring.win`)
+- **Point awards:** Points are awarded automatically and can vary by game
 
 ## The 14 Mini-Games
 
@@ -99,19 +100,21 @@ HELLDECK is a party game system featuring 14 interactive mini-games designed for
 ### 4. Fill-In Finisher ✍️
 
 **How to Play:**
-1. Prompt shown with blank: "I got kicked out of _____ for _____"
-2. Players write their punchline
-3. Responses are read anonymously
-4. Vote for funniest completion
+1. One player is the Judge; they read the prompt and fill in the first blank verbally (The Setup)
+   - Example: Judge reads "I got kicked out of _____ for _____" and says "I got kicked out of Disney World for _____"
+2. Other players have 60 seconds to write the second blank (The Punchline)
+3. Judge reads all anonymous responses aloud
+4. Judge picks their favorite card as the winner
 
 **Scoring:**
-- +2 points for most votes
-- Tie-breaker if needed
+- +1 point for winning the round
+- Judge role rotates to the left after each round
 
 **Tips:**
-- Think outside the box
-- Timing is everything in comedy
-- Read the room's humor style
+- Write for the Judge's specific sense of humor (Tailor your jokes!)
+- Short answers are punchier and usually win
+- If the Judge is dark, go dark; if they're silly, go silly
+- Know your audience—the Judge IS your audience
 
 ---
 
@@ -307,49 +310,38 @@ HELLDECK is a party game system featuring 14 interactive mini-games designed for
 
 ## Game Modes
 
-### Quick Play
-- Random game selection
-- 5-minute rounds
-- Casual scoring
-- Perfect for first-timers
+### Start Chaos (Random)
+- Starts a random mini-game for the group
 
-### Tournament
-- Structured competition
-- Multiple games
-- Cumulative scoring
-- Serious bragging rights
-
-### Custom
-- Manual game selection
-- Adjustable rules
-- Custom time limits
-- For experienced groups
-
-### Kiosk Mode
-- Continuous gameplay
-- Public/party setting
-- Locked interface
-- Hands-off hosting
+### Mini Games (Pick a Game)
+- Choose a specific mini-game from the game picker
 
 ## Settings & Customization
 
-### Spice Levels
-- **0 (Safe):** G-rated, all audiences
-- **1 (Mild):** PG, playful teasing
-- **2 (Medium):** PG-13, edgier humor
-- **3 (Spicy):** R-rated, use with caution
+### Spice Level (1–5)
+Set on the Home screen:
+- **1 (😇 Wholesome):** Family-friendly, PG-13 humor
+- **2 (😄 Playful):** Fun and playful with a light edge
+- **3 (😈 Edgy):** Edgy and provocative (not mean-spirited)
+- **4 (🔥 Wild):** Wild and unhinged (but not offensive)
+- **5 (💀 Chaos):** Maximum chaos (keep it funny, not cruel)
 
-### Timer Settings
-- Default: 8-10 seconds per vote
-- Adjustable per game type
-- Disable for casual play
-- Strict mode for competition
+### Timers (Automatic)
+Timers are built-in and vary by game (current defaults):
+- **3s:** Alibi Drop
+- **6s:** Confession or Cap, Poison Pitch, Red Flag Rally, Hot Seat Imposter, Text Thread Trap, Majority Report
+- **60s:** Fill-In Finisher (writing phase)
+- **8s:** Roast Consensus, Taboo Timer, Odd One Out
+- **10s:** Scatterblast
+- **15s:** Title Fight, Hype or Yike
 
-### Feedback Settings
-- Haptic intensity (vibration)
-- Flash/torch feedback
-- Sound effects volume
-- Visual indicators
+### Device & Accessibility
+In Settings you can toggle:
+- **Haptic feedback** (vibration)
+- **Sound effects**
+- **High contrast**
+- **Reduced motion**
+- **No flash** (disables flash-style effects)
 
 ## Tips for Great Gameplay
 
@@ -376,29 +368,26 @@ HELLDECK is a party game system featuring 14 interactive mini-games designed for
 Common issues and quick fixes:
 
 - **Cards not loading?** Restart app or check [Troubleshooting](TROUBLESHOOTING.md)
-- **Too repetitive?** Increase content variety in settings
-- **Performance slow?** Lower spice level or disable LLM features
+- **Too repetitive?** Keep rating cards (LOL/MEH/TRASH) and try a different Spice Level
+- **Performance slow?** Enable Reduced motion, and disable Sound/Haptics in Settings
 - **Content quality poor?** Provide feedback after each round
 
 ## FAQ
 
 **Q: How many players needed?**
-A: 3-8 players recommended, some games work with 2
+A: Best with 3–10, supports up to 16 (the app requires at least 2 active players to start a round).
 
 **Q: Can I add custom content?**
-A: Yes! See [Content Authoring Guide](authoring.md)
+A: Yes. Use the in-app "Custom Cards" screen (supports `{PLAYER}`), or see [Content Authoring Guide](authoring.md) for developer-driven content.
 
 **Q: How does scoring work?**
-A: Base 2 points per win + bonuses for room heat/streaks
-
-**Q: What's "Room Heat"?**
-A: When 80%+ of players agree on same answer
+A: The scoreboard tracks session points; most wins are worth 2 points by default. Some games award points differently.
 
 **Q: Can I disable certain games?**
-A: Not directly, but use Custom mode to select preferred games
+A: Not currently. Use "Mini Games" to pick a specific game when you want one.
 
 **Q: Is there a way to track stats?**
-A: Yes, check Settings → Stats for player performance history
+A: Yes, open Stats from the Home screen (📊) for crew brains and player profiles.
 
 ## Next Steps
 

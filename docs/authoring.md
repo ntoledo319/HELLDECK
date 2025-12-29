@@ -1,35 +1,123 @@
-# HELLDECK Generator V3 - Content Authoring Guide
+# HELLDECK Content Authoring Guide
 
-**Version:** 1.0  
-**Last Updated:** 2025-11-02  
-**For:** Blueprint & Lexicon Authors
+**Version:** 2.0  
+**Last Updated:** December 2024  
+**For:** Content Authors
 
 ---
 
 ## Table of Contents
 
 1. [Overview](#overview)
-2. [Blueprint V3 Schema](#blueprint-v3-schema)
-3. [Lexicon V2 Schema](#lexicon-v2-schema)
-4. [Content Guidelines](#content-guidelines)
-5. [Examples](#examples)
-6. [Validation & Testing](#validation--testing)
-7. [Common Mistakes](#common-mistakes)
+2. [Gold Cards (Primary Content)](#gold-cards-primary-content)
+3. [Blueprint V3 Schema (Fallback)](#blueprint-v3-schema-fallback)
+4. [Lexicon V2 Schema](#lexicon-v2-schema)
+5. [Content Guidelines](#content-guidelines)
+6. [Examples](#examples)
+7. [Validation & Testing](#validation--testing)
+8. [Common Mistakes](#common-mistakes)
 
 ---
 
 ## Overview
 
-HELLDECK Generator V3 uses two content types to generate party game cards:
+As of December 2024, HELLDECK uses an **LLM-powered generation system** (`LLMCardGeneratorV2`) as the primary card generator. Content flows through this hierarchy:
 
-- **Blueprints (Template V3):** Structured "sentence plans" with typed slots and constraints
-- **Lexicons (Lexicon V2):** Word pools with attributes (spice, locality, article handling, pairing compatibility)
+### Content Hierarchy
 
-**Core Philosophy:**
-- Fully offline, deterministic generation
-- Quality gating with gold fallback
-- Light humor suitable for broad audiences
-- No placeholders in final output
+1. **Gold Cards (Primary):** High-quality curated examples in `gold_cards.json`
+   - Used as examples in LLM prompts
+   - Serve as emergency fallbacks
+   - Quality-scored (1-10) for ranking
+
+2. **LLM Generation:** On-device language models generate unique cards
+   - Uses gold examples to guide quality
+   - Game-specific prompts ensure format compliance
+   - 3 retry attempts with quality validation
+
+3. **Template System (Fallback):** Blueprints + Lexicons
+   - Used when LLM is unavailable
+   - Deterministic slot-filling approach
+   - Still useful for guaranteed variety
+
+### Recommended Authoring Focus
+
+**Primary:** Add high-quality cards to `gold_cards.json`
+- These guide LLM generation
+- Quality score determines prompt inclusion
+
+**Secondary:** Maintain blueprints for fallback reliability
+- Ensures offline mode works
+- Provides deterministic backup
+
+---
+
+## Gold Cards (Primary Content)
+
+### File Location
+`app/src/main/assets/gold_cards.json`
+
+### Structure
+
+```json
+{
+  "games": {
+    "roast_consensus": {
+      "cards": [
+        {
+          "text": "Most likely to screenshot your story and send it back because they live-tweet their own life",
+          "quality_score": 9,
+          "spice": 2,
+          "optionA": null,
+          "optionB": null
+        }
+      ]
+    },
+    "poison_pitch": {
+      "cards": [
+        {
+          "text": "Would you rather have perfect memory or never need sleep?",
+          "quality_score": 8,
+          "spice": 1,
+          "optionA": "perfect memory",
+          "optionB": "never need sleep"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Field Definitions
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `text` | string | ✅ | The card text displayed to players |
+| `quality_score` | number | ✅ | Quality rating 1-10 (higher = used first in prompts) |
+| `spice` | number | ✅ | Content rating: 1=PG, 2=PG-13, 3=edgy |
+| `optionA`, `optionB` | string | ⚠️  | Required for AB games (POISON_PITCH, MAJORITY_REPORT) |
+| `word` | string | ⚠️  | Required for TABOO_TIMER |
+| `forbidden` | array | ⚠️  | Required for TABOO_TIMER |
+| `items` | array | ⚠️  | Required for ODD_ONE_OUT (3 items) |
+| `words` | array | ⚠️  | Required for ALIBI_DROP (secret words) |
+| `product` | string | ⚠️  | Required for HYPE_OR_YIKE |
+| `category`, `letter` | string | ⚠️  | Required for SCATTERBLAST |
+| `tones` | array | ⚠️  | Required for TEXT_THREAD_TRAP (4 tones) |
+
+### Quality Scoring Guidelines
+
+| Score | Description | Use |
+|-------|-------------|-----|
+| 9-10 | Exceptional - always funny | Top examples in LLM prompts |
+| 7-8 | High quality - reliably good | Good prompt examples |
+| 5-6 | Average - acceptable | Fallback-only use |
+| 1-4 | Below average | Consider removal |
+
+---
+
+## Blueprint V3 Schema (Fallback)
+
+> **Note:** Blueprints are used as fallback when LLM generation fails. Focus new content on gold cards.
 
 ---
 

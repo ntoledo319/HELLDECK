@@ -12,7 +12,7 @@ This document provides a comprehensive overview of the software architecture of 
 
 ## 3. System Overview
 
-Helldeck is a content-driven mobile application designed around a card-game-like experience. The core of the application involves a "content engine" that uses templates and lexicons (collections of terms) to generate dynamic content for the user. The architecture is designed to be modular, allowing for easy expansion of content and features.
+Helldeck is a content-driven mobile application designed around a card-game-like experience. The core of the application involves an **LLM-powered content engine** (`LLMCardGeneratorV2`) that generates unique, high-quality cards using on-device language models (TinyLlama/Qwen). Gold standard examples guide the prompts and serve as fallbacks. A legacy template-based system (`CardGeneratorV3`) provides additional fallback when needed. The architecture is designed to be modular, allowing for easy expansion of content and features.
 
 ## 4. Component Diagram
 

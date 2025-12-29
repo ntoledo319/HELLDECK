@@ -1,6 +1,47 @@
 # CHANGELOG
 
-## [Unreleased] - HELLDECK Complete Overhaul
+## [Unreleased] - December 2024
+
+### Critical Game Rule Change: Fill-In Finisher (Game 4)
+
+#### Complete Mechanic Overhaul
+- **Old Rules (DEPRECATED)**:
+  - Prompt shown with one blank
+  - All players write punchlines
+  - Everyone votes for funniest completion
+  - Timer: 4 seconds
+  - Scoring: +2 points for most votes
+
+- **New Rules (ACTIVE)**:
+  - One player is the **Judge**
+  - Judge reads prompt and **fills in the first blank verbally** (The Setup)
+  - Example: Judge reads "I got kicked out of _____ for _____" and says "I got kicked out of Disney World for _____"
+  - Other players have **60 seconds** to write the second blank (The Punchline)
+  - Judge reads all anonymous responses aloud
+  - Judge picks their favorite card as the winner
+  - Scoring: **+1 point** for winning the round
+  - Judge role **rotates to the left** after each round
+
+#### Tips for Players
+- Write for the Judge's specific sense of humor (Tailor your jokes!)
+- Short answers are punchier and usually win
+- If the Judge is dark, go dark; if they're silly, go silly
+- Know your audience—the Judge IS your audience
+
+#### Files Updated
+- `README.md` - Updated game description
+- `docs/USERGUIDE.md` - Complete new rules section for Fill-In Finisher
+- `docs/README.md` - Updated game list description
+- `app/src/main/java/com/helldeck/engine/GameMetadata.kt` - Timer changed from 4s to 60s, new description
+- `app/src/main/java/com/helldeck/ui/scenes/GameRulesScene.kt` - Updated in-game rules text
+- `app/src/main/java/com/helldeck/ui/scenes/RulesSheet.kt` - Updated rules sheet text
+- `app/src/main/assets/templates_v3/fill_in_finisher.json` - New two-blank prompt templates
+- `app/src/main/assets/templates/templates.json` - Updated legacy templates
+- `app/src/main/assets/gold_cards.json` - New two-blank gold cards with hints
+
+---
+
+## [Previous] - HELLDECK Complete Overhaul
 
 ### Major Architectural Changes
 

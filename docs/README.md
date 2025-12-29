@@ -66,7 +66,7 @@ This directory contains comprehensive documentation for the HELLDECK party game 
 1. **Roast Consensus** - Vote on most likely target
 2. **Confession or Cap** - Truth or bluff detection
 3. **Poison Pitch** - Sell awful "Would You Rather" options
-4. **Fill-In Finisher** - Complete prompts with punchlines
+4. **Fill-In Finisher** - Judge fills first blank verbally; others write punchlines; judge picks winner
 5. **Red Flag Rally** - Defend dating scenarios
 6. **Hot Seat Imposter** - Impersonate target player
 7. **Text Thread Trap** - Choose perfect reply tones

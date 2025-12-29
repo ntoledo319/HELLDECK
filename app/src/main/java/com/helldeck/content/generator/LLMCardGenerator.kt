@@ -1,5 +1,6 @@
 package com.helldeck.content.generator
 
+import android.content.Context
 import com.helldeck.content.model.FilledCard
 import com.helldeck.content.model.GameOptions
 import com.helldeck.engine.InteractionType
@@ -12,12 +13,21 @@ import org.json.JSONObject
 import kotlin.random.Random
 
 /**
- * LLM-first card generator that creates unique, unpredictable cards on-the-fly.
- * Falls back to template system when LLM is unavailable or slow.
+ * UNIFIED LLM Card Generator - Combines best features from V1 and V2
+ * 
+ * Primary: On-device LLM generation with quality-first prompts
+ * Fallback: Curated gold standard cards
+ * 
+ * Key Features:
+ * - Enhanced reliability with smart retry strategy
+ * - Gold standard examples in prompts
+ * - Simplified quality validation (no over-engineering)
+ * - Single fallback layer (gold cards only)
+ * - Better error handling and JSON parsing
  */
 class LLMCardGenerator(
     private val llm: LocalLLM?,
-    private val templateFallback: CardGeneratorV3
+    private val context: Context
 ) {
 
     data class GenerationRequest(
@@ -33,245 +43,537 @@ class LLMCardGenerator(
         val options: GameOptions,
         val timer: Int,
         val interactionType: InteractionType,
-        val usedLLM: Boolean
+        val usedLLM: Boolean,
+        val qualityScore: Double = 0.0
     )
 
+    /**
+     * Generate a card using LLM or fallback to gold cards
+     */
     suspend fun generate(request: GenerationRequest): GenerationResult? {
-        var result: GenerationResult? = null
-
+        // Try LLM generation with smart retry strategy
         if (llm?.isReady == true) {
-            try {
-                result = withTimeout(2000) {
-                    generateWithLLM(request)
+            repeat(3) { attempt ->
+                try {
+                    val candidate = withTimeout(4000) {  // 4 sec timeout (increased from 2.5s)
+                        generateWithLLM(request, attempt)
+                    }
+                    if (candidate != null && validateBasicQuality(candidate)) {
+                        Logger.d("LLM generated card (attempt ${attempt + 1}, quality: ${candidate.qualityScore})")
+                        return candidate
+                    } else if (candidate != null) {
+                        Logger.d("LLM card failed quality check (attempt ${attempt + 1})")
+                    }
+                } catch (e: Exception) {
+                    Logger.w("LLM generation attempt ${attempt + 1} failed: ${e.message}")
                 }
-            } catch (e: Exception) {
-                Logger.w("LLM generation failed: ${e.message}, falling back to templates")
             }
+            Logger.w("All LLM attempts failed, falling back to gold cards")
         }
 
-        return result ?: fallbackToTemplates(request)
+        // Fallback to gold cards (only fallback layer)
+        return fallbackToGold(request)
     }
 
-    private suspend fun generateWithLLM(request: GenerationRequest): GenerationResult? {
-        val prompt = buildPromptForGame(request)
+    /**
+     * Generate card using LLM with temperature variation per attempt
+     */
+    private suspend fun generateWithLLM(request: GenerationRequest, attempt: Int): GenerationResult? {
+        val prompt = buildQualityPrompt(request, attempt)
+        
+        // Vary temperature per attempt to increase variety
+        val baseTemp = when (request.spiceMax) {
+            1 -> 0.5f
+            2 -> 0.6f
+            3 -> 0.75f
+            4 -> 0.85f
+            else -> 0.9f
+        }
+        
+        val attemptTemp = when (attempt) {
+            0 -> baseTemp
+            1 -> baseTemp + 0.1f
+            else -> baseTemp + 0.2f
+        }
+
         val config = GenConfig(
-            maxTokens = 128,
-            temperature = if (request.spiceMax >= 3) 0.8f else 0.6f,
-            topP = 0.9f,
-            seed = (request.sessionId + System.currentTimeMillis()).hashCode()
+            maxTokens = 150,
+            temperature = attemptTemp.coerceIn(0.3f, 1.2f),
+            topP = 0.92f,
+            seed = (request.sessionId + System.currentTimeMillis() + attempt).hashCode()
         )
 
         val response = llm?.generate(prompt.system, prompt.user, config) ?: return null
-        return parseResponse(response, request)
+        return parseAndValidateResponse(response, request, attempt)
     }
 
     private data class Prompt(val system: String, val user: String)
 
-    private fun buildPromptForGame(request: GenerationRequest): Prompt {
-        val spiceLevel = when (request.spiceMax) {
-            1 -> "keep it PG-13, wholesome"
-            2 -> "keep it fun, slightly edgy"
-            3 -> "can be edgy and provocative"
-            4 -> "wild and unhinged, but not offensive"
-            else -> "maximum chaos"
+    /**
+     * Build quality-focused prompts with gold standard examples
+     */
+    private fun buildQualityPrompt(request: GenerationRequest, attempt: Int): Prompt {
+        // Load gold examples for this game
+        val goldExamples = GoldCardsLoader.getExamplesForGame(context, request.gameId, count = 5)
+
+        val spiceGuidance = when (request.spiceMax) {
+            1 -> "wholesome and PG-13 (family-friendly)"
+            2 -> "fun and playful with light edge"
+            3 -> "edgy and provocative but not mean-spirited"
+            4 -> "wild and unhinged while avoiding slurs"
+            else -> "maximum chaos (keep it funny, not cruel)"
+        }
+        
+        // Add creativity boost on retry attempts
+        val creativityNote = when (attempt) {
+            0 -> ""
+            1 -> "\n7. Be MORE creative than usual - avoid obvious patterns"
+            else -> "\n7. COMPLETELY different approach - surprise me with originality"
         }
 
-        val system = """You are a party game card generator for HELLDECK.
-Rules:
-- Generate exactly ONE card in JSON format
-- Be creative, unexpected, unpredictable
-- Never repeat common phrases
-- Spice level: $spiceLevel
-- No slurs, targeted harassment, or extreme content
-- Output ONLY valid JSON, no markdown or extra text"""
+        val system = """You are an expert comedy writer for HELLDECK, a party game app.
+
+CRITICAL RULES:
+1. Generate EXACTLY ONE card in valid JSON format
+2. Output ONLY the JSON - no markdown, no explanation, no extra text
+3. Be SPECIFIC and UNEXPECTED - avoid clichés and generic phrases
+4. Spice level: $spiceGuidance
+5. NEVER use slurs, target protected groups, or be genuinely cruel
+6. Every card must be UNIQUE - never repeat patterns$creativityNote"""
 
         val user = when (request.gameId) {
-            GameIds.ROAST_CONS -> """Generate a roast card:
-{
-  "text": "Most likely to [funny action] because [absurd reason]",
-  "targetType": "vote"
-}
-Examples:
-- Most likely to become a professional cave dweller because they already live like one
-- Most likely to argue with a toaster because they lost the argument with the microwave
-Make it:
-- Targeting (clearly about "someone")
-- Funny through specificity and absurdity
-- Fresh (avoid cliches like "most likely to eat everything")"""
-
-            GameIds.POISON_PITCH -> """Generate a "would you rather" with two equally terrible options:
-{
-  "text": "Would you rather...",
-  "optionA": "first terrible thing",
-  "optionB": "second terrible thing"
-}
-Examples:
-- Would you rather have hiccups every time you lie OR sneeze every time someone says your name?
-- Would you rather fight one horse-sized duck OR explain Bitcoin to your grandma every day for a year?
-Make both options:
-- Equally bad/awkward/annoying
-- Specific and vivid
-- Genuinely difficult to choose"""
-
-            GameIds.FILL_IN -> """Generate a prompt with a blank to fill in:
-{
-  "text": "_____ is the worst superpower.",
-  "prompt_type": "funniest"
-}
-The blank should invite creative, funny completions. Examples:
-- The best excuse for being late: _____
-- If I had to eat only one food forever, I'd choose _____ because _____
-- My Tinder bio should just say: _____"""
-
-            GameIds.RED_FLAG -> """Generate a dating scenario with a MAJOR red flag:
-{
-  "text": "They're perfect: [attractive quality], but [HUGE red flag]",
-  "defend": true
-}
-Examples:
-- They're perfect: great cook, amazing smile, but they refer to their ex as 'the one that got away' daily
-- They're perfect: fit, funny, rich, but they don't believe in cleaning dishes 'because germs build immunity'
-The red flag should be:
-- Dealbreaker-level absurd
-- Specific and visual
-- Defensible (players will defend it)"""
-
-            GameIds.HOTSEAT_IMP -> """Generate a personal question for someone to answer:
-{
-  "text": "What would you do if you won the lottery tomorrow?",
-  "targetType": "impersonate"
-}
-Everyone answers AS the target person. Make it:
-- Personal but not too invasive
-- Revealing of personality/habits
-- Fun to impersonate
-Examples:
-- What's your signature dance move called?
-- Describe your morning routine in 3 words
-- What would your WWE entrance song be?"""
-
-            GameIds.TEXT_TRAP -> """Generate a text message scenario:
-{
-  "text": "Your crush texts: [message]",
-  "tones": ["Flirty", "Oblivious", "Petty", "Chaotic"]
-}
-Examples:
-- Your crush texts: "what are you up to this weekend?"
-- Your ex texts: "I miss us"
-- Your boss texts at 11pm: "quick question..."
-Make it:
-- Relatable
-- Open to multiple reply tones
-- Slightly awkward or high-stakes"""
-
-            GameIds.TABOO -> """Generate a Taboo card:
-{
-  "word": "the word to guess",
-  "forbidden": ["word1", "word2", "word3"]
-}
-Examples:
-- word: "Coffee", forbidden: ["drink", "caffeine", "Starbucks"]
-- word: "TikTok", forbidden: ["app", "video", "dance"]
-The forbidden words should make it challenging but possible."""
-
-            GameIds.ODD_ONE -> """Generate 3 items where one doesn't fit:
-{
-  "items": ["item1", "item2", "item3"],
-  "text": "Which one doesn't belong?"
-}
-Make it arguable - players defend their choice. Examples:
-- ["Pizza", "Tacos", "Salad"] (all food, but salad is healthy)
-- ["Dogs", "Cats", "Birds"] (all pets, but birds fly)
-- ["Netflix", "Sleep", "Exercise"] (all activities, but which is the outlier?)"""
-
-            GameIds.ALIBI -> """Generate secret words to sneak into an excuse/story:
-{
-  "text": "Sneak these words into your excuse for being late:",
-  "words": ["rubber duck", "conspiracy", "3am"]
-}
-Words should be:
-- Random and unrelated
-- Challenging to work in naturally
-- 2-3 words max"""
-
-            GameIds.HYPE_YIKE -> """Generate a ridiculous product to pitch:
-{
-  "product": "absurd product name/description",
-  "text": "Pitch this product with a straight face:"
-}
-Examples:
-- Edible phone cases (tastes like your favorite app)
-- Deodorant for your feet's feelings
-- A pillow that judges your life choices
-Make it absurd but pitch-able."""
-
-            GameIds.SCATTER -> """Generate a Scattergories challenge:
-{
-  "category": "category name",
-  "letter": "X",
-  "text": "Name 3 [category] starting with [letter]"
-}
-Examples:
-- Category: "Things you'd find in a villain's lair", Letter: "L"
-- Category: "Excuses for missing work", Letter: "D"
-Make categories creative, not generic."""
-
-            GameIds.MAJORITY -> """Generate a binary choice to predict:
-{
-  "text": "What will the room choose?",
-  "optionA": "first option",
-  "optionB": "second option"
-}
-Examples:
-- Tacos vs Pizza
-- Cats vs Dogs
-- Morning person vs Night owl
-Make it divisive but not offensive."""
-
-            GameIds.TITLE_FIGHT -> """Generate a comparative challenge:
-{
-  "text": "Who would win: [option A] vs [option B]?",
-  "challenge": "defend your champion"
-}
-Examples:
-- Who would win: A gorilla with a sword vs 50 angry geese?
-- Better superpower: Flying but only 2 feet off the ground vs Invisibility but only when nobody's looking"""
-
-            GameIds.CONFESS_CAP -> """Generate a confession (truth or lie):
-{
-  "text": "I once [confession statement]",
-  "votable": true
-}
-Examples:
-- I once convinced my family I was allergic to chores
-- I've never actually finished a book I said I read
-- I accidentally joined a cult for 3 days before realizing
-Make it believable yet sus."""
-
-            else -> """Generate a party game card:
-{
-  "text": "Generated card text",
-  "type": "general"
-}"""
+            GameIds.ROAST_CONS -> buildRoastPrompt(goldExamples)
+            GameIds.POISON_PITCH -> buildPoisonPitchPrompt(goldExamples)
+            GameIds.FILL_IN -> buildFillInPrompt(goldExamples)
+            GameIds.RED_FLAG -> buildRedFlagPrompt(goldExamples)
+            GameIds.HOTSEAT_IMP -> buildHotSeatPrompt(goldExamples)
+            GameIds.TEXT_TRAP -> buildTextTrapPrompt(goldExamples)
+            GameIds.TABOO -> buildTabooPrompt(goldExamples)
+            GameIds.ODD_ONE -> buildOddOnePrompt(goldExamples)
+            GameIds.TITLE_FIGHT -> buildTitleFightPrompt(goldExamples)
+            GameIds.ALIBI -> buildAlibiPrompt(goldExamples)
+            GameIds.HYPE_YIKE -> buildHypePrompt(goldExamples)
+            GameIds.SCATTER -> buildScatterPrompt(goldExamples)
+            GameIds.MAJORITY -> buildMajorityPrompt(goldExamples)
+            GameIds.CONFESS_CAP -> buildConfessPrompt(goldExamples)
+            else -> """{"text": "Fallback card", "type": "unknown"}"""
         }
 
         return Prompt(system, user)
     }
 
-    private fun parseResponse(response: String, request: GenerationRequest): GenerationResult? {
+    // ===== GAME-SPECIFIC PROMPTS =====
+
+    private fun buildRoastPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a roast card:
+
+FORMAT:
+{
+  "text": "Most likely to [SPECIFIC ACTION] because [ABSURD BUT BELIEVABLE REASON]"
+}
+
+QUALITY CRITERIA:
+✓ SPECIFICITY - Avoid generic (no "be late", "eat pizza", etc.)
+✓ ABSURDITY - Exaggerated but relatable scenario
+✓ VISUAL - Create a mental image
+✓ PLAYFUL - Roast the behavior, not the person
+✓ UNEXPECTED - Surprise with the reason
+
+TOP EXAMPLES:
+$exampleText
+
+❌ AVOID:
+- "Most likely to be late" (too generic)
+- "Most likely to eat all the pizza" (cliché)
+- Physical appearance attacks
+- Anything genuinely hurtful
+
+OUTPUT: Generate ONE unique roast card in JSON format."""
+    }
+
+    private fun buildPoisonPitchPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            val opts = if (it.optionA != null && it.optionB != null) {
+                " | A: \"${it.optionA}\" vs B: \"${it.optionB}\""
+            } else ""
+            "✅ \"${it.text}\"$opts (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a "Would You Rather" dilemma:
+
+FORMAT:
+{
+  "text": "Would you rather...",
+  "optionA": "first terrible option",
+  "optionB": "second terrible option"
+}
+
+QUALITY CRITERIA:
+✓ EQUAL DIFFICULTY - Both options equally bad/awkward
+✓ SPECIFICITY - Vivid, concrete scenarios
+✓ GENUINE DILEMMA - No obvious answer
+✓ VISUAL - Easy to imagine both outcomes
+
+TOP EXAMPLES:
+$exampleText
+
+❌ AVOID:
+- One option obviously better
+- Generic choices
+- Too similar options
+
+OUTPUT: Generate ONE unique dilemma in JSON format."""
+    }
+
+    private fun buildFillInPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a double fill-in-the-blank prompt:
+
+FORMAT:
+{
+  "text": "Prompt with _____ (first blank) and _____ (second blank)"
+}
+
+STRUCTURE: Judge fills first blank verbally (setup), players write punchlines for second blank.
+
+QUALITY CRITERIA:
+✓ FIRST BLANK - Invites setup/context
+✓ SECOND BLANK - Invites punchline/completion
+✓ OPEN-ENDED - Multiple funny answers possible
+✓ CREATIVE POTENTIAL - Unexpected responses
+
+TOP EXAMPLES:
+$exampleText
+
+❌ AVOID:
+- Single blanks only
+- Obvious answers
+- Too limiting
+
+OUTPUT: Generate ONE unique prompt in JSON format."""
+    }
+
+    private fun buildRedFlagPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a dating red flag scenario:
+
+FORMAT:
+{
+  "text": "They're perfect: [ATTRACTIVE QUALITY], but [DEALBREAKER RED FLAG]"
+}
+
+QUALITY CRITERIA:
+✓ CONTRAST - Green flag must be genuinely appealing
+✓ ABSURDITY - Red flag is dealbreaker-level ridiculous
+✓ DEFENSIBILITY - Could argue to overlook it (for comedy)
+✓ SPECIFICITY - Vivid, concrete details
+
+TOP EXAMPLES:
+$exampleText
+
+❌ AVOID:
+- Weak red flags
+- Undefensible (actual crimes)
+- Generic qualities
+
+OUTPUT: Generate ONE unique red flag scenario in JSON format."""
+    }
+
+    private fun buildHotSeatPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a personal question:
+
+FORMAT:
+{
+  "text": "Question everyone answers AS the target person"
+}
+
+QUALITY CRITERIA:
+✓ PERSONAL - Reveals personality/habits
+✓ FUN TO IMPERSONATE - Easy to exaggerate
+✓ NOT TOO INVASIVE - Playful, not uncomfortable
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE unique question in JSON format."""
+    }
+
+    private fun buildTextTrapPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            val tones = it.tones?.joinToString(", ") ?: ""
+            "✅ \"${it.text}\" | Tones: [$tones] (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a text message scenario:
+
+FORMAT:
+{
+  "text": "[PERSON] texts: '[MESSAGE]'",
+  "tones": ["Tone1", "Tone2", "Tone3", "Tone4"]
+}
+
+QUALITY CRITERIA:
+✓ RELATABLE - Common texting situation
+✓ HIGH-STAKES - Creates tension/awkwardness
+✓ MULTIPLE TONES - Many valid reply styles
+
+TOP EXAMPLES:
+$exampleText
+
+Common tones: Flirty, Petty, Wholesome, Chaotic, Cold, Panicked, Professional, Gaslighting, Casual
+
+OUTPUT: Generate ONE scenario in JSON with 4 tone options."""
+    }
+
+    private fun buildTabooPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") { card ->
+            val forbidden = card.forbidden?.joinToString(", ") ?: ""
+            "✅ Word: \"${card.word}\" | Forbidden: [$forbidden] (quality: ${card.quality_score}/10)"
+        }
+
+        return """Generate a Taboo card:
+
+FORMAT:
+{
+  "word": "word to guess",
+  "forbidden": ["word1", "word2", "word3"]
+}
+
+QUALITY CRITERIA:
+✓ COMMON WORD - Everyone knows it
+✓ CHALLENGING - Forbidden words are obvious clues
+✓ ACHIEVABLE - Still possible to describe
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE Taboo card in JSON format."""
+    }
+
+    private fun buildOddOnePrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            val items = it.items?.joinToString(", ") ?: ""
+            "✅ [$items] | \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate "Odd One Out" challenge:
+
+FORMAT:
+{
+  "items": ["item1", "item2", "item3"],
+  "text": "Which one doesn't belong?"
+}
+
+QUALITY CRITERIA:
+✓ ARGUABLE - All choices defensible
+✓ NOT OBVIOUS - Multiple perspectives
+✓ INTERESTING - Sparks debate
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE challenge in JSON format."""
+    }
+
+    private fun buildTitleFightPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a comparative challenge:
+
+FORMAT:
+{
+  "text": "Who would win: [OPTION A] vs [OPTION B]?"
+}
+
+QUALITY CRITERIA:
+✓ ABSURDITY - Ridiculous matchups
+✓ DEBATABLE - Both sides defensible
+✓ VISUAL - Easy to imagine
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE challenge in JSON format."""
+    }
+
+    private fun buildAlibiPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            val words = it.words?.joinToString(", ") ?: ""
+            "✅ Words: [$words] | \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate an alibi challenge:
+
+FORMAT:
+{
+  "words": ["random1", "random2", "random3"],
+  "text": "Sneak these into your excuse:"
+}
+
+QUALITY CRITERIA:
+✓ UNRELATED - Words have no connection
+✓ CHALLENGING - Hard to work in naturally
+✓ NOT IMPOSSIBLE - Still achievable
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE challenge with 3 random words in JSON format."""
+    }
+
+    private fun buildHypePrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ Product: \"${it.product}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a ridiculous product to pitch:
+
+FORMAT:
+{
+  "product": "absurd product description",
+  "text": "Pitch this product:"
+}
+
+QUALITY CRITERIA:
+✓ ABSURD - Clearly ridiculous
+✓ PITCH-ABLE - Can actually defend it
+✓ CREATIVE - Unexpected concept
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE product in JSON format."""
+    }
+
+    private fun buildScatterPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ Category: \"${it.category}\", Letter: ${it.letter} (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a Scattergories challenge:
+
+FORMAT:
+{
+  "category": "creative category",
+  "letter": "X",
+  "text": "Name 3"
+}
+
+QUALITY CRITERIA:
+✓ CREATIVE CATEGORY - Not generic
+✓ CHALLENGING - Requires thought
+✓ ACHIEVABLE - Answers exist
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE challenge in JSON format."""
+    }
+
+    private fun buildMajorityPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            val opts = if (it.optionA != null && it.optionB != null) {
+                " | ${it.optionA} vs ${it.optionB}"
+            } else ""
+            "✅ \"${it.text}\"$opts (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a prediction challenge:
+
+FORMAT:
+{
+  "optionA": "first choice",
+  "optionB": "second choice",
+  "text": "What will the room choose?"
+}
+
+QUALITY CRITERIA:
+✓ DIVISIVE - Should split the room
+✓ NO OBVIOUS ANSWER - Genuine debate
+✓ RELATABLE - Everyone has an opinion
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE prediction challenge in JSON format."""
+    }
+
+    private fun buildConfessPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleText = examples.take(5).joinToString("\n") {
+            "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
+        }
+
+        return """Generate a confession (truth or lie):
+
+FORMAT:
+{
+  "text": "I once [confession]"
+}
+
+QUALITY CRITERIA:
+✓ BELIEVABLE YET SUS - Could be true or false
+✓ INTERESTING - Sparks curiosity
+✓ BORDERLINE - Not obviously true/false
+
+TOP EXAMPLES:
+$exampleText
+
+OUTPUT: Generate ONE confession in JSON format."""
+    }
+
+    // ===== PARSING & VALIDATION =====
+
+    /**
+     * Parse LLM response with enhanced error handling
+     */
+    private fun parseAndValidateResponse(
+        response: String, 
+        request: GenerationRequest,
+        attempt: Int
+    ): GenerationResult? {
         return try {
-            // Clean response (remove markdown if present)
+            // Clean response - handle common formatting issues
             val cleaned = response
                 .replace("```json", "")
                 .replace("```", "")
+                .replace("\\n", " ")
                 .trim()
+                .let { 
+                    // Extract JSON if embedded in text
+                    val start = it.indexOf('{')
+                    val end = it.lastIndexOf('}')
+                    if (start != -1 && end != -1 && end > start) {
+                        it.substring(start, end + 1)
+                    } else {
+                        it
+                    }
+                }
 
             val json = JSONObject(cleaned)
             val text = json.optString("text", "")
 
-            if (text.isBlank()) return null
+            // Basic validation
+            if (text.isBlank() || text.length < 10) {
+                Logger.d("Card text too short: ${text.length} chars")
+                return null
+            }
 
-            // Create FilledCard
             val card = FilledCard(
                 id = "llm_${request.gameId}_${System.currentTimeMillis()}",
                 game = request.gameId,
@@ -280,24 +582,106 @@ Make it believable yet sus."""
                 spice = request.spiceMax,
                 locality = 1,
                 metadata = mapOf(
-                    "generated_by" to "llm",
+                    "generated_by" to "llm_unified",
                     "model" to (llm?.modelId ?: "unknown"),
-                    "timestamp" to System.currentTimeMillis()
+                    "timestamp" to System.currentTimeMillis(),
+                    "attempt" to attempt,
+                    "prompt_version" to "unified_v1"
                 )
             )
 
-            // Parse game-specific options
             val options = parseOptionsFromJson(json, request)
             val timer = getTimerForGame(request.gameId)
             val interactionType = getInteractionTypeForGame(request.gameId)
+            val qualityScore = estimateQuality(card, options)
 
-            GenerationResult(card, options, timer, interactionType, usedLLM = true)
+            GenerationResult(card, options, timer, interactionType, usedLLM = true, qualityScore = qualityScore)
 
         } catch (e: Exception) {
             Logger.w("Failed to parse LLM response: ${e.message}")
             null
         }
     }
+
+    /**
+     * Simplified quality validation (no over-engineering)
+     */
+    private fun validateBasicQuality(result: GenerationResult): Boolean {
+        val text = result.filledCard.text
+
+        // Minimum quality score check
+        if (result.qualityScore < 0.6) {
+            Logger.d("Quality score too low: ${result.qualityScore}")
+            return false
+        }
+
+        // Check for game-specific clichés
+        val badPhrases = when (result.filledCard.game) {
+            GameIds.ROAST_CONS -> listOf("be late", "eat pizza", "eat all", "be the one")
+            GameIds.POISON_PITCH -> listOf("would you rather have", "or would you")
+            else -> emptyList()
+        }
+
+        if (badPhrases.any { text.contains(it, ignoreCase = true) }) {
+            Logger.d("Contains cliché phrase")
+            return false
+        }
+
+        // Minimum length check
+        if (text.length < 15) {
+            Logger.d("Text too short: ${text.length} chars")
+            return false
+        }
+
+        // Maximum length check (avoid runaway generation)
+        if (text.length > 200) {
+            Logger.d("Text too long: ${text.length} chars")
+            return false
+        }
+
+        return true
+    }
+
+    /**
+     * Estimate quality score (simplified)
+     */
+    private fun estimateQuality(card: FilledCard, options: GameOptions): Double {
+        var score = 0.7  // Base score
+
+        // Length check (not too short, not too long)
+        val wordCount = card.text.split("\\s+".toRegex()).size
+        score += when {
+            wordCount < 5 -> -0.3
+            wordCount > 30 -> -0.2
+            wordCount in 10..20 -> 0.2
+            else -> 0.0
+        }
+
+        // Specificity (contains numbers, proper nouns, specific details)
+        if (card.text.contains(Regex("\\d"))) score += 0.05
+        if (card.text.contains(Regex("[A-Z][a-z]+"))) score += 0.05
+
+        // Options quality (for applicable games)
+        when (options) {
+            is GameOptions.AB -> {
+                if (options.optionA.isNotBlank() && options.optionB.isNotBlank()) {
+                    score += 0.1
+                    // Penalize if options are too similar
+                    if (options.optionA.lowercase() == options.optionB.lowercase()) {
+                        score -= 0.3
+                    }
+                }
+            }
+            is GameOptions.Taboo -> {
+                if (options.forbidden.size == 3) score += 0.1
+            }
+            else -> {}
+        }
+
+        return score.coerceIn(0.0, 1.0)
+    }
+
+    // ===== OPTION PARSING =====
 
     private fun parseOptionsFromJson(json: JSONObject, request: GenerationRequest): GameOptions {
         return when (request.gameId) {
@@ -308,6 +692,8 @@ Make it believable yet sus."""
                 val b = json.optString("optionB", "Option B")
                 GameOptions.AB(a, b)
             }
+
+            GameIds.RED_FLAG -> GameOptions.AB("SMASH", "PASS")
 
             GameIds.TABOO -> {
                 val word = json.optString("word", "word")
@@ -327,7 +713,7 @@ Make it believable yet sus."""
             GameIds.ALIBI -> {
                 val words = json.optJSONArray("words")?.let { arr ->
                     (0 until arr.length()).map { arr.getString(it) }
-                } ?: listOf("word1", "word2")
+                } ?: listOf("word1", "word2", "word3")
                 GameOptions.HiddenWords(words)
             }
 
@@ -351,17 +737,17 @@ Make it believable yet sus."""
 
             GameIds.CONFESS_CAP -> GameOptions.TrueFalse
 
-            GameIds.RED_FLAG -> {
-                GameOptions.AB("SMASH", "PASS")
-            }
-
             GameIds.HOTSEAT_IMP, GameIds.TITLE_FIGHT -> {
                 GameOptions.Challenge(json.optString("challenge", "Pick the best"))
             }
 
+            GameIds.FILL_IN -> GameOptions.None
+
             else -> GameOptions.None
         }
     }
+
+    // ===== GAME METADATA =====
 
     private fun getTimerForGame(gameId: String): Int = when (gameId) {
         GameIds.TABOO -> 60
@@ -382,29 +768,74 @@ Make it believable yet sus."""
         GameIds.SCATTER -> InteractionType.SPEED_LIST
         GameIds.TITLE_FIGHT -> InteractionType.MINI_DUEL
         GameIds.TEXT_TRAP -> InteractionType.REPLY_TONE
-        GameIds.HOTSEAT_IMP -> InteractionType.JUDGE_PICK
+        GameIds.HOTSEAT_IMP, GameIds.FILL_IN -> InteractionType.JUDGE_PICK
         else -> InteractionType.NONE
     }
 
-    private fun fallbackToTemplates(request: GenerationRequest): GenerationResult? {
-        val templateRequest = com.helldeck.content.engine.GameEngine.Request(
-            sessionId = request.sessionId,
-            gameId = request.gameId,
-            players = request.players,
-            spiceMax = request.spiceMax,
-            roomHeat = request.roomHeat
+    // ===== GOLD CARD FALLBACK =====
+
+    /**
+     * Fallback to curated gold standard cards
+     */
+    private fun fallbackToGold(request: GenerationRequest): GenerationResult? {
+        val goldCard = GoldCardsLoader.getRandomFallback(context, request.gameId) ?: return null
+
+        val card = FilledCard(
+            id = "gold_${request.gameId}_${System.currentTimeMillis()}",
+            game = request.gameId,
+            text = goldCard.text,
+            family = "gold_standard",
+            spice = goldCard.spice,
+            locality = 1,
+            metadata = mapOf(
+                "generated_by" to "gold_standard",
+                "quality_score" to goldCard.quality_score
+            )
         )
 
-        val rng = com.helldeck.content.util.SeededRng(request.sessionId.hashCode().toLong())
-
-        return templateFallback.generate(templateRequest, rng)?.let {
-            GenerationResult(
-                filledCard = it.filledCard,
-                options = it.options,
-                timer = it.timer,
-                interactionType = it.interactionType,
-                usedLLM = false
-            )
+        val options = when (request.gameId) {
+            GameIds.POISON_PITCH, GameIds.MAJORITY -> {
+                GameOptions.AB(goldCard.optionA ?: "A", goldCard.optionB ?: "B")
+            }
+            GameIds.TABOO -> {
+                GameOptions.Taboo(
+                    goldCard.word ?: "word", 
+                    goldCard.forbidden ?: listOf("1", "2", "3")
+                )
+            }
+            GameIds.ODD_ONE -> {
+                GameOptions.OddOneOut(goldCard.items ?: listOf("A", "B", "C"))
+            }
+            GameIds.ALIBI -> {
+                GameOptions.HiddenWords(goldCard.words ?: listOf("word1", "word2"))
+            }
+            GameIds.HYPE_YIKE -> {
+                GameOptions.Product(goldCard.product ?: "product")
+            }
+            GameIds.SCATTER -> {
+                GameOptions.Scatter(
+                    goldCard.category ?: "Things", 
+                    goldCard.letter ?: "A"
+                )
+            }
+            GameIds.TEXT_TRAP -> {
+                GameOptions.ReplyTone(
+                    goldCard.tones ?: listOf("Casual", "Formal", "Chaotic", "Petty")
+                )
+            }
+            GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
+            GameIds.CONFESS_CAP -> GameOptions.TrueFalse
+            GameIds.RED_FLAG -> GameOptions.AB("SMASH", "PASS")
+            else -> GameOptions.None
         }
+
+        return GenerationResult(
+            card, 
+            options,
+            getTimerForGame(request.gameId),
+            getInteractionTypeForGame(request.gameId),
+            usedLLM = false,
+            qualityScore = goldCard.quality_score / 10.0
+        )
     }
 }

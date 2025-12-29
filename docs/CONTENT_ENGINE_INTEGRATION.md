@@ -1,6 +1,8 @@
-# HELLDECK Content Engine v2.5 Integration Guide
+# HELLDECK Content Engine v3.0 Integration Guide
 
-This document outlines the integration points and acceptance criteria for the new content engine in the HELLDECK Android application.
+This document outlines the integration points for the LLM-powered content engine in the HELLDECK Android application.
+
+> **Note**: As of December 2024, the primary card generation system is `LLMCardGeneratorV2`, which uses on-device language models. The legacy template-based system (`CardGeneratorV3`) serves as a fallback.
 
 ## 1. Dependencies
 
@@ -73,7 +75,60 @@ The following asset files have been created under `app/src/main/assets/`:
 * `lexicons/forbidden.json`
 * `lexicons/inbound_texts.json` (Optional)
 
-## 4. Integration Callsites
+## 4. LLM Card Generation (Primary System)
+
+### Key Files
+* [`app/src/main/java/com/helldeck/content/generator/LLMCardGeneratorV2.kt`](app/src/main/java/com/helldeck/content/generator/LLMCardGeneratorV2.kt) - Primary LLM-based generator
+* [`app/src/main/java/com/helldeck/content/generator/GoldCardsLoader.kt`](app/src/main/java/com/helldeck/content/generator/GoldCardsLoader.kt) - Gold card examples and fallbacks
+* [`app/src/main/assets/gold_cards.json`](app/src/main/assets/gold_cards.json) - Curated high-quality card examples
+
+### Usage
+
+```kotlin
+// Initialize with LocalLLM and fallback
+val llmGenerator = LLMCardGeneratorV2(
+    llm = localLLM,  // From llm module
+    context = appContext,
+    templateFallback = cardGeneratorV3
+)
+
+// Generate a card
+val result = llmGenerator.generate(
+    LLMCardGeneratorV2.GenerationRequest(
+        gameId = GameIds.ROAST_CONS,
+        players = listOf("nikki", "jay", "mo"),
+        spiceMax = 3,  // Controls LLM temperature (0.5-0.9)
+        sessionId = "session123",
+        roomHeat = 0.6
+    )
+)
+
+// Result includes:
+// - filledCard: The generated card content
+// - options: Game-specific options (AB, PlayerVote, Taboo, etc.)
+// - timer: Seconds for this game type
+// - interactionType: UI interaction mode
+// - usedLLM: Whether LLM or fallback was used
+// - qualityScore: Estimated quality (0.0-1.0)
+```
+
+### Spice → Temperature Mapping
+| Spice | Temperature | Description |
+|-------|-------------|-------------|
+| 1 | 0.5 | Conservative, family-friendly |
+| 2 | 0.6 | Playful with light edge |
+| 3 | 0.75 | Edgy and provocative |
+| 4 | 0.85 | Wild and unhinged |
+| 5+ | 0.9 | Maximum chaos |
+
+### Generation Flow
+1. Check if LocalLLM is ready
+2. Build quality-focused prompt with gold examples
+3. Up to 3 attempts, 2.5s timeout each
+4. Parse and validate response
+5. Fallback chain: Gold Cards → Template Generator
+
+## 5. Legacy Integration Callsites (Fallback Only)
 
 ### Initialize on app start (debug: run preflight)
 
@@ -84,7 +139,7 @@ repo.initialize()
 com.helldeck.content.validation.Preflight.validate(repo)
 ```
 
-### Per session engine with seed
+### Per session engine with seed (legacy fallback)
 
 ```kotlin
 val engine = GameEngine(repo, com.helldeck.content.util.SeededRng(1337L))
