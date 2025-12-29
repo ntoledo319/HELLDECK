@@ -2,45 +2,53 @@
 
 ## System Overview
 
-HELLDECK is a party game Android application that generates dynamic, context-aware cards using a sophisticated content generation engine. The system combines lexicon-based content with semantic validation and humor scoring to create engaging gameplay experiences.
+HELLDECK is a party game Android application that generates dynamic, context-aware cards using an LLM-powered content generation engine. The system uses on-device language models to create unique, high-quality cards with gold standard examples as guidance and fallback.
 
 ## Core Components
 
 ### 1. Content Generation Pipeline
 
 ```
-User Request → CardGeneratorV3 → Template Selection → Slot Filling → 
-Validation → Humor Scoring → Quality Filtering → Card Output
+User Request → LLMCardGeneratorV2 → Quality Prompting → LLM Generation →
+Quality Validation → [Fallback: Gold Cards → Templates] → Card Output
 ```
 
-#### 1.1 CardGeneratorV3
-- **Location**: `app/src/main/java/com/helldeck/content/generator/CardGeneratorV3.kt`
-- **Purpose**: Orchestrates the entire card generation process
+#### 1.1 LLMCardGeneratorV2 (Primary Generator)
+- **Location**: `app/src/main/java/com/helldeck/content/generator/LLMCardGeneratorV2.kt`
+- **Purpose**: Quality-first LLM card generation using gold standard examples
 - **Key Features**:
-  - Blueprint-based template system
-  - Multi-slot content filling
-  - Semantic coherence validation
-  - Humor scoring and filtering
-  - Quality threshold enforcement
+  - On-device LLM generation (TinyLlama/Qwen)
+  - Example-driven quality prompts
+  - 3-retry strategy with 2.5s timeout per attempt
+  - Game-specific prompt templates
+  - Quality validation and scoring
+  - Graceful fallback chain
 
-#### 1.2 Template System
-- **Location**: `app/src/main/assets/templates_v3/`
-- **Format**: JSON blueprint files
+#### 1.2 Gold Cards System
+- **Location**: `app/src/main/assets/gold_cards.json`
+- **Purpose**: High-quality curated examples for prompts and fallbacks
+- **Loader**: `app/src/main/java/com/helldeck/content/generator/GoldCardsLoader.kt`
 - **Structure**:
   ```json
   {
-    "id": "blueprint_id",
-    "game": "GAME_TYPE",
-    "blueprint": [
-      {"type": "text", "value": "Static text"},
-      {"type": "slot", "name": "slot_name", "slot_type": "lexicon_type"}
-    ],
-    "constraints": {
-      "max_words": 20,
-      "distinct_slots": true
+    "games": {
+      "roast_consensus": {
+        "cards": [
+          {
+            "text": "Most likely to...",
+            "quality_score": 9,
+            "spice": 2
+          }
+        ]
+      }
     }
   }
   ```
+
+#### 1.3 CardGeneratorV3 (Legacy Fallback)
+- **Location**: `app/src/main/java/com/helldeck/content/generator/CardGeneratorV3.kt`
+- **Purpose**: Template-based fallback when LLM is unavailable
+- **Note**: Only used when LLM fails and no gold cards match
 
 ### 2. Lexicon System
 
@@ -134,33 +142,31 @@ Validation → Humor Scoring → Quality Filtering → Card Output
 - **Per-Game Thresholds**: Different games have different quality requirements
 - **Adaptive Filtering**: Adjusts based on game type and spice level
 
-### 6. Data Flow
+### 6. Data Flow (LLM V2 Pipeline)
 
 ```
 1. User initiates game
-2. CardGeneratorV3 receives request
-3. Template selection based on:
-   - Game type
-   - Spice level
-   - Blueprint weights
-   - Prior performance
-4. Slot filling:
-   - LexiconRepository provides entries
-   - SemanticValidator checks compatibility
-   - Multiple candidates generated
-5. Validation:
-   - Semantic coherence check
-   - Banned word filtering
-   - Constraint validation
-6. Scoring:
-   - HumorScorer evaluates each candidate
-   - Threshold filtering applied
-7. Selection:
-   - Highest scoring valid card selected
-   - Fallback to lower thresholds if needed
-8. Output:
+2. LLMCardGeneratorV2 receives request
+3. LLM Generation Phase:
+   - Check if LocalLLM is ready
+   - Build quality-focused prompt with gold examples
+   - Set temperature based on spice level (0.5-0.9)
+   - Up to 3 generation attempts, 2.5s timeout each
+4. Quality Validation:
+   - Parse JSON response from LLM
+   - Check minimum quality score (≥0.6)
+   - Filter cliché phrases per game type
+   - Validate minimum text length (≥15 chars)
+5. Fallback Chain (if LLM fails):
+   a. Gold Cards: Curated high-quality cards from gold_cards.json
+   b. Templates: Legacy CardGeneratorV3 slot-filling system
+6. Result Assembly:
+   - Build FilledCard with metadata (usedLLM, qualityScore)
+   - Parse game-specific options from JSON
+   - Determine timer and interaction type
+7. Output:
    - Card delivered to game UI
-   - Metadata logged for analytics
+   - Generation method tracked for analytics
 ```
 
 ## Performance Considerations

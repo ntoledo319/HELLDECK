@@ -23,7 +23,7 @@ HELLDECK is a party game system designed for 3-16 players using a single Android
 - **Roast Consensus** - Vote on the most likely target for a scenario
 - **Confession or Cap** - Truth or bluff game with room voting
 - **Poison Pitch** - Sell your side of a "Would You Rather" scenario
-- **Fill-In Finisher** - Complete a prompt with the funniest punchline
+- **Fill-In Finisher** - Judge reads prompt and fills first blank; others write punchlines; judge picks favorite
 - **Red Flag Rally** - Defend a dating scenario despite red flags
 - **Hot Seat Imposter** - Everyone answers as the target player
 - **Text Thread Trap** - Choose the perfect reply tone to a message
@@ -129,32 +129,35 @@ helldeck/
 
 ## 🔧 Development
 
-### Offline Generator V3 (Blueprints + Lexicons)
+### LLM-Powered Card Generation (Primary)
 
-- Blueprints live under `app/src/main/assets/templates_v3/` (per-game JSON lists).
-- Typed lexicons live under `app/src/main/assets/lexicons_v2/` (each file declares `slot_type` and `entries`).
-- Model artifacts live under `app/src/main/assets/model/` (rules, priors, pairings, logistic weights, banned lists).
+HELLDECK uses on-device language models (TinyLlama/Qwen) for quality-first card generation:
 
-Enabling generator V3:
-- In-app: Settings → Developer → Enable Generator V3 (and disable Gold Mode Only).
-- Dev tool: Settings → Developer → Open Card Lab → toggle “Force V3: ON” (auto-restores flags on exit).
+- **Primary generator**: `LLMCardGeneratorV2` generates unique cards using quality-focused prompts
+- **Gold examples**: High-quality curated cards in `app/src/main/assets/gold_cards.json` guide LLM prompts and serve as emergency fallbacks
+- **Spice → Temperature**: Spice level (1-5) controls LLM creativity (0.5-0.9 temperature)
+- **Quality validation**: Cards must pass quality score (≥0.6), cliché filtering, and length checks
+- **3-retry strategy**: Up to 3 attempts with 2.5s timeout each before falling back
 
-Gold fallback:
-- Curated cards live in `app/src/main/assets/gold/gold_cards.json`. Safe-mode serves only these.
+Fallback chain:
+1. **LLM generation** (primary)
+2. **Gold cards** (`gold_cards.json`)
+3. **Template system** (legacy `CardGeneratorV3`)
 
-Audit & diagnostics:
-- CLI audit: `./gradlew :app:cardAudit -Pgame=POISON_PITCH -Pcount=100 -Pseed=12345` → outputs CSV/JSON/HTML in `app/build/reports/cardlab/`.
-- Compare new audit CSVs to the frozen baselines with `python tools/card_audit_diff.py`; baselines live in `docs/card_audit_baselines/`.
-- Lint lexicons locally with `python tools/lexicon_lint.py` to catch punctuation, article collisions, and emoji/locality hints.
- - Generate/refresh baselines across many games with `bash tools/gen_audit_baselines.sh`.
-- Card Lab (Settings → Developer → Open Card Lab) supports seed ranges, retry counts, pass/fail stats, per-feature metadata, and banlists. Use “Force V3” to bypass global flags.
+### Legacy Template System (Fallback Only)
 
-Quality sweeps also accept multiple seeds in a single run for faster aggregation:
+The template-based system serves as fallback when LLM is unavailable:
 
-```
-./gradlew :app:cardQuality -Pcount=80 -Pseeds=701,702,703,704,705,706,707,708 -Pspice=2
-python3 tools/quality_summarize.py  # updates docs/quality_summary.md
-```
+- Blueprints: `app/src/main/assets/templates_v3/` (per-game JSON lists)
+- Lexicons: `app/src/main/assets/lexicons_v2/` (typed word lists with metadata)
+- Model artifacts: `app/src/main/assets/model/` (rules, priors, pairings, banned lists)
+
+### Card Lab & Diagnostics
+
+- Card Lab: Settings → Developer → Open Card Lab
+- CLI audit: `./gradlew :app:cardAudit -Pgame=POISON_PITCH -Pcount=100 -Pseed=12345`
+- Quality sweeps: `./gradlew :app:cardQuality -Pcount=80 -Pseeds=701,702,703,704,705,706,707,708 -Pspice=2`
+- Lint lexicons: `python tools/lexicon_lint.py`
 
 ### Configuration
 

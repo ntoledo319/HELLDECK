@@ -267,111 +267,151 @@
     "fill_in_finisher": {
       "game_name": "Fill-In Finisher",
       "quality_criteria": {
-        "structure": "Prompt with blank: _____ or [complete this]",
-        "openness": "Blank should invite creative completions",
-        "length": "8-15 words",
-        "key_elements": ["Open-ended", "Funny potential", "Not too obvious", "Relatable"]
+        "structure": "Two-blank prompt: Judge fills first blank verbally, others write punchlines for second blank",
+        "openness": "First blank invites setup, second blank invites punchline",
+        "length": "10-20 words with two blanks marked",
+        "key_elements": ["Two blanks", "Setup/punchline structure", "Judge customizable", "Funny potential"]
       },
       "cards": [
         {
-          "text": "The best excuse for being late: _____",
-          "quality_score": 8,
+          "text": "I got kicked out of _____ for _____",
+          "first_blank_hint": "a place",
+          "second_blank_hint": "punchline reason",
+          "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "If I had to eat only one food forever, I'd choose _____ because _____",
-          "quality_score": 7,
-          "spice": 1
-        },
-        {
-          "text": "My Tinder bio should just say: _____",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "_____ is the worst superpower you could possibly have",
+          "text": "The worst part about _____ is _____",
+          "first_blank_hint": "situation/topic",
+          "second_blank_hint": "punchline consequence",
           "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "The real reason I'm single: _____",
-          "quality_score": 8,
-          "spice": 3
-        },
-        {
-          "text": "Red flag in a relationship: they collect _____",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "If there was an Olympics for _____, I'd win gold",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "My toxic trait is _____",
+          "text": "Nothing ruins a first date faster than _____ followed by _____",
+          "first_blank_hint": "action/event",
+          "second_blank_hint": "punchline escalation",
           "quality_score": 9,
           "spice": 3
         },
         {
-          "text": "Things that sound illegal but aren't: _____",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "My autobiography would be called: _____",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "I'd rather die than _____",
-          "quality_score": 7,
-          "spice": 3
-        },
-        {
-          "text": "The hill I will die on: _____",
+          "text": "My therapist said _____ but I heard _____",
+          "first_blank_hint": "advice",
+          "second_blank_hint": "misinterpretation punchline",
           "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "Everyone has that one friend who _____",
-          "quality_score": 7,
-          "spice": 2
-        },
-        {
-          "text": "If aliens landed tomorrow, the first thing I'd show them: _____",
-          "quality_score": 8,
-          "spice": 2
-        },
-        {
-          "text": "The worst thing you can hear after 'We need to talk' is _____",
-          "quality_score": 9,
-          "spice": 3
-        },
-        {
-          "text": "My villain origin story started with _____",
+          "text": "I thought _____ was a good idea until _____",
+          "first_blank_hint": "action/plan",
+          "second_blank_hint": "what went wrong",
           "quality_score": 9,
           "spice": 2
         },
         {
-          "text": "If my life was a movie genre, it would be _____",
-          "quality_score": 7,
-          "spice": 2
-        },
-        {
-          "text": "The worst time to realize _____ is during a first date",
-          "quality_score": 8,
+          "text": "The ick that ruins a 10/10 is when they _____ and then _____",
+          "first_blank_hint": "behavior",
+          "second_blank_hint": "what makes it worse",
+          "quality_score": 9,
           "spice": 3
         },
         {
-          "text": "My demon would be impressed if I _____",
+          "text": "Scientists discovered that _____ is actually caused by _____",
+          "first_blank_hint": "phenomenon",
+          "second_blank_hint": "absurd cause",
           "quality_score": 8,
+          "spice": 2
+        },
+        {
+          "text": "Breaking news: _____ has been cancelled due to _____",
+          "first_blank_hint": "event/thing",
+          "second_blank_hint": "ridiculous reason",
+          "quality_score": 9,
+          "spice": 2
+        },
+        {
+          "text": "My villain origin story started with _____ and ended with _____",
+          "first_blank_hint": "event",
+          "second_blank_hint": "dark conclusion",
+          "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "I'm not saying I'm Batman, but have you ever seen me and _____ in the same room?",
+          "text": "I didn't believe in _____ until I saw _____",
+          "first_blank_hint": "concept/thing",
+          "second_blank_hint": "what convinced them",
           "quality_score": 8,
           "spice": 2
+        },
+        {
+          "text": "Every time I try _____ I end up _____",
+          "first_blank_hint": "activity",
+          "second_blank_hint": "unexpected result",
+          "quality_score": 8,
+          "spice": 2
+        },
+        {
+          "text": "The real reason _____ is banned is because _____",
+          "first_blank_hint": "thing/activity",
+          "second_blank_hint": "secret reason",
+          "quality_score": 9,
+          "spice": 3
+        },
+        {
+          "text": "If you see _____ you should immediately _____",
+          "first_blank_hint": "person/thing",
+          "second_blank_hint": "extreme reaction",
+          "quality_score": 8,
+          "spice": 2
+        },
+        {
+          "text": "The moment I knew _____ was over was when _____",
+          "first_blank_hint": "relationship/era",
+          "second_blank_hint": "final straw",
+          "quality_score": 9,
+          "spice": 3
+        },
+        {
+          "text": "People say _____ is bad but wait until they try _____",
+          "first_blank_hint": "thing",
+          "second_blank_hint": "something worse",
+          "quality_score": 8,
+          "spice": 2
+        },
+        {
+          "text": "The secret ingredient in _____ is actually _____",
+          "first_blank_hint": "food/thing",
+          "second_blank_hint": "shocking ingredient",
+          "quality_score": 8,
+          "spice": 2
+        },
+        {
+          "text": "I was today years old when I learned _____ causes _____",
+          "first_blank_hint": "thing",
+          "second_blank_hint": "unexpected effect",
+          "quality_score": 8,
+          "spice": 2
+        },
+        {
+          "text": "My toxic trait at _____ is _____",
+          "first_blank_hint": "location/event",
+          "second_blank_hint": "behavior",
+          "quality_score": 9,
+          "spice": 3
+        },
+        {
+          "text": "They don't teach you in school that _____ leads to _____",
+          "first_blank_hint": "thing",
+          "second_blank_hint": "consequence",
+          "quality_score": 8,
+          "spice": 2
+        },
+        {
+          "text": "The last thing you want to hear at _____ is _____",
+          "first_blank_hint": "location",
+          "second_blank_hint": "alarming statement",
+          "quality_score": 9,
+          "spice": 3
         }
       ]
     },

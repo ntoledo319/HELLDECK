@@ -33,7 +33,7 @@ object GoldCardsLoader {
     fun load(context: Context): Map<String, List<GoldCard>> {
         if (goldCards != null) return goldCards!!
 
-        val json = context.assets.open("gold_cards_v2.json").bufferedReader().use { it.readText() }
+        val json = context.assets.open("gold_cards.json").bufferedReader().use { it.readText() }
         val root = JSONObject(json)
         val games = root.getJSONObject("games")
 

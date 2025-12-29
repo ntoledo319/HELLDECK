@@ -204,7 +204,7 @@ Based on the production plan, the next recommended work is:
 ### 4. Expand Gold Cards (Tier 2)
 - **TODO:** Expand from 20 → 50 per game (280 → 700 total cards)
 - **TODO:** Ensure variety across all spice levels (1-5)
-- **TODO:** Update `gold_cards_v2.json`
+- **TODO:** Update `gold_cards.json`
 
 ### 5. Performance Optimization (Tier 3)
 - **TODO:** Lazy load components where possible

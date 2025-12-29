@@ -57,15 +57,15 @@ object GameMetadata {
         GameIds.FILLIN to GameInfo(
             id = GameIds.FILLIN,
             title = "Fill-In Finisher",
-            description = "Complete the prompt with the funniest punchline; judge picks the best.",
+            description = "Judge reads prompt and fills first blank verbally; others write punchlines (60s); judge picks favorite.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 4,
+            timerSec = 60,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.JUDGE_PICK,
             interactionType = InteractionType.JUDGE_PICK,
-            tags = setOf("fill_in", "judge"),
+            tags = setOf("fill_in", "judge", "write"),
             spice = 1
         ),
 

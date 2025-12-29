@@ -36,7 +36,7 @@ Created manually-crafted, high-quality example cards for all 14 games:
 | Confess or Cap | 20 | Believable yet sus confessions |
 
 **Total: 280+ cards**
-**Location:** `app/src/main/assets/gold_cards_v2.json`
+**Location:** `app/src/main/assets/gold_cards.json`
 
 **Quality Criteria Per Game:**
 - **Roast Consensus:** "Most likely to get into a philosophical debate with a Roomba because they think it's judging their life choices" (score: 9/10)
@@ -224,7 +224,7 @@ Generate ONE unique roast card in JSON format.
 ## 🛠 TECHNICAL IMPLEMENTATION
 
 ### Files Created:
-1. `app/src/main/assets/gold_cards_v2.json` - 280+ gold standard cards
+1. `app/src/main/assets/gold_cards.json` - 280+ gold standard cards
 2. `app/src/main/java/com/helldeck/content/generator/GoldCardsLoader.kt` - Loader utility
 3. `app/src/main/java/com/helldeck/content/generator/LLMCardGeneratorV2.kt` - Quality-first generator
 
@@ -344,7 +344,7 @@ LLMCardGeneratorV2.generate()
 ## 📦 DELIVERABLES
 
 ### Committed Files:
-1. `app/src/main/assets/gold_cards_v2.json` (980 lines)
+1. `app/src/main/assets/gold_cards.json` (980 lines)
 2. `app/src/main/java/com/helldeck/content/generator/GoldCardsLoader.kt` (96 lines)
 3. `app/src/main/java/com/helldeck/content/generator/LLMCardGeneratorV2.kt` (689 lines)
 4. `app/src/main/java/com/helldeck/content/engine/ContentEngineProvider.kt` (modified)

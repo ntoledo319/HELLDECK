@@ -71,9 +71,51 @@ class ContextualSelector(rng: SeededRng)
 - `fun pick(ctx: Context, pool: List<TemplateV2>): TemplateV2` - Select template using UCB
 - `fun update(templateId: String, reward: Double)` - Update template statistics
 
-### CardGeneratorV3
+### LLMCardGeneratorV2 (Primary)
 
-Blueprint-based card generation with quality gating.
+Quality-first LLM card generation using gold standard examples.
+
+```kotlin
+class LLMCardGeneratorV2(
+    llm: LocalLLM?,
+    context: Context,
+    templateFallback: CardGeneratorV3
+)
+```
+
+**Methods:**
+- `suspend fun generate(request: GenerationRequest): GenerationResult?` - Generate LLM-powered card with fallback chain
+
+**Data Classes:**
+```kotlin
+data class GenerationRequest(
+    val gameId: String,
+    val players: List<String>,
+    val spiceMax: Int,  // Controls temperature: 1→0.5, 2→0.6, 3→0.75, 4→0.85, 5+→0.9
+    val sessionId: String,
+    val roomHeat: Double = 0.6
+)
+
+data class GenerationResult(
+    val filledCard: FilledCard,
+    val options: GameOptions,
+    val timer: Int,
+    val interactionType: InteractionType,
+    val usedLLM: Boolean,
+    val qualityScore: Double = 0.0
+)
+```
+
+**Generation Flow:**
+1. Check if LocalLLM is ready
+2. Build quality-focused prompt with gold examples from `gold_cards.json`
+3. Up to 3 attempts, 2.5s timeout each
+4. Parse and validate response (quality score ≥0.6, no clichés)
+5. Fallback chain: Gold Cards → CardGeneratorV3
+
+### CardGeneratorV3 (Legacy Fallback)
+
+Blueprint-based card generation with quality gating. Used as fallback when LLM is unavailable.
 
 ```kotlin
 class CardGeneratorV3(repo: RepositoriesV3, rng: SeededRng)
@@ -82,6 +124,18 @@ class CardGeneratorV3(repo: RepositoriesV3, rng: SeededRng)
 **Methods:**
 - `fun generate(req: GameEngine.Request, rng: SeededRng): GenerationResult?` - Generate quality-gated card
 - `fun goldOnly(req: GameEngine.Request, rng: SeededRng): GenerationResult?` - Use gold fallback only
+
+### GoldCardsLoader
+
+High-quality curated cards for prompts and fallbacks.
+
+```kotlin
+object GoldCardsLoader {
+    fun load(context: Context): Map<String, List<GoldCard>>
+    fun getExamplesForGame(context: Context, gameId: String, count: Int = 5): List<GoldCard>
+    fun getRandomFallback(context: Context, gameId: String): GoldCard?
+}
+```
 
 ## Data Layer
 
