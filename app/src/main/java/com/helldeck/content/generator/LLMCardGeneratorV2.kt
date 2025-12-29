@@ -86,8 +86,17 @@ class LLMCardGeneratorV2(
     private data class Prompt(val system: String, val user: String)
 
     private fun buildQualityPrompt(request: GenerationRequest, attempt: Int): Prompt {
-        // Load gold examples for this game
-        val goldExamples = GoldCardsLoader.getExamplesForGame(context, request.gameId, count = 5)
+        // Generate seed for weighted rotation of examples
+        val seed = (request.sessionId + System.currentTimeMillis() + attempt).hashCode()
+        
+        // Load 10 gold examples with weighted rotation
+        // This ensures ALL gold cards can train the AI, but better cards appear more often
+        val goldExamples = GoldCardsLoader.getExamplesForGame(
+            context, 
+            request.gameId, 
+            count = 10,  // Increased from 5 to 10
+            seed = seed   // Enable rotation across generations
+        )
 
         val spiceGuidance = when (request.spiceMax) {
             1 -> "wholesome and PG-13 (family-friendly)"
@@ -109,19 +118,22 @@ CRITICAL RULES:
 
         val user = when (request.gameId) {
             GameIds.ROAST_CONS -> buildRoastPrompt(goldExamples, attempt)
+            GameIds.CONFESS_CAP -> buildConfessPrompt(goldExamples, attempt)
             GameIds.POISON_PITCH -> buildPoisonPitchPrompt(goldExamples, attempt)
             GameIds.FILL_IN -> buildFillInPrompt(goldExamples, attempt)
             GameIds.RED_FLAG -> buildRedFlagPrompt(goldExamples, attempt)
             GameIds.HOTSEAT_IMP -> buildHotSeatPrompt(goldExamples, attempt)
             GameIds.TEXT_TRAP -> buildTextTrapPrompt(goldExamples, attempt)
             GameIds.TABOO -> buildTabooPrompt(goldExamples, attempt)
-            GameIds.ODD_ONE -> buildOddOnePrompt(goldExamples, attempt)
             GameIds.TITLE_FIGHT -> buildTitleFightPrompt(goldExamples, attempt)
             GameIds.ALIBI -> buildAlibiPrompt(goldExamples, attempt)
-            GameIds.HYPE_YIKE -> buildHypePrompt(goldExamples, attempt)
             GameIds.SCATTER -> buildScatterPrompt(goldExamples, attempt)
-            GameIds.MAJORITY -> buildMajorityPrompt(goldExamples, attempt)
-            GameIds.CONFESS_CAP -> buildConfessPrompt(goldExamples, attempt)
+            
+            // New games from HDRealRules.md
+            GameIds.UNIFYING_THEORY -> buildUnifyingTheoryPrompt(goldExamples, attempt)
+            GameIds.REALITY_CHECK -> buildRealityCheckPrompt(goldExamples, attempt)
+            GameIds.OVER_UNDER -> buildOverUnderPrompt(goldExamples, attempt)
+            
             else -> """{"text": "Fallback card", "type": "unknown"}"""
         }
 
@@ -129,7 +141,7 @@ CRITICAL RULES:
     }
 
     private fun buildRoastPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
-        val exampleText = examples.take(5).joinToString("\n") {
+        val exampleText = examples.joinToString("\n") {
             "✅ GREAT: \"${it.text}\" (score: ${it.quality_score}/10)"
         }
 
@@ -161,7 +173,7 @@ Generate ONE unique roast card in JSON format. Be creative!"""
     }
 
     private fun buildPoisonPitchPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
-        val exampleText = examples.take(5).joinToString("\n") {
+        val exampleText = examples.joinToString("\n") {
             "✅ \"${it.text}\" | Options: \"${it.optionA}\" vs \"${it.optionB}\" (score: ${it.quality_score}/10)"
         }
 
@@ -333,32 +345,6 @@ OUTPUT:
 Generate ONE Taboo card in JSON format."""
     }
 
-    private fun buildOddOnePrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
-        val exampleText = examples.take(5).joinToString("\n") {
-            "✅ ${it.items} | \"${it.text}\" (score: ${it.quality_score}/10)"
-        }
-
-        return """Generate "Odd One Out" challenge:
-
-FORMAT:
-{
-  "items": ["item1", "item2", "item3"],
-  "text": "Which one doesn't belong?"
-}
-
-QUALITY CRITERIA:
-✓ ARGUABLE - All choices defensible
-✓ NOT OBVIOUS - Multiple perspectives
-✓ INTERESTING - Sparks debate
-✓ RELATABLE - Players know all items
-
-TOP-TIER EXAMPLES:
-$exampleText
-
-OUTPUT:
-Generate ONE challenge in JSON format."""
-    }
-
     private fun buildTitleFightPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ \"${it.text}\" (score: ${it.quality_score}/10)"
@@ -410,32 +396,6 @@ OUTPUT:
 Generate ONE challenge with 3 random words in JSON format."""
     }
 
-    private fun buildHypePrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
-        val exampleText = examples.take(5).joinToString("\n") {
-            "✅ Product: \"${it.product}\" (score: ${it.quality_score}/10)"
-        }
-
-        return """Generate a ridiculous product to pitch:
-
-FORMAT:
-{
-  "product": "absurd product description",
-  "text": "Pitch this product:"
-}
-
-QUALITY CRITERIA:
-✓ ABSURD - Clearly ridiculous
-✓ PITCH-ABLE - Can actually defend it
-✓ CREATIVE - Unexpected concept
-✓ FUNNY - Humor in the concept itself
-
-TOP-TIER EXAMPLES:
-$exampleText
-
-OUTPUT:
-Generate ONE product in JSON format."""
-    }
-
     private fun buildScatterPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ Category: \"${it.category}\", Letter: ${it.letter} (score: ${it.quality_score}/10)"
@@ -463,33 +423,6 @@ OUTPUT:
 Generate ONE challenge in JSON format."""
     }
 
-    private fun buildMajorityPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
-        val exampleText = examples.take(5).joinToString("\n") {
-            "✅ \"${it.text}\" | ${it.optionA} vs ${it.optionB} (score: ${it.quality_score}/10)"
-        }
-
-        return """Generate a prediction challenge:
-
-FORMAT:
-{
-  "optionA": "first choice",
-  "optionB": "second choice",
-  "text": "What will the room choose?"
-}
-
-QUALITY CRITERIA:
-✓ DIVISIVE - Should split the room
-✓ NO OBVIOUS ANSWER - Genuine debate
-✓ RELATABLE - Everyone has an opinion
-✓ INTERESTING - Reveals personalities
-
-TOP-TIER EXAMPLES:
-$exampleText
-
-OUTPUT:
-Generate ONE prediction challenge in JSON format."""
-    }
-
     private fun buildConfessPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ \"${it.text}\" (score: ${it.quality_score}/10)"
@@ -513,6 +446,97 @@ $exampleText
 
 OUTPUT:
 Generate ONE confession in JSON format."""
+    }
+
+    // New game prompt builders
+    private fun buildUnifyingTheoryPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
+        val exampleText = examples.joinToString("\n") {
+            "✅ \"${it.text}\" (score: ${it.quality_score}/10)"
+        }
+
+        return """Generate a Unifying Theory challenge:
+
+FORMAT:
+{
+  "text": "Item1, Item2, Item3"
+}
+
+QUALITY CRITERIA:
+✓ UNRELATED ITEMS - Three completely different things
+✓ CONNECTION POSSIBLE - Can find creative links
+✓ VISUAL/MEMORABLE - Easy to picture all three
+✓ SPICE AWARE - At Spice 4+, allow inappropriate connections
+
+TOP-TIER EXAMPLES:
+$exampleText
+
+EXAMPLES:
+- "A Priest, A Referee, A Zebra" → "They all wear black and white"
+- "Your Ex, The IRS, A Magician" → "They all make things disappear"
+- "A Vampire, A Sponge, Your Mom" → "They all suck things in"
+
+OUTPUT:
+Generate ONE trio of unrelated items in JSON format."""
+    }
+
+    private fun buildRealityCheckPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
+        val exampleText = examples.joinToString("\n") {
+            "✅ \"${it.text}\" (score: ${it.quality_score}/10)"
+        }
+
+        return """Generate a Reality Check rating prompt:
+
+FORMAT:
+{
+  "text": "Rating: Your [TRAIT OR ABILITY]"
+}
+
+QUALITY CRITERIA:
+✓ SUBJECTIVE - No objective right answer
+✓ EGO-PRONE - People overestimate this trait
+✓ OBSERVABLE - Group has seen evidence
+✓ EMBARRASSING - Gap between self/reality is funny
+
+TOP-TIER EXAMPLES:
+$exampleText
+
+AVOID:
+- Objective traits ("your height")
+- Too serious ("how good of a person are you")
+- Too niche (skills only some have)
+
+OUTPUT:
+Generate ONE rating question in JSON format."""
+    }
+
+    private fun buildOverUnderPrompt(examples: List<GoldCardsLoader.GoldCard>, attempt: Int): String {
+        val exampleText = examples.joinToString("\n") {
+            "✅ \"${it.text}\" (score: ${it.quality_score}/10)"
+        }
+
+        return """Generate an Over/Under prediction question:
+
+FORMAT:
+{
+  "text": "Number of [VERIFIABLE QUANTITY ABOUT TARGET PLAYER]"
+}
+
+QUALITY CRITERIA:
+✓ VERIFIABLE - Can prove the answer (phone check, counting, etc.)
+✓ SURPRISING - Answer often higher/lower than expected
+✓ PERSONAL - Reveals something about the person
+✓ TESTABLE - Can check immediately if needed
+
+TOP-TIER EXAMPLES:
+$exampleText
+
+CATEGORIES:
+- Digital: "unread emails", "photos in camera roll", "screen time yesterday"
+- Physical: "push-ups you can do right now", "cash in your wallet"
+- Historical: "number of jobs you've had", "countries you've visited"
+
+OUTPUT:
+Generate ONE numerical question in JSON format."""
     }
 
     private fun parseAndValidateResponse(response: String, request: GenerationRequest): GenerationResult? {
@@ -620,7 +644,7 @@ Generate ONE confession in JSON format."""
         return when (request.gameId) {
             GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
 
-            GameIds.POISON_PITCH, GameIds.MAJORITY, GameIds.RED_FLAG -> {
+            GameIds.POISON_PITCH, GameIds.RED_FLAG -> {
                 val a = json.optString("optionA", "Option A")
                 val b = json.optString("optionB", "Option B")
                 if (request.gameId == GameIds.RED_FLAG) {
@@ -638,23 +662,11 @@ Generate ONE confession in JSON format."""
                 GameOptions.Taboo(word, forbidden)
             }
 
-            GameIds.ODD_ONE -> {
-                val items = json.optJSONArray("items")?.let { arr ->
-                    (0 until arr.length()).map { arr.getString(it) }
-                } ?: listOf("A", "B", "C")
-                GameOptions.OddOneOut(items)
-            }
-
             GameIds.ALIBI -> {
                 val words = json.optJSONArray("words")?.let { arr ->
                     (0 until arr.length()).map { arr.getString(it) }
                 } ?: listOf("word1", "word2", "word3")
                 GameOptions.HiddenWords(words)
-            }
-
-            GameIds.HYPE_YIKE -> {
-                val product = json.optString("product", "A product")
-                GameOptions.Product(product)
             }
 
             GameIds.SCATTER -> {
@@ -678,6 +690,19 @@ Generate ONE confession in JSON format."""
 
             GameIds.FILL_IN -> GameOptions.None
 
+            // New games - use existing GameOptions types
+            GameIds.UNIFYING_THEORY -> {
+                val items = json.optString("text", "A, B, C").split(", ")
+                GameOptions.Challenge("Find what connects: ${items.joinToString(", ")}")
+            }
+
+            GameIds.REALITY_CHECK -> GameOptions.Challenge("Rate yourself on this trait")
+
+            GameIds.OVER_UNDER -> {
+                val question = json.optString("text", "Number of something")
+                GameOptions.Challenge("Predict: $question")
+            }
+
             else -> GameOptions.None
         }
     }
@@ -691,17 +716,21 @@ Generate ONE confession in JSON format."""
 
     private fun getInteractionTypeForGame(gameId: String): InteractionType = when (gameId) {
         GameIds.ROAST_CONS -> InteractionType.VOTE_PLAYER
-        GameIds.POISON_PITCH, GameIds.MAJORITY -> InteractionType.A_B_CHOICE
+        GameIds.POISON_PITCH -> InteractionType.A_B_CHOICE
         GameIds.CONFESS_CAP -> InteractionType.TRUE_FALSE
         GameIds.RED_FLAG -> InteractionType.SMASH_PASS
         GameIds.TABOO -> InteractionType.TABOO_GUESS
-        GameIds.ODD_ONE -> InteractionType.ODD_EXPLAIN
         GameIds.ALIBI -> InteractionType.HIDE_WORDS
-        GameIds.HYPE_YIKE -> InteractionType.SALES_PITCH
         GameIds.SCATTER -> InteractionType.SPEED_LIST
         GameIds.TITLE_FIGHT -> InteractionType.MINI_DUEL
         GameIds.TEXT_TRAP -> InteractionType.REPLY_TONE
         GameIds.HOTSEAT_IMP, GameIds.FILL_IN -> InteractionType.JUDGE_PICK
+        
+        // New games
+        GameIds.UNIFYING_THEORY -> InteractionType.JUDGE_PICK  // Explaining the connection
+        GameIds.REALITY_CHECK -> InteractionType.TARGET_SELECT  // Rating comparison
+        GameIds.OVER_UNDER -> InteractionType.PREDICT_VOTE  // Over/Under betting
+        
         else -> InteractionType.NONE
     }
 
@@ -722,20 +751,14 @@ Generate ONE confession in JSON format."""
         )
 
         val options = when (request.gameId) {
-            GameIds.POISON_PITCH, GameIds.MAJORITY -> {
+            GameIds.POISON_PITCH -> {
                 GameOptions.AB(goldCard.optionA ?: "A", goldCard.optionB ?: "B")
             }
             GameIds.TABOO -> {
                 GameOptions.Taboo(goldCard.word ?: "word", goldCard.forbidden ?: listOf("1", "2", "3"))
             }
-            GameIds.ODD_ONE -> {
-                GameOptions.OddOneOut(goldCard.items ?: listOf("A", "B", "C"))
-            }
             GameIds.ALIBI -> {
                 GameOptions.HiddenWords(goldCard.words ?: listOf("word1", "word2"))
-            }
-            GameIds.HYPE_YIKE -> {
-                GameOptions.Product(goldCard.product ?: "product")
             }
             GameIds.SCATTER -> {
                 GameOptions.Scatter(goldCard.category ?: "Things", goldCard.letter ?: "A")
@@ -746,6 +769,15 @@ Generate ONE confession in JSON format."""
             GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
             GameIds.CONFESS_CAP -> GameOptions.TrueFalse
             GameIds.RED_FLAG -> GameOptions.AB("SMASH", "PASS")
+            
+            // New games - need to handle these properly
+            GameIds.UNIFYING_THEORY -> {
+                val items = goldCard.text.split(", ")
+                GameOptions.Challenge("Find the connection")
+            }
+            GameIds.REALITY_CHECK -> GameOptions.Challenge("Rate yourself")
+            GameIds.OVER_UNDER -> GameOptions.Challenge("Predict the number")
+            
             else -> GameOptions.None
         }
 

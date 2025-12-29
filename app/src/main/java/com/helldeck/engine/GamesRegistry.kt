@@ -14,12 +14,17 @@ object GameIds {
     const val HOTSEAT_IMP = "HOT_SEAT_IMPOSTER"
     const val TEXT_TRAP = "TEXT_THREAD_TRAP"
     const val TABOO = "TABOO_TIMER"
-    const val ODD_ONE = "ODD_ONE_OUT"
     const val TITLE_FIGHT = "TITLE_FIGHT"
     const val ALIBI = "ALIBI_DROP"
-    const val HYPE_YIKE = "HYPE_OR_YIKE"
     const val SCATTER = "SCATTERBLAST"
     const val MAJORITY = "MAJORITY_REPORT"
+    const val HYPE_YIKE = "HYPE_OR_YIKE"
+    const val ODD_ONE = "ODD_ONE_OUT"
+    
+    // New games from HDRealRules.md
+    const val UNIFYING_THEORY = "THE_UNIFYING_THEORY"
+    const val REALITY_CHECK = "REALITY_CHECK"
+    const val OVER_UNDER = "OVER_UNDER"
 }
 
 /**

@@ -200,6 +200,7 @@ fun RoundScene(vm: HelldeckVm) {
                             preChoiceLabel = when (game.id) {
                                 com.helldeck.engine.GameIds.POISON_PITCH -> "Active pre-picks A/B before votes"
                                 com.helldeck.engine.GameIds.MAJORITY -> "Predict the room: pick A/B before votes"
+                                com.helldeck.engine.GameIds.OVER_UNDER -> "Bet OVER or UNDER on the subject's number"
                                 else -> "Active picks A/B before votes"
                             },
                             preChoices = abOptions,
@@ -241,11 +242,18 @@ fun RoundScene(vm: HelldeckVm) {
                             onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
                         )
                     }
-                    Interaction.TARGET_PICK -> SingleAvatarPickFlow(
-                        players = vm.activePlayers,
-                        onPick = { _ -> vm.goToFeedbackNoPoints() },
-                        onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
-                    )
+                    Interaction.TARGET_PICK -> {
+                        val targetLabel = when (game.id) {
+                            com.helldeck.engine.GameIds.REALITY_CHECK -> "Select the subject to rate"
+                            else -> "Pick a target player"
+                        }
+                        SingleAvatarPickFlow(
+                            players = vm.activePlayers,
+                            title = targetLabel,
+                            onPick = { _ -> vm.goToFeedbackNoPoints() },
+                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
+                        )
+                    }
                     Interaction.DUEL -> OptionsPickFlow(
                         title = "Who won the duel?",
                         options = listOf("Active Player wins", "Other wins"),
@@ -298,8 +306,12 @@ fun RoundScene(vm: HelldeckVm) {
                         val judgeOptions = (roundState.options as? GameOptions.AB)
                             ?.let { listOf(it.optionA, it.optionB) }
                             ?: listOf("Option 1", "Option 2")
+                        val activePlayer = vm.activePlayer()
+                        val judgeIndex = if (activePlayer != null && vm.players.isNotEmpty()) {
+                            (vm.players.indexOf(activePlayer) + 1) % vm.players.size
+                        } else 0
                         JudgePickFlow(
-                            judge = vm.players.getOrNull((vm.players.indexOf(vm.activePlayer()) + 1) % vm.players.size),
+                            judge = vm.players.getOrNull(judgeIndex),
                             options = judgeOptions,
                             onPick = { vm.resolveInteraction() }
                         )

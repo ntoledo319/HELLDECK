@@ -12,7 +12,7 @@ object GameMetadata {
             description = "Room votes which player fits the roast prompt best.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 8,
+            timerSec = 20,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.VOTE_AVATAR,
@@ -44,7 +44,7 @@ object GameMetadata {
             description = "Would you rather A or B? Active pre-picks; pitch to sway the room.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 6,
+            timerSec = 30,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.AB_VOTE,
@@ -76,7 +76,7 @@ object GameMetadata {
             description = "Perk vs red flag; room votes SMASH or PASS; majority SMASH rewards.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 6,
+            timerSec = 45,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.SMASH_PASS,
@@ -124,7 +124,7 @@ object GameMetadata {
             description = "Give clues so your team guesses the word; avoid forbidden terms.",
             category = GameCategory.WORD,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 8,
+            timerSec = 60,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.TABOO_CLUE,
@@ -133,19 +133,19 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 9. Odd One Out
-        GameIds.ODD_ONE to GameInfo(
-            id = GameIds.ODD_ONE,
-            title = "Odd One Out",
-            description = "From three options, choose the misfit and explain why.",
-            category = GameCategory.MAIN,
-            difficulty = GameDifficulty.EASY,
+        // 9. The Unifying Theory
+        GameIds.UNIFYING_THEORY to GameInfo(
+            id = GameIds.UNIFYING_THEORY,
+            title = "The Unifying Theory",
+            description = "Explain why three unrelated items are the same. Spice 4+ requires inappropriate connections.",
+            category = GameCategory.CREATIVE,
+            difficulty = GameDifficulty.MEDIUM,
             timerSec = 8,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.ODD_REASON,
             interactionType = InteractionType.ODD_EXPLAIN,
-            tags = setOf("odd_one", "explain", "judge"),
+            tags = setOf("unifying", "explain", "judge"),
             spice = 1
         ),
 
@@ -172,7 +172,7 @@ object GameMetadata {
             description = "Weave secret words into an alibi without detection.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 3,
+            timerSec = 30,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.SMUGGLE,
@@ -217,7 +217,7 @@ object GameMetadata {
         GameIds.MAJORITY to GameInfo(
             id = GameIds.MAJORITY,
             title = "Majority Report",
-            description = "Predict the room’s A vs B before they vote; earn if you read the room.",
+            description = "Predict the room's A vs B before they vote; earn if you read the room.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.EASY,
             timerSec = 6,
@@ -226,6 +226,54 @@ object GameMetadata {
             interaction = Interaction.AB_VOTE,
             interactionType = InteractionType.PREDICT_VOTE,
             tags = setOf("predict", "ab", "vote"),
+            spice = 1
+        ),
+
+        // 13. Reality Check
+        GameIds.REALITY_CHECK to GameInfo(
+            id = GameIds.REALITY_CHECK,
+            title = "Reality Check",
+            description = "Subject rates themselves 1-10; group rates subject 1-10; reveal both simultaneously.",
+            category = GameCategory.VOTING,
+            difficulty = GameDifficulty.MEDIUM,
+            timerSec = 6,
+            minPlayers = 3,
+            maxPlayers = 16,
+            interaction = Interaction.TARGET_PICK,
+            interactionType = InteractionType.TARGET_SELECT,
+            tags = setOf("rating", "self-awareness", "vote"),
+            spice = 2
+        ),
+
+        // 14. Over / Under
+        GameIds.OVER_UNDER to GameInfo(
+            id = GameIds.OVER_UNDER,
+            title = "Over / Under",
+            description = "Group sets betting line; everyone bets OVER or UNDER on subject's number; reveal truth.",
+            category = GameCategory.VOTING,
+            difficulty = GameDifficulty.EASY,
+            timerSec = 6,
+            minPlayers = 3,
+            maxPlayers = 16,
+            interaction = Interaction.AB_VOTE,
+            interactionType = InteractionType.PREDICT_VOTE,
+            tags = setOf("betting", "numbers", "vote"),
+            spice = 1
+        ),
+
+        // Legacy: Odd One Out (not in HDRealRules.md but has content)
+        GameIds.ODD_ONE to GameInfo(
+            id = GameIds.ODD_ONE,
+            title = "Odd One Out",
+            description = "Pick the misfit from three options and explain why.",
+            category = GameCategory.CREATIVE,
+            difficulty = GameDifficulty.MEDIUM,
+            timerSec = 8,
+            minPlayers = 3,
+            maxPlayers = 16,
+            interaction = Interaction.ODD_REASON,
+            interactionType = InteractionType.ODD_EXPLAIN,
+            tags = setOf("odd", "pick", "judge"),
             spice = 1
         )
     )

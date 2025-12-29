@@ -428,6 +428,16 @@ class GameNightViewModel : ViewModel() {
             // Get card from buffer (instant if buffer ready, otherwise generates on-demand)
             val gameResult = cardBuffer.getNext()
 
+            // Safety check: ensure we have valid game result
+            if (gameResult.filledCard.text.isBlank()) {
+                com.helldeck.utils.Logger.w("Received empty card, retrying...")
+                // Fallback: try again or use gold card
+                val fallbackResult = cardBuffer.getNext()
+                if (fallbackResult.filledCard.text.isBlank()) {
+                    throw IllegalStateException("Failed to generate valid card")
+                }
+            }
+
             // Create authoritative RoundState from engine result
             roundState = RoundState(
                 gameId = nextGame,
@@ -435,12 +445,12 @@ class GameNightViewModel : ViewModel() {
                 options = gameResult.options,
                 timerSec = gameResult.timer,
                 interactionType = gameResult.interactionType,
-                activePlayerIndex = turnIdx,
-                judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK) {
+                activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
+                judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
                     (turnIdx + 1) % activePlayers.size
                 } else null,
-                targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK) {
-                    activePlayers.indexOfFirst { it.id == targetPlayerId }
+                targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK && targetPlayerId != null) {
+                    activePlayers.indexOfFirst { it.id == targetPlayerId }.takeIf { it >= 0 }
                 } else null,
                 phase = com.helldeck.ui.state.RoundPhase.INTRO,
                 sessionId = sessionId
@@ -624,14 +634,23 @@ class GameNightViewModel : ViewModel() {
     }
 
     private fun resolveRoastConsensus() {
-        val targetId = votesAvatar.values.groupBy { it }
-            .maxByOrNull { it.value.size }
-            ?.key
+        val voteCounts = votesAvatar.values.groupBy { it }
+        val targetId = voteCounts.maxByOrNull { it.value.size }?.key
+        val totalVotes = votesAvatar.size
+        val majorityVotes = targetId?.let { voteCounts[it]?.size ?: 0 } ?: 0
+        val roomHeatThreshold = (totalVotes * 0.8).toInt()
 
+        // Award points to voters who picked the majority target (+2 for majority pick)
         targetId?.let { target ->
-            val targetPlayer = players.find { it.id == target }
-            if (targetPlayer != null) {
-                addPoints(target, Config.current.scoring.win)
+            votesAvatar.forEach { (voterId, votedTarget) ->
+                if (votedTarget == target) {
+                    var pointsToAward = 2 // Majority pick: +2 points
+                    // Room Heat Bonus: If 80%+ of the room agrees, +1 bonus
+                    if (majorityVotes >= roomHeatThreshold) {
+                        pointsToAward += 1
+                    }
+                    addPoints(voterId, pointsToAward)
+                }
             }
         }
     }
@@ -640,19 +659,41 @@ class GameNightViewModel : ViewModel() {
         val tVotes = votesAB.values.count { it == "T" }
         val fVotes = votesAB.values.count { it == "F" }
         val majority = if (tVotes >= fVotes) "T" else "F"
-
+        val totalVoters = votesAB.size
         val ap = activePlayer() ?: return
 
-        if (preChoice == "TRUTH" && majority == "T") {
-            players.forEach { p ->
-                if (votesAB[p.id] == "T") {
-                    addPoints(p.id, 1)
+        // Confessor wins if they fool the majority (everyone guessed wrong)
+        val confessorFooledMajority = when (preChoice) {
+            "TRUTH" -> majority == "F" // Confessor said truth, but majority voted false (wrong)
+            "BLUFF" -> majority == "T" // Confessor said bluff, but majority voted true (wrong)
+            else -> false
+        }
+
+        if (confessorFooledMajority) {
+            // Confessor successfully fooled the majority: +2 points
+            addPoints(ap.id, 2)
+        } else {
+            // Voters win: If you correctly called the lie (or truth), you get +1 point
+            val correctAnswer = when (preChoice) {
+                "TRUTH" -> "T"
+                "BLUFF" -> "F"
+                else -> null
+            }
+            correctAnswer?.let { correct ->
+                players.forEach { p ->
+                    if (votesAB[p.id] == correct) {
+                        addPoints(p.id, 1)
+                    }
                 }
             }
-        } else if (preChoice == "BLUFF" && majority == "F") {
-            players.forEach { p ->
-                if (votesAB[p.id] == "F") {
-                    addPoints(p.id, 1)
+
+            // Room Heat Bonus: If the entire room agrees and gets it right, everyone gets +1 bonus
+            val allVotedCorrect = votesAB.values.all { it == correctAnswer }
+            if (allVotedCorrect && correctAnswer != null) {
+                players.forEach { p ->
+                    if (votesAB.containsKey(p.id)) {
+                        addPoints(p.id, 1) // Bonus point
+                    }
                 }
             }
         }
@@ -668,9 +709,43 @@ class GameNightViewModel : ViewModel() {
         }
 
         val ap = activePlayer() ?: return
+        val currentGameId = currentGame?.id
 
-        if (preChoice != null && preChoice == majority) {
-            awardActive(Config.current.scoring.win)
+        when (currentGameId) {
+            GameIds.POISON_PITCH -> {
+                // Poison Pitch: Active wins if majority matches their pre-pick
+                if (preChoice != null && preChoice == majority) {
+                    awardActive(Config.current.scoring.win)
+                }
+            }
+            GameIds.MAJORITY -> {
+                // Majority Report: Predict the room's A vs B; earn if you read the room
+                if (preChoice != null && preChoice == majority) {
+                    awardActive(Config.current.scoring.win)
+                }
+            }
+            GameIds.OVER_UNDER -> {
+                // Over/Under: Winners get +1, Subject gets points equal to wrong guesses
+                // Note: Actual number comparison would need to be implemented separately
+                // For now, treat OVER as A and UNDER as B
+                val correctBet = majority // This would be determined by actual number vs line
+                players.forEach { p ->
+                    if (p.id != ap.id && votesAB[p.id] == correctBet) {
+                        addPoints(p.id, 1) // Winners: +1 point
+                    }
+                }
+                // Subject gets points equal to number of wrong guesses
+                val wrongGuesses = votesAB.values.count { it != correctBet }
+                if (wrongGuesses > 0) {
+                    addPoints(ap.id, wrongGuesses)
+                }
+            }
+            else -> {
+                // Default: Active wins if pre-choice matches majority
+                if (preChoice != null && preChoice == majority) {
+                    awardActive(Config.current.scoring.win)
+                }
+            }
         }
     }
 
@@ -962,8 +1037,18 @@ class GameNightViewModel : ViewModel() {
      * Replays the last card without advancing
      */
     suspend fun replayLastCard() {
-        if (lastCard == null || lastGameId == null) {
+        // Store in local variables to enable smart cast
+        val replayCard = lastCard
+        val replayGameId = lastGameId
+        
+        if (replayCard == null || replayGameId == null) {
             com.helldeck.utils.Logger.w("No last card to replay")
+            return
+        }
+
+        // Safety check: ensure we have required data
+        if (!::engine.isInitialized) {
+            com.helldeck.utils.Logger.e("Cannot replay: engine not initialized")
             return
         }
 
@@ -971,8 +1056,8 @@ class GameNightViewModel : ViewModel() {
         scene = Scene.ROUND
         phase = RoundPhase.INTRO
 
-        currentCard = lastCard
-        currentGame = GameMetadata.getGameMetadata(lastGameId!!)
+        currentCard = replayCard
+        currentGame = GameMetadata.getGameMetadata(replayGameId)
 
         // Create new round state with same card
         val playersList = activePlayers.map { it.name }
@@ -980,27 +1065,32 @@ class GameNightViewModel : ViewModel() {
             activePlayers.randomOrNull()?.id
         } else null
 
-        roundState = RoundState(
-            gameId = lastGameId!!,
-            filledCard = lastCard!!,
-            options = engine.getOptionsFor(lastCard!!, GameEngine.Request(
-                gameId = lastGameId!!,
-                sessionId = gameNightSessionId,
-                spiceMax = _spiceLevel.value,
-                players = playersList
-            )),
-            timerSec = currentGame?.timerSec ?: 6,
-            interactionType = currentGame?.interactionType ?: InteractionType.JUDGE_PICK,
-            activePlayerIndex = turnIdx,
-            judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK) {
-                (turnIdx + 1) % activePlayers.size
-            } else null,
-            targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK) {
-                activePlayers.indexOfFirst { it.id == targetPlayerId }
-            } else null,
-            phase = com.helldeck.ui.state.RoundPhase.INTRO,
-            sessionId = gameNightSessionId
-        )
+        try {
+            roundState = RoundState(
+                gameId = replayGameId,
+                filledCard = replayCard,
+                options = engine.getOptionsFor(replayCard, GameEngine.Request(
+                    gameId = replayGameId,
+                    sessionId = gameNightSessionId,
+                    spiceMax = _spiceLevel.value,
+                    players = playersList
+                )),
+                timerSec = currentGame?.timerSec ?: 6,
+                interactionType = currentGame?.interactionType ?: InteractionType.JUDGE_PICK,
+                activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
+                judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
+                    (turnIdx + 1) % activePlayers.size
+                } else null,
+                targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK && targetPlayerId != null) {
+                    activePlayers.indexOfFirst { it.id == targetPlayerId }.takeIf { it >= 0 }
+                } else null,
+                phase = com.helldeck.ui.state.RoundPhase.INTRO,
+                sessionId = gameNightSessionId
+            )
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to replay card", e)
+            scene = Scene.HOME
+        }
 
         t0 = System.currentTimeMillis()
 

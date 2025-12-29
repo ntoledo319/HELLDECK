@@ -125,7 +125,8 @@ fun AvatarVoteFlow(
 fun SingleAvatarPickFlow(
     players: List<Player>,
     onPick: (targetId: String) -> Unit,
-    onManagePlayers: (() -> Unit)? = null
+    onManagePlayers: (() -> Unit)? = null,
+    title: String = "Pick a target"
 ) {
     var chosen by remember { mutableStateOf<String?>(null) }
 
@@ -146,7 +147,7 @@ fun SingleAvatarPickFlow(
             .padding(HelldeckSpacing.Medium.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Pick a target", style = MaterialTheme.typography.titleMedium)
+        Text(title, style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
         androidx.compose.foundation.layout.FlowRow(
             modifier = Modifier.fillMaxWidth(),

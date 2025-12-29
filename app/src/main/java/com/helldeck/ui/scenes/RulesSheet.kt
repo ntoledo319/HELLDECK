@@ -552,6 +552,9 @@ private fun gameHowToDetailed(g: com.helldeck.engine.GameSpec): String {
         com.helldeck.engine.GameIds.HYPE_YIKE -> "Pitch a product for a ridiculous problem — straight face. Lock when finished."
         com.helldeck.engine.GameIds.SCATTER -> "Given a category and letter, say three valid items fast. No repeats."
         com.helldeck.engine.GameIds.MAJORITY -> "Predict A/B before the room votes. Lock your call; earn if you read the room."
+        com.helldeck.engine.GameIds.UNIFYING_THEORY -> "Explain why three unrelated items are the same. Spice 4+ requires inappropriate connections."
+        com.helldeck.engine.GameIds.REALITY_CHECK -> "Subject rates themselves 1-10 secretly; group rates subject 1-10; reveal both. Self-aware (gap 0-1) = +2; delusional/fisher = roast/drink."
+        com.helldeck.engine.GameIds.OVER_UNDER -> "Group sets betting line; everyone bets OVER or UNDER on subject's number; reveal truth. Winners +1; losers drink."
         else -> when (g.interaction) {
             com.helldeck.engine.Interaction.VOTE_AVATAR -> "Everyone votes the most fitting player. Majority wins."
             com.helldeck.engine.Interaction.AB_VOTE -> "Room votes A or B; active may pre-pick."
@@ -585,5 +588,8 @@ private fun gameIconFor(id: String): String = when (id) {
     GameIds.HYPE_YIKE -> "📣"
     GameIds.SCATTER -> "🔤"
     GameIds.MAJORITY -> "📊"
+    GameIds.UNIFYING_THEORY -> "📐"
+    GameIds.REALITY_CHECK -> "🪞"
+    GameIds.OVER_UNDER -> "📉"
     else -> "🎮"
 }

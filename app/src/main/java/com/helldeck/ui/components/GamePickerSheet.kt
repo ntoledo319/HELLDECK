@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.engine.GameMetadata
+import com.helldeck.ui.gameIconFor
 
 /**
  * Modal sheet for direct game selection
@@ -92,7 +93,7 @@ private fun GameCard(
     val metadata = GameMetadata.getGameMetadata(gameId)
     val gameName = metadata?.title ?: gameId
     val gameDescription = metadata?.description ?: ""
-    val gameEmoji = getGameEmoji(gameId)
+    val gameEmoji = gameIconFor(gameId)
 
     Card(
         modifier = Modifier
@@ -144,22 +145,4 @@ private fun GameCard(
             )
         }
     }
-}
-
-private fun getGameEmoji(gameId: String): String = when (gameId) {
-    "roast_consensus" -> "🔥"
-    "poison_pitch" -> "☠️"
-    "fill_in_finisher" -> "✍️"
-    "red_flag_rally" -> "🚩"
-    "hotseat_imposter" -> "🎭"
-    "text_thread_trap" -> "💬"
-    "taboo_timer" -> "🤐"
-    "odd_one_out" -> "🔍"
-    "title_fight" -> "⚔️"
-    "alibi_drop" -> "🕵️"
-    "hype_or_yike" -> "📢"
-    "scatterblast" -> "⚡"
-    "majority_report" -> "📊"
-    "confess_or_cap" -> "🤥"
-    else -> "🎲"
 }
