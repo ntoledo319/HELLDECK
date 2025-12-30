@@ -1,4 +1,4 @@
-# HELLDECK
+o# HELLDECK
 Single phone. One card per round. 14 mini-games. Learns what your crew finds funny.
 
 ## 🚨 Recent Major Updates (December 2024)
@@ -32,10 +32,8 @@ HELLDECK is a party game system designed for 3-16 players using a single Android
 - **Title Fight** - Mini-duels to challenge the current champion
 - **Alibi Drop** - Weave secret words into an excuse without detection
 - **Hype or Yike** - Pitch a ridiculous product with a straight face
-- **The Unifying Theory** - Explain why three unrelated items are connected
-- **Reality Check** - Rate yourself vs. how the group rates you
 - **Scatterblast** - Name three things in a category starting with a letter
-- **Over / Under** - Bet on whether a number is higher or lower than the line
+- **Majority Report** - Predict how the room will vote before they do
 
 ## 🚀 Quick Start
 
@@ -136,14 +134,14 @@ helldeck/
 HELLDECK uses on-device language models (TinyLlama/Qwen) for quality-first card generation:
 
 - **Primary generator**: `LLMCardGeneratorV2` generates unique cards using quality-focused prompts
-- **Gold examples**: High-quality curated cards in `app/src/main/assets/gold_cards.json` guide LLM prompts and serve as emergency fallbacks
+- **Gold examples**: High-quality curated cards in `app/src/main/assets/gold_cards_v2.json` guide LLM prompts and serve as emergency fallbacks
 - **Spice → Temperature**: Spice level (1-5) controls LLM creativity (0.5-0.9 temperature)
 - **Quality validation**: Cards must pass quality score (≥0.6), cliché filtering, and length checks
 - **3-retry strategy**: Up to 3 attempts with 2.5s timeout each before falling back
 
 Fallback chain:
 1. **LLM generation** (primary)
-2. **Gold cards** (`gold_cards.json`)
+2. **Gold cards** (`gold_cards_v2.json`)
 3. **Template system** (legacy `CardGeneratorV3`)
 
 ### Legacy Template System (Fallback Only)
@@ -210,10 +208,10 @@ The app uses Jetpack Compose with a custom dark theme optimized for party enviro
 - **JudgePickFlow**: Judge selection interface
 
 ### Newly added (2025-10)
-- **RollcallScene**: "Who's here?" attendance at launch or any time from Home.
+- **RollcallScene**: “Who’s here?” attendance at launch or any time from Home.
   - Toggle present players, quick add with emoji, swipe-to-delete with confirm + Undo.
 - **Settings** additions:
-  - Toggle "Ask 'Who's here?' at launch", manage players inline (add/toggle active), and jump to full Players.
+  - Toggle “Ask ‘Who’s here?’ at launch”, manage players inline (add/toggle active), and jump to full Players.
 - **Players management**:
   - Inline name edit (tap name → edit → save/cancel), tap avatar to change emoji via picker.
   - Swipe-to-delete with confirmation dialog and Undo snackbar.
@@ -225,13 +223,6 @@ The app uses Jetpack Compose with a custom dark theme optimized for party enviro
 - **Accessibility/legibility**:
   - Dark theme neutrals retuned; card titles/subtitles now ellipsize and wrap safely.
   - Progress indicators migrated to the latest Compose API.
-
-### UI Enhancements (December 2024)
-- **Modern Onboarding Flow**: Interactive tutorial with smooth animations and haptic feedback
-- **Enhanced Button Components**: PrimaryButton, SecondaryButton, ToggleButton with animations
-- **Improved Spice Slider**: Better responsiveness and visual feedback
-- **Visual Polish**: Consistent design system, smooth transitions, better touch targets
-- **Backend Stability**: Comprehensive null safety, error handling, and validation
 
 ## 🤖 AI Learning System
 
