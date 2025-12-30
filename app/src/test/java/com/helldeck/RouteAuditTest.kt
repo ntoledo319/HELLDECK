@@ -1,8 +1,8 @@
 package com.helldeck
 
 import com.helldeck.ui.nav.RouteAudit
-import org.junit.Test
 import org.junit.Assert.*
+import org.junit.Test
 
 /**
  * Route audit validation test.

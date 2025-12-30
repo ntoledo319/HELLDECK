@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  */
 @Entity(
     tableName = "custom_cards",
-    indices = [Index(value = ["gameId"]), Index(value = ["createdAtMs"])]
+    indices = [Index(value = ["gameId"]), Index(value = ["createdAtMs"])],
 )
 data class CustomCardEntity(
     @PrimaryKey val id: String, // unique card ID
@@ -19,7 +19,7 @@ data class CustomCardEntity(
     val createdAtMs: Long = System.currentTimeMillis(),
     val timesUsed: Int = 0, // Track how often it's been played
     val avgRating: Float = 0f, // Average LOL/MEH/TRASH rating
-    val isActive: Boolean = true // Can be disabled without deleting
+    val isActive: Boolean = true, // Can be disabled without deleting
 )
 
 @Dao

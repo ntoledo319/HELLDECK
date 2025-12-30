@@ -4,6 +4,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Binder
 import android.os.Build
@@ -13,7 +14,6 @@ import com.helldeck.R
 import com.helldeck.engine.ExportImport
 import com.helldeck.engine.ImportResult
 import kotlinx.coroutines.*
-import android.content.Context
 
 /**
  * Foreground service for handling export/import operations
@@ -87,7 +87,6 @@ class ExportImportService : Service() {
                 }
 
                 stopSelf()
-
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     progressCallback?.invoke(-1, "Export failed: ${e.message}")
@@ -132,7 +131,6 @@ class ExportImportService : Service() {
                 }
 
                 stopSelf()
-
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     progressCallback?.invoke(-1, "Import failed: ${e.message}")
@@ -158,7 +156,7 @@ class ExportImportService : Service() {
             val channel = NotificationChannel(
                 CHANNEL_ID,
                 "HELLDECK Export/Import",
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_LOW,
             ).apply {
                 description = "Shows progress for brainpack export/import operations"
                 setShowBadge(false)

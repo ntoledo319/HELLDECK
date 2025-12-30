@@ -3,8 +3,6 @@ package com.helldeck.content.generator
 import android.content.Context
 import com.helldeck.engine.GameIds
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
 
 /**
  * Loads high-quality gold standard cards from assets.
@@ -25,7 +23,7 @@ object GoldCardsLoader {
         val product: String? = null,
         val category: String? = null,
         val letter: String? = null,
-        val tones: List<String>? = null
+        val tones: List<String>? = null,
     )
 
     private var goldCards: Map<String, List<GoldCard>>? = null
@@ -68,8 +66,8 @@ object GoldCardsLoader {
                         letter = cardObj.optString("letter").takeIf { it.isNotEmpty() },
                         tones = cardObj.optJSONArray("tones")?.let { arr ->
                             (0 until arr.length()).map { arr.getString(it) }
-                        }
-                    )
+                        },
+                    ),
                 )
             }
 
@@ -83,8 +81,8 @@ object GoldCardsLoader {
     fun getExamplesForGame(
         context: Context,
         gameId: String,
-        count: Int = 10,  // Increased from 5 to 10
-        seed: Int? = null  // Optional seed for deterministic rotation
+        count: Int = 10, // Increased from 5 to 10
+        seed: Int? = null, // Optional seed for deterministic rotation
     ): List<GoldCard> {
         val allCards = load(context)
         val gameKey = when (gameId) {
@@ -99,17 +97,17 @@ object GoldCardsLoader {
             GameIds.TITLE_FIGHT -> "title_fight"
             GameIds.ALIBI -> "alibi_drop"
             GameIds.SCATTER -> "scatterblast"
-            
+
             // New games from HDRealRules.md
             GameIds.UNIFYING_THEORY -> "the_unifying_theory"
             GameIds.REALITY_CHECK -> "reality_check"
-            GameIds.OVER_UNDER -> "over_under"  // Note: not in current gold_cards.json yet
-            
+            GameIds.OVER_UNDER -> "over_under" // Note: not in current gold_cards.json yet
+
             else -> return emptyList()
         }
 
         val eligible = allCards[gameKey]
-            ?.filter { it.quality_score >= 7 }  // Only gold-tier cards (7+)
+            ?.filter { it.quality_score >= 7 } // Only gold-tier cards (7+)
             ?: return emptyList()
 
         if (eligible.isEmpty()) return emptyList()
@@ -124,7 +122,7 @@ object GoldCardsLoader {
         // Weighted random selection: higher quality scores = higher probability
         // This ensures ALL cards can train the AI, but better cards appear more often
         val rng = kotlin.random.Random(seed)
-        
+
         return eligible
             .map { card ->
                 // Weight calculation: quality_score * (0.5 to 1.0 random factor)
@@ -135,9 +133,9 @@ object GoldCardsLoader {
                 val weight = card.quality_score * (0.5 + rng.nextDouble() * 0.5)
                 card to weight
             }
-            .sortedByDescending { it.second }  // Sort by weight
-            .take(count)  // Take top N weighted cards
-            .map { it.first }  // Extract the cards
+            .sortedByDescending { it.second } // Sort by weight
+            .take(count) // Take top N weighted cards
+            .map { it.first } // Extract the cards
     }
 
     fun getRandomFallback(context: Context, gameId: String): GoldCard? {
@@ -154,12 +152,12 @@ object GoldCardsLoader {
             GameIds.TITLE_FIGHT -> "title_fight"
             GameIds.ALIBI -> "alibi_drop"
             GameIds.SCATTER -> "scatterblast"
-            
+
             // New games
             GameIds.UNIFYING_THEORY -> "the_unifying_theory"
             GameIds.REALITY_CHECK -> "reality_check"
             GameIds.OVER_UNDER -> "over_under"
-            
+
             else -> return null
         }
 

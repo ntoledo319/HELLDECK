@@ -5,15 +5,13 @@ import com.helldeck.content.engine.augment.Augmentor
 import com.helldeck.content.generator.CardGeneratorV3
 import com.helldeck.content.model.FilledCard
 import com.helldeck.content.model.GameOptions
-import com.helldeck.content.model.Template
-import com.helldeck.content.model.v2.OptionProvider
 import com.helldeck.content.model.v2.TemplateV2
 import com.helldeck.content.util.SeededRng
+import com.helldeck.content.validation.CardQualityInspector
+import com.helldeck.engine.Config
 import com.helldeck.engine.GameMetadata
 import com.helldeck.engine.InteractionType
-import com.helldeck.engine.Config
 import com.helldeck.utils.Logger
-import com.helldeck.content.validation.CardQualityInspector
 
 class GameEngine(
     private val repo: ContentRepository,
@@ -22,10 +20,10 @@ class GameEngine(
     private val augmentor: Augmentor?,
     private val modelId: String,
     private val cardGeneratorV3: CardGeneratorV3?,
-    private val llmCardGeneratorV2: com.helldeck.content.generator.LLMCardGeneratorV2? = null
+    private val llmCardGeneratorV2: com.helldeck.content.generator.LLMCardGeneratorV2? = null,
 ) {
     private val optionsCompiler = OptionsCompiler(repo, rng)
-    
+
     data class Request(
         val sessionId: String,
         val gameId: String? = null,
@@ -36,14 +34,14 @@ class GameEngine(
         val recentFamilies: List<String> = emptyList(),
         val avoidTemplateIds: Set<String> = emptySet(),
         val tagAffinity: Map<String, Double> = emptyMap(),
-        val localityMax: Int = 3
+        val localityMax: Int = 3,
     )
 
     data class Result(
         val filledCard: FilledCard,
         val options: GameOptions,
         val timer: Int,
-        val interactionType: InteractionType
+        val interactionType: InteractionType,
     )
 
     suspend fun next(req: Request): Result {
@@ -56,7 +54,7 @@ class GameEngine(
                 players = req.players,
                 spiceMax = req.spiceMax,
                 sessionId = req.sessionId,
-                roomHeat = req.roomHeat
+                roomHeat = req.roomHeat,
             )
 
             llmGen.generate(llmRequest)?.let { llmResult ->
@@ -64,7 +62,7 @@ class GameEngine(
                     filledCard = llmResult.filledCard,
                     options = llmResult.options,
                     timer = llmResult.timer,
-                    interactionType = llmResult.interactionType
+                    interactionType = llmResult.interactionType,
                 )
                 if (validateContract(result, req)) {
                     Logger.d("LLM V2 generated card with quality score: ${llmResult.qualityScore}")
@@ -98,12 +96,16 @@ class GameEngine(
                             interactionType = result.interactionType,
                             options = result.options,
                             filledCard = result.filledCard,
-                            playersCount = req.players.size
+                            playersCount = req.players.size,
                         )
                         if (contractCheck.isValid) {
                             return result
                         } else {
-                            Logger.d("Contract validation failed (attempt ${attempt + 1}): ${contractCheck.reasons.joinToString(", ")}")
+                            Logger.d(
+                                "Contract validation failed (attempt ${attempt + 1}): ${contractCheck.reasons.joinToString(
+                                    ", ",
+                                )}",
+                            )
                         }
                     }
                 }
@@ -123,7 +125,7 @@ class GameEngine(
                 wantedGameId = req.gameId,
                 recentFamilies = req.recentFamilies,
                 avoidIds = avoid,
-                tagAffinity = req.tagAffinity
+                tagAffinity = req.tagAffinity,
             )
 
             val chosen = selector.pick(ctx, pool)
@@ -158,7 +160,7 @@ class GameEngine(
             wantedGameId = req.gameId,
             recentFamilies = req.recentFamilies,
             avoidIds = avoid,
-            tagAffinity = req.tagAffinity
+            tagAffinity = req.tagAffinity,
         )
         val chosen = selector.pick(ctx, pool)
         val filled = fill(chosen, req)
@@ -189,7 +191,7 @@ class GameEngine(
             interactionType = result.interactionType,
             options = result.options,
             filledCard = result.filledCard,
-            playersCount = req.players.size
+            playersCount = req.players.size,
         )
         if (!contractResult.isValid) {
             Logger.w("Contract validation failed: ${contractResult.reasons.joinToString(", ")}")
@@ -208,12 +210,15 @@ class GameEngine(
 
     private fun fill(t: TemplateV2, req: Request): FilledCard {
         return TemplateEngine(repo, rng)
-            .fill(t, TemplateEngine.Context(
-                players = req.players,
-                spiceMax = req.spiceMax,
-                localityMax = req.localityMax,
-                inboundTexts = emptyList()
-            ))
+            .fill(
+                t,
+                TemplateEngine.Context(
+                    players = req.players,
+                    spiceMax = req.spiceMax,
+                    localityMax = req.localityMax,
+                    inboundTexts = emptyList(),
+                ),
+            )
     }
 
     private suspend fun augment(t: TemplateV2, card: FilledCard, req: Request): FilledCard {
@@ -223,7 +228,7 @@ class GameEngine(
             spice = t.spice,
             tags = t.tags,
             gameId = t.game,
-            styleGuide = StyleGuides.getForGame(t.game)
+            styleGuide = StyleGuides.getForGame(t.game),
         )
         val seed = (t.id + card.text + req.sessionId).hashCode()
         return augmentor?.maybeParaphrase(card, plan, seed, modelId) ?: card
@@ -272,63 +277,63 @@ class GameEngine(
         val (text, options) = when (interactionType) {
             InteractionType.A_B_CHOICE -> {
                 "Would you rather have unlimited coffee or unlimited pizza?" to
-                        GameOptions.AB("Unlimited Coffee", "Unlimited Pizza")
+                    GameOptions.AB("Unlimited Coffee", "Unlimited Pizza")
             }
             InteractionType.VOTE_PLAYER -> {
                 "Who is most likely to survive a zombie apocalypse?" to
-                        GameOptions.PlayerVote(req.players.ifEmpty { listOf("Player 1", "Player 2", "Player 3") })
+                    GameOptions.PlayerVote(req.players.ifEmpty { listOf("Player 1", "Player 2", "Player 3") })
             }
             InteractionType.TRUE_FALSE -> {
                 "I once convinced someone I could speak three languages (I can't)." to
-                        GameOptions.TrueFalse
+                    GameOptions.TrueFalse
             }
             InteractionType.SMASH_PASS -> {
                 "A partner who's always 10 minutes late but brings snacks." to
-                        GameOptions.AB("SMASH", "PASS")
+                    GameOptions.AB("SMASH", "PASS")
             }
             InteractionType.TABOO_GUESS -> {
                 "Get your team to guess this word without using forbidden terms!" to
-                        GameOptions.Taboo("Password", listOf("computer", "login", "security"))
+                    GameOptions.Taboo("Password", listOf("computer", "login", "security"))
             }
             InteractionType.JUDGE_PICK -> {
                 "Complete this: The worst superpower would be..." to
-                        GameOptions.None
+                    GameOptions.None
             }
             InteractionType.REPLY_TONE -> {
                 "Your ex texts: 'Hey, you up?' Pick your vibe:" to
-                        GameOptions.ReplyTone(listOf("Petty", "Wholesome", "Chaotic", "Deadpan"))
+                    GameOptions.ReplyTone(listOf("Petty", "Wholesome", "Chaotic", "Deadpan"))
             }
             InteractionType.ODD_EXPLAIN -> {
                 "Which doesn't belong?" to
-                        GameOptions.OddOneOut(listOf("Dolphins", "Bats", "Penguins"))
+                    GameOptions.OddOneOut(listOf("Dolphins", "Bats", "Penguins"))
             }
             InteractionType.HIDE_WORDS -> {
                 "Sneak these words into your story!" to
-                        GameOptions.HiddenWords(listOf("rubber duck", "midnight"))
+                    GameOptions.HiddenWords(listOf("rubber duck", "midnight"))
             }
             InteractionType.SALES_PITCH -> {
                 "Pitch this product with a straight face:" to
-                        GameOptions.Product("Edible socks")
+                    GameOptions.Product("Edible socks")
             }
             InteractionType.SPEED_LIST -> {
                 "Name three things fast!" to
-                        GameOptions.Scatter("Animals", "S")
+                    GameOptions.Scatter("Animals", "S")
             }
             InteractionType.MINI_DUEL -> {
                 "Rock-paper-scissors showdown! Best of three." to
-                        GameOptions.Challenge("Duel!")
+                    GameOptions.Challenge("Duel!")
             }
             InteractionType.TARGET_SELECT -> {
                 "Pick someone to answer this: What's your secret talent?" to
-                        GameOptions.PlayerSelect(req.players, null)
+                    GameOptions.PlayerSelect(req.players, null)
             }
             InteractionType.PREDICT_VOTE -> {
                 "Predict what the room will choose: Tacos vs Pizza?" to
-                        GameOptions.AB("Tacos", "Pizza")
+                    GameOptions.AB("Tacos", "Pizza")
             }
             else -> {
                 "Everyone: share your most embarrassing moment from this week!" to
-                        GameOptions.None
+                    GameOptions.None
             }
         }
 
@@ -339,7 +344,7 @@ class GameEngine(
             family = "gold_fallback",
             spice = 1,
             locality = 1,
-            metadata = mapOf("fallback" to true, "interactionType" to interactionType.name)
+            metadata = mapOf("fallback" to true, "interactionType" to interactionType.name),
         )
 
         return Result(filledCard, options, timer, interactionType)

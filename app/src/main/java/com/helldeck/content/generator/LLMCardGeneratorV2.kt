@@ -3,14 +3,13 @@ package com.helldeck.content.generator
 import android.content.Context
 import com.helldeck.content.model.FilledCard
 import com.helldeck.content.model.GameOptions
-import com.helldeck.engine.InteractionType
 import com.helldeck.engine.GameIds
+import com.helldeck.engine.InteractionType
 import com.helldeck.llm.GenConfig
 import com.helldeck.llm.LocalLLM
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
-import kotlin.random.Random
 
 /**
  * Quality-first LLM card generator using gold standard examples.
@@ -19,7 +18,7 @@ import kotlin.random.Random
 class LLMCardGeneratorV2(
     private val llm: LocalLLM?,
     private val context: Context,
-    private val templateFallback: CardGeneratorV3
+    private val templateFallback: CardGeneratorV3,
 ) {
 
     data class GenerationRequest(
@@ -27,7 +26,7 @@ class LLMCardGeneratorV2(
         val players: List<String>,
         val spiceMax: Int,
         val sessionId: String,
-        val roomHeat: Double = 0.6
+        val roomHeat: Double = 0.6,
     )
 
     data class GenerationResult(
@@ -36,7 +35,7 @@ class LLMCardGeneratorV2(
         val timer: Int,
         val interactionType: InteractionType,
         val usedLLM: Boolean,
-        val qualityScore: Double = 0.0
+        val qualityScore: Double = 0.0,
     )
 
     suspend fun generate(request: GenerationRequest): GenerationResult? {
@@ -45,7 +44,7 @@ class LLMCardGeneratorV2(
         if (llm?.isReady == true) {
             repeat(3) { attempt ->
                 try {
-                    val candidate = withTimeout(2500) {  // 2.5 sec timeout
+                    val candidate = withTimeout(2500) { // 2.5 sec timeout
                         generateWithLLM(request, attempt)
                     }
                     if (candidate != null && validateQuality(candidate)) {
@@ -76,7 +75,7 @@ class LLMCardGeneratorV2(
                 else -> 0.9f
             },
             topP = 0.92f,
-            seed = (request.sessionId + System.currentTimeMillis() + attempt).hashCode()
+            seed = (request.sessionId + System.currentTimeMillis() + attempt).hashCode(),
         )
 
         val response = llm?.generate(prompt.system, prompt.user, config) ?: return null
@@ -88,14 +87,14 @@ class LLMCardGeneratorV2(
     private fun buildQualityPrompt(request: GenerationRequest, attempt: Int): Prompt {
         // Generate seed for weighted rotation of examples
         val seed = (request.sessionId + System.currentTimeMillis() + attempt).hashCode()
-        
+
         // Load 10 gold examples with weighted rotation
         // This ensures ALL gold cards can train the AI, but better cards appear more often
         val goldExamples = GoldCardsLoader.getExamplesForGame(
-            context, 
-            request.gameId, 
-            count = 10,  // Increased from 5 to 10
-            seed = seed   // Enable rotation across generations
+            context,
+            request.gameId,
+            count = 10, // Increased from 5 to 10
+            seed = seed, // Enable rotation across generations
         )
 
         val spiceGuidance = when (request.spiceMax) {
@@ -128,12 +127,12 @@ CRITICAL RULES:
             GameIds.TITLE_FIGHT -> buildTitleFightPrompt(goldExamples, attempt)
             GameIds.ALIBI -> buildAlibiPrompt(goldExamples, attempt)
             GameIds.SCATTER -> buildScatterPrompt(goldExamples, attempt)
-            
+
             // New games from HDRealRules.md
             GameIds.UNIFYING_THEORY -> buildUnifyingTheoryPrompt(goldExamples, attempt)
             GameIds.REALITY_CHECK -> buildRealityCheckPrompt(goldExamples, attempt)
             GameIds.OVER_UNDER -> buildOverUnderPrompt(goldExamples, attempt)
-            
+
             else -> """{"text": "Fallback card", "type": "unknown"}"""
         }
 
@@ -562,8 +561,8 @@ Generate ONE numerical question in JSON format."""
                     "generated_by" to "llm_v2",
                     "model" to (llm?.modelId ?: "unknown"),
                     "timestamp" to System.currentTimeMillis(),
-                    "prompt_version" to "quality_first_v1"
-                )
+                    "prompt_version" to "quality_first_v1",
+                ),
             )
 
             val options = parseOptionsFromJson(json, request)
@@ -572,7 +571,6 @@ Generate ONE numerical question in JSON format."""
             val qualityScore = estimateQuality(card, options)
 
             GenerationResult(card, options, timer, interactionType, usedLLM = true, qualityScore = qualityScore)
-
         } catch (e: Exception) {
             Logger.w("Failed to parse LLM response: ${e.message}")
             null
@@ -611,7 +609,7 @@ Generate ONE numerical question in JSON format."""
     }
 
     private fun estimateQuality(card: FilledCard, options: GameOptions): Double {
-        var score = 0.7  // Base score
+        var score = 0.7 // Base score
 
         // Length check (not too short, not too long)
         val wordCount = card.text.split("\\s+".toRegex()).size
@@ -725,12 +723,12 @@ Generate ONE numerical question in JSON format."""
         GameIds.TITLE_FIGHT -> InteractionType.MINI_DUEL
         GameIds.TEXT_TRAP -> InteractionType.REPLY_TONE
         GameIds.HOTSEAT_IMP, GameIds.FILL_IN -> InteractionType.JUDGE_PICK
-        
+
         // New games
-        GameIds.UNIFYING_THEORY -> InteractionType.JUDGE_PICK  // Explaining the connection
-        GameIds.REALITY_CHECK -> InteractionType.TARGET_SELECT  // Rating comparison
-        GameIds.OVER_UNDER -> InteractionType.PREDICT_VOTE  // Over/Under betting
-        
+        GameIds.UNIFYING_THEORY -> InteractionType.JUDGE_PICK // Explaining the connection
+        GameIds.REALITY_CHECK -> InteractionType.TARGET_SELECT // Rating comparison
+        GameIds.OVER_UNDER -> InteractionType.PREDICT_VOTE // Over/Under betting
+
         else -> InteractionType.NONE
     }
 
@@ -746,8 +744,8 @@ Generate ONE numerical question in JSON format."""
             locality = 1,
             metadata = mapOf(
                 "generated_by" to "gold_v2",
-                "quality_score" to goldCard.quality_score
-            )
+                "quality_score" to goldCard.quality_score,
+            ),
         )
 
         val options = when (request.gameId) {
@@ -769,7 +767,7 @@ Generate ONE numerical question in JSON format."""
             GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
             GameIds.CONFESS_CAP -> GameOptions.TrueFalse
             GameIds.RED_FLAG -> GameOptions.AB("SMASH", "PASS")
-            
+
             // New games - need to handle these properly
             GameIds.UNIFYING_THEORY -> {
                 val items = goldCard.text.split(", ")
@@ -777,16 +775,17 @@ Generate ONE numerical question in JSON format."""
             }
             GameIds.REALITY_CHECK -> GameOptions.Challenge("Rate yourself")
             GameIds.OVER_UNDER -> GameOptions.Challenge("Predict the number")
-            
+
             else -> GameOptions.None
         }
 
         return GenerationResult(
-            card, options,
+            card,
+            options,
             getTimerForGame(request.gameId),
             getInteractionTypeForGame(request.gameId),
             usedLLM = false,
-            qualityScore = goldCard.quality_score / 10.0
+            qualityScore = goldCard.quality_score / 10.0,
         )
     }
 
@@ -796,7 +795,7 @@ Generate ONE numerical question in JSON format."""
             gameId = request.gameId,
             players = request.players,
             spiceMax = request.spiceMax,
-            roomHeat = request.roomHeat
+            roomHeat = request.roomHeat,
         )
 
         val rng = com.helldeck.content.util.SeededRng(request.sessionId.hashCode().toLong())
@@ -808,7 +807,7 @@ Generate ONE numerical question in JSON format."""
                 timer = it.timer,
                 interactionType = it.interactionType,
                 usedLLM = false,
-                qualityScore = 0.5
+                qualityScore = 0.5,
             )
         }
     }

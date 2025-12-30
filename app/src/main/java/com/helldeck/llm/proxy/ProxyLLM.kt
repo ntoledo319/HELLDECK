@@ -79,4 +79,3 @@ class ProxyLLM : LocalLLM {
         return 0
     }
 }
-

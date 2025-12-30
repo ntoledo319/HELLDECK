@@ -1,7 +1,5 @@
 package com.helldeck.ui.theme
 
-import androidx.compose.ui.graphics.Color
-
 // Bridge aliases so files importing com.helldeck.ui.theme.* compile
 object HelldeckColors {
     // Hell's Living Room token surface (new)
@@ -62,4 +60,3 @@ object HelldeckHeights {
     val BottomBar get() = com.helldeck.ui.HelldeckHeights.BottomBar
     val Input get() = com.helldeck.ui.HelldeckHeights.Input
 }
-

@@ -21,19 +21,19 @@ import com.helldeck.ui.state.RoundState
 fun ABChoiceRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var selected by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(
             text = "Make your choice",
             style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(bottom = 8.dp)
+            modifier = Modifier.padding(bottom = 8.dp),
         )
 
         // Get option labels
@@ -44,7 +44,7 @@ fun ABChoiceRenderer(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Button(
                 onClick = {
@@ -57,8 +57,8 @@ fun ABChoiceRenderer(
                         MaterialTheme.colorScheme.primary
                     } else {
                         MaterialTheme.colorScheme.surfaceVariant
-                    }
-                )
+                    },
+                ),
             ) {
                 Text(text = optA, fontSize = 20.sp)
             }
@@ -74,8 +74,8 @@ fun ABChoiceRenderer(
                         MaterialTheme.colorScheme.primary
                     } else {
                         MaterialTheme.colorScheme.surfaceVariant
-                    }
-                )
+                    },
+                ),
             ) {
                 Text(text = optB, fontSize = 20.sp)
             }

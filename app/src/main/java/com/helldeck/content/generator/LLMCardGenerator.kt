@@ -3,21 +3,20 @@ package com.helldeck.content.generator
 import android.content.Context
 import com.helldeck.content.model.FilledCard
 import com.helldeck.content.model.GameOptions
-import com.helldeck.engine.InteractionType
 import com.helldeck.engine.GameIds
+import com.helldeck.engine.InteractionType
 import com.helldeck.llm.GenConfig
 import com.helldeck.llm.LocalLLM
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
-import kotlin.random.Random
 
 /**
  * UNIFIED LLM Card Generator - Combines best features from V1 and V2
- * 
+ *
  * Primary: On-device LLM generation with quality-first prompts
  * Fallback: Curated gold standard cards
- * 
+ *
  * Key Features:
  * - Enhanced reliability with smart retry strategy
  * - Gold standard examples in prompts
@@ -27,7 +26,7 @@ import kotlin.random.Random
  */
 class LLMCardGenerator(
     private val llm: LocalLLM?,
-    private val context: Context
+    private val context: Context,
 ) {
 
     data class GenerationRequest(
@@ -35,7 +34,7 @@ class LLMCardGenerator(
         val players: List<String>,
         val spiceMax: Int,
         val sessionId: String,
-        val roomHeat: Double = 0.6
+        val roomHeat: Double = 0.6,
     )
 
     data class GenerationResult(
@@ -44,7 +43,7 @@ class LLMCardGenerator(
         val timer: Int,
         val interactionType: InteractionType,
         val usedLLM: Boolean,
-        val qualityScore: Double = 0.0
+        val qualityScore: Double = 0.0,
     )
 
     /**
@@ -55,7 +54,7 @@ class LLMCardGenerator(
         if (llm?.isReady == true) {
             repeat(3) { attempt ->
                 try {
-                    val candidate = withTimeout(4000) {  // 4 sec timeout (increased from 2.5s)
+                    val candidate = withTimeout(4000) { // 4 sec timeout (increased from 2.5s)
                         generateWithLLM(request, attempt)
                     }
                     if (candidate != null && validateBasicQuality(candidate)) {
@@ -80,7 +79,7 @@ class LLMCardGenerator(
      */
     private suspend fun generateWithLLM(request: GenerationRequest, attempt: Int): GenerationResult? {
         val prompt = buildQualityPrompt(request, attempt)
-        
+
         // Vary temperature per attempt to increase variety
         val baseTemp = when (request.spiceMax) {
             1 -> 0.5f
@@ -89,7 +88,7 @@ class LLMCardGenerator(
             4 -> 0.85f
             else -> 0.9f
         }
-        
+
         val attemptTemp = when (attempt) {
             0 -> baseTemp
             1 -> baseTemp + 0.1f
@@ -100,7 +99,7 @@ class LLMCardGenerator(
             maxTokens = 150,
             temperature = attemptTemp.coerceIn(0.3f, 1.2f),
             topP = 0.92f,
-            seed = (request.sessionId + System.currentTimeMillis() + attempt).hashCode()
+            seed = (request.sessionId + System.currentTimeMillis() + attempt).hashCode(),
         )
 
         val response = llm?.generate(prompt.system, prompt.user, config) ?: return null
@@ -123,7 +122,7 @@ class LLMCardGenerator(
             4 -> "wild and unhinged while avoiding slurs"
             else -> "maximum chaos (keep it funny, not cruel)"
         }
-        
+
         // Add creativity boost on retry attempts
         val creativityNote = when (attempt) {
             0 -> ""
@@ -200,7 +199,9 @@ OUTPUT: Generate ONE unique roast card in JSON format."""
         val exampleText = examples.take(5).joinToString("\n") {
             val opts = if (it.optionA != null && it.optionB != null) {
                 " | A: \"${it.optionA}\" vs B: \"${it.optionB}\""
-            } else ""
+            } else {
+                ""
+            }
             "✅ \"${it.text}\"$opts (quality: ${it.quality_score}/10)"
         }
 
@@ -392,7 +393,7 @@ $exampleText
 OUTPUT: Generate ONE challenge in JSON format."""
     }
 
-    */
+     */
     private fun buildTitleFightPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
@@ -467,7 +468,7 @@ $exampleText
 OUTPUT: Generate ONE product in JSON format."""
     }
 
-    */
+     */
     private fun buildScatterPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ Category: \"${it.category}\", Letter: ${it.letter} (quality: ${it.quality_score}/10)"
@@ -523,7 +524,7 @@ $exampleText
 OUTPUT: Generate ONE prediction challenge in JSON format."""
     }
 
-    */
+     */
     private fun buildConfessPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
@@ -548,8 +549,8 @@ OUTPUT: Generate ONE confession in JSON format."""
     }
 
     private fun buildUnifyingTheoryPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
-        val exampleTexts = examples.take(3).joinToString("\n") { 
-            """{"text": "${it.text}"}""" 
+        val exampleTexts = examples.take(3).joinToString("\n") {
+            """{"text": "${it.text}"}"""
         }
         return """
 Generate a card for The Unifying Theory game.
@@ -564,8 +565,8 @@ Make items as random and unrelated as possible for maximum creativity.
     }
 
     private fun buildRealityCheckPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
-        val exampleTexts = examples.take(3).joinToString("\n") { 
-            """{"text": "${it.text}"}""" 
+        val exampleTexts = examples.take(3).joinToString("\n") {
+            """{"text": "${it.text}"}"""
         }
         return """
 Generate a card for Reality Check game.
@@ -580,8 +581,8 @@ Make it specific, personal, and potentially revealing.
     }
 
     private fun buildOverUnderPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
-        val exampleTexts = examples.take(3).joinToString("\n") { 
-            """{"text": "${it.text}"}""" 
+        val exampleTexts = examples.take(3).joinToString("\n") {
+            """{"text": "${it.text}"}"""
         }
         return """
 Generate a card for Over/Under game.
@@ -601,9 +602,9 @@ Make it verifiable and potentially embarrassing or revealing.
      * Parse LLM response with enhanced error handling
      */
     private fun parseAndValidateResponse(
-        response: String, 
+        response: String,
         request: GenerationRequest,
-        attempt: Int
+        attempt: Int,
     ): GenerationResult? {
         return try {
             // Clean response - handle common formatting issues
@@ -612,7 +613,7 @@ Make it verifiable and potentially embarrassing or revealing.
                 .replace("```", "")
                 .replace("\\n", " ")
                 .trim()
-                .let { 
+                .let {
                     // Extract JSON if embedded in text
                     val start = it.indexOf('{')
                     val end = it.lastIndexOf('}')
@@ -644,8 +645,8 @@ Make it verifiable and potentially embarrassing or revealing.
                     "model" to (llm?.modelId ?: "unknown"),
                     "timestamp" to System.currentTimeMillis(),
                     "attempt" to attempt,
-                    "prompt_version" to "unified_v1"
-                )
+                    "prompt_version" to "unified_v1",
+                ),
             )
 
             val options = parseOptionsFromJson(json, request)
@@ -654,7 +655,6 @@ Make it verifiable and potentially embarrassing or revealing.
             val qualityScore = estimateQuality(card, options)
 
             GenerationResult(card, options, timer, interactionType, usedLLM = true, qualityScore = qualityScore)
-
         } catch (e: Exception) {
             Logger.w("Failed to parse LLM response: ${e.message}")
             null
@@ -704,7 +704,7 @@ Make it verifiable and potentially embarrassing or revealing.
      * Estimate quality score (simplified)
      */
     private fun estimateQuality(card: FilledCard, options: GameOptions): Double {
-        var score = 0.7  // Base score
+        var score = 0.7 // Base score
 
         // Length check (not too short, not too long)
         val wordCount = card.text.split("\\s+".toRegex()).size
@@ -767,7 +767,7 @@ Make it verifiable and potentially embarrassing or revealing.
                 } ?: listOf("word1", "word2", "word3")
                 GameOptions.HiddenWords(words)
             }
-            
+
             // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
 
             GameIds.SCATTER -> {
@@ -839,8 +839,8 @@ Make it verifiable and potentially embarrassing or revealing.
             locality = 1,
             metadata = mapOf(
                 "generated_by" to "gold_standard",
-                "quality_score" to goldCard.quality_score
-            )
+                "quality_score" to goldCard.quality_score,
+            ),
         )
 
         val options = when (request.gameId) {
@@ -849,8 +849,8 @@ Make it verifiable and potentially embarrassing or revealing.
             }
             GameIds.TABOO -> {
                 GameOptions.Taboo(
-                    goldCard.word ?: "word", 
-                    goldCard.forbidden ?: listOf("1", "2", "3")
+                    goldCard.word ?: "word",
+                    goldCard.forbidden ?: listOf("1", "2", "3"),
                 )
             }
             GameIds.ALIBI -> {
@@ -859,13 +859,13 @@ Make it verifiable and potentially embarrassing or revealing.
             // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
             GameIds.SCATTER -> {
                 GameOptions.Scatter(
-                    goldCard.category ?: "Things", 
-                    goldCard.letter ?: "A"
+                    goldCard.category ?: "Things",
+                    goldCard.letter ?: "A",
                 )
             }
             GameIds.TEXT_TRAP -> {
                 GameOptions.ReplyTone(
-                    goldCard.tones ?: listOf("Casual", "Formal", "Chaotic", "Petty")
+                    goldCard.tones ?: listOf("Casual", "Formal", "Chaotic", "Petty"),
                 )
             }
             GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
@@ -875,12 +875,12 @@ Make it verifiable and potentially embarrassing or revealing.
         }
 
         return GenerationResult(
-            card, 
+            card,
             options,
             getTimerForGame(request.gameId),
             getInteractionTypeForGame(request.gameId),
             usedLLM = false,
-            qualityScore = goldCard.quality_score / 10.0
+            qualityScore = goldCard.quality_score / 10.0,
         )
     }
 }

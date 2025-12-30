@@ -22,10 +22,10 @@ import com.helldeck.settings.CrewBrainStore
         com.helldeck.data.SessionMetricsEntity::class,
         com.helldeck.data.RoundMetricsEntity::class,
         com.helldeck.data.FavoriteCardEntity::class,
-        com.helldeck.data.CustomCardEntity::class
+        com.helldeck.data.CustomCardEntity::class,
     ],
     version = 8,
-    exportSchema = false
+    exportSchema = false,
 )
 abstract class HelldeckDb : RoomDatabase() {
     abstract fun templateStatDao(): TemplateStatDao
@@ -51,7 +51,7 @@ abstract class HelldeckDb : RoomDatabase() {
             return if (brainId == CrewBrainStore.DEFAULT_BRAIN_ID) {
                 "helldeck.db"
             } else {
-                "helldeck_${brainId}.db"
+                "helldeck_$brainId.db"
             }
         }
 
@@ -69,7 +69,7 @@ abstract class HelldeckDb : RoomDatabase() {
                 instances[key] ?: Room.databaseBuilder(
                     context.applicationContext,
                     HelldeckDb::class.java,
-                    dbNameFor(key)
+                    dbNameFor(key),
                 ).fallbackToDestructiveMigration().build().also { db ->
                     instances[key] = db
                 }

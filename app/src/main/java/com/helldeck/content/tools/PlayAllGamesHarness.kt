@@ -4,7 +4,6 @@ import android.content.Context
 import com.helldeck.content.engine.GameEngine
 import com.helldeck.content.validation.GameContractValidator
 import com.helldeck.engine.GameMetadata
-import com.helldeck.utils.Logger
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -18,7 +17,7 @@ object PlayAllGamesHarness {
         val gameName: String,
         val attempts: Int,
         val successes: Int,
-        val failures: List<FailureInfo>
+        val failures: List<FailureInfo>,
     ) {
         val successRate: Double get() = if (attempts > 0) successes.toDouble() / attempts else 0.0
         val isPassing: Boolean get() = successes > 0
@@ -27,14 +26,14 @@ object PlayAllGamesHarness {
     data class FailureInfo(
         val attempt: Int,
         val reason: String,
-        val cardText: String? = null
+        val cardText: String? = null,
     )
 
     data class HarnessReport(
         val results: List<GameTestResult>,
         val totalAttempts: Int,
         val totalSuccesses: Int,
-        val totalFailures: Int
+        val totalFailures: Int,
     ) {
         val overallSuccessRate: Double get() =
             if (totalAttempts > 0) totalSuccesses.toDouble() / totalAttempts else 0.0
@@ -70,7 +69,7 @@ object PlayAllGamesHarness {
         context: Context,
         gameId: String,
         gameName: String,
-        attempts: Int
+        attempts: Int,
     ): GameTestResult = runBlocking {
         val failures = mutableListOf<FailureInfo>()
         var successes = 0
@@ -83,7 +82,7 @@ object PlayAllGamesHarness {
                     gameId = gameId,
                     sessionId = "harness_${System.currentTimeMillis()}_$attempt",
                     players = listOf("TestPlayer1", "TestPlayer2", "TestPlayer3", "TestPlayer4"),
-                    spiceMax = 2
+                    spiceMax = 2,
                 )
 
                 val result = engine.next(request)
@@ -94,37 +93,44 @@ object PlayAllGamesHarness {
                     interactionType = result.interactionType,
                     options = result.options,
                     filledCard = result.filledCard,
-                    playersCount = 4
+                    playersCount = 4,
                 )
 
                 if (!contractResult.isValid) {
-                    failures.add(FailureInfo(
-                        attempt = attempt + 1,
-                        reason = "Contract validation failed: ${contractResult.reasons.joinToString(", ")}",
-                        cardText = result.filledCard.text
-                    ))
+                    failures.add(
+                        FailureInfo(
+                            attempt = attempt + 1,
+                            reason = "Contract validation failed: ${contractResult.reasons.joinToString(", ")}",
+                            cardText = result.filledCard.text,
+                        ),
+                    )
                 } else if (result.filledCard.text.contains("{") || result.filledCard.text.contains("}")) {
-                    failures.add(FailureInfo(
-                        attempt = attempt + 1,
-                        reason = "Card contains unresolved placeholders",
-                        cardText = result.filledCard.text
-                    ))
+                    failures.add(
+                        FailureInfo(
+                            attempt = attempt + 1,
+                            reason = "Card contains unresolved placeholders",
+                            cardText = result.filledCard.text,
+                        ),
+                    )
                 } else if (result.filledCard.text.contains("null", ignoreCase = true)) {
-                    failures.add(FailureInfo(
-                        attempt = attempt + 1,
-                        reason = "Card contains 'null' text",
-                        cardText = result.filledCard.text
-                    ))
+                    failures.add(
+                        FailureInfo(
+                            attempt = attempt + 1,
+                            reason = "Card contains 'null' text",
+                            cardText = result.filledCard.text,
+                        ),
+                    )
                 } else {
                     successes++
                 }
-
             } catch (e: Exception) {
-                failures.add(FailureInfo(
-                    attempt = attempt + 1,
-                    reason = "Exception: ${e.message}",
-                    cardText = null
-                ))
+                failures.add(
+                    FailureInfo(
+                        attempt = attempt + 1,
+                        reason = "Exception: ${e.message}",
+                        cardText = null,
+                    ),
+                )
             }
         }
 
@@ -153,7 +159,11 @@ object PlayAllGamesHarness {
             sb.appendLine("✅ Passing Games:")
             report.results.filter { it.isPassing }.forEach { result ->
                 sb.appendLine("  ${result.gameName} (${result.gameId})")
-                sb.appendLine("    Success rate: ${"%.1f".format(result.successRate * 100)}% (${result.successes}/${result.attempts})")
+                sb.appendLine(
+                    "    Success rate: ${"%.1f".format(
+                        result.successRate * 100,
+                    )}% (${result.successes}/${result.attempts})",
+                )
             }
             sb.appendLine()
         }
@@ -163,7 +173,11 @@ object PlayAllGamesHarness {
             sb.appendLine("❌ Failing Games:")
             report.results.filter { !it.isPassing }.forEach { result ->
                 sb.appendLine("  ${result.gameName} (${result.gameId})")
-                sb.appendLine("    Success rate: ${"%.1f".format(result.successRate * 100)}% (${result.successes}/${result.attempts})")
+                sb.appendLine(
+                    "    Success rate: ${"%.1f".format(
+                        result.successRate * 100,
+                    )}% (${result.successes}/${result.attempts})",
+                )
                 sb.appendLine("    Failures:")
                 result.failures.take(5).forEach { failure ->
                     sb.appendLine("      Attempt ${failure.attempt}: ${failure.reason}")
@@ -189,7 +203,11 @@ object PlayAllGamesHarness {
         sb.appendLine("Game ID,Game Name,Attempts,Successes,Failures,Success Rate")
 
         report.results.forEach { result ->
-            sb.appendLine("${result.gameId},${result.gameName},${result.attempts},${result.successes},${result.failures.size},${"%.3f".format(result.successRate)}")
+            sb.appendLine(
+                "${result.gameId},${result.gameName},${result.attempts},${result.successes},${result.failures.size},${"%.3f".format(
+                    result.successRate,
+                )}",
+            )
         }
 
         return sb.toString()

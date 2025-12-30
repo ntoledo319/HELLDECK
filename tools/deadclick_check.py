@@ -6,10 +6,10 @@ Scans for empty onClick handlers, TODO placeholders, and unhandled navigation.
 Fails build if dead interactions are found.
 """
 
-import re
-import sys
 import glob
 import os
+import re
+import sys
 
 ROOT = "app/src/main/java"
 
@@ -20,9 +20,9 @@ if not os.path.exists(ROOT):
 files = glob.glob(ROOT + "/**/*.kt", recursive=True)
 
 # Patterns to detect
-empty_onclick_re = re.compile(r'onClick\s*=\s*\{\s*\}')
-todo_comment_re = re.compile(r'//\s*TODO(?!\()', re.I)
-todo_function_re = re.compile(r'TODO\(\)')
+empty_onclick_re = re.compile(r"onClick\s*=\s*\{\s*\}")
+todo_comment_re = re.compile(r"//\s*TODO(?!\()", re.I)
+todo_function_re = re.compile(r"TODO\(\)")
 
 issues = []
 
@@ -32,7 +32,7 @@ for fp in files:
         continue
 
     try:
-        with open(fp, "r", encoding="utf-8") as f:
+        with open(fp, encoding="utf-8") as f:
             text = f.read()
             lines = text.split("\n")
     except Exception as e:
@@ -41,7 +41,7 @@ for fp in files:
 
     # Check for empty onClick
     for match in empty_onclick_re.finditer(text):
-        line_num = text[:match.start()].count("\n") + 1
+        line_num = text[: match.start()].count("\n") + 1
         issues.append(f"{fp}:{line_num} - Empty onClick handler")
 
     # Check for TODO comments
@@ -51,7 +51,7 @@ for fp in files:
 
     # Check for TODO() function calls
     for match in todo_function_re.finditer(text):
-        line_num = text[:match.start()].count("\n") + 1
+        line_num = text[: match.start()].count("\n") + 1
         issues.append(f"{fp}:{line_num} - TODO() function call")
 
 if issues:

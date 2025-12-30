@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class TemplateExposureEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val templateId: String,
-    val timestamp: Long
+    val timestamp: Long,
 )

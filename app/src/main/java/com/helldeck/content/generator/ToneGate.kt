@@ -12,4 +12,3 @@ class ToneGate(private val allowedTones: Set<String> = emptySet(), private val d
         return allowedTones.contains(t)
     }
 }
-

@@ -2,6 +2,8 @@ package com.helldeck.ui
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -10,16 +12,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Info
 
 /**
  * Loading state management for HELLDECK
@@ -40,13 +39,13 @@ class LoadingStateManager {
     fun startLoading(
         operationId: String,
         message: String = "Loading...",
-        progress: Float? = null
+        progress: Float? = null,
     ) {
         val currentStates = _loadingStates.value.toMutableMap()
         currentStates[operationId] = LoadingState.Loading(
             message = message,
             progress = progress,
-            startTime = System.currentTimeMillis()
+            startTime = System.currentTimeMillis(),
         )
         _loadingStates.value = currentStates
     }
@@ -61,7 +60,7 @@ class LoadingStateManager {
         if (currentState is LoadingState.Loading) {
             currentStates[operationId] = currentState.copy(
                 progress = progress,
-                message = message ?: currentState.message
+                message = message ?: currentState.message,
             )
             _loadingStates.value = currentStates
         }
@@ -77,7 +76,7 @@ class LoadingStateManager {
         if (currentState is LoadingState.Loading) {
             currentStates[operationId] = LoadingState.Success(
                 message = message ?: "Completed!",
-                duration = System.currentTimeMillis() - currentState.startTime
+                duration = System.currentTimeMillis() - currentState.startTime,
             )
             _loadingStates.value = currentStates
 
@@ -100,7 +99,7 @@ class LoadingStateManager {
             currentStates[operationId] = LoadingState.Error(
                 error = error,
                 canRetry = canRetry,
-                duration = System.currentTimeMillis() - currentState.startTime
+                duration = System.currentTimeMillis() - currentState.startTime,
             )
             _loadingStates.value = currentStates
         }
@@ -155,7 +154,7 @@ object LoadingMessages {
         "Charging the awkward meters...",
         "Preparing social destruction...",
         "Calculating maximum cringe...",
-        "Unleashing controlled chaos..."
+        "Unleashing controlled chaos...",
     )
 
     fun getRandomMessage(): String {
@@ -170,18 +169,18 @@ sealed class LoadingState {
     data class Loading(
         val message: String,
         val progress: Float?,
-        val startTime: Long
+        val startTime: Long,
     ) : LoadingState()
 
     data class Success(
         val message: String,
-        val duration: Long
+        val duration: Long,
     ) : LoadingState()
 
     data class Error(
         val error: String,
         val canRetry: Boolean,
-        val duration: Long
+        val duration: Long,
     ) : LoadingState()
 }
 
@@ -195,7 +194,7 @@ val loadingStateManager = LoadingStateManager()
  */
 @Composable
 fun LoadingOverlay(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val loadingStates by loadingStateManager.loadingStates.collectAsState()
     val scope = rememberCoroutineScope()
@@ -209,17 +208,17 @@ fun LoadingOverlay(
         modifier = modifier
             .fillMaxSize()
             .alpha(0.9f),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Card(
             modifier = Modifier
                 .fillMaxWidth(0.8f)
                 .wrapContentHeight(),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         ) {
             Column(
                 modifier = Modifier.padding(24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 loadingStates.values.forEach { state ->
                     when (state) {
@@ -242,7 +241,7 @@ private fun LoadingContent(state: LoadingState.Loading) {
     val funMessage = remember { LoadingMessages.getRandomMessage() }
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Animated loading indicator
         val infiniteTransition = rememberInfiniteTransition(label = "loading")
@@ -251,16 +250,16 @@ private fun LoadingContent(state: LoadingState.Loading) {
             targetValue = 360f,
             animationSpec = infiniteRepeatable(
                 animation = tween(durationMillis = 1000, easing = LinearEasing),
-                repeatMode = RepeatMode.Restart
+                repeatMode = RepeatMode.Restart,
             ),
-            label = "rotation"
+            label = "rotation",
         )
 
         CircularProgressIndicator(
             modifier = Modifier
                 .size(48.dp)
                 .alpha((rotation / 360f).coerceIn(0.3f, 1f)),
-            strokeWidth = 4.dp
+            strokeWidth = 4.dp,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -269,19 +268,19 @@ private fun LoadingContent(state: LoadingState.Loading) {
         Text(
             text = if (state.message == "Loading...") funMessage else state.message,
             style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         state.progress?.let { progress ->
             Spacer(modifier = Modifier.height(8.dp))
             LinearProgressIndicator(
                 progress = { progress },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             )
             Text(
                 text = "${(progress * 100).toInt()}%",
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
@@ -294,13 +293,13 @@ private fun LoadingContent(state: LoadingState.Loading) {
 private fun SuccessContent(state: LoadingState.Success) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         Icon(
             imageVector = androidx.compose.material.icons.Icons.Filled.CheckCircle,
             contentDescription = "Success",
             tint = Color.Green,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp),
         )
 
         Spacer(modifier = Modifier.width(8.dp))
@@ -308,7 +307,7 @@ private fun SuccessContent(state: LoadingState.Success) {
         Text(
             text = state.message,
             style = MaterialTheme.typography.bodyLarge,
-            color = Color.Green
+            color = Color.Green,
         )
     }
 }
@@ -319,13 +318,13 @@ private fun SuccessContent(state: LoadingState.Success) {
 @Composable
 private fun ErrorContent(state: LoadingState.Error) {
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Icon(
             imageVector = androidx.compose.material.icons.Icons.Filled.Info,
             contentDescription = "Error",
             tint = MaterialTheme.colorScheme.error,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp),
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -334,14 +333,14 @@ private fun ErrorContent(state: LoadingState.Error) {
             text = state.error,
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.error
+            color = MaterialTheme.colorScheme.error,
         )
 
         if (state.canRetry) {
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { /* Retry logic would be handled by caller */ }
+                onClick = { /* Retry logic would be handled by caller */ },
             ) {
                 Text("Retry")
             }
@@ -367,7 +366,7 @@ object LoadingOperations {
  */
 @Composable
 fun WithLoadingOverlay(
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         content()
@@ -391,7 +390,7 @@ fun rememberLoadingState(operationId: String): LoadingState? {
 suspend fun withLoadingState(
     operationId: String,
     message: String = "Loading...",
-    block: suspend () -> Unit
+    block: suspend () -> Unit,
 ) {
     try {
         loadingStateManager.startLoading(operationId, message)
@@ -406,7 +405,7 @@ suspend fun withLoadingState(
 suspend fun withProgressLoading(
     operationId: String,
     message: String = "Loading...",
-    block: suspend (updateProgress: (Float, String?) -> Unit) -> Unit
+    block: suspend (updateProgress: (Float, String?) -> Unit) -> Unit,
 ) {
     try {
         loadingStateManager.startLoading(operationId, message)

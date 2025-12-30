@@ -6,15 +6,15 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.content.engine.GameEngine
 import com.helldeck.content.validation.GameQualityProfiles
-import com.helldeck.engine.GameMetadata
 import com.helldeck.engine.Config
+import com.helldeck.engine.GameMetadata
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.annotation.Config as RoboConfig
 import java.io.File
+import org.robolectric.annotation.Config as RoboConfig
 
 @RunWith(AndroidJUnit4::class)
 @RoboConfig(sdk = [33])
@@ -28,7 +28,7 @@ class GameQualitySuite {
         val score01: Double,
         val pass: Boolean,
         val issues: List<String>,
-        val metrics: Map<String, String>
+        val metrics: Map<String, String>,
     )
 
     @Serializable
@@ -38,13 +38,13 @@ class GameQualitySuite {
         val passed: Int,
         val passRate: Double,
         val topIssues: Map<String, Int>,
-        val avgScore: Double
+        val avgScore: Double,
     )
 
     @Serializable
     data class Report(
         val summary: Summary,
-        val rows: List<Row>
+        val rows: List<Row>,
     )
 
     @Test
@@ -76,7 +76,7 @@ class GameQualitySuite {
                         sessionId = "quality_${game}_$seedVal",
                         gameId = game,
                         players = listOf("Jay", "Pip", "Mo"),
-                        spiceMax = spice
+                        spiceMax = spice,
                     )
                     val result = try {
                         kotlinx.coroutines.runBlocking { engine.next(req) }
@@ -88,7 +88,7 @@ class GameQualitySuite {
                             score01 = 0.0,
                             pass = false,
                             issues = listOf("FILL_ERROR"),
-                            metrics = emptyMap()
+                            metrics = emptyMap(),
                         )
                         return@repeat
                     }
@@ -97,7 +97,7 @@ class GameQualitySuite {
                             gameId = game,
                             interaction = result.interactionType,
                             card = result.filledCard,
-                            options = result.options
+                            options = result.options,
                         )
                     }
                     val metrics = eval.metrics.mapValues { it.value?.toString() ?: "" }
@@ -108,7 +108,7 @@ class GameQualitySuite {
                         score01 = eval.score01,
                         pass = eval.pass,
                         issues = eval.issues.map { it.name },
-                        metrics = metrics
+                        metrics = metrics,
                     )
                 }
                 val passed = rows.count { it.pass }
@@ -122,47 +122,61 @@ class GameQualitySuite {
                     passed = passed,
                     passRate = passRate,
                     topIssues = topIssues,
-                    avgScore = avgScore
+                    avgScore = avgScore,
                 )
-                val base = "quality_${game}_${seedVal}_${count}"
+                val base = "quality_${game}_${seedVal}_$count"
                 File(outDir, "$base.json").writeText(jsonCodec.encodeToString(Report(summary, rows)))
                 File(outDir, "$base.csv").printWriter().use { pw ->
-                    pw.println("i,score01,pass,issues,wordCount,repeatRatio,pairScore,humorScore,aiHumor,aiSense,aiUnderstandable,text")
+                    pw.println(
+                        "i,score01,pass,issues,wordCount,repeatRatio,pairScore,humorScore,aiHumor,aiSense,aiUnderstandable,text",
+                    )
                     rows.forEach { r ->
                         val m = r.metrics
-                        pw.println(listOf(
-                            r.i,
-                            String.format("%.3f", r.score01),
-                            r.pass,
-                            r.issues.joinToString("|"),
-                            m["wordCount"] ?: "",
-                            m["repeatRatio"] ?: "",
-                            m["pairScore"] ?: "",
-                            m["humorScore"] ?: "",
-                            m["aiHumor"] ?: "",
-                            m["aiSense"] ?: "",
-                            m["aiUnderstandable"] ?: "",
-                            r.text.replace("\n", " ").replace(",", ";")
-                        ).joinToString(","))
+                        pw.println(
+                            listOf(
+                                r.i,
+                                String.format("%.3f", r.score01),
+                                r.pass,
+                                r.issues.joinToString("|"),
+                                m["wordCount"] ?: "",
+                                m["repeatRatio"] ?: "",
+                                m["pairScore"] ?: "",
+                                m["humorScore"] ?: "",
+                                m["aiHumor"] ?: "",
+                                m["aiSense"] ?: "",
+                                m["aiUnderstandable"] ?: "",
+                                r.text.replace("\n", " ").replace(",", ";"),
+                            ).joinToString(","),
+                        )
                     }
                 }
-                File(outDir, "$base.html").writeText("""
+                File(outDir, "$base.html").writeText(
+                    """
                     <html><head><meta charset=\"utf-8\"><title>Quality $game</title>
                     <style>body{background:#121212;color:#eee;font-family:system-ui,sans-serif;padding:24px} .ok{color:#7bd88f} .bad{color:#ff6b6b} table{border-collapse:collapse;width:100%} td,th{border:1px solid #333;padding:6px}</style>
                     </head><body>
                     <h1>Quality Summary: $game</h1>
-                    <p>Pass rate: ${String.format("%.1f", passRate)}% | Avg score: ${String.format("%.2f", avgScore)}</p>
+                    <p>Pass rate: ${String.format(
+                        "%.1f",
+                        passRate,
+                    )}% | Avg score: ${String.format("%.2f", avgScore)}</p>
                     <h3>Top issues</h3>
                     <ul>${topIssues.entries.joinToString("") { "<li><code>${it.key}</code>: ${it.value}</li>" }}</ul>
                     <h3>Samples</h3>
                     <table><thead><tr><th>#</th><th>Score</th><th>Pass</th><th>Issues</th><th>Text</th></tr></thead><tbody>
                     ${rows.take(50).joinToString("") { r ->
                         val cls = if (r.pass) "ok" else "bad"
-                        "<tr><td>${r.i}</td><td>${String.format("%.2f", r.score01)}</td><td class=\"$cls\">${r.pass}</td><td>${r.issues.joinToString(" ")}</td><td>${r.text.replace("<","&lt;")}</td></tr>"
+                        "<tr><td>${r.i}</td><td>${String.format(
+                            "%.2f",
+                            r.score01,
+                        )}</td><td class=\"$cls\">${r.pass}</td><td>${r.issues.joinToString(
+                            " ",
+                        )}</td><td>${r.text.replace("<","&lt;")}</td></tr>"
                     }}
                     </tbody></table>
                     </body></html>
-                """.trimIndent())
+                    """.trimIndent(),
+                )
             }
         }
     }

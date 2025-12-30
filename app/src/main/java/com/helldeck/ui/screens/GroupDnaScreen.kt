@@ -11,11 +11,11 @@ import com.helldeck.ui.vm.GameNightViewModel
 @Composable
 fun GroupDnaScreen(
     vm: GameNightViewModel,
-    onClose: () -> Unit = {}
+    onClose: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Group DNA", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
@@ -32,10 +32,12 @@ fun GroupDnaScreen(
                     onClick = { vm.groupDnaProfile = profile },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (vm.groupDnaProfile == profile)
+                        containerColor = if (vm.groupDnaProfile == profile) {
                             MaterialTheme.colorScheme.primary
-                        else MaterialTheme.colorScheme.surfaceVariant
-                    )
+                        } else {
+                            MaterialTheme.colorScheme.surfaceVariant
+                        },
+                    ),
                 ) {
                     Text(profile)
                 }

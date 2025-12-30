@@ -8,11 +8,11 @@ import com.helldeck.content.util.SeededRng
 
 /**
  * TemplateEngine handles dynamic content generation by filling template slots.
- * 
+ *
  * This engine processes TemplateV2 objects and fills them with appropriate content
  * based on the current game context. It supports both structured slot filling
  * and legacy regex-based slot resolution for backward compatibility.
- * 
+ *
  * Key features:
  * - Structured slot filling using TemplateV2.slots
  * - Legacy regex fallback for older templates
@@ -20,23 +20,23 @@ import com.helldeck.content.util.SeededRng
  * - Article handling for proper grammar
  * - Word count validation
  * - Lexicon-based content selection
- * 
+ *
  * @param repo Content repository for accessing lexicons and word lists
  * @param rng Seeded random number generator for reproducible results
  */
 class TemplateEngine(
     private val repo: ContentRepository,
-    private val rng: SeededRng
+    private val rng: SeededRng,
 ) {
-    
+
     companion object {
         // Capture full placeholder content; we parse name/mods/count/sep ourselves
         private val SLOT_REGEX = Regex("\\{([^}]+)\\}")
     }
-    
+
     /**
      * Context data required for template filling operations.
-     * 
+     *
      * @param players List of player names participating in the current session
      * @param spiceMax Maximum spice level allowed for content generation
      * @param localityMax Maximum number of recent words to avoid repetition
@@ -46,19 +46,19 @@ class TemplateEngine(
         val players: List<String> = emptyList(),
         val spiceMax: Int = 3,
         val localityMax: Int = 3,
-        val inboundTexts: List<String> = emptyList()
+        val inboundTexts: List<String> = emptyList(),
     )
 
     /**
      * Fills a template with appropriate content based on the provided context.
-     * 
+     *
      * The filling process:
      * 1. Uses structured slots from TemplateV2.slots if available
      * 2. Falls back to regex-based parsing for legacy templates
      * 3. Applies case transformations and article handling
      * 4. Validates word count against template limits
      * 5. Selects appropriate content from lexicons
-     * 
+     *
      * @param template The template to fill
      * @param ctx Context containing all constraints and preferences
      * @return FilledCard with generated content and metadata
@@ -80,7 +80,7 @@ class TemplateEngine(
                     used = filledSlots,
                     distinctAll = template.constraints.distinct_slots,
                     usedLexiconWords = usedLexiconWords,
-                    usedPlayers = usedPlayers
+                    usedPlayers = usedPlayers,
                 )
                 filledSlots[slotSpec.name] = filled
                 slotSequence += slotSpec.name to filled
@@ -112,7 +112,7 @@ class TemplateEngine(
                         else -> pickFromLex(
                             spec.name,
                             if (template.constraints.distinct_slots) filledSlots.values.toSet() else null,
-                            usedLexiconWords
+                            usedLexiconWords,
                         )
                     }
                     var v = applyCase(base, spec.transforms)
@@ -136,17 +136,17 @@ class TemplateEngine(
         }
 
         return FilledCard(
-            id = template.id, 
-            game = template.game, 
+            id = template.id,
+            game = template.game,
             text = text,
-            family = template.family, 
-            spice = template.spice, 
+            family = template.family,
+            spice = template.spice,
             locality = template.locality,
             metadata = mapOf(
                 "template" to template.text,
                 "slots" to filledSlots.toMap(),
-                "slot_sequence" to slotSequence.toList()
-            )
+                "slot_sequence" to slotSequence.toList(),
+            ),
         )
     }
 
@@ -159,7 +159,7 @@ class TemplateEngine(
         val transforms: List<String> = emptyList(),
         val count: Int = 1,
         val separator: String? = null,
-        val unique: Boolean = false
+        val unique: Boolean = false,
     )
 
     private fun parseLegacySlotSpec(content: String): LegacySlotSpec {
@@ -236,7 +236,7 @@ class TemplateEngine(
 
     /**
      * Fills a specific slot with appropriate content.
-     * 
+     *
      * @param spec The slot specification defining how to fill this slot
      * @param ctx Current filling context
      * @param used Map of already used slot values to avoid repetition
@@ -248,7 +248,7 @@ class TemplateEngine(
         used: Map<String, String>,
         distinctAll: Boolean,
         usedLexiconWords: MutableMap<String, MutableSet<String>>,
-        usedPlayers: MutableSet<String>
+        usedPlayers: MutableSet<String>,
     ): String {
         val raw = when (spec.from) {
             "target_name" -> pickTarget(ctx.players, usedPlayers)
@@ -268,7 +268,7 @@ class TemplateEngine(
 
     /**
      * Selects a target player from the available players.
-     * 
+     *
      * @param players List of player names to choose from
      * @return Selected player name or "someone" if no players available
      */
@@ -283,7 +283,7 @@ class TemplateEngine(
 
     /**
      * Selects an inbound text message from the context.
-     * 
+     *
      * @param ctx Current filling context
      * @return Selected inbound text or null if none available
      */
@@ -292,7 +292,7 @@ class TemplateEngine(
 
     /**
      * Selects content from a lexicon while avoiding already used words.
-     * 
+     *
      * @param lexicon The lexicon name to select from
      * @param used Set of already used words to avoid (if specified)
      * @return Selected word from the lexicon
@@ -301,7 +301,7 @@ class TemplateEngine(
     private fun pickFromLex(
         lexicon: String,
         used: Set<String>?,
-        usedLexiconWords: MutableMap<String, MutableSet<String>>
+        usedLexiconWords: MutableMap<String, MutableSet<String>>,
     ): String {
         val pool = repo.wordsFor(lexicon)
         require(pool.isNotEmpty()) { "Empty or missing lexicon for slot '$lexicon'" }
@@ -324,13 +324,13 @@ class TemplateEngine(
 
     /**
      * Applies case transformations to text based on specified modifiers.
-     * 
+     *
      * Supported transformations:
      * - "upper": Convert to uppercase
-     * - "lower": Convert to lowercase  
+     * - "lower": Convert to lowercase
      * - "title": Convert to title case (first letter of each word capitalized)
      * - "a_an": Add appropriate article ("a" or "an")
-     * 
+     *
      * @param s The input text to transform
      * @param mods List of transformation modifiers to apply
      * @return Transformed text with all specified modifiers applied
@@ -347,13 +347,13 @@ class TemplateEngine(
 
     /**
      * Adds appropriate article ("a" or "an") to a word based on its first letter.
-     * 
+     *
      * @param s The word to add article to
      * @return The word with appropriate article prefix
      */
     private fun withArticle(s: String): String {
         val first = s.trim().firstOrNull()?.lowercaseChar() ?: return s
-        val article = if (first in listOf('a','e','i','o','u')) "an" else "a"
+        val article = if (first in listOf('a', 'e', 'i', 'o', 'u')) "an" else "a"
         return "$article $s"
     }
 

@@ -1,19 +1,19 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helldeck.content.model.GameOptions
 import com.helldeck.engine.Config
 import com.helldeck.engine.GameFeedback
-import com.helldeck.engine.HapticEvent
 import com.helldeck.engine.GameMetadata
+import com.helldeck.engine.HapticEvent
 import com.helldeck.engine.Interaction
 import com.helldeck.engine.InteractionType
 import com.helldeck.ui.*
@@ -45,7 +45,8 @@ fun RoundScene(vm: HelldeckVm) {
             InteractionType.A_B_CHOICE,
             InteractionType.TRUE_FALSE,
             InteractionType.SMASH_PASS,
-            InteractionType.PREDICT_VOTE -> true
+            InteractionType.PREDICT_VOTE,
+            -> true
             else -> false
         }
     }
@@ -91,12 +92,12 @@ fun RoundScene(vm: HelldeckVm) {
                                 com.helldeck.ui.state.RoundPhase.DONE -> "DONE"
                             },
                             style = MaterialTheme.typography.labelSmall,
-                            color = HelldeckColors.colorMuted
+                            color = HelldeckColors.colorMuted,
                         )
                         Text(
                             text = game?.title ?: "Round",
                             style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
                         )
                     }
                 },
@@ -104,25 +105,25 @@ fun RoundScene(vm: HelldeckVm) {
                 actions = {
                     TextButton(onClick = { vm.openRulesForCurrentGame() }) { Text("?") }
                     TextButton(onClick = { vm.goHome() }) { Text("Home") }
-                }
+                },
             )
         },
         bottomBar = {
             Surface(
                 tonalElevation = 2.dp,
-                color = MaterialTheme.colorScheme.surface
+                color = MaterialTheme.colorScheme.surface,
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = HelldeckSpacing.Large.dp, vertical = HelldeckSpacing.Medium.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     OutlinedButton(
                         onClick = { vm.openRulesForCurrentGame() },
                         modifier = Modifier.weight(1f).height(HelldeckHeights.Button.dp),
-                        shape = RoundedCornerShape(HelldeckRadius.Medium)
+                        shape = RoundedCornerShape(HelldeckRadius.Medium),
                     ) {
                         Text("Help")
                     }
@@ -137,29 +138,35 @@ fun RoundScene(vm: HelldeckVm) {
                     Button(
                         onClick = {
                             when (roundState.phase) {
-                                com.helldeck.ui.state.RoundPhase.INTRO -> vm.handleRoundEvent(com.helldeck.ui.events.RoundEvent.AdvancePhase)
+                                com.helldeck.ui.state.RoundPhase.INTRO -> vm.handleRoundEvent(
+                                    com.helldeck.ui.events.RoundEvent.AdvancePhase,
+                                )
                                 com.helldeck.ui.state.RoundPhase.INPUT -> vm.resolveInteraction()
-                                com.helldeck.ui.state.RoundPhase.REVEAL -> vm.handleRoundEvent(com.helldeck.ui.events.RoundEvent.AdvancePhase)
+                                com.helldeck.ui.state.RoundPhase.REVEAL -> vm.handleRoundEvent(
+                                    com.helldeck.ui.events.RoundEvent.AdvancePhase,
+                                )
                                 com.helldeck.ui.state.RoundPhase.FEEDBACK -> vm.navigateTo(Scene.FEEDBACK)
-                                com.helldeck.ui.state.RoundPhase.DONE -> vm.handleRoundEvent(com.helldeck.ui.events.RoundEvent.AdvancePhase)
+                                com.helldeck.ui.state.RoundPhase.DONE -> vm.handleRoundEvent(
+                                    com.helldeck.ui.events.RoundEvent.AdvancePhase,
+                                )
                             }
                         },
                         modifier = Modifier.weight(2f).height(HelldeckHeights.Button.dp),
                         shape = RoundedCornerShape(HelldeckRadius.Pill),
-                        colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.colorPrimary)
+                        colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.colorPrimary),
                     ) {
                         Text(primaryLabel, style = MaterialTheme.typography.labelLarge)
                     }
                 }
             }
-        }
+        },
     ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
                 .padding(horizontal = HelldeckSpacing.Large.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             if (totalTimeMs > 0 && roundState.isTimerActive()) {
                 GameTimer(
@@ -167,7 +174,7 @@ fun RoundScene(vm: HelldeckVm) {
                     totalTimeMs = totalTimeMs,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = HelldeckSpacing.Medium.dp, bottom = HelldeckSpacing.Small.dp)
+                        .padding(top = HelldeckSpacing.Medium.dp, bottom = HelldeckSpacing.Small.dp),
                 )
             }
 
@@ -178,7 +185,7 @@ fun RoundScene(vm: HelldeckVm) {
                     .fillMaxWidth()
                     .weight(1f),
                 backgroundColor = HelldeckColors.surfacePrimary,
-                borderColor = HelldeckColors.colorPrimary
+                borderColor = HelldeckColors.colorPrimary,
             )
 
             // Interaction controls only during INPUT to keep the mental model stable.
@@ -189,7 +196,7 @@ fun RoundScene(vm: HelldeckVm) {
                         players = vm.activePlayers,
                         onVote = vm::onAvatarVote,
                         onDone = { vm.resolveInteraction() },
-                        onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
+                        onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
                     )
                     Interaction.AB_VOTE -> {
                         val abOptions = (roundState.options as? GameOptions.AB)
@@ -209,7 +216,7 @@ fun RoundScene(vm: HelldeckVm) {
                             rightLabel = abOptions.getOrNull(1) ?: "B",
                             onVote = vm::onABVote,
                             onDone = { vm.resolveInteraction() },
-                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
+                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
                         )
                     }
                     Interaction.TRUE_FALSE -> ABVoteFlow(
@@ -222,7 +229,7 @@ fun RoundScene(vm: HelldeckVm) {
                         rightLabel = "F",
                         onVote = vm::onABVote,
                         onDone = { vm.resolveInteraction() },
-                        onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
+                        onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
                     )
                     Interaction.SMASH_PASS -> {
                         val abOptions = (roundState.options as? GameOptions.AB)
@@ -238,7 +245,7 @@ fun RoundScene(vm: HelldeckVm) {
                             rightLabel = abOptions.getOrNull(1) ?: "PASS",
                             onVote = vm::onABVote,
                             onDone = { vm.resolveInteraction() },
-                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
+                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
                         )
                     }
                     Interaction.TARGET_PICK -> {
@@ -250,7 +257,7 @@ fun RoundScene(vm: HelldeckVm) {
                             players = vm.activePlayers,
                             title = targetLabel,
                             onPick = { _ -> vm.goToFeedbackNoPoints() },
-                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) }
+                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
                         )
                     }
                     Interaction.DUEL -> OptionsPickFlow(
@@ -258,17 +265,17 @@ fun RoundScene(vm: HelldeckVm) {
                         options = listOf("Active Player wins", "Other wins"),
                         onPick = { choice ->
                             if (choice.startsWith("Active")) vm.commitDirectWin() else vm.goToFeedbackNoPoints()
-                        }
+                        },
                     )
                     Interaction.PITCH -> OptionsPickFlow(
                         title = "Done pitching?",
                         options = listOf("Lock"),
-                        onPick = { vm.goToFeedbackNoPoints() }
+                        onPick = { vm.goToFeedbackNoPoints() },
                     )
                     Interaction.SPEED_LIST -> OptionsPickFlow(
                         title = "Time's up?",
                         options = listOf("Lock"),
-                        onPick = { vm.goToFeedbackNoPoints() }
+                        onPick = { vm.goToFeedbackNoPoints() },
                     )
                     Interaction.REPLY_TONE -> {
                         val replyOptions = (roundState.options as? GameOptions.ReplyTone)?.tones
@@ -276,7 +283,7 @@ fun RoundScene(vm: HelldeckVm) {
                         OptionsPickFlow(
                             title = "Pick a reply vibe",
                             options = replyOptions,
-                            onPick = { vm.resolveInteraction() }
+                            onPick = { vm.resolveInteraction() },
                         )
                     }
                     Interaction.TABOO_CLUE -> {
@@ -289,7 +296,7 @@ fun RoundScene(vm: HelldeckVm) {
                                 timerGateStarted = true
                                 timeRemainingMs = totalTimeMs
                             },
-                            onDone = { vm.resolveInteraction() }
+                            onDone = { vm.resolveInteraction() },
                         )
                     }
                     Interaction.ODD_REASON -> {
@@ -298,7 +305,7 @@ fun RoundScene(vm: HelldeckVm) {
                         OptionsPickFlow(
                             title = "Pick the misfit",
                             options = oddOptions,
-                            onPick = { vm.resolveInteraction() }
+                            onPick = { vm.resolveInteraction() },
                         )
                     }
                     Interaction.JUDGE_PICK -> {
@@ -308,11 +315,13 @@ fun RoundScene(vm: HelldeckVm) {
                         val activePlayer = vm.activePlayer()
                         val judgeIndex = if (activePlayer != null && vm.players.isNotEmpty()) {
                             (vm.players.indexOf(activePlayer) + 1) % vm.players.size
-                        } else 0
+                        } else {
+                            0
+                        }
                         JudgePickFlow(
                             judge = vm.players.getOrNull(judgeIndex),
                             options = judgeOptions,
-                            onPick = { vm.resolveInteraction() }
+                            onPick = { vm.resolveInteraction() },
                         )
                     }
                     else -> {
@@ -320,7 +329,7 @@ fun RoundScene(vm: HelldeckVm) {
                             onLeft = { /* left */ },
                             onCenter = { vm.resolveInteraction() },
                             onRight = { /* right */ },
-                            onLong = { /* long */ }
+                            onLong = { /* long */ },
                         )
                     }
                 }
@@ -330,7 +339,7 @@ fun RoundScene(vm: HelldeckVm) {
                 Text(
                     text = "Tap START ROUND when the room is ready.",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = HelldeckColors.colorMuted
+                    color = HelldeckColors.colorMuted,
                 )
             }
         }

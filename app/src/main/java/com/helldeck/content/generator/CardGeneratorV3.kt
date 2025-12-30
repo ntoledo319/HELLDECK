@@ -2,13 +2,12 @@ package com.helldeck.content.generator
 
 import com.helldeck.content.engine.GameEngine
 import com.helldeck.content.generator.gold.GoldBank
-import com.helldeck.content.generator.gold.GoldCard
 import com.helldeck.content.model.FilledCard
 import com.helldeck.content.model.GameOptions
 import com.helldeck.content.util.SeededRng
-import com.helldeck.engine.InteractionType
 import com.helldeck.engine.GameIds
 import com.helldeck.engine.GameMetadata
+import com.helldeck.engine.InteractionType
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
@@ -19,7 +18,7 @@ class CardGeneratorV3(
     private val artifacts: GeneratorArtifacts,
     private val goldBank: GoldBank,
     private var banlist: CardLabBanlist? = null,
-    private val semanticValidator: com.helldeck.content.validation.SemanticValidator? = null
+    private val semanticValidator: com.helldeck.content.validation.SemanticValidator? = null,
 ) {
     // Performance optimization: reuse regex objects and pre-compute lowercase lists
     private val whitespaceRegex = Regex("\\s+")
@@ -29,12 +28,12 @@ class CardGeneratorV3(
         Regex("\\b" + Regex.escape(token) + "\\b", RegexOption.IGNORE_CASE)
     }
     private val humorScorer = HumorScorer(lexiconRepository, artifacts.pairings)
-    
+
     // Anti-repetition tracking: store recently generated card texts per session+game
     private data class SessionGameKey(val sessionId: String, val gameId: String)
     private val recentCards = mutableMapOf<SessionGameKey, MutableList<String>>()
     private val maxRecentCards = 200 // Keep a larger window to avoid repeats in long sessions
-    
+
     fun setBanlist(banlist: CardLabBanlist?) {
         this.banlist = banlist
     }
@@ -43,7 +42,7 @@ class CardGeneratorV3(
         val filledCard: FilledCard,
         val options: GameOptions,
         val timer: Int,
-        val interactionType: InteractionType
+        val interactionType: InteractionType,
     )
 
     fun generate(request: GameEngine.Request, rng: SeededRng): GenerationResult? {
@@ -54,10 +53,10 @@ class CardGeneratorV3(
 
         val filtered = candidates.filter { blueprint ->
             banlist?.isBlueprintBanned(blueprint.id) != true &&
-            (blueprint.constraints.min_players <= (request.players.size))
+                (blueprint.constraints.min_players <= (request.players.size))
         }
         if (filtered.isEmpty()) return goldFallback(request, rng)
-        
+
         val ordered = filtered.sortedByDescending { artifacts.priors[it.id]?.mean() ?: it.weight }
         val candidateOrder = when {
             ordered.size <= rules.maxAttempts -> ordered
@@ -85,7 +84,7 @@ class CardGeneratorV3(
     private fun tryGenerate(
         blueprint: TemplateBlueprint,
         request: GameEngine.Request,
-        random: Random
+        random: Random,
     ): GenerationResult? {
         val slots = mutableMapOf<String, SlotFill>()
         val usedTexts = mutableSetOf<String>()
@@ -114,14 +113,14 @@ class CardGeneratorV3(
         if (sessionCards?.contains(text) == true) {
             return null // Reject duplicate card
         }
-        
+
         // Semantic validation (prevents nonsensical combinations)
         if (artifacts.rules.enableSemanticValidation && semanticValidator != null) {
             val semanticSlots = slots.mapValues { (_, fill) ->
                 com.helldeck.content.validation.SlotFill(
                     slotType = fill.slotType,
                     originalText = fill.originalText,
-                    displayText = fill.displayText
+                    displayText = fill.displayText,
                 )
             }
             val semanticScore = semanticValidator.validateCoherence(semanticSlots)
@@ -129,7 +128,7 @@ class CardGeneratorV3(
                 return null // Reject semantically incoherent card
             }
         }
-        
+
         val gate = evaluateCoherence(text, blueprint, slots)
         if (!gate.pass) return null
 
@@ -139,7 +138,7 @@ class CardGeneratorV3(
         } else {
             null
         }
-        
+
         // Reject if below humor threshold
         if (humorScore != null && humorScore.overallScore < artifacts.rules.humorThreshold) {
             return null
@@ -150,9 +149,9 @@ class CardGeneratorV3(
             "slots" to slots.mapValues { it.value.originalText },
             "slot_types" to slots.mapValues { it.value.slotType },
             "features" to gate.features,
-            "pairScore" to gate.pairScore
+            "pairScore" to gate.pairScore,
         )
-        
+
         // Add humor metrics to metadata
         if (humorScore != null) {
             metadata["humorScore"] = humorScore.overallScore
@@ -162,7 +161,7 @@ class CardGeneratorV3(
             metadata["cringeFactor"] = humorScore.cringeFactor
             metadata["benignViolation"] = humorScore.benignViolation
         }
-        
+
         val filledCard = FilledCard(
             id = blueprint.id,
             game = blueprint.game,
@@ -170,7 +169,7 @@ class CardGeneratorV3(
             family = blueprint.family,
             spice = min(blueprint.spice_max, request.spiceMax),
             locality = locality,
-            metadata = metadata
+            metadata = metadata,
         )
 
         // Track this card to prevent future duplicates in this session+game
@@ -192,15 +191,15 @@ class CardGeneratorV3(
         blueprint: TemplateBlueprint,
         request: GameEngine.Request,
         usedTexts: Set<String>,
-        random: Random
+        random: Random,
     ): LexiconEntry? {
         val entries = lexiconRepository.entriesFor(slot.slotType)
         if (entries.isEmpty()) return null
-        
+
         val maxSpice = min(blueprint.spice_max, request.spiceMax)
         val localityCap = min(blueprint.locality_max, request.localityMax)
         val distinctSlots = blueprint.constraints.distinct_slots
-        
+
         // Optimize: avoid creating intermediate list when possible
         val roomHeat = request.roomHeat
         val validEntries = mutableListOf<LexiconEntry>()
@@ -208,7 +207,8 @@ class CardGeneratorV3(
             if (entry.spice <= maxSpice &&
                 entry.locality <= localityCap &&
                 (!distinctSlots || !usedTexts.contains(entry.text.lowercase())) &&
-                (banlist?.isLexiconItemBanned(slot.slotType, entry.text) != true)) {
+                (banlist?.isLexiconItemBanned(slot.slotType, entry.text) != true)
+            ) {
                 validEntries.add(entry)
             }
         }
@@ -286,7 +286,7 @@ class CardGeneratorV3(
     private fun evaluateCoherence(
         text: String,
         blueprint: TemplateBlueprint,
-        slots: Map<String, SlotFill>
+        slots: Map<String, SlotFill>,
     ): Gate {
         val rules = artifacts.rules
         val words = text.split(whitespaceRegex).filter { it.isNotBlank() }
@@ -360,7 +360,7 @@ class CardGeneratorV3(
     private fun resolveOptions(
         blueprint: TemplateBlueprint,
         slots: Map<String, SlotFill>,
-        request: GameEngine.Request
+        request: GameEngine.Request,
     ): GameOptions {
         val provider = blueprint.option_provider ?: return defaultOptionsForGame(blueprint.game, slots, request)
         return when (provider.type) {
@@ -379,7 +379,11 @@ class CardGeneratorV3(
         // Special-case tones for TEXT_THREAD_TRAP
         return if (slotName.startsWith("tone", ignoreCase = true)) {
             val tones = listOf("Deadpan", "Wholesome", "Chaotic", "Petty", "Feral", "Thirsty")
-            tones[(request.sessionId.hashCode() + slotName.hashCode()).mod(tones.size).let { if (it < 0) it + tones.size else it }]
+            tones[
+                (request.sessionId.hashCode() + slotName.hashCode()).mod(
+                    tones.size,
+                ).let { if (it < 0) it + tones.size else it },
+            ]
         } else {
             "Option"
         }
@@ -388,7 +392,7 @@ class CardGeneratorV3(
     private fun defaultOptionsForGame(
         gameId: String,
         slots: Map<String, SlotFill>,
-        request: GameEngine.Request
+        request: GameEngine.Request,
     ): GameOptions {
         return when (gameId) {
             GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
@@ -416,7 +420,7 @@ class CardGeneratorV3(
                 val forb = listOfNotNull(
                     slots["f1"]?.displayText,
                     slots["f2"]?.displayText,
-                    slots["f3"]?.displayText
+                    slots["f3"]?.displayText,
                 ).ifEmpty {
                     lexiconRepository.entriesFor("taboo_forbidden").shuffled().take(3).map { it.text }
                 }
@@ -439,7 +443,7 @@ class CardGeneratorV3(
 
     private fun goldFallback(
         request: GameEngine.Request,
-        rng: SeededRng
+        rng: SeededRng,
     ): GenerationResult? {
         val gameId = request.gameId ?: return null
         val gold = goldBank.draw(gameId, rng.random) ?: return null
@@ -455,30 +459,30 @@ class CardGeneratorV3(
     private fun evaluateHumor(
         text: String,
         blueprint: TemplateBlueprint,
-        slots: Map<String, SlotFill>
+        slots: Map<String, SlotFill>,
     ): HumorScorer.HumorScore {
         // Convert SlotFill to HumorScorer.SlotData
         val slotData = slots.mapValues { (_, fill) ->
             val entry = lexiconRepository.entriesFor(fill.slotType)
                 .find { it.text.equals(fill.originalText, ignoreCase = true) }
-            
+
             HumorScorer.SlotData(
                 slotType = fill.slotType,
                 text = fill.originalText,
                 spice = entry?.spice ?: 1,
-                tone = entry?.tone ?: "neutral"
+                tone = entry?.tone ?: "neutral",
             )
         }
-        
+
         return humorScorer.evaluate(text, blueprint, slotData)
     }
-    
+
     private fun cleanSentence(text: String): String =
         text.replace(whitespaceRegex, " ").replace(" ,", ",").replace(" .", ".").trim()
 
     private data class SlotFill(
         val slotType: String,
         val originalText: String,
-        val displayText: String
+        val displayText: String,
     )
 }

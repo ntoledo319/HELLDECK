@@ -78,13 +78,13 @@ object ShareUtils {
         context: Context,
         cardText: String,
         gameName: String,
-        playerName: String? = null
+        playerName: String? = null,
     ) {
         val imageUri = CardImageGenerator.generateCardImage(
             context = context,
             cardText = cardText,
             gameName = gameName,
-            playerName = playerName
+            playerName = playerName,
         )
 
         if (imageUri != null) {

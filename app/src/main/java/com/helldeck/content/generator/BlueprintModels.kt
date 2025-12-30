@@ -13,7 +13,7 @@ data class TemplateBlueprint(
     val locality_max: Int = 3,
     val blueprint: List<BlueprintSegment>,
     val constraints: BlueprintConstraints = BlueprintConstraints(),
-    val option_provider: BlueprintOptionProvider? = null
+    val option_provider: BlueprintOptionProvider? = null,
 )
 
 @Serializable
@@ -27,7 +27,7 @@ sealed class BlueprintSegment {
     data class Slot(
         val name: String,
         @SerialName("slot_type") val slotType: String,
-        val mods: List<String> = emptyList()
+        val mods: List<String> = emptyList(),
     ) : BlueprintSegment()
 }
 
@@ -35,32 +35,33 @@ sealed class BlueprintSegment {
 data class BlueprintConstraints(
     val max_words: Int = 28,
     val distinct_slots: Boolean = false,
-    val min_players: Int = 0
+    val min_players: Int = 0,
 )
 
 @Serializable
 data class BlueprintOptionProvider(
     val type: OptionProviderType,
-    val options: List<OptionMapping> = emptyList()
+    val options: List<OptionMapping> = emptyList(),
 ) {
     @Serializable
     enum class OptionProviderType {
         @SerialName("PLAYER_VOTE")
         PLAYER_VOTE,
+
         @SerialName("AB")
-        AB
+        AB,
     }
 
     @Serializable
     data class OptionMapping(
-        @SerialName("from_slot") val fromSlot: String? = null
+        @SerialName("from_slot") val fromSlot: String? = null,
     )
 }
 
 @Serializable
 data class LexiconFile(
     val slot_type: String,
-    val entries: List<LexiconEntry>
+    val entries: List<LexiconEntry>,
 )
 
 @Serializable
@@ -71,5 +72,5 @@ data class LexiconEntry(
     val spice: Int = 1,
     val locality: Int = 1,
     val pluralizable: Boolean = false,
-    val needs_article: String = "none"
+    val needs_article: String = "none",
 )

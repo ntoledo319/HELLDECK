@@ -7,17 +7,17 @@ import com.helldeck.content.db.HelldeckDb
 import com.helldeck.content.db.TemplateExposureEntity
 import com.helldeck.content.db.TemplateStatEntity
 import com.helldeck.data.PlayerEntity
-import java.io.File
+import kotlinx.coroutines.runBlocking
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
-import kotlinx.coroutines.runBlocking
-import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.annotation.Config
+import java.io.File
 
 @RunWith(AndroidJUnit4::class)
 @Config(sdk = [33])

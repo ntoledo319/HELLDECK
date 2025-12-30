@@ -1,6 +1,5 @@
 package com.helldeck.ui.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -13,8 +12,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
@@ -31,19 +28,19 @@ import com.helldeck.ui.gameIconFor
 @Composable
 fun GamePickerSheet(
     onGameSelected: (String) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     val haptic = LocalHapticFeedback.current
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         containerColor = MaterialTheme.colorScheme.surface,
-        shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)
+        shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 20.dp, vertical = 12.dp)
+                .padding(horizontal = 20.dp, vertical = 12.dp),
         ) {
             // Header
             Row(
@@ -51,12 +48,12 @@ fun GamePickerSheet(
                     .fillMaxWidth()
                     .padding(bottom = 20.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = "Choose Your Game",
                     style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
 
                 IconButton(onClick = onDismiss) {
@@ -69,7 +66,7 @@ fun GamePickerSheet(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
-                contentPadding = PaddingValues(bottom = 24.dp)
+                contentPadding = PaddingValues(bottom = 24.dp),
             ) {
                 items(GameMetadata.getAllGameIds()) { gameId ->
                     GameCard(
@@ -77,7 +74,7 @@ fun GamePickerSheet(
                         onClick = {
                             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                             onGameSelected(gameId)
-                        }
+                        },
                     )
                 }
             }
@@ -88,7 +85,7 @@ fun GamePickerSheet(
 @Composable
 private fun GameCard(
     gameId: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val metadata = GameMetadata.getGameMetadata(gameId)
     val gameName = metadata?.title ?: gameId
@@ -102,24 +99,24 @@ private fun GameCard(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 2.dp,
-            pressedElevation = 6.dp
-        )
+            pressedElevation = 6.dp,
+        ),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             // Emoji
             Text(
                 text = gameEmoji,
-                fontSize = 36.sp
+                fontSize = 36.sp,
             )
 
             // Game name
@@ -130,7 +127,7 @@ private fun GameCard(
                 textAlign = TextAlign.Center,
                 fontSize = 14.sp,
                 lineHeight = 18.sp,
-                maxLines = 2
+                maxLines = 2,
             )
 
             // Description
@@ -141,7 +138,7 @@ private fun GameCard(
                 fontSize = 11.sp,
                 lineHeight = 14.sp,
                 maxLines = 3,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }

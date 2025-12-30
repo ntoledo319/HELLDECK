@@ -37,7 +37,7 @@ class GoldBank(assetManager: AssetManager) {
             text = card.text,
             family = card.family,
             spice = card.spice,
-            locality = card.locality
+            locality = card.locality,
         )
     }
 
@@ -62,7 +62,7 @@ data class GoldCard(
     val text: String,
     val spice: Int = 1,
     val locality: Int = 1,
-    val options: GoldOptions? = null
+    val options: GoldOptions? = null,
 )
 
 @Serializable
@@ -77,6 +77,6 @@ sealed class GoldOptions {
         @SerialName("optionA") val optionA: String? = null,
         @SerialName("optionB") val optionB: String? = null,
         @SerialName("slotA") val slotA: String? = null,
-        @SerialName("slotB") val slotB: String? = null
+        @SerialName("slotB") val slotB: String? = null,
     ) : GoldOptions()
 }

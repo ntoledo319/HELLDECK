@@ -4,8 +4,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.helldeck.AppCtx
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
@@ -19,7 +19,7 @@ data class CrewBrain(
     val name: String,
     val emoji: String,
     val createdAtMs: Long,
-    val lastUsedMs: Long
+    val lastUsedMs: Long,
 )
 
 object CrewBrainStore {
@@ -37,7 +37,7 @@ object CrewBrainStore {
             name = "Main Crew",
             emoji = "🧠",
             createdAtMs = now,
-            lastUsedMs = now
+            lastUsedMs = now,
         )
     }
 
@@ -113,7 +113,7 @@ object CrewBrainStore {
             name = trimmed.take(30),
             emoji = if (emoji.isBlank()) "🧠" else emoji,
             createdAtMs = System.currentTimeMillis(),
-            lastUsedMs = System.currentTimeMillis()
+            lastUsedMs = System.currentTimeMillis(),
         )
         val newBrains = brains + brain
         persist(newBrains, brain.id.ifBlank { active })

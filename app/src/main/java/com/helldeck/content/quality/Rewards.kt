@@ -4,9 +4,9 @@ package com.helldeck.content.quality
  * Rating enum for feedback
  */
 enum class Rating {
-    LOL,    // Laughed out loud - great content
-    MEH,    // Mediocre - okay but not great
-    TRASH   // Bad - don't show again
+    LOL, // Laughed out loud - great content
+    MEH, // Mediocre - okay but not great
+    TRASH, // Bad - don't show again
 }
 
 /**

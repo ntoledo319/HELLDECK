@@ -1,8 +1,8 @@
 package com.helldeck.content.validation
 
+import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.content.model.FilledCard
 import com.helldeck.llm.LocalLLM
-import com.helldeck.content.engine.ContentEngineProvider
 
 /**
  * Optional AI-based judge that rates cards for humor and sense-making using a local LLM when available.
@@ -10,9 +10,9 @@ import com.helldeck.content.engine.ContentEngineProvider
  */
 object FunnyJudge {
     data class AiJudgment(
-        val humor01: Double?,         // 0.0 .. 1.0, higher is funnier
-        val makesSense01: Double?,    // 0.0 .. 1.0, higher makes more sense
-        val understandable01: Double? // 0.0 .. 1.0, clarity/readability
+        val humor01: Double?, // 0.0 .. 1.0, higher is funnier
+        val makesSense01: Double?, // 0.0 .. 1.0, higher makes more sense
+        val understandable01: Double?, // 0.0 .. 1.0, clarity/readability
     )
 
     /**
@@ -26,7 +26,7 @@ object FunnyJudge {
         val humorLabels = listOf("hilarious", "funny", "ok", "meh", "offensive", "nonsensical")
         val humorIdx = llm.classifyZeroShot(
             text = card.text,
-            labels = humorLabels
+            labels = humorLabels,
         ).coerceIn(0, humorLabels.lastIndex)
         val humor01 = when (humorLabels[humorIdx]) {
             "hilarious" -> 1.0
@@ -54,4 +54,3 @@ object FunnyJudge {
         return AiJudgment(humor01, makesSense01, understandable01)
     }
 }
-

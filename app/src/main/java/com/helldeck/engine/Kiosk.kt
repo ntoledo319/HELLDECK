@@ -10,10 +10,10 @@ import android.os.Build
 import android.os.UserManager
 import android.provider.Settings
 import android.view.View
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.activity.ComponentActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.helldeck.admin.HelldeckDeviceAdminReceiver
 
 /**
@@ -37,12 +37,12 @@ object Kiosk {
         // Back-compat fallback for older APIs
         decorView.systemUiVisibility = (
             SYSTEM_UI_FLAG_LAYOUT_STABLE
-            or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-            or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            or SYSTEM_UI_FLAG_HIDE_NAVIGATION
-            or SYSTEM_UI_FLAG_FULLSCREEN
-            or SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        )
+                or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or SYSTEM_UI_FLAG_FULLSCREEN
+                or SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            )
     }
 
     /**
@@ -68,7 +68,7 @@ object Kiosk {
             if (devicePolicyManager.isDeviceOwnerApp(context.packageName)) {
                 devicePolicyManager.setLockTaskPackages(
                     componentName,
-                    arrayOf(context.packageName)
+                    arrayOf(context.packageName),
                 )
             }
         } catch (e: Exception) {
@@ -177,7 +177,10 @@ object Kiosk {
             val componentName = ComponentName(context, HelldeckDeviceAdminReceiver::class.java)
             val intent = Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN).apply {
                 putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, componentName)
-                putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "HELLDECK requires device admin to enable kiosk mode")
+                putExtra(
+                    DevicePolicyManager.EXTRA_ADD_EXPLANATION,
+                    "HELLDECK requires device admin to enable kiosk mode",
+                )
             }
             context.startActivity(intent)
         } catch (e: Exception) {
@@ -293,7 +296,7 @@ object Kiosk {
             isInLockTaskMode = false, // Would need activity context
             isImmersiveMode = true, // Would check current state
             isKioskConfigured = isKioskModeConfigured(context),
-            isKioskSupported = isKioskModeSupported(context)
+            isKioskSupported = isKioskModeSupported(context),
         )
     }
 
@@ -316,7 +319,7 @@ data class KioskStatus(
     val isInLockTaskMode: Boolean,
     val isImmersiveMode: Boolean,
     val isKioskConfigured: Boolean,
-    val isKioskSupported: Boolean
+    val isKioskSupported: Boolean,
 ) {
     val isFullyFunctional: Boolean
         get() = isKioskSupported && (isDeviceAdminActive || isDeviceOwner)
@@ -377,7 +380,7 @@ class KioskBroadcastReceiver : android.content.BroadcastReceiver() {
             context,
             this,
             filter,
-            ContextCompat.RECEIVER_EXPORTED
+            ContextCompat.RECEIVER_EXPORTED,
         )
 
         isRegistered = true
@@ -490,5 +493,5 @@ enum class KioskSetupMethod(val description: String) {
     DEVICE_OWNER("Device Owner (most secure)"),
     DEVICE_ADMIN("Device Administrator"),
     HOME_APP("Home App Replacement"),
-    MANUAL("Manual Setup Required")
+    MANUAL("Manual Setup Required"),
 }

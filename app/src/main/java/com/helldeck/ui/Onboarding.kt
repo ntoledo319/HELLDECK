@@ -18,39 +18,39 @@ import kotlinx.coroutines.launch
 @Composable
 fun OnboardingFlow(
     onComplete: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val pages = listOf(
         OnboardingPage(
             title = "Welcome to HELLDECK!",
             description = "The ultimate party game for 3-16 players using a single phone. 14 unique games that learn what your crew finds funny.",
-            icon = "🎮"
+            icon = "🎮",
         ),
         OnboardingPage(
             title = "How to Play",
             description = "Long-press anywhere to draw a new card. Use the big touch zones to make selections. Two-finger tap to go back.",
-            icon = "👆"
+            icon = "👆",
         ),
         OnboardingPage(
             title = "Game Modes",
             description = "Roast Consensus, Confession or Cap, Poison Pitch, Fill-In Finisher, and 10 more unique games await!",
-            icon = "🎯"
+            icon = "🎯",
         ),
         OnboardingPage(
             title = "Learning AI",
             description = "The game learns from your feedback and adapts to show funnier content over time. Your sense of humor matters!",
-            icon = "🧠"
+            icon = "🧠",
         ),
         OnboardingPage(
             title = "Export Your Brain",
             description = "Export your learned data as a .hhdb file to transfer your group's humor preferences to a new device.",
-            icon = "📤"
+            icon = "📤",
         ),
         OnboardingPage(
             title = "Let's Get Started!",
             description = "Add 3-10 players for the best experience. The game works with teams for larger groups. Have fun!",
-            icon = "🚀"
-        )
+            icon = "🚀",
+        ),
     )
 
     val listState = rememberLazyListState()
@@ -59,14 +59,14 @@ fun OnboardingFlow(
 
     Column(
         modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Progress indicator
         LinearProgressIndicator(
             progress = { (currentPage + 1f) / pages.size },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = 16.dp),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -76,12 +76,12 @@ fun OnboardingFlow(
             state = listState,
             modifier = Modifier.weight(1f),
             contentPadding = PaddingValues(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             item {
                 OnboardingPageContent(
                     page = pages[currentPage],
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }
@@ -91,7 +91,7 @@ fun OnboardingFlow(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             if (currentPage > 0) {
                 OutlinedButton(
@@ -100,7 +100,7 @@ fun OnboardingFlow(
                             currentPage--
                             listState.animateScrollToItem(0)
                         }
-                    }
+                    },
                 ) {
                     Text("Previous")
                 }
@@ -111,7 +111,7 @@ fun OnboardingFlow(
             Text(
                 text = "${currentPage + 1} of ${pages.size}",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             Button(
@@ -124,7 +124,7 @@ fun OnboardingFlow(
                     } else {
                         onComplete()
                     }
-                }
+                },
             ) {
                 Text(if (currentPage == pages.lastIndex) "Get Started!" else "Next")
             }
@@ -138,7 +138,7 @@ fun OnboardingFlow(
 data class OnboardingPage(
     val title: String,
     val description: String,
-    val icon: String
+    val icon: String,
 )
 
 /**
@@ -147,17 +147,17 @@ data class OnboardingPage(
 @Composable
 private fun OnboardingPageContent(
     page: OnboardingPage,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         // Icon
         Text(
             text = page.icon,
-            style = MaterialTheme.typography.displayLarge
+            style = MaterialTheme.typography.displayLarge,
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -167,7 +167,7 @@ private fun OnboardingPageContent(
             text = page.title,
             style = MaterialTheme.typography.headlineMedium,
             textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -178,7 +178,7 @@ private fun OnboardingPageContent(
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth(),
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -188,22 +188,22 @@ private fun OnboardingPageContent(
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
-                    containerColor = MaterialTheme.colorScheme.primaryContainer
-                )
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                ),
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Text(
                         text = "💡 Pro Tip",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Try long-pressing this card to see how it feels!",
                         style = MaterialTheme.typography.bodyMedium,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
                     )
                 }
             }
@@ -233,7 +233,7 @@ class OnboardingManager {
  */
 @Composable
 fun OnboardingWrapper(
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val onboardingManager = remember { OnboardingManager() }
     val scope = rememberCoroutineScope()
@@ -245,7 +245,7 @@ fun OnboardingWrapper(
                 scope.launch {
                     onboardingManager.markOnboardingCompleted()
                 }
-            }
+            },
         )
     } else {
         content()

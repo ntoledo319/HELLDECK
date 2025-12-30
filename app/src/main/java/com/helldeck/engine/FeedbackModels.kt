@@ -10,7 +10,7 @@ data class Feedback(
     val latencyMs: Int = 0,
     val tags: Set<String> = emptySet(),
     val comments: String = "",
-    val intensity: FeedbackIntensity = FeedbackIntensity.NORMAL
+    val intensity: FeedbackIntensity = FeedbackIntensity.NORMAL,
 )
 
 /**
@@ -20,7 +20,7 @@ enum class FeedbackIntensity(val multiplier: Double, val description: String) {
     LOW(0.5, "Subtle"),
     NORMAL(1.0, "Normal"),
     HIGH(1.5, "Enthusiastic"),
-    EXTREME(2.0, "Over the top")
+    EXTREME(2.0, "Over the top"),
 }
 
 /**
@@ -33,7 +33,7 @@ data class FilledCard(
     val options: List<String> = emptyList(),
     val meta: Map<String, String> = emptyMap(),
     val wordCount: Int = text.split(Regex("\\s+")).size,
-    val estimatedReadTimeMs: Int = (wordCount * 200) // Assume 200ms per word
+    val estimatedReadTimeMs: Int = (wordCount * 200), // Assume 200ms per word
 )
 
 /**
@@ -44,7 +44,7 @@ enum class RoundPhase(val description: String, val allowsInput: Boolean) {
     DRAW("Drawing card", false),
     PERFORM("Players performing", true),
     RESOLVE("Resolving results", false),
-    FEEDBACK("Collecting feedback", true)
+    FEEDBACK("Collecting feedback", true),
 }
 
 /**
@@ -58,7 +58,7 @@ data class RoundResult(
     val roomTrash: Boolean = false,
     val streakBonus: Int = 0,
     val fastLaugh: Boolean = false,
-    val consensusBonus: Boolean = false
+    val consensusBonus: Boolean = false,
 )
 
 /**
@@ -69,7 +69,7 @@ data class Vote(
     val targetId: String? = null,
     val choice: String? = null,
     val timestamp: Long = System.currentTimeMillis(),
-    val confidence: Double = 1.0
+    val confidence: Double = 1.0,
 )
 
 /**
@@ -81,7 +81,7 @@ data class GameInteraction(
     val playerId: String,
     val action: String,
     val data: Map<String, Any> = emptyMap(),
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = System.currentTimeMillis(),
 )
 
 /**
@@ -91,7 +91,7 @@ data class PlayerAction(
     val playerId: String,
     val action: PlayerActionType,
     val data: Map<String, Any> = emptyMap(),
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = System.currentTimeMillis(),
 )
 
 /**
@@ -104,7 +104,7 @@ enum class PlayerActionType(val description: String) {
     FEEDBACK("Gave feedback"),
     SKIP("Skipped turn"),
     TIMEOUT("Timed out"),
-    RECONNECT("Reconnected")
+    RECONNECT("Reconnected"),
 }
 
 /**
@@ -115,7 +115,7 @@ data class GameEvent(
     val gameId: String,
     val playerId: String?,
     val data: Map<String, Any> = emptyMap(),
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = System.currentTimeMillis(),
 )
 
 /**
@@ -134,7 +134,7 @@ enum class GameEventType(val description: String) {
     FEEDBACK_COLLECTED("Feedback collected"),
     ERROR_OCCURRED("Error occurred"),
     LEARNING_UPDATED("Learning updated"),
-    TEMPLATE_PERFORMANCE("Template performance recorded")
+    TEMPLATE_PERFORMANCE("Template performance recorded"),
 }
 
 /**
@@ -145,7 +145,7 @@ data class TimerState(
     val remainingMs: Int,
     val isRunning: Boolean = false,
     val isWarning: Boolean = false,
-    val isCritical: Boolean = false
+    val isCritical: Boolean = false,
 ) {
     val progress: Float
         get() = if (durationMs > 0) remainingMs.toFloat() / durationMs else 0f
@@ -165,7 +165,7 @@ data class GameStatistics(
     val mostPlayedGame: String,
     val highestScore: Int,
     val roomHeatRate: Double,
-    val learningProgress: Double
+    val learningProgress: Double,
 )
 
 /**
@@ -178,7 +178,7 @@ data class TemplatePerformance(
     val averageScore: Double,
     val winRate: Double,
     val lastPlayed: Long,
-    val trend: PerformanceTrend
+    val trend: PerformanceTrend,
 )
 
 /**
@@ -189,7 +189,7 @@ enum class PerformanceTrend(val description: String) {
     DECLINING("Getting worse"),
     STABLE("Consistent"),
     VOLATILE("Unpredictable"),
-    NEW("Recently added")
+    NEW("Recently added"),
 }
 
 /**
@@ -204,7 +204,7 @@ data class PlayerStatistics(
     val winRate: Double,
     val favoriteGame: String,
     val lastActive: Long,
-    val currentStreak: Int
+    val currentStreak: Int,
 )
 
 /**
@@ -219,7 +219,7 @@ data class SessionSummary(
     val playerCount: Int,
     val gamesPlayed: List<String>,
     val averageScore: Double,
-    val highlights: List<String>
+    val highlights: List<String>,
 )
 
 /**
@@ -228,7 +228,7 @@ data class SessionSummary(
 data class ValidationResult(
     val isValid: Boolean,
     val errors: List<String> = emptyList(),
-    val warnings: List<String> = emptyList()
+    val warnings: List<String> = emptyList(),
 )
 
 /**
@@ -271,7 +271,7 @@ fun validateGameConfiguration(): ValidationResult {
     return ValidationResult(
         isValid = errors.isEmpty(),
         errors = errors,
-        warnings = warnings
+        warnings = warnings,
     )
 }
 
@@ -304,7 +304,7 @@ fun validateFeedback(feedback: Feedback, maxPlayers: Int): ValidationResult {
     return ValidationResult(
         isValid = errors.isEmpty(),
         errors = errors,
-        warnings = warnings
+        warnings = warnings,
     )
 }
 
@@ -313,7 +313,7 @@ fun validateFeedback(feedback: Feedback, maxPlayers: Int): ValidationResult {
  */
 fun calculateFeedbackIntensity(
     feedback: Feedback,
-    baselineLatency: Int = 2000
+    baselineLatency: Int = 2000,
 ): FeedbackIntensity {
     val speedBonus = if (feedback.latencyMs < baselineLatency) 1.5 else 1.0
     val volumeBonus = when {
@@ -349,7 +349,7 @@ fun mergeFeedback(feedbacks: List<Feedback>): Feedback {
         meh = totalMeh,
         trash = totalTrash,
         latencyMs = avgLatency,
-        tags = allTags
+        tags = allTags,
     )
 }
 

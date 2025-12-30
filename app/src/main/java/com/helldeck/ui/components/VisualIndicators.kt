@@ -14,22 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
-import androidx.compose.ui.graphics.drawscope.Fill
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
 import kotlin.math.*
 
 /**
  * Visual indicators for game state including streaks, heat level, and comeback mode
- * 
+ *
  * Provides animated visual feedback for:
  * - Win streaks with fire effects
  * - Room heat level with pulsing indicators
@@ -44,7 +38,7 @@ object VisualIndicators {
     @Composable
     fun StreakIndicator(
         streakCount: Int,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
     ) {
         if (streakCount <= 0) return
 
@@ -55,8 +49,8 @@ object VisualIndicators {
             animationSpec = infiniteRepeatable(
                 animation = tween(800, easing = LinearEasing),
                 repeatMode = RepeatMode.Reverse,
-                initialStartOffset = StartOffset(0)
-            )
+                initialStartOffset = StartOffset(0),
+            ),
         )
 
         val scale by infiniteTransition.animateFloat(
@@ -65,28 +59,28 @@ object VisualIndicators {
             animationSpec = infiniteRepeatable(
                 animation = tween(600, easing = EaseInOutCubic),
                 repeatMode = RepeatMode.Reverse,
-                initialStartOffset = StartOffset(0)
-            )
+                initialStartOffset = StartOffset(0),
+            ),
         )
 
         Row(
             modifier = modifier,
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             // Streak count
             Text(
                 text = "$streakCount",
                 style = MaterialTheme.typography.headlineSmall.copy(
-                    color = Color.White
+                    color = Color.White,
                 ),
                 modifier = Modifier
                     .background(
                         color = fireColor,
-                        shape = CircleShape
+                        shape = CircleShape,
                     )
                     .padding(horizontal = 8.dp, vertical = 4.dp)
-                    .clip(CircleShape)
+                    .clip(CircleShape),
             )
 
             // Fire flames for high streaks
@@ -98,18 +92,18 @@ object VisualIndicators {
                         animationSpec = infiniteRepeatable(
                             animation = tween(400 + index * 100, easing = EaseInOutCubic),
                             repeatMode = RepeatMode.Reverse,
-                            initialStartOffset = StartOffset(index * 100)
-                        )
+                            initialStartOffset = StartOffset(index * 100),
+                        ),
                     )
 
                     Canvas(
                         modifier = Modifier
                             .size(12.dp, 20.dp)
-                            .scale(flameScale)
+                            .scale(flameScale),
                     ) {
                         drawFlame(
                             color = fireColor,
-                            alpha = 1f - (index * 0.2f)
+                            alpha = 1f - (index * 0.2f),
                         )
                     }
                 }
@@ -123,7 +117,7 @@ object VisualIndicators {
     @Composable
     fun HeatIndicator(
         heatLevel: Double, // 0.0 to 1.0
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
     ) {
         val infiniteTransition = rememberInfiniteTransition()
         val pulseAlpha by infiniteTransition.animateFloat(
@@ -132,8 +126,8 @@ object VisualIndicators {
             animationSpec = infiniteRepeatable(
                 animation = tween(1000, easing = EaseInOutCubic),
                 repeatMode = RepeatMode.Reverse,
-                initialStartOffset = StartOffset(0)
-            )
+                initialStartOffset = StartOffset(0),
+            ),
         )
 
         val heatColor = when {
@@ -145,7 +139,7 @@ object VisualIndicators {
 
         Box(
             modifier = modifier,
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             // Heat bar background
             Box(
@@ -154,8 +148,8 @@ object VisualIndicators {
                     .height(8.dp)
                     .background(
                         color = Color.Black.copy(alpha = 0.3f),
-                        shape = RoundedCornerShape(4.dp)
-                    )
+                        shape = RoundedCornerShape(4.dp),
+                    ),
             ) {
                 // Heat level fill
                 Box(
@@ -164,8 +158,8 @@ object VisualIndicators {
                         .fillMaxHeight()
                         .background(
                             color = heatColor.copy(alpha = pulseAlpha),
-                            shape = RoundedCornerShape(4.dp)
-                        )
+                            shape = RoundedCornerShape(4.dp),
+                        ),
                 )
             }
 
@@ -175,14 +169,14 @@ object VisualIndicators {
             Text(
                 text = "${(heatLevel * 100).toInt()}%",
                 style = MaterialTheme.typography.labelSmall.copy(
-                    color = Color.White
+                    color = Color.White,
                 ),
                 modifier = Modifier
                     .background(
                         color = heatColor,
-                        shape = RoundedCornerShape(8.dp)
+                        shape = RoundedCornerShape(8.dp),
                     )
-                    .padding(horizontal = 8.dp, vertical = 2.dp)
+                    .padding(horizontal = 8.dp, vertical = 2.dp),
             )
         }
     }
@@ -193,7 +187,7 @@ object VisualIndicators {
     @Composable
     fun ComebackIndicator(
         isActive: Boolean,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
     ) {
         if (!isActive) return
 
@@ -204,8 +198,8 @@ object VisualIndicators {
             animationSpec = infiniteRepeatable(
                 animation = tween(2000, easing = LinearEasing),
                 repeatMode = RepeatMode.Restart,
-                initialStartOffset = StartOffset(0)
-            )
+                initialStartOffset = StartOffset(0),
+            ),
         )
 
         val scale by infiniteTransition.animateFloat(
@@ -214,13 +208,13 @@ object VisualIndicators {
             animationSpec = infiniteRepeatable(
                 animation = tween(800, easing = EaseInOutCubic),
                 repeatMode = RepeatMode.Reverse,
-                initialStartOffset = StartOffset(0)
-            )
+                initialStartOffset = StartOffset(0),
+            ),
         )
 
         Box(
             modifier = modifier,
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             // Comeback icon with rotation
             Box(
@@ -229,15 +223,15 @@ object VisualIndicators {
                     .scale(scale)
                     .background(
                         color = HelldeckColors.Yellow,
-                        shape = CircleShape
-                    )
+                        shape = CircleShape,
+                    ),
             ) {
                 Text(
                     text = "🔥",
                     style = MaterialTheme.typography.displayMedium,
                     modifier = Modifier
                         .rotate(rotation)
-                        .padding(8.dp)
+                        .padding(8.dp),
                 )
             }
 
@@ -246,8 +240,8 @@ object VisualIndicators {
             Text(
                 text = "COMEBACK MODE",
                 style = MaterialTheme.typography.labelMedium.copy(
-                    color = HelldeckColors.Yellow
-                )
+                    color = HelldeckColors.Yellow,
+                ),
             )
         }
     }
@@ -258,7 +252,7 @@ object VisualIndicators {
     @Composable
     fun ScoreMultiplier(
         multiplier: Float,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
     ) {
         if (multiplier <= 1f) return
 
@@ -266,9 +260,9 @@ object VisualIndicators {
             targetValue = if (multiplier > 1f) 1.2f else 1f,
             animationSpec = spring(
                 dampingRatio = Spring.DampingRatioMediumBouncy,
-                stiffness = Spring.StiffnessMedium
+                stiffness = Spring.StiffnessMedium,
             ),
-            label = "score_multiplier_scale"
+            label = "score_multiplier_scale",
         )
 
         val multiplierColor = when {
@@ -281,21 +275,21 @@ object VisualIndicators {
         Row(
             modifier = modifier,
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
         ) {
             Text(
                 text = "×",
                 style = MaterialTheme.typography.titleLarge.copy(
-                    color = multiplierColor
-                )
+                    color = multiplierColor,
+                ),
             )
 
             Text(
                 text = String.format("%.1f", multiplier),
                 style = MaterialTheme.typography.headlineMedium.copy(
-                    color = multiplierColor
+                    color = multiplierColor,
                 ),
-                modifier = Modifier.scale(animatedScale)
+                modifier = Modifier.scale(animatedScale),
             )
         }
     }
@@ -307,12 +301,16 @@ object VisualIndicators {
         val flamePath = androidx.compose.ui.graphics.Path().apply {
             moveTo(size.width * 0.5f, size.height * 0.8f)
             quadraticBezierTo(
-                size.width * 0.2f, size.height * 0.4f,
-                size.width * 0.5f, size.height * 0.2f
+                size.width * 0.2f,
+                size.height * 0.4f,
+                size.width * 0.5f,
+                size.height * 0.2f,
             )
             quadraticBezierTo(
-                size.width * 0.8f, size.height * 0.4f,
-                size.width * 0.5f, size.height * 0.1f
+                size.width * 0.8f,
+                size.height * 0.4f,
+                size.width * 0.5f,
+                size.height * 0.1f,
             )
             close()
         }
@@ -323,11 +321,11 @@ object VisualIndicators {
                 colors = listOf(
                     color.copy(alpha = alpha),
                     color.copy(alpha = alpha * 0.6f),
-                    Color.Transparent
+                    Color.Transparent,
                 ),
                 startY = 0f,
-                endY = size.height
-            )
+                endY = size.height,
+            ),
         )
     }
 
@@ -340,12 +338,12 @@ object VisualIndicators {
         heatLevel: Double,
         isComebackMode: Boolean,
         scoreMultiplier: Float = 1f,
-        modifier: Modifier = Modifier
+        modifier: Modifier = Modifier,
     ) {
         Column(
             modifier = modifier,
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             // Streak indicator
             StreakIndicator(streakCount = streakCount)

@@ -13,13 +13,13 @@ import com.helldeck.ui.state.RoundState
 fun OddExplainRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var explanation by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Explain why this is weird", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(16.dp))
@@ -29,7 +29,7 @@ fun OddExplainRenderer(
             onValueChange = { explanation = it },
             label = { Text("Your explanation") },
             modifier = Modifier.fillMaxWidth().height(120.dp),
-            maxLines = 3
+            maxLines = 3,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -39,7 +39,7 @@ fun OddExplainRenderer(
                 onEvent(RoundEvent.EnterText(explanation))
                 explanation = ""
             },
-            enabled = explanation.isNotBlank()
+            enabled = explanation.isNotBlank(),
         ) {
             Text("Submit")
         }

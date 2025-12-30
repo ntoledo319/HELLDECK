@@ -2,7 +2,6 @@ package com.helldeck
 
 import android.app.Application
 import android.content.Context
-import androidx.lifecycle.ProcessLifecycleOwner
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.engine.Config
 import com.helldeck.utils.Logger
@@ -33,8 +32,8 @@ class HelldeckApp : Application() {
                 config = com.helldeck.utils.LoggerConfig(
                     level = com.helldeck.utils.LogLevel.INFO,
                     enableFileLogging = true,
-                    enableRemoteLogging = false
-                )
+                    enableRemoteLogging = false,
+                ),
             )
 
             Logger.i("HelldeckApp created successfully")
@@ -52,7 +51,6 @@ class HelldeckApp : Application() {
                     Logger.e("Failed to initialize ContentRepository or preflight validation failed", e)
                 }
             }
-
         } catch (e: Exception) {
             Logger.e("Failed to initialize HelldeckApp", e)
             // Continue execution even if initialization fails

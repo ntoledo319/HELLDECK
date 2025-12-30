@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
+import com.helldeck.content.db.HelldeckDb
 import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.content.engine.GameEngine
 import com.helldeck.content.model.FilledCard
@@ -14,18 +15,16 @@ import com.helldeck.content.model.GameOptions
 import com.helldeck.content.model.Player
 import com.helldeck.content.quality.Rating
 import com.helldeck.content.quality.Rewards
-import com.helldeck.content.db.HelldeckDb
 import com.helldeck.data.PlayerEntity
 import com.helldeck.data.computePlayerProfiles
-import com.helldeck.data.toEntity
 import com.helldeck.data.toPlayer
 import com.helldeck.engine.*
+import com.helldeck.settings.CrewBrain
+import com.helldeck.settings.CrewBrainStore
 import com.helldeck.ui.Scene
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundPhase
 import com.helldeck.ui.state.RoundState
-import com.helldeck.settings.CrewBrain
-import com.helldeck.settings.CrewBrainStore
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -106,7 +105,7 @@ class GameNightViewModel : ViewModel() {
     private data class FeedbackSnapshot(
         val lol: Int,
         val meh: Int,
-        val trash: Int
+        val trash: Int,
     )
     private var feedbackSnapshot: FeedbackSnapshot? = null
     var canUndoFeedback by mutableStateOf(false)
@@ -184,7 +183,7 @@ class GameNightViewModel : ViewModel() {
     @Deprecated("Use options from RoundState instead", ReplaceWith("roundState?.options"))
     fun getOptionsFor(
         card: FilledCard,
-        req: GameEngine.Request
+        req: GameEngine.Request,
     ): GameOptions {
         return try {
             if (!isInitialized) {
@@ -216,16 +215,18 @@ class GameNightViewModel : ViewModel() {
             val defaultPlayers = listOf(
                 "😎 Jay" to "😎",
                 "🦊 Pip" to "🦊",
-                "🐸 Mo" to "🐸"
+                "🐸 Mo" to "🐸",
             )
             defaultPlayers.forEach { (name, avatar) ->
                 val id = "p${Random.nextInt(100000)}"
-                repo.db.players().upsert(PlayerEntity(
-                    id = id,
-                    name = name,
-                    avatar = avatar,
-                    sessionPoints = 0
-                ))
+                repo.db.players().upsert(
+                    PlayerEntity(
+                        id = id,
+                        name = name,
+                        avatar = avatar,
+                        sessionPoints = 0,
+                    ),
+                )
             }
 
             players = repo.db.players().getAllPlayers().first().map { it.toPlayer() }
@@ -405,7 +406,9 @@ class GameNightViewModel : ViewModel() {
         val activePlayerId = activePlayer()?.id
         val targetPlayerId = if (currentGame?.interaction == Interaction.TARGET_PICK) {
             activePlayers.randomOrNull()?.id
-        } else null
+        } else {
+            null
+        }
 
         val sessionId = gameNightSessionId
 
@@ -415,7 +418,7 @@ class GameNightViewModel : ViewModel() {
                 gameId = nextGame,
                 sessionId = sessionId,
                 spiceMax = _spiceLevel.value,
-                players = playersList
+                players = playersList,
             )
 
             // Start buffering for this game if not already started
@@ -448,12 +451,16 @@ class GameNightViewModel : ViewModel() {
                 activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
                 judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
                     (turnIdx + 1) % activePlayers.size
-                } else null,
+                } else {
+                    null
+                },
                 targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK && targetPlayerId != null) {
                     activePlayers.indexOfFirst { it.id == targetPlayerId }.takeIf { it >= 0 }
-                } else null,
+                } else {
+                    null
+                },
                 phase = com.helldeck.ui.state.RoundPhase.INTRO,
-                sessionId = sessionId
+                sessionId = sessionId,
             )
 
             currentCard = gameResult.filledCard
@@ -472,10 +479,9 @@ class GameNightViewModel : ViewModel() {
                     cardId = gameResult.filledCard.id,
                     cardText = gameResult.filledCard.text,
                     activePlayerId = activePlayer()?.id ?: "unknown",
-                    spiceLevel = _spiceLevel.value
+                    spiceLevel = _spiceLevel.value,
                 )
             }
-
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("startRound: engine.next failed", e)
             scene = Scene.HOME
@@ -854,9 +860,11 @@ class GameNightViewModel : ViewModel() {
             } else {
                 engine.recordOutcome(
                     templateId = card.id,
-                    reward01 = laughsScore
+                    reward01 = laughsScore,
                 )
-                com.helldeck.utils.Logger.i("Recorded outcome for ${card.id}: reward=$laughsScore (LOL:$lol, MEH:$meh, TRASH:$trash)")
+                com.helldeck.utils.Logger.i(
+                    "Recorded outcome for ${card.id}: reward=$laughsScore (LOL:$lol, MEH:$meh, TRASH:$trash)",
+                )
             }
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("commitFeedbackAndNext: recordOutcome failed", e)
@@ -869,7 +877,7 @@ class GameNightViewModel : ViewModel() {
                     lolCount = lol,
                     mehCount = meh,
                     trashCount = trash,
-                    points = points
+                    points = points,
                 )
             } catch (e: Exception) {
                 com.helldeck.utils.Logger.e("Failed to record round metrics", e)
@@ -890,7 +898,7 @@ class GameNightViewModel : ViewModel() {
         // Check for milestone achievements
         checkMilestones(
             isFirstWin = judgeWin && activePlayer()?.wins == 0,
-            isPerfectScore = lol > 0 && meh == 0 && trash == 0
+            isPerfectScore = lol > 0 && meh == 0 && trash == 0,
         )
 
         // Reset feedback state
@@ -961,7 +969,7 @@ class GameNightViewModel : ViewModel() {
                     sessionId = gameNightSessionId,
                     playerId = player?.id,
                     playerName = player?.name,
-                    lolCount = lol
+                    lolCount = lol,
                 )
                 repo.db.favorites().insert(favorite)
                 com.helldeck.utils.Logger.d("Favorited card: ${card.id}")
@@ -998,7 +1006,9 @@ class GameNightViewModel : ViewModel() {
                     repo.db.favorites().getFavoriteCount()
                 }
                 0 // TODO: Get actual count
-            } else 0
+            } else {
+                0
+            }
 
             val milestones = com.helldeck.ui.components.MilestoneTracker.checkMilestones(
                 totalRounds = totalRoundsThisSession,
@@ -1007,7 +1017,7 @@ class GameNightViewModel : ViewModel() {
                 favoritesCount = favoritesCount,
                 sessionDurationMs = sessionDuration,
                 isFirstWin = isFirstWin,
-                isPerfectScore = isPerfectScore
+                isPerfectScore = isPerfectScore,
             )
 
             // Show first milestone if any
@@ -1036,7 +1046,7 @@ class GameNightViewModel : ViewModel() {
         // Store in local variables to enable smart cast
         val replayCard = lastCard
         val replayGameId = lastGameId
-        
+
         if (replayCard == null || replayGameId == null) {
             com.helldeck.utils.Logger.w("No last card to replay")
             return
@@ -1059,29 +1069,38 @@ class GameNightViewModel : ViewModel() {
         val playersList = activePlayers.map { it.name }
         val targetPlayerId = if (currentGame?.interaction == Interaction.TARGET_PICK) {
             activePlayers.randomOrNull()?.id
-        } else null
+        } else {
+            null
+        }
 
         try {
             roundState = RoundState(
                 gameId = replayGameId,
                 filledCard = replayCard,
-                options = engine.getOptionsFor(replayCard, GameEngine.Request(
-                    gameId = replayGameId,
-                    sessionId = gameNightSessionId,
-                    spiceMax = _spiceLevel.value,
-                    players = playersList
-                )),
+                options = engine.getOptionsFor(
+                    replayCard,
+                    GameEngine.Request(
+                        gameId = replayGameId,
+                        sessionId = gameNightSessionId,
+                        spiceMax = _spiceLevel.value,
+                        players = playersList,
+                    ),
+                ),
                 timerSec = currentGame?.timerSec ?: 6,
                 interactionType = currentGame?.interactionType ?: InteractionType.JUDGE_PICK,
                 activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
                 judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
                     (turnIdx + 1) % activePlayers.size
-                } else null,
+                } else {
+                    null
+                },
                 targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK && targetPlayerId != null) {
                     activePlayers.indexOfFirst { it.id == targetPlayerId }.takeIf { it >= 0 }
-                } else null,
+                } else {
+                    null
+                },
                 phase = com.helldeck.ui.state.RoundPhase.INTRO,
-                sessionId = gameNightSessionId
+                sessionId = gameNightSessionId,
             )
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("Failed to replay card", e)
@@ -1118,7 +1137,7 @@ class GameNightViewModel : ViewModel() {
             cardText = cardText,
             createdBy = player?.id,
             creatorName = player?.name,
-            createdAtMs = System.currentTimeMillis()
+            createdAtMs = System.currentTimeMillis(),
         )
 
         try {

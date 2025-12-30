@@ -3,6 +3,7 @@ package com.helldeck.ui.scenes
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -22,7 +23,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -101,16 +101,16 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                 title = { Text("📊 Stats & Insights") },
                 actions = {
                     TextButton(onClick = onClose) { Text("Close") }
-                }
+                },
             )
-        }
+        },
     ) { padding ->
         if (busy) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 HelldeckLoadingSpinner()
             }
@@ -118,9 +118,9 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
             LazyColumn(
                 modifier = Modifier
                     .padding(padding)
-                .padding(HelldeckSpacing.Medium.dp)
-                .fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                    .padding(HelldeckSpacing.Medium.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 item {
                     CrewBrainSelector(
@@ -133,28 +133,28 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                                 scope.launch { vm.switchCrewBrain(id) }
                             }
                         },
-                        onAdd = { showBrainDialog = true }
+                        onAdd = { showBrainDialog = true },
                     )
                 }
                 // Overview Cards
                 item {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         StatCard(
                             icon = "👥",
                             value = players.toString(),
                             label = "Players",
                             color = HelldeckColors.Green,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
                         )
                         StatCard(
                             icon = "🎴",
                             value = templates.toString(),
                             label = "Templates",
                             color = HelldeckColors.Orange,
-                            modifier = Modifier.weight(1f)
+                            modifier = Modifier.weight(1f),
                         )
                     }
                 }
@@ -163,13 +163,13 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                 item {
                     ElevatedCard(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.DarkGray)
+                        colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.DarkGray),
                     ) {
                         Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
                             Text(
                                 "🎮 Recent Game Stats",
                                 style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                                color = HelldeckColors.Yellow
+                                color = HelldeckColors.Yellow,
                             )
                             Spacer(modifier = Modifier.height(12.dp))
                             EnhancedStatRow("Total Rounds", (stats["totalRounds"] ?: 0).toString(), "🎯")
@@ -185,7 +185,7 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                     Text(
                         "🏆 Player Leaderboard",
                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                        color = HelldeckColors.Yellow
+                        color = HelldeckColors.Yellow,
                     )
                 }
 
@@ -193,7 +193,7 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                     EnhancedPlayerCard(
                         profile = pr,
                         rank = profiles.indexOf(pr) + 1,
-                        onClick = { vm.openProfile(pr.id) }
+                        onClick = { vm.openProfile(pr.id) },
                     )
                 }
             }
@@ -215,24 +215,24 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                         value = newBrainName,
                         onValueChange = { newBrainName = it },
                         label = { Text("Name") },
-                        singleLine = true
+                        singleLine = true,
                     )
                     OutlinedTextField(
                         value = newBrainEmoji,
                         onValueChange = { newBrainEmoji = it.take(2) },
                         label = { Text("Emoji") },
-                        singleLine = true
+                        singleLine = true,
                     )
                     Text(
                         text = "Keep up to ${CrewBrainStore.MAX_BRAINS} brains for different crews.",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     brainError?.let { err ->
                         Text(
                             text = err,
                             style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.error
+                            color = MaterialTheme.colorScheme.error,
                         )
                     }
                 }
@@ -254,7 +254,7 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                                 showBrainDialog = false
                             }
                         }
-                    }
+                    },
                 ) {
                     Text("Create")
                 }
@@ -268,7 +268,7 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                 }) {
                     Text("Cancel")
                 }
-            }
+            },
         )
     }
 }
@@ -280,25 +280,25 @@ private fun CrewBrainSelector(
     activeBrainId: String?,
     isBusy: Boolean,
     onSelect: (String) -> Unit,
-    onAdd: () -> Unit
+    onAdd: () -> Unit,
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(
             "Crew Brains",
             style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-            color = HelldeckColors.Yellow
+            color = HelldeckColors.Yellow,
         )
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             brains.forEach { brain ->
                 CrewBrainChip(
                     brain = brain,
                     selected = brain.id == activeBrainId,
                     isBusy = isBusy,
-                    onClick = { onSelect(brain.id) }
+                    onClick = { onSelect(brain.id) },
                 )
             }
             if (brains.size < CrewBrainStore.MAX_BRAINS) {
@@ -313,7 +313,7 @@ private fun CrewBrainChip(
     brain: CrewBrain,
     selected: Boolean,
     isBusy: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val container = if (selected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant
     val textColor = if (selected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface
@@ -321,28 +321,28 @@ private fun CrewBrainChip(
         shape = RoundedCornerShape(14.dp),
         border = BorderStroke(
             1.dp,
-            if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline.copy(alpha = 0.6f)
+            if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline.copy(alpha = 0.6f),
         ),
         color = container,
         tonalElevation = if (selected) 4.dp else 0.dp,
-        modifier = Modifier.clickable(enabled = !isBusy, onClick = onClick)
+        modifier = Modifier.clickable(enabled = !isBusy, onClick = onClick),
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(brain.emoji, style = MaterialTheme.typography.titleMedium)
             Column {
                 Text(
                     brain.name,
                     style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-                    color = textColor
+                    color = textColor,
                 )
                 Text(
                     if (selected) "Active crew brain" else "Tap to switch",
                     style = MaterialTheme.typography.labelSmall,
-                    color = if (selected) MaterialTheme.colorScheme.primary else HelldeckColors.LightGray
+                    color = if (selected) MaterialTheme.colorScheme.primary else HelldeckColors.LightGray,
                 )
             }
         }
@@ -352,31 +352,31 @@ private fun CrewBrainChip(
 @Composable
 private fun AddCrewBrainChip(
     enabled: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Surface(
         shape = RoundedCornerShape(14.dp),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.outline.copy(alpha = 0.6f)),
         color = Color.Transparent,
         tonalElevation = 0.dp,
-        modifier = Modifier.clickable(enabled = enabled, onClick = onClick)
+        modifier = Modifier.clickable(enabled = enabled, onClick = onClick),
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text("➕", style = MaterialTheme.typography.titleMedium)
             Column {
                 Text(
                     "Add Crew Brain",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
                     "Max ${CrewBrainStore.MAX_BRAINS}",
                     style = MaterialTheme.typography.labelSmall,
-                    color = HelldeckColors.LightGray
+                    color = HelldeckColors.LightGray,
                 )
             }
         }
@@ -389,32 +389,32 @@ private fun StatCard(
     value: String,
     label: String,
     color: Color,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     ElevatedCard(
         modifier = modifier,
         colors = CardDefaults.elevatedCardColors(
-            containerColor = color.copy(alpha = 0.15f)
+            containerColor = color.copy(alpha = 0.15f),
         ),
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(icon, style = MaterialTheme.typography.headlineLarge)
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 value,
                 style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                color = color
+                color = color,
             )
             Text(
                 label,
                 style = MaterialTheme.typography.bodySmall,
-                color = HelldeckColors.LightGray
+                color = HelldeckColors.LightGray,
             )
         }
     }
@@ -427,7 +427,7 @@ private fun EnhancedStatRow(label: String, value: String, icon: String) {
             .fillMaxWidth()
             .padding(vertical = 6.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(icon, style = MaterialTheme.typography.titleMedium)
@@ -435,13 +435,13 @@ private fun EnhancedStatRow(label: String, value: String, icon: String) {
             Text(
                 label,
                 style = MaterialTheme.typography.bodyLarge,
-                color = HelldeckColors.White
+                color = HelldeckColors.White,
             )
         }
         Text(
             value,
             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-            color = HelldeckColors.Yellow
+            color = HelldeckColors.Yellow,
         )
     }
 }
@@ -450,21 +450,25 @@ private fun EnhancedStatRow(label: String, value: String, icon: String) {
 private fun EnhancedPlayerCard(
     profile: PlayerProfile,
     rank: Int,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     // Calculate enhanced stats
     val winRate = if (profile.gamesPlayed > 0) {
         (profile.wins.toFloat() / profile.gamesPlayed * 100).toInt()
-    } else 0
+    } else {
+        0
+    }
 
     val avgPointsPerRound = if (profile.gamesPlayed > 0) {
         (profile.totalPoints.toFloat() / profile.gamesPlayed)
-    } else 0f
+    } else {
+        0f
+    }
 
     val rankColor = when (rank) {
-        1 -> HelldeckColors.Yellow     // Gold
-        2 -> HelldeckColors.LightGray  // Silver-ish
-        3 -> HelldeckColors.Orange     // Bronze-ish
+        1 -> HelldeckColors.Yellow // Gold
+        2 -> HelldeckColors.LightGray // Silver-ish
+        3 -> HelldeckColors.Orange // Bronze-ish
         else -> HelldeckColors.MediumGray
     }
 
@@ -474,7 +478,7 @@ private fun EnhancedPlayerCard(
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.98f else 1f,
         animationSpec = spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh),
-        label = "player_card_scale"
+        label = "player_card_scale",
     )
 
     ElevatedCard(
@@ -484,14 +488,14 @@ private fun EnhancedPlayerCard(
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                onClick = onClick
+                onClick = onClick,
             ),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = if (rank <= 3) rankColor.copy(alpha = 0.1f) else HelldeckColors.MediumGray
+            containerColor = if (rank <= 3) rankColor.copy(alpha = 0.1f) else HelldeckColors.MediumGray,
         ),
         elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = if (rank <= 3) 6.dp else 2.dp
-        )
+            defaultElevation = if (rank <= 3) 6.dp else 2.dp,
+        ),
     ) {
         Box(
             modifier = Modifier
@@ -501,36 +505,36 @@ private fun EnhancedPlayerCard(
                         Brush.linearGradient(
                             colors = listOf(
                                 rankColor.copy(alpha = 0.2f),
-                                Color.Transparent
-                            )
+                                Color.Transparent,
+                            ),
                         )
                     } else {
                         Brush.linearGradient(colors = listOf(Color.Transparent, Color.Transparent))
-                    }
-                )
+                    },
+                ),
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(HelldeckSpacing.Medium.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 ) {
                     // Rank badge
                     Surface(
                         color = rankColor.copy(alpha = 0.3f),
                         shape = androidx.compose.foundation.shape.CircleShape,
-                        modifier = Modifier.size(40.dp)
+                        modifier = Modifier.size(40.dp),
                     ) {
                         Box(contentAlignment = Alignment.Center) {
                             Text(
                                 rank.toString(),
                                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                                color = if (rank <= 3) Color.Black else HelldeckColors.White
+                                color = if (rank <= 3) Color.Black else HelldeckColors.White,
                             )
                         }
                     }
@@ -541,23 +545,23 @@ private fun EnhancedPlayerCard(
                         Text(
                             "${profile.avatar} ${profile.name}",
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                            color = HelldeckColors.White
+                            color = HelldeckColors.White,
                         )
                         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Text(
                                 "🏆 ${profile.wins} wins",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                             Text(
                                 "🎮 ${profile.gamesPlayed} games",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                             Text(
                                 "📊 $winRate% win rate",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                         }
                         // Enhanced stats row
@@ -565,34 +569,34 @@ private fun EnhancedPlayerCard(
                             Text(
                                 "⚡ ${String.format("%.1f", avgPointsPerRound)} avg pts",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                             Text(
                                 "😂 ${String.format("%.1f", profile.avgLol)} LOLs",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                             Text(
                                 "🔥 ${profile.heatRounds} heat",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                         }
                     }
                 }
 
                 Column(
-                    horizontalAlignment = Alignment.End
+                    horizontalAlignment = Alignment.End,
                 ) {
                     Text(
                         "${profile.totalPoints}",
                         style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.Bold),
-                        color = HelldeckColors.Yellow
+                        color = HelldeckColors.Yellow,
                     )
                     Text(
                         "points",
                         style = MaterialTheme.typography.bodySmall,
-                        color = HelldeckColors.LightGray
+                        color = HelldeckColors.LightGray,
                     )
                 }
             }

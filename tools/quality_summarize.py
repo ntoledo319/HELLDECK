@@ -6,6 +6,7 @@ Usage:
   python tools/quality_summarize.py
 Writes docs/quality_summary.md
 """
+
 from __future__ import annotations
 
 import json
@@ -33,7 +34,9 @@ def main() -> int:
 
     lines: list[str] = []
     lines.append("# HELLDECK Card Quality Summary\n")
-    lines.append("Aggregated across all available sweeps in app/app/build/reports/cardlab/quality.\n")
+    lines.append(
+        "Aggregated across all available sweeps in app/app/build/reports/cardlab/quality.\n"
+    )
 
     for game in sorted(games.keys()):
         runs = games[game]
@@ -65,4 +68,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

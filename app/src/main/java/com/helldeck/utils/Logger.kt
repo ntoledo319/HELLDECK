@@ -36,7 +36,7 @@ object Logger {
      */
     fun initialize(
         context: android.content.Context,
-        config: LoggerConfig = LoggerConfig()
+        config: LoggerConfig = LoggerConfig(),
     ) {
         logLevel = config.level
         enableFileLogging = config.enableFileLogging
@@ -104,7 +104,7 @@ object Logger {
             message = message,
             throwable = throwable,
             thread = Thread.currentThread().name,
-            tag = TAG
+            tag = TAG,
         )
 
         // Add to queue for async processing
@@ -147,7 +147,9 @@ object Logger {
      * Format log message
      */
     private fun formatLogMessage(entry: LogEntry): String {
-        return "[${entry.level.displayName[0]}] ${dateFormat.format(Date(entry.timestamp))} [${entry.thread}] ${entry.message}"
+        return "[${entry.level.displayName[0]}] ${dateFormat.format(
+            Date(entry.timestamp),
+        )} [${entry.thread}] ${entry.message}"
     }
 
     /**
@@ -171,7 +173,6 @@ object Logger {
             if (logFile.length() > MAX_FILE_SIZE) {
                 rotateLogFiles()
             }
-
         } catch (e: Exception) {
             Log.e(TAG, "Failed to write to log file", e)
         }
@@ -213,7 +214,6 @@ object Logger {
             val currentFile = logFiles.lastOrNull() ?: return
             val newName = "helldeck_${fileDateFormat.format(Date())}_${System.currentTimeMillis()}.log"
             currentFile.renameTo(File(logDir, newName))
-
         } catch (e: Exception) {
             Log.e(TAG, "Failed to rotate log files", e)
         }
@@ -230,7 +230,6 @@ object Logger {
             logDir.listFiles { file ->
                 file.name.startsWith("helldeck_") && file.name.endsWith(".log") && file.lastModified() < cutoffTime
             }?.forEach { it.delete() }
-
         } catch (e: Exception) {
             Log.e(TAG, "Failed to cleanup old log files", e)
         }
@@ -298,7 +297,7 @@ object Logger {
             totalSizeBytes = totalSize,
             totalLines = totalLines,
             oldestFile = logFiles.lastOrNull()?.name,
-            newestFile = logFiles.firstOrNull()?.name
+            newestFile = logFiles.firstOrNull()?.name,
         )
     }
 }
@@ -312,7 +311,8 @@ enum class LogLevel(val priority: Int, val displayName: String) {
     INFO(2, "INFO"),
     WARNING(3, "WARNING"),
     ERROR(4, "ERROR"),
-    FATAL(5, "FATAL");
+    FATAL(5, "FATAL"),
+    ;
 
     override fun toString(): String = displayName
 }
@@ -326,7 +326,7 @@ data class LogEntry(
     val message: String,
     val throwable: Throwable?,
     val thread: String,
-    val tag: String
+    val tag: String,
 )
 
 /**
@@ -340,7 +340,7 @@ data class LoggerConfig(
     val remoteEndpoint: String? = null,
     val maxFileSizeMB: Int = 10,
     val maxFiles: Int = 5,
-    val retentionDays: Int = 7
+    val retentionDays: Int = 7,
 )
 
 /**
@@ -351,7 +351,7 @@ data class LogStats(
     val totalSizeBytes: Long,
     val totalLines: Int,
     val oldestFile: String?,
-    val newestFile: String?
+    val newestFile: String?,
 )
 
 /**
@@ -368,7 +368,7 @@ object PerformanceLogger {
         performanceMetrics[operation] = PerformanceMetric(
             operation = operation,
             startTime = System.currentTimeMillis(),
-            startMemory = getUsedMemory()
+            startMemory = getUsedMemory(),
         )
     }
 
@@ -381,7 +381,7 @@ object PerformanceLogger {
                 endTime = System.currentTimeMillis(),
                 endMemory = getUsedMemory(),
                 duration = System.currentTimeMillis() - metric.startTime,
-                memoryUsed = getUsedMemory() - metric.startMemory
+                memoryUsed = getUsedMemory() - metric.startMemory,
             )
         }
     }
@@ -391,7 +391,11 @@ object PerformanceLogger {
      */
     fun logPerformance(operation: String) {
         endMeasurement(operation)?.let { metric ->
-            Logger.i("Performance: $operation took ${metric.duration}ms, used ${AppUtils.formatFileSize(metric.memoryUsed)} memory")
+            Logger.i(
+                "Performance: $operation took ${metric.duration}ms, used ${AppUtils.formatFileSize(
+                    metric.memoryUsed,
+                )} memory",
+            )
         }
     }
 
@@ -418,7 +422,7 @@ data class PerformanceMetric(
     val startMemory: Long = 0,
     val endMemory: Long = 0,
     val duration: Long = 0,
-    val memoryUsed: Long = 0
+    val memoryUsed: Long = 0,
 )
 
 /**
@@ -437,12 +441,12 @@ object DatabaseLogger {
         val existingMetric = queryMetrics.getOrPut(normalizedQuery) {
             QueryMetric(normalizedQuery)
         }
-        
+
         val metric = existingMetric.copy(
             executionCount = existingMetric.executionCount + 1,
             totalDuration = existingMetric.totalDuration + duration,
             totalRows = existingMetric.totalRows + rowCount,
-            lastExecution = System.currentTimeMillis()
+            lastExecution = System.currentTimeMillis(),
         )
 
         queryMetrics[normalizedQuery] = metric
@@ -479,7 +483,7 @@ data class QueryMetric(
     val totalDuration: Long = 0,
     val totalRows: Int = 0,
     val lastExecution: Long = 0,
-    val averageDuration: Long = if (executionCount > 0) totalDuration / executionCount else 0
+    val averageDuration: Long = if (executionCount > 0) totalDuration / executionCount else 0,
 )
 
 /**
@@ -494,7 +498,7 @@ object GameEventLogger {
         val eventData = mapOf(
             "event" to event,
             "timestamp" to System.currentTimeMillis(),
-            "session" to "current_session" // Would get from game engine
+            "session" to "current_session", // Would get from game engine
         ) + data
 
         Logger.i("Game Event: $event - $data")
@@ -504,20 +508,26 @@ object GameEventLogger {
      * Log player action
      */
     fun logPlayerAction(playerId: String, action: String, data: Map<String, Any> = emptyMap()) {
-        logEvent("player_action", mapOf(
-            "playerId" to playerId,
-            "action" to action
-        ) + data)
+        logEvent(
+            "player_action",
+            mapOf(
+                "playerId" to playerId,
+                "action" to action,
+            ) + data,
+        )
     }
 
     /**
      * Log game state change
      */
     fun logGameStateChange(oldState: String, newState: String, data: Map<String, Any> = emptyMap()) {
-        logEvent("game_state_change", mapOf(
-            "oldState" to oldState,
-            "newState" to newState
-        ) + data)
+        logEvent(
+            "game_state_change",
+            mapOf(
+                "oldState" to oldState,
+                "newState" to newState,
+            ) + data,
+        )
     }
 
     /**

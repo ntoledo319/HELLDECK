@@ -1,7 +1,7 @@
 package com.helldeck.ui.components
 
-import androidx.compose.animation.core.*
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,6 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.theme.HelldeckSpacing
 
@@ -30,7 +29,7 @@ fun PrimaryButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     isLoading: Boolean = false,
-    icon: @Composable (() -> Unit)? = null
+    icon: @Composable (() -> Unit)? = null,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -40,9 +39,9 @@ fun PrimaryButton(
         targetValue = if (isPressed && enabled) 0.96f else 1f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMedium
+            stiffness = Spring.StiffnessMedium,
         ),
-        label = "button_scale"
+        label = "button_scale",
     )
 
     Button(
@@ -62,30 +61,30 @@ fun PrimaryButton(
             containerColor = MaterialTheme.colorScheme.primary,
             contentColor = MaterialTheme.colorScheme.onPrimary,
             disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-            disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant
+            disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant,
         ),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = if (isPressed) 2.dp else 6.dp,
             pressedElevation = 2.dp,
-            disabledElevation = 0.dp
-        )
+            disabledElevation = 0.dp,
+        ),
     ) {
         if (isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier.size(20.dp),
                 color = MaterialTheme.colorScheme.onPrimary,
-                strokeWidth = 2.dp
+                strokeWidth = 2.dp,
             )
         } else {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 icon?.invoke()
                 Text(
                     text = text,
                     style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
             }
         }
@@ -101,7 +100,7 @@ fun SecondaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    icon: @Composable (() -> Unit)? = null
+    icon: @Composable (() -> Unit)? = null,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -111,9 +110,9 @@ fun SecondaryButton(
         targetValue = if (isPressed && enabled) 0.96f else 1f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMedium
+            stiffness = Spring.StiffnessMedium,
         ),
-        label = "button_scale"
+        label = "button_scale",
     )
 
     OutlinedButton(
@@ -130,21 +129,21 @@ fun SecondaryButton(
         interactionSource = interactionSource,
         shape = RoundedCornerShape(HelldeckRadius.Medium),
         colors = ButtonDefaults.outlinedButtonColors(
-            contentColor = MaterialTheme.colorScheme.primary
+            contentColor = MaterialTheme.colorScheme.primary,
         ),
         border = ButtonDefaults.outlinedButtonBorder.copy(
-            width = if (isPressed) 1.5.dp else 1.dp
-        )
+            width = if (isPressed) 1.5.dp else 1.dp,
+        ),
     ) {
         Row(
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             icon?.invoke()
             Text(
                 text = text,
                 style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
             )
         }
     }
@@ -159,7 +158,7 @@ fun TextButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    color: Color = MaterialTheme.colorScheme.primary
+    color: Color = MaterialTheme.colorScheme.primary,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -168,7 +167,7 @@ fun TextButton(
     val alpha by animateFloatAsState(
         targetValue = if (isPressed && enabled) 0.7f else 1f,
         animationSpec = tween(150),
-        label = "button_alpha"
+        label = "button_alpha",
     )
 
     androidx.compose.material3.TextButton(
@@ -182,13 +181,13 @@ fun TextButton(
         enabled = enabled,
         interactionSource = interactionSource,
         colors = ButtonDefaults.textButtonColors(
-            contentColor = color.copy(alpha = alpha)
-        )
+            contentColor = color.copy(alpha = alpha),
+        ),
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
         )
     }
 }
@@ -201,7 +200,7 @@ fun IconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    icon: @Composable () -> Unit
+    icon: @Composable () -> Unit,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -211,9 +210,9 @@ fun IconButton(
         targetValue = if (isPressed && enabled) 0.9f else 1f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessHigh
+            stiffness = Spring.StiffnessHigh,
         ),
-        label = "icon_button_scale"
+        label = "icon_button_scale",
     )
 
     IconButton(
@@ -225,7 +224,7 @@ fun IconButton(
         },
         modifier = modifier.scale(scale),
         enabled = enabled,
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     ) {
         icon()
     }
@@ -239,7 +238,7 @@ fun FloatingActionButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: @Composable () -> Unit,
-    contentDescription: String? = null
+    contentDescription: String? = null,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -249,9 +248,9 @@ fun FloatingActionButton(
         targetValue = if (isPressed) 0.9f else 1f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessHigh
+            stiffness = Spring.StiffnessHigh,
         ),
-        label = "fab_scale"
+        label = "fab_scale",
     )
 
     androidx.compose.material3.FloatingActionButton(
@@ -263,7 +262,7 @@ fun FloatingActionButton(
         interactionSource = interactionSource,
         containerColor = MaterialTheme.colorScheme.primary,
         contentColor = MaterialTheme.colorScheme.onPrimary,
-        shape = RoundedCornerShape(HelldeckRadius.Large)
+        shape = RoundedCornerShape(HelldeckRadius.Large),
     ) {
         icon()
     }
@@ -278,7 +277,7 @@ fun ToggleButton(
     isSelected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -288,9 +287,9 @@ fun ToggleButton(
         targetValue = if (isPressed && enabled) 0.96f else 1f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMedium
+            stiffness = Spring.StiffnessMedium,
         ),
-        label = "toggle_scale"
+        label = "toggle_scale",
     )
 
     val backgroundColor by animateColorAsState(
@@ -300,7 +299,7 @@ fun ToggleButton(
             MaterialTheme.colorScheme.surfaceVariant
         },
         animationSpec = tween(200),
-        label = "toggle_background"
+        label = "toggle_background",
     )
 
     val contentColor by animateColorAsState(
@@ -310,7 +309,7 @@ fun ToggleButton(
             MaterialTheme.colorScheme.onSurfaceVariant
         },
         animationSpec = tween(200),
-        label = "toggle_content"
+        label = "toggle_content",
     )
 
     Button(
@@ -328,18 +327,17 @@ fun ToggleButton(
         shape = RoundedCornerShape(HelldeckRadius.Medium),
         colors = ButtonDefaults.buttonColors(
             containerColor = backgroundColor,
-            contentColor = contentColor
+            contentColor = contentColor,
         ),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = if (isSelected) 4.dp else 2.dp,
-            pressedElevation = 2.dp
-        )
+            pressedElevation = 2.dp,
+        ),
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium,
-            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
+            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
         )
     }
 }
-

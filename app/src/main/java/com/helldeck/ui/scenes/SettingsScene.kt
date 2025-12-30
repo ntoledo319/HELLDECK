@@ -46,11 +46,11 @@ import com.helldeck.content.data.ContentRepository
 import com.helldeck.data.PlayerEntity
 import com.helldeck.data.toEntity
 import com.helldeck.engine.Config
+import com.helldeck.settings.SettingsStore
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.HelldeckVm
 import com.helldeck.ui.hdFieldColors
-import com.helldeck.settings.SettingsStore
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -86,12 +86,12 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
             // Always-on learning
             learningEnabled = true
             Config.setLearningEnabled(true)
-            
+
             rollcallOnLaunch = SettingsStore.readRollcallOnLaunch()
-            
+
             hapticsEnabled = SettingsStore.readHapticsEnabled()
             Config.setHapticsEnabled(hapticsEnabled)
-            
+
             soundEnabled = SettingsStore.readSoundEnabled()
 
             reducedMotion = SettingsStore.readReducedMotion()
@@ -100,7 +100,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
             Config.setHighContrast(highContrast)
             noFlash = SettingsStore.readNoFlash()
             Config.setNoFlash(noFlash)
-            
+
             heat = Config.roomHeatThreshold().toFloat()
             // Simplified settings: no explicit performance toggle
             Config.setAttemptCap(null)
@@ -113,29 +113,29 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
         topBar = {
             TopAppBar(
                 title = { Text("⚙️ Settings") },
-                actions = { TextButton(onClick = onClose) { Text("Close") } }
+                actions = { TextButton(onClick = onClose) { Text("Close") } },
             )
-        }
+        },
     ) { padding ->
         LazyColumn(
             modifier = Modifier
                 .padding(padding)
                 .padding(HelldeckSpacing.Medium.dp)
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             // Safety & Filters (party-proof)
             item {
                 SettingsSection(
                     title = "🛟 Safety & Filters",
                     isExpanded = expandedSafety,
-                    onToggle = { expandedSafety = !expandedSafety }
+                    onToggle = { expandedSafety = !expandedSafety },
                 ) {
                     // Content filter: simple 3-step chaos slider (Soft / Mixed / Spicy).
                     Text(
                         text = "Chaos level",
                         style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                        color = HelldeckColors.Yellow
+                        color = HelldeckColors.Yellow,
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
@@ -147,7 +147,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                     Text(
                         text = "$chaosLabel (${(heat * 100).toInt()}%)",
                         style = MaterialTheme.typography.bodyLarge,
-                        color = HelldeckColors.White
+                        color = HelldeckColors.White,
                     )
                     Slider(
                         value = heat.coerceIn(0.55f, 0.78f),
@@ -169,8 +169,8 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         colors = SliderDefaults.colors(
                             thumbColor = HelldeckColors.Yellow,
                             activeTrackColor = HelldeckColors.Yellow,
-                            inactiveTrackColor = HelldeckColors.LightGray.copy(alpha = 0.3f)
-                        )
+                            inactiveTrackColor = HelldeckColors.LightGray.copy(alpha = 0.3f),
+                        ),
                     )
 
                     Spacer(modifier = Modifier.height(12.dp))
@@ -183,7 +183,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             highContrast = it
                             Config.setHighContrast(it)
                             scope.launch { SettingsStore.writeHighContrast(it) }
-                        }
+                        },
                     )
 
                     SettingRow(
@@ -194,7 +194,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             reducedMotion = it
                             Config.setReducedMotion(it)
                             scope.launch { SettingsStore.writeReducedMotion(it) }
-                        }
+                        },
                     )
 
                     SettingRow(
@@ -205,7 +205,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             noFlash = it
                             Config.setNoFlash(it)
                             scope.launch { SettingsStore.writeNoFlash(it) }
-                        }
+                        },
                     )
                 }
             }
@@ -215,7 +215,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                 SettingsSection(
                     title = "👥 Players",
                     isExpanded = expandedPlayers,
-                    onToggle = { expandedPlayers = !expandedPlayers }
+                    onToggle = { expandedPlayers = !expandedPlayers },
                 ) {
                     var newName by remember { mutableStateOf("") }
                     val emojis = listOf("😎", "🦊", "🐸", "🐼", "🦄", "🐙", "🐯", "🦁", "🐵", "🐧", "🦖", "🐺")
@@ -224,11 +224,11 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         OutlinedButton(
                             onClick = { newEmoji = emojis.random() },
-                            modifier = Modifier.size(56.dp)
+                            modifier = Modifier.size(56.dp),
                         ) { Text(newEmoji, style = MaterialTheme.typography.headlineSmall) }
 
                         OutlinedTextField(
@@ -238,7 +238,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             placeholder = { Text("e.g., Jay") },
                             modifier = Modifier.weight(1f),
                             colors = hdFieldColors(),
-                            singleLine = true
+                            singleLine = true,
                         )
                     }
 
@@ -248,7 +248,12 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                                 val id = "p${Random.nextInt(100000)}"
                                 scope.launch {
                                     repo.db.players().upsert(
-                                        PlayerEntity(id = id, name = newName.trim(), avatar = newEmoji, sessionPoints = 0)
+                                        PlayerEntity(
+                                            id = id,
+                                            name = newName.trim(),
+                                            avatar = newEmoji,
+                                            sessionPoints = 0,
+                                        ),
                                     )
                                     vm.reloadPlayers()
                                     newName = ""
@@ -258,12 +263,16 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         },
                         enabled = newName.isNotBlank(),
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green)
+                        colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green),
                     ) { Text("➕ Add Player") }
 
                     if (vm.players.isNotEmpty()) {
                         Spacer(modifier = Modifier.height(8.dp))
-                        Text("Active Players", style = MaterialTheme.typography.titleSmall, color = HelldeckColors.Yellow)
+                        Text(
+                            "Active Players",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = HelldeckColors.Yellow,
+                        )
                         Spacer(modifier = Modifier.height(4.dp))
                     }
 
@@ -276,13 +285,13 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                                     repo.db.players().update(p.copy(afk = if (checked) 0 else 1).toEntity())
                                     vm.reloadPlayers()
                                 }
-                            }
+                            },
                         )
                     }
 
                     OutlinedButton(
                         onClick = { vm.goPlayers() },
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     ) { Text("📝 Manage Players") }
                 }
             }
@@ -292,14 +301,14 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                 SettingsSection(
                     title = "🎮 Game",
                     isExpanded = expandedGame,
-                    onToggle = { expandedGame = !expandedGame }
+                    onToggle = { expandedGame = !expandedGame },
                 ) {
                     SettingRow(
                         label = "On-device AI (Auto)",
                         description = "Paraphrases cards using the bundled model when available.",
                         isChecked = com.helldeck.content.engine.ContentEngineProvider.isAIEnhancementAvailable(),
                         onCheckedChange = { /* no-op: AI is automatic by default */ },
-                        enabled = false
+                        enabled = false,
                     )
 
                     SettingRow(
@@ -309,18 +318,17 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         onCheckedChange = {
                             rollcallOnLaunch = it
                             scope.launch { SettingsStore.writeRollcallOnLaunch(it) }
-                        }
+                        },
                     )
                 }
             }
-
 
             // Device Section
             item {
                 SettingsSection(
                     title = "📱 Device",
                     isExpanded = expandedDevice,
-                    onToggle = { expandedDevice = !expandedDevice }
+                    onToggle = { expandedDevice = !expandedDevice },
                 ) {
                     SettingRow(
                         label = "Haptic Feedback",
@@ -330,7 +338,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             hapticsEnabled = it
                             Config.setHapticsEnabled(it)
                             scope.launch { SettingsStore.writeHapticsEnabled(it) }
-                        }
+                        },
                     )
 
                     SettingRow(
@@ -344,9 +352,9 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                                 // Update SoundManager
                                 com.helldeck.audio.SoundManager.get(context).enabled = it
                             }
-                        }
+                        },
                     )
-                    
+
                     Spacer(modifier = Modifier.height(12.dp))
                     OutlinedButton(
                         onClick = {
@@ -377,8 +385,8 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         },
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = HelldeckColors.Red
-                        )
+                            contentColor = HelldeckColors.Red,
+                        ),
                     ) {
                         Text("🔄 Reset to Defaults")
                     }
@@ -393,16 +401,16 @@ private fun SettingsSection(
     title: String,
     isExpanded: Boolean,
     onToggle: () -> Unit,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = if (isExpanded) HelldeckColors.DarkGray else HelldeckColors.MediumGray
+            containerColor = if (isExpanded) HelldeckColors.DarkGray else HelldeckColors.MediumGray,
         ),
         elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = if (isExpanded) 4.dp else 2.dp
-        )
+            defaultElevation = if (isExpanded) 4.dp else 2.dp,
+        ),
     ) {
         Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
             Row(
@@ -410,17 +418,17 @@ private fun SettingsSection(
                     .fillMaxWidth()
                     .clickable(onClick = onToggle),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                    color = HelldeckColors.Yellow
+                    color = HelldeckColors.Yellow,
                 )
                 Text(
                     text = if (isExpanded) "▼" else "▶",
                     style = MaterialTheme.typography.titleMedium,
-                    color = HelldeckColors.Yellow
+                    color = HelldeckColors.Yellow,
                 )
             }
 
@@ -438,26 +446,26 @@ private fun SettingRow(
     description: String? = null,
     isChecked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = label,
                 style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
-                color = HelldeckColors.White
+                color = HelldeckColors.White,
             )
             description?.let {
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodySmall,
-                    color = HelldeckColors.LightGray
+                    color = HelldeckColors.LightGray,
                 )
             }
         }
@@ -469,8 +477,8 @@ private fun SettingRow(
                 checkedThumbColor = HelldeckColors.Yellow,
                 checkedTrackColor = HelldeckColors.Yellow.copy(alpha = 0.5f),
                 uncheckedThumbColor = HelldeckColors.LightGray,
-                uncheckedTrackColor = HelldeckColors.MediumGray
-            )
+                uncheckedTrackColor = HelldeckColors.MediumGray,
+            ),
         )
     }
 }

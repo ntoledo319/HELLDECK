@@ -1,8 +1,8 @@
 package com.helldeck.ui.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,13 +13,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.helldeck.data.PlayerProfile
 import com.helldeck.data.computePlayerProfiles
 import com.helldeck.ui.HelldeckVm
-import androidx.compose.foundation.background
-import com.helldeck.data.PlayerProfile
-import com.helldeck.ui.components.HelldeckColors
-import com.helldeck.ui.components.HelldeckSpacing
-import com.helldeck.ui.components.HelldeckLoadingSpinner
 import kotlinx.coroutines.launch
 
 /**
@@ -29,13 +25,13 @@ import kotlinx.coroutines.launch
 @Composable
 fun PlayerProfileScene(
     vm: HelldeckVm = viewModel(),
-    onClose: () -> Unit
+    onClose: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     var isLoading by remember { mutableStateOf(true) }
     var profile by remember { mutableStateOf<PlayerProfile?>(null) }
     var summaryText by remember { mutableStateOf("") }
-    
+
     LaunchedEffect(vm.selectedPlayerId) {
         vm.selectedPlayerId?.let { playerId ->
             isLoading = true
@@ -53,14 +49,14 @@ fun PlayerProfileScene(
             }
         }
     }
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { 
+                title = {
                     Text(
                         text = "${profile?.avatar ?: "👤"} Profile",
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 },
                 actions = {
@@ -76,23 +72,23 @@ fun PlayerProfileScene(
                             } catch (e: Exception) {
                                 // Handle share error
                             }
-                        }) { 
+                        }) {
                             Text("📤 Share")
                         }
                     }
-                    TextButton(onClick = onClose) { 
+                    TextButton(onClick = onClose) {
                         Text("Close")
                     }
-                }
+                },
             )
-        }
+        },
     ) { padding ->
         if (isLoading) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 HelldeckLoadingSpinner()
             }
@@ -103,14 +99,14 @@ fun PlayerProfileScene(
                         .fillMaxSize()
                         .padding(padding)
                         .padding(HelldeckSpacing.Medium.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     // Hero card with gradient
                     item {
                         ElevatedCard(
                             modifier = Modifier.fillMaxWidth(),
                             colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.DarkGray),
-                            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
+                            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
                         ) {
                             Box(
                                 modifier = Modifier
@@ -120,33 +116,33 @@ fun PlayerProfileScene(
                                             colors = listOf(
                                                 HelldeckColors.Yellow.copy(alpha = 0.25f),
                                                 HelldeckColors.Orange.copy(alpha = 0.1f),
-                                                Color.Transparent
-                                            )
-                                        )
+                                                Color.Transparent,
+                                            ),
+                                        ),
                                     )
-                                    .padding(HelldeckSpacing.Large.dp)
+                                    .padding(HelldeckSpacing.Large.dp),
                             ) {
-                               Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                   Text(
-                                       pr.avatar,
-                                       style = MaterialTheme.typography.displayLarge.copy(fontSize = 64.sp)
-                                   )
-                                   Spacer(modifier = Modifier.height(8.dp))
-                                   Text(
-                                       pr.name,
-                                       style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
-                                       color = Color.White
-                                   )
-                                   Spacer(modifier = Modifier.height(16.dp))
-                                   Row(
-                                       modifier = Modifier.fillMaxWidth(),
-                                       horizontalArrangement = Arrangement.SpaceEvenly
-                                   ) {
-                                       ProfileStatBadge("Total", pr.totalPoints.toString(), HelldeckColors.Yellow)
-                                       ProfileStatBadge("Wins", pr.wins.toString(), HelldeckColors.Green)
-                                       ProfileStatBadge("Games", pr.gamesPlayed.toString(), HelldeckColors.Orange)
-                                   }
-                               }
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Text(
+                                        pr.avatar,
+                                        style = MaterialTheme.typography.displayLarge.copy(fontSize = 64.sp),
+                                    )
+                                    Spacer(modifier = Modifier.height(8.dp))
+                                    Text(
+                                        pr.name,
+                                        style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
+                                        color = Color.White,
+                                    )
+                                    Spacer(modifier = Modifier.height(16.dp))
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceEvenly,
+                                    ) {
+                                        ProfileStatBadge("Total", pr.totalPoints.toString(), HelldeckColors.Yellow)
+                                        ProfileStatBadge("Wins", pr.wins.toString(), HelldeckColors.Green)
+                                        ProfileStatBadge("Games", pr.gamesPlayed.toString(), HelldeckColors.Orange)
+                                    }
+                                }
                             }
                         }
                     }
@@ -155,13 +151,13 @@ fun PlayerProfileScene(
                     item {
                         ElevatedCard(
                             modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.MediumGray)
+                            colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.MediumGray),
                         ) {
                             Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
                                 Text(
                                     "📈 Performance",
                                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                                    color = HelldeckColors.Yellow
+                                    color = HelldeckColors.Yellow,
                                 )
                                 Spacer(modifier = Modifier.height(12.dp))
                                 ProfileStatWithBar("Heat Rounds", pr.heatRounds, pr.gamesPlayed, HelldeckColors.Red)
@@ -177,31 +173,31 @@ fun PlayerProfileScene(
                         item {
                             ElevatedCard(
                                 modifier = Modifier.fillMaxWidth(),
-                                colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.MediumGray)
+                                colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.MediumGray),
                             ) {
                                 Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
                                     Text(
                                         "🏅 Awards",
                                         style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                                        color = HelldeckColors.Yellow
+                                        color = HelldeckColors.Yellow,
                                     )
                                     Spacer(modifier = Modifier.height(8.dp))
                                     androidx.compose.foundation.layout.FlowRow(
                                         modifier = Modifier.fillMaxWidth(),
                                         horizontalArrangement = Arrangement.spacedBy(6.dp),
-                                        verticalArrangement = Arrangement.spacedBy(6.dp)
+                                        verticalArrangement = Arrangement.spacedBy(6.dp),
                                     ) {
                                         pr.awards.forEach { award ->
                                             Surface(
                                                 color = HelldeckColors.Yellow.copy(alpha = 0.2f),
                                                 shape = androidx.compose.foundation.shape.RoundedCornerShape(12.dp),
-                                                border = androidx.compose.foundation.BorderStroke(1.dp, HelldeckColors.Yellow)
+                                                border = androidx.compose.foundation.BorderStroke(1.dp, HelldeckColors.Yellow),
                                             ) {
                                                 Text(
                                                     text = award,
                                                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
                                                     color = HelldeckColors.Yellow,
-                                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
                                                 )
                                             }
                                         }
@@ -215,19 +211,19 @@ fun PlayerProfileScene(
                     item {
                         ElevatedCard(
                             modifier = Modifier.fillMaxWidth(),
-                            colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.DarkGray)
+                            colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.DarkGray),
                         ) {
                             Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
                                 Text(
                                     "📋 Shareable Summary",
                                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                                    color = HelldeckColors.Yellow
+                                    color = HelldeckColors.Yellow,
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     summaryText,
                                     style = MaterialTheme.typography.bodyMedium,
-                                    color = HelldeckColors.LightGray
+                                    color = HelldeckColors.LightGray,
                                 )
                             }
                         }
@@ -238,14 +234,14 @@ fun PlayerProfileScene(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(padding),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     if (isLoading) {
                         HelldeckLoadingSpinner()
                     } else {
                         Text(
                             "No profile selected",
-                            color = HelldeckColors.LightGray
+                            color = HelldeckColors.LightGray,
                         )
                     }
                 }
@@ -260,12 +256,12 @@ private fun ProfileStatBadge(label: String, value: String, color: Color) {
         Text(
             value,
             style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.ExtraBold),
-            color = color
+            color = color,
         )
         Text(
             label,
             style = MaterialTheme.typography.bodySmall,
-            color = HelldeckColors.LightGray
+            color = HelldeckColors.LightGray,
         )
     }
 }
@@ -275,7 +271,7 @@ private fun ProfileStatWithBar(label: String, value: Int, total: Int, color: Col
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(label, style = MaterialTheme.typography.bodyMedium, color = HelldeckColors.White)
             Text("$value / $total", style = MaterialTheme.typography.bodyMedium, color = color)
@@ -287,7 +283,7 @@ private fun ProfileStatWithBar(label: String, value: Int, total: Int, color: Col
                 .fillMaxWidth()
                 .height(6.dp),
             color = color,
-            trackColor = color.copy(alpha = 0.2f)
+            trackColor = color.copy(alpha = 0.2f),
         )
         Spacer(modifier = Modifier.height(8.dp))
     }
@@ -297,7 +293,7 @@ private fun ProfileStatWithBar(label: String, value: Int, total: Int, color: Col
 private fun EnhancedStatRow(label: String, value: String, emoji: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(label, style = MaterialTheme.typography.bodyMedium, color = HelldeckColors.White)
         Text("$emoji $value", style = MaterialTheme.typography.bodyMedium, color = HelldeckColors.White)

@@ -7,7 +7,7 @@ import com.helldeck.llm.LocalLLM
 class Augmentor(
     private val llm: LocalLLM?, // nullable: when disabled or model not available
     private val cache: GenerationCache,
-    private val validator: Validator
+    private val validator: Validator,
 ) {
     data class Plan(
         val allowParaphrase: Boolean,
@@ -15,7 +15,7 @@ class Augmentor(
         val spice: Int,
         val tags: List<String>,
         val gameId: String,
-        val styleGuide: String
+        val styleGuide: String,
     )
 
     suspend fun maybeParaphrase(card: FilledCard, plan: Plan, seed: Int, modelId: String): FilledCard {
@@ -44,12 +44,16 @@ class Augmentor(
             ${card.text}
         """.trimIndent()
 
-        val out = llm.generate(system, user, GenConfig(
-            maxTokens = plan.maxWords * 2,
-            temperature = if (plan.spice >= 3) 0.8f else 0.5f,
-            topP = 0.9f,
-            seed = seed
-        )).trim()
+        val out = llm.generate(
+            system,
+            user,
+            GenConfig(
+                maxTokens = plan.maxWords * 2,
+                temperature = if (plan.spice >= 3) 0.8f else 0.5f,
+                topP = 0.9f,
+                seed = seed,
+            ),
+        ).trim()
 
         val cleaned = validator.sanitize(out)
         if (cleaned.isBlank() || cleaned.equals(card.text, ignoreCase = true)) return card

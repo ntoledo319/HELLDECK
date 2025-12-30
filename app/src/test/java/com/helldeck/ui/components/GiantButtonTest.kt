@@ -1,12 +1,11 @@
 package com.helldeck.ui.components
 
+import androidx.compose.foundation.layout.width
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.helldeck.ui.GiantButton
 import com.helldeck.ui.HelldeckTheme
-import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.layout.width
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
@@ -64,7 +63,7 @@ class GiantButtonTest {
             HelldeckTheme {
                 GiantButton(
                     onClick = {},
-                    enabled = false
+                    enabled = false,
                 ) {
                     androidx.compose.material3.Text("Disabled Button")
                 }
@@ -84,7 +83,7 @@ class GiantButtonTest {
             HelldeckTheme {
                 GiantButton(
                     onClick = {},
-                    enabled = true
+                    enabled = true,
                 ) {
                     androidx.compose.material3.Text("Enabled Button")
                 }
@@ -105,7 +104,7 @@ class GiantButtonTest {
             HelldeckTheme {
                 GiantButton(
                     onClick = { clicked = true },
-                    enabled = false
+                    enabled = false,
                 ) {
                     androidx.compose.material3.Text("Disabled Button")
                 }

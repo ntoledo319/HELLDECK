@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -32,31 +31,31 @@ fun RulesSheet(onClose: () -> Unit) {
     var expandedSpice by remember { mutableStateOf(false) }
     var expandedFeedback by remember { mutableStateOf(false) }
     var expandedGameRules by remember { mutableStateOf<Set<String>>(emptySet()) }
-    
+
     Scaffold(
         topBar = {
             val vmLocal: HelldeckVm = viewModel()
             TopAppBar(
                 title = { Text("HELLDECK — Rules & How-To") },
                 navigationIcon = { TextButton(onClick = { vmLocal.goBack() }) { Text("Back") } },
-                actions = { TextButton(onClick = { vmLocal.goHome() }) { Text("Home") } }
+                actions = { TextButton(onClick = { vmLocal.goHome() }) { Text("Home") } },
             )
-        }
+        },
     ) { padding ->
         androidx.compose.foundation.lazy.LazyColumn(
             modifier = Modifier
                 .padding(padding)
                 .padding(HelldeckSpacing.Medium.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             // "How HellDeck Works" Section
             item {
                 ElevatedCard(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.elevatedCardColors(
-                        containerColor = HelldeckColors.DarkGray
+                        containerColor = HelldeckColors.DarkGray,
                     ),
-                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp)
+                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
                 ) {
                     Column(
                         modifier = Modifier
@@ -66,16 +65,16 @@ fun RulesSheet(onClose: () -> Unit) {
                                 brush = Brush.linearGradient(
                                     colors = listOf(
                                         HelldeckColors.Yellow.copy(alpha = 0.15f),
-                                        Color.Transparent
-                                    )
-                                )
+                                        Color.Transparent,
+                                    ),
+                                ),
                             )
-                            .padding(HelldeckSpacing.Medium.dp)
+                            .padding(HelldeckSpacing.Medium.dp),
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
                                 text = "🎯 How HellDeck Works",
@@ -84,38 +83,38 @@ fun RulesSheet(onClose: () -> Unit) {
                                     brush = Brush.linearGradient(
                                         colors = listOf(
                                             HelldeckColors.Yellow,
-                                            HelldeckColors.Orange
-                                        )
-                                    )
-                                )
+                                            HelldeckColors.Orange,
+                                        ),
+                                    ),
+                                ),
                             )
                             Text(
                                 text = if (expandedHowItWorks) "▼" else "▶",
                                 style = MaterialTheme.typography.headlineSmall,
-                                color = HelldeckColors.Yellow
+                                color = HelldeckColors.Yellow,
                             )
                         }
-                        
+
                         if (!expandedHowItWorks) {
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
                                 text = "Tap to learn about card generation, smart learning, spice levels, and scoring",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                         }
                     }
-                    
+
                     if (expandedHowItWorks) {
                         Column(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(horizontal = HelldeckSpacing.Medium.dp)
                                 .padding(bottom = HelldeckSpacing.Medium.dp),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
                             Spacer(modifier = Modifier.height(4.dp))
-                            
+
                             // Card Generation
                             HowItWorksCard(
                                 icon = "🎴",
@@ -128,42 +127,50 @@ fun RulesSheet(onClose: () -> Unit) {
                                         text = "Templates have slots like {friend} or {place} that get filled with random words from lexicons. Each game gets fresh, unpredictable cards every round!",
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = Color.White,
-                                        lineHeight = 20.sp
+                                        lineHeight = 20.sp,
                                     )
                                     Spacer(modifier = Modifier.height(8.dp))
                                     Surface(
                                         color = HelldeckColors.MediumGray,
-                                        shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+                                        shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
                                     ) {
-                                       Column(modifier = Modifier.padding(12.dp)) {
-                                           Text(
-                                               text = "Template:",
-                                               style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                                               color = HelldeckColors.Yellow
-                                           )
-                                           Spacer(modifier = Modifier.height(2.dp))
-                                           Text(
-                                               text = "\"Roast {friend} for {red_flag}\"",
-                                               style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
-                                               color = Color.White
-                                           )
-                                           Spacer(modifier = Modifier.height(12.dp))
-                                           Text(
-                                               text = "Becomes:",
-                                               style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                                               color = HelldeckColors.Green
-                                           )
-                                           Spacer(modifier = Modifier.height(2.dp))
-                                           Text(
-                                               text = "\"Roast Jay for always being late\"",
-                                               style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
-                                               color = Color.White
-                                           )
-                                       }
+                                        Column(modifier = Modifier.padding(12.dp)) {
+                                            Text(
+                                                text = "Template:",
+                                                style = MaterialTheme.typography.labelMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                ),
+                                                color = HelldeckColors.Yellow,
+                                            )
+                                            Spacer(modifier = Modifier.height(2.dp))
+                                            Text(
+                                                text = "\"Roast {friend} for {red_flag}\"",
+                                                style = MaterialTheme.typography.bodyMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                ),
+                                                color = Color.White,
+                                            )
+                                            Spacer(modifier = Modifier.height(12.dp))
+                                            Text(
+                                                text = "Becomes:",
+                                                style = MaterialTheme.typography.labelMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                ),
+                                                color = HelldeckColors.Green,
+                                            )
+                                            Spacer(modifier = Modifier.height(2.dp))
+                                            Text(
+                                                text = "\"Roast Jay for always being late\"",
+                                                style = MaterialTheme.typography.bodyMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                ),
+                                                color = Color.White,
+                                            )
+                                        }
                                     }
-                                }
+                                },
                             )
-                            
+
                             // Smart Learning
                             HowItWorksCard(
                                 icon = "🧠",
@@ -176,32 +183,74 @@ fun RulesSheet(onClose: () -> Unit) {
                                         text = "HellDeck uses AI to track which cards make your group laugh. High-scoring cards appear more often, trash cards appear less. The system balances between playing proven favorites (exploitation) and trying new content (exploration) to keep sessions fresh.",
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = Color.White,
-                                        lineHeight = 20.sp
+                                        lineHeight = 20.sp,
                                     )
                                     Spacer(modifier = Modifier.height(8.dp))
                                     Row(
                                         modifier = Modifier.fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.SpaceEvenly
+                                        horizontalArrangement = Arrangement.SpaceEvenly,
                                     ) {
                                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                            Text("😂 Loved", style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold), color = HelldeckColors.Lol)
-                                            Text("Score: 8.5", style = MaterialTheme.typography.bodyMedium, color = HelldeckColors.Green)
-                                            Text("Plays ↑", style = MaterialTheme.typography.labelMedium, color = Color.White)
+                                            Text(
+                                                "😂 Loved",
+                                                style = MaterialTheme.typography.labelMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                ),
+                                                color = HelldeckColors.Lol,
+                                            )
+                                            Text(
+                                                "Score: 8.5",
+                                                style = MaterialTheme.typography.bodyMedium,
+                                                color = HelldeckColors.Green,
+                                            )
+                                            Text(
+                                                "Plays ↑",
+                                                style = MaterialTheme.typography.labelMedium,
+                                                color = Color.White,
+                                            )
                                         }
                                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                            Text("😐 Meh", style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold), color = Color.White)
-                                            Text("Score: 2.1", style = MaterialTheme.typography.bodyMedium, color = Color.White)
-                                            Text("Plays →", style = MaterialTheme.typography.labelMedium, color = Color.White)
+                                            Text(
+                                                "😐 Meh",
+                                                style = MaterialTheme.typography.labelMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                ),
+                                                color = Color.White,
+                                            )
+                                            Text(
+                                                "Score: 2.1",
+                                                style = MaterialTheme.typography.bodyMedium,
+                                                color = Color.White,
+                                            )
+                                            Text(
+                                                "Plays →",
+                                                style = MaterialTheme.typography.labelMedium,
+                                                color = Color.White,
+                                            )
                                         }
                                         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                            Text("🚮 Trash", style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold), color = HelldeckColors.Trash)
-                                            Text("Score: -1.2", style = MaterialTheme.typography.bodyMedium, color = HelldeckColors.Red)
-                                            Text("Plays ↓", style = MaterialTheme.typography.labelMedium, color = Color.White)
+                                            Text(
+                                                "🚮 Trash",
+                                                style = MaterialTheme.typography.labelMedium.copy(
+                                                    fontWeight = FontWeight.Bold,
+                                                ),
+                                                color = HelldeckColors.Trash,
+                                            )
+                                            Text(
+                                                "Score: -1.2",
+                                                style = MaterialTheme.typography.bodyMedium,
+                                                color = HelldeckColors.Red,
+                                            )
+                                            Text(
+                                                "Plays ↓",
+                                                style = MaterialTheme.typography.labelMedium,
+                                                color = Color.White,
+                                            )
                                         }
                                     }
-                                }
+                                },
                             )
-                            
+
                             // Spice System
                             HowItWorksCard(
                                 icon = "🌶️",
@@ -214,23 +263,28 @@ fun RulesSheet(onClose: () -> Unit) {
                                         text = "Every card has a spice rating (1-3 🌶️). The heat threshold slider controls which cards appear. Set to 50% for family-friendly content, 70%+ for savage mode. In spicy mode (≥70%), the room needs 70% consensus for heat bonuses instead of 60%.",
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = Color.White,
-                                        lineHeight = 20.sp
+                                        lineHeight = 20.sp,
                                     )
                                     Spacer(modifier = Modifier.height(8.dp))
                                     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                                         SpiceLevelRow("🌶️", "Mild", "Safe for all audiences", HelldeckColors.Green)
-                                        SpiceLevelRow("🌶️🌶️", "Medium", "Adult humor, some edge", HelldeckColors.Orange)
+                                        SpiceLevelRow(
+                                            "🌶️🌶️",
+                                            "Medium",
+                                            "Adult humor, some edge",
+                                            HelldeckColors.Orange,
+                                        )
                                         SpiceLevelRow("🌶️🌶️🌶️", "Hot", "Savage roasts, NSFW", HelldeckColors.Red)
                                     }
                                     Spacer(modifier = Modifier.height(8.dp))
                                     Text(
                                         text = "💡 Heat threshold ${(Config.roomHeatThreshold() * 100).toInt()}% determines spicy mode activation",
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = HelldeckColors.Yellow
+                                        color = HelldeckColors.Yellow,
                                     )
-                                }
+                                },
                             )
-                            
+
                             // Feedback & Scoring
                             HowItWorksCard(
                                 icon = "📊",
@@ -243,7 +297,7 @@ fun RulesSheet(onClose: () -> Unit) {
                                         text = "After each round, everyone votes with feedback buttons. This both scores the current card AND teaches the AI what your group finds funny.",
                                         style = MaterialTheme.typography.bodyMedium,
                                         color = Color.White,
-                                        lineHeight = 20.sp
+                                        lineHeight = 20.sp,
                                     )
                                     Spacer(modifier = Modifier.height(8.dp))
                                     Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -257,45 +311,45 @@ fun RulesSheet(onClose: () -> Unit) {
                                     Text(
                                         text = "💡 Feedback helps the AI learn what your group finds funny!",
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = HelldeckColors.Yellow
+                                        color = HelldeckColors.Yellow,
                                     )
-                                }
+                                },
                             )
                         }
                     }
                 }
             }
-            
+
             // Global Rules Section
             item {
                 Text(
                     text = "⚖️ Global Rules",
                     style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-                    color = HelldeckColors.Yellow
+                    color = HelldeckColors.Yellow,
                 )
             }
-            
+
             item {
                 RuleCard(
                     title = "Voting & Ties",
-                    content = "Binary votes (A/B, True/False): 8 second timer. Avatar votes: 10 seconds. Judge picks: 6 seconds (can lock early once threshold reached). If there's a tie, do a 3-second revote. Still tied? Use Torch RPS (Rock-Paper-Scissors). In judge-based games, the judge breaks ties."
+                    content = "Binary votes (A/B, True/False): 8 second timer. Avatar votes: 10 seconds. Judge picks: 6 seconds (can lock early once threshold reached). If there's a tie, do a 3-second revote. Still tied? Use Torch RPS (Rock-Paper-Scissors). In judge-based games, the judge breaks ties.",
                 )
             }
-            
+
             item {
                 RuleCard(
                     title = "Turn Order & Fairness",
-                    content = "First round: random starter. Then turns go clockwise. Comeback mechanic: when you have 3+ players, whoever's in last place gets to pick the next game (helps them catch up). New players joining late enter rotation at the start of the next round."
+                    content = "First round: random starter. Then turns go clockwise. Comeback mechanic: when you have 3+ players, whoever's in last place gets to pick the next game (helps them catch up). New players joining late enter rotation at the start of the next round.",
                 )
             }
-            
+
             // Game-Specific Rules Section
             item {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "🎮 Game Rules",
                     style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
-                    color = HelldeckColors.Yellow
+                    color = HelldeckColors.Yellow,
                 )
             }
 
@@ -303,7 +357,7 @@ fun RulesSheet(onClose: () -> Unit) {
             items(com.helldeck.engine.Games.size) { idx ->
                 val g = com.helldeck.engine.Games[idx]
                 val isExpanded = expandedGameRules.contains(g.id)
-                
+
                 ElevatedCard(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -315,37 +369,38 @@ fun RulesSheet(onClose: () -> Unit) {
                             }
                         },
                     colors = CardDefaults.elevatedCardColors(
-                        containerColor = if (isExpanded)
+                        containerColor = if (isExpanded) {
                             MaterialTheme.colorScheme.surfaceVariant
-                        else
+                        } else {
                             HelldeckColors.MediumGray
+                        },
                     ),
                     elevation = CardDefaults.elevatedCardElevation(
-                        defaultElevation = if (isExpanded) 4.dp else 2.dp
-                    )
+                        defaultElevation = if (isExpanded) 4.dp else 2.dp,
+                    ),
                 ) {
                     Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
                                 Text(
                                     text = gameIconFor(g.id),
-                                    style = MaterialTheme.typography.headlineMedium
+                                    style = MaterialTheme.typography.headlineMedium,
                                 )
                                 Spacer(modifier = Modifier.width(12.dp))
                                 Column {
                                     Text(
                                         text = g.title,
-                                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                                     )
                                     if (!isExpanded) {
                                         Text(
-                                            text = "${g.minPlayers}-${g.maxPlayers} players • ${Config.getTimerForInteraction(g.interaction)/1000}s",
+                                            text = "${g.minPlayers}-${g.maxPlayers} players • ${Config.getTimerForInteraction(g.interaction) / 1000}s",
                                             style = MaterialTheme.typography.bodySmall,
-                                            color = HelldeckColors.LightGray
+                                            color = HelldeckColors.LightGray,
                                         )
                                     }
                                 }
@@ -353,43 +408,43 @@ fun RulesSheet(onClose: () -> Unit) {
                             Text(
                                 text = if (isExpanded) "▼" else "▶",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = HelldeckColors.Yellow
+                                color = HelldeckColors.Yellow,
                             )
                         }
-                        
+
                         if (isExpanded) {
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
                                 text = g.description,
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = Color.White,
-                                lineHeight = 20.sp
+                                lineHeight = 20.sp,
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Row(
                                 modifier = Modifier.fillMaxWidth(),
-                                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                                horizontalArrangement = Arrangement.spacedBy(12.dp),
                             ) {
                                 Surface(
                                     color = HelldeckColors.DarkGray,
-                                    shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+                                    shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
                                 ) {
                                     Text(
-                                        text = "⏱️ ${Config.getTimerForInteraction(g.interaction)/1000}s",
+                                        text = "⏱️ ${Config.getTimerForInteraction(g.interaction) / 1000}s",
                                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = HelldeckColors.Yellow
+                                        color = HelldeckColors.Yellow,
                                     )
                                 }
                                 Surface(
                                     color = HelldeckColors.DarkGray,
-                                    shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+                                    shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
                                 ) {
                                     Text(
                                         text = "👥 ${g.minPlayers}-${g.maxPlayers} players",
                                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = HelldeckColors.Green
+                                        color = HelldeckColors.Green,
                                     )
                                 }
                             }
@@ -397,20 +452,20 @@ fun RulesSheet(onClose: () -> Unit) {
                             Text(
                                 text = "How to Play",
                                 style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
-                                color = HelldeckColors.Orange
+                                color = HelldeckColors.Orange,
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
                                 text = gameHowTo(g),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = Color.White,
-                                lineHeight = 20.sp
+                                lineHeight = 20.sp,
                             )
                         }
                     }
                 }
             }
-            
+
             item { Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp)) }
         }
     }
@@ -423,42 +478,42 @@ private fun HowItWorksCard(
     isExpanded: Boolean,
     onToggle: () -> Unit,
     summary: String,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onToggle),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = HelldeckColors.MediumGray
+            containerColor = HelldeckColors.MediumGray,
         ),
         elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = if (isExpanded) 4.dp else 2.dp
-        )
+            defaultElevation = if (isExpanded) 4.dp else 2.dp,
+        ),
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = icon,
-                        style = MaterialTheme.typography.headlineSmall
+                        style = MaterialTheme.typography.headlineSmall,
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Column {
                         Text(
                             text = title,
                             style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                            color = HelldeckColors.Yellow
+                            color = HelldeckColors.Yellow,
                         )
                         if (!isExpanded) {
                             Text(
                                 text = summary,
                                 style = MaterialTheme.typography.bodySmall,
-                                color = HelldeckColors.LightGray
+                                color = HelldeckColors.LightGray,
                             )
                         }
                     }
@@ -466,10 +521,10 @@ private fun HowItWorksCard(
                 Text(
                     text = if (isExpanded) "▼" else "▶",
                     style = MaterialTheme.typography.titleMedium,
-                    color = HelldeckColors.Yellow
+                    color = HelldeckColors.Yellow,
                 )
             }
-            
+
             if (isExpanded) {
                 Spacer(modifier = Modifier.height(12.dp))
                 content()
@@ -483,12 +538,16 @@ private fun SpiceLevelRow(pepper: String, level: String, desc: String, color: Co
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(text = pepper, style = MaterialTheme.typography.bodyMedium)
             Spacer(modifier = Modifier.width(8.dp))
-            Text(text = level, style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold), color = color)
+            Text(
+                text = level,
+                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+                color = color,
+            )
         }
         Text(text = desc, style = MaterialTheme.typography.bodyMedium, color = Color.White)
     }
@@ -499,13 +558,13 @@ private fun ScoringRow(label: String, points: String, color: Color) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(text = label, style = MaterialTheme.typography.bodyMedium, color = Color.White)
         Text(
             text = points,
             style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-            color = color
+            color = color,
         )
     }
 }
@@ -515,20 +574,20 @@ private fun RuleCard(title: String, content: String) {
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.elevatedCardColors(containerColor = HelldeckColors.MediumGray),
-        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp),
     ) {
         Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                color = HelldeckColors.Yellow
+                color = HelldeckColors.Yellow,
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = content,
                 style = MaterialTheme.typography.bodyMedium,
                 color = Color.White,
-                lineHeight = 22.sp
+                lineHeight = 22.sp,
             )
         }
     }
@@ -571,19 +630,19 @@ private fun gameHowToDetailed(g: com.helldeck.engine.GameSpec): String {
 }
 
 private fun gameIconFor(id: String): String = when (id) {
-    GameIds.ROAST_CONS -> "🎯"           // 1. Roast Consensus
-    GameIds.CONFESS_CAP -> "🤥"          // 2. Confession or Cap
-    GameIds.POISON_PITCH -> "💀"         // 3. Poison Pitch
-    GameIds.FILLIN -> "✍️"               // 4. Fill-In Finisher
-    GameIds.RED_FLAG -> "🚩"             // 5. Red Flag Rally
-    GameIds.HOTSEAT_IMP -> "🎭"          // 6. Hot Seat Imposter
-    GameIds.TEXT_TRAP -> "📱"            // 7. Text Thread Trap
-    GameIds.TABOO -> "⏱️"                // 8. Taboo Timer
-    GameIds.UNIFYING_THEORY -> "📐"     // 9. The Unifying Theory
-    GameIds.TITLE_FIGHT -> "🥊"          // 10. Title Fight
-    GameIds.ALIBI -> "🕵️"               // 11. Alibi Drop
-    GameIds.REALITY_CHECK -> "🪞"        // 12. Reality Check
-    GameIds.SCATTER -> "💣"              // 13. Scatterblast
-    GameIds.OVER_UNDER -> "📉"           // 14. Over / Under
+    GameIds.ROAST_CONS -> "🎯" // 1. Roast Consensus
+    GameIds.CONFESS_CAP -> "🤥" // 2. Confession or Cap
+    GameIds.POISON_PITCH -> "💀" // 3. Poison Pitch
+    GameIds.FILLIN -> "✍️" // 4. Fill-In Finisher
+    GameIds.RED_FLAG -> "🚩" // 5. Red Flag Rally
+    GameIds.HOTSEAT_IMP -> "🎭" // 6. Hot Seat Imposter
+    GameIds.TEXT_TRAP -> "📱" // 7. Text Thread Trap
+    GameIds.TABOO -> "⏱️" // 8. Taboo Timer
+    GameIds.UNIFYING_THEORY -> "📐" // 9. The Unifying Theory
+    GameIds.TITLE_FIGHT -> "🥊" // 10. Title Fight
+    GameIds.ALIBI -> "🕵️" // 11. Alibi Drop
+    GameIds.REALITY_CHECK -> "🪞" // 12. Reality Check
+    GameIds.SCATTER -> "💣" // 13. Scatterblast
+    GameIds.OVER_UNDER -> "📉" // 14. Over / Under
     else -> "🎮"
 }

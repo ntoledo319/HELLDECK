@@ -13,13 +13,13 @@ import com.helldeck.ui.state.RoundState
 fun TabooGuessRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var guess by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Guess the word", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(16.dp))
@@ -28,7 +28,7 @@ fun TabooGuessRenderer(
             value = guess,
             onValueChange = { guess = it },
             label = { Text("Your guess") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -38,7 +38,7 @@ fun TabooGuessRenderer(
                 onEvent(RoundEvent.SubmitTabooGuess(guess))
                 guess = ""
             },
-            enabled = guess.isNotBlank()
+            enabled = guess.isNotBlank(),
         ) {
             Text("Submit Guess")
         }

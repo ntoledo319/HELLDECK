@@ -2,23 +2,23 @@ package com.helldeck.audio
 
 import android.content.Context
 import android.media.AudioAttributes
+import android.media.AudioManager
 import android.media.SoundPool
 import android.media.ToneGenerator
-import android.media.AudioManager
 import com.helldeck.utils.Logger
 
 /**
  * Game sounds for enhancing player feedback
  */
 enum class GameSound {
-    CARD_DRAW,      // Soft "whoosh" when new card appears
-    LOL_RATING,     // Light applause for LOL rating
-    MEH_RATING,     // Neutral tone for MEH rating
-    TRASH_RATING,   // Buzzer for TRASH rating
-    ROUND_WIN,      // Fanfare for winning a round
-    MILESTONE,      // Special sound for milestone achievements
-    BUTTON_PRESS,   // Subtle feedback for button interactions
-    TIMER_TICK      // Countdown timer tick
+    CARD_DRAW, // Soft "whoosh" when new card appears
+    LOL_RATING, // Light applause for LOL rating
+    MEH_RATING, // Neutral tone for MEH rating
+    TRASH_RATING, // Buzzer for TRASH rating
+    ROUND_WIN, // Fanfare for winning a round
+    MILESTONE, // Special sound for milestone achievements
+    BUTTON_PRESS, // Subtle feedback for button interactions
+    TIMER_TICK, // Countdown timer tick
 }
 
 /**

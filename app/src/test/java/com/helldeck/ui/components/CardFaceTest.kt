@@ -2,13 +2,13 @@ package com.helldeck.ui.components
 
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.helldeck.ui.CardFace
 import com.helldeck.ui.HelldeckTheme
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.robolectric.annotation.Config
 
 /**
@@ -28,7 +28,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Test Card Title",
-                    subtitle = null
+                    subtitle = null,
                 )
             }
         }
@@ -46,7 +46,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Test Title",
-                    subtitle = "Test Subtitle"
+                    subtitle = "Test Subtitle",
                 )
             }
         }
@@ -68,7 +68,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Clickable Card",
-                    onClick = { clicked = true }
+                    onClick = { clicked = true },
                 )
             }
         }
@@ -90,7 +90,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Non-Clickable Card",
-                    onClick = null
+                    onClick = null,
                 )
             }
         }
@@ -108,7 +108,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Card with 🚀 emojis 🌟 in title",
-                    subtitle = "And 🎯 emojis 🎲 in subtitle"
+                    subtitle = "And 🎯 emojis 🎲 in subtitle",
                 )
             }
         }
@@ -129,7 +129,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Spécial Çharácters Ñ Title",
-                    subtitle = "Sübtítlé wíth áccénts"
+                    subtitle = "Sübtítlé wíth áccénts",
                 )
             }
         }
@@ -153,7 +153,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = longTitle,
-                    subtitle = "Short subtitle"
+                    subtitle = "Short subtitle",
                 )
             }
         }
@@ -174,7 +174,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Short title",
-                    subtitle = longSubtitle
+                    subtitle = longSubtitle,
                 )
             }
         }
@@ -192,7 +192,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Numbers 123456789",
-                    subtitle = "Decimals 123.456"
+                    subtitle = "Decimals 123.456",
                 )
             }
         }
@@ -213,7 +213,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Ünïcödé Tëxt 日本語",
-                    subtitle = "العربية עברית"
+                    subtitle = "العربية עברית",
                 )
             }
         }
@@ -234,7 +234,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Math ∑∆π∞",
-                    subtitle = "More √∫∂"
+                    subtitle = "More √∫∂",
                 )
             }
         }
@@ -255,7 +255,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Chess ♔♕♖",
-                    subtitle = "More ♗♘♙"
+                    subtitle = "More ♗♘♙",
                 )
             }
         }
@@ -276,7 +276,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Cards ♠♥♦♣",
-                    subtitle = "Joker 🃏"
+                    subtitle = "Joker 🃏",
                 )
             }
         }
@@ -297,7 +297,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "ZWJ 👨‍💻👩‍🎨",
-                    subtitle = "Astronaut 👨‍🚀"
+                    subtitle = "Astronaut 👨‍🚀",
                 )
             }
         }
@@ -318,7 +318,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Skin 👋🏻👋🏼👋🏽",
-                    subtitle = "More 👋🏾👋🏿"
+                    subtitle = "More 👋🏾👋🏿",
                 )
             }
         }
@@ -339,7 +339,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "",
-                    subtitle = "Subtitle only"
+                    subtitle = "Subtitle only",
                 )
             }
         }
@@ -360,7 +360,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Title only",
-                    subtitle = ""
+                    subtitle = "",
                 )
             }
         }
@@ -381,7 +381,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "   ",
-                    subtitle = "   "
+                    subtitle = "   ",
                 )
             }
         }
@@ -399,7 +399,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Title\nwith\nnewlines",
-                    subtitle = "Subtitle\nwith\nnewlines"
+                    subtitle = "Subtitle\nwith\nnewlines",
                 )
             }
         }
@@ -420,7 +420,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Title\twith\ttabs",
-                    subtitle = "Subtitle\twith\ttabs"
+                    subtitle = "Subtitle\twith\ttabs",
                 )
             }
         }
@@ -441,7 +441,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Title <with> <html> tags",
-                    subtitle = "Subtitle & entities"
+                    subtitle = "Subtitle & entities",
                 )
             }
         }
@@ -462,7 +462,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Title \"with\" 'quotes'",
-                    subtitle = "Subtitle `with` backticks"
+                    subtitle = "Subtitle `with` backticks",
                 )
             }
         }
@@ -483,7 +483,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Title https://example.com",
-                    subtitle = "Subtitle ftp://test.org"
+                    subtitle = "Subtitle ftp://test.org",
                 )
             }
         }
@@ -504,7 +504,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Mixed: 🚀 ünícódé 123 \"quotes\" ∑",
-                    subtitle = "More: 🌟 çharácters 456 'quotes' ∆"
+                    subtitle = "More: 🌟 çharácters 456 'quotes' ∆",
                 )
             }
         }
@@ -528,7 +528,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = extremelyLongTitle,
-                    subtitle = "Short subtitle"
+                    subtitle = "Short subtitle",
                 )
             }
         }
@@ -549,7 +549,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Short title",
-                    subtitle = extremelyLongSubtitle
+                    subtitle = extremelyLongSubtitle,
                 )
             }
         }
@@ -568,7 +568,7 @@ class CardFaceTest {
             HelldeckTheme {
                 CardFace(
                     title = "Multi Click Card",
-                    onClick = { clickCount++ }
+                    onClick = { clickCount++ },
                 )
             }
         }

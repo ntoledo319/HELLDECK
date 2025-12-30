@@ -1,6 +1,7 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Share
@@ -13,17 +14,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
+import com.helldeck.engine.Config
 import com.helldeck.engine.GameFeedback
 import com.helldeck.engine.HapticEvent
 import com.helldeck.ui.CardFace
-import com.helldeck.ui.HelldeckVm
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
+import com.helldeck.ui.HelldeckVm
 import com.helldeck.ui.theme.HelldeckSpacing
-import com.helldeck.engine.Config
 import kotlinx.coroutines.launch
-import androidx.compose.foundation.shape.RoundedCornerShape
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -62,7 +62,13 @@ fun FeedbackScene(vm: HelldeckVm) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("FEEDBACK", style = MaterialTheme.typography.titleMedium, fontWeight = androidx.compose.ui.text.font.FontWeight.Black) },
+                title = {
+                    Text(
+                        "FEEDBACK",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Black,
+                    )
+                },
                 navigationIcon = { TextButton(onClick = { vm.goBack() }) { Text("Back") } },
                 actions = {
                     // Share card as image
@@ -76,15 +82,15 @@ fun FeedbackScene(vm: HelldeckVm) {
                                     context = context,
                                     cardText = card.text,
                                     gameName = game.title,
-                                    playerName = player?.name
+                                    playerName = player?.name,
                                 )
                             }
-                        }
+                        },
                     ) {
                         Icon(
                             Icons.Filled.Share,
                             contentDescription = "Share card",
-                            tint = MaterialTheme.colorScheme.onSurface
+                            tint = MaterialTheme.colorScheme.onSurface,
                         )
                     }
 
@@ -93,27 +99,31 @@ fun FeedbackScene(vm: HelldeckVm) {
                         onClick = {
                             scope.launch {
                                 isFavorited = vm.toggleFavorite()
-                                GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
+                                GameFeedback.triggerFeedback(
+                                    context,
+                                    HapticEvent.VOTE_CONFIRM,
+                                    useHaptics = hapticsEnabled,
+                                )
                             }
-                        }
+                        },
                     ) {
                         Icon(
                             if (isFavorited) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                             contentDescription = if (isFavorited) "Remove from favorites" else "Add to favorites",
-                            tint = if (isFavorited) HelldeckColors.Lol else MaterialTheme.colorScheme.onSurface
+                            tint = if (isFavorited) HelldeckColors.Lol else MaterialTheme.colorScheme.onSurface,
                         )
                     }
 
                     TextButton(onClick = { vm.goHome() }) { Text("Home") }
-                }
+                },
             )
-        }
+        },
     ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             CardFace(
                 title = roundState?.filledCard?.text ?: (vm.currentCard?.text ?: "Rate that card"),
@@ -121,7 +131,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
-                    .padding(HelldeckSpacing.Medium.dp)
+                    .padding(HelldeckSpacing.Medium.dp),
             )
 
             // Optional rating buttons (non-blocking)
@@ -129,7 +139,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 text = "Rate this card (optional)",
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(bottom = 8.dp)
+                modifier = Modifier.padding(bottom = 8.dp),
             )
 
             RatingRail(
@@ -150,7 +160,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = HelldeckSpacing.Large.dp)
+                    .padding(horizontal = HelldeckSpacing.Large.dp),
             )
 
             // Undo button (appears after rating)
@@ -160,12 +170,12 @@ fun FeedbackScene(vm: HelldeckVm) {
                         vm.undoLastRating()
                         GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
                     },
-                    modifier = Modifier.padding(top = 4.dp)
+                    modifier = Modifier.padding(top = 4.dp),
                 ) {
                     Text(
                         text = "↶ UNDO LAST RATING",
                         style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary
+                        color = MaterialTheme.colorScheme.primary,
                     )
                 }
             }
@@ -181,8 +191,8 @@ fun FeedbackScene(vm: HelldeckVm) {
                         .height(HelldeckHeights.Button.dp)
                         .padding(horizontal = HelldeckSpacing.Large.dp),
                     colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = HelldeckColors.colorPrimary
-                    )
+                        contentColor = HelldeckColors.colorPrimary,
+                    ),
                 ) {
                     Text(text = "🔄 REPLAY THIS CARD", style = MaterialTheme.typography.labelMedium)
                 }
@@ -195,14 +205,14 @@ fun FeedbackScene(vm: HelldeckVm) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = HelldeckSpacing.Large.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
                 // Skip button (instant advance)
                 OutlinedButton(
                     onClick = { scope.launch { vm.commitFeedbackAndNext() } },
                     modifier = Modifier
                         .weight(1f)
-                        .height(HelldeckHeights.Button.dp)
+                        .height(HelldeckHeights.Button.dp),
                 ) {
                     Text(text = "SKIP", style = MaterialTheme.typography.labelLarge)
                 }
@@ -214,13 +224,13 @@ fun FeedbackScene(vm: HelldeckVm) {
                         .weight(1f)
                         .height(HelldeckHeights.Button.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = HelldeckColors.colorSecondary
-                    )
+                        containerColor = HelldeckColors.colorSecondary,
+                    ),
                 ) {
                     Text(
                         text = if (secondsRemaining > 0) "NEXT ($secondsRemaining)" else "NEXT",
                         style = MaterialTheme.typography.labelLarge,
-                        color = HelldeckColors.Black
+                        color = HelldeckColors.Black,
                     )
                 }
             }
@@ -230,7 +240,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 text = "Auto-advancing in ${secondsRemaining}s • Tap SKIP to go faster",
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
             )
         }
     }
@@ -241,33 +251,33 @@ private fun RatingRail(
     onLol: () -> Unit,
     onMeh: () -> Unit,
     onTrash: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         RatingButton(
             emoji = "😂",
             label = "LOL",
             color = HelldeckColors.Lol,
             onClick = onLol,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
         RatingButton(
             emoji = "😐",
             label = "MEH",
             color = HelldeckColors.Meh,
             onClick = onMeh,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
         RatingButton(
             emoji = "🚮",
             label = "TRASH",
             color = HelldeckColors.Trash,
             onClick = onTrash,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
     }
 }
@@ -278,13 +288,13 @@ private fun RatingButton(
     label: String,
     color: androidx.compose.ui.graphics.Color,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Button(
         onClick = onClick,
         modifier = modifier.height(84.dp),
         shape = RoundedCornerShape(HelldeckRadius.Medium),
-        colors = ButtonDefaults.buttonColors(containerColor = color)
+        colors = ButtonDefaults.buttonColors(containerColor = color),
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(text = emoji, style = MaterialTheme.typography.headlineLarge)

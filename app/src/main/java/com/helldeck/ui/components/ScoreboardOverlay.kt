@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.content.model.Player
-import com.helldeck.ui.components.HelldeckColors
 import kotlinx.coroutines.delay
 
 /**
@@ -31,24 +30,24 @@ private fun EnhancedPodiumCard(
     position: Int,
     height: Dp,
     isWinner: Boolean = false,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var visible by remember { mutableStateOf(false) }
-    
+
     LaunchedEffect(Unit) {
         delay(200)
         visible = true
     }
-    
+
     AnimatedVisibility(
         visible = visible,
         enter = fadeIn(
-            animationSpec = tween(400, delayMillis = if (isWinner) 0 else 200)
+            animationSpec = tween(400, delayMillis = if (isWinner) 0 else 200),
         ) + slideInVertically(
             animationSpec = spring(dampingRatio = 0.7f),
-            initialOffsetY = { it / 2 }
+            initialOffsetY = { it / 2 },
         ),
-        modifier = modifier
+        modifier = modifier,
     ) {
         Card(
             modifier = Modifier
@@ -56,7 +55,7 @@ private fun EnhancedPodiumCard(
                 .height(height)
                 .shadow(
                     elevation = if (isWinner) 12.dp else 8.dp,
-                    shape = RoundedCornerShape(8.dp)
+                    shape = RoundedCornerShape(8.dp),
                 ),
             colors = CardDefaults.cardColors(
                 containerColor = when (position) {
@@ -64,13 +63,13 @@ private fun EnhancedPodiumCard(
                     2 -> HelldeckColors.LightGray.copy(alpha = 0.2f)
                     3 -> HelldeckColors.Orange.copy(alpha = 0.2f)
                     else -> HelldeckColors.MediumGray
-                }
-            )
+                },
+            ),
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
             ) {
                 // Position badge
                 Surface(
@@ -80,7 +79,7 @@ private fun EnhancedPodiumCard(
                         3 -> Color.DarkGray
                         else -> HelldeckColors.MediumGray
                     },
-                    shape = RoundedCornerShape(16.dp)
+                    shape = RoundedCornerShape(16.dp),
                 ) {
                     Text(
                         text = when (position) {
@@ -90,33 +89,33 @@ private fun EnhancedPodiumCard(
                             else -> position.toString()
                         },
                         style = MaterialTheme.typography.headlineMedium,
-                        modifier = Modifier.padding(8.dp)
+                        modifier = Modifier.padding(8.dp),
                     )
                 }
-                
+
                 Spacer(modifier = Modifier.height(4.dp))
-                
+
                 // Player info
                 Text(
                     text = player.avatar,
                     style = MaterialTheme.typography.displayMedium,
-                    modifier = Modifier.padding(horizontal = 8.dp)
+                    modifier = Modifier.padding(horizontal = 8.dp),
                 )
-                
+
                 Text(
                     text = player.name,
                     style = MaterialTheme.typography.titleMedium.copy(
-                        fontWeight = if (isWinner) FontWeight.ExtraBold else FontWeight.Bold
+                        fontWeight = if (isWinner) FontWeight.ExtraBold else FontWeight.Bold,
                     ),
                     color = if (isWinner) HelldeckColors.White else HelldeckColors.LightGray,
-                    modifier = Modifier.padding(horizontal = 8.dp)
+                    modifier = Modifier.padding(horizontal = 8.dp),
                 )
-                
+
                 Text(
                     text = "${player.sessionPoints} pts",
                     style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
                     color = if (isWinner) HelldeckColors.White else HelldeckColors.LightGray,
-                    modifier = Modifier.padding(horizontal = 8.dp)
+                    modifier = Modifier.padding(horizontal = 8.dp),
                 )
             }
         }
@@ -129,20 +128,20 @@ private fun EnhancedPodiumCard(
 @Composable
 private fun EnhancedPlayerScoreCard(
     player: Player,
-    position: Int
+    position: Int,
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp),
         colors = CardDefaults.cardColors(
-            containerColor = HelldeckColors.DarkGray
+            containerColor = HelldeckColors.DarkGray,
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
         Row(
             modifier = Modifier.padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             // Position
             Text(
@@ -154,24 +153,24 @@ private fun EnhancedPlayerScoreCard(
                     3 -> Color.DarkGray
                     else -> HelldeckColors.MediumGray
                 },
-                modifier = Modifier.width(40.dp)
+                modifier = Modifier.width(40.dp),
             )
-            
+
             Spacer(modifier = Modifier.width(16.dp))
-            
+
             // Player info
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = player.avatar,
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
                     text = player.name,
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                    color = HelldeckColors.White
+                    color = HelldeckColors.White,
                 )
             }
-            
+
             // Score
             Text(
                 text = "${player.sessionPoints}",
@@ -182,7 +181,7 @@ private fun EnhancedPlayerScoreCard(
                     3 -> Color.DarkGray
                     else -> HelldeckColors.MediumGray
                 },
-                modifier = Modifier.width(80.dp)
+                modifier = Modifier.width(80.dp),
             )
         }
     }
@@ -194,11 +193,11 @@ private fun EnhancedPlayerScoreCard(
 @Composable
 fun ScoreboardOverlay(
     players: List<Player>,
-    onClose: () -> Unit
+    onClose: () -> Unit,
 ) {
     val sorted = players.sortedByDescending { it.sessionPoints }
     var visible by remember { mutableStateOf(false) }
-    
+
     LaunchedEffect(Unit) {
         delay(100)
         visible = true
@@ -206,7 +205,7 @@ fun ScoreboardOverlay(
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = Color.Black.copy(alpha = 0.9f)
+        color = Color.Black.copy(alpha = 0.9f),
     ) {
         Box(
             modifier = Modifier
@@ -216,36 +215,36 @@ fun ScoreboardOverlay(
                         colors = listOf(
                             HelldeckColors.Yellow.copy(alpha = 0.1f),
                             Color.Black.copy(alpha = 0.7f),
-                            Color.Black.copy(alpha = 0.9f)
+                            Color.Black.copy(alpha = 0.9f),
                         ),
-                        radius = 1200f
-                    )
+                        radius = 1200f,
+                    ),
                 ),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             AnimatedVisibility(
                 visible = visible,
                 enter = fadeIn(
-                    animationSpec = tween(400)
+                    animationSpec = tween(400),
                 ) + slideInVertically(
                     animationSpec = spring(
                         dampingRatio = 0.7f,
-                        stiffness = Spring.StiffnessMedium
+                        stiffness = Spring.StiffnessMedium,
                     ),
-                    initialOffsetY = { it / 4 }
+                    initialOffsetY = { it / 4 },
                 ),
                 modifier = Modifier
                     .fillMaxWidth(0.92f)
-                    .fillMaxHeight(0.92f)
+                    .fillMaxHeight(0.92f),
             ) {
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     // Header with pulsing glow
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
                             text = "🏆 SCOREBOARD",
@@ -257,26 +256,26 @@ fun ScoreboardOverlay(
                                         HelldeckColors.Yellow,
                                         HelldeckColors.Yellow,
                                         HelldeckColors.Orange,
-                                        HelldeckColors.Yellow
-                                    )
+                                        HelldeckColors.Yellow,
+                                    ),
                                 ),
                                 shadow = androidx.compose.ui.graphics.Shadow(
                                     color = HelldeckColors.Yellow.copy(alpha = 0.6f),
                                     offset = androidx.compose.ui.geometry.Offset(0f, 2f),
-                                    blurRadius = 12f
-                                )
-                            )
+                                    blurRadius = 12f,
+                                ),
+                            ),
                         )
 
                         TextButton(
                             onClick = onClose,
                             colors = ButtonDefaults.textButtonColors(
-                                contentColor = HelldeckColors.Yellow
-                            )
+                                contentColor = HelldeckColors.Yellow,
+                            ),
                         ) {
                             Text(
                                 "✕ CLOSE",
-                                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                             )
                         }
                     }
@@ -287,7 +286,7 @@ fun ScoreboardOverlay(
                     if (sorted.isNotEmpty()) {
                         EnhancedPodiumSection(
                             topPlayers = sorted.take(3),
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         )
 
                         Spacer(modifier = Modifier.height(20.dp))
@@ -297,13 +296,13 @@ fun ScoreboardOverlay(
                     LazyColumn(
                         modifier = Modifier.fillMaxWidth(),
                         contentPadding = PaddingValues(vertical = 4.dp),
-                        verticalArrangement = Arrangement.spacedBy(6.dp)
+                        verticalArrangement = Arrangement.spacedBy(6.dp),
                     ) {
                         items(sorted.drop(3)) { player ->
                             val position = sorted.indexOf(player) + 1
                             EnhancedPlayerScoreCard(
                                 player = player,
-                                position = position
+                                position = position,
                             )
                         }
                     }
@@ -313,13 +312,13 @@ fun ScoreboardOverlay(
                     // Footer with subtle glow
                     Surface(
                         color = HelldeckColors.Yellow.copy(alpha = 0.1f),
-                        shape = RoundedCornerShape(12.dp)
+                        shape = RoundedCornerShape(12.dp),
                     ) {
                         Text(
                             text = "🎯 Last place picks next game",
                             style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
                             color = HelldeckColors.Yellow,
-                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                         )
                     }
                 }
@@ -331,36 +330,36 @@ fun ScoreboardOverlay(
 @Composable
 private fun EnhancedPodiumSection(
     topPlayers: List<Player>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var visible by remember { mutableStateOf(false) }
-    
+
     LaunchedEffect(Unit) {
         delay(200)
         visible = true
     }
-    
+
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.Bottom
+        verticalAlignment = Alignment.Bottom,
     ) {
         // Second place with delayed entry
         if (topPlayers.size > 1) {
             AnimatedVisibility(
                 visible = visible,
                 enter = fadeIn(
-                    animationSpec = tween(400, delayMillis = 200)
+                    animationSpec = tween(400, delayMillis = 200),
                 ) + slideInVertically(
                     animationSpec = spring(dampingRatio = 0.7f),
-                    initialOffsetY = { it / 2 }
-                )
+                    initialOffsetY = { it / 2 },
+                ),
             ) {
                 EnhancedPodiumCard(
                     player = topPlayers[1],
                     position = 2,
                     height = 130.dp,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
             }
         }
@@ -372,21 +371,21 @@ private fun EnhancedPodiumSection(
             AnimatedVisibility(
                 visible = visible,
                 enter = fadeIn(
-                    animationSpec = tween(400)
+                    animationSpec = tween(400),
                 ) + slideInVertically(
                     animationSpec = spring(dampingRatio = 0.6f),
-                    initialOffsetY = { it / 2 }
+                    initialOffsetY = { it / 2 },
                 ) + scaleIn(
                     animationSpec = spring(dampingRatio = 0.6f),
-                    initialScale = 0.8f
-                )
+                    initialScale = 0.8f,
+                ),
             ) {
                 EnhancedPodiumCard(
                     player = topPlayers[0],
                     position = 1,
                     height = 170.dp,
                     isWinner = true,
-                    modifier = Modifier.weight(1.1f)
+                    modifier = Modifier.weight(1.1f),
                 )
             }
         }
@@ -398,17 +397,17 @@ private fun EnhancedPodiumSection(
             AnimatedVisibility(
                 visible = visible,
                 enter = fadeIn(
-                    animationSpec = tween(400, delayMillis = 400)
+                    animationSpec = tween(400, delayMillis = 400),
                 ) + slideInVertically(
                     animationSpec = spring(dampingRatio = 0.7f),
-                    initialOffsetY = { it / 2 }
-                )
+                    initialOffsetY = { it / 2 },
+                ),
             ) {
                 EnhancedPodiumCard(
                     player = topPlayers[2],
                     position = 3,
                     height = 130.dp,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
             }
         }

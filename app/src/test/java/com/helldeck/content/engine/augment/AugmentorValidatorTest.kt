@@ -27,4 +27,3 @@ class AugmentorValidatorTest {
         assertTrue(v.accepts("has badword here", maxWords = 10, spice = 3))
     }
 }
-

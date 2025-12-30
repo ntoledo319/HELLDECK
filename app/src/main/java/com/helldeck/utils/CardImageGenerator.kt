@@ -6,7 +6,6 @@ import android.graphics.Canvas
 import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,7 +40,7 @@ object CardImageGenerator {
         context: Context,
         cardText: String,
         gameName: String,
-        playerName: String? = null
+        playerName: String? = null,
     ): Uri? {
         return try {
             // Create bitmap (720x1280 for good quality)
@@ -57,7 +56,7 @@ object CardImageGenerator {
                         CardImageContent(
                             cardText = cardText,
                             gameName = gameName,
-                            playerName = playerName
+                            playerName = playerName,
                         )
                     }
                 }
@@ -66,7 +65,7 @@ object CardImageGenerator {
             // Measure and layout the view
             composeView.measure(
                 android.view.View.MeasureSpec.makeMeasureSpec(width, android.view.View.MeasureSpec.EXACTLY),
-                android.view.View.MeasureSpec.makeMeasureSpec(height, android.view.View.MeasureSpec.EXACTLY)
+                android.view.View.MeasureSpec.makeMeasureSpec(height, android.view.View.MeasureSpec.EXACTLY),
             )
             composeView.layout(0, 0, width, height)
 
@@ -88,7 +87,7 @@ object CardImageGenerator {
             FileProvider.getUriForFile(
                 context,
                 "${context.packageName}.fileprovider",
-                imageFile
+                imageFile,
             )
         } catch (e: Exception) {
             Logger.e("Failed to generate card image", e)
@@ -104,7 +103,7 @@ object CardImageGenerator {
 private fun CardImageContent(
     cardText: String,
     gameName: String,
-    playerName: String?
+    playerName: String?,
 ) {
     Box(
         modifier = Modifier
@@ -113,17 +112,17 @@ private fun CardImageContent(
                 androidx.compose.ui.graphics.Brush.verticalGradient(
                     listOf(
                         Color(0xFF1A1A2E),
-                        Color(0xFF16213E)
-                    )
-                )
+                        Color(0xFF16213E),
+                    ),
+                ),
             )
             .padding(32.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(24.dp),
         ) {
             // Game name badge
             Text(
@@ -131,7 +130,7 @@ private fun CardImageContent(
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Black,
                 color = HelldeckColors.colorPrimary,
-                letterSpacing = 2.sp
+                letterSpacing = 2.sp,
             )
 
             // Card text (main content)
@@ -142,7 +141,7 @@ private fun CardImageContent(
                 color = Color.White,
                 textAlign = TextAlign.Center,
                 lineHeight = 40.sp,
-                modifier = Modifier.padding(horizontal = 24.dp)
+                modifier = Modifier.padding(horizontal = 24.dp),
             )
 
             Spacer(modifier = Modifier.weight(1f))
@@ -153,7 +152,7 @@ private fun CardImageContent(
                     text = "$it's turn",
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Medium,
-                    color = Color.White.copy(alpha = 0.7f)
+                    color = Color.White.copy(alpha = 0.7f),
                 )
             }
 
@@ -163,7 +162,7 @@ private fun CardImageContent(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Black,
                 color = HelldeckColors.colorSecondary,
-                letterSpacing = 4.sp
+                letterSpacing = 4.sp,
             )
         }
     }

@@ -19,7 +19,7 @@ object CardQualityInspector {
         TOO_LONG,
         EXCESS_REPEAT,
         SLOT_MISSING_IN_TEXT,
-        OPTIONS_UNUSABLE
+        OPTIONS_UNUSABLE,
     }
 
     private val wordRegex = Regex("[\\p{L}\\p{N}'][\\p{L}\\p{N}'-]*")
@@ -92,6 +92,7 @@ object CardQualityInspector {
             !options.optionA.equals(options.optionB, ignoreCase = true)
         GameOptions.TrueFalse,
         GameOptions.SmashPass,
-        GameOptions.None -> true
+        GameOptions.None,
+        -> true
     }
 }

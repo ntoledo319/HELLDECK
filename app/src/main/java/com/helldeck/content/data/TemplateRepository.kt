@@ -2,8 +2,8 @@ package com.helldeck.content.data
 
 import android.content.res.AssetManager
 import com.helldeck.content.model.Template
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.json.Json
 import java.io.BufferedReader
 
 class TemplateRepository(private val assets: AssetManager) {

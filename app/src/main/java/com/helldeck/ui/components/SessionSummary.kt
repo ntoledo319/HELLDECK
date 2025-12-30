@@ -1,20 +1,16 @@
 package com.helldeck.ui.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helldeck.analytics.MetricsTracker
@@ -22,9 +18,6 @@ import com.helldeck.data.SessionAnalytics
 import com.helldeck.engine.GameMetadata
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckRadius
-import com.helldeck.ui.theme.HelldeckSpacing
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -45,7 +38,7 @@ fun SessionSummaryDialog(
     sessionId: String,
     metricsTracker: MetricsTracker,
     onDismiss: () -> Unit,
-    onExport: (String) -> Unit
+    onExport: (String) -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     var analytics by remember { mutableStateOf<SessionAnalytics?>(null) }
@@ -62,12 +55,12 @@ fun SessionSummaryDialog(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = "Session Complete!",
                     style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Black
+                    fontWeight = FontWeight.Black,
                 )
                 IconButton(onClick = onDismiss) {
                     Icon(Icons.Default.Close, contentDescription = "Close")
@@ -80,7 +73,7 @@ fun SessionSummaryDialog(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     CircularProgressIndicator()
                 }
@@ -98,7 +91,7 @@ fun SessionSummaryDialog(
                             onExport(generateSummaryText(summary))
                         }
                     },
-                    enabled = analytics != null
+                    enabled = analytics != null,
                 ) {
                     Icon(Icons.Default.Share, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(4.dp))
@@ -108,7 +101,7 @@ fun SessionSummaryDialog(
                     Text("Done")
                 }
             }
-        }
+        },
     )
 }
 
@@ -118,7 +111,7 @@ private fun SessionSummaryContent(analytics: SessionAnalytics) {
         modifier = Modifier
             .fillMaxWidth()
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         // Duration and rounds
         SummaryCard(
@@ -126,8 +119,8 @@ private fun SessionSummaryContent(analytics: SessionAnalytics) {
             items = listOf(
                 "Duration" to formatDuration(analytics.duration),
                 "Rounds played" to analytics.totalRounds.toString(),
-                "Players" to analytics.participantCount.toString()
-            )
+                "Players" to analytics.participantCount.toString(),
+            ),
         )
 
         // Reactions and laughs
@@ -136,18 +129,18 @@ private fun SessionSummaryContent(analytics: SessionAnalytics) {
             items = listOf(
                 "Total reactions" to analytics.totalReactions.toString(),
                 "Laugh score" to "${(analytics.averageLaughScore * 100).toInt()}%",
-                "Heat moments" to "${analytics.heatMoments} rounds 🔥"
-            )
+                "Heat moments" to "${analytics.heatMoments} rounds 🔥",
+            ),
         )
 
-    // Top game
-    analytics.topGame?.let { (gameId, count) ->
+        // Top game
+        analytics.topGame?.let { (gameId, count) ->
             val gameName = GameMetadata.getGameMetadata(gameId)?.title ?: gameId
             SummaryCard(
                 title = "Most Played",
                 items = listOf(
-                    gameName to "$count rounds"
-                )
+                    gameName to "$count rounds",
+                ),
             )
         }
 
@@ -157,8 +150,8 @@ private fun SessionSummaryContent(analytics: SessionAnalytics) {
                 title = "Round Timings",
                 items = listOf(
                     "Fastest round" to "${analytics.shortestRound / 1000}s",
-                    "Longest round" to "${analytics.longestRound / 1000}s"
-                )
+                    "Longest round" to "${analytics.longestRound / 1000}s",
+                ),
             )
         }
     }
@@ -167,21 +160,21 @@ private fun SessionSummaryContent(analytics: SessionAnalytics) {
 @Composable
 private fun SummaryCard(
     title: String,
-    items: List<Pair<String, String>>
+    items: List<Pair<String, String>>,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
-        shape = RoundedCornerShape(HelldeckRadius.Medium)
+        shape = RoundedCornerShape(HelldeckRadius.Medium),
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
-                color = HelldeckColors.colorPrimary
+                color = HelldeckColors.colorPrimary,
             )
             Spacer(modifier = Modifier.height(12.dp))
             items.forEach { (label, value) ->
@@ -189,17 +182,17 @@ private fun SummaryCard(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 4.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(
                         text = label,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     Text(
                         text = value,
                         style = MaterialTheme.typography.bodyMedium,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
                     )
                 }
             }

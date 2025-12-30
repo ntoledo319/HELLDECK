@@ -7,6 +7,7 @@ Usage:
 
 Writes docs/quality_ai_summary.md
 """
+
 from __future__ import annotations
 
 import argparse
@@ -38,7 +39,9 @@ def main() -> int:
         print(f"[WARN] Input directory not found: {IN_DIR}")
         return 0
 
-    per_game = defaultdict(lambda: {"humor": [], "sense": [], "understand": [], "n_rows": 0, "n_ai": 0})
+    per_game = defaultdict(
+        lambda: {"humor": [], "sense": [], "understand": [], "n_rows": 0, "n_ai": 0}
+    )
 
     for p in sorted(IN_DIR.glob("quality_*.json")):
         name = p.stem  # quality_<GAME>_<SEED>_<COUNT>
@@ -74,8 +77,10 @@ def main() -> int:
             if u is not None:
                 per_game[game]["understand"].append(u)
 
-    lines = ["# AI Judge Summary (Humor & Sense)\n",
-             "Aggregated from per-game quality JSONs. Values are 0..1 averages; only rows with AI judgments are included.\n"]
+    lines = [
+        "# AI Judge Summary (Humor & Sense)\n",
+        "Aggregated from per-game quality JSONs. Values are 0..1 averages; only rows with AI judgments are included.\n",
+    ]
 
     for game in sorted(per_game.keys()):
         g = per_game[game]
@@ -88,9 +93,21 @@ def main() -> int:
         avg_u = sum(g["understand"]) / len(g["understand"]) if g["understand"] else None
         lines.append(f"## {game}\n")
         lines.append(f"- Rows: {n_rows} | With AI: {n_ai}\n")
-        lines.append(f"- Avg humor01: {avg_h:.3f}\n" if avg_h is not None else "- Avg humor01: (no AI data)\n")
-        lines.append(f"- Avg makesSense01: {avg_s:.3f}\n" if avg_s is not None else "- Avg makesSense01: (no AI data)\n")
-        lines.append(f"- Avg understandable01: {avg_u:.3f}\n\n" if avg_u is not None else "- Avg understandable01: (no AI data)\n\n")
+        lines.append(
+            f"- Avg humor01: {avg_h:.3f}\n"
+            if avg_h is not None
+            else "- Avg humor01: (no AI data)\n"
+        )
+        lines.append(
+            f"- Avg makesSense01: {avg_s:.3f}\n"
+            if avg_s is not None
+            else "- Avg makesSense01: (no AI data)\n"
+        )
+        lines.append(
+            f"- Avg understandable01: {avg_u:.3f}\n\n"
+            if avg_u is not None
+            else "- Avg understandable01: (no AI data)\n\n"
+        )
 
     OUT_MD.write_text("\n".join(lines), encoding="utf-8")
     print(f"[OK] Wrote {OUT_MD}")

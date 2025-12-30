@@ -11,11 +11,11 @@ import com.helldeck.ui.vm.GameNightViewModel
 @Composable
 fun HouseRulesScreen(
     vm: GameNightViewModel,
-    onClose: () -> Unit = {}
+    onClose: () -> Unit = {},
 ) {
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("House Rules", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
@@ -23,7 +23,7 @@ fun HouseRulesScreen(
         Row(
             modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text("Spicy Mode")
             Switch(checked = vm.spicy, onCheckedChange = { vm.spicy = it })
@@ -34,7 +34,7 @@ fun HouseRulesScreen(
             Slider(
                 value = vm.heatThreshold,
                 onValueChange = { vm.heatThreshold = it },
-                valueRange = 0f..100f
+                valueRange = 0f..100f,
             )
         }
 

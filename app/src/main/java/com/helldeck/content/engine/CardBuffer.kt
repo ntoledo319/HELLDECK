@@ -28,7 +28,7 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 class CardBuffer(
     private val engine: GameEngine,
-    private val bufferSize: Int = 3
+    private val bufferSize: Int = 3,
 ) {
     private val buffer = ArrayDeque<GameEngine.Result>(bufferSize)
     private val mutex = Mutex()
@@ -94,7 +94,9 @@ class CardBuffer(
             fromBuffer
         } else {
             cacheMisses.incrementAndGet()
-            Logger.w("CardBuffer: Cache MISS - generating on-demand (${cacheHits.get()} hits, ${cacheMisses.get()} misses)")
+            Logger.w(
+                "CardBuffer: Cache MISS - generating on-demand (${cacheHits.get()} hits, ${cacheMisses.get()} misses)",
+            )
 
             // Fallback: generate immediately if buffer empty
             currentRequest?.let { request ->
@@ -124,7 +126,9 @@ class CardBuffer(
      * Call this when ending a game session.
      */
     fun stop() {
-        Logger.d("CardBuffer: Stopping (generated ${generationCount.get()} cards, ${cacheHits.get()} hits, ${cacheMisses.get()} misses)")
+        Logger.d(
+            "CardBuffer: Stopping (generated ${generationCount.get()} cards, ${cacheHits.get()} hits, ${cacheMisses.get()} misses)",
+        )
         isActive = false
         bufferingJob?.cancel()
         bufferingJob = null
@@ -148,7 +152,9 @@ class CardBuffer(
             cacheMisses = cacheMisses.get(),
             hitRate = if (cacheHits.get() + cacheMisses.get() > 0) {
                 cacheHits.get().toFloat() / (cacheHits.get() + cacheMisses.get())
-            } else 0f
+            } else {
+                0f
+            },
         )
     }
 
@@ -158,7 +164,7 @@ class CardBuffer(
         val totalGenerated: Int,
         val cacheHits: Int,
         val cacheMisses: Int,
-        val hitRate: Float
+        val hitRate: Float,
     ) {
         override fun toString(): String {
             return "BufferStats(buffer=$bufferSize/$maxBufferSize, generated=$totalGenerated, hits=$cacheHits, misses=$cacheMisses, hitRate=${(hitRate * 100).toInt()}%)"

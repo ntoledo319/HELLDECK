@@ -11,8 +11,8 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.robolectric.annotation.Config as RoboConfig
 import java.io.File
+import org.robolectric.annotation.Config as RoboConfig
 
 @RunWith(AndroidJUnit4::class)
 @RoboConfig(sdk = [33])
@@ -44,9 +44,9 @@ class CardAuditTest {
         val relatability: Double? = null,
         val cringeFactor: Double? = null,
         val benignViolation: Double? = null,
-        val genMs: Long = 0L
+        val genMs: Long = 0L,
     )
-    
+
     @Serializable
     data class BlueprintStats(
         val blueprintId: String,
@@ -55,9 +55,9 @@ class CardAuditTest {
         val failed: Int,
         val passRate: Double,
         val avgPairScore: Double,
-        val avgWordCount: Double
+        val avgWordCount: Double,
     )
-    
+
     @Serializable
     data class AuditSummary(
         val game: String,
@@ -71,13 +71,13 @@ class CardAuditTest {
         // Added: performance + spice distribution
         val avgGenMs: Double,
         val p95GenMs: Double,
-        val pctSpiceGte3: Double
+        val pctSpiceGte3: Double,
     )
 
     @Serializable
     data class AuditReport(
         val summary: AuditSummary,
-        val rows: List<AuditRow>
+        val rows: List<AuditRow>,
     )
 
     @Test
@@ -100,10 +100,10 @@ class CardAuditTest {
             val engine = ContentEngineProvider.get(ctx, seed)
             repeat(count) { idx ->
                 val req = GameEngine.Request(
-                    sessionId = "audit_${seed}", // Use same sessionId for all cards to track duplicates
+                    sessionId = "audit_$seed", // Use same sessionId for all cards to track duplicates
                     gameId = game,
                     players = listOf("Jay", "Pip", "Mo"),
-                    spiceMax = spice
+                    spiceMax = spice,
                 )
                 try {
                     val t0 = System.nanoTime()
@@ -154,7 +154,7 @@ class CardAuditTest {
                         relatability = (meta["relatability"] as? Number)?.toDouble(),
                         cringeFactor = (meta["cringeFactor"] as? Number)?.toDouble(),
                         benignViolation = (meta["benignViolation"] as? Number)?.toDouble(),
-                        genMs = ((t1 - t0) / 1_000_000)
+                        genMs = ((t1 - t0) / 1_000_000),
                     )
                     rows += row
                 } catch (e: Exception) {
@@ -184,7 +184,7 @@ class CardAuditTest {
                         relatability = null,
                         cringeFactor = null,
                         benignViolation = null,
-                        genMs = 0
+                        genMs = 0,
                     )
                 }
             }
@@ -202,10 +202,10 @@ class CardAuditTest {
                 failed = failed,
                 passRate = if (bpRows.isNotEmpty()) passed * 100.0 / bpRows.size else 0.0,
                 avgPairScore = bpRows.mapNotNull { it.pairScore }.average().takeIf { !it.isNaN() } ?: 0.0,
-                avgWordCount = bpRows.map { it.wordCount.toDouble() }.average()
+                avgWordCount = bpRows.map { it.wordCount.toDouble() }.average(),
             )
         }.sortedByDescending { it.totalGenerated }
-        
+
         // Analyze failure reasons
         val failureReasons = mutableMapOf<String, Int>()
         rows.forEach { row ->
@@ -216,8 +216,10 @@ class CardAuditTest {
             if (row.repeatRatio > 0.35) failureReasons["high_repetition"] = (failureReasons["high_repetition"] ?: 0) + 1
             if ((row.pairScore ?: 0.0) < 0.0) failureReasons["negative_pair_score"] = (failureReasons["negative_pair_score"] ?: 0) + 1
         }
-        val topFailures = failureReasons.entries.sortedByDescending { it.value }.take(10).associate { it.key to it.value }
-        
+        val topFailures = failureReasons.entries.sortedByDescending { it.value }.take(
+            10,
+        ).associate { it.key to it.value }
+
         // Get worst 20 samples (most issues)
         val worstSamples = rows
             .map { row ->
@@ -227,14 +229,14 @@ class CardAuditTest {
                     row.short,
                     row.long,
                     row.repeatRatio > 0.35,
-                    (row.pairScore ?: 0.0) < 0.0
+                    (row.pairScore ?: 0.0) < 0.0,
                 ).count { it }
                 row to issueCount
             }
             .sortedByDescending { it.second }
             .take(20)
             .map { it.first }
-        
+
         // Create summary
         val totalPassed = rows.count { !it.hasPlaceholders && !it.abEqual && !it.short && !it.long && it.wordCount in 5..32 }
         val genTimes = rows.map { it.genMs.toDouble() }.sorted()
@@ -253,12 +255,12 @@ class CardAuditTest {
             worstSamples = worstSamples,
             avgGenMs = avgGen,
             p95GenMs = p95,
-            pctSpiceGte3 = pctSpicy
+            pctSpiceGte3 = pctSpicy,
         )
-        
+
         // Write under the module's build directory so paths are stable regardless of working dir
         val outDir = File("build/reports/cardlab").apply { mkdirs() }
-        
+
         // Write CSV (enhanced with blueprint ID)
         val csvHeader = "i,game,blueprintId,text,options,generator_v3,spice,humorScore,absurdity,shockValue,relatability,cringeFactor,benignViolation,pairScore,lowPair,slotsCount,wordCount,repeatRatio,short,long,abEqual,hasPlaceholders,genMs\n"
         val csvLines = rows.map { r ->
@@ -266,19 +268,21 @@ class CardAuditTest {
             val safeOptions = r.options.replace('"', '\'').take(200)
             val safeBpId = r.blueprintId.replace('"', '\'')
             val lowPair = r.pairScore?.let { it < 0.0 } ?: false
-            "${r.i},${r.game},\"${safeBpId}\",\"${safeText}\",\"${safeOptions}\",${r.generator_v3},${r.spice},${r.humorScore ?: ""},${r.absurdity ?: ""},${r.shockValue ?: ""},${r.relatability ?: ""},${r.cringeFactor ?: ""},${r.benignViolation ?: ""},${r.pairScore ?: ""},${lowPair},${r.slotsCount},${r.wordCount},${"%.2f".format(r.repeatRatio)},${r.short},${r.long},${r.abEqual},${r.hasPlaceholders},${r.genMs}"
+            "${r.i},${r.game},\"${safeBpId}\",\"${safeText}\",\"${safeOptions}\",${r.generator_v3},${r.spice},${r.humorScore ?: ""},${r.absurdity ?: ""},${r.shockValue ?: ""},${r.relatability ?: ""},${r.cringeFactor ?: ""},${r.benignViolation ?: ""},${r.pairScore ?: ""},$lowPair,${r.slotsCount},${r.wordCount},${"%.2f".format(
+                r.repeatRatio,
+            )},${r.short},${r.long},${r.abEqual},${r.hasPlaceholders},${r.genMs}"
         }
-        File(outDir, "audit_${game}_${seed}_${count}.csv").writeText(csvHeader + csvLines.joinToString("\n"))
+        File(outDir, "audit_${game}_${seed}_$count.csv").writeText(csvHeader + csvLines.joinToString("\n"))
 
         // Write detailed JSON with summary and full rows
         val json = Json { prettyPrint = true }
         val fullReport = AuditReport(summary, rows)
-        File(outDir, "audit_${game}_${seed}_${count}.json").writeText(json.encodeToString(fullReport))
-        
+        File(outDir, "audit_${game}_${seed}_$count.json").writeText(json.encodeToString(fullReport))
+
         // Write simple HTML report
         val htmlReport = buildHtmlReport(summary, game, seed, count)
-        File(outDir, "audit_${game}_${seed}_${count}.html").writeText(htmlReport)
-        
+        File(outDir, "audit_${game}_${seed}_$count.html").writeText(htmlReport)
+
         // Print summary to console
         println("\n═══════════════════════════════════════════════════════════")
         println("Card Audit Report: $game")
@@ -286,7 +290,12 @@ class CardAuditTest {
         println("Total Cards: ${summary.totalCards}")
         println("Passed: ${summary.passedCards} (${String.format("%.1f", summary.passRate)}%)")
         println("Failed: ${summary.failedCards}")
-        println("Avg gen: ${String.format("%.2f", summary.avgGenMs)} ms | p95: ${String.format("%.2f", summary.p95GenMs)} ms")
+        println(
+            "Avg gen: ${String.format(
+                "%.2f",
+                summary.avgGenMs,
+            )} ms | p95: ${String.format("%.2f", summary.p95GenMs)} ms",
+        )
         println("Spice >=3: ${String.format("%.1f", summary.pctSpiceGte3)}%")
         println("\nBlueprint Performance:")
         summary.blueprintStats.take(5).forEach { bp ->
@@ -297,10 +306,10 @@ class CardAuditTest {
             println("  $reason: $count")
         }
         println("═══════════════════════════════════════════════════════════\n")
-        
+
         // No assertions; this is a utility runner producing a report file
     }
-    
+
     private fun buildHtmlReport(summary: AuditSummary, game: String, seed: Long, count: Int): String {
         return """
 <!DOCTYPE html>
@@ -368,7 +377,7 @@ class CardAuditTest {
         </thead>
         <tbody>
             ${summary.blueprintStats.joinToString("") { bp ->
-                """<tr>
+            """<tr>
                     <td><code>${bp.blueprintId}</code></td>
                     <td>${bp.totalGenerated}</td>
                     <td class="pass">${bp.passed}</td>
@@ -377,7 +386,7 @@ class CardAuditTest {
                     <td>${String.format("%.2f", bp.avgPairScore)}</td>
                     <td>${String.format("%.1f", bp.avgWordCount)}</td>
                 </tr>"""
-            }}
+        }}
         </tbody>
     </table>
     
@@ -388,13 +397,13 @@ class CardAuditTest {
         </thead>
         <tbody>
             ${summary.topFailureReasons.entries.joinToString("") { (reason, count) ->
-                val pct = if (summary.totalCards > 0) count * 100.0 / summary.totalCards else 0.0
-                """<tr>
+            val pct = if (summary.totalCards > 0) count * 100.0 / summary.totalCards else 0.0
+            """<tr>
                     <td><code>${reason.replace("_", " ").uppercase()}</code></td>
                     <td class="fail"><strong>$count</strong></td>
                     <td>${String.format("%.1f", pct)}%</td>
                 </tr>"""
-            }}
+        }}
         </tbody>
     </table>
     
@@ -414,8 +423,8 @@ class CardAuditTest {
     <hr style="margin: 40px 0; border: none; border-top: 1px solid #3d3d3d;">
     <p style="text-align: center; color: #666; font-size: 12px;">
         Generated by HELLDECK Card Audit Tool<br>
-        <a href="audit_${game}_${seed}_${count}.csv" style="color: #4CAF50; margin: 0 10px;">Download CSV</a>
-        <a href="audit_${game}_${seed}_${count}.json" style="color: #4CAF50; margin: 0 10px;">Download JSON</a>
+        <a href="audit_${game}_${seed}_$count.csv" style="color: #4CAF50; margin: 0 10px;">Download CSV</a>
+        <a href="audit_${game}_${seed}_$count.json" style="color: #4CAF50; margin: 0 10px;">Download JSON</a>
     </p>
 </body>
 </html>

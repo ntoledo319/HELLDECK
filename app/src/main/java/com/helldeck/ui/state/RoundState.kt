@@ -8,11 +8,11 @@ import com.helldeck.engine.InteractionType
  * Round phase progression
  */
 enum class RoundPhase {
-    INTRO,      // Show card + game title
-    INPUT,      // Collect user input (votes, choices, etc.)
-    REVEAL,     // Show results
-    FEEDBACK,   // LOL/MEH/TRASH rating
-    DONE        // Complete, ready for next round
+    INTRO, // Show card + game title
+    INPUT, // Collect user input (votes, choices, etc.)
+    REVEAL, // Show results
+    FEEDBACK, // LOL/MEH/TRASH rating
+    DONE, // Complete, ready for next round
 }
 
 /**
@@ -31,7 +31,7 @@ data class RoundState(
     val targetPlayerIndex: Int? = null,
     val phase: RoundPhase = RoundPhase.INTRO,
     val createdAtMs: Long = System.currentTimeMillis(),
-    val sessionId: String
+    val sessionId: String,
 ) {
     /**
      * Update phase without recreating entire state

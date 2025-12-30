@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -57,7 +55,7 @@ object HelldeckAnimations {
 @Composable
 fun HelldeckLoadingSpinner(
     modifier: Modifier = Modifier,
-    text: String = "Loading…"
+    text: String = "Loading…",
 ) {
     Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
@@ -73,12 +71,12 @@ fun HelldeckLoadingSpinner(
 fun HelldeckBackgroundPattern(
     modifier: Modifier = Modifier,
     pattern: BackgroundPattern = BackgroundPattern.DOTS,
-    opacity: Float = 0.05f
+    opacity: Float = 0.05f,
 ) {
     com.helldeck.ui.HelldeckBackgroundPattern(
         modifier = modifier,
         pattern = pattern,
-        opacity = opacity
+        opacity = opacity,
     )
 }
 
@@ -88,7 +86,7 @@ fun GiantButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
+    colors: ButtonColors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
 ) {
     Button(
         onClick = onClick,
@@ -97,7 +95,7 @@ fun GiantButton(
             .height(HelldeckHeights.Button.dp),
         enabled = enabled,
         colors = colors,
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(HelldeckRadius.Pill)
+        shape = androidx.compose.foundation.shape.RoundedCornerShape(HelldeckRadius.Pill),
     ) {
         Text(text = text, style = MaterialTheme.typography.labelLarge)
     }

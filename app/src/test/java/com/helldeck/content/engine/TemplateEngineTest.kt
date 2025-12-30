@@ -1,21 +1,17 @@
 package com.helldeck.content.engine
 
 import com.helldeck.content.data.ContentRepository
-import com.helldeck.content.model.FilledCard
 import com.helldeck.content.model.v2.SlotSpec
 import com.helldeck.content.model.v2.TemplateV2
 import com.helldeck.content.util.SeededRng
-import kotlinx.coroutines.runBlocking
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-import org.junit.Assert.*
-import org.mockito.Mock
 import org.mockito.Mockito.*
-import kotlin.random.Random
 
 /**
  * Unit tests for TemplateEngine slot filling, modifiers, and edge cases.
- * 
+ *
  * Tests the core template filling functionality including:
  * - Structured slot filling using TemplateV2.slots
  * - Legacy regex fallback for older templates
@@ -47,13 +43,13 @@ class TemplateEngineTest {
             spice = 1,
             slots = listOf(
                 SlotSpec("player_name", "target_name", emptyList()),
-                SlotSpec("game_name", "lexicon", emptyList())
+                SlotSpec("game_name", "lexicon", emptyList()),
             ),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context(
-            players = listOf("Alice", "Bob")
+            players = listOf("Alice", "Bob"),
         )
 
         `when`(mockRepo.wordsFor("target_name")).thenReturn(listOf("Alice", "Bob"))
@@ -79,11 +75,11 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = emptyList(), // No structured slots
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context(
-            players = listOf("alice", "bob")
+            players = listOf("alice", "bob"),
         )
 
         // Legacy placeholders use their raw names as lexicon keys
@@ -111,7 +107,7 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = emptyList(),
-            max_words = 5
+            max_words = 5,
         )
 
         val context = TemplateEngine.Context()
@@ -134,9 +130,9 @@ class TemplateEngineTest {
             spice = 1,
             slots = listOf(
                 SlotSpec("w1", "lexicon", listOf("unique")),
-                SlotSpec("w2", "lexicon", listOf("unique"))
+                SlotSpec("w2", "lexicon", listOf("unique")),
             ),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context()
@@ -160,13 +156,13 @@ class TemplateEngineTest {
             spice = 1,
             slots = listOf(
                 SlotSpec("p1", "target_name"),
-                SlotSpec("p2", "target_name")
+                SlotSpec("p2", "target_name"),
             ),
-            max_words = 16
+            max_words = 16,
         )
 
         val context = TemplateEngine.Context(
-            players = listOf("Alex", "Jamie")
+            players = listOf("Alex", "Jamie"),
         )
 
         val result = engine.fill(template, context)
@@ -185,9 +181,9 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = listOf(
-                SlotSpec("word", "lexicon", listOf("a_an"))
+                SlotSpec("word", "lexicon", listOf("a_an")),
             ),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context()
@@ -212,13 +208,13 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = listOf(
-                SlotSpec("player_name", "target_name", emptyList())
+                SlotSpec("player_name", "target_name", emptyList()),
             ),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context(
-            players = emptyList()
+            players = emptyList(),
         )
 
         `when`(mockRepo.wordsFor("target_name")).thenReturn(listOf("someone"))
@@ -237,20 +233,22 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = listOf(
-                SlotSpec("inbound_text", "inbound_text", emptyList())
+                SlotSpec("inbound_text", "inbound_text", emptyList()),
             ),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context(
             players = listOf("Player1"),
-            inboundTexts = listOf("Hello from Alice", "Bob's message")
+            inboundTexts = listOf("Hello from Alice", "Bob's message"),
         )
 
         val result = engine.fill(template, context)
 
-        assertTrue("Should use one of the inbound texts", 
-            result.text.contains("Hello from Alice") || result.text.contains("Bob's message"))
+        assertTrue(
+            "Should use one of the inbound texts",
+            result.text.contains("Hello from Alice") || result.text.contains("Bob's message"),
+        )
     }
 
     @Test
@@ -263,7 +261,7 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = emptyList(),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context()
@@ -273,7 +271,10 @@ class TemplateEngineTest {
         val result = engine.fill(template, context)
 
         val expected = "Word: HELLO WORLD,hello world,Hello World"
-        assertTrue("Should include upper, lower, and title variants", result.text.contains("HELLO WORLD") && result.text.contains("hello world") && result.text.contains("Hello World"))
+        assertTrue(
+            "Should include upper, lower, and title variants",
+            result.text.contains("HELLO WORLD") && result.text.contains("hello world") && result.text.contains("Hello World"),
+        )
     }
 
     @Test
@@ -285,9 +286,9 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = listOf(
-                SlotSpec("word", "empty_lexicon", emptyList())
+                SlotSpec("word", "empty_lexicon", emptyList()),
             ),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context()
@@ -312,7 +313,7 @@ class TemplateEngineTest {
             spice = 2,
             locality = 1,
             slots = emptyList(),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context()
@@ -339,13 +340,13 @@ class TemplateEngineTest {
                 SlotSpec("player1", "target_name", emptyList()),
                 SlotSpec("player2", "target_name", emptyList()),
                 SlotSpec("location", "lexicon", emptyList()),
-                SlotSpec("weapon", "lexicon", emptyList())
+                SlotSpec("weapon", "lexicon", emptyList()),
             ),
-            max_words = 20
+            max_words = 20,
         )
 
         val context = TemplateEngine.Context(
-            players = listOf("Alice", "Bob", "Charlie")
+            players = listOf("Alice", "Bob", "Charlie"),
         )
 
         `when`(mockRepo.wordsFor("target_name")).thenReturn(listOf("Alice", "Bob", "Charlie"))
@@ -369,7 +370,7 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = emptyList(),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context()
@@ -389,9 +390,9 @@ class TemplateEngineTest {
             family = "test_family",
             spice = 1,
             slots = listOf(
-                SlotSpec("special_word", "lexicon", emptyList())
+                SlotSpec("special_word", "lexicon", emptyList()),
             ),
-            max_words = 10
+            max_words = 10,
         )
 
         val context = TemplateEngine.Context()

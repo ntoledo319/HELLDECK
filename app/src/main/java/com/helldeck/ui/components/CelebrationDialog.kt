@@ -9,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -24,7 +23,7 @@ import kotlinx.coroutines.delay
 sealed class Milestone(
     val emoji: String,
     val title: String,
-    val message: String
+    val message: String,
 ) {
     object FirstWin : Milestone("🎉", "First Win!", "You're off to a great start!")
     object TenRounds : Milestone("💯", "10 Rounds!", "The party's getting started!")
@@ -44,7 +43,7 @@ sealed class Milestone(
 @Composable
 fun CelebrationDialog(
     milestone: Milestone,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     val context = androidx.compose.ui.platform.LocalContext.current
 
@@ -55,9 +54,9 @@ fun CelebrationDialog(
         targetValue = 1.2f,
         animationSpec = infiniteRepeatable(
             animation = tween(600, easing = EaseInOutCubic),
-            repeatMode = RepeatMode.Reverse
+            repeatMode = RepeatMode.Reverse,
         ),
-        label = "pulse"
+        label = "pulse",
     )
 
     // Play milestone sound
@@ -78,9 +77,9 @@ fun CelebrationDialog(
                 .padding(32.dp),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface
+                containerColor = MaterialTheme.colorScheme.surface,
             ),
-            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
         ) {
             Column(
                 modifier = Modifier
@@ -89,19 +88,19 @@ fun CelebrationDialog(
                         androidx.compose.ui.graphics.Brush.verticalGradient(
                             listOf(
                                 HelldeckColors.colorPrimary.copy(alpha = 0.1f),
-                                MaterialTheme.colorScheme.surface
-                            )
-                        )
+                                MaterialTheme.colorScheme.surface,
+                            ),
+                        ),
                     )
                     .padding(32.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 // Animated emoji
                 Text(
                     text = milestone.emoji,
                     fontSize = 80.sp,
-                    modifier = Modifier.scale(scale)
+                    modifier = Modifier.scale(scale),
                 )
 
                 // Title
@@ -110,7 +109,7 @@ fun CelebrationDialog(
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Black,
                     color = HelldeckColors.colorPrimary,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
 
                 // Message
@@ -118,7 +117,7 @@ fun CelebrationDialog(
                     text = milestone.message,
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -146,7 +145,7 @@ object MilestoneTracker {
         favoritesCount: Int,
         sessionDurationMs: Long,
         isFirstWin: Boolean,
-        isPerfectScore: Boolean
+        isPerfectScore: Boolean,
     ): List<Milestone> {
         val achievements = mutableListOf<Milestone>()
 
