@@ -1,4 +1,4 @@
-o# HELLDECK
+# HELLDECK
 Single phone. One card per round. 14 mini-games. Learns what your crew finds funny.
 
 ## 🚨 Recent Major Updates (December 2024)
