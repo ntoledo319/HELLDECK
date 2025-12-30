@@ -333,12 +333,10 @@ Set on the Home screen:
 
 ### Timers (Automatic)
 Timers are built-in and vary by game (current defaults):
-- **6s:** Confession or Cap, Hot Seat Imposter, Text Thread Trap, Majority Report, Reality Check, Over/Under
-- **8s:** The Unifying Theory, Odd One Out
 - **10s:** Scatterblast
-- **15s:** Title Fight, Hype or Yike
-- **20s:** Roast Consensus
-- **30s:** Poison Pitch, Alibi Drop
+- **15s:** Confession or Cap, Hot Seat Imposter, Text Thread Trap, Title Fight
+- **20s:** Roast Consensus, Reality Check, Over/Under
+- **30s:** Poison Pitch, Alibi Drop, The Unifying Theory
 - **45s:** Red Flag Rally
 - **60s:** Fill-In Finisher (writing phase), Taboo Timer
 

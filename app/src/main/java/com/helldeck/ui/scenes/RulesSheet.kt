@@ -546,12 +546,9 @@ private fun gameHowToDetailed(g: com.helldeck.engine.GameSpec): String {
         com.helldeck.engine.GameIds.HOTSEAT_IMP -> "Answer as the target player. Judge picks the most on-brand impersonation."
         com.helldeck.engine.GameIds.TEXT_TRAP -> "See an incoming text. Pick a reply vibe (Deadpan, Feral, Chaotic, etc.). Lock when done; feedback after."
         com.helldeck.engine.GameIds.TABOO -> "Start timer. Give clues to your team without saying forbidden words. Lock when finished."
-        com.helldeck.engine.GameIds.ODD_ONE -> "From three items, choose the misfit and explain why. Judge confirms."
         com.helldeck.engine.GameIds.TITLE_FIGHT -> "Run a quick duel challenge. When done, pick who won to keep or take the crown."
         com.helldeck.engine.GameIds.ALIBI -> "Weave all secret words into your alibi without getting caught. Lock when done."
-        com.helldeck.engine.GameIds.HYPE_YIKE -> "Pitch a product for a ridiculous problem — straight face. Lock when finished."
         com.helldeck.engine.GameIds.SCATTER -> "Given a category and letter, say three valid items fast. No repeats."
-        com.helldeck.engine.GameIds.MAJORITY -> "Predict A/B before the room votes. Lock your call; earn if you read the room."
         com.helldeck.engine.GameIds.UNIFYING_THEORY -> "Explain why three unrelated items are the same. Spice 4+ requires inappropriate connections."
         com.helldeck.engine.GameIds.REALITY_CHECK -> "Subject rates themselves 1-10 secretly; group rates subject 1-10; reveal both. Self-aware (gap 0-1) = +2; delusional/fisher = roast/drink."
         com.helldeck.engine.GameIds.OVER_UNDER -> "Group sets betting line; everyone bets OVER or UNDER on subject's number; reveal truth. Winners +1; losers drink."
@@ -574,22 +571,19 @@ private fun gameHowToDetailed(g: com.helldeck.engine.GameSpec): String {
 }
 
 private fun gameIconFor(id: String): String = when (id) {
-    GameIds.ROAST_CONS -> "🔥"
-    GameIds.CONFESS_CAP -> "🕵️"
-    GameIds.POISON_PITCH -> "⚖️"
-    GameIds.FILLIN -> "✍️"
-    GameIds.RED_FLAG -> "🚩"
-    GameIds.HOTSEAT_IMP -> "🎭"
-    GameIds.TEXT_TRAP -> "💬"
-    GameIds.TABOO -> "⛔️"
-    GameIds.ODD_ONE -> "🧩"
-    GameIds.TITLE_FIGHT -> "👑"
-    GameIds.ALIBI -> "🕶️"
-    GameIds.HYPE_YIKE -> "📣"
-    GameIds.SCATTER -> "🔤"
-    GameIds.MAJORITY -> "📊"
-    GameIds.UNIFYING_THEORY -> "📐"
-    GameIds.REALITY_CHECK -> "🪞"
-    GameIds.OVER_UNDER -> "📉"
+    GameIds.ROAST_CONS -> "🎯"           // 1. Roast Consensus
+    GameIds.CONFESS_CAP -> "🤥"          // 2. Confession or Cap
+    GameIds.POISON_PITCH -> "💀"         // 3. Poison Pitch
+    GameIds.FILLIN -> "✍️"               // 4. Fill-In Finisher
+    GameIds.RED_FLAG -> "🚩"             // 5. Red Flag Rally
+    GameIds.HOTSEAT_IMP -> "🎭"          // 6. Hot Seat Imposter
+    GameIds.TEXT_TRAP -> "📱"            // 7. Text Thread Trap
+    GameIds.TABOO -> "⏱️"                // 8. Taboo Timer
+    GameIds.UNIFYING_THEORY -> "📐"     // 9. The Unifying Theory
+    GameIds.TITLE_FIGHT -> "🥊"          // 10. Title Fight
+    GameIds.ALIBI -> "🕵️"               // 11. Alibi Drop
+    GameIds.REALITY_CHECK -> "🪞"        // 12. Reality Check
+    GameIds.SCATTER -> "💣"              // 13. Scatterblast
+    GameIds.OVER_UNDER -> "📉"           // 14. Over / Under
     else -> "🎮"
 }

@@ -70,23 +70,23 @@ object GameQualityProfiles {
         GameIds.TABOO to QualityProfile(
             minWords = 3, minHumor = null, requireOptions = true
         ),
-        GameIds.ODD_ONE to QualityProfile(
-            minWords = 5, minHumor = 0.35, requireOptions = true
-        ),
         GameIds.TITLE_FIGHT to QualityProfile(
             minWords = 5, minHumor = 0.35
         ),
         GameIds.ALIBI to QualityProfile(
             minWords = 5, minHumor = 0.35, requireOptions = true
         ),
-        GameIds.HYPE_YIKE to QualityProfile(
-            minWords = 6, minHumor = 0.45
-        ),
         GameIds.SCATTER to QualityProfile(
             minWords = 3, minHumor = null, requireOptions = true
         ),
-        GameIds.MAJORITY to QualityProfile(
-            minWords = 5, minHumor = 0.45, requireOptions = true, requireContrastAB = true
+        GameIds.UNIFYING_THEORY to QualityProfile(
+            minWords = 5, minHumor = 0.35, requireOptions = false
+        ),
+        GameIds.REALITY_CHECK to QualityProfile(
+            minWords = 5, minHumor = 0.30, requireOptions = false
+        ),
+        GameIds.OVER_UNDER to QualityProfile(
+            minWords = 5, minHumor = 0.30, requireOptions = false
         )
     )
 
