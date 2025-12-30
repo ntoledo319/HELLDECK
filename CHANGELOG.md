@@ -2,6 +2,42 @@
 
 ## [Unreleased] - December 2024
 
+### UI Enhancements & Polish (December 2024)
+
+#### Modern Onboarding Flow
+- **Interactive Tutorial**: 5-step onboarding with smooth animations
+- **Haptic Feedback**: Enhanced touch interactions throughout
+- **Visual Hierarchy**: Clear progress indicators and step navigation
+- **Skip Option**: Easy exit at any time
+
+#### Enhanced Button Components
+- **PrimaryButton**: Animated buttons with haptic feedback and loading states
+- **SecondaryButton**: Outlined style with press feedback
+- **ToggleButton**: Smooth state transitions with color animations
+- **IconButton**: Scale animations on interaction
+- All buttons meet 56dp minimum touch target requirements
+
+#### Spice Slider Improvements
+- **Press Feedback**: Haptics and scale animations on interaction
+- **Visual States**: Clear active/selected/inactive states
+- **Smooth Animations**: Spring-based transitions
+
+#### Backend Stability
+- **Null Safety**: Fixed smart cast issues in replayLastCard()
+- **Error Handling**: Comprehensive try-catch blocks around critical operations
+- **Validation**: Active players and engine initialization checks
+- **Safe Indexing**: Proper bounds checking for player arrays
+
+#### Game Rules Alignment
+- **Scoring Fixes**: Updated to match HDRealRules.md exactly
+  - Roast Consensus: +2 for majority pick, +1 bonus for 80%+ room heat
+  - Confession or Cap: +2 for confessor if they fool majority, +1 for correct voters
+  - Over/Under: Winners get +1 each, Subject gets points equal to wrong guesses
+- **Game Count**: Confirmed 14 games per HDRealRules.md (removed HYPE_YIKE, MAJORITY, ODD_ONE from official count)
+- **Timer Values**: All timers verified against HDRealRules.md
+
+### Previous Updates - December 2024
+
 ### Critical Game Rule Change: Fill-In Finisher (Game 4)
 
 #### Complete Mechanic Overhaul

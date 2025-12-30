@@ -101,30 +101,41 @@ Follow [Kotlin Coding Conventions](https://kotlinlang.org/docs/coding-convention
 
 ### Adding New Games
 
-1. **Register Game in [`Games.kt`](../app/src/main/java/com/helldeck/engine/Games.kt)**
+1. **Register Game ID in [`GamesRegistry.kt`](../app/src/main/java/com/helldeck/engine/GamesRegistry.kt)**
    ```kotlin
    object GameIds {
        const val NEW_GAME = "NEW_GAME"
    }
    ```
 
-2. **Add Game Metadata**
+2. **Add Game Metadata in [`GameMetadata.kt`](../app/src/main/java/com/helldeck/engine/GameMetadata.kt)**
    ```kotlin
-   GameSpec(
+   GameIds.NEW_GAME to GameInfo(
        id = GameIds.NEW_GAME,
-       name = "Game Name",
-       interactionType = InteractionType.VOTE_AVATAR,
-       timerSec = 10
+       title = "Game Name",
+       description = "Brief description",
+       category = GameCategory.CREATIVE,
+       difficulty = GameDifficulty.MEDIUM,
+       timerSec = 10,
+       minPlayers = 3,
+       maxPlayers = 16,
+       interaction = Interaction.VOTE_PLAYER,
+       interactionType = InteractionType.VOTE_PLAYER,
+       tags = setOf("tag1", "tag2"),
+       spice = 1
    )
    ```
 
 3. **Create Templates**
    - Add to `app/src/main/assets/templates_v3/new_game.json`
    - Follow [authoring.md](authoring.md) guidelines
+   - Add gold cards to `app/src/main/assets/gold_cards.json`
 
 4. **Implement UI Logic**
-   - Update `RoundScene.kt` for game-specific interactions
-   - Add to `GameIcons.kt` if custom icon needed
+   - Add interaction renderer in `InteractionRenderer.kt` if new interaction type
+   - Update `GameRulesScene.kt` and `RulesSheet.kt` with game rules
+   - Add icon to `GameIcons.kt`
+   - Update scoring logic in `GameNightViewModel.kt` if needed
 
 ### Adding Content
 

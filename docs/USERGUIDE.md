@@ -194,22 +194,23 @@ HELLDECK is a single-phone party game featuring 14 interactive mini-games for gr
 
 ---
 
-### 9. Odd One Out 🔍
+### 9. The Unifying Theory 📐
 
 **How to Play:**
-1. Three items presented (e.g., "Pizza, Tacos, Sushi")
-2. Pick which one doesn't fit
-3. Explain your reasoning
-4. Group votes on best explanation
+1. Three unrelated items are presented
+2. Explain why they're all connected
+3. Make a convincing theory
+4. Group judges the best explanation
 
 **Scoring:**
-- +2 for most creative reasoning
-- All choices can be "right" with good logic
+- +2 for convincing theory
+- -1 for applying to only two items
+- Spice 4+ requires inappropriate connections
 
 **Tips:**
 - Think creatively about connections
-- Funny reasoning beats obvious answers
-- Make your case confidently
+- Embrace absurdity at higher spice levels
+- Make your theory sound scientific
 
 ---
 
@@ -251,22 +252,23 @@ HELLDECK is a single-phone party game featuring 14 interactive mini-games for gr
 
 ---
 
-### 12. Hype or Yike 📢
+### 12. Reality Check 🪞
 
 **How to Play:**
-1. Pitch an absurd product or solution
-2. Sell it deadpan serious
-3. Group votes if they'd "buy it"
-4. Best pitch wins
+1. Subject rates themselves 1-10 secretly on a trait
+2. Group simultaneously rates the subject 1-10
+3. Both numbers revealed at once
+4. Gap determines outcome
 
 **Scoring:**
-- +2 for majority "buy" votes
-- Commitment to the bit matters
+- **Self-Aware (gap 0-1):** +2 points
+- **Delusional (ego higher):** Group roasts + drink
+- **Fisher (ego lower):** Group boos + drink
 
 **Tips:**
-- Play it straight-faced
-- Address obvious flaws as features
-- Enthusiasm is infectious
+- Be honest with yourself
+- Don't fish for compliments
+- Own your rating
 
 ---
 
@@ -289,22 +291,25 @@ HELLDECK is a single-phone party game featuring 14 interactive mini-games for gr
 
 ---
 
-### 14. Majority Report 🗳️
+### 14. Over / Under 📉
 
 **How to Play:**
-1. "Most people prefer X or Y?" question shown
-2. Predict what majority will vote
-3. Everyone votes simultaneously
-4. Majority predictors win
+1. Subject is chosen
+2. Card asks for a specific number about the subject
+3. Group sets a "betting line"
+4. Everyone (except subject) bets OVER or UNDER
+5. Subject reveals the actual number
+6. Winners and losers determined
 
 **Scoring:**
-- +2 for predicting majority correctly
-- Tests your group knowledge
+- **Winners:** +1 point each
+- **Losers:** Penalty/drink
+- **Exact Match:** Everyone drinks except subject
 
 **Tips:**
-- Know your audience
-- Consider demographics
-- Overthinking hurts here
+- Set the line to split the room 50/50
+- Phone checks provide instant fact-checking
+- Don't lie—honor system is mandatory
 
 ---
 
@@ -328,12 +333,14 @@ Set on the Home screen:
 
 ### Timers (Automatic)
 Timers are built-in and vary by game (current defaults):
-- **3s:** Alibi Drop
-- **6s:** Confession or Cap, Poison Pitch, Red Flag Rally, Hot Seat Imposter, Text Thread Trap, Majority Report
-- **60s:** Fill-In Finisher (writing phase)
-- **8s:** Roast Consensus, Taboo Timer, Odd One Out
+- **6s:** Confession or Cap, Hot Seat Imposter, Text Thread Trap, Majority Report, Reality Check, Over/Under
+- **8s:** The Unifying Theory, Odd One Out
 - **10s:** Scatterblast
 - **15s:** Title Fight, Hype or Yike
+- **20s:** Roast Consensus
+- **30s:** Poison Pitch, Alibi Drop
+- **45s:** Red Flag Rally
+- **60s:** Fill-In Finisher (writing phase), Taboo Timer
 
 ### Device & Accessibility
 In Settings you can toggle:

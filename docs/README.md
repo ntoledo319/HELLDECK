@@ -71,12 +71,12 @@ This directory contains comprehensive documentation for the HELLDECK party game 
 6. **Hot Seat Imposter** - Impersonate target player
 7. **Text Thread Trap** - Choose perfect reply tones
 8. **Taboo Timer** - Describe without forbidden words
-9. **Odd One Out** - Identify and explain misfits
+9. **The Unifying Theory** - Explain connections between unrelated items
 10. **Title Fight** - Mini-game duels for the crown
 11. **Alibi Drop** - Hide words in excuses
-12. **Hype or Yike** - Pitch absurd products
+12. **Reality Check** - Self-awareness vs. group perception
 13. **Scatterblast** - Quick category naming
-14. **Majority Report** - Predict room votes
+14. **Over / Under** - Betting game with number predictions
 
 ### Template System
 - **Dynamic Filling** - Slot-based template system
