@@ -17,14 +17,12 @@ object GameIds {
     const val TITLE_FIGHT = "TITLE_FIGHT"
     const val ALIBI = "ALIBI_DROP"
     const val SCATTER = "SCATTERBLAST"
-    const val MAJORITY = "MAJORITY_REPORT"
-    const val HYPE_YIKE = "HYPE_OR_YIKE"
-    const val ODD_ONE = "ODD_ONE_OUT"
-    
-    // New games from HDRealRules.md
     const val UNIFYING_THEORY = "THE_UNIFYING_THEORY"
     const val REALITY_CHECK = "REALITY_CHECK"
     const val OVER_UNDER = "OVER_UNDER"
+
+    // REMOVED - Not part of official 14 games per HDRealRules.md:
+    // MAJORITY_REPORT, HYPE_OR_YIKE, ODD_ONE_OUT are legacy and excluded
 }
 
 /**
