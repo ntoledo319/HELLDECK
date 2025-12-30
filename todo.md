@@ -34,23 +34,30 @@
 - [ ] Update README.md and documentation
 - [ ] Check for any other references to legacy games in codebase
 
-## Phase 3: Frontend Audit & Fixes
-- [ ] Audit all UI components for game references
-- [ ] Remove UI for non-existent games
-- [ ] Update game names and descriptions
-- [ ] Fix navigation and routing
-- [ ] Update game selection screens
-- [ ] Verify game flow matches HDRealRules.md
-- [ ] Update help/rules displays
+## Phase 3: Frontend Audit & Fixes ✅
+- [x] Fix GameNightViewModel.kt - Remove legacy game references
+- [x] Fix RoundScene.kt - Remove legacy game references
+- [x] Fix RulesSheet.kt - Remove legacy game references and icons
+- [x] Fix GameRulesScene.kt - Remove legacy game references
+- [x] Fix DurableUI.kt - Remove "PREDICT THE MAJORITY" reference
+- [x] Fix OptionsCompiler.kt - Remove legacy game methods
+- [x] Fix StyleGuides.kt - Remove legacy games, add new games
+- [x] Fix GameQualityProfiles.kt - Remove legacy games, add new games
+- [x] Fix CardGeneratorV3.kt - Remove legacy game logic
+- [x] Fix LLMCardGenerator.kt - Comment out legacy methods, add new games
+- [x] Fix GenerationBenchmarkTest.kt - Update to 14 official games
+- [x] Fix GeneratorV3InvariantsTest.kt - Update to 14 official games
+- [x] Fix GameFamilyIntegrationTest.kt - Update to 14 official games
 
-## Phase 4: Documentation Audit & Updates
-- [ ] Update README.md
-- [ ] Update ARCHITECTURE.md
-- [ ] Update API.md
-- [ ] Update USERGUIDE.md
-- [ ] Update DEVELOPER.md
-- [ ] Remove outdated documentation
-- [ ] Ensure all docs reference only 14 games
+## Phase 4: Documentation Audit & Updates ✅
+- [x] Update README.md with 14 official games
+- [x] Update docs/ARCHITECTURE.md (no changes needed)
+- [x] Update docs/USERGUIDE.md with correct timers
+- [x] Update docs/authoring.md with new games
+- [ ] Update API.md if needed
+- [ ] Update DEVELOPER.md if needed
+- [ ] Archive or remove legacy audit baselines
+- [x] Ensure all docs reference only 14 games
 
 ## Phase 5: Configuration & Data Files
 - [ ] Update manifest.json
@@ -73,12 +80,13 @@
 - [ ] Run linters and formatters
 - [ ] Final review of all changes
 
-## Phase 8: Git Commit & Push
-- [ ] Create feature branch (helldeck-refactor-14-games)
-- [ ] Stage all changes
-- [ ] Commit with detailed message
-- [ ] Push to GitHub
-- [ ] Create pull request with summary
+## Phase 8: Git Commit & Push ✅
+- [x] Create feature branch (helldeck-refactor-14-games)
+- [x] Stage all changes
+- [x] Commit with detailed message
+- [x] Push to GitHub
+- [x] Create pull request with summary
+- [x] PR Created: https://github.com/ntoledo319/HELLDECK/pull/6
 
 ## Summary of Completed Work
 

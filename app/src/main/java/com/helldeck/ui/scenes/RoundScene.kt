@@ -199,7 +199,6 @@ fun RoundScene(vm: HelldeckVm) {
                             players = vm.activePlayers,
                             preChoiceLabel = when (game.id) {
                                 com.helldeck.engine.GameIds.POISON_PITCH -> "Active pre-picks A/B before votes"
-                                com.helldeck.engine.GameIds.MAJORITY -> "Predict the room: pick A/B before votes"
                                 com.helldeck.engine.GameIds.OVER_UNDER -> "Bet OVER or UNDER on the subject's number"
                                 else -> "Active picks A/B before votes"
                             },

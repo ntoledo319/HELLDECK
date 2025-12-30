@@ -546,7 +546,7 @@ fun PredictVoteButtons(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Text(
-            "PREDICT THE MAJORITY",
+            "MAKE YOUR PREDICTION",
             style = MaterialTheme.typography.headlineMedium,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()

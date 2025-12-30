@@ -495,7 +495,8 @@ class GameNightViewModel : ViewModel() {
         return if (cfg.comeback_last_place_picks_next && players.size >= 3) {
             val lastPlaceIds = getLastPlaceIds()
             if (lastPlaceIds.isNotEmpty()) {
-                listOf(GameIds.ROAST_CONS, GameIds.POISON_PITCH, GameIds.MAJORITY).random()
+                // Comeback games - easy voting games for last place
+                listOf(GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.REALITY_CHECK).random()
             } else {
                 GameMetadata.getAllGameIds().random()
             }
@@ -718,12 +719,7 @@ class GameNightViewModel : ViewModel() {
                     awardActive(Config.current.scoring.win)
                 }
             }
-            GameIds.MAJORITY -> {
-                // Majority Report: Predict the room's A vs B; earn if you read the room
-                if (preChoice != null && preChoice == majority) {
-                    awardActive(Config.current.scoring.win)
-                }
-            }
+            // MAJORITY_REPORT removed - not in official 14 games
             GameIds.OVER_UNDER -> {
                 // Over/Under: Winners get +1, Subject gets points equal to wrong guesses
                 // Note: Actual number comparison would need to be implemented separately

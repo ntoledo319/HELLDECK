@@ -664,20 +664,26 @@ You can tune generator behavior without code changes via `app/src/main/assets/mo
 - Lint lexicons for punctuation/emoji/article issues: `python tools/lexicon_lint.py`
 - Generate baselines for many games: `bash tools/gen_audit_baselines.sh`
 
-### For Majority Report
-- Neutral phrasing for balanced vote
-- Use meme_item or perks for options
-- No leading language
-
 ### For Text Thread Trap
 - Simple prompt about reply vibes
 - Use reply_tone slot type
 - Spice: 0-1 (safe for all)
 
-### For Odd One Out
+### For The Unifying Theory
 - Three distinct items required
 - Use `distinct_slots: true`
-- Items should have subtle connections
+- Items should be as unrelated as possible
+- Spice 4+ requires inappropriate connections
+
+### For Reality Check
+- Ask to rate a specific trait 1-10
+- Make it personal and potentially revealing
+- Use personality_trait or skill_trait slot types
+
+### For Over / Under
+- Ask for a specific countable number
+- Make it verifiable (phone stats, life stats, etc.)
+- Should be potentially embarrassing or revealing
 
 ---
 

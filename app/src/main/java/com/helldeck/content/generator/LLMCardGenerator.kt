@@ -149,13 +149,14 @@ CRITICAL RULES:
             GameIds.HOTSEAT_IMP -> buildHotSeatPrompt(goldExamples)
             GameIds.TEXT_TRAP -> buildTextTrapPrompt(goldExamples)
             GameIds.TABOO -> buildTabooPrompt(goldExamples)
-            GameIds.ODD_ONE -> buildOddOnePrompt(goldExamples)
             GameIds.TITLE_FIGHT -> buildTitleFightPrompt(goldExamples)
             GameIds.ALIBI -> buildAlibiPrompt(goldExamples)
-            GameIds.HYPE_YIKE -> buildHypePrompt(goldExamples)
             GameIds.SCATTER -> buildScatterPrompt(goldExamples)
-            GameIds.MAJORITY -> buildMajorityPrompt(goldExamples)
             GameIds.CONFESS_CAP -> buildConfessPrompt(goldExamples)
+            GameIds.UNIFYING_THEORY -> buildUnifyingTheoryPrompt(goldExamples)
+            GameIds.REALITY_CHECK -> buildRealityCheckPrompt(goldExamples)
+            GameIds.OVER_UNDER -> buildOverUnderPrompt(goldExamples)
+            // Legacy games removed: ODD_ONE, HYPE_YIKE, MAJORITY
             else -> """{"text": "Fallback card", "type": "unknown"}"""
         }
 
@@ -364,6 +365,8 @@ $exampleText
 OUTPUT: Generate ONE Taboo card in JSON format."""
     }
 
+    // LEGACY METHOD REMOVED - Game not in official 14
+    /*
     private fun buildOddOnePrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             val items = it.items?.joinToString(", ") ?: ""
@@ -389,6 +392,7 @@ $exampleText
 OUTPUT: Generate ONE challenge in JSON format."""
     }
 
+    */
     private fun buildTitleFightPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
@@ -437,6 +441,8 @@ $exampleText
 OUTPUT: Generate ONE challenge with 3 random words in JSON format."""
     }
 
+    // LEGACY METHOD REMOVED - Game not in official 14
+    /*
     private fun buildHypePrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ Product: \"${it.product}\" (quality: ${it.quality_score}/10)"
@@ -461,6 +467,7 @@ $exampleText
 OUTPUT: Generate ONE product in JSON format."""
     }
 
+    */
     private fun buildScatterPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ Category: \"${it.category}\", Letter: ${it.letter} (quality: ${it.quality_score}/10)"
@@ -486,6 +493,8 @@ $exampleText
 OUTPUT: Generate ONE challenge in JSON format."""
     }
 
+    // LEGACY METHOD REMOVED - Game not in official 14
+    /*
     private fun buildMajorityPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             val opts = if (it.optionA != null && it.optionB != null) {
@@ -514,6 +523,7 @@ $exampleText
 OUTPUT: Generate ONE prediction challenge in JSON format."""
     }
 
+    */
     private fun buildConfessPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
         val exampleText = examples.take(5).joinToString("\n") {
             "✅ \"${it.text}\" (quality: ${it.quality_score}/10)"
@@ -535,6 +545,54 @@ TOP EXAMPLES:
 $exampleText
 
 OUTPUT: Generate ONE confession in JSON format."""
+    }
+
+    private fun buildUnifyingTheoryPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleTexts = examples.take(3).joinToString("\n") { 
+            """{"text": "${it.text}"}""" 
+        }
+        return """
+Generate a card for The Unifying Theory game.
+List three completely unrelated items. Players must explain why they're the same.
+
+Examples:
+$exampleTexts
+
+Return JSON: {"text": "Item 1, Item 2, Item 3"}
+Make items as random and unrelated as possible for maximum creativity.
+        """.trimIndent()
+    }
+
+    private fun buildRealityCheckPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleTexts = examples.take(3).joinToString("\n") { 
+            """{"text": "${it.text}"}""" 
+        }
+        return """
+Generate a card for Reality Check game.
+Ask the subject to rate themselves 1-10 on a specific trait or ability.
+
+Examples:
+$exampleTexts
+
+Return JSON: {"text": "Rating: Your [trait/ability]"}
+Make it specific, personal, and potentially revealing.
+        """.trimIndent()
+    }
+
+    private fun buildOverUnderPrompt(examples: List<GoldCardsLoader.GoldCard>): String {
+        val exampleTexts = examples.take(3).joinToString("\n") { 
+            """{"text": "${it.text}"}""" 
+        }
+        return """
+Generate a card for Over/Under game.
+Ask for a specific number about the subject that others can bet on.
+
+Examples:
+$exampleTexts
+
+Return JSON: {"text": "Number of [countable thing]"}
+Make it verifiable and potentially embarrassing or revealing.
+        """.trimIndent()
     }
 
     // ===== PARSING & VALIDATION =====
@@ -687,7 +745,7 @@ OUTPUT: Generate ONE confession in JSON format."""
         return when (request.gameId) {
             GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
 
-            GameIds.POISON_PITCH, GameIds.MAJORITY -> {
+            GameIds.POISON_PITCH -> {
                 val a = json.optString("optionA", "Option A")
                 val b = json.optString("optionB", "Option B")
                 GameOptions.AB(a, b)
@@ -703,24 +761,14 @@ OUTPUT: Generate ONE confession in JSON format."""
                 GameOptions.Taboo(word, forbidden)
             }
 
-            GameIds.ODD_ONE -> {
-                val items = json.optJSONArray("items")?.let { arr ->
-                    (0 until arr.length()).map { arr.getString(it) }
-                } ?: listOf("A", "B", "C")
-                GameOptions.OddOneOut(items)
-            }
-
             GameIds.ALIBI -> {
                 val words = json.optJSONArray("words")?.let { arr ->
                     (0 until arr.length()).map { arr.getString(it) }
                 } ?: listOf("word1", "word2", "word3")
                 GameOptions.HiddenWords(words)
             }
-
-            GameIds.HYPE_YIKE -> {
-                val product = json.optString("product", "A product")
-                GameOptions.Product(product)
-            }
+            
+            // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
 
             GameIds.SCATTER -> {
                 val category = json.optString("category", "Things")
@@ -758,17 +806,19 @@ OUTPUT: Generate ONE confession in JSON format."""
 
     private fun getInteractionTypeForGame(gameId: String): InteractionType = when (gameId) {
         GameIds.ROAST_CONS -> InteractionType.VOTE_PLAYER
-        GameIds.POISON_PITCH, GameIds.MAJORITY -> InteractionType.A_B_CHOICE
+        GameIds.POISON_PITCH -> InteractionType.A_B_CHOICE
         GameIds.CONFESS_CAP -> InteractionType.TRUE_FALSE
         GameIds.RED_FLAG -> InteractionType.SMASH_PASS
         GameIds.TABOO -> InteractionType.TABOO_GUESS
-        GameIds.ODD_ONE -> InteractionType.ODD_EXPLAIN
         GameIds.ALIBI -> InteractionType.HIDE_WORDS
-        GameIds.HYPE_YIKE -> InteractionType.SALES_PITCH
         GameIds.SCATTER -> InteractionType.SPEED_LIST
         GameIds.TITLE_FIGHT -> InteractionType.MINI_DUEL
         GameIds.TEXT_TRAP -> InteractionType.REPLY_TONE
         GameIds.HOTSEAT_IMP, GameIds.FILL_IN -> InteractionType.JUDGE_PICK
+        GameIds.UNIFYING_THEORY -> InteractionType.ODD_EXPLAIN
+        GameIds.REALITY_CHECK -> InteractionType.TARGET_SELECT
+        GameIds.OVER_UNDER -> InteractionType.PREDICT_VOTE
+        // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
         else -> InteractionType.NONE
     }
 
@@ -794,7 +844,7 @@ OUTPUT: Generate ONE confession in JSON format."""
         )
 
         val options = when (request.gameId) {
-            GameIds.POISON_PITCH, GameIds.MAJORITY -> {
+            GameIds.POISON_PITCH -> {
                 GameOptions.AB(goldCard.optionA ?: "A", goldCard.optionB ?: "B")
             }
             GameIds.TABOO -> {
@@ -803,15 +853,10 @@ OUTPUT: Generate ONE confession in JSON format."""
                     goldCard.forbidden ?: listOf("1", "2", "3")
                 )
             }
-            GameIds.ODD_ONE -> {
-                GameOptions.OddOneOut(goldCard.items ?: listOf("A", "B", "C"))
-            }
             GameIds.ALIBI -> {
                 GameOptions.HiddenWords(goldCard.words ?: listOf("word1", "word2"))
             }
-            GameIds.HYPE_YIKE -> {
-                GameOptions.Product(goldCard.product ?: "product")
-            }
+            // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
             GameIds.SCATTER -> {
                 GameOptions.Scatter(
                     goldCard.category ?: "Things", 

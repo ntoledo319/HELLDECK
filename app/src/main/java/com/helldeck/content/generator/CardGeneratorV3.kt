@@ -397,28 +397,15 @@ class CardGeneratorV3(
                 val other = slots.values.drop(1).firstOrNull()?.displayText ?: "Option B"
                 GameOptions.AB(perk, other)
             }
-            GameIds.MAJORITY -> {
-                val a = slots["a"]?.displayText ?: "A"
-                val b = slots["b"]?.displayText ?: "B"
-                GameOptions.AB(a, b)
-            }
             GameIds.TEXT_TRAP -> {
                 val tones = listOf("Deadpan", "Wholesome", "Chaotic", "Petty", "Feral", "Thirsty")
                 GameOptions.AB(tones.first(), tones[1])
-            }
-            GameIds.ODD_ONE -> {
-                val items = listOfNotNull(slots["i1"]?.displayText, slots["i2"]?.displayText, slots["i3"]?.displayText)
-                    .ifEmpty { listOf("A", "B", "C") }
-                GameOptions.OddOneOut(items)
             }
             GameIds.ALIBI -> {
                 val words = slots.values.map { it.displayText }.ifEmpty { listOf("pineapple", "neon") }
                 GameOptions.HiddenWords(words)
             }
-            GameIds.HYPE_YIKE -> {
-                val prod = slots.values.firstOrNull()?.displayText ?: "A product"
-                GameOptions.Product(prod)
-            }
+            // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
             GameIds.CONFESS_CAP -> GameOptions.TrueFalse
             GameIds.TABOO -> {
                 val word = slots["word"]?.displayText

@@ -59,9 +59,8 @@ class OptionsCompiler(
     private fun compileFallback(gameId: String, card: FilledCard): GameOptions {
         return when (gameId) {
             GameIds.TEXT_TRAP -> compileTextTrap()
-            GameIds.ODD_ONE -> compileOddOneOut(card)
             GameIds.POISON_PITCH -> compilePoisonPitch(card)
-            GameIds.MAJORITY -> compileMajority(card)
+            // Legacy games removed: ODD_ONE, MAJORITY
             else -> GameOptions.None
         }
     }
@@ -78,25 +77,13 @@ class OptionsCompiler(
         return GameOptions.ReplyTone(options)
     }
     
-    private fun compileOddOneOut(card: FilledCard): GameOptions {
-        val items = extractSlotValues(card)
-            .take(3)
-            .ifEmpty { repo.wordsFor("memes").shuffled(rng.random).take(3) }
-        return GameOptions.OddOneOut(items)
-    }
+    // Legacy game methods removed: compileOddOneOut, compileMajority
     
     private fun compilePoisonPitch(card: FilledCard): GameOptions {
         val seq = card.metadata["slot_sequence"] as? List<*>
         val gross = findSlotValue(seq, "gross") ?: repo.wordsFor("gross").random(rng.random)
         val social = findSlotValue(seq, "social_disaster") ?: repo.wordsFor("social_disasters").random(rng.random)
         return GameOptions.AB(gross, social)
-    }
-    
-    private fun compileMajority(card: FilledCard): GameOptions {
-        val seq = card.metadata["slot_sequence"] as? List<*>
-        val memes = findSlotValues(seq, "meme")
-        val pair = (memes + repo.wordsFor("memes").shuffled(rng.random)).distinct().take(2)
-        return if (pair.size == 2) GameOptions.AB(pair[0], pair[1]) else GameOptions.AB("A", "B")
     }
     
     private fun extractSlotValues(card: FilledCard): List<String> {
