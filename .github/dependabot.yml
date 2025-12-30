@@ -1,0 +1,38 @@
+version: 2
+updates:
+  # Gradle dependencies
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "helldeck-maintainers"
+    labels:
+      - "dependencies"
+      - "gradle"
+
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "/loader"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "helldeck-maintainers"
+    labels:
+      - "dependencies"
+      - "python"
+
+  # GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "helldeck-maintainers"
+    labels:
+      - "dependencies"
+      - "github-actions"
+

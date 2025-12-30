@@ -1,0 +1,52 @@
+build:
+  maxIssues: 10
+  weights:
+    # complexity: 2
+    # LongParameterList: 1
+    # style: 1
+    # comments: 1
+
+complexity:
+  LongParameterList:
+    threshold: 6
+    ignoreDefaultParameters: true
+  ComplexMethod:
+    threshold: 10
+  ComplexCondition:
+    threshold: 3
+  TooManyFunctions:
+    threshold: 20
+
+style:
+  MagicNumber:
+    ignoreNumbers: ['-1', '0', '1', '2']
+    ignoreHashCodeFunction: true
+    ignorePropertyDeclaration: false
+    ignoreLocalVariableDeclaration: false
+    ignoreConstantDeclaration: true
+  MaxLineLength:
+    maxLineLength: 120
+    excludePackageStatements: true
+    excludeImportStatements: true
+    excludeCommentStatements: false
+  NewLineAtEndOfFile:
+    enabled: true
+  TrailingWhitespace:
+    enabled: true
+
+potential-bugs:
+  UnusedPrivateMember:
+    ignoreOverridden: true
+
+naming:
+  ClassNaming:
+    classPattern: '[A-Z$][a-zA-Z0-9$]*'
+  FunctionNaming:
+    functionPattern: '[a-z][a-zA-Z0-9]*'
+  VariableNaming:
+    variablePattern: '[a-z][a-zA-Z0-9]*'
+    privateVariablePattern: '(_)?[a-z][a-zA-Z0-9]*'
+    constantPattern: '[A-Z][A-Z_0-9]*'
+    excludeClassPattern: '$^'
+    excludeConstantPattern: '$^'
+

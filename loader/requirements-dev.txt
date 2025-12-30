@@ -1,0 +1,14 @@
+# Development dependencies for HELLDECK Python tools
+# Install with: pip install -r loader/requirements-dev.txt
+
+# Core requirements (from requirements.txt)
+-r requirements.txt
+
+# Code quality tools
+ruff>=0.1.9
+pre-commit>=3.6.0
+
+# Testing (optional)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+

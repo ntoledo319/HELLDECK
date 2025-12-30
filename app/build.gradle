@@ -4,6 +4,9 @@ plugins {
   id 'org.jetbrains.kotlin.plugin.serialization' version '1.9.25'
   id 'com.google.devtools.ksp' version '1.9.25-1.0.20'
   id 'jacoco'
+  id 'org.jlleitschuh.gradle.ktlint'
+  id 'io.gitlab.arturbosch.detekt'
+  id 'com.diffplug.spotless'
 }
 
 android {
@@ -297,3 +300,56 @@ def getGitHash() {
   }
 
   // Place offline models under app/src/main/assets/models/*.gguf to bundle with APK
+
+// Code quality plugins configuration
+ktlint {
+  version = "0.50.0"
+  debug = false
+  verbose = false
+  android = true
+  outputToConsole = true
+  outputColorName = "RED"
+  ignoreFailures = false
+  enableExperimentalRules = true
+  filter {
+    exclude("**/generated/**")
+    exclude("**/build/**")
+    exclude("**/third_party/**")
+  }
+}
+
+detekt {
+  toolVersion = "1.23.0"
+  config = files("$rootDir/config/detekt.yml")
+  buildUponDefaultConfig = true
+  allRules = false
+  autoCorrect = true
+  parallel = true
+  ignoreFailures = false
+  source = files("src/main/java", "src/test/java", "src/androidTest/java")
+  exclude("**/generated/**", "**/build/**", "**/third_party/**")
+}
+
+spotless {
+  kotlin {
+    target "**/*.kt"
+    targetExclude("**/build/**", "**/generated/**", "**/third_party/**")
+    ktlint("0.50.0")
+      .editorConfigOverride([
+        "indent_size": "4",
+        "continuation_indent_size": "4",
+        "max_line_length": "120"
+      ])
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
+  kotlinGradle {
+    target "**/*.gradle.kts"
+    ktlint("0.50.0")
+  }
+  format "misc", {
+    target "**/*.md", "**/*.gitignore", "**/*.properties"
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
+}

@@ -58,8 +58,10 @@ strategic_fix*
 restore_and_fix*
 fix_all_compilation_errors*
 
-# GitHub
+# GitHub (but keep workflows and dependabot)
 .github/
+!.github/workflows/
+!.github/dependabot.yml
 
 # Loader
 loader/helldeck_loader.py

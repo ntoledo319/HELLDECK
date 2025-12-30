@@ -129,6 +129,128 @@ helldeck/
 
 ## 🔧 Development
 
+### Quality Gates
+
+HELLDECK uses automated code quality checks to ensure consistency and prevent regressions.
+
+#### Local Development
+
+**Quick Commands:**
+
+**Unix/macOS/Linux (Makefile):**
+```bash
+# Apply all autofixes (format + lint fixes)
+make fix
+
+# Check formatting/lint without making changes (CI safe)
+make check
+
+# Run unit tests
+make test
+
+# Run full CI pipeline (check + test)
+make ci
+```
+
+**Cross-platform Scripts:**
+```bash
+# Unix/macOS/Linux
+./scripts/fix.sh    # Apply autofixes
+./scripts/check.sh   # Run checks
+./scripts/test.sh    # Run tests
+./scripts/ci.sh      # Full CI pipeline
+
+# Windows PowerShell
+.\scripts\fix.ps1    # Apply autofixes
+.\scripts\check.ps1   # Run checks
+.\scripts\test.ps1    # Run tests
+.\scripts\ci.ps1      # Full CI pipeline
+```
+
+**Individual Commands:**
+```bash
+# Format Kotlin code
+make format-kotlin
+# or: ./gradlew ktlintFormat spotlessApply
+
+# Format Python code
+make format-python
+# or: ruff format loader/ tools/ --exclude third_party
+
+# Fix Kotlin lint issues (detekt autoCorrect enabled in config)
+make lint-kotlin
+# or: ./gradlew detekt
+
+# Fix Python lint issues
+make lint-python
+# or: ruff check --fix loader/ tools/ --exclude third_party
+```
+
+**Pre-commit Hooks (Python):**
+```bash
+# Install pre-commit hooks (optional but recommended)
+pip install pre-commit
+pre-commit install
+
+# Run manually
+pre-commit run --all-files
+```
+
+#### CI/CD Quality Checks
+
+All pull requests are automatically checked for:
+- **Kotlin Code Quality**: ktlint formatting, detekt static analysis, spotless code style
+- **Python Code Quality**: ruff formatting and linting
+- **Unit Tests**: All tests must pass
+
+**CI Workflows:**
+- `quality.yml`: Runs on every PR and push to main/develop
+  - Job: `kotlin-quality` - Checks Kotlin formatting and static analysis
+  - Job: `python-quality` - Checks Python formatting and linting
+  - Job: `tests` - Runs unit tests
+- `autofix.yml`: Automatically applies safe formatting/lint fixes to PR branches
+  - Commits fixes back to the PR using `github-actions[bot]`
+  - Only applies formatting/lint fixes, no semantic changes
+
+#### Branch Protection Setup
+
+To enable branch protection in GitHub:
+
+1. Go to **Settings** → **Branches** → **Branch protection rules**
+2. Add rule for `main` (and optionally `develop`)
+3. Enable:
+   - ✅ Require a pull request before merging
+   - ✅ Require status checks to pass before merging
+   - ✅ Require branches to be up to date before merging
+4. Select required status checks:
+   - `Kotlin Code Quality`
+   - `Python Code Quality`
+   - `Unit Tests`
+5. (Optional) Require approvals, signed commits, etc.
+
+**Required Status Checks:**
+- `kotlin-quality` (from quality.yml)
+- `python-quality` (from quality.yml)
+- `tests` (from quality.yml)
+
+#### Tooling Details
+
+**Kotlin:**
+- **ktlint**: Code formatting (official Kotlin style guide)
+- **detekt**: Static code analysis
+- **spotless**: Code formatter with additional rules
+
+**Python:**
+- **ruff**: Fast Python linter and formatter (replaces black, isort, flake8)
+- **pre-commit**: Git hooks for automatic checks
+
+**Configuration Files:**
+- `Makefile` - Standard command surface
+- `config/detekt.yml` - Detekt rules
+- `pyproject.toml` - Ruff configuration
+- `.editorconfig` - Cross-platform editor settings
+- `.pre-commit-config.yaml` - Pre-commit hooks
+
 ### LLM-Powered Card Generation (Primary)
 
 HELLDECK uses on-device language models (TinyLlama/Qwen) for quality-first card generation:
