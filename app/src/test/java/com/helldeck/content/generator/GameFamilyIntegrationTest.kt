@@ -27,19 +27,23 @@ class GameFamilyIntegrationTest {
         val expectedOptionType: KClass<out GameOptions>
     )
 
+    // Test expectations for all 14 official games from HDRealRules.md
     private val expectations = listOf(
         Expectation(GameIds.ROAST_CONS, GameOptions.PlayerVote::class),
+        Expectation(GameIds.CONFESS_CAP, GameOptions.TrueFalse::class),
         Expectation(GameIds.POISON_PITCH, GameOptions.AB::class),
-        Expectation(GameIds.MAJORITY, GameOptions.AB::class),
+        Expectation(GameIds.FILLIN, GameOptions.Challenge::class),
         Expectation(GameIds.RED_FLAG, GameOptions.AB::class),
+        Expectation(GameIds.HOTSEAT_IMP, GameOptions.Challenge::class),
         Expectation(GameIds.TEXT_TRAP, GameOptions.AB::class),
-        Expectation(GameIds.ODD_ONE, GameOptions.OddOneOut::class),
+        Expectation(GameIds.TABOO, GameOptions.Taboo::class),
+        Expectation(GameIds.UNIFYING_THEORY, GameOptions.Challenge::class),
         Expectation(GameIds.TITLE_FIGHT, GameOptions.Challenge::class),
         Expectation(GameIds.ALIBI, GameOptions.HiddenWords::class),
-        Expectation(GameIds.HYPE_YIKE, GameOptions.Product::class),
-        Expectation(GameIds.TABOO, GameOptions.Taboo::class),
+        Expectation(GameIds.REALITY_CHECK, GameOptions.Challenge::class),
         Expectation(GameIds.SCATTER, GameOptions.Scatter::class),
-        Expectation(GameIds.HOTSEAT_IMP, GameOptions.Challenge::class)
+        Expectation(GameIds.OVER_UNDER, GameOptions.AB::class)
+        // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
     )
 
     private fun engineFor(seed: Long): com.helldeck.content.engine.GameEngine {

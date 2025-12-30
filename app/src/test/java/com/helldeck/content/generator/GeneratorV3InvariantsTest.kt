@@ -24,26 +24,29 @@ class GeneratorV3InvariantsTest {
         return ContentEngineProvider.get(ctx, seed)
     }
 
+    // Test all 14 official games from HDRealRules.md
     private val games = listOf(
         GameIds.ROAST_CONS,
+        GameIds.CONFESS_CAP,
         GameIds.POISON_PITCH,
-        GameIds.MAJORITY,
+        GameIds.FILLIN,
         GameIds.RED_FLAG,
+        GameIds.HOTSEAT_IMP,
         GameIds.TEXT_TRAP,
-        GameIds.ODD_ONE,
+        GameIds.TABOO,
+        GameIds.UNIFYING_THEORY,
         GameIds.TITLE_FIGHT,
         GameIds.ALIBI,
-        GameIds.HYPE_YIKE,
-        GameIds.TABOO,
+        GameIds.REALITY_CHECK,
         GameIds.SCATTER,
-        GameIds.HOTSEAT_IMP
+        GameIds.OVER_UNDER
     )
 
     @Test
     fun abOptionsAreDistinct() = kotlinx.coroutines.runBlocking {
         Config.setSafeModeGoldOnly(false)
         Config.setEnableV3Generator(true)
-        val abGames = listOf(GameIds.POISON_PITCH, GameIds.MAJORITY, GameIds.RED_FLAG, GameIds.TEXT_TRAP)
+        val abGames = listOf(GameIds.POISON_PITCH, GameIds.RED_FLAG, GameIds.TEXT_TRAP, GameIds.OVER_UNDER)
         var checks = 0
         abGames.forEach { gameId ->
             repeat(30) { idx ->

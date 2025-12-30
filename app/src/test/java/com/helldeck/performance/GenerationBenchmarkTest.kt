@@ -36,19 +36,22 @@ class GenerationBenchmarkTest {
         Config.setSafeModeGoldOnly(false)
         Config.setEnableV3Generator(true)
         
+        // Test all 14 official games from HDRealRules.md
         val games = listOf(
             GameIds.ROAST_CONS,
+            GameIds.CONFESS_CAP,
             GameIds.POISON_PITCH,
-            GameIds.MAJORITY,
+            GameIds.FILLIN,
             GameIds.RED_FLAG,
+            GameIds.HOTSEAT_IMP,
             GameIds.TEXT_TRAP,
-            GameIds.ODD_ONE,
+            GameIds.TABOO,
+            GameIds.UNIFYING_THEORY,
             GameIds.TITLE_FIGHT,
             GameIds.ALIBI,
-            GameIds.HYPE_YIKE,
-            GameIds.TABOO,
+            GameIds.REALITY_CHECK,
             GameIds.SCATTER,
-            GameIds.HOTSEAT_IMP
+            GameIds.OVER_UNDER
         )
         
         val results = mutableListOf<BenchmarkResult>()

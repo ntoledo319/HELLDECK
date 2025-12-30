@@ -1,5 +1,7 @@
-# HELLDECK
+# HELLDECK 🎯
 Single phone. One card per round. 14 mini-games. Learns what your crew finds funny.
+
+**The Complete Party Game Collection** - Low Cognitive Load. High Social Stakes. Maximum Chaos.
 
 ## 🚨 Recent Major Updates (December 2024)
 
@@ -19,21 +21,22 @@ See [CHANGELOG.md](CHANGELOG.md) for complete details.
 
 HELLDECK is a party game system designed for 3-16 players using a single Android device. The game features 14 unique mini-games that adapt to your group's sense of humor through machine learning.
 
-### Game Modes
-- **Roast Consensus** - Vote on the most likely target for a scenario
-- **Confession or Cap** - Truth or bluff game with room voting
-- **Poison Pitch** - Sell your side of a "Would You Rather" scenario
-- **Fill-In Finisher** - Judge reads prompt and fills first blank; others write punchlines; judge picks favorite
-- **Red Flag Rally** - Defend a dating scenario despite red flags
-- **Hot Seat Imposter** - Everyone answers as the target player
-- **Text Thread Trap** - Choose the perfect reply tone to a message
-- **Taboo Timer** - Get your team to guess a word without saying forbidden terms
-- **Odd One Out** - Pick the misfit from three options and explain why
-- **Title Fight** - Mini-duels to challenge the current champion
-- **Alibi Drop** - Weave secret words into an excuse without detection
-- **Hype or Yike** - Pitch a ridiculous product with a straight face
-- **Scatterblast** - Name three things in a category starting with a letter
-- **Majority Report** - Predict how the room will vote before they do
+### The 14 Official Game Modes
+
+1. 🎯 **Roast Consensus** - Everyone votes which player fits the roast prompt best
+2. 🤥 **Confession or Cap** - Player answers TRUE or FALSE to embarrassing prompt; room votes if they believe them
+3. 💀 **Poison Pitch** - Defend your side of a horrifying "Would You Rather" scenario
+4. ✍️ **Fill-In Finisher** - Judge fills first blank verbally; others write punchlines; judge picks favorite
+5. 🚩 **Red Flag Rally** - Defend a dating scenario with a perk and red flag; room votes SMASH or PASS
+6. 🎭 **Hot Seat Imposter** - Impersonate another player; answer questions as them
+7. 📱 **Text Thread Trap** - Reply to awkward texts in mandatory tones (22 different tones)
+8. ⏱️ **Taboo Timer** - Describe a word without using forbidden terms; team guesses
+9. 📐 **The Unifying Theory** - Explain why three unrelated items are the same
+10. 🥊 **Title Fight** - Quick duels between players (Brain, Body, or Soul challenges)
+11. 🕵️ **Alibi Drop** - Weave mandatory words into an alibi without getting caught
+12. 🪞 **Reality Check** - Rate yourself 1-10; group rates you; reveal both simultaneously
+13. 💣 **Scatterblast** - Name items in a category with a letter before the bomb explodes
+14. 📉 **Over / Under** - Bet OVER or UNDER on personal statistics about the subject
 
 ## 🚀 Quick Start
 
