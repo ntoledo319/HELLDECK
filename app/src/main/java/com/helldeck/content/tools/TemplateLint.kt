@@ -145,12 +145,15 @@ object TemplateLint {
     /**
      * Basic game ID validation (would check against GameMetadata in real implementation)
      */
+    /**
+     * Validate game ID against the 14 official games from HDRealRules.md
+     */
     private fun isValidGameId(gameId: String): Boolean {
         val knownGameIds = setOf(
             "ROAST_CONSENSUS", "CONFESSION_OR_CAP", "POISON_PITCH", "FILL_IN_FINISHER",
             "RED_FLAG_RALLY", "HOT_SEAT_IMPOSTER", "TEXT_THREAD_TRAP", "TABOO_TIMER",
-            "ODD_ONE_OUT", "TITLE_FIGHT", "ALIBI_DROP", "HYPE_OR_YIKE",
-            "SCATTERBLAST", "MAJORITY_REPORT"
+            "THE_UNIFYING_THEORY", "TITLE_FIGHT", "ALIBI_DROP", "REALITY_CHECK",
+            "SCATTERBLAST", "OVER_UNDER"
         )
         return knownGameIds.contains(gameId)
     }

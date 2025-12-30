@@ -1,0 +1,74 @@
+[
+  {
+    "id": "unifying_theory_blueprint_1",
+    "game": "THE_UNIFYING_THEORY",
+    "family": "unifying_core",
+    "weight": 1.0,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "slot", "name": "item1", "slot_type": "random_item" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "item2", "slot_type": "random_item" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "item3", "slot_type": "random_item" },
+      { "type": "text", "value": " — explain why these three things are The Same." }
+    ],
+    "constraints": { "max_words": 25, "distinct_slots": true },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "unifying_theory_blueprint_2",
+    "game": "THE_UNIFYING_THEORY",
+    "family": "unifying_people",
+    "weight": 0.8,
+    "spice_max": 4,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "slot", "name": "person1", "slot_type": "celebrity" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "person2", "slot_type": "celebrity" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "person3", "slot_type": "celebrity" },
+      { "type": "text", "value": " — what's the connection?" }
+    ],
+    "constraints": { "max_words": 25, "distinct_slots": true },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "unifying_theory_blueprint_3",
+    "game": "THE_UNIFYING_THEORY",
+    "family": "unifying_mixed",
+    "weight": 0.9,
+    "spice_max": 4,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "slot", "name": "object", "slot_type": "random_item" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "person", "slot_type": "celebrity" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "concept", "slot_type": "abstract_concept" },
+      { "type": "text", "value": " — find the thread." }
+    ],
+    "constraints": { "max_words": 25, "distinct_slots": true },
+    "option_provider": { "type": "JUDGE_PICK" }
+  },
+  {
+    "id": "unifying_theory_blueprint_4",
+    "game": "THE_UNIFYING_THEORY",
+    "family": "unifying_spicy",
+    "weight": 0.7,
+    "spice_max": 5,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "slot", "name": "item1", "slot_type": "random_item" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "item2", "slot_type": "random_item" },
+      { "type": "text", "value": ", " },
+      { "type": "slot", "name": "item3", "slot_type": "random_item" },
+      { "type": "text", "value": " — Spice 4+: connection must be inappropriate." }
+    ],
+    "constraints": { "max_words": 30, "distinct_slots": true },
+    "option_provider": { "type": "JUDGE_PICK" }
+  }
+]

@@ -391,11 +391,12 @@ object AssetValidator {
                 warnings.add("Gold bank has only $cardCount cards; recommend at least 50 for good coverage")
             }
             
-            // Check for game coverage
+            // Check for game coverage - 14 official games per HDRealRules.md
             val games = setOf(
-                "ROAST_CONSENSUS", "POISON_PITCH", "MAJORITY_REPORT", "RED_FLAG_RALLY",
-                "TEXT_THREAD_TRAP", "ODD_ONE_OUT", "TITLE_FIGHT", "ALIBI_DROP",
-                "HYPE_OR_YIKE", "TABOO_TIMER", "SCATTERBLAST", "HOT_SEAT_IMPOSTER"
+                "ROAST_CONSENSUS", "CONFESSION_OR_CAP", "POISON_PITCH", "FILL_IN_FINISHER",
+                "RED_FLAG_RALLY", "HOT_SEAT_IMPOSTER", "TEXT_THREAD_TRAP", "TABOO_TIMER",
+                "THE_UNIFYING_THEORY", "TITLE_FIGHT", "ALIBI_DROP", "REALITY_CHECK",
+                "SCATTERBLAST", "OVER_UNDER"
             )
             
             games.forEach { game ->

@@ -28,8 +28,6 @@
   { "id": "tab1", "game": "TABOO_TIMER", "text": "Make them guess: {meme}. Forbidden: {meme:unique}, {meme:unique}, {meme:unique}.", "family": "taboo_memes", "spice": 1, "locality": 1, "max_words": 22, "tags": ["taboo","team","timer"] },
   { "id": "tab2", "game": "TABOO_TIMER", "text": "Target word: {meme}. Taboo: {meme:unique}, {meme:unique}, {meme:unique}.", "family": "taboo_memes_alt", "spice": 1, "locality": 1, "max_words": 22, "tags": ["taboo","team","timer"] },
 
-  { "id": "ooo1", "game": "ODD_ONE_OUT", "text": "{meme}, {meme}, {meme} — which is the odd one out, and why?", "family": "odd_memes", "spice": 1, "locality": 1, "max_words": 22, "tags": ["odd_one","explain","judge"] },
-  { "id": "ooo2", "game": "ODD_ONE_OUT", "text": "{meme}, {meme}, {meme} — pick the misfit and defend it.", "family": "odd_memes_defend", "spice": 1, "locality": 1, "max_words": 20, "tags": ["odd_one","explain","judge"] },
 
   { "id": "tf1", "game": "TITLE_FIGHT", "text": "Challenge the title holder in: {meme:title}. Roll a duel and go.", "family": "title_challenge", "spice": 1, "locality": 1, "max_words": 18, "tags": ["duel","mini_game","judge"] },
   { "id": "tf2", "game": "TITLE_FIGHT", "text": "Title bout: {meme:title}. Countdown and duel.", "family": "title_bout", "spice": 1, "locality": 1, "max_words": 14, "tags": ["duel","mini_game","judge"] },
@@ -37,12 +35,8 @@
   { "id": "ad1", "game": "ALIBI_DROP", "text": "Hide these in an alibi: {meme#3,sep=' / ',unique}.", "family": "alibi_memes", "spice": 1, "locality": 1, "max_words": 20, "tags": ["smuggle","story","judge"] },
   { "id": "ad2", "game": "ALIBI_DROP", "text": "Your alibi must include: {meme#3,sep=', ',unique}. Don’t get caught.", "family": "alibi_memes_alt", "spice": 1, "locality": 1, "max_words": 20, "tags": ["smuggle","story","judge"] },
 
-  { "id": "hoy1", "game": "HYPE_OR_YIKE", "text": "Pitch a product that fixes: {meme}. Dead serious. 15s.", "family": "hype_fix", "spice": 1, "locality": 1, "max_words": 16, "tags": ["pitch","sell","vote"] },
-  { "id": "hoy2", "game": "HYPE_OR_YIKE", "text": "Sell us on: {meme}. Serious pitch. 15s.", "family": "hype_sell", "spice": 1, "locality": 1, "max_words": 14, "tags": ["pitch","sell","vote"] },
 
   { "id": "sb1", "game": "SCATTERBLAST", "text": "Category: {category:title}. Letter: {letter}. Say 3 in 10s.", "family": "scatterblast_basic", "spice": 1, "locality": 1, "max_words": 18, "tags": ["scatter","speed","timer"] },
   { "id": "sb2", "game": "SCATTERBLAST", "text": "Category: {category:title}. Letter: {letter}. No repeats. 10s.", "family": "scatterblast_norepeat", "spice": 1, "locality": 1, "max_words": 18, "tags": ["scatter","speed","timer"] },
 
-  { "id": "mr1", "game": "MAJORITY_REPORT", "text": "Predict the room: {meme:title} vs {meme:title}.", "family": "majority_ab_clean", "spice": 1, "locality": 1, "max_words": 16, "tags": ["predict","ab","vote"] },
-  { "id": "mr2", "game": "MAJORITY_REPORT", "text": "Predict: {meme:title} vs {meme:title}. Lock before they vote.", "family": "majority_ab_alt", "spice": 1, "locality": 1, "max_words": 16, "tags": ["predict","ab","vote"] }
 ]

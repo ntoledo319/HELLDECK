@@ -1381,20 +1381,20 @@ fun GameIcon(
     modifier: Modifier = Modifier
 ) {
     val icon = when (gameId) {
-        "ROAST_CONSENSUS" -> "🔥"
-        "CONFESSION_OR_CAP" -> "🕵️"
-        "POISON_PITCH" -> "⚖️"
-        "FILL_IN_FINISHER" -> "✍️"
-        "RED_FLAG_RALLY" -> "🚩"
-        "HOT_SEAT_IMPOSTER" -> "🎭"
-        "TEXT_THREAD_TRAP" -> "💬"
-        "TABOO_TIMER" -> "⛔"
-        "ODD_ONE_OUT" -> "🧩"
-        "TITLE_FIGHT" -> "👑"
-        "ALIBI_DROP" -> "🕶️"
-        "HYPE_OR_YIKE" -> "📣"
-        "SCATTERBLAST" -> "🔤"
-        "MAJORITY_REPORT" -> "📊"
+        "ROAST_CONSENSUS" -> "🎯"           // 1. Roast Consensus
+        "CONFESSION_OR_CAP" -> "🤥"         // 2. Confession or Cap
+        "POISON_PITCH" -> "💀"              // 3. Poison Pitch
+        "FILL_IN_FINISHER" -> "✍️"          // 4. Fill-In Finisher
+        "RED_FLAG_RALLY" -> "🚩"            // 5. Red Flag Rally
+        "HOT_SEAT_IMPOSTER" -> "🎭"         // 6. Hot Seat Imposter
+        "TEXT_THREAD_TRAP" -> "📱"          // 7. Text Thread Trap
+        "TABOO_TIMER" -> "⏱️"               // 8. Taboo Timer
+        "THE_UNIFYING_THEORY" -> "📐"       // 9. The Unifying Theory
+        "TITLE_FIGHT" -> "🥊"               // 10. Title Fight
+        "ALIBI_DROP" -> "🕵️"               // 11. Alibi Drop
+        "REALITY_CHECK" -> "🪞"             // 12. Reality Check
+        "SCATTERBLAST" -> "💣"              // 13. Scatterblast
+        "OVER_UNDER" -> "📉"                // 14. Over / Under
         else -> "🎮"
     }
     
