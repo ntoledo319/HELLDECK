@@ -5,11 +5,11 @@ import kotlin.random.Random
 object GameMetadata {
     // Maintain insertion order for stable UI presentation
     private val GameDefinitions: LinkedHashMap<String, GameInfo> = linkedMapOf(
-        // 1. Roast Consensus
+        // 1. Roast Consensus 🎯
         GameIds.ROAST_CONS to GameInfo(
             id = GameIds.ROAST_CONS,
             title = "Roast Consensus",
-            description = "Room votes which player fits the roast prompt best.",
+            description = "A roast card appears. Everyone secretly picks one victim. 20 seconds to lock in. All votes drop simultaneously. Whoever got the most votes takes the heat.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 20,
@@ -21,14 +21,14 @@ object GameMetadata {
             spice = 2
         ),
 
-        // 2. Confession or Cap
+        // 2. Confession or Cap 🤥
         GameIds.CONFESS_CAP to GameInfo(
             id = GameIds.CONFESS_CAP,
             title = "Confession or Cap",
-            description = "Speaker sets TRUTH/BLUFF; room votes T/F; match majority for points.",
+            description = "One player receives a potentially embarrassing prompt. They answer TRUE or FALSE. Everyone else votes on whether they believe them. The truth is revealed.",
             category = GameCategory.MAIN,
             difficulty = GameDifficulty.EASY,
-            timerSec = 6,
+            timerSec = 15,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.TRUE_FALSE,
@@ -37,11 +37,11 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 3. Poison Pitch
+        // 3. Poison Pitch 💀
         GameIds.POISON_PITCH to GameInfo(
             id = GameIds.POISON_PITCH,
             title = "Poison Pitch",
-            description = "Would you rather A or B? Active pre-picks; pitch to sway the room.",
+            description = "A 'Would You Rather' card with two horrifying options. One player defends Option A, another defends Option B. Each has 30 seconds to argue. The group votes for the most convincing pitch.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 30,
@@ -53,11 +53,11 @@ object GameMetadata {
             spice = 2
         ),
 
-        // 4. Fill-In Finisher
+        // 4. Fill-In Finisher ✍️
         GameIds.FILLIN to GameInfo(
             id = GameIds.FILLIN,
             title = "Fill-In Finisher",
-            description = "Judge reads prompt and fills first blank verbally; others write punchlines (60s); judge picks favorite.",
+            description = "The Judge draws a card with two blanks. They fill in the first blank verbally. All other players have 60 seconds to write their answer for the second blank. The Judge picks their favorite.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 60,
@@ -69,11 +69,11 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 5. Red Flag Rally
+        // 5. Red Flag Rally 🚩
         GameIds.RED_FLAG to GameInfo(
             id = GameIds.RED_FLAG,
             title = "Red Flag Rally",
-            description = "Perk vs red flag; room votes SMASH or PASS; majority SMASH rewards.",
+            description = "A dating card with a Perk and a Red Flag. One player defends this person and argues why they're still dateable. 45 seconds to make the case. Everyone votes SMASH or PASS.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 45,
@@ -85,14 +85,14 @@ object GameMetadata {
             spice = 2
         ),
 
-        // 6. Hot Seat Imposter
+        // 6. Hot Seat Imposter 🎭
         GameIds.HOTSEAT_IMP to GameInfo(
             id = GameIds.HOTSEAT_IMP,
             title = "Hot Seat Imposter",
-            description = "Answer as the target player; judge picks best impersonation.",
+            description = "One player is the Target. Another is secretly chosen to impersonate them. The group asks 3-5 personal questions. The Imposter answers as if they were the Target. The group votes: REAL or FAKE.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 6,
+            timerSec = 15,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.JUDGE_PICK,
@@ -101,14 +101,14 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 7. Text Thread Trap
+        // 7. Text Thread Trap 📱
         GameIds.TEXT_TRAP to GameInfo(
             id = GameIds.TEXT_TRAP,
             title = "Text Thread Trap",
-            description = "Pick the perfect reply vibe to an incoming text.",
+            description = "A card displays an awkward or high-stakes received text message. A Mandatory Tone is generated (1-22). The player must verbally improvise the text reply while acting out that specific Tone. The group votes on whether they survived.",
             category = GameCategory.MAIN,
             difficulty = GameDifficulty.EASY,
-            timerSec = 6,
+            timerSec = 15,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.REPLY_TONE,
@@ -117,11 +117,11 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 8. Taboo Timer
+        // 8. Taboo Timer ⏱️
         GameIds.TABOO to GameInfo(
             id = GameIds.TABOO,
             title = "Taboo Timer",
-            description = "Give clues so your team guesses the word; avoid forbidden terms.",
+            description = "The Clue-Giver draws a card with a target word and 3-5 forbidden words. 60 seconds on the timer. Describe the target word without using any forbidden words. Guessers shout out answers.",
             category = GameCategory.WORD,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 60,
@@ -133,14 +133,14 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 9. The Unifying Theory
+        // 9. The Unifying Theory 📐
         GameIds.UNIFYING_THEORY to GameInfo(
             id = GameIds.UNIFYING_THEORY,
             title = "The Unifying Theory",
-            description = "Explain why three unrelated items are the same. Spice 4+ requires inappropriate connections.",
+            description = "A card reveals three completely unrelated items. The player must explain exactly why these three things are The Same. Find the single thread that connects all three. The group votes if your theory holds water.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 8,
+            timerSec = 30,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.ODD_REASON,
@@ -149,11 +149,11 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 10. Title Fight
+        // 10. Title Fight 🥊
         GameIds.TITLE_FIGHT to GameInfo(
             id = GameIds.TITLE_FIGHT,
             title = "Title Fight",
-            description = "Quick duel mini-challenge; pick who won to keep or steal the crown.",
+            description = "Draw a card. Immediately point at another player and yell FIGHT! Read the challenge. You and that player compete instantly. The first person to mess up, pause, or quit is the Loser.",
             category = GameCategory.DUEL,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 15,
@@ -165,11 +165,11 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 11. Alibi Drop
+        // 11. Alibi Drop 🕵️
         GameIds.ALIBI to GameInfo(
             id = GameIds.ALIBI,
             title = "Alibi Drop",
-            description = "Weave secret words into an alibi without detection.",
+            description = "Draw a card that accuses you of a crime. The card lists 3 Mandatory Words. You have 30 seconds to explain yourself. You must weave all three words into your story naturally. The group acts as the Jury.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 30,
@@ -181,14 +181,14 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 12. Reality Check
+        // 12. Reality Check 🪞
         GameIds.REALITY_CHECK to GameInfo(
             id = GameIds.REALITY_CHECK,
             title = "Reality Check",
-            description = "Subject rates themselves 1-10; group rates subject 1-10; reveal both simultaneously.",
+            description = "A brutal game of self-awareness. The Subject draws a card with a specific trait. They secretly write down a rating from 1 to 10. The group discusses and agrees on a single rating. Both numbers are revealed simultaneously.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 6,
+            timerSec = 20,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.TARGET_PICK,
@@ -197,11 +197,11 @@ object GameMetadata {
             spice = 2
         ),
 
-        // 13. Scatterblast
+        // 13. Scatterblast 💣
         GameIds.SCATTER to GameInfo(
             id = GameIds.SCATTER,
             title = "Scatterblast",
-            description = "Given a category and letter, say three valid items fast.",
+            description = "A high-speed category elimination game. The phone acts as a bomb with a hidden timer. A card reveals a Category + Letter. Players take turns shouting valid answers. If the bomb explodes on your turn, you lose.",
             category = GameCategory.WORD,
             difficulty = GameDifficulty.EASY,
             timerSec = 10,
@@ -213,14 +213,14 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 14. Over / Under
+        // 14. Over / Under 📉
         GameIds.OVER_UNDER to GameInfo(
             id = GameIds.OVER_UNDER,
             title = "Over / Under",
-            description = "Group sets betting line; everyone bets OVER or UNDER on subject's number; reveal truth.",
+            description = "A social betting game. One player is the Subject. A card asks for a number about them. The group sets a Betting Line. Everyone votes OVER or UNDER. The Subject immediately reveals the exact number.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.EASY,
-            timerSec = 6,
+            timerSec = 20,
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.AB_VOTE,

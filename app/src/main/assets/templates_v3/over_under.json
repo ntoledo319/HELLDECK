@@ -1,0 +1,62 @@
+[
+  {
+    "id": "over_under_blueprint_1",
+    "game": "OVER_UNDER",
+    "family": "over_under_digital",
+    "weight": 1.0,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "Total number of " },
+      { "type": "slot", "name": "digital_item", "slot_type": "phone_stat" },
+      { "type": "text", "value": " on their phone." }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true },
+    "option_provider": { "type": "OVER_UNDER" }
+  },
+  {
+    "id": "over_under_blueprint_2",
+    "game": "OVER_UNDER",
+    "family": "over_under_personal",
+    "weight": 0.9,
+    "spice_max": 5,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Number of " },
+      { "type": "slot", "name": "personal_stat", "slot_type": "life_stat" },
+      { "type": "text", "value": " they've had." }
+    ],
+    "constraints": { "max_words": 16, "distinct_slots": true },
+    "option_provider": { "type": "OVER_UNDER" }
+  },
+  {
+    "id": "over_under_blueprint_3",
+    "game": "OVER_UNDER",
+    "family": "over_under_physical",
+    "weight": 0.8,
+    "spice_max": 3,
+    "locality_max": 2,
+    "blueprint": [
+      { "type": "text", "value": "How many " },
+      { "type": "slot", "name": "physical_task", "slot_type": "physical_challenge" },
+      { "type": "text", "value": " they can do right now." }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true },
+    "option_provider": { "type": "OVER_UNDER" }
+  },
+  {
+    "id": "over_under_blueprint_4",
+    "game": "OVER_UNDER",
+    "family": "over_under_behavior",
+    "weight": 0.8,
+    "spice_max": 4,
+    "locality_max": 1,
+    "blueprint": [
+      { "type": "text", "value": "Number of times they've " },
+      { "type": "slot", "name": "behavior", "slot_type": "guilty_behavior" },
+      { "type": "text", "value": " this year." }
+    ],
+    "constraints": { "max_words": 18, "distinct_slots": true },
+    "option_provider": { "type": "OVER_UNDER" }
+  }
+]

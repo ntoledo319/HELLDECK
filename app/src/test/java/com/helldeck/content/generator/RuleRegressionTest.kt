@@ -84,8 +84,11 @@ class RuleRegressionTest {
         val cardCount = content.count { it == '{' } - 1 // Subtract outer object
         assertTrue("Gold bank should have at least 30 cards for decent coverage", cardCount >= 30)
         
-        // Check critical games have coverage
-        val criticalGames = listOf("ROAST_CONSENSUS", "POISON_PITCH", "MAJORITY_REPORT", "RED_FLAG_RALLY")
+        // Check critical games have coverage - using official 14 games from HDRealRules.md
+        val criticalGames = listOf(
+            "ROAST_CONSENSUS", "CONFESSION_OR_CAP", "POISON_PITCH", "FILL_IN_FINISHER",
+            "RED_FLAG_RALLY", "HOT_SEAT_IMPOSTER", "TEXT_THREAD_TRAP", "TABOO_TIMER"
+        )
         criticalGames.forEach { game ->
             assertTrue("Gold bank must cover critical game: $game", content.contains("\"$game\""))
         }
