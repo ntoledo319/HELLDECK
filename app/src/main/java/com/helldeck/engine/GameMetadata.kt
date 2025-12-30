@@ -181,20 +181,20 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 12. Hype or Yike
-        GameIds.HYPE_YIKE to GameInfo(
-            id = GameIds.HYPE_YIKE,
-            title = "Hype or Yike",
-            description = "Pitch a straight-faced product for a ridiculous problem; lock when done.",
-            category = GameCategory.CREATIVE,
+        // 12. Reality Check
+        GameIds.REALITY_CHECK to GameInfo(
+            id = GameIds.REALITY_CHECK,
+            title = "Reality Check",
+            description = "Subject rates themselves 1-10; group rates subject 1-10; reveal both simultaneously.",
+            category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
-            timerSec = 15,
+            timerSec = 6,
             minPlayers = 3,
             maxPlayers = 16,
-            interaction = Interaction.PITCH,
-            interactionType = InteractionType.SALES_PITCH,
-            tags = setOf("pitch", "sell", "vote"),
-            spice = 1
+            interaction = Interaction.TARGET_PICK,
+            interactionType = InteractionType.TARGET_SELECT,
+            tags = setOf("rating", "self-awareness", "vote"),
+            spice = 2
         ),
 
         // 13. Scatterblast
@@ -213,38 +213,6 @@ object GameMetadata {
             spice = 1
         ),
 
-        // 14. Majority Report
-        GameIds.MAJORITY to GameInfo(
-            id = GameIds.MAJORITY,
-            title = "Majority Report",
-            description = "Predict the room's A vs B before they vote; earn if you read the room.",
-            category = GameCategory.VOTING,
-            difficulty = GameDifficulty.EASY,
-            timerSec = 6,
-            minPlayers = 3,
-            maxPlayers = 16,
-            interaction = Interaction.AB_VOTE,
-            interactionType = InteractionType.PREDICT_VOTE,
-            tags = setOf("predict", "ab", "vote"),
-            spice = 1
-        ),
-
-        // 13. Reality Check
-        GameIds.REALITY_CHECK to GameInfo(
-            id = GameIds.REALITY_CHECK,
-            title = "Reality Check",
-            description = "Subject rates themselves 1-10; group rates subject 1-10; reveal both simultaneously.",
-            category = GameCategory.VOTING,
-            difficulty = GameDifficulty.MEDIUM,
-            timerSec = 6,
-            minPlayers = 3,
-            maxPlayers = 16,
-            interaction = Interaction.TARGET_PICK,
-            interactionType = InteractionType.TARGET_SELECT,
-            tags = setOf("rating", "self-awareness", "vote"),
-            spice = 2
-        ),
-
         // 14. Over / Under
         GameIds.OVER_UNDER to GameInfo(
             id = GameIds.OVER_UNDER,
@@ -259,23 +227,10 @@ object GameMetadata {
             interactionType = InteractionType.PREDICT_VOTE,
             tags = setOf("betting", "numbers", "vote"),
             spice = 1
-        ),
-
-        // Legacy: Odd One Out (not in HDRealRules.md but has content)
-        GameIds.ODD_ONE to GameInfo(
-            id = GameIds.ODD_ONE,
-            title = "Odd One Out",
-            description = "Pick the misfit from three options and explain why.",
-            category = GameCategory.CREATIVE,
-            difficulty = GameDifficulty.MEDIUM,
-            timerSec = 8,
-            minPlayers = 3,
-            maxPlayers = 16,
-            interaction = Interaction.ODD_REASON,
-            interactionType = InteractionType.ODD_EXPLAIN,
-            tags = setOf("odd", "pick", "judge"),
-            spice = 1
         )
+
+        // NOTE: HYPE_YIKE, MAJORITY, and ODD_ONE are NOT in HDRealRules.md and are excluded from the 14 official games.
+        // They may exist in legacy content but are not part of the official game collection.
     )
 
     fun getGameMetadata(gameId: String): GameInfo? = GameDefinitions[gameId]

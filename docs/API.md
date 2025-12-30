@@ -168,20 +168,33 @@ interface TemplateStatsDao {
 **HelldeckAppUI:**
 ```kotlin
 @Composable
-fun HelldeckAppUI(vm: HelldeckVm, modifier: Modifier = Modifier)
+fun HelldeckAppUI(vm: GameNightViewModel, modifier: Modifier = Modifier)
 ```
 
 **Scene Composables:**
-- `HomeScene(vm: HelldeckVm)` - Main menu
-- `RoundScene(vm: HelldeckVm)` - Game round interface
-- `RollcallScene(vm: HelldeckVm)` - Player attendance
-- `SettingsScene(vm: HelldeckVm)` - Settings and configuration
-- `PlayersScene(vm: HelldeckVm)` - Player management
+- `HomeScene(vm: GameNightViewModel)` - Main menu with game selection
+- `RoundScene(vm: GameNightViewModel)` - Game round interface with timer and interactions
+- `OnboardingFlow(onComplete: () -> Unit)` - Interactive tutorial for new users
+- `RollcallScene(vm: GameNightViewModel)` - Player attendance management
+- `PlayersScene(vm: GameNightViewModel)` - Player management and profiles
+- `FeedbackScene(vm: GameNightViewModel)` - Post-round rating interface
+- `SettingsScene(vm: GameNightViewModel)` - App configuration
+- `StatsScene(vm: GameNightViewModel)` - Player statistics and game history
+
+**Enhanced Button Components:**
+- `PrimaryButton(onClick, text, modifier, enabled, loading, icon)` - Animated primary action button with haptics
+- `SecondaryButton(onClick, text, modifier, enabled)` - Outlined secondary button
+- `TextButton(onClick, text, modifier, enabled)` - Text-only button
+- `ToggleButton(selected, onClick, text, modifier)` - Toggle state button with animations
+- `IconButton(onClick, icon, modifier, enabled)` - Icon-only button with scale feedback
+- `FloatingActionButton(onClick, icon, modifier)` - Floating action button
 
 **Interactive Components:**
 - `BigZones(onLeft, onCenter, onRight, onLong)` - Three-zone touch interface
 - `FeedbackStrip(onLol, onMeh, onTrash, onComment)` - Round feedback
 - `EmojiPicker(show, onDismiss, onPick)` - Emoji avatar selection
+- `SpiceSlider(value, onValueChange, modifier)` - Spice level selector with visual feedback
+- `InteractionRenderer(roundState, onEvent, modifier)` - Master dispatcher for game interactions
 
 ## Configuration
 
@@ -286,24 +299,30 @@ object GameFeedback {
 ## Enums
 
 ### InteractionType
-- `VOTE_AVATAR` - Vote for player
-- `TRUE_FALSE` - Binary choice
-- `AB_VOTE` - A/B option selection
-- `JUDGE_PICK` - Judge selection
-- `REPLY_TONE` - Text reply tone
-- `TABOO_CLUE` - Taboo word game
-- `ODD_REASON` - Odd one out explanation
-- `PITCH` - Sales pitch
-- `SPEED_LIST` - Quick listing
+- `VOTE_PLAYER` - Vote for player (Roast Consensus, Hot Seat Imposter)
+- `TRUE_FALSE` - Binary choice (Confession or Cap)
+- `AB_VOTE` - A/B option selection (Poison Pitch, Majority Report, Over/Under)
+- `JUDGE_PICK` - Judge selection (Fill-In Finisher, Title Fight)
+- `REPLY_TONE` - Text reply tone (Text Thread Trap)
+- `TABOO_CLUE` - Taboo word game (Taboo Timer)
+- `ODD_EXPLAIN` - Odd one out explanation (Odd One Out, The Unifying Theory)
+- `SALES_PITCH` - Sales pitch (Hype or Yike)
+- `SPEED_LIST` - Quick listing (Scatterblast)
+- `HIDE_WORDS` - Hide words in story (Alibi Drop)
+- `MINI_DUEL` - Mini-duel format (Title Fight)
+- `PREDICT_VOTE` - Predict room vote (Majority Report)
+- `REALITY_CHECK` - Self-rating vs group rating (Reality Check)
 
 ### GameOptions
-- `PlayerVote(players: List<String>)`
-- `AB(optionA: String, optionB: String)`
-- `Taboo(word: String, forbidden: List<String>)`
-- `Scatter(category: String, letter: String)`
-- `ReplyTone(tones: List<String>)`
-- `OddOneOut(items: List<String>)`
-- `None`
+- `PlayerVote(players: List<String>)` - List of players to vote for
+- `AB(optionA: String, optionB: String)` - Two-choice options
+- `Taboo(word: String, forbidden: List<String>)` - Target word and forbidden terms
+- `Scatter(category: String, letter: String)` - Category and starting letter
+- `ReplyTone(tones: List<String>)` - Available reply tone options
+- `OddOneOut(items: List<String>)` - Three items to choose from
+- `OverUnder(line: Int, actual: Int?)` - Betting line and actual value (if revealed)
+- `RealityCheck(subjectScore: Int, groupScore: Int?)` - Self-rating and group rating
+- `None` - No special options
 
 ## Export/Import
 

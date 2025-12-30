@@ -32,8 +32,10 @@ HELLDECK is a party game system designed for 3-16 players using a single Android
 - **Title Fight** - Mini-duels to challenge the current champion
 - **Alibi Drop** - Weave secret words into an excuse without detection
 - **Hype or Yike** - Pitch a ridiculous product with a straight face
+- **The Unifying Theory** - Explain why three unrelated items are connected
+- **Reality Check** - Rate yourself vs. how the group rates you
 - **Scatterblast** - Name three things in a category starting with a letter
-- **Majority Report** - Predict how the room will vote before they do
+- **Over / Under** - Bet on whether a number is higher or lower than the line
 
 ## 🚀 Quick Start
 
@@ -208,10 +210,10 @@ The app uses Jetpack Compose with a custom dark theme optimized for party enviro
 - **JudgePickFlow**: Judge selection interface
 
 ### Newly added (2025-10)
-- **RollcallScene**: “Who’s here?” attendance at launch or any time from Home.
+- **RollcallScene**: "Who's here?" attendance at launch or any time from Home.
   - Toggle present players, quick add with emoji, swipe-to-delete with confirm + Undo.
 - **Settings** additions:
-  - Toggle “Ask ‘Who’s here?’ at launch”, manage players inline (add/toggle active), and jump to full Players.
+  - Toggle "Ask 'Who's here?' at launch", manage players inline (add/toggle active), and jump to full Players.
 - **Players management**:
   - Inline name edit (tap name → edit → save/cancel), tap avatar to change emoji via picker.
   - Swipe-to-delete with confirmation dialog and Undo snackbar.
@@ -223,6 +225,13 @@ The app uses Jetpack Compose with a custom dark theme optimized for party enviro
 - **Accessibility/legibility**:
   - Dark theme neutrals retuned; card titles/subtitles now ellipsize and wrap safely.
   - Progress indicators migrated to the latest Compose API.
+
+### UI Enhancements (December 2024)
+- **Modern Onboarding Flow**: Interactive tutorial with smooth animations and haptic feedback
+- **Enhanced Button Components**: PrimaryButton, SecondaryButton, ToggleButton with animations
+- **Improved Spice Slider**: Better responsiveness and visual feedback
+- **Visual Polish**: Consistent design system, smooth transitions, better touch targets
+- **Backend Stability**: Comprehensive null safety, error handling, and validation
 
 ## 🤖 AI Learning System
 
