@@ -102,7 +102,7 @@
         },
         {
           "text": "Who would trip over their own feet while walking on flat ground?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -132,7 +132,7 @@
         },
         {
           "text": "Who would get lost in their own neighborhood?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -197,7 +197,7 @@
         },
         {
           "text": "Who would get kicked out of a library for being too loud?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -212,7 +212,7 @@
         },
         {
           "text": "Who would cry during their own wedding vows?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -222,7 +222,7 @@
         },
         {
           "text": "Who would accidentally reveal a surprise party?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -357,7 +357,7 @@
         },
         {
           "text": "Have you ever cheated on a test?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 3
         },
         {
@@ -367,7 +367,7 @@
         },
         {
           "text": "Have you ever lied to your parents about where you were?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 3
         },
         {
@@ -377,7 +377,7 @@
         },
         {
           "text": "Have you ever eaten food that fell on the floor?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -402,7 +402,7 @@
         },
         {
           "text": "Have you ever cried in public?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -492,22 +492,22 @@
         },
         {
           "text": "Have you ever lied about liking someone's cooking?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Have you ever pretended to like a gift you hated?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Have you ever regifted something?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Have you ever lied about your weight?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 3
         }
       ]
@@ -516,352 +516,252 @@
       "game_name": "Poison Pitch",
       "cards": [
         {
-          "text": "Would you rather...",
-          "optionA": "Eat a live spider",
-          "optionB": "Lick a subway pole",
-          "quality_score": 10,
-          "spice": 4
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Fight one horse-sized duck",
-          "optionB": "Fight 100 duck-sized horses",
-          "quality_score": 10,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have permanent hiccups",
-          "optionB": "Always smell like garlic",
+          "text": "Would you rather eat a live spider OR lick a subway pole?",
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Drunk text your boss",
-          "optionB": "Drunk text your ex",
+          "text": "Would you rather fight one horse-sized duck OR 100 duck-sized horses?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather have permanent hiccups OR always smell like garlic?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather drunk text your boss OR your ex?",
           "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Accidentally send a nude to your family group chat",
-          "optionB": "Accidentally send a nude to your work Slack",
+          "text": "Would you rather accidentally send a nude to your family group chat OR your work Slack?",
           "quality_score": 10,
           "spice": 5
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Be known as 'the person who cries at work'",
-          "optionB": "Be known as 'the person who never washes their hands'",
+          "text": "Would you rather be known as 'the person who cries at work' OR 'the person who never washes their hands'?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather steal from a charity OR lie under oath?",
           "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Steal from a charity",
-          "optionB": "Lie under oath",
+          "text": "Would you rather cheat to win $1 million OR play fair and lose?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather fight a bear with a spoon OR seduce a bear with poetry?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather have fingers for toes OR toes for fingers?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather speak only in rhymes OR sing everything you say?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather always be 10 minutes late OR always be 20 minutes early?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather have to announce every time you fart OR have to ask permission every time you want to speak?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather never be able to use your phone again OR never be able to eat your favorite food again?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather be able to read minds but never turn it off OR have everyone able to read your mind?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather live without music OR live without movies?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather have a rewind button for your life OR a pause button?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather always have to say what you're thinking OR never be able to speak again?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather fight Mike Tyson once OR talk like Mike Tyson forever?",
+          "quality_score": 10,
+          "spice": 3
+        },
+        {
+          "text": "Would you rather eat a bowl of toenail clippings OR drink a cup of armpit sweat?",
           "quality_score": 10,
           "spice": 5
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Cheat to win $1 million",
-          "optionB": "Play fair and lose",
-          "quality_score": 10,
-          "spice": 4
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Save your pet",
-          "optionB": "Save a stranger's child",
+          "text": "Would you rather have explosive diarrhea on a first date OR throw up on your crush?",
           "quality_score": 10,
           "spice": 5
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Fight a bear with a spoon",
-          "optionB": "Seduce a bear with poetry",
+          "text": "Would you rather walk in on your parents OR have your parents walk in on you?",
           "quality_score": 10,
-          "spice": 3
+          "spice": 5
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have fingers for toes",
-          "optionB": "Have toes for fingers",
-          "quality_score": 10,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Speak only in rhymes",
-          "optionB": "Sing everything you say",
-          "quality_score": 10,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Never be able to use your phone again",
-          "optionB": "Never be able to eat your favorite food again",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Always be 10 minutes late",
-          "optionB": "Always be 20 minutes early",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have to announce every time you fart",
-          "optionB": "Have to ask permission every time you want to speak",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have everyone you love forget you",
-          "optionB": "Forget everyone you love",
+          "text": "Would you rather have your browser history made public OR your text messages?",
           "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Be able to read minds but never turn it off",
-          "optionB": "Have everyone able to read your mind",
+          "text": "Would you rather shit your pants in public OR piss yourself during a job interview?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather have to fight your dad OR kiss your mom on the lips for 10 seconds?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather eat ass OR have your ass eaten by someone you find repulsive?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather get caught masturbating by your boss OR by your grandma?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather have a threesome with your partner's parents OR with your own?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather never orgasm again OR only orgasm in public places?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather eat a used tampon OR drink a cup of period blood?",
+          "quality_score": 10,
+          "spice": 5
+        },
+        {
+          "text": "Would you rather have your nudes leaked OR have everyone think you're a virgin?",
           "quality_score": 10,
           "spice": 4
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Live without music",
-          "optionB": "Live without movies",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have a rewind button for your life",
-          "optionB": "Have a pause button for your life",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Always have to say what you're thinking",
-          "optionB": "Never be able to speak again",
-          "quality_score": 10,
-          "spice": 4
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Fight Mike Tyson once",
-          "optionB": "Talk like Mike Tyson forever",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Eat only pizza for the rest of your life",
-          "optionB": "Never eat pizza again",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have unlimited money but no friends",
-          "optionB": "Have amazing friends but always be broke",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Be famous but hated",
-          "optionB": "Be unknown but loved",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Know when you're going to die",
-          "optionB": "Know how you're going to die",
-          "quality_score": 10,
-          "spice": 4
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Be able to fly but only 3 feet off the ground",
-          "optionB": "Be invisible but only when no one is looking",
+          "text": "Would you rather be the worst player on a winning team OR the best player on a losing team?",
           "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have a third nipple",
-          "optionB": "Have no nipples at all",
-          "quality_score": 10,
-          "spice": 4
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Sweat mayonnaise",
-          "optionB": "Cry hot sauce",
+          "text": "Would you rather give up alcohol forever OR give up sex forever?",
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have a tail",
-          "optionB": "Have horns",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Only be able to whisper",
-          "optionB": "Only be able to shout",
+          "text": "Would you rather be famous but broke OR rich but unknown?",
           "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have no elbows",
-          "optionB": "Have no knees",
+          "text": "Would you rather have no teeth OR no hair?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather eat only pizza for a year OR never eat pizza again?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather have a photographic memory OR an IQ of 200?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather be able to fly OR be invisible?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Would you rather time travel to the past OR the future?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Would you rather be stuck on a desert island alone OR with someone you hate?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather have unlimited money OR unlimited time?",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Would you rather know when you're going to die OR how you're going to die?",
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Be allergic to your favorite food",
-          "optionB": "Be allergic to your phone",
+          "text": "Would you rather lose all your memories OR never be able to make new ones?",
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have to wear wet socks every day",
-          "optionB": "Have to sleep on a wet pillow every night",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have teeth for hair",
-          "optionB": "Have hair for teeth",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Only be able to eat food that's been blended",
-          "optionB": "Only be able to eat food that's been burnt",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have a permanent unibrow",
-          "optionB": "Have no eyebrows at all",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Always smell like onions",
-          "optionB": "Always smell like fish",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have to wear clown shoes everywhere",
-          "optionB": "Have to wear a clown nose everywhere",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Only be able to communicate through interpretive dance",
-          "optionB": "Only be able to communicate through mime",
+          "text": "Would you rather be feared OR loved?",
           "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have a permanent wedgie",
-          "optionB": "Have a permanent itch you can't scratch",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Sneeze every time you see someone attractive",
-          "optionB": "Hiccup every time you lie",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have to narrate your life out loud",
-          "optionB": "Have someone else narrate your life out loud",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Only be able to walk backwards",
-          "optionB": "Only be able to run everywhere",
+          "text": "Would you rather have a horrible job with great pay OR a great job with horrible pay?",
           "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have a permanent brain freeze",
-          "optionB": "Have permanent pins and needles in your feet",
-          "quality_score": 10,
-          "spice": 3
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Only be able to eat with your hands",
-          "optionB": "Only be able to eat with chopsticks",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have to wear a helmet everywhere",
-          "optionB": "Have to wear floaties everywhere",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Only be able to drink through a straw",
-          "optionB": "Only be able to drink from a baby bottle",
-          "quality_score": 9,
-          "spice": 2
-        },
-        {
-          "text": "Would you rather...",
-          "optionA": "Have a laugh that sounds like a car alarm",
-          "optionB": "Have a sneeze that sounds like a foghorn",
+          "text": "Would you rather be the funniest person in the room OR the smartest?",
           "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Only be able to wear clothes that are two sizes too small",
-          "optionB": "Only be able to wear clothes that are two sizes too big",
-          "quality_score": 9,
+          "text": "Would you rather have a perfect body OR a perfect face?",
+          "quality_score": 10,
           "spice": 2
         },
         {
-          "text": "Would you rather...",
-          "optionA": "Have to do the Macarena every time you hear music",
-          "optionB": "Have to dab every time someone says your name",
+          "text": "Would you rather be able to speak every language OR play every instrument?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Would you rather have free WiFi everywhere OR free coffee everywhere?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Would you rather be a genius everyone thinks is dumb OR dumb but everyone thinks you're a genius?",
           "quality_score": 10,
           "spice": 2
         }
@@ -1212,7 +1112,7 @@
         {
           "perk": "They'll move anywhere for you",
           "red_flag": "They expect you to do the same for them",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 3
         },
         {
@@ -1272,7 +1172,7 @@
         {
           "perk": "They're incredibly romantic",
           "red_flag": "They write you poetry every single day",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1314,13 +1214,13 @@
         {
           "perk": "They're a veterinarian",
           "red_flag": "They love animals more than humans",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "perk": "They're a professional photographer",
           "red_flag": "They document every moment of your relationship",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 3
         },
         {
@@ -1338,7 +1238,7 @@
         {
           "perk": "They're a professional dancer",
           "red_flag": "They choreograph every aspect of your life",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1380,7 +1280,7 @@
         {
           "perk": "They're a professional matchmaker",
           "red_flag": "They're constantly trying to set up your friends",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1432,12 +1332,12 @@
       "cards": [
         {
           "text": "What's your favorite food?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "What's your biggest pet peeve?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1462,12 +1362,12 @@
         },
         {
           "text": "What's the name of your childhood pet?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "What's your middle name?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -1492,12 +1392,12 @@
         },
         {
           "text": "If you won the lottery, what's the first thing you'd buy?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "If you could have dinner with anyone, dead or alive, who would it be?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -1587,7 +1487,7 @@
         },
         {
           "text": "What's your guilty pleasure?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1617,12 +1517,12 @@
         },
         {
           "text": "What's your most used emoji?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "What's the last thing you ordered on DoorDash?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1752,7 +1652,7 @@
         },
         {
           "text": "Group Chat: We're voting on where to eat. You're the tiebreaker.",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1772,7 +1672,7 @@
         },
         {
           "text": "Friend: I'm stranded. Can you pick me up?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1817,7 +1717,7 @@
         },
         {
           "text": "Dentist: You missed your appointment. Again.",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1832,7 +1732,7 @@
         },
         {
           "text": "Dating App: You have 99+ likes!",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 3
         },
         {
@@ -1852,32 +1752,32 @@
         },
         {
           "text": "Pharmacy: Your prescription is ready for pickup.",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Uber Driver: I'm outside. Where are you?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "DoorDash: Your order has been delivered.",
-          "quality_score": 8,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Amazon: Your package was delivered to a neighbor.",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Netflix: Are you still watching?",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Apple: Your iCloud storage is full.",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -1942,301 +1842,601 @@
       "cards": [
         {
           "text": "PIZZA",
-          "forbidden_words": ["Cheese", "Italy", "Slice", "Delivery", "Pepperoni"],
+          "forbidden_words": [
+            "Cheese",
+            "Italy",
+            "Slice",
+            "Delivery",
+            "Pepperoni"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "LOVE",
-          "forbidden_words": ["Heart", "Feeling", "Romance", "Relationship", "Emotion"],
+          "forbidden_words": [
+            "Heart",
+            "Feeling",
+            "Romance",
+            "Relationship",
+            "Emotion"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "HARRY POTTER",
-          "forbidden_words": ["Wizard", "Magic", "Hogwarts", "Wand", "Book"],
+          "forbidden_words": [
+            "Wizard",
+            "Magic",
+            "Hogwarts",
+            "Wand",
+            "Book"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "SPATULA",
-          "forbidden_words": ["Kitchen", "Flip", "Cook", "Pancake", "Utensil"],
+          "forbidden_words": [
+            "Kitchen",
+            "Flip",
+            "Cook",
+            "Pancake",
+            "Utensil"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "RUNNING",
-          "forbidden_words": ["Jog", "Sprint", "Fast", "Exercise", "Legs"],
-          "quality_score": 9,
+          "forbidden_words": [
+            "Jog",
+            "Sprint",
+            "Fast",
+            "Exercise",
+            "Legs"
+          ],
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "BIRTHDAY",
-          "forbidden_words": ["Cake", "Party", "Age", "Celebrate", "Candles"],
+          "forbidden_words": [
+            "Cake",
+            "Party",
+            "Age",
+            "Celebrate",
+            "Candles"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "WEDDING",
-          "forbidden_words": ["Bride", "Groom", "Ceremony", "Ring", "Dress"],
+          "forbidden_words": [
+            "Bride",
+            "Groom",
+            "Ceremony",
+            "Ring",
+            "Dress"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "COFFEE",
-          "forbidden_words": ["Drink", "Caffeine", "Morning", "Starbucks", "Hot"],
+          "forbidden_words": [
+            "Drink",
+            "Caffeine",
+            "Morning",
+            "Starbucks",
+            "Hot"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "NIGHTMARE",
-          "forbidden_words": ["Dream", "Sleep", "Scary", "Bad", "Night"],
+          "forbidden_words": [
+            "Dream",
+            "Sleep",
+            "Scary",
+            "Bad",
+            "Night"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "OCEAN",
-          "forbidden_words": ["Water", "Sea", "Blue", "Fish", "Waves"],
-          "quality_score": 9,
+          "forbidden_words": [
+            "Water",
+            "Sea",
+            "Blue",
+            "Fish",
+            "Waves"
+          ],
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "NOSTALGIA",
-          "forbidden_words": ["Memory", "Past", "Feeling", "Childhood", "Remember"],
+          "forbidden_words": [
+            "Memory",
+            "Past",
+            "Feeling",
+            "Childhood",
+            "Remember"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "SILENCE",
-          "forbidden_words": ["Quiet", "Sound", "Noise", "Speak", "Hear"],
+          "forbidden_words": [
+            "Quiet",
+            "Sound",
+            "Noise",
+            "Speak",
+            "Hear"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "SMARTPHONE",
-          "forbidden_words": ["Phone", "Cell", "iPhone", "Android", "Call"],
+          "forbidden_words": [
+            "Phone",
+            "Cell",
+            "iPhone",
+            "Android",
+            "Call"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "NETFLIX",
-          "forbidden_words": ["Streaming", "TV", "Movies", "Watch", "Show"],
+          "forbidden_words": [
+            "Streaming",
+            "TV",
+            "Movies",
+            "Watch",
+            "Show"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "INSTAGRAM",
-          "forbidden_words": ["Social", "Media", "Photo", "Post", "App"],
+          "forbidden_words": [
+            "Social",
+            "Media",
+            "Photo",
+            "Post",
+            "App"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "TIKTOK",
-          "forbidden_words": ["Video", "Dance", "App", "Viral", "Short"],
+          "forbidden_words": [
+            "Video",
+            "Dance",
+            "App",
+            "Viral",
+            "Short"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "UBER",
-          "forbidden_words": ["Ride", "Car", "Driver", "App", "Taxi"],
+          "forbidden_words": [
+            "Ride",
+            "Car",
+            "Driver",
+            "App",
+            "Taxi"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "AMAZON",
-          "forbidden_words": ["Shopping", "Online", "Delivery", "Prime", "Package"],
+          "forbidden_words": [
+            "Shopping",
+            "Online",
+            "Delivery",
+            "Prime",
+            "Package"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "ZOOM",
-          "forbidden_words": ["Video", "Call", "Meeting", "Conference", "Online"],
+          "forbidden_words": [
+            "Video",
+            "Call",
+            "Meeting",
+            "Conference",
+            "Online"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "MEME",
-          "forbidden_words": ["Funny", "Internet", "Picture", "Viral", "Joke"],
+          "forbidden_words": [
+            "Funny",
+            "Internet",
+            "Picture",
+            "Viral",
+            "Joke"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "SELFIE",
-          "forbidden_words": ["Photo", "Picture", "Camera", "Face", "Instagram"],
+          "forbidden_words": [
+            "Photo",
+            "Picture",
+            "Camera",
+            "Face",
+            "Instagram"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "GHOSTING",
-          "forbidden_words": ["Ignore", "Dating", "Text", "Disappear", "Block"],
+          "forbidden_words": [
+            "Ignore",
+            "Dating",
+            "Text",
+            "Disappear",
+            "Block"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "CATFISH",
-          "forbidden_words": ["Fake", "Dating", "Online", "Lie", "Profile"],
+          "forbidden_words": [
+            "Fake",
+            "Dating",
+            "Online",
+            "Lie",
+            "Profile"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "INFLUENCER",
-          "forbidden_words": ["Social", "Media", "Instagram", "Famous", "Follower"],
+          "forbidden_words": [
+            "Social",
+            "Media",
+            "Instagram",
+            "Famous",
+            "Follower"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "CRYPTOCURRENCY",
-          "forbidden_words": ["Bitcoin", "Money", "Digital", "Blockchain", "Invest"],
+          "forbidden_words": [
+            "Bitcoin",
+            "Money",
+            "Digital",
+            "Blockchain",
+            "Invest"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "PODCAST",
-          "forbidden_words": ["Audio", "Listen", "Show", "Episode", "Talk"],
+          "forbidden_words": [
+            "Audio",
+            "Listen",
+            "Show",
+            "Episode",
+            "Talk"
+          ],
           "quality_score": 10,
           "spice": 1
         },
         {
           "text": "VEGAN",
-          "forbidden_words": ["Food", "Meat", "Animal", "Plant", "Diet"],
+          "forbidden_words": [
+            "Food",
+            "Meat",
+            "Animal",
+            "Plant",
+            "Diet"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "YOGA",
-          "forbidden_words": ["Exercise", "Stretch", "Meditation", "Mat", "Pose"],
-          "quality_score": 9,
+          "forbidden_words": [
+            "Exercise",
+            "Stretch",
+            "Meditation",
+            "Mat",
+            "Pose"
+          ],
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "THERAPY",
-          "forbidden_words": ["Mental", "Health", "Counseling", "Talk", "Doctor"],
+          "forbidden_words": [
+            "Mental",
+            "Health",
+            "Counseling",
+            "Talk",
+            "Doctor"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "ANXIETY",
-          "forbidden_words": ["Worry", "Stress", "Fear", "Nervous", "Panic"],
+          "forbidden_words": [
+            "Worry",
+            "Stress",
+            "Fear",
+            "Nervous",
+            "Panic"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "DEPRESSION",
-          "forbidden_words": ["Sad", "Mental", "Health", "Mood", "Down"],
+          "forbidden_words": [
+            "Sad",
+            "Mental",
+            "Health",
+            "Mood",
+            "Down"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "BURNOUT",
-          "forbidden_words": ["Work", "Tired", "Exhausted", "Stress", "Job"],
+          "forbidden_words": [
+            "Work",
+            "Tired",
+            "Exhausted",
+            "Stress",
+            "Job"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "STUDENT LOANS",
-          "forbidden_words": ["Debt", "Money", "College", "Pay", "School"],
+          "forbidden_words": [
+            "Debt",
+            "Money",
+            "College",
+            "Pay",
+            "School"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "RENT",
-          "forbidden_words": ["Money", "Apartment", "Pay", "Landlord", "Housing"],
+          "forbidden_words": [
+            "Money",
+            "Apartment",
+            "Pay",
+            "Landlord",
+            "Housing"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "UNEMPLOYMENT",
-          "forbidden_words": ["Job", "Work", "Money", "Fired", "Jobless"],
+          "forbidden_words": [
+            "Job",
+            "Work",
+            "Money",
+            "Fired",
+            "Jobless"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "INFLATION",
-          "forbidden_words": ["Money", "Price", "Cost", "Economy", "Expensive"],
+          "forbidden_words": [
+            "Money",
+            "Price",
+            "Cost",
+            "Economy",
+            "Expensive"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "CLIMATE CHANGE",
-          "forbidden_words": ["Global", "Warming", "Environment", "Earth", "Temperature"],
+          "forbidden_words": [
+            "Global",
+            "Warming",
+            "Environment",
+            "Earth",
+            "Temperature"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "PANDEMIC",
-          "forbidden_words": ["COVID", "Virus", "Disease", "Sick", "Outbreak"],
+          "forbidden_words": [
+            "COVID",
+            "Virus",
+            "Disease",
+            "Sick",
+            "Outbreak"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "VACCINE",
-          "forbidden_words": ["Shot", "Needle", "Doctor", "Immune", "Disease"],
+          "forbidden_words": [
+            "Shot",
+            "Needle",
+            "Doctor",
+            "Immune",
+            "Disease"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "MASK",
-          "forbidden_words": ["Face", "COVID", "Cover", "Wear", "Protection"],
+          "forbidden_words": [
+            "Face",
+            "COVID",
+            "Cover",
+            "Wear",
+            "Protection"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "QUARANTINE",
-          "forbidden_words": ["Isolation", "COVID", "Home", "Lockdown", "Stay"],
+          "forbidden_words": [
+            "Isolation",
+            "COVID",
+            "Home",
+            "Lockdown",
+            "Stay"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "REMOTE WORK",
-          "forbidden_words": ["Home", "Job", "Computer", "Zoom", "Office"],
+          "forbidden_words": [
+            "Home",
+            "Job",
+            "Computer",
+            "Zoom",
+            "Office"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "SIDE HUSTLE",
-          "forbidden_words": ["Job", "Money", "Work", "Extra", "Income"],
+          "forbidden_words": [
+            "Job",
+            "Money",
+            "Work",
+            "Extra",
+            "Income"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "GIG ECONOMY",
-          "forbidden_words": ["Work", "Job", "Freelance", "Uber", "Contract"],
+          "forbidden_words": [
+            "Work",
+            "Job",
+            "Freelance",
+            "Uber",
+            "Contract"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "WORK-LIFE BALANCE",
-          "forbidden_words": ["Job", "Time", "Personal", "Career", "Life"],
+          "forbidden_words": [
+            "Job",
+            "Time",
+            "Personal",
+            "Career",
+            "Life"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "IMPOSTER SYNDROME",
-          "forbidden_words": ["Fake", "Doubt", "Confidence", "Work", "Feeling"],
+          "forbidden_words": [
+            "Fake",
+            "Doubt",
+            "Confidence",
+            "Work",
+            "Feeling"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "TOXIC POSITIVITY",
-          "forbidden_words": ["Happy", "Positive", "Fake", "Smile", "Good"],
+          "forbidden_words": [
+            "Happy",
+            "Positive",
+            "Fake",
+            "Smile",
+            "Good"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "GASLIGHTING",
-          "forbidden_words": ["Manipulate", "Lie", "Crazy", "Reality", "Abuse"],
+          "forbidden_words": [
+            "Manipulate",
+            "Lie",
+            "Crazy",
+            "Reality",
+            "Abuse"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "RED FLAG",
-          "forbidden_words": ["Warning", "Bad", "Sign", "Dating", "Relationship"],
+          "forbidden_words": [
+            "Warning",
+            "Bad",
+            "Sign",
+            "Dating",
+            "Relationship"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "SITUATIONSHIP",
-          "forbidden_words": ["Dating", "Relationship", "Casual", "Undefined", "Complicated"],
+          "forbidden_words": [
+            "Dating",
+            "Relationship",
+            "Casual",
+            "Undefined",
+            "Complicated"
+          ],
           "quality_score": 10,
           "spice": 4
         }
@@ -2298,7 +2498,7 @@
         {
           "text": "A Puppy, A Baby, A Serial Killer",
           "quality_score": 10,
-          "spice": 5
+          "spice": 4
         },
         {
           "text": "Christmas, Your Birthday, A Funeral",
@@ -2316,7 +2516,7 @@
           "spice": 2
         },
         {
-          "text": "Beyoncé, A Dinosaur, The Titanic",
+          "text": "Beyonc\u00e9, A Dinosaur, The Titanic",
           "quality_score": 10,
           "spice": 2
         },
@@ -2507,7 +2707,7 @@
         },
         {
           "text": "Category: Countries in Europe",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -2527,17 +2727,17 @@
         },
         {
           "text": "Speed: First person to do 10 jumping jacks wins",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Speed: First person to find something red wins",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Speed: First person to take off their shoes wins",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -2567,12 +2767,12 @@
         },
         {
           "text": "Category: US States",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Animals",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -2582,42 +2782,42 @@
         },
         {
           "text": "Category: Fruits",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Vegetables",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Car Brands",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Sports",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Musical Instruments",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Breakfast Foods",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Ice Cream Flavors",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: TV Shows",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -2637,17 +2837,17 @@
         },
         {
           "text": "Category: Bands",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Actors",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Actresses",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -2657,22 +2857,22 @@
         },
         {
           "text": "Speed: First person to name 5 US presidents wins",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Speed: First person to do 5 push-ups wins",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Speed: First person to spell their name backwards wins",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Speed: First person to touch the ceiling wins",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -2702,37 +2902,37 @@
         },
         {
           "text": "Category: Things That Are Blue",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Things You'd Find at a Beach",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Desserts",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Drinks",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Restaurants",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Brands",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Colleges",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
@@ -2742,12 +2942,12 @@
         },
         {
           "text": "Category: Cereals",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         },
         {
           "text": "Category: Sodas",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 1
         }
       ]
@@ -2757,301 +2957,501 @@
       "cards": [
         {
           "text": "What is in this bag you're trying to sneak onto the plane?",
-          "hidden_words": ["A Hamster", "Glitter", "The Declaration of Independence"],
+          "hidden_words": [
+            "A Hamster",
+            "Glitter",
+            "The Declaration of Independence"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Where were you the night your boss disappeared?",
-          "hidden_words": ["Zumba Class", "A Chainsaw", "Gluten-Free Bread"],
+          "hidden_words": [
+            "Zumba Class",
+            "A Chainsaw",
+            "Gluten-Free Bread"
+          ],
           "quality_score": 10,
           "spice": 5
         },
         {
           "text": "Why is your search history just 'how to hide a body'?",
-          "hidden_words": ["A Shovel", "A Pineapple", "A Yoga Mat"],
+          "hidden_words": [
+            "A Shovel",
+            "A Pineapple",
+            "A Yoga Mat"
+          ],
           "quality_score": 10,
           "spice": 5
         },
         {
           "text": "Why did security escort you out of the museum?",
-          "hidden_words": ["A Kazoo", "A Mannequin", "Hot Sauce"],
+          "hidden_words": [
+            "A Kazoo",
+            "A Mannequin",
+            "Hot Sauce"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you seen leaving your ex's apartment at 3am?",
-          "hidden_words": ["A Toaster", "A Map", "A Parrot"],
+          "hidden_words": [
+            "A Toaster",
+            "A Map",
+            "A Parrot"
+          ],
           "quality_score": 10,
           "spice": 5
         },
         {
           "text": "Why is there $10,000 in cash hidden in your freezer?",
-          "hidden_words": ["A Lottery Ticket", "A Rubber Duck", "A Cookbook"],
+          "hidden_words": [
+            "A Lottery Ticket",
+            "A Rubber Duck",
+            "A Cookbook"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you running from the police?",
-          "hidden_words": ["A Baguette", "A Trampoline", "A Tax Return"],
+          "hidden_words": [
+            "A Baguette",
+            "A Trampoline",
+            "A Tax Return"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is your car full of rubber ducks?",
-          "hidden_words": ["A Conspiracy Theory", "A Smoothie", "A Harmonica"],
+          "hidden_words": [
+            "A Conspiracy Theory",
+            "A Smoothie",
+            "A Harmonica"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why were you banned from the library?",
-          "hidden_words": ["A Megaphone", "A Pineapple", "A Tuxedo"],
+          "hidden_words": [
+            "A Megaphone",
+            "A Pineapple",
+            "A Tuxedo"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why did the neighbors call the cops on you?",
-          "hidden_words": ["A Trombone", "Silly String", "A Mannequin"],
+          "hidden_words": [
+            "A Trombone",
+            "Silly String",
+            "A Mannequin"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you kicked out of the wedding?",
-          "hidden_words": ["A Karaoke Machine", "Fireworks", "A Piñata"],
+          "hidden_words": [
+            "A Karaoke Machine",
+            "Fireworks",
+            "A Pi\u00f1ata"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is there a goat in your apartment?",
-          "hidden_words": ["Craigslist", "A Bet", "Cheese"],
+          "hidden_words": [
+            "Craigslist",
+            "A Bet",
+            "Cheese"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why did you get arrested at Disneyland?",
-          "hidden_words": ["A Costume", "Fireworks", "A Megaphone"],
+          "hidden_words": [
+            "A Costume",
+            "Fireworks",
+            "A Megaphone"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is your trunk full of garden gnomes?",
-          "hidden_words": ["A Heist", "eBay", "A Cult"],
+          "hidden_words": [
+            "A Heist",
+            "eBay",
+            "A Cult"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you escorted out of the casino?",
-          "hidden_words": ["A Calculator", "A Disguise", "A Magnet"],
+          "hidden_words": [
+            "A Calculator",
+            "A Disguise",
+            "A Magnet"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is there a hole in your backyard?",
-          "hidden_words": ["A Treasure Map", "A Pool", "A Time Capsule"],
+          "hidden_words": [
+            "A Treasure Map",
+            "A Pool",
+            "A Time Capsule"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why did you get banned from the grocery store?",
-          "hidden_words": ["A Unicycle", "Free Samples", "A Protest"],
+          "hidden_words": [
+            "A Unicycle",
+            "Free Samples",
+            "A Protest"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why is your phone full of pictures of strangers?",
-          "hidden_words": ["A Scavenger Hunt", "Art Project", "Evidence"],
+          "hidden_words": [
+            "A Scavenger Hunt",
+            "Art Project",
+            "Evidence"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you climbing the fence at the zoo?",
-          "hidden_words": ["A Dare", "A Penguin", "A Shortcut"],
+          "hidden_words": [
+            "A Dare",
+            "A Penguin",
+            "A Shortcut"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is there glitter everywhere in your car?",
-          "hidden_words": ["A Party", "A Craft Project", "Revenge"],
+          "hidden_words": [
+            "A Party",
+            "A Craft Project",
+            "Revenge"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why did you get kicked out of the Airbnb?",
-          "hidden_words": ["A Party", "A Llama", "A Misunderstanding"],
+          "hidden_words": [
+            "A Party",
+            "A Llama",
+            "A Misunderstanding"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is your browser history so concerning?",
-          "hidden_words": ["Research", "A Novel", "Curiosity"],
+          "hidden_words": [
+            "Research",
+            "A Novel",
+            "Curiosity"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you seen at three different cities in one day?",
-          "hidden_words": ["A Road Trip", "Witness Protection", "A Scavenger Hunt"],
+          "hidden_words": [
+            "A Road Trip",
+            "Witness Protection",
+            "A Scavenger Hunt"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is there a mannequin in your passenger seat?",
-          "hidden_words": ["The HOV Lane", "Loneliness", "A Prank"],
+          "hidden_words": [
+            "The HOV Lane",
+            "Loneliness",
+            "A Prank"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why did you get banned from the gym?",
-          "hidden_words": ["A Protest", "Inappropriate Grunting", "A Flash Mob"],
+          "hidden_words": [
+            "A Protest",
+            "Inappropriate Grunting",
+            "A Flash Mob"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is your apartment full of traffic cones?",
-          "hidden_words": ["A Collection", "A Party", "A Heist"],
+          "hidden_words": [
+            "A Collection",
+            "A Party",
+            "A Heist"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you caught on camera doing that?",
-          "hidden_words": ["A Dare", "Sleepwalking", "A TikTok"],
+          "hidden_words": [
+            "A Dare",
+            "Sleepwalking",
+            "A TikTok"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is there a chicken in your bathroom?",
-          "hidden_words": ["A Bet", "Therapy", "Fresh Eggs"],
+          "hidden_words": [
+            "A Bet",
+            "Therapy",
+            "Fresh Eggs"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why did you get kicked out of the movie theater?",
-          "hidden_words": ["A Megaphone", "Snacks", "A Protest"],
+          "hidden_words": [
+            "A Megaphone",
+            "Snacks",
+            "A Protest"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why is your credit card statement so suspicious?",
-          "hidden_words": ["A Surprise", "Identity Theft", "A Business Venture"],
+          "hidden_words": [
+            "A Surprise",
+            "Identity Theft",
+            "A Business Venture"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you seen arguing with a statue?",
-          "hidden_words": ["Drunk", "Art Critique", "A Dare"],
+          "hidden_words": [
+            "Drunk",
+            "Art Critique",
+            "A Dare"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why is there a tent set up in your living room?",
-          "hidden_words": ["Camping Practice", "A Fort", "Rent Issues"],
+          "hidden_words": [
+            "Camping Practice",
+            "A Fort",
+            "Rent Issues"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why did you get banned from the buffet?",
-          "hidden_words": ["Tupperware", "A Challenge", "A Protest"],
+          "hidden_words": [
+            "Tupperware",
+            "A Challenge",
+            "A Protest"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is your garage full of shopping carts?",
-          "hidden_words": ["A Collection", "A Business", "Drunk Shopping"],
+          "hidden_words": [
+            "A Collection",
+            "A Business",
+            "Drunk Shopping"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you caught sneaking into the concert?",
-          "hidden_words": ["A Disguise", "A Dare", "Broke"],
+          "hidden_words": [
+            "A Disguise",
+            "A Dare",
+            "Broke"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why is there a kayak on your roof in the middle of winter?",
-          "hidden_words": ["Optimism", "Storage", "A Statement"],
+          "hidden_words": [
+            "Optimism",
+            "Storage",
+            "A Statement"
+          ],
           "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Why did you get kicked out of the escape room?",
-          "hidden_words": ["Cheating", "A Meltdown", "Too Competitive"],
+          "hidden_words": [
+            "Cheating",
+            "A Meltdown",
+            "Too Competitive"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why is your phone bill $800 this month?",
-          "hidden_words": ["International Calls", "A Scam", "Pocket Dialing"],
+          "hidden_words": [
+            "International Calls",
+            "A Scam",
+            "Pocket Dialing"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why were you seen talking to yourself in public?",
-          "hidden_words": ["Bluetooth", "Rehearsing", "Losing It"],
+          "hidden_words": [
+            "Bluetooth",
+            "Rehearsing",
+            "Losing It"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why is there a shopping cart in your bedroom?",
-          "hidden_words": ["Drunk", "Furniture", "A Statement"],
+          "hidden_words": [
+            "Drunk",
+            "Furniture",
+            "A Statement"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why did you get banned from the petting zoo?",
-          "hidden_words": ["A Goat", "Inappropriate Behavior", "A Protest"],
+          "hidden_words": [
+            "A Goat",
+            "Inappropriate Behavior",
+            "A Protest"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is your Venmo history so weird?",
-          "hidden_words": ["Inside Jokes", "Blackmail", "A Business"],
+          "hidden_words": [
+            "Inside Jokes",
+            "Blackmail",
+            "A Business"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you caught on Ring camera doing that?",
-          "hidden_words": ["Sleepwalking", "A Dare", "Drunk"],
+          "hidden_words": [
+            "Sleepwalking",
+            "A Dare",
+            "Drunk"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is there a life-size cutout of Danny DeVito in your apartment?",
-          "hidden_words": ["Inspiration", "A Gift", "Protection"],
+          "hidden_words": [
+            "Inspiration",
+            "A Gift",
+            "Protection"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
-          "text": "Why did you get kicked out of the escape room?",
-          "hidden_words": ["Panic Attack", "Cheating", "Claustrophobia"],
+          "text": "Why were you seen leaving a casino at 4am with a briefcase full of rubber ducks?",
+          "hidden_words": [
+            "A Conspiracy Theory",
+            "A Smoothie",
+            "A Harmonica"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why is your Amazon order history so concerning?",
-          "hidden_words": ["A Project", "Curiosity", "A Phase"],
+          "hidden_words": [
+            "A Project",
+            "Curiosity",
+            "A Phase"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why were you banned from the karaoke bar?",
-          "hidden_words": ["A Meltdown", "Too Many Songs", "Nudity"],
+          "hidden_words": [
+            "A Meltdown",
+            "Too Many Songs",
+            "Nudity"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is there a inflatable pool in your living room?",
-          "hidden_words": ["A Party", "Leak", "Depression"],
+          "hidden_words": [
+            "A Party",
+            "Leak",
+            "Depression"
+          ],
           "quality_score": 10,
           "spice": 3
         },
         {
           "text": "Why did animal control get called to your house?",
-          "hidden_words": ["A Raccoon", "A Misunderstanding", "A Party"],
+          "hidden_words": [
+            "A Raccoon",
+            "A Misunderstanding",
+            "A Party"
+          ],
           "quality_score": 10,
           "spice": 4
         },
         {
           "text": "Why is your Netflix watch history so embarrassing?",
-          "hidden_words": ["Research", "Insomnia", "A Phase"],
+          "hidden_words": [
+            "Research",
+            "Insomnia",
+            "A Phase"
+          ],
           "quality_score": 10,
           "spice": 3
         }
@@ -3097,7 +3497,7 @@
         },
         {
           "text": "Rating: Your ability to change a tire",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -3127,12 +3527,12 @@
         },
         {
           "text": "Rating: How good you are at trivia",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
           "text": "Rating: Your ability to solve a Rubik's Cube",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -3171,9 +3571,9 @@
           "spice": 2
         },
         {
-          "text": "Rating: Your cooking skills",
-          "quality_score": 9,
-          "spice": 2
+          "text": "Rating: Your ability to win a bar fight against a random stranger.",
+          "quality_score": 10,
+          "spice": 3
         },
         {
           "text": "Rating: Your singing voice",
@@ -3242,7 +3642,7 @@
         },
         {
           "text": "Rating: How good you are at sports",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -3252,7 +3652,7 @@
         },
         {
           "text": "Rating: How good you are at video games",
-          "quality_score": 9,
+          "quality_score": 10,
           "spice": 2
         },
         {
@@ -3309,6 +3709,566 @@
           "text": "Rating: Your ability to stay calm in a crisis",
           "quality_score": 10,
           "spice": 3
+        }
+      ]
+    },
+    "scatterblast": {
+      "game_name": "Scatterblast",
+      "cards": [
+        {
+          "text": "Category: Pizza Toppings. Letter: P. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Countries in Europe. Letter: G. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Disney Movies. Letter: F. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things in a Bathroom. Letter: T. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Fast Food Chains. Letter: M. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Car Brands. Letter: H. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: US States. Letter: M. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Animals. Letter: R. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Fruits. Letter: B. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Sports. Letter: B. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Celebrities. Letter: J. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: TV Shows. Letter: T. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Video Games. Letter: M. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Breakfast Foods. Letter: P. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Clothing Items. Letter: S. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Musical Instruments. Letter: G. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Ice Cream Flavors. Letter: C. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: School Subjects. Letter: M. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Kitchen Appliances. Letter: M. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Superheroes. Letter: S. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Candy Bars. Letter: S. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Dog Breeds. Letter: L. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Coffee Drinks. Letter: L. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Board Games. Letter: M. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Vegetables. Letter: C. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Cities. Letter: P. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Drinks. Letter: W. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Desserts. Letter: C. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Occupations. Letter: D. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Colors. Letter: B. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Furniture. Letter: C. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Holidays. Letter: C. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Flowers. Letter: R. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Restaurants. Letter: C. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Snacks. Letter: P. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Drinks at Starbucks. Letter: F. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things at a Party. Letter: B. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Movie Genres. Letter: H. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things in a Gym. Letter: D. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Sandwich Toppings. Letter: L. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Apps on Your Phone. Letter: I. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things You'd Find at Target. Letter: C. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Streaming Services. Letter: H. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things in a Purse. Letter: L. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Emojis. Letter: H. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Things You'd Find in a Fridge. Letter: M. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Category: Reasons to Call in Sick. Letter: F. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Category: Things You'd Lie About. Letter: A. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Category: Red Flags on a First Date. Letter: T. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "Category: Things You'd Google at 3am. Letter: W. Say 3 in 10s.",
+          "quality_score": 10,
+          "spice": 2
+        }
+      ]
+    },
+    "over_under": {
+      "game_name": "Over / Under",
+      "cards": [
+        {
+          "text": "Total number of photos in their Camera Roll.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "photos"
+        },
+        {
+          "text": "Number of unread emails right now.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "emails"
+        },
+        {
+          "text": "Number of alarms currently set on their phone.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "alarms"
+        },
+        {
+          "text": "Screen time usage yesterday (in minutes).",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "screen_time"
+        },
+        {
+          "text": "Number of dating app matches (if single).",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "matches"
+        },
+        {
+          "text": "Body count (sexual partners).",
+          "quality_score": 10,
+          "spice": 5,
+          "stat": "body_count"
+        },
+        {
+          "text": "Age they had their first kiss.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "first_kiss_age"
+        },
+        {
+          "text": "Number of times they've been arrested or detained.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "arrests"
+        },
+        {
+          "text": "How many push-ups they can do right now.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "pushups"
+        },
+        {
+          "text": "How much cash is in their wallet right now (in dollars).",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "cash"
+        },
+        {
+          "text": "How many state capitals they can name in 60 seconds.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "capitals"
+        },
+        {
+          "text": "Number of contacts in their phone.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "contacts"
+        },
+        {
+          "text": "Number of unread text messages.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "unread_texts"
+        },
+        {
+          "text": "Number of Instagram followers.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "followers"
+        },
+        {
+          "text": "Number of times they've been on a plane.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "flights"
+        },
+        {
+          "text": "Number of countries they've visited.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "countries"
+        },
+        {
+          "text": "Number of concerts they've been to.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "concerts"
+        },
+        {
+          "text": "Number of tattoos they have.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "tattoos"
+        },
+        {
+          "text": "Number of times they've moved houses.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "moves"
+        },
+        {
+          "text": "Number of jobs they've had.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "jobs"
+        },
+        {
+          "text": "Number of serious relationships they've been in.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "relationships"
+        },
+        {
+          "text": "Number of times they've been ghosted.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "ghosted"
+        },
+        {
+          "text": "Number of times they've ghosted someone.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "ghosted_others"
+        },
+        {
+          "text": "Number of exes they still follow on social media.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "exes_following"
+        },
+        {
+          "text": "Number of people they've blocked on social media.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "blocked"
+        },
+        {
+          "text": "Number of times they've lied on a resume.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "resume_lies"
+        },
+        {
+          "text": "Number of times they've called in sick when not sick.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "fake_sick"
+        },
+        {
+          "text": "Number of speeding tickets they've gotten.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "tickets"
+        },
+        {
+          "text": "Number of times they've peed in a pool.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "pool_pee"
+        },
+        {
+          "text": "Number of times they've stalked an ex online.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "stalked_ex"
+        },
+        {
+          "text": "Number of people they've kissed.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "kissed"
+        },
+        {
+          "text": "Number of times they've cried this month.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "cried"
+        },
+        {
+          "text": "Number of hours they slept last night.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "sleep"
+        },
+        {
+          "text": "Number of cups of coffee they drink per day.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "coffee"
+        },
+        {
+          "text": "Number of times they've been to therapy.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "therapy"
+        },
+        {
+          "text": "Number of times they've Googled themselves.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "googled_self"
+        },
+        {
+          "text": "Number of times they've pretended to be sick to avoid plans.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "avoided_plans"
+        },
+        {
+          "text": "Number of times they've lied about their age.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "age_lies"
+        },
+        {
+          "text": "Number of times they've snooped through a partner's phone.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "snooped"
+        },
+        {
+          "text": "Number of times they've faked an orgasm.",
+          "quality_score": 10,
+          "spice": 5,
+          "stat": "faked"
+        },
+        {
+          "text": "Number of times they've cheated on a test.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "cheated_test"
+        },
+        {
+          "text": "Number of times they've stolen something.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "stolen"
+        },
+        {
+          "text": "Number of times they've lied to their parents this year.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "lied_parents"
+        },
+        {
+          "text": "Number of times they've drunk texted an ex.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "drunk_texted"
+        },
+        {
+          "text": "Number of times they've been kicked out of a bar.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "kicked_out"
+        },
+        {
+          "text": "Number of times they've thrown up from drinking.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "threw_up"
+        },
+        {
+          "text": "Number of times they've blacked out.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "blacked_out"
+        },
+        {
+          "text": "Number of times they've hooked up with someone they regret.",
+          "quality_score": 10,
+          "spice": 4,
+          "stat": "regret_hookup"
+        },
+        {
+          "text": "Number of times they've lied about where they were.",
+          "quality_score": 10,
+          "spice": 3,
+          "stat": "lied_location"
+        },
+        {
+          "text": "Number of times they've pretended to like a gift they hated.",
+          "quality_score": 10,
+          "spice": 2,
+          "stat": "fake_liked_gift"
         }
       ]
     }

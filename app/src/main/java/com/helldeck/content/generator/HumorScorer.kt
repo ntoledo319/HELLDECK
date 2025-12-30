@@ -357,8 +357,8 @@ class HumorScorer(
         )
         
         private val SOCIAL_GAMES = setOf(
-            "ROAST_CONSENSUS", "MAJORITY_REPORT", "HOT_SEAT_IMPOSTER",
-            "TEXT_THREAD_TRAP"
+            "ROAST_CONSENSUS", "HOT_SEAT_IMPOSTER", "TEXT_THREAD_TRAP",
+            "REALITY_CHECK", "OVER_UNDER"
         )
         
         private val PLAYFUL_TONES = setOf(
