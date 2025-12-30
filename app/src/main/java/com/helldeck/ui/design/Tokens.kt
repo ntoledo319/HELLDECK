@@ -10,19 +10,19 @@ object HDTokens {
     val BackgroundDark = Color(0xFF121212)
     val SurfaceDark = Color(0xFF1E1E1E)
     val OnSurface = Color(0xFFE0E0E0)
-    
+
     // Spacing
     val SpacingXS = 4.dp
     val SpacingS = 8.dp
     val SpacingM = 16.dp
     val SpacingL = 24.dp
     val SpacingXL = 32.dp
-    
+
     // Radius
     val RadiusS = 8.dp
     val RadiusM = 12.dp
     val RadiusL = 16.dp
-    
+
     // Typography Sizes
     val TextXS = 12f
     val TextS = 14f

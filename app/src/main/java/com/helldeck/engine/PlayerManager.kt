@@ -157,7 +157,7 @@ object PlayerManager {
 
         val teams = mapOf(
             "Team A" to Team("Team A", teamA.map { it.id }, teamA.sumOf { it.sessionPoints }),
-            "Team B" to Team("Team B", teamB.map { it.id }, teamB.sumOf { it.sessionPoints })
+            "Team B" to Team("Team B", teamB.map { it.id }, teamB.sumOf { it.sessionPoints }),
         )
 
         _teams.value = teams
@@ -183,7 +183,7 @@ object PlayerManager {
             teams[teamName] = Team(
                 name = teamName,
                 playerIds = teamPlayers.map { it.id },
-                totalPoints = teamPlayers.sumOf { it.sessionPoints }
+                totalPoints = teamPlayers.sumOf { it.sessionPoints },
             )
         }
 
@@ -363,7 +363,7 @@ object PlayerManager {
 
         if (playerIndex >= 0) {
             currentPlayers[playerIndex] = currentPlayers[playerIndex].copy(
-                sessionPoints = currentPlayers[playerIndex].sessionPoints + points
+                sessionPoints = currentPlayers[playerIndex].sessionPoints + points,
             )
             _players.value = currentPlayers
 
@@ -410,7 +410,7 @@ object PlayerManager {
             "minPoints" to minPoints,
             "teamsCount" to _teams.value.size,
             "optimalRange" to isOptimalPlayerCount(),
-            "recommendedMax" to getRecommendedMaxPlayers()
+            "recommendedMax" to getRecommendedMaxPlayers(),
         )
     }
 
@@ -449,19 +449,19 @@ object PlayerManager {
                     "totalPoints" to player.totalPoints,
                     "elo" to player.elo,
                     "gamesPlayed" to player.gamesPlayed,
-                    "wins" to player.wins
+                    "wins" to player.wins,
                 )
             },
             "teams" to _teams.value.map { (teamName, team) ->
                 mapOf(
                     "name" to team.name,
                     "playerIds" to team.playerIds,
-                    "totalPoints" to team.totalPoints
+                    "totalPoints" to team.totalPoints,
                 )
             },
             "turnOrder" to turnOrder,
             "currentTurnIndex" to currentTurnIndex,
-            "exportTime" to System.currentTimeMillis()
+            "exportTime" to System.currentTimeMillis(),
         )
     }
 
@@ -482,7 +482,7 @@ object PlayerManager {
                     totalPoints = (playerData["totalPoints"] as? Number)?.toInt() ?: 0,
                     elo = (playerData["elo"] as? Number)?.toInt() ?: 1000,
                     gamesPlayed = (playerData["gamesPlayed"] as? Number)?.toInt() ?: 0,
-                    wins = (playerData["wins"] as? Number)?.toInt() ?: 0
+                    wins = (playerData["wins"] as? Number)?.toInt() ?: 0,
                 )
             }
 
@@ -516,7 +516,7 @@ object PlayerManager {
 data class Team(
     val name: String,
     val playerIds: List<String>,
-    val totalPoints: Int
+    val totalPoints: Int,
 )
 
 /**
@@ -526,7 +526,7 @@ data class PlayerVote(
     val playerId: String,
     val voteType: String,
     val voteData: Any,
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = System.currentTimeMillis(),
 )
 
 /**
@@ -583,20 +583,20 @@ object VotingEfficiency {
  * Voting strategies for different group sizes
  */
 enum class VotingStrategy {
-    INDIVIDUAL_SIMULTANEOUS,  // All vote at once (small groups)
-    INDIVIDUAL_SEQUENTIAL,    // Vote one by one (medium groups)
-    TEAM_BASED,               // Teams vote as units (large groups)
-    BATCHED_TEAM              // Multiple teams vote in batches (very large groups)
+    INDIVIDUAL_SIMULTANEOUS, // All vote at once (small groups)
+    INDIVIDUAL_SEQUENTIAL, // Vote one by one (medium groups)
+    TEAM_BASED, // Teams vote as units (large groups)
+    BATCHED_TEAM, // Multiple teams vote in batches (very large groups)
 }
 
 /**
  * Voting layout options
  */
 enum class VotingLayout {
-    SINGLE_ROW,  // All players in one row
-    TWO_ROWS,    // Players in two rows
-    THREE_ROWS,  // Players in three rows
-    GRID         // Grid layout for very large groups
+    SINGLE_ROW, // All players in one row
+    TWO_ROWS, // Players in two rows
+    THREE_ROWS, // Players in three rows
+    GRID, // Grid layout for very large groups
 }
 
 /**

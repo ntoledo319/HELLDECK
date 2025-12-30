@@ -5,7 +5,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 
 /**
  * Device Admin Receiver for HELLDECK kiosk functionality
@@ -118,12 +117,10 @@ class HelldeckDeviceAdminReceiver : DeviceAdminReceiver() {
 
                 // Disable screen capture
                 dpm.setScreenCaptureDisabled(adminComponent, true)
-
             } else if (dpm.isAdminActive(adminComponent)) {
                 // Device admin permissions (limited)
                 dpm.setMaximumTimeToLock(adminComponent, 30 * 60 * 1000L) // 30 minutes
             }
-
         } catch (e: Exception) {
             // Failed to setup restrictions
         }
@@ -143,12 +140,10 @@ class HelldeckDeviceAdminReceiver : DeviceAdminReceiver() {
                 dpm.setKeyguardDisabled(adminComponent, false)
                 dpm.setMaximumTimeToLock(adminComponent, 5 * 60 * 1000L) // 5 minutes
                 dpm.setScreenCaptureDisabled(adminComponent, false)
-
             } else if (dpm.isAdminActive(adminComponent)) {
                 // Restore device admin settings
                 dpm.setMaximumTimeToLock(adminComponent, 5 * 60 * 1000L) // 5 minutes
             }
-
         } catch (e: Exception) {
             // Failed to restore settings
         }
@@ -167,12 +162,13 @@ class HelldeckDeviceAdminReceiver : DeviceAdminReceiver() {
                 "isAdminActive" to dpm.isAdminActive(adminComponent),
                 "isStatusBarDisabled" to if (dpm.isDeviceOwnerApp(context.packageName)) {
                     dpm.getStorageEncryptionStatus() != android.app.admin.DevicePolicyManager.ENCRYPTION_STATUS_UNSUPPORTED
-                } else false,
-                "lockTaskPackages" to (dpm.getLockTaskPackages(adminComponent)?.toList() ?: emptyList<String>())
+                } else {
+                    false
+                },
+                "lockTaskPackages" to (dpm.getLockTaskPackages(adminComponent)?.toList() ?: emptyList<String>()),
             )
 
             logDeviceAdminEvent(context, "status_check", status)
-
         } catch (e: Exception) {
             logDeviceAdminEvent(context, "status_check_failed", mapOf("error" to e.message.toString()))
         }
@@ -187,12 +183,11 @@ class HelldeckDeviceAdminReceiver : DeviceAdminReceiver() {
             val logData = mapOf(
                 "event" to event,
                 "timestamp" to System.currentTimeMillis(),
-                "package" to context.packageName
+                "package" to context.packageName,
             ) + (data ?: emptyMap())
 
             // For now, just log to system log
             android.util.Log.d("HelldeckDeviceAdmin", "Event: $event, Data: $logData")
-
         } catch (e: Exception) {
             // Logging failed
         }
@@ -268,7 +263,7 @@ object DeviceAdminUtils {
             canDisableStatusBar = dpm.isDeviceOwnerApp(context.packageName),
             canDisableKeyguard = dpm.isDeviceOwnerApp(context.packageName),
             canDisableCamera = dpm.isDeviceOwnerApp(context.packageName),
-            canDisableScreenCapture = dpm.isDeviceOwnerApp(context.packageName)
+            canDisableScreenCapture = dpm.isDeviceOwnerApp(context.packageName),
         )
     }
 
@@ -282,11 +277,11 @@ object DeviceAdminUtils {
             putExtra(
                 android.app.admin.DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                 "HELLDECK needs device administrator permissions to:\n" +
-                "• Enable kiosk mode for dedicated gameplay\n" +
-                "• Prevent accidental exit from the game\n" +
-                "• Maintain immersive fullscreen experience\n" +
-                "• Lock the device to HELLDECK app\n\n" +
-                "These permissions are only used for kiosk functionality and can be removed at any time."
+                    "• Enable kiosk mode for dedicated gameplay\n" +
+                    "• Prevent accidental exit from the game\n" +
+                    "• Maintain immersive fullscreen experience\n" +
+                    "• Lock the device to HELLDECK app\n\n" +
+                    "These permissions are only used for kiosk functionality and can be removed at any time.",
             )
         }
 
@@ -308,7 +303,7 @@ data class DeviceAdminFeatures(
     val canDisableStatusBar: Boolean,
     val canDisableKeyguard: Boolean,
     val canDisableCamera: Boolean,
-    val canDisableScreenCapture: Boolean
+    val canDisableScreenCapture: Boolean,
 ) {
     val kioskLevel: KioskLevel
         get() = when {
@@ -320,6 +315,6 @@ data class DeviceAdminFeatures(
     enum class KioskLevel(val description: String) {
         NONE("No kiosk capabilities"),
         PARTIAL("Limited kiosk features"),
-        FULL("Full kiosk functionality")
+        FULL("Full kiosk functionality"),
     }
 }

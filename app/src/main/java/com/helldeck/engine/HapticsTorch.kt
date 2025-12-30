@@ -39,7 +39,7 @@ object HapticsTorch {
     fun buzz(
         context: Context,
         durationMs: Long = 35,
-        intensity: VibrationIntensity = VibrationIntensity.LIGHT
+        intensity: VibrationIntensity = VibrationIntensity.LIGHT,
     ) {
         if (vibrator == null) initialize(context)
 
@@ -56,7 +56,13 @@ object HapticsTorch {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 when (intensity) {
                     VibrationIntensity.DOUBLE -> {
-                        vib.vibrate(VibrationEffect.createWaveform(longArrayOf(0, durationMs, 100, durationMs), intArrayOf(0, amplitude, 0, amplitude), -1))
+                        vib.vibrate(
+                            VibrationEffect.createWaveform(
+                                longArrayOf(0, durationMs, 100, durationMs),
+                                intArrayOf(0, amplitude, 0, amplitude),
+                                -1,
+                            ),
+                        )
                     }
                     else -> {
                         vib.vibrate(VibrationEffect.createOneShot(durationMs, amplitude))
@@ -75,7 +81,7 @@ object HapticsTorch {
         context: Context,
         pattern: LongArray,
         intensities: IntArray? = null,
-        repeat: Int = -1
+        repeat: Int = -1,
     ) {
         if (vibrator == null) initialize(context)
 
@@ -83,7 +89,11 @@ object HapticsTorch {
             if (!vib.hasVibrator()) return
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val effect = VibrationEffect.createWaveform(pattern, intensities ?: IntArray(pattern.size) { 128 }, repeat)
+                val effect = VibrationEffect.createWaveform(
+                    pattern,
+                    intensities ?: IntArray(pattern.size) { 128 },
+                    repeat,
+                )
                 vib.vibrate(effect)
             } else {
                 vib.vibrate(pattern, repeat)
@@ -97,7 +107,7 @@ object HapticsTorch {
     fun flash(
         context: Context,
         durationMs: Long = 120,
-        intensity: FlashIntensity = FlashIntensity.NORMAL
+        intensity: FlashIntensity = FlashIntensity.NORMAL,
     ) {
         // Vibration-only build: torch feedback disabled (no-op)
         return
@@ -109,7 +119,7 @@ object HapticsTorch {
     fun flashPattern(
         context: Context,
         pattern: List<FlashPattern>,
-        repeatCount: Int = 0
+        repeatCount: Int = 0,
     ) {
         // Vibration-only build: torch feedback disabled (no-op)
         return
@@ -162,7 +172,7 @@ enum class VibrationIntensity(val description: String) {
     LIGHT("Light vibration"),
     MEDIUM("Medium vibration"),
     HEAVY("Heavy vibration"),
-    DOUBLE("Double pulse")
+    DOUBLE("Double pulse"),
 }
 
 /**
@@ -172,7 +182,7 @@ enum class FlashIntensity(val description: String) {
     QUICK("Quick flash"),
     NORMAL("Normal flash"),
     LONG("Long flash"),
-    BRIGHT("Bright flash")
+    BRIGHT("Bright flash"),
 }
 
 /**
@@ -181,7 +191,7 @@ enum class FlashIntensity(val description: String) {
 data class FlashPattern(
     val durationMs: Long,
     val pauseMs: Long = 0,
-    val intensity: FlashIntensity = FlashIntensity.NORMAL
+    val intensity: FlashIntensity = FlashIntensity.NORMAL,
 )
 
 /**
@@ -241,7 +251,7 @@ object TorchPatterns {
     val SCORING_LOCK = listOf(
         FlashPattern(150),
         FlashPattern(150, 100),
-        FlashPattern(150)
+        FlashPattern(150),
     )
 
     /**
@@ -250,7 +260,7 @@ object TorchPatterns {
     val ROOM_HEAT = listOf(
         FlashPattern(200),
         FlashPattern(200, 150),
-        FlashPattern(400)
+        FlashPattern(400),
     )
 
     /**
@@ -259,14 +269,14 @@ object TorchPatterns {
     val GAME_START = listOf(
         FlashPattern(100),
         FlashPattern(100, 100),
-        FlashPattern(100)
+        FlashPattern(100),
     )
 
     /**
      * Pattern for round end
      */
     val ROUND_END = listOf(
-        FlashPattern(300)
+        FlashPattern(300),
     )
 
     /**
@@ -275,7 +285,7 @@ object TorchPatterns {
     val TIE_BREAKER = listOf(
         FlashPattern(100, 100),
         FlashPattern(100, 100),
-        FlashPattern(100)
+        FlashPattern(100),
     )
 }
 
@@ -291,7 +301,7 @@ object GameFeedback {
         context: Context,
         event: HapticEvent,
         useHaptics: Boolean = true,
-        useTorch: Boolean = true
+        useTorch: Boolean = true,
     ) {
         when (event) {
             HapticEvent.PHASE_CHANGE -> {
@@ -334,7 +344,7 @@ object GameFeedback {
         context: Context,
         result: RoundResult,
         useHaptics: Boolean = true,
-        useTorch: Boolean = true
+        useTorch: Boolean = true,
     ) {
         when {
             result.roomHeat -> {
@@ -360,7 +370,7 @@ object GameFeedback {
         timeRemainingMs: Int,
         totalTimeMs: Int,
         useHaptics: Boolean = true,
-        useTorch: Boolean = false
+        useTorch: Boolean = false,
     ) {
         val progress = timeRemainingMs.toFloat() / totalTimeMs.toFloat()
 
@@ -396,7 +406,7 @@ enum class HapticEvent(val description: String) {
     GAME_START("Game started"),
     GAME_END("Game ended"),
     ROUND_START("Round started"),
-    ROUND_END("Round ended")
+    ROUND_END("Round ended"),
 }
 
 /**
@@ -415,7 +425,7 @@ object DeviceCapabilityChecker {
             isKioskSupported = com.helldeck.engine.Kiosk.isKioskModeSupported(context),
             screenResolution = getScreenResolution(context),
             androidVersion = Build.VERSION.SDK_INT,
-            deviceModel = Build.MODEL
+            deviceModel = Build.MODEL,
         )
     }
 
@@ -439,7 +449,7 @@ data class DeviceCapabilities(
     val isKioskSupported: Boolean,
     val screenResolution: String,
     val androidVersion: Int,
-    val deviceModel: String
+    val deviceModel: String,
 ) {
     val canProvideFullFeedback: Boolean
         get() = hasVibrator && hasFlash

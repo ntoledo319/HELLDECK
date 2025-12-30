@@ -20,13 +20,13 @@ class CardQualityInspectorTest {
             metadata = mapOf(
                 "slots" to mapOf(
                     "perk" to "midnight karaoke",
-                    "gross" to "crocs"
-                )
-            )
+                    "gross" to "crocs",
+                ),
+            ),
         )
         val ok = CardQualityInspector.isAcceptable(
             card,
-            GameOptions.AB("Midnight karaoke", "Sunrise spin class")
+            GameOptions.AB("Midnight karaoke", "Sunrise spin class"),
         )
         assertTrue("Card should pass quality heuristics", ok)
     }
@@ -40,7 +40,7 @@ class CardQualityInspectorTest {
             family = "roast",
             spice = 1,
             locality = 1,
-            metadata = emptyMap()
+            metadata = emptyMap(),
         )
         val issues = CardQualityInspector.evaluate(card, GameOptions.PlayerVote(listOf("A", "B")))
         assertTrue("Should flag leftover placeholder", issues.contains(CardQualityInspector.Issue.PLACEHOLDER_LEFTOVER))
@@ -56,11 +56,11 @@ class CardQualityInspectorTest {
             family = "pitch",
             spice = 1,
             locality = 1,
-            metadata = emptyMap()
+            metadata = emptyMap(),
         )
         val ok = CardQualityInspector.isAcceptable(
             card,
-            GameOptions.AB("Chaos", "Chaos")
+            GameOptions.AB("Chaos", "Chaos"),
         )
         assertFalse("Identical options should fail quality checks", ok)
     }

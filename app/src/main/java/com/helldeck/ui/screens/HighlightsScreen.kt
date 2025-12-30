@@ -13,10 +13,10 @@ import com.helldeck.ui.vm.GameNightViewModel
 @Composable
 fun HighlightsScreen(
     vm: GameNightViewModel,
-    onClose: () -> Unit = {}
+    onClose: () -> Unit = {},
 ) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         Text("Session Highlights", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
@@ -24,7 +24,7 @@ fun HighlightsScreen(
         if (vm.highlights.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 Text("No highlights yet. Keep playing!")
             }

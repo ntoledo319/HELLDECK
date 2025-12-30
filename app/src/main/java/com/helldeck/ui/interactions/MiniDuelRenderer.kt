@@ -13,13 +13,13 @@ import com.helldeck.ui.state.RoundState
 fun MiniDuelRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var selectedWinner by remember { mutableStateOf<Int?>(null) }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Who won the duel?", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(16.dp))
@@ -32,9 +32,12 @@ fun MiniDuelRenderer(
                 },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selectedWinner == 0) MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (selectedWinner == 0) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text("Player 1")
             }
@@ -46,9 +49,12 @@ fun MiniDuelRenderer(
                 },
                 modifier = Modifier.weight(1f),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selectedWinner == 1) MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (selectedWinner == 1) {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text("Player 2")
             }

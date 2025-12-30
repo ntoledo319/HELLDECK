@@ -1,5 +1,7 @@
 package com.helldeck.ui.scenes
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -12,11 +14,9 @@ import androidx.compose.material.DismissDirection
 import androidx.compose.material.DismissValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.SwipeToDismiss
-import androidx.compose.material.rememberDismissState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Delete
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
+import androidx.compose.material.rememberDismissState
 import androidx.compose.material3.*
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
@@ -50,7 +50,6 @@ import com.helldeck.data.PlayerEntity
 import com.helldeck.data.toEntity
 import com.helldeck.ui.EmojiPicker
 import com.helldeck.ui.HelldeckVm
-import com.helldeck.ui.Scene
 import com.helldeck.ui.hdFieldColors
 import com.helldeck.ui.theme.HelldeckColors
 import com.helldeck.ui.theme.HelldeckSpacing
@@ -84,7 +83,7 @@ fun RollcallScene(vm: HelldeckVm) {
                         Text(
                             "${present.size} of ${vm.players.size} present",
                             style = MaterialTheme.typography.bodySmall,
-                            color = HelldeckColors.Yellow
+                            color = HelldeckColors.Yellow,
                         )
                     }
                 },
@@ -96,7 +95,7 @@ fun RollcallScene(vm: HelldeckVm) {
                     TextButton(onClick = { present = emptySet() }) {
                         Text("None", color = HelldeckColors.Red)
                     }
-                }
+                },
             )
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -105,55 +104,58 @@ fun RollcallScene(vm: HelldeckVm) {
                 ExtendedFloatingActionButton(
                     onClick = { showAddPlayer = true },
                     containerColor = HelldeckColors.Green,
-                    contentColor = Color.Black
+                    contentColor = Color.Black,
                 ) {
                     Text("➕ Add Player")
                 }
             }
-        }
+        },
     ) { padding ->
         Column(
             modifier = Modifier
                 .padding(padding)
                 .padding(HelldeckSpacing.Medium.dp)
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             if (showAddPlayer) {
                 ElevatedCard(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.elevatedCardColors(
-                        containerColor = HelldeckColors.DarkGray
+                        containerColor = HelldeckColors.DarkGray,
                     ),
-                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp)
+                    elevation = CardDefaults.elevatedCardElevation(defaultElevation = 4.dp),
                 ) {
                     Column(
                         modifier = Modifier.padding(HelldeckSpacing.Medium.dp),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                            verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
                                 "Add New Player",
                                 style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                                color = HelldeckColors.Yellow
+                                color = HelldeckColors.Yellow,
                             )
-                            TextButton(onClick = { showAddPlayer = false; name = "" }) {
+                            TextButton(onClick = {
+                                showAddPlayer = false
+                                name = ""
+                            }) {
                                 Text("Cancel", color = HelldeckColors.LightGray)
                             }
                         }
-                        
+
                         Row(
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
                             OutlinedButton(
                                 onClick = { showPicker = true },
-                                modifier = Modifier.size(56.dp)
+                                modifier = Modifier.size(56.dp),
                             ) {
                                 Text(emoji, style = MaterialTheme.typography.headlineSmall)
                             }
@@ -162,7 +164,7 @@ fun RollcallScene(vm: HelldeckVm) {
                                     emoji = picked
                                 }
                             }
-                            
+
                             OutlinedTextField(
                                 value = name,
                                 onValueChange = { name = it },
@@ -170,17 +172,23 @@ fun RollcallScene(vm: HelldeckVm) {
                                 placeholder = { Text("e.g., Jay, Pip, Mo") },
                                 modifier = Modifier.weight(1f),
                                 colors = hdFieldColors(),
-                                singleLine = true
+                                singleLine = true,
                             )
                         }
-                        
+
                         Button(
                             onClick = {
                                 if (name.isNotBlank()) {
                                     val id = "p${Random.nextInt(100000)}"
                                     scope.launch {
                                         repo.db.players().upsert(
-                                            PlayerEntity(id = id, name = name.trim(), avatar = emoji, sessionPoints = 0, afk = 0)
+                                            PlayerEntity(
+                                                id = id,
+                                                name = name.trim(),
+                                                avatar = emoji,
+                                                sessionPoints = 0,
+                                                afk = 0,
+                                            ),
                                         )
                                         present = present + id
                                         vm.reloadPlayers()
@@ -193,7 +201,7 @@ fun RollcallScene(vm: HelldeckVm) {
                             },
                             enabled = name.isNotBlank(),
                             modifier = Modifier.fillMaxWidth(),
-                            colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green)
+                            colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green),
                         ) { Text("Add to Roster") }
                     }
                 }
@@ -201,27 +209,29 @@ fun RollcallScene(vm: HelldeckVm) {
 
             Surface(
                 color = HelldeckColors.MediumGray.copy(alpha = 0.5f),
-                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp),
             ) {
                 Text(
                     "Tap player cards to toggle attendance • Swipe left to delete",
                     style = MaterialTheme.typography.bodySmall,
                     color = HelldeckColors.LightGray,
                     modifier = Modifier.padding(12.dp),
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
 
             LazyColumn(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(vm.players, key = { it.id }) { p ->
                     val isPresent = present.contains(p.id)
                     val dismissState = rememberDismissState(confirmStateChange = { value ->
                         if (value == DismissValue.DismissedToStart) {
                             true
-                        } else false
+                        } else {
+                            false
+                        }
                     })
 
                     var showDeleteConfirm by remember { mutableStateOf(false) }
@@ -246,7 +256,7 @@ fun RollcallScene(vm: HelldeckVm) {
                                                 message = "Deleted ${p.name}",
                                                 actionLabel = "Undo",
                                                 withDismissAction = true,
-                                                duration = SnackbarDuration.Short
+                                                duration = SnackbarDuration.Short,
                                             )
                                             if (result == SnackbarResult.ActionPerformed) {
                                                 repo.db.players().upsert(p.toEntity())
@@ -255,13 +265,13 @@ fun RollcallScene(vm: HelldeckVm) {
                                         }
                                     },
                                     colors = ButtonDefaults.textButtonColors(
-                                        contentColor = HelldeckColors.Red
-                                    )
+                                        contentColor = HelldeckColors.Red,
+                                    ),
                                 ) { Text("Delete") }
                             },
                             dismissButton = {
                                 TextButton(onClick = { showDeleteConfirm = false }) { Text("Cancel") }
-                            }
+                            },
                         )
                     }
 
@@ -275,7 +285,7 @@ fun RollcallScene(vm: HelldeckVm) {
                                     .fillMaxSize()
                                     .background(HelldeckColors.Red.copy(alpha = fraction * 0.8f))
                                     .padding(horizontal = 16.dp),
-                                contentAlignment = Alignment.CenterEnd
+                                contentAlignment = Alignment.CenterEnd,
                             ) {
                                 if (fraction > 0.1f) {
                                     Row(verticalAlignment = Alignment.CenterVertically) {
@@ -292,9 +302,9 @@ fun RollcallScene(vm: HelldeckVm) {
                                 isPresent = isPresent,
                                 onToggle = {
                                     present = if (isPresent) present - p.id else present + p.id
-                                }
+                                },
                             )
-                        }
+                        },
                     )
                 }
             }
@@ -319,16 +329,19 @@ fun RollcallScene(vm: HelldeckVm) {
                     .height(56.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = if (present.size >= 2) HelldeckColors.Yellow else HelldeckColors.MediumGray,
-                    contentColor = Color.Black
+                    contentColor = Color.Black,
                 ),
                 elevation = ButtonDefaults.buttonElevation(
-                    defaultElevation = if (present.size >= 2) 8.dp else 2.dp
-                )
+                    defaultElevation = if (present.size >= 2) 8.dp else 2.dp,
+                ),
             ) {
                 Text(
-                    if (present.size >= 2) "🎮 Start Session (${present.size} present)"
-                    else "⚠️ Need at least 2 players",
-                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold)
+                    if (present.size >= 2) {
+                        "🎮 Start Session (${present.size} present)"
+                    } else {
+                        "⚠️ Need at least 2 players"
+                    },
+                    style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                 )
             }
         }
@@ -339,20 +352,20 @@ fun RollcallScene(vm: HelldeckVm) {
 private fun RollcallPlayerCard(
     player: PlayerEntity,
     isPresent: Boolean,
-    onToggle: () -> Unit
+    onToggle: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    
+
     val scale by androidx.compose.animation.core.animateFloatAsState(
         targetValue = if (isPressed) 0.97f else 1f,
         animationSpec = spring(
             dampingRatio = 0.6f,
-            stiffness = Spring.StiffnessHigh
+            stiffness = Spring.StiffnessHigh,
         ),
-        label = "card_scale"
+        label = "card_scale",
     )
-    
+
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -360,17 +373,18 @@ private fun RollcallPlayerCard(
             .clickable(
                 interactionSource = interactionSource,
                 indication = null,
-                onClick = onToggle
+                onClick = onToggle,
             ),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = if (isPresent)
+            containerColor = if (isPresent) {
                 HelldeckColors.Green.copy(alpha = 0.15f)
-            else
+            } else {
                 HelldeckColors.MediumGray
+            },
         ),
         elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = if (isPresent) 6.dp else 2.dp
-        )
+            defaultElevation = if (isPresent) 6.dp else 2.dp,
+        ),
     ) {
         Box(
             modifier = Modifier
@@ -380,61 +394,61 @@ private fun RollcallPlayerCard(
                         Brush.linearGradient(
                             colors = listOf(
                                 HelldeckColors.Green.copy(alpha = 0.2f),
-                                Color.Transparent
-                            )
+                                Color.Transparent,
+                            ),
                         )
                     } else {
                         Brush.linearGradient(
-                            colors = listOf(Color.Transparent, Color.Transparent)
+                            colors = listOf(Color.Transparent, Color.Transparent),
                         )
-                    }
-                )
+                    },
+                ),
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(HelldeckSpacing.Medium.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 ) {
                     Surface(
                         color = if (isPresent) HelldeckColors.Green else HelldeckColors.LightGray,
                         shape = androidx.compose.foundation.shape.CircleShape,
-                        modifier = Modifier.size(12.dp)
+                        modifier = Modifier.size(12.dp),
                     ) {}
-                    
+
                     Spacer(modifier = Modifier.width(12.dp))
-                    
+
                     Text(
                         text = player.avatar,
-                        style = MaterialTheme.typography.headlineMedium
+                        style = MaterialTheme.typography.headlineMedium,
                     )
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
                             text = player.name,
                             style = MaterialTheme.typography.titleMedium.copy(
-                                fontWeight = if (isPresent) FontWeight.Bold else FontWeight.Normal
+                                fontWeight = if (isPresent) FontWeight.Bold else FontWeight.Normal,
                             ),
-                            color = if (isPresent) HelldeckColors.White else HelldeckColors.LightGray
+                            color = if (isPresent) HelldeckColors.White else HelldeckColors.LightGray,
                         )
                         Text(
                             text = if (isPresent) "✓ Present" else "Absent",
                             style = MaterialTheme.typography.bodySmall,
-                            color = if (isPresent) HelldeckColors.Green else HelldeckColors.LightGray
+                            color = if (isPresent) HelldeckColors.Green else HelldeckColors.LightGray,
                         )
                     }
                 }
-                
+
                 Surface(
                     color = if (isPresent) HelldeckColors.Green else Color.Transparent,
                     shape = androidx.compose.foundation.shape.CircleShape,
                     modifier = Modifier.size(40.dp),
-                    border = if (!isPresent) BorderStroke(2.dp, HelldeckColors.LightGray) else null
+                    border = if (!isPresent) BorderStroke(2.dp, HelldeckColors.LightGray) else null,
                 ) {
                     Box(contentAlignment = Alignment.Center) {
                         if (isPresent) {
@@ -442,7 +456,7 @@ private fun RollcallPlayerCard(
                                 "✓",
                                 style = MaterialTheme.typography.headlineSmall,
                                 color = Color.Black,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
                             )
                         }
                     }

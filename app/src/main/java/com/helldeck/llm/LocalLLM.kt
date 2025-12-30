@@ -6,7 +6,7 @@ data class GenConfig(
     val topP: Float = 0.9f,
     val seed: Int? = null,
     val stop: List<String> = emptyList(),
-    val grammar: String? = null
+    val grammar: String? = null,
 )
 
 interface LocalLLM {

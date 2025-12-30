@@ -29,9 +29,9 @@ object MemoryOptimizer {
     fun getMemoryStrategy(): MemoryStrategy = optimizationLevel
 
     // Memory thresholds for different device types
-    private const val CRITICAL_MEMORY_THRESHOLD = 50 * 1024 * 1024L  // 50MB
-    private const val LOW_MEMORY_THRESHOLD = 100 * 1024 * 1024L       // 100MB
-    private const val MODERATE_MEMORY_THRESHOLD = 200 * 1024 * 1024L  // 200MB
+    private const val CRITICAL_MEMORY_THRESHOLD = 50 * 1024 * 1024L // 50MB
+    private const val LOW_MEMORY_THRESHOLD = 100 * 1024 * 1024L // 100MB
+    private const val MODERATE_MEMORY_THRESHOLD = 200 * 1024 * 1024L // 200MB
 
     fun initialize(ctx: Context) {
         context = ctx.applicationContext
@@ -42,11 +42,13 @@ object MemoryOptimizer {
         // Set optimization level based on available memory
         optimizationLevel = when {
             memoryInfo.totalMem < 1024 * 1024 * 1024L -> MemoryStrategy.AGGRESSIVE // <1GB
-            memoryInfo.totalMem < 2L * 1024 * 1024 * 1024L -> MemoryStrategy.MODERATE  // 1-2GB
+            memoryInfo.totalMem < 2L * 1024 * 1024 * 1024L -> MemoryStrategy.MODERATE // 1-2GB
             else -> MemoryStrategy.CONSERVATIVE // >2GB
         }
 
-        Logger.i("MemoryOptimizer initialized with level: $optimizationLevel, Total RAM: ${memoryInfo.totalMem / 1024 / 1024}MB")
+        Logger.i(
+            "MemoryOptimizer initialized with level: $optimizationLevel, Total RAM: ${memoryInfo.totalMem / 1024 / 1024}MB",
+        )
     }
 
     /**
@@ -252,7 +254,7 @@ object MemoryOptimizer {
             totalMemoryMB = memoryInfo.totalMem / 1024 / 1024,
             availableMemoryMB = memoryInfo.availMem / 1024 / 1024,
             thresholdMB = memoryInfo.threshold / 1024 / 1024,
-            isLowMemory = memoryInfo.lowMemory
+            isLowMemory = memoryInfo.lowMemory,
         )
     }
 
@@ -311,9 +313,9 @@ object MemoryOptimizer {
  * Memory pressure levels
  */
 enum class MemoryPressure {
-    MODERATE,   // Moderate pressure
-    HIGH,       // High pressure
-    CRITICAL    // Critical pressure
+    MODERATE, // Moderate pressure
+    HIGH, // High pressure
+    CRITICAL, // Critical pressure
 }
 
 /**
@@ -322,7 +324,7 @@ enum class MemoryPressure {
 enum class MemoryStrategy {
     AGGRESSIVE,
     MODERATE,
-    CONSERVATIVE
+    CONSERVATIVE,
 }
 
 /**
@@ -332,7 +334,7 @@ enum class MemoryStatus {
     CRITICAL,
     LOW,
     MODERATE,
-    NORMAL
+    NORMAL,
 }
 
 /**
@@ -342,7 +344,7 @@ data class MemoryInfo(
     val totalMemoryMB: Long,
     val availableMemoryMB: Long,
     val thresholdMB: Long,
-    val isLowMemory: Boolean
+    val isLowMemory: Boolean,
 )
 
 /**
@@ -471,7 +473,7 @@ class MemoryEfficientStringBuilder(
         MemoryStrategy.AGGRESSIVE -> 64
         MemoryStrategy.MODERATE -> 128
         MemoryStrategy.CONSERVATIVE -> 256
-    }
+    },
 ) {
     private var stringBuilder = StringBuilder(initialCapacity)
 
@@ -552,7 +554,7 @@ object BatteryOptimizer {
             "Disable haptic feedback in system settings for longer battery life",
             "Reduce screen brightness for extended play sessions",
             "Close other apps to conserve battery",
-            "Consider using airplane mode if WiFi is not needed"
+            "Consider using airplane mode if WiFi is not needed",
         )
     }
 }
@@ -592,15 +594,15 @@ object MemoryPerformanceMonitor {
                 totalMemoryUsed = 0,
                 lastCallTime = 0,
                 averageDuration = 0.0,
-                averageMemoryUsed = 0.0
+                averageMemoryUsed = 0.0,
             )
         }
-        
+
         var metric = existingMetric.copy(
             totalCalls = existingMetric.totalCalls + 1,
             totalDuration = existingMetric.totalDuration + duration,
             totalMemoryUsed = existingMetric.totalMemoryUsed + memoryUsed,
-            lastCallTime = System.currentTimeMillis()
+            lastCallTime = System.currentTimeMillis(),
         )
 
         performanceMetrics[component] = metric
@@ -640,7 +642,7 @@ data class DetailedPerformanceMetric(
     val totalMemoryUsed: Long = 0,
     val lastCallTime: Long = 0,
     val averageDuration: Double = 0.0,
-    val averageMemoryUsed: Double = 0.0
+    val averageMemoryUsed: Double = 0.0,
 )
 
 /**

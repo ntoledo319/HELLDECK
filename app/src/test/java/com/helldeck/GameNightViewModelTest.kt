@@ -1,8 +1,8 @@
 package com.helldeck
 
 import com.helldeck.ui.vm.GameNightViewModel
-import org.junit.Test
 import org.junit.Assert.*
+import org.junit.Test
 
 /**
  * GameNightViewModel unit tests.

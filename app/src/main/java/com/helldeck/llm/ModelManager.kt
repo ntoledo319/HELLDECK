@@ -16,7 +16,7 @@ object ModelManager {
         // Prioritize Qwen2.5 if available (check common filename variants)
         val qwenCandidates = listOf(
             "qwen2.5-1.5b-instruct-Q4_K_M.gguf",
-            "qwen2.5-1.5b-instruct-q4_k_m.gguf"
+            "qwen2.5-1.5b-instruct-q4_k_m.gguf",
         )
         val defaultModelFile = qwenCandidates.map { File(modelsDir, it) }.firstOrDefault()
         if (defaultModelFile != null && defaultModelFile.exists()) {
@@ -30,7 +30,7 @@ object ModelManager {
         // Fallback to TinyLlama (several variants)
         val tinyCandidates = listOf(
             "tinyllama-1.1b-chat-Q4_K_M.gguf",
-            "tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf"
+            "tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf",
         )
         val liteModelFile = tinyCandidates.map { File(modelsDir, it) }.firstOrDefault()
         if (liteModelFile != null && liteModelFile.exists()) {

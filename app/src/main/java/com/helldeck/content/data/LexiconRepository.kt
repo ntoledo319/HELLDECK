@@ -2,7 +2,6 @@ package com.helldeck.content.data
 
 import android.content.res.AssetManager
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.builtins.ListSerializer
 import java.io.BufferedReader
 
 class LexiconRepository(private val assets: AssetManager) {
@@ -38,21 +37,21 @@ class LexiconRepository(private val assets: AssetManager) {
     private fun slotToFile(slot: String): String = when (slot.lowercase()) {
         "friend" -> "friends.json"
         "place" -> "places.json"
-        "meme","memes" -> "memes.json"
-        "ick","icks" -> "icks.json"
-        "perk","perks" -> "perks.json"
-        "red_flag","red_flags" -> "red_flags.json"
+        "meme", "memes" -> "memes.json"
+        "ick", "icks" -> "icks.json"
+        "perk", "perks" -> "perks.json"
+        "red_flag", "red_flags" -> "red_flags.json"
         "gross" -> "gross.json"
-        "social_disaster","social_disasters" -> "social_disasters.json"
-        "sketchy_action","sketchy_actions" -> "sketchy_actions.json"
-        "tiny_reward","tiny_rewards" -> "tiny_rewards.json"
-        "guilty_prompt","guilty_prompts" -> "guilty_prompts.json"
-        "category","categories" -> "categories.json"
-        "letter","letters" -> "letters.json"
+        "social_disaster", "social_disasters" -> "social_disasters.json"
+        "sketchy_action", "sketchy_actions" -> "sketchy_actions.json"
+        "tiny_reward", "tiny_rewards" -> "tiny_rewards.json"
+        "guilty_prompt", "guilty_prompts" -> "guilty_prompts.json"
+        "category", "categories" -> "categories.json"
+        "letter", "letters" -> "letters.json"
         "forbidden" -> "forbidden.json"
         "target_name" -> "friends.json" // dynamic preferred; fallback
         "inbound_text" -> "inbound_texts.json" // optional seed list
-        "reply_tone","reply_tones","tone","tones","vibe","vibes" -> "reply_tones.json"
+        "reply_tone", "reply_tones", "tone", "tones", "vibe", "vibes" -> "reply_tones.json"
         else -> "$slot.json"
     }
 }

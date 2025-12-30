@@ -15,7 +15,7 @@ data class HouseRuleEntity(
     val sessionId: String,
     val ruleName: String,
     val enabled: Boolean,
-    val createdAtMs: Long = System.currentTimeMillis()
+    val createdAtMs: Long = System.currentTimeMillis(),
 )
 
 @Dao
@@ -36,7 +36,7 @@ data class GroupDnaEntity(
     @PrimaryKey val sessionId: String,
     val dnaProfile: String,
     val traits: String, // JSON list
-    val updatedAtMs: Long = System.currentTimeMillis()
+    val updatedAtMs: Long = System.currentTimeMillis(),
 )
 
 @Dao
@@ -56,7 +56,7 @@ data class HighlightEntity(
     val cardId: String,
     val cardText: String,
     val rating: Int, // LOL count
-    val timestampMs: Long = System.currentTimeMillis()
+    val timestampMs: Long = System.currentTimeMillis(),
 )
 
 @Dao
@@ -78,7 +78,7 @@ data class RemixRequestEntity(
     val cardId: String,
     val originalText: String,
     val remixMode: String, // "more_spicy", "less_spicy", "funnier", etc.
-    val timestampMs: Long = System.currentTimeMillis()
+    val timestampMs: Long = System.currentTimeMillis(),
 )
 
 @Dao
@@ -97,7 +97,7 @@ data class PlayerRoleEntity(
     val playerId: String,
     val sessionId: String,
     val role: String,
-    val assignedAtMs: Long = System.currentTimeMillis()
+    val assignedAtMs: Long = System.currentTimeMillis(),
 )
 
 @Dao
@@ -119,7 +119,7 @@ data class PackSelectionEntity(
     @PrimaryKey val id: String,
     val sessionId: String,
     val packName: String,
-    val enabled: Boolean
+    val enabled: Boolean,
 )
 
 @Dao
@@ -135,7 +135,7 @@ interface PacksDao {
 data class FraudQuarantineEntity(
     @PrimaryKey val cardId: String,
     val reason: String,
-    val quarantinedAtMs: Long = System.currentTimeMillis()
+    val quarantinedAtMs: Long = System.currentTimeMillis(),
 )
 
 @Dao

@@ -11,6 +11,7 @@ Scans app/src/main/assets/lexicons_v2/*.json and reports:
 Usage:
   python tools/lexicon_lint.py
 """
+
 from __future__ import annotations
 
 import json
@@ -18,7 +19,6 @@ import re
 import sys
 from pathlib import Path
 from typing import Iterable
-
 
 LEX_DIR = Path("app/src/main/assets/lexicons_v2")
 ARTICLES = ("a ", "an ", "the ", "some ")
@@ -40,24 +40,27 @@ def lint_file(path: Path) -> list[str]:
     except Exception as ex:
         return [f"[ERROR] {path.name}: cannot parse JSON ({ex})"]
 
-    slot = data.get("slot_type", "?")
     entries = data.get("entries", [])
     for i, e in enumerate(entries):
         txt = (e.get("text") or "").strip()
         if not txt:
             msgs.append(f"[ERROR] {path.name}#{i}: empty text")
             continue
-        if txt[0] in ",.;:!?" or txt.endswith(tuple(",.;:!?")):
+        if txt[0] in ",.;:!?" or txt.endswith((",", ".", ";", ":", "!", "?")):
             msgs.append(f"[WARN] {path.name}#{i}: suspicious punctuation at edges -> '{txt}'")
         if not is_ascii(txt):
-            msgs.append(f"[INFO] {path.name}#{i}: non-ASCII characters; ensure locality is set appropriately")
+            msgs.append(
+                f"[INFO] {path.name}#{i}: non-ASCII characters; ensure locality is set appropriately"
+            )
         if EMOJI_RE.search(txt):
             msgs.append(f"[INFO] {path.name}#{i}: emoji present; double-check tone/locality")
 
         needs = (e.get("needs_article") or "none").lower()
         lower = txt.lower()
         if lower.startswith(ARTICLES) and needs != "none":
-            msgs.append(f"[WARN] {path.name}#{i}: article collision (needs_article={needs}) -> '{txt}'")
+            msgs.append(
+                f"[WARN] {path.name}#{i}: article collision (needs_article={needs}) -> '{txt}'"
+            )
 
     return msgs
 

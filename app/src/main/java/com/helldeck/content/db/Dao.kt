@@ -22,7 +22,9 @@ interface TemplateExposureDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(exposure: TemplateExposureEntity)
 
-    @Query("SELECT DISTINCT templateId FROM template_exposures WHERE timestamp > :since ORDER BY timestamp DESC LIMIT :limit")
+    @Query(
+        "SELECT DISTINCT templateId FROM template_exposures WHERE timestamp > :since ORDER BY timestamp DESC LIMIT :limit",
+    )
     suspend fun getRecentIds(since: Long, limit: Int): List<String>
 
     @Query("DELETE FROM template_exposures WHERE timestamp < :before")

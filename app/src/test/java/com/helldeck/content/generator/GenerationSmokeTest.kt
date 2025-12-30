@@ -4,7 +4,6 @@ import android.content.Context
 import com.helldeck.content.engine.GameEngine
 import com.helldeck.content.validation.GameContractValidator
 import com.helldeck.engine.GameMetadata
-import com.helldeck.utils.Logger
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
@@ -41,7 +40,7 @@ class GenerationSmokeTest {
                     gameId = gameId,
                     sessionId = "test_session",
                     players = listOf("Player1", "Player2", "Player3"),
-                    spiceMax = 2
+                    spiceMax = 2,
                 )
 
                 val result = engine.next(request)
@@ -52,7 +51,7 @@ class GenerationSmokeTest {
                     interactionType = result.interactionType,
                     options = result.options,
                     filledCard = result.filledCard,
-                    playersCount = 3
+                    playersCount = 3,
                 )
 
                 if (!contractResult.isValid) {
@@ -68,7 +67,6 @@ class GenerationSmokeTest {
                 if (result.filledCard.text.contains("null", ignoreCase = true)) {
                     failures.add("$gameId: Card contains 'null' in text: ${result.filledCard.text}")
                 }
-
             } catch (e: Exception) {
                 failures.add("$gameId: Generation threw exception - ${e.message}")
             }
@@ -89,16 +87,20 @@ class GenerationSmokeTest {
                 gameId = gameId,
                 sessionId = "test_session",
                 players = listOf("Player1", "Player2", "Player3"),
-                spiceMax = 2
+                spiceMax = 2,
             )
 
             val result = engine.next(request)
             val wordCount = result.filledCard.text.split(Regex("\\s+")).filter { it.isNotBlank() }.size
 
-            assertTrue("$gameId: Card too short ($wordCount words): ${result.filledCard.text}",
-                wordCount >= 4)
-            assertTrue("$gameId: Card too long ($wordCount words): ${result.filledCard.text}",
-                wordCount <= 50)
+            assertTrue(
+                "$gameId: Card too short ($wordCount words): ${result.filledCard.text}",
+                wordCount >= 4,
+            )
+            assertTrue(
+                "$gameId: Card too long ($wordCount words): ${result.filledCard.text}",
+                wordCount <= 50,
+            )
         }
     }
 
@@ -109,7 +111,7 @@ class GenerationSmokeTest {
             "POISON_PITCH", // A_B_CHOICE
             "ROAST_CONSENSUS", // VOTE_PLAYER
             "CONFESSION_OR_CAP", // TRUE_FALSE
-            "TABOO_TIMER" // TABOO_GUESS
+            "TABOO_TIMER", // TABOO_GUESS
         )
 
         testGames.forEach { gameId ->
@@ -117,15 +119,18 @@ class GenerationSmokeTest {
                 gameId = gameId,
                 sessionId = "test_session",
                 players = listOf("Player1", "Player2", "Player3"),
-                spiceMax = 2
+                spiceMax = 2,
             )
 
             val result = engine.next(request)
             val metadata = GameMetadata.getGameMetadata(gameId)
 
             assertNotNull("Game metadata should exist for $gameId", metadata)
-            assertEquals("InteractionType should match metadata",
-                metadata?.interactionType, result.interactionType)
+            assertEquals(
+                "InteractionType should match metadata",
+                metadata?.interactionType,
+                result.interactionType,
+            )
 
             // Verify options type matches interaction type
             val contractResult = GameContractValidator.validate(
@@ -133,11 +138,13 @@ class GenerationSmokeTest {
                 interactionType = result.interactionType,
                 options = result.options,
                 filledCard = result.filledCard,
-                playersCount = 3
+                playersCount = 3,
             )
 
-            assertTrue("$gameId: Options should match interactionType - ${contractResult.reasons.joinToString(", ")}",
-                contractResult.isValid)
+            assertTrue(
+                "$gameId: Options should match interactionType - ${contractResult.reasons.joinToString(", ")}",
+                contractResult.isValid,
+            )
         }
     }
 
@@ -152,14 +159,16 @@ class GenerationSmokeTest {
                 gameId = gameId,
                 sessionId = "test_session_$it", // Different session to avoid anti-repeat
                 players = listOf("Player1", "Player2", "Player3"),
-                spiceMax = 2
+                spiceMax = 2,
             )
 
             val result = engine.next(request)
             generatedTexts.add(result.filledCard.text)
         }
 
-        assertTrue("Should generate at least 3 different cards in 10 attempts, got ${generatedTexts.size}",
-            generatedTexts.size >= 3)
+        assertTrue(
+            "Should generate at least 3 different cards in 10 attempts, got ${generatedTexts.size}",
+            generatedTexts.size >= 3,
+        )
     }
 }

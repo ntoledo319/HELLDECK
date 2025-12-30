@@ -3,10 +3,10 @@ package com.helldeck.engine
 import android.content.Context
 import com.helldeck.AppCtx
 import com.helldeck.utils.Logger
+import org.yaml.snakeyaml.Yaml
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
-import org.yaml.snakeyaml.Yaml
 
 /**
  * Configuration data classes for HELLDECK game settings
@@ -18,7 +18,7 @@ data class Timers(
     val revote_ms: Int,
     val alibi_show_ms: Int = 3000,
     val title_duel_ms: Int = 15000,
-    val scatter_time_ms: Int = 10000
+    val scatter_time_ms: Int = 10000,
 ) {
     fun getTimerForInteraction(interaction: Interaction): Int {
         return when (interaction) {
@@ -47,7 +47,7 @@ data class Scoring(
     val streak_cap: Int,
     val judge_bonus: Int = 1,
     val fast_laugh_bonus: Double = 0.5,
-    val consensus_bonus: Int = 1
+    val consensus_bonus: Int = 1,
 ) {
     fun calculateScore(
         lol: Int,
@@ -56,7 +56,7 @@ data class Scoring(
         fastLaugh: Boolean,
         streakBonus: Int,
         roomHeat: Boolean,
-        roomTrash: Boolean
+        roomTrash: Boolean,
     ): Double {
         var score = 0.0
 
@@ -88,7 +88,7 @@ data class PlayersCfg(
     val sweet_spot_max: Int,
     val party_mode_max: Int,
     val max_afk_rounds: Int = 3,
-    val team_size_threshold: Int = 11
+    val team_size_threshold: Int = 11,
 )
 
 data class LearningCfg(
@@ -100,7 +100,7 @@ data class LearningCfg(
     val minhash_threshold: Double,
     val min_plays_before_learning: Int = 3,
     val score_weight_recent: Double = 0.7,
-    val score_weight_historical: Double = 0.3
+    val score_weight_historical: Double = 0.3,
 )
 
 data class MechanicsCfg(
@@ -109,7 +109,7 @@ data class MechanicsCfg(
     val alibi_secrets_per_player: Int = 2,
     val title_fight_rounds: Int = 3,
     val scatter_words_required: Int = 3,
-    val majority_report_threshold: Double = 0.6
+    val majority_report_threshold: Double = 0.6,
 )
 
 data class UiCfg(
@@ -118,7 +118,7 @@ data class UiCfg(
     val enable_animations: Boolean = true,
     val animation_duration_ms: Int = 300,
     val haptic_feedback_intensity: Int = 1, // 0-3
-    val sound_effects_enabled: Boolean = true
+    val sound_effects_enabled: Boolean = true,
 )
 
 data class DebugCfg(
@@ -126,7 +126,7 @@ data class DebugCfg(
     val log_level: String = "INFO", // DEBUG, INFO, WARN, ERROR
     val enable_performance_monitoring: Boolean = false,
     val enable_database_query_logging: Boolean = false,
-    val enable_template_selection_logging: Boolean = false
+    val enable_template_selection_logging: Boolean = false,
 )
 
 data class HelldeckCfg(
@@ -137,13 +137,13 @@ data class HelldeckCfg(
     val mechanics: MechanicsCfg,
     val ui: UiCfg = UiCfg(),
     val debug: DebugCfg = DebugCfg(),
-    val generator: GeneratorCfg = GeneratorCfg()
+    val generator: GeneratorCfg = GeneratorCfg(),
 )
 
 data class GeneratorCfg(
     val safe_mode_gold_only: Boolean = true,
     val enable_v3_generator: Boolean = false,
-    val locality_cap: Int = 3
+    val locality_cap: Int = 3,
 )
 
 /**
@@ -169,6 +169,7 @@ object Config {
 
     private var customRoomHeatThreshold: Double? = null
     private var roomHeatThresholdCache: Double? = null
+
     // Optional attempt cap to speed up generation (set via Settings)
     private var attemptCapOverride: Int? = null
 
@@ -256,7 +257,7 @@ object Config {
             streak_cap = scoringMap.int("streak_cap", defaults.scoring.streak_cap),
             judge_bonus = scoringMap.int("judge_bonus", defaults.scoring.judge_bonus),
             fast_laugh_bonus = scoringMap.double("fast_laugh_bonus", defaults.scoring.fast_laugh_bonus),
-            consensus_bonus = scoringMap.int("consensus_bonus", defaults.scoring.consensus_bonus)
+            consensus_bonus = scoringMap.int("consensus_bonus", defaults.scoring.consensus_bonus),
         )
 
         val timersMap = map.section("timers")
@@ -267,7 +268,7 @@ object Config {
             revote_ms = timersMap.int("revote_ms", defaults.timers.revote_ms),
             alibi_show_ms = timersMap.int("alibi_show_ms", defaults.timers.alibi_show_ms),
             title_duel_ms = timersMap.int("title_duel_ms", defaults.timers.title_duel_ms),
-            scatter_time_ms = timersMap.int("scatter_time_ms", defaults.timers.scatter_time_ms)
+            scatter_time_ms = timersMap.int("scatter_time_ms", defaults.timers.scatter_time_ms),
         )
 
         val playersMap = map.section("players")
@@ -276,7 +277,7 @@ object Config {
             sweet_spot_max = playersMap.int("sweet_spot_max", defaults.players.sweet_spot_max),
             party_mode_max = playersMap.int("party_mode_max", defaults.players.party_mode_max),
             max_afk_rounds = playersMap.int("max_afk_rounds", defaults.players.max_afk_rounds),
-            team_size_threshold = playersMap.int("team_size_threshold", defaults.players.team_size_threshold)
+            team_size_threshold = playersMap.int("team_size_threshold", defaults.players.team_size_threshold),
         )
 
         val learningMap = map.section("learning")
@@ -287,19 +288,40 @@ object Config {
             decay_rounds = learningMap.int("decay_rounds", defaults.learning.decay_rounds),
             diversity_window = learningMap.int("diversity_window", defaults.learning.diversity_window),
             minhash_threshold = learningMap.double("minhash_threshold", defaults.learning.minhash_threshold),
-            min_plays_before_learning = learningMap.int("min_plays_before_learning", defaults.learning.min_plays_before_learning),
+            min_plays_before_learning = learningMap.int(
+                "min_plays_before_learning",
+                defaults.learning.min_plays_before_learning,
+            ),
             score_weight_recent = learningMap.double("score_weight_recent", defaults.learning.score_weight_recent),
-            score_weight_historical = learningMap.double("score_weight_historical", defaults.learning.score_weight_historical)
+            score_weight_historical = learningMap.double(
+                "score_weight_historical",
+                defaults.learning.score_weight_historical,
+            ),
         )
 
         val mechanicsMap = map.section("mechanics")
         val mechanics = defaults.mechanics.copy(
-            comeback_last_place_picks_next = mechanicsMap.bool("comeback_last_place_picks_next", defaults.mechanics.comeback_last_place_picks_next),
-            roast_consensus_guess_cap = mechanicsMap.int("roast_consensus_guess_cap", defaults.mechanics.roast_consensus_guess_cap),
-            alibi_secrets_per_player = mechanicsMap.int("alibi_secrets_per_player", defaults.mechanics.alibi_secrets_per_player),
+            comeback_last_place_picks_next = mechanicsMap.bool(
+                "comeback_last_place_picks_next",
+                defaults.mechanics.comeback_last_place_picks_next,
+            ),
+            roast_consensus_guess_cap = mechanicsMap.int(
+                "roast_consensus_guess_cap",
+                defaults.mechanics.roast_consensus_guess_cap,
+            ),
+            alibi_secrets_per_player = mechanicsMap.int(
+                "alibi_secrets_per_player",
+                defaults.mechanics.alibi_secrets_per_player,
+            ),
             title_fight_rounds = mechanicsMap.int("title_fight_rounds", defaults.mechanics.title_fight_rounds),
-            scatter_words_required = mechanicsMap.int("scatter_words_required", defaults.mechanics.scatter_words_required),
-            majority_report_threshold = mechanicsMap.double("majority_report_threshold", defaults.mechanics.majority_report_threshold)
+            scatter_words_required = mechanicsMap.int(
+                "scatter_words_required",
+                defaults.mechanics.scatter_words_required,
+            ),
+            majority_report_threshold = mechanicsMap.double(
+                "majority_report_threshold",
+                defaults.mechanics.majority_report_threshold,
+            ),
         )
 
         val uiMap = map.section("ui")
@@ -309,16 +331,25 @@ object Config {
             enable_animations = uiMap.bool("enable_animations", defaults.ui.enable_animations),
             animation_duration_ms = uiMap.int("animation_duration_ms", defaults.ui.animation_duration_ms),
             haptic_feedback_intensity = uiMap.int("haptic_feedback_intensity", defaults.ui.haptic_feedback_intensity),
-            sound_effects_enabled = uiMap.bool("sound_effects_enabled", defaults.ui.sound_effects_enabled)
+            sound_effects_enabled = uiMap.bool("sound_effects_enabled", defaults.ui.sound_effects_enabled),
         )
 
         val debugMap = map.section("debug")
         val debug = defaults.debug.copy(
             enable_logging = debugMap.bool("enable_logging", defaults.debug.enable_logging),
             log_level = debugMap.string("log_level", defaults.debug.log_level),
-            enable_performance_monitoring = debugMap.bool("enable_performance_monitoring", defaults.debug.enable_performance_monitoring),
-            enable_database_query_logging = debugMap.bool("enable_database_query_logging", defaults.debug.enable_database_query_logging),
-            enable_template_selection_logging = debugMap.bool("enable_template_selection_logging", defaults.debug.enable_template_selection_logging)
+            enable_performance_monitoring = debugMap.bool(
+                "enable_performance_monitoring",
+                defaults.debug.enable_performance_monitoring,
+            ),
+            enable_database_query_logging = debugMap.bool(
+                "enable_database_query_logging",
+                defaults.debug.enable_database_query_logging,
+            ),
+            enable_template_selection_logging = debugMap.bool(
+                "enable_template_selection_logging",
+                defaults.debug.enable_template_selection_logging,
+            ),
         )
 
         return defaults.copy(
@@ -328,7 +359,7 @@ object Config {
             learning = learning,
             mechanics = mechanics,
             ui = ui,
-            debug = debug
+            debug = debug,
         )
     }
 
@@ -366,49 +397,49 @@ object Config {
         val raw = this?.get(key) ?: return fallback
         return raw.toString()
     }
-    
+
     /**
      * Get default configuration (fallback if YAML fails)
      */
     private fun getDefaultConfig(): HelldeckCfg {
         return HelldeckCfg(
             scoring = Scoring(
-                win = 3,                    // Increased from 2 to 3 for better reward
-                room_heat_bonus = 2,            // Increased from 1 to 2
-                room_heat_threshold = 0.65,        // Increased from 0.60 to 0.65 for easier heat
-                trash_penalty = -1,               // Reduced penalty from -2 to -1 (less harsh)
-                streak_cap = 5,                   // Increased from 3 to 5 for longer streaks
-                fast_laugh_bonus = 1.0,          // Increased from 0.5 to 1.0
-                consensus_bonus = 2                 // Increased from 1 to 2
+                win = 3, // Increased from 2 to 3 for better reward
+                room_heat_bonus = 2, // Increased from 1 to 2
+                room_heat_threshold = 0.65, // Increased from 0.60 to 0.65 for easier heat
+                trash_penalty = -1, // Reduced penalty from -2 to -1 (less harsh)
+                streak_cap = 5, // Increased from 3 to 5 for longer streaks
+                fast_laugh_bonus = 1.0, // Increased from 0.5 to 1.0
+                consensus_bonus = 2, // Increased from 1 to 2
             ),
             timers = Timers(
-                vote_binary_ms = 6000,             // Reduced from 8000 for faster voting
-                vote_avatar_ms = 8000,             // Reduced from 10000 for faster avatar voting
-                judge_pick_ms = 4000,             // Reduced from 6000 for faster judging
-                revote_ms = 2000                  // Reduced from 3000 for faster revoting
+                vote_binary_ms = 6000, // Reduced from 8000 for faster voting
+                vote_avatar_ms = 8000, // Reduced from 10000 for faster avatar voting
+                judge_pick_ms = 4000, // Reduced from 6000 for faster judging
+                revote_ms = 2000, // Reduced from 3000 for faster revoting
             ),
             players = PlayersCfg(
                 sweet_spot_min = 3,
                 sweet_spot_max = 10,
-                party_mode_max = 16
+                party_mode_max = 16,
             ),
             learning = LearningCfg(
-                alpha = 0.4,                     // Increased from 0.3 for faster learning
-                epsilon_start = 0.30,               // Increased from 0.25 for more exploration
-                epsilon_end = 0.10,                 // Increased from 0.05 for sustained exploration
-                decay_rounds = 15,                 // Reduced from 20 for faster adaptation
-                diversity_window = 3,                 // Reduced from 5 for more variety
-                minhash_threshold = 0.80              // Reduced from 0.85 for more learning
+                alpha = 0.4, // Increased from 0.3 for faster learning
+                epsilon_start = 0.30, // Increased from 0.25 for more exploration
+                epsilon_end = 0.10, // Increased from 0.05 for sustained exploration
+                decay_rounds = 15, // Reduced from 20 for faster adaptation
+                diversity_window = 3, // Reduced from 5 for more variety
+                minhash_threshold = 0.80, // Reduced from 0.85 for more learning
             ),
             mechanics = MechanicsCfg(
                 comeback_last_place_picks_next = true,
-                roast_consensus_guess_cap = 2
+                roast_consensus_guess_cap = 2,
             ),
             generator = GeneratorCfg(
                 safe_mode_gold_only = false,
                 enable_v3_generator = true,
-                locality_cap = 2
-            )
+                locality_cap = 2,
+            ),
         )
     }
 
@@ -572,18 +603,18 @@ object Config {
             "playerRecommendation" to getPlayerCountRecommendation(),
             "generator" to mapOf(
                 "safeModeGoldOnly" to current.generator.safe_mode_gold_only,
-                "enableV3" to current.generator.enable_v3_generator
+                "enableV3" to current.generator.enable_v3_generator,
             ),
             "timers" to mapOf(
                 "voteBinary" to current.timers.vote_binary_ms,
                 "voteAvatar" to current.timers.vote_avatar_ms,
-                "judgePick" to current.timers.judge_pick_ms
+                "judgePick" to current.timers.judge_pick_ms,
             ),
             "scoring" to mapOf(
                 "winPoints" to current.scoring.win,
                 "heatBonus" to current.scoring.room_heat_bonus,
-                "trashPenalty" to current.scoring.trash_penalty
-            )
+                "trashPenalty" to current.scoring.trash_penalty,
+            ),
         )
     }
 
@@ -601,6 +632,6 @@ object Config {
      * Currently disabled due to SnakeYAML compatibility issues
      */
     fun exportAsYaml(): String {
-        return "# YAML export currently disabled\n# Configuration: ${current}"
+        return "# YAML export currently disabled\n# Configuration: $current"
     }
 }

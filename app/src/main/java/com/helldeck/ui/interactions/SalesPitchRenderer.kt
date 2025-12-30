@@ -13,13 +13,13 @@ import com.helldeck.ui.state.RoundState
 fun SalesPitchRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var pitch by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Make your sales pitch", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(16.dp))
@@ -29,7 +29,7 @@ fun SalesPitchRenderer(
             onValueChange = { pitch = it },
             label = { Text("Your pitch") },
             modifier = Modifier.fillMaxWidth().height(120.dp),
-            maxLines = 3
+            maxLines = 3,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -39,7 +39,7 @@ fun SalesPitchRenderer(
                 onEvent(RoundEvent.EnterText(pitch))
                 pitch = ""
             },
-            enabled = pitch.isNotBlank()
+            enabled = pitch.isNotBlank(),
         ) {
             Text("Pitch It!")
         }

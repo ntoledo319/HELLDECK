@@ -14,9 +14,9 @@ import com.helldeck.engine.GameIds
  */
 class OptionsCompiler(
     private val repo: ContentRepository,
-    private val rng: SeededRng
+    private val rng: SeededRng,
 ) {
-    
+
     fun compile(template: TemplateV2, card: FilledCard, players: List<String>): GameOptions {
         return when (val provider = template.options) {
             is OptionProvider.AB -> compileAB(provider)
@@ -26,20 +26,20 @@ class OptionsCompiler(
             is OptionProvider.None -> compileFallback(template.game, card)
         }
     }
-    
+
     private fun compileAB(provider: OptionProvider.AB): GameOptions {
         val aWords = repo.wordsFor(provider.a.from)
         val a = aWords.random(rng.random)
         val bWords = repo.wordsFor(provider.b.from)
         var b = bWords.random(rng.random)
-        
+
         if (provider.b.avoid_same_as == "a" && b.equals(a, true)) {
             b = bWords.shuffled(rng.random).first { !it.equals(a, true) }
         }
-        
+
         return GameOptions.AB(a, b)
     }
-    
+
     private fun compileTaboo(provider: OptionProvider.Taboo): GameOptions {
         val words = repo.wordsFor(provider.wordFrom)
         val word = words.random(rng.random)
@@ -47,7 +47,7 @@ class OptionsCompiler(
         val forbiddenList = forbidden.shuffled(rng.random).distinct().take(provider.count)
         return GameOptions.Taboo(word, forbiddenList)
     }
-    
+
     private fun compileScatter(provider: OptionProvider.Scatter): GameOptions {
         val categories = repo.wordsFor(provider.categoryFrom)
         val category = categories.random(rng.random)
@@ -55,7 +55,7 @@ class OptionsCompiler(
         val letter = letters.random(rng.random)
         return GameOptions.Scatter(category, letter)
     }
-    
+
     private fun compileFallback(gameId: String, card: FilledCard): GameOptions {
         return when (gameId) {
             GameIds.TEXT_TRAP -> compileTextTrap()
@@ -64,7 +64,7 @@ class OptionsCompiler(
             else -> GameOptions.None
         }
     }
-    
+
     private fun compileTextTrap(): GameOptions {
         val tones = try {
             repo.wordsFor("reply_tones")
@@ -76,16 +76,16 @@ class OptionsCompiler(
         }
         return GameOptions.ReplyTone(options)
     }
-    
+
     // Legacy game methods removed: compileOddOneOut, compileMajority
-    
+
     private fun compilePoisonPitch(card: FilledCard): GameOptions {
         val seq = card.metadata["slot_sequence"] as? List<*>
         val gross = findSlotValue(seq, "gross") ?: repo.wordsFor("gross").random(rng.random)
         val social = findSlotValue(seq, "social_disaster") ?: repo.wordsFor("social_disasters").random(rng.random)
         return GameOptions.AB(gross, social)
     }
-    
+
     private fun extractSlotValues(card: FilledCard): List<String> {
         val seq = card.metadata["slot_sequence"] as? List<*> ?: return emptyList()
         return seq.mapNotNull { item ->
@@ -96,7 +96,7 @@ class OptionsCompiler(
             }
         }.filterNot { it.isBlank() }
     }
-    
+
     private fun findSlotValue(seq: List<*>?, slotName: String): String? {
         return seq?.mapNotNull { item ->
             when (item) {
@@ -106,7 +106,7 @@ class OptionsCompiler(
             }
         }?.lastOrNull()
     }
-    
+
     private fun findSlotValues(seq: List<*>?, slotName: String): List<String> {
         return seq?.mapNotNull { item ->
             when (item) {

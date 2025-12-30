@@ -66,6 +66,6 @@ object TemplateCatalogueAuditor {
         "target_name",
         "inbound_text",
         "player_name",
-        "player"
+        "player",
     )
 }

@@ -1,23 +1,16 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.material.DismissDirection
-import androidx.compose.material.DismissValue
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.SwipeToDismiss
-import androidx.compose.material.rememberDismissState
 import com.helldeck.content.model.Player
 import com.helldeck.ui.*
 
@@ -31,7 +24,7 @@ fun AvatarVoteFlow(
     players: List<Player>,
     onVote: (voterId: String, targetId: String) -> Unit,
     onDone: () -> Unit,
-    onManagePlayers: (() -> Unit)? = null
+    onManagePlayers: (() -> Unit)? = null,
 ) {
     var idx by remember { mutableIntStateOf(0) }
     var chosen by remember { mutableStateOf<String?>(null) }
@@ -53,11 +46,11 @@ fun AvatarVoteFlow(
         modifier = Modifier
             .fillMaxWidth()
             .padding(HelldeckSpacing.Medium.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = "Voter: ${voter.name}",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
@@ -66,14 +59,14 @@ fun AvatarVoteFlow(
         androidx.compose.foundation.layout.FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
-            maxItemsInEachRow = 3
+            maxItemsInEachRow = 3,
         ) {
             players.forEach { player ->
                 VoteButton(
                     playerName = player.name,
                     playerAvatar = player.avatar,
                     isSelected = chosen == player.id,
-                    onClick = { chosen = player.id }
+                    onClick = { chosen = player.id },
                 )
             }
         }
@@ -83,7 +76,7 @@ fun AvatarVoteFlow(
         // Action buttons
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             TextButton(
                 onClick = {
@@ -93,7 +86,7 @@ fun AvatarVoteFlow(
                         onDone()
                     }
                     chosen = null
-                }
+                },
             ) {
                 Text("Skip")
             }
@@ -111,7 +104,7 @@ fun AvatarVoteFlow(
                         onDone()
                     }
                     chosen = null
-                }
+                },
             ) {
                 Text(if (idx < players.lastIndex) "Lock & Next" else "Finish Voting")
             }
@@ -126,7 +119,7 @@ fun SingleAvatarPickFlow(
     players: List<Player>,
     onPick: (targetId: String) -> Unit,
     onManagePlayers: (() -> Unit)? = null,
-    title: String = "Pick a target"
+    title: String = "Pick a target",
 ) {
     var chosen by remember { mutableStateOf<String?>(null) }
 
@@ -145,21 +138,21 @@ fun SingleAvatarPickFlow(
         modifier = Modifier
             .fillMaxWidth()
             .padding(HelldeckSpacing.Medium.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(title, style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
         androidx.compose.foundation.layout.FlowRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(4.dp),
-            maxItemsInEachRow = 3
+            maxItemsInEachRow = 3,
         ) {
             players.forEach { player ->
                 VoteButton(
                     playerName = player.name,
                     playerAvatar = player.avatar,
                     isSelected = chosen == player.id,
-                    onClick = { chosen = player.id }
+                    onClick = { chosen = player.id },
                 )
             }
         }
@@ -168,7 +161,7 @@ fun SingleAvatarPickFlow(
             enabled = chosen != null,
             onClick = { chosen?.let { onPick(it) } },
             modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green)
+            colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green),
         ) { Text("Lock") }
     }
 }
@@ -178,13 +171,13 @@ fun SingleAvatarPickFlow(
 fun OptionsPickFlow(
     title: String,
     options: List<String>,
-    onPick: (String) -> Unit
+    onPick: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(HelldeckSpacing.Medium.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(title, style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
@@ -194,7 +187,7 @@ fun OptionsPickFlow(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 2.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Orange)
+                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Orange),
             ) { Text(opt) }
         }
     }
@@ -207,19 +200,19 @@ fun TabooFlow(
     taboos: List<String>,
     running: Boolean,
     onStart: () -> Unit,
-    onDone: () -> Unit
+    onDone: () -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(HelldeckSpacing.Medium.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text("Clue: $clue", style = MaterialTheme.typography.titleMedium, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             taboos.take(3).forEach { word ->
                 AssistChip(word)
@@ -230,13 +223,13 @@ fun TabooFlow(
             Button(
                 onClick = onStart,
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Yellow)
+                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Yellow),
             ) { Text("Start Timer") }
         } else {
             Button(
                 onClick = onDone,
                 modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green)
+                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green),
             ) { Text("Lock") }
         }
     }
@@ -246,13 +239,13 @@ fun TabooFlow(
 private fun AssistChip(text: String) {
     Surface(
         color = HelldeckColors.MediumGray,
-        shape = androidx.compose.foundation.shape.RoundedCornerShape(HelldeckRadius.Medium)
+        shape = androidx.compose.foundation.shape.RoundedCornerShape(HelldeckRadius.Medium),
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelLarge,
             color = HelldeckColors.Yellow,
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
         )
     }
 }
@@ -272,7 +265,7 @@ fun ABVoteFlow(
     rightLabel: String,
     onVote: (voterId: String, choice: String) -> Unit,
     onDone: () -> Unit,
-    onManagePlayers: (() -> Unit)? = null
+    onManagePlayers: (() -> Unit)? = null,
 ) {
     var idx by remember { mutableIntStateOf(0) }
     var chosen by remember { mutableStateOf<String?>(null) }
@@ -282,20 +275,20 @@ fun ABVoteFlow(
         modifier = Modifier
             .fillMaxWidth()
             .padding(HelldeckSpacing.Medium.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Pre-choice selection
         if (!lockPre) {
             Text(
                 text = preChoiceLabel,
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
             )
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalArrangement = Arrangement.SpaceEvenly,
             ) {
                 Button(onClick = {
                     onPreChoice(preChoices[0])
@@ -331,32 +324,32 @@ fun ABVoteFlow(
 
         Text(
             text = "Voter: ${voter.name}",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
         // A/B choice buttons
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Button(
-                    onClick = { chosen = leftLabel },
-                    modifier = Modifier.width(120.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (chosen == leftLabel) HelldeckColors.VoteSelected else HelldeckColors.MediumGray
-                    )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+        ) {
+            Button(
+                onClick = { chosen = leftLabel },
+                modifier = Modifier.width(120.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (chosen == leftLabel) HelldeckColors.VoteSelected else HelldeckColors.MediumGray,
+                ),
             ) {
                 Text(leftLabel, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
 
-                Button(
-                    onClick = { chosen = rightLabel },
-                    modifier = Modifier.width(120.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (chosen == rightLabel) HelldeckColors.VoteSelected else HelldeckColors.MediumGray
-                    )
+            Button(
+                onClick = { chosen = rightLabel },
+                modifier = Modifier.width(120.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = if (chosen == rightLabel) HelldeckColors.VoteSelected else HelldeckColors.MediumGray,
+                ),
             ) {
                 Text(rightLabel, maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
@@ -379,7 +372,7 @@ fun ABVoteFlow(
                 }
                 chosen = null
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Text(if (idx < players.lastIndex) "Lock & Next" else "Finish Voting")
         }
@@ -393,17 +386,17 @@ fun ABVoteFlow(
 fun JudgePickFlow(
     judge: Player?,
     options: List<String>,
-    onPick: (String) -> Unit
+    onPick: (String) -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(HelldeckSpacing.Medium.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = "Judge: ${judge?.name ?: "—"}",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
         )
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
@@ -416,8 +409,8 @@ fun JudgePickFlow(
                     .fillMaxWidth()
                     .padding(vertical = 2.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = HelldeckColors.Orange
-                )
+                    containerColor = HelldeckColors.Orange,
+                ),
             ) {
                 Text(option)
             }

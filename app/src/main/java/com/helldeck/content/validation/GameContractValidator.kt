@@ -15,7 +15,7 @@ object GameContractValidator {
      */
     data class ContractResult(
         val isValid: Boolean,
-        val reasons: List<String> = emptyList()
+        val reasons: List<String> = emptyList(),
     ) {
         companion object {
             fun valid() = ContractResult(true, emptyList())
@@ -38,7 +38,7 @@ object GameContractValidator {
         interactionType: InteractionType,
         options: GameOptions,
         filledCard: FilledCard,
-        playersCount: Int
+        playersCount: Int,
     ): ContractResult {
         val failures = mutableListOf<String>()
 
@@ -73,7 +73,9 @@ object GameContractValidator {
                             failures.add("A_B_CHOICE requires non-empty optionB")
                         }
                         if (options.optionA.equals(options.optionB, ignoreCase = true)) {
-                            failures.add("A_B_CHOICE options must be different: '${options.optionA}' vs '${options.optionB}'")
+                            failures.add(
+                                "A_B_CHOICE options must be different: '${options.optionA}' vs '${options.optionB}'",
+                            )
                         }
                     }
                     else -> failures.add("A_B_CHOICE requires GameOptions.AB, got ${options::class.simpleName}")
@@ -90,7 +92,9 @@ object GameContractValidator {
                             failures.add("VOTE_PLAYER requires at least 2 players in game, got $playersCount")
                         }
                     }
-                    else -> failures.add("VOTE_PLAYER requires GameOptions.PlayerVote, got ${options::class.simpleName}")
+                    else -> failures.add(
+                        "VOTE_PLAYER requires GameOptions.PlayerVote, got ${options::class.simpleName}",
+                    )
                 }
             }
 
@@ -126,7 +130,9 @@ object GameContractValidator {
                     is GameOptions.SmashPass -> {
                         // Valid: dedicated smash/pass
                     }
-                    else -> failures.add("SMASH_PASS requires GameOptions.AB or SmashPass, got ${options::class.simpleName}")
+                    else -> failures.add(
+                        "SMASH_PASS requires GameOptions.AB or SmashPass, got ${options::class.simpleName}",
+                    )
                 }
             }
 
@@ -140,7 +146,9 @@ object GameContractValidator {
                     else -> {
                         // Can also work with PlayerVote
                         if (options !is GameOptions.PlayerVote) {
-                            failures.add("TARGET_SELECT requires GameOptions.PlayerSelect or PlayerVote, got ${options::class.simpleName}")
+                            failures.add(
+                                "TARGET_SELECT requires GameOptions.PlayerSelect or PlayerVote, got ${options::class.simpleName}",
+                            )
                         }
                     }
                 }
@@ -182,7 +190,9 @@ object GameContractValidator {
                             failures.add("HIDE_WORDS requires hidden words list")
                         }
                     }
-                    else -> failures.add("HIDE_WORDS requires GameOptions.HiddenWords, got ${options::class.simpleName}")
+                    else -> failures.add(
+                        "HIDE_WORDS requires GameOptions.HiddenWords, got ${options::class.simpleName}",
+                    )
                 }
             }
 
@@ -228,7 +238,9 @@ object GameContractValidator {
                     is GameOptions.AB, is GameOptions.PredictVote -> {
                         // Valid
                     }
-                    else -> failures.add("PREDICT_VOTE requires GameOptions.AB or PredictVote, got ${options::class.simpleName}")
+                    else -> failures.add(
+                        "PREDICT_VOTE requires GameOptions.AB or PredictVote, got ${options::class.simpleName}",
+                    )
                 }
             }
 

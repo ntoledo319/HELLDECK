@@ -1,6 +1,5 @@
 package com.helldeck.ui.scenes
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -12,7 +11,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -23,7 +21,6 @@ import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.theme.HelldeckSpacing
 import com.helldeck.ui.vm.GameNightViewModel
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,7 +29,7 @@ import java.util.*
 @Composable
 fun FavoritesScene(
     vm: GameNightViewModel,
-    onClose: () -> Unit
+    onClose: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
     val repo = remember { ContentRepository(AppCtx.ctx) }
@@ -48,7 +45,10 @@ fun FavoritesScene(
         topBar = {
             TopAppBar(
                 title = {
-                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    ) {
                         Icon(Icons.Default.Favorite, contentDescription = null, tint = HelldeckColors.Lol)
                         Text("Favorite Cards", fontWeight = FontWeight.Black)
                     }
@@ -63,18 +63,18 @@ fun FavoritesScene(
                         text = "${favorites.size} saved",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(end = 16.dp)
+                        modifier = Modifier.padding(end = 16.dp),
                     )
-                }
+                },
             )
-        }
+        },
     ) { padding ->
         if (isLoading) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 CircularProgressIndicator()
             }
@@ -83,7 +83,7 @@ fun FavoritesScene(
                 onClose = onClose,
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(padding)
+                    .padding(padding),
             )
         } else {
             LazyColumn(
@@ -91,7 +91,7 @@ fun FavoritesScene(
                     .fillMaxSize()
                     .padding(padding),
                 contentPadding = PaddingValues(HelldeckSpacing.Medium.dp),
-                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp)
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
             ) {
                 items(favorites, key = { it.id }) { favorite ->
                     FavoriteCardItem(
@@ -101,7 +101,7 @@ fun FavoritesScene(
                                 repo.db.favorites().delete(favorite)
                                 favorites = repo.db.favorites().getAllFavoritesSnapshot()
                             }
-                        }
+                        },
                     )
                 }
             }
@@ -112,33 +112,33 @@ fun FavoritesScene(
 @Composable
 private fun FavoriteCardItem(
     favorite: FavoriteCardEntity,
-    onDelete: () -> Unit
+    onDelete: () -> Unit,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(HelldeckRadius.Medium),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
-        )
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+        ),
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             // Header: Game name and date
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = favorite.gameName,
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
-                        color = HelldeckColors.colorPrimary
+                        color = HelldeckColors.colorPrimary,
                     )
                     Text(
                         text = formatDate(favorite.addedAtMs),
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
 
@@ -146,7 +146,7 @@ private fun FavoriteCardItem(
                     Icon(
                         Icons.Default.Delete,
                         contentDescription = "Remove favorite",
-                        tint = MaterialTheme.colorScheme.error
+                        tint = MaterialTheme.colorScheme.error,
                     )
                 }
             }
@@ -159,7 +159,7 @@ private fun FavoriteCardItem(
                 style = MaterialTheme.typography.bodyLarge,
                 fontWeight = FontWeight.Medium,
                 maxLines = 4,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
 
             // Footer: Player and stats
@@ -167,18 +167,18 @@ private fun FavoriteCardItem(
                 Spacer(modifier = Modifier.height(12.dp))
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(16.dp),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "${favorite.playerName}'s turn",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                     if (favorite.lolCount > 0) {
                         Text(
                             text = "😂 ${favorite.lolCount}",
                             style = MaterialTheme.typography.bodySmall,
-                            color = HelldeckColors.Lol
+                            color = HelldeckColors.Lol,
                         )
                     }
                 }
@@ -191,7 +191,7 @@ private fun FavoriteCardItem(
                     text = "\"${favorite.note}\"",
                     style = MaterialTheme.typography.bodySmall,
                     fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
         }
@@ -201,31 +201,31 @@ private fun FavoriteCardItem(
 @Composable
 private fun EmptyFavoritesState(
     onClose: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Icon(
             Icons.Default.Favorite,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f),
-            modifier = Modifier.size(80.dp)
+            modifier = Modifier.size(80.dp),
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "No favorites yet",
             style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Tap the heart button on cards you love\nto save them here",
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(onClick = onClose) {

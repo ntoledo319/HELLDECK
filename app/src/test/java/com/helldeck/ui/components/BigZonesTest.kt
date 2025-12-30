@@ -2,14 +2,13 @@ package com.helldeck.ui.components
 
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
-import androidx.compose.ui.graphics.Color
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.helldeck.ui.BigZones
 import com.helldeck.ui.HelldeckTheme
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.robolectric.annotation.Config
 
 /**
@@ -137,7 +136,7 @@ class BigZonesTest {
                 BigZones(
                     onLeft = { leftCount++ },
                     onCenter = { centerCount++ },
-                    onRight = { rightCount++ }
+                    onRight = { rightCount++ },
                 )
             }
         }
@@ -172,7 +171,7 @@ class BigZonesTest {
                     onLeft = { leftClicked = true },
                     onCenter = { centerClicked = true },
                     onRight = { rightClicked = true },
-                    onLong = { longPressed = true }
+                    onLong = { longPressed = true },
                 )
             }
         }

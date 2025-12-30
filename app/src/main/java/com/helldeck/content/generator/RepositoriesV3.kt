@@ -1,7 +1,6 @@
 package com.helldeck.content.generator
 
 import android.content.res.AssetManager
-import com.helldeck.content.generator.gold.GoldBank
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 

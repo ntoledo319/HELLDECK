@@ -2,27 +2,26 @@ package com.helldeck
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.layout.Arrangement
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.tracing.trace
 import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.engine.Config
+import com.helldeck.ui.HelldeckAppUI
 import com.helldeck.ui.HelldeckTheme
 import com.helldeck.ui.OnboardingWrapper
-import com.helldeck.ui.HelldeckAppUI
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.launch
-import androidx.tracing.trace
 
 /**
  * Main Activity for HELLDECK application
@@ -53,8 +52,8 @@ class MainActivity : ComponentActivity() {
                 config = com.helldeck.utils.LoggerConfig(
                     level = com.helldeck.utils.LogLevel.INFO,
                     enableFileLogging = true,
-                    enableRemoteLogging = false
-                )
+                    enableRemoteLogging = false,
+                ),
             )
 
             Logger.i("MainActivity created successfully")
@@ -65,7 +64,6 @@ class MainActivity : ComponentActivity() {
                     HellDeckAppContent()
                 }
             }
-
         } catch (e: Exception) {
             Logger.e("Failed to initialize MainActivity", e)
             // Show error screen or crash gracefully
@@ -101,7 +99,7 @@ class MainActivity : ComponentActivity() {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .windowInsetsPadding(WindowInsets.systemBars)
+                .windowInsetsPadding(WindowInsets.systemBars),
         ) {
             when {
                 isLoading -> {
@@ -129,12 +127,15 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-    
+
     /**
      * Composable function that displays the main application UI after initialization.
      * Wraps the core UI with onboarding components.
      */
-    @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class, androidx.compose.foundation.layout.ExperimentalLayoutApi::class)
+    @OptIn(
+        androidx.compose.material3.ExperimentalMaterial3Api::class,
+        androidx.compose.foundation.layout.ExperimentalLayoutApi::class,
+    )
     @Composable
     private fun MainAppContent() {
         OnboardingWrapper {
@@ -168,7 +169,6 @@ class MainActivity : ComponentActivity() {
             }
 
             Logger.i("App initialization completed successfully")
-
         } catch (e: Exception) {
             Logger.e("App initialization failed", e)
             throw e
@@ -190,7 +190,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ErrorScreen(
                 error = "Failed to start HELLDECK: ${error.message}",
-                showRetry = false
+                showRetry = false,
             )
         }
     }
@@ -242,10 +242,10 @@ class MainActivity : ComponentActivity() {
 private fun LoadingScreen() {
     androidx.compose.foundation.layout.Box(
         contentAlignment = androidx.compose.ui.Alignment.Center,
-        modifier = androidx.compose.ui.Modifier.fillMaxSize()
+        modifier = androidx.compose.ui.Modifier.fillMaxSize(),
     ) {
         androidx.compose.material3.CircularProgressIndicator(
-            color = androidx.compose.material3.MaterialTheme.colorScheme.primary
+            color = androidx.compose.material3.MaterialTheme.colorScheme.primary,
         )
     }
 }
@@ -265,12 +265,12 @@ private fun ErrorScreen(error: String, showRetry: Boolean = true, onRetry: (() -
             .fillMaxSize()
             .padding(androidx.compose.foundation.layout.PaddingValues(16.dp)),
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         androidx.compose.material3.Text(
             text = "⚠️ Error",
             style = androidx.compose.material3.MaterialTheme.typography.headlineMedium,
-            color = androidx.compose.material3.MaterialTheme.colorScheme.error
+            color = androidx.compose.material3.MaterialTheme.colorScheme.error,
         )
 
         androidx.compose.foundation.layout.Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
@@ -278,7 +278,7 @@ private fun ErrorScreen(error: String, showRetry: Boolean = true, onRetry: (() -
         androidx.compose.material3.Text(
             text = error,
             style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
         )
 
         if (showRetry && onRetry != null) {

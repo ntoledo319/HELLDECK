@@ -8,4 +8,3 @@ object Telemetry {
         // no-op in unit tests and offline builds
     }
 }
-

@@ -8,14 +8,13 @@ build:
 
 complexity:
   LongParameterList:
-    threshold: 6
+    functionThreshold: 6
+    constructorThreshold: 6
     ignoreDefaultParameters: true
-  ComplexMethod:
+  CyclomaticComplexMethod:
     threshold: 10
   ComplexCondition:
     threshold: 3
-  TooManyFunctions:
-    threshold: 20
 
 style:
   MagicNumber:
@@ -29,14 +28,6 @@ style:
     excludePackageStatements: true
     excludeImportStatements: true
     excludeCommentStatements: false
-  NewLineAtEndOfFile:
-    enabled: true
-  TrailingWhitespace:
-    enabled: true
-
-potential-bugs:
-  UnusedPrivateMember:
-    ignoreOverridden: true
 
 naming:
   ClassNaming:
@@ -46,7 +37,5 @@ naming:
   VariableNaming:
     variablePattern: '[a-z][a-zA-Z0-9]*'
     privateVariablePattern: '(_)?[a-z][a-zA-Z0-9]*'
-    constantPattern: '[A-Z][A-Z_0-9]*'
     excludeClassPattern: '$^'
-    excludeConstantPattern: '$^'
 

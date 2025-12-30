@@ -10,9 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -28,7 +28,7 @@ fun ModernCardDisplay(
     spiceLevel: Int,
     modifier: Modifier = Modifier,
     isGenerating: Boolean = false,
-    generatedByLLM: Boolean = false
+    generatedByLLM: Boolean = false,
 ) {
     // Animate card entrance
     var visible by remember { mutableStateOf(false) }
@@ -41,16 +41,16 @@ fun ModernCardDisplay(
     val alpha by animateFloatAsState(
         targetValue = if (visible) 1f else 0f,
         animationSpec = tween(400, easing = FastOutSlowInEasing),
-        label = "card_alpha"
+        label = "card_alpha",
     )
 
     val scale by animateFloatAsState(
         targetValue = if (visible) 1f else 0.9f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow
+            stiffness = Spring.StiffnessLow,
         ),
-        label = "card_scale"
+        label = "card_scale",
     )
 
     // Gradient based on spice level
@@ -71,7 +71,7 @@ fun ModernCardDisplay(
                 elevation = 12.dp,
                 shape = RoundedCornerShape(24.dp),
                 ambientColor = gradientColors[0].copy(alpha = 0.3f),
-                spotColor = gradientColors[1].copy(alpha = 0.3f)
+                spotColor = gradientColors[1].copy(alpha = 0.3f),
             )
             .graphicsLayer {
                 this.alpha = alpha
@@ -80,42 +80,42 @@ fun ModernCardDisplay(
             },
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Color.Transparent
-        )
+            containerColor = Color.Transparent,
+        ),
     ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .background(
                     brush = Brush.linearGradient(
-                        colors = gradientColors
-                    )
+                        colors = gradientColors,
+                    ),
                 )
-                .padding(24.dp)
+                .padding(24.dp),
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceBetween
+                verticalArrangement = Arrangement.SpaceBetween,
             ) {
                 // Game title header
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = gameTitle,
                         style = MaterialTheme.typography.labelLarge,
                         fontWeight = FontWeight.Bold,
                         color = Color.White.copy(alpha = 0.9f),
-                        fontSize = 14.sp
+                        fontSize = 14.sp,
                     )
 
                     if (generatedByLLM) {
                         Surface(
                             shape = RoundedCornerShape(12.dp),
-                            color = Color.White.copy(alpha = 0.2f)
+                            color = Color.White.copy(alpha = 0.2f),
                         ) {
                             Text(
                                 text = "✨ AI",
@@ -123,7 +123,7 @@ fun ModernCardDisplay(
                                 style = MaterialTheme.typography.labelSmall,
                                 color = Color.White,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 11.sp
+                                fontSize = 11.sp,
                             )
                         }
                     }
@@ -141,7 +141,7 @@ fun ModernCardDisplay(
                         textAlign = TextAlign.Center,
                         lineHeight = 36.sp,
                         fontSize = 28.sp,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 }
 
@@ -156,7 +156,7 @@ fun ModernCardDisplay(
 private fun SpiceIndicator(level: Int) {
     Row(
         horizontalArrangement = Arrangement.Center,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         repeat(5) { index ->
             val isActive = index < level
@@ -166,9 +166,12 @@ private fun SpiceIndicator(level: Int) {
                     .padding(horizontal = 2.dp)
                     .clip(RoundedCornerShape(4.dp))
                     .background(
-                        if (isActive) Color.White
-                        else Color.White.copy(alpha = 0.3f)
-                    )
+                        if (isActive) {
+                            Color.White
+                        } else {
+                            Color.White.copy(alpha = 0.3f)
+                        },
+                    ),
             )
         }
     }
@@ -182,15 +185,15 @@ fun ShimmerLoadingText() {
         targetValue = 1f,
         animationSpec = infiniteRepeatable(
             animation = tween(1200, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart
+            repeatMode = RepeatMode.Restart,
         ),
-        label = "shimmer_alpha"
+        label = "shimmer_alpha",
     )
 
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         repeat(3) { index ->
             val alpha = ((shimmer + (index * 0.2f)) % 1f).coerceIn(0.3f, 0.8f)
@@ -199,7 +202,7 @@ fun ShimmerLoadingText() {
                     .fillMaxWidth(0.9f - (index * 0.1f))
                     .height(32.dp)
                     .clip(RoundedCornerShape(8.dp))
-                    .background(Color.White.copy(alpha = alpha))
+                    .background(Color.White.copy(alpha = alpha)),
             )
         }
     }
@@ -208,6 +211,6 @@ fun ShimmerLoadingText() {
         text = "Generating...",
         style = MaterialTheme.typography.labelMedium,
         color = Color.White.copy(alpha = 0.7f),
-        modifier = Modifier.padding(top = 16.dp)
+        modifier = Modifier.padding(top = 16.dp),
     )
 }

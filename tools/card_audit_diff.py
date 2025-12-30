@@ -77,7 +77,7 @@ def load_lines(path: Path) -> list[str]:
 
 def compare_files(baseline: Path, candidate: Path | None, max_lines: int) -> DiffResult:
     if candidate is None or not candidate.exists():
-        return DiffResult(baseline=baseline, candidate=None, diff_lines=tuple())
+        return DiffResult(baseline=baseline, candidate=None, diff_lines=())
 
     base_lines = load_lines(baseline)
     cand_lines = load_lines(candidate)
@@ -118,7 +118,9 @@ def main(argv: Iterable[str] | None = None) -> int:
     for baseline in baselines:
         candidate_name = target_name(baseline)
         candidate = report_dir / candidate_name
-        result = compare_files(baseline, candidate if candidate.exists() else None, args.max_diff_lines)
+        result = compare_files(
+            baseline, candidate if candidate.exists() else None, args.max_diff_lines
+        )
         if result.is_missing:
             missing.append(result)
         elif result.is_different:

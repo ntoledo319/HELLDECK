@@ -31,7 +31,7 @@ object AppUtils {
                     packageInfo.versionCode
                 },
                 buildTime = getBuildTime(),
-                gitHash = getGitHash()
+                gitHash = getGitHash(),
             )
         } catch (e: Exception) {
             AppVersion.unknown()
@@ -51,7 +51,7 @@ object AppUtils {
             screenResolution = getScreenResolution(context),
             totalMemory = getTotalMemory(),
             availableMemory = getAvailableMemory(),
-            isEmulator = isEmulator()
+            isEmulator = isEmulator(),
         )
     }
 
@@ -105,7 +105,7 @@ object AppUtils {
     fun debounce(
         delayMs: Long = 300L,
         scope: CoroutineScope = CoroutineScope(Dispatchers.Main),
-        action: () -> Unit
+        action: () -> Unit,
     ): () -> Unit {
         var debounceJob: Job? = null
 
@@ -232,22 +232,22 @@ object AppUtils {
      * Check if running on emulator
      */
     private fun isEmulator(): Boolean {
-        return (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
-                || Build.FINGERPRINT.startsWith("generic")
-                || Build.FINGERPRINT.startsWith("unknown")
-                || Build.HARDWARE.contains("goldfish")
-                || Build.HARDWARE.contains("ranchu")
-                || Build.MODEL.contains("google_sdk")
-                || Build.MODEL.contains("Emulator")
-                || Build.MODEL.contains("Android SDK")
-                || Build.MANUFACTURER.contains("Genymotion")
-                || Build.PRODUCT.contains("sdk_google")
-                || Build.PRODUCT.contains("google_sdk")
-                || Build.PRODUCT.contains("sdk")
-                || Build.PRODUCT.contains("sdk_x86")
-                || Build.PRODUCT.contains("vbox86p")
-                || Build.PRODUCT.contains("emulator")
-                || Build.PRODUCT.contains("simulator")
+        return (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic")) ||
+            Build.FINGERPRINT.startsWith("generic") ||
+            Build.FINGERPRINT.startsWith("unknown") ||
+            Build.HARDWARE.contains("goldfish") ||
+            Build.HARDWARE.contains("ranchu") ||
+            Build.MODEL.contains("google_sdk") ||
+            Build.MODEL.contains("Emulator") ||
+            Build.MODEL.contains("Android SDK") ||
+            Build.MANUFACTURER.contains("Genymotion") ||
+            Build.PRODUCT.contains("sdk_google") ||
+            Build.PRODUCT.contains("google_sdk") ||
+            Build.PRODUCT.contains("sdk") ||
+            Build.PRODUCT.contains("sdk_x86") ||
+            Build.PRODUCT.contains("vbox86p") ||
+            Build.PRODUCT.contains("emulator") ||
+            Build.PRODUCT.contains("simulator")
     }
 
     /**
@@ -282,7 +282,7 @@ data class AppVersion(
     val versionName: String,
     val versionCode: Int,
     val buildTime: String,
-    val gitHash: String
+    val gitHash: String,
 ) {
     companion object {
         fun unknown() = AppVersion("unknown", 0, "unknown", "unknown")
@@ -305,7 +305,7 @@ data class DeviceInfo(
     val screenResolution: String,
     val totalMemory: Long,
     val availableMemory: Long,
-    val isEmulator: Boolean
+    val isEmulator: Boolean,
 ) {
     override fun toString(): String {
         return "$manufacturer $model (Android $androidVersion, API $apiLevel)"
@@ -361,8 +361,8 @@ object PerformanceMonitor {
             "memory" to mapOf(
                 "used" to (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()),
                 "total" to Runtime.getRuntime().totalMemory(),
-                "free" to Runtime.getRuntime().freeMemory()
-            )
+                "free" to Runtime.getRuntime().freeMemory(),
+            ),
         )
     }
 
@@ -421,7 +421,7 @@ object FileUtils {
     fun createTempFile(context: Context, prefix: String, extension: String): File {
         val tempDir = context.cacheDir
         val timestamp = System.currentTimeMillis()
-        return File(tempDir, "${prefix}_${timestamp}.$extension")
+        return File(tempDir, "${prefix}_$timestamp.$extension")
     }
 
     /**
@@ -430,7 +430,7 @@ object FileUtils {
     fun copyFileWithProgress(
         source: File,
         destination: File,
-        progressCallback: ((Long, Long) -> Unit)? = null
+        progressCallback: ((Long, Long) -> Unit)? = null,
     ): Boolean {
         return try {
             val totalSize = source.length()
@@ -566,16 +566,16 @@ object NetworkUtils {
     fun isNetworkAvailable(context: Context): Boolean {
         return try {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
-                    as android.net.ConnectivityManager
+                as android.net.ConnectivityManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val network = connectivityManager.activeNetwork
                 val capabilities = connectivityManager.getNetworkCapabilities(network)
                 capabilities != null && (
                     capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_WIFI) ||
-                    capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                    capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_ETHERNET)
-                )
+                        capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                        capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_ETHERNET)
+                    )
             } else {
                 val activeNetworkInfo = connectivityManager.activeNetworkInfo
                 activeNetworkInfo != null && activeNetworkInfo.isConnected
@@ -591,7 +591,7 @@ object NetworkUtils {
     fun getNetworkType(context: Context): String {
         return try {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
-                    as android.net.ConnectivityManager
+                as android.net.ConnectivityManager
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val network = connectivityManager.activeNetwork
@@ -623,11 +623,11 @@ object AnimationUtils {
      */
     fun createSpringAnimation(
         dampingRatio: Float = 0.8f,
-        stiffness: Float = androidx.compose.animation.core.Spring.StiffnessLow.toFloat()
+        stiffness: Float = androidx.compose.animation.core.Spring.StiffnessLow.toFloat(),
     ): androidx.compose.animation.core.SpringSpec<Float> {
         return androidx.compose.animation.core.spring(
             dampingRatio = dampingRatio,
-            stiffness = stiffness
+            stiffness = stiffness,
         )
     }
 
@@ -636,25 +636,24 @@ object AnimationUtils {
      */
     fun createTweenAnimation(
         durationMillis: Int = 300,
-        easing: androidx.compose.animation.core.Easing = androidx.compose.animation.core.EaseOutCubic
+        easing: androidx.compose.animation.core.Easing = androidx.compose.animation.core.EaseOutCubic,
     ): androidx.compose.animation.core.TweenSpec<Float> {
         return androidx.compose.animation.core.tween(
             durationMillis = durationMillis,
-            easing = easing
+            easing = easing,
         )
     }
-
 
     /**
      * Create infinite repeatable animation spec
      */
     fun createInfiniteAnimation(
         animation: androidx.compose.animation.core.DurationBasedAnimationSpec<Float>,
-        repeatMode: androidx.compose.animation.core.RepeatMode = androidx.compose.animation.core.RepeatMode.Restart
+        repeatMode: androidx.compose.animation.core.RepeatMode = androidx.compose.animation.core.RepeatMode.Restart,
     ): androidx.compose.animation.core.InfiniteRepeatableSpec<Float> {
         return androidx.compose.animation.core.infiniteRepeatable(
             animation = animation,
-            repeatMode = repeatMode
+            repeatMode = repeatMode,
         )
     }
 }

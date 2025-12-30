@@ -9,12 +9,11 @@ import androidx.compose.material.DismissDirection
 import androidx.compose.material.DismissValue
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.SwipeToDismiss
-import androidx.compose.material.rememberDismissState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.rememberDismissState
 import androidx.compose.material3.*
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -60,19 +59,19 @@ fun PlayersScene(vm: HelldeckVm) {
         topBar = {
             TopAppBar(
                 title = { Text("Players") },
-                navigationIcon = { TextButton(onClick = { vm.goBack() }) { Text("Back") } }
+                navigationIcon = { TextButton(onClick = { vm.goBack() }) { Text("Back") } },
             )
         },
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
     ) { padding ->
         Column(
             modifier = Modifier
                 .padding(padding)
-                .padding(HelldeckSpacing.Medium.dp)
+                .padding(HelldeckSpacing.Medium.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 OutlinedTextField(
                     value = name,
@@ -81,7 +80,7 @@ fun PlayersScene(vm: HelldeckVm) {
                         Text("Name or emoji + name (e.g., 🦊 Pip)")
                     },
                     modifier = Modifier.weight(1f),
-                    colors = hdFieldColors()
+                    colors = hdFieldColors(),
                 )
 
                 Spacer(modifier = Modifier.width(HelldeckSpacing.Small.dp))
@@ -102,12 +101,14 @@ fun PlayersScene(vm: HelldeckVm) {
                     if (name.isNotBlank()) {
                         scope.launch {
                             val id = "p${Random.nextInt(100000)}"
-                            repo.db.players().upsert(PlayerEntity(
-                                id = id,
-                                name = name,
-                                avatar = emoji,
-                                sessionPoints = 0
-                            ))
+                            repo.db.players().upsert(
+                                PlayerEntity(
+                                    id = id,
+                                    name = name,
+                                    avatar = emoji,
+                                    sessionPoints = 0,
+                                ),
+                            )
                             vm.reloadPlayers()
                             name = ""
                             emoji = emojis.random()
@@ -116,8 +117,8 @@ fun PlayersScene(vm: HelldeckVm) {
                 },
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = HelldeckColors.Green
-                )
+                    containerColor = HelldeckColors.Green,
+                ),
             ) {
                 Text(text = "Add Player")
             }
@@ -129,7 +130,9 @@ fun PlayersScene(vm: HelldeckVm) {
                     val dismissState = rememberDismissState(confirmStateChange = { value ->
                         if (value == DismissValue.DismissedToStart) {
                             true
-                        } else false
+                        } else {
+                            false
+                        }
                     })
 
                     var showDeleteConfirm by remember { mutableStateOf(false) }
@@ -152,7 +155,7 @@ fun PlayersScene(vm: HelldeckVm) {
                                             message = "Deleted ${player.name}",
                                             actionLabel = "Undo",
                                             withDismissAction = true,
-                                            duration = SnackbarDuration.Short
+                                            duration = SnackbarDuration.Short,
                                         )
                                         if (result == SnackbarResult.ActionPerformed) {
                                             repo.db.players().upsert(player.toEntity())
@@ -163,7 +166,7 @@ fun PlayersScene(vm: HelldeckVm) {
                             },
                             dismissButton = {
                                 TextButton(onClick = { showDeleteConfirm = false }) { Text("Cancel") }
-                            }
+                            },
                         )
                     }
 
@@ -179,7 +182,7 @@ fun PlayersScene(vm: HelldeckVm) {
                                     .padding(horizontal = 12.dp)
                                     .background(Color(0xFFB00020).copy(alpha = fraction)),
                                 verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.End
+                                horizontalArrangement = Arrangement.End,
                             ) {
                                 if (fraction > 0f) {
                                     Icon(Icons.Rounded.Delete, contentDescription = null, tint = Color.White)
@@ -193,23 +196,23 @@ fun PlayersScene(vm: HelldeckVm) {
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 2.dp)
-                                    .clickable { vm.openProfile(player.id) }
+                                    .clickable { vm.openProfile(player.id) },
                             ) {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(HelldeckSpacing.Medium.dp),
                                     horizontalArrangement = Arrangement.SpaceBetween,
-                                    verticalAlignment = Alignment.CenterVertically
+                                    verticalAlignment = Alignment.CenterVertically,
                                 ) {
                                     Row(
-                                        verticalAlignment = Alignment.CenterVertically
+                                        verticalAlignment = Alignment.CenterVertically,
                                     ) {
                                         var showEditPicker by remember { mutableStateOf(false) }
                                         Text(
                                             text = player.avatar,
                                             style = MaterialTheme.typography.displaySmall.copy(fontSize = 24.sp),
-                                            modifier = Modifier.clickable { showEditPicker = true }
+                                            modifier = Modifier.clickable { showEditPicker = true },
                                         )
                                         if (showEditPicker) {
                                             EmojiPicker(
@@ -217,11 +220,15 @@ fun PlayersScene(vm: HelldeckVm) {
                                                 onDismiss = { showEditPicker = false },
                                                 onPick = { picked ->
                                                     scope.launch {
-                                                        repo.db.players().update(player.toEntity().copy(avatar = picked))
+                                                        repo.db.players().update(
+                                                            player.toEntity().copy(avatar = picked),
+                                                        )
                                                         vm.reloadPlayers()
-                                                        snackbarHostState.showSnackbar("Updated avatar for ${player.name}")
+                                                        snackbarHostState.showSnackbar(
+                                                            "Updated avatar for ${player.name}",
+                                                        )
                                                     }
-                                                }
+                                                },
                                             )
                                         }
                                         Spacer(modifier = Modifier.width(HelldeckSpacing.Small.dp))
@@ -234,33 +241,38 @@ fun PlayersScene(vm: HelldeckVm) {
                                                     onValueChange = { tempName = it },
                                                     singleLine = true,
                                                     modifier = Modifier.widthIn(min = 140.dp, max = 240.dp),
-                                                    colors = hdFieldColors()
+                                                    colors = hdFieldColors(),
                                                 )
                                                 Spacer(Modifier.width(8.dp))
                                                 TextButton(onClick = {
                                                     val newName = tempName.trim()
                                                     if (newName.isNotEmpty() && newName != player.name) {
                                                         scope.launch {
-                                                            repo.db.players().update(player.toEntity().copy(name = newName))
+                                                            repo.db.players().update(
+                                                                player.toEntity().copy(name = newName),
+                                                            )
                                                             vm.reloadPlayers()
                                                             snackbarHostState.showSnackbar("Renamed to $newName")
                                                         }
                                                     }
                                                     editName = false
                                                 }) { Text("Save") }
-                                                TextButton(onClick = { editName = false; tempName = player.name }) { Text("Cancel") }
+                                                TextButton(onClick = {
+                                                    editName = false
+                                                    tempName = player.name
+                                                }) { Text("Cancel") }
                                             }
                                         } else {
-                                        Text(
-                                            text = player.name,
-                                            style = MaterialTheme.typography.bodyLarge,
-                                            maxLines = 1,
-                                            overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-                                            modifier = Modifier
-                                                .clickable { editName = true }
-                                                .widthIn(max = 220.dp)
-                                        )
-                                    }
+                                            Text(
+                                                text = player.name,
+                                                style = MaterialTheme.typography.bodyLarge,
+                                                maxLines = 1,
+                                                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                                                modifier = Modifier
+                                                    .clickable { editName = true }
+                                                    .widthIn(max = 220.dp),
+                                            )
+                                        }
                                     }
 
                                     Row {
@@ -269,18 +281,18 @@ fun PlayersScene(vm: HelldeckVm) {
                                             onClick = {
                                                 scope.launch {
                                                     repo.db.players().update(
-                                                        player.toEntity().copy(afk = if (player.afk == 0) 1 else 0)
+                                                        player.toEntity().copy(afk = if (player.afk == 0) 1 else 0),
                                                     )
                                                     vm.reloadPlayers()
                                                 }
-                                            }
+                                            },
                                         ) {
                                             Text(if (player.afk == 0) "AFK" else "Back")
                                         }
                                     }
                                 }
                             }
-                        }
+                        },
                     )
                 }
             }
@@ -290,7 +302,7 @@ fun PlayersScene(vm: HelldeckVm) {
             Text(
                 text = "Tip: 3–10 players best. 11–16 = teams (1 vote per team).",
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.secondary
+                color = MaterialTheme.colorScheme.secondary,
             )
         }
     }

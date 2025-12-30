@@ -2,7 +2,7 @@ package com.helldeck.content.engine.augment
 
 class Validator(
     private val profanity: Set<String>,
-    private val maxSpice: Int
+    private val maxSpice: Int,
 ) {
     fun sanitize(s: String): String = s
         .replace(Regex("\\s+"), " ")

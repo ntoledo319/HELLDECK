@@ -6,7 +6,7 @@ data class HumorMetrics(
     val shockValue: Double? = null,
     val relatability: Double? = null,
     val cringeFactor: Double? = null,
-    val benignViolation: Double? = null
+    val benignViolation: Double? = null,
 )
 
 object HumorMetricsUtils {
@@ -16,7 +16,6 @@ object HumorMetricsUtils {
         shockValue = (meta["shockValue"] as? Number)?.toDouble(),
         relatability = (meta["relatability"] as? Number)?.toDouble(),
         cringeFactor = (meta["cringeFactor"] as? Number)?.toDouble(),
-        benignViolation = (meta["benignViolation"] as? Number)?.toDouble()
+        benignViolation = (meta["benignViolation"] as? Number)?.toDouble(),
     )
 }
-

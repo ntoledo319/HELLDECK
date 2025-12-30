@@ -9,5 +9,5 @@ data class Player(
     val elo: Int = 1000,
     val gamesPlayed: Int = 0,
     val wins: Int = 0,
-    val afk: Int = 0
+    val afk: Int = 0,
 )

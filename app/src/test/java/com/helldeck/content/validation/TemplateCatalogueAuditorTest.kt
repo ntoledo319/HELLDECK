@@ -1,14 +1,14 @@
 package com.helldeck.content.validation
 
 import com.helldeck.content.data.LexiconRepository
-import com.helldeck.content.model.v2.OptionProvider
 import com.helldeck.content.model.v2.ABSource
+import com.helldeck.content.model.v2.OptionProvider
 import com.helldeck.content.model.v2.SlotSpec
 import com.helldeck.content.model.v2.TemplateV2
 import org.junit.Assert.assertTrue
 import org.junit.Test
-import org.mockito.Mockito
 import org.mockito.ArgumentMatchers.anyString
+import org.mockito.Mockito
 
 class TemplateCatalogueAuditorTest {
 
@@ -28,16 +28,19 @@ class TemplateCatalogueAuditorTest {
                 slots = listOf(
                     SlotSpec(
                         name = "mythical_animals",
-                        from = "mythical_animals"
-                    )
-                )
-            )
+                        from = "mythical_animals",
+                    ),
+                ),
+            ),
         )
 
         val issues = TemplateCatalogueAuditor.audit(templates, lexiconRepository)
-        assertTrue("Missing lexicon should surface as an issue", issues.any {
-            it.templateId == "test" && it.message.contains("mythical_animals")
-        })
+        assertTrue(
+            "Missing lexicon should surface as an issue",
+            issues.any {
+                it.templateId == "test" && it.message.contains("mythical_animals")
+            },
+        )
     }
 
     @Test
@@ -54,13 +57,16 @@ class TemplateCatalogueAuditorTest {
             text = "Would you rather enjoy {perk} or survive {gross}?",
             options = OptionProvider.AB(
                 a = ABSource(from = "perks"),
-                b = ABSource(from = "gross")
-            )
+                b = ABSource(from = "gross"),
+            ),
         )
 
         val issues = TemplateCatalogueAuditor.audit(listOf(template), lexiconRepository)
-        assertTrue("Missing option lexicon should be reported", issues.any {
-            it.templateId == "pitch" && it.message.contains("perks")
-        })
+        assertTrue(
+            "Missing option lexicon should be reported",
+            issues.any {
+                it.templateId == "pitch" && it.message.contains("perks")
+            },
+        )
     }
 }

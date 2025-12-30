@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  */
 @Entity(
     tableName = "favorite_cards",
-    indices = [Index(value = ["sessionId"]), Index(value = ["addedAtMs"])]
+    indices = [Index(value = ["sessionId"]), Index(value = ["addedAtMs"])],
 )
 data class FavoriteCardEntity(
     @PrimaryKey val id: String, // unique favorite ID
@@ -21,7 +21,7 @@ data class FavoriteCardEntity(
     val playerName: String?,
     val lolCount: Int = 0,
     val addedAtMs: Long = System.currentTimeMillis(),
-    val note: String = "" // Optional user note
+    val note: String = "", // Optional user note
 )
 
 @Dao
@@ -76,5 +76,5 @@ data class FavoriteCardDisplay(
     val favorite: FavoriteCardEntity,
     val sessionName: String?,
     val daysAgo: Int,
-    val isRecent: Boolean // Added within last 7 days
+    val isRecent: Boolean, // Added within last 7 days
 )

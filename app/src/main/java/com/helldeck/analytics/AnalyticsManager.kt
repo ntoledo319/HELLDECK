@@ -1,7 +1,6 @@
 package com.helldeck.analytics
 
 import android.content.Context
-import android.os.Bundle
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.*
 import org.json.JSONObject
@@ -9,7 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue
 
 /**
  * Analytics manager for HELLDECK
- * 
+ *
  * Provides comprehensive analytics and crash reporting including:
  * - Custom event tracking
  * - User behavior analytics
@@ -19,7 +18,7 @@ import java.util.concurrent.ConcurrentLinkedQueue
  * - Funnel analysis
  */
 class AnalyticsManager private constructor(
-    private val context: Context
+    private val context: Context,
 ) {
     private val eventQueue = ConcurrentLinkedQueue<AnalyticsEvent>()
     private var isInitialized = false
@@ -45,26 +44,28 @@ class AnalyticsManager private constructor(
      */
     fun initialize() {
         if (isInitialized) return
-        
+
         try {
             Logger.i("Initializing analytics...")
-            
+
             // Initialize crash handler
             setupCrashHandler()
-            
+
             // Start event processing
             startEventProcessing()
-            
+
             isInitialized = true
             Logger.i("Analytics initialized successfully")
-            
+
             // Track app launch
-            trackEvent("app_launched", mapOf(
-                "timestamp" to System.currentTimeMillis(),
-                "version" to getAppVersion(),
-                "device_info" to getDeviceInfo()
-            ))
-            
+            trackEvent(
+                "app_launched",
+                mapOf(
+                    "timestamp" to System.currentTimeMillis(),
+                    "version" to getAppVersion(),
+                    "device_info" to getDeviceInfo(),
+                ),
+            )
         } catch (e: Exception) {
             Logger.e("Failed to initialize analytics", e)
         }
@@ -76,7 +77,7 @@ class AnalyticsManager private constructor(
     fun trackEvent(
         eventName: String,
         parameters: Map<String, Any> = emptyMap(),
-        isImmediate: Boolean = false
+        isImmediate: Boolean = false,
     ) {
         if (!isInitialized) {
             Logger.w("Analytics not initialized, skipping event: $eventName")
@@ -86,10 +87,10 @@ class AnalyticsManager private constructor(
         val event = AnalyticsEvent(
             name = eventName,
             parameters = parameters + mapOf(
-                "session_id" to getSessionId()
+                "session_id" to getSessionId(),
             ),
             timestamp = System.currentTimeMillis(),
-            type = EventType.CUSTOM
+            type = EventType.CUSTOM,
         )
 
         if (isImmediate) {
@@ -108,17 +109,20 @@ class AnalyticsManager private constructor(
         playerCount: Int,
         duration: Long,
         outcome: String,
-        score: Int? = null
+        score: Int? = null,
     ) {
-        trackEvent("game_session_completed", mapOf(
-            "game_id" to gameId,
-            "game_name" to gameName,
-            "player_count" to (playerCount as Any),
-            "duration_ms" to duration,
-            "outcome" to outcome,
-            "score" to (score as Any),
-            "completion_rate" to if (score != null) 1.0 else 0.0
-        ))
+        trackEvent(
+            "game_session_completed",
+            mapOf(
+                "game_id" to gameId,
+                "game_name" to gameName,
+                "player_count" to (playerCount as Any),
+                "duration_ms" to duration,
+                "outcome" to outcome,
+                "score" to (score as Any),
+                "completion_rate" to if (score != null) 1.0 else 0.0,
+            ),
+        )
     }
 
     /**
@@ -128,14 +132,17 @@ class AnalyticsManager private constructor(
         action: String,
         target: String,
         context: String? = null,
-        value: String? = null
+        value: String? = null,
     ) {
-        trackEvent("user_interaction", mapOf(
-            "action" to action,
-            "target" to target,
-            "context" to (context as Any),
-            "value" to (value as Any)
-        ))
+        trackEvent(
+            "user_interaction",
+            mapOf(
+                "action" to action,
+                "target" to target,
+                "context" to (context as Any),
+                "value" to (value as Any),
+            ),
+        )
     }
 
     /**
@@ -145,14 +152,17 @@ class AnalyticsManager private constructor(
         operation: String,
         duration: Long,
         success: Boolean,
-        metadata: Map<String, Any> = emptyMap()
+        metadata: Map<String, Any> = emptyMap(),
     ) {
-        trackEvent("performance", mapOf(
-            "operation" to operation,
-            "duration_ms" to duration,
-            "success" to success,
-            "metadata" to metadata
-        ))
+        trackEvent(
+            "performance",
+            mapOf(
+                "operation" to operation,
+                "duration_ms" to duration,
+                "success" to success,
+                "metadata" to metadata,
+            ),
+        )
     }
 
     /**
@@ -162,15 +172,18 @@ class AnalyticsManager private constructor(
         errorType: String,
         message: String,
         stackTrace: String? = null,
-        context: String? = null
+        context: String? = null,
     ) {
-        trackEvent("error", mapOf(
-            "error_type" to errorType,
-            "message" to message,
-            "stack_trace" to (stackTrace as Any),
-            "context" to (context as Any),
-            "fatal" to false
-        ))
+        trackEvent(
+            "error",
+            mapOf(
+                "error_type" to errorType,
+                "message" to message,
+                "stack_trace" to (stackTrace as Any),
+                "context" to (context as Any),
+                "fatal" to false,
+            ),
+        )
     }
 
     /**
@@ -178,11 +191,14 @@ class AnalyticsManager private constructor(
      */
     fun trackScreenView(
         screenName: String,
-        parameters: Map<String, Any> = emptyMap()
+        parameters: Map<String, Any> = emptyMap(),
     ) {
-        trackEvent("screen_view", mapOf(
-            "screen_name" to screenName
-        ) + parameters)
+        trackEvent(
+            "screen_view",
+            mapOf(
+                "screen_name" to screenName,
+            ) + parameters,
+        )
     }
 
     /**
@@ -191,12 +207,15 @@ class AnalyticsManager private constructor(
     fun trackEngagement(
         type: String,
         value: Double,
-        context: Map<String, Any> = emptyMap()
+        context: Map<String, Any> = emptyMap(),
     ) {
-        trackEvent("engagement", mapOf(
-            "engagement_type" to type,
-            "value" to value
-        ) + context)
+        trackEvent(
+            "engagement",
+            mapOf(
+                "engagement_type" to type,
+                "value" to value,
+            ) + context,
+        )
     }
 
     /**
@@ -207,14 +226,17 @@ class AnalyticsManager private constructor(
         step: String,
         stepNumber: Int,
         success: Boolean,
-        parameters: Map<String, Any> = emptyMap()
+        parameters: Map<String, Any> = emptyMap(),
     ) {
-        trackEvent("funnel", mapOf(
-            "funnel_name" to funnelName,
-            "step" to step,
-            "step_number" to stepNumber,
-            "success" to success
-        ) + parameters)
+        trackEvent(
+            "funnel",
+            mapOf(
+                "funnel_name" to funnelName,
+                "step" to step,
+                "step_number" to stepNumber,
+                "success" to success,
+            ) + parameters,
+        )
     }
 
     /**
@@ -222,23 +244,26 @@ class AnalyticsManager private constructor(
      */
     private fun setupCrashHandler() {
         val defaultHandler = Thread.getDefaultUncaughtExceptionHandler()
-        
+
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             Logger.e("Uncaught exception in thread: ${thread.name}", throwable)
-            
+
             // Track crash
-            trackEvent("crash", mapOf(
-                "thread_name" to thread.name,
-                "exception_type" to throwable.javaClass.simpleName,
-                "message" to (throwable.message as Any),
-                "stack_trace" to getStackTrace(throwable),
-                "fatal" to true,
-                "timestamp" to System.currentTimeMillis()
-            ))
-            
+            trackEvent(
+                "crash",
+                mapOf(
+                    "thread_name" to thread.name,
+                    "exception_type" to throwable.javaClass.simpleName,
+                    "message" to (throwable.message as Any),
+                    "stack_trace" to getStackTrace(throwable),
+                    "fatal" to true,
+                    "timestamp" to System.currentTimeMillis(),
+                ),
+            )
+
             // Send any queued events immediately
             flushEvents()
-            
+
             // Call original handler
             defaultHandler?.uncaughtException(thread, throwable)
         }
@@ -251,12 +276,12 @@ class AnalyticsManager private constructor(
         scope.launch {
             while (isActive) {
                 delay(5000) // Process every 5 seconds
-                
+
                 val events = mutableListOf<AnalyticsEvent>()
                 while (eventQueue.isNotEmpty() && events.size < 50) {
                     events.add(eventQueue.poll() ?: break)
                 }
-                
+
                 if (events.isNotEmpty()) {
                     sendBatchEvents(events)
                 }
@@ -274,17 +299,16 @@ class AnalyticsManager private constructor(
                 put("event_type", event.type.name)
                 put("timestamp", event.timestamp)
                 put("session_id", getSessionId())
-                
+
                 val params = JSONObject()
                 event.parameters.forEach { (key, value) ->
                     params.put(key, value.toString())
                 }
                 put("parameters", params)
             }
-            
+
             // In a real implementation, this would send to analytics service
-            Logger.d("Event: ${json.toString()}")
-            
+            Logger.d("Event: $json")
         } catch (e: Exception) {
             Logger.e("Failed to send event", e)
         }
@@ -302,7 +326,7 @@ class AnalyticsManager private constructor(
                     put("event_type", event.type.name)
                     put("timestamp", event.timestamp)
                     put("session_id", getSessionId())
-                    
+
                     val params = JSONObject()
                     event.parameters.forEach { (key, value) ->
                         params.put(key, value.toString())
@@ -311,10 +335,9 @@ class AnalyticsManager private constructor(
                 }
                 jsonArray.put(json)
             }
-            
+
             // In a real implementation, this would send to analytics service
-            Logger.d("Batch events: ${jsonArray.toString()}")
-            
+            Logger.d("Batch events: $jsonArray")
         } catch (e: Exception) {
             Logger.e("Failed to send batch events", e)
         }
@@ -328,7 +351,7 @@ class AnalyticsManager private constructor(
         while (eventQueue.isNotEmpty()) {
             events.add(eventQueue.poll() ?: break)
         }
-        
+
         if (events.isNotEmpty()) {
             sendBatchEvents(events)
         }
@@ -391,7 +414,7 @@ class AnalyticsManager private constructor(
         val name: String,
         val parameters: Map<String, Any>,
         val timestamp: Long,
-        val type: EventType
+        val type: EventType,
     )
 
     /**
@@ -406,6 +429,6 @@ class AnalyticsManager private constructor(
         SCREEN_VIEW,
         ENGAGEMENT,
         FUNNEL,
-        CRASH
+        CRASH,
     }
 }

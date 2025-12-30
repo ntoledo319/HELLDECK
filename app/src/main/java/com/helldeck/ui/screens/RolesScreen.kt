@@ -5,7 +5,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.helldeck.ui.vm.GameNightViewModel
@@ -14,12 +13,12 @@ import com.helldeck.ui.vm.GameNightViewModel
 @Composable
 fun RolesScreen(
     vm: GameNightViewModel,
-    onClose: () -> Unit = {}
+    onClose: () -> Unit = {},
 ) {
     val roles = listOf("Dealer", "Judge", "Wildcard", "Heckler", "Scorekeeper")
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         Text("Player Roles", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
@@ -36,19 +35,19 @@ fun RolesScreen(
 
                         ExposedDropdownMenuBox(
                             expanded = expanded,
-                            onExpandedChange = { expanded = !expanded }
+                            onExpandedChange = { expanded = !expanded },
                         ) {
                             OutlinedTextField(
                                 value = currentRole,
                                 onValueChange = {},
                                 readOnly = true,
                                 label = { Text("Role") },
-                                modifier = Modifier.fillMaxWidth().menuAnchor()
+                                modifier = Modifier.fillMaxWidth().menuAnchor(),
                             )
 
                             ExposedDropdownMenu(
                                 expanded = expanded,
-                                onDismissRequest = { expanded = false }
+                                onDismissRequest = { expanded = false },
                             ) {
                                 roles.forEach { role ->
                                     DropdownMenuItem(
@@ -56,7 +55,7 @@ fun RolesScreen(
                                         onClick = {
                                             vm.playerRoles = vm.playerRoles + (player.id to role)
                                             expanded = false
-                                        }
+                                        },
                                     )
                                 }
                             }

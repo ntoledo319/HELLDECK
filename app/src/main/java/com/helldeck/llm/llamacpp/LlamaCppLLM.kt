@@ -10,9 +10,10 @@ import kotlin.random.Random
 
 class LlamaCppLLM(
     private val modelFile: File,
-    private val ctxSize: Int = 2048
+    private val ctxSize: Int = 2048,
 ) : LocalLLM {
     override val modelId: String = modelFile.nameWithoutExtension
+
     @Volatile override var isReady: Boolean = false
         private set
 
@@ -36,7 +37,9 @@ class LlamaCppLLM(
         }
     }
 
-    override suspend fun generate(system: String, user: String, cfg: GenConfig): String = withContext(Dispatchers.Default) {
+    override suspend fun generate(system: String, user: String, cfg: GenConfig): String = withContext(
+        Dispatchers.Default,
+    ) {
         val prompt = buildPrompt(system, user)
         if (!isReady || handle == 0L) return@withContext user
         val seed = cfg.seed ?: Random(System.nanoTime()).nextInt()
@@ -47,7 +50,7 @@ class LlamaCppLLM(
                 maxTokens = cfg.maxTokens,
                 temperature = cfg.temperature,
                 topP = cfg.topP,
-                seed = seed
+                seed = seed,
             )
             if (text.isBlank()) user else text
         } catch (e: Exception) {
@@ -58,8 +61,13 @@ class LlamaCppLLM(
 
     override suspend fun classifyZeroShot(text: String, labels: List<String>, cfg: GenConfig): Int {
         val user = "Pick the best label index only.\nLabels:\n" + labels.mapIndexed { i, l -> "[$i] $l" }.joinToString("\n") +
-                "\nText: $text\nAnswer with a single integer."
-        val out = generate(system = "You are a strict classifier.", user = user, cfg = cfg.copy(maxTokens = 4, temperature = 0f))
+            "\nText: $text\nAnswer with a single integer."
+        val out =
+            generate(
+                system = "You are a strict classifier.",
+                user = user,
+                cfg = cfg.copy(maxTokens = 4, temperature = 0f),
+            )
         return out.trim().take(2).filter { it.isDigit() }.toIntOrNull() ?: 0
     }
 
@@ -82,6 +90,7 @@ class LlamaCppLLM(
     private object LlamaNativeBridge {
         @Volatile
         private var triedLoad = false
+
         @Volatile
         private var available = false
 
@@ -140,7 +149,7 @@ class LlamaCppLLM(
             maxTokens: Int,
             temperature: Float,
             topP: Float,
-            seed: Int
+            seed: Int,
         ): String
 
         @JvmStatic

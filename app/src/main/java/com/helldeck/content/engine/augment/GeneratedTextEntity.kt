@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class GeneratedTextEntity(
     @PrimaryKey val key: String, // hash(task|model|template|fill|seed)
     val text: String,
-    val createdAt: Long
+    val createdAt: Long,
 )

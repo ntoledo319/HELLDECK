@@ -2,6 +2,8 @@ package com.helldeck.ui.components
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -10,11 +12,9 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
@@ -28,13 +28,13 @@ import androidx.compose.ui.unit.sp
 fun SpiceSlider(
     spiceLevel: Int,
     onSpiceLevelChanged: (Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val haptic = LocalHapticFeedback.current
 
     Column(
         modifier = modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Header
         Row(
@@ -42,18 +42,18 @@ fun SpiceSlider(
                 .fillMaxWidth()
                 .padding(bottom = 12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = "Spice Level",
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold,
-                fontSize = 16.sp
+                fontSize = 16.sp,
             )
 
             Surface(
                 shape = RoundedCornerShape(12.dp),
-                color = getSpiceColor(spiceLevel).copy(alpha = 0.2f)
+                color = getSpiceColor(spiceLevel).copy(alpha = 0.2f),
             ) {
                 Text(
                     text = getSpiceLabel(spiceLevel),
@@ -61,7 +61,7 @@ fun SpiceSlider(
                     style = MaterialTheme.typography.labelMedium,
                     color = getSpiceColor(spiceLevel),
                     fontWeight = FontWeight.Bold,
-                    fontSize = 13.sp
+                    fontSize = 13.sp,
                 )
             }
         }
@@ -72,7 +72,7 @@ fun SpiceSlider(
                 .fillMaxWidth()
                 .height(56.dp)
                 .clip(RoundedCornerShape(28.dp))
-                .background(MaterialTheme.colorScheme.surfaceVariant)
+                .background(MaterialTheme.colorScheme.surfaceVariant),
         ) {
             // Gradient progress bar
             Box(
@@ -83,10 +83,10 @@ fun SpiceSlider(
                         brush = Brush.horizontalGradient(
                             colors = listOf(
                                 getSpiceColor(1),
-                                getSpiceColor(spiceLevel.coerceAtLeast(2))
-                            )
-                        )
-                    )
+                                getSpiceColor(spiceLevel.coerceAtLeast(2)),
+                            ),
+                        ),
+                    ),
             )
 
             // Spice level buttons
@@ -95,7 +95,7 @@ fun SpiceSlider(
                     .fillMaxWidth()
                     .padding(horizontal = 8.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 repeat(5) { index ->
                     val level = index + 1
@@ -109,7 +109,7 @@ fun SpiceSlider(
                         onClick = {
                             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                             onSpiceLevelChanged(level)
-                        }
+                        },
                     )
                 }
             }
@@ -121,7 +121,7 @@ fun SpiceSlider(
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 12.sp,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(top = 8.dp),
         )
     }
 }
@@ -131,7 +131,7 @@ private fun SpiceLevelButton(
     level: Int,
     isActive: Boolean,
     isSelected: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val haptic = LocalHapticFeedback.current
     val interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }
@@ -145,9 +145,9 @@ private fun SpiceLevelButton(
         },
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessMedium
+            stiffness = Spring.StiffnessMedium,
         ),
-        label = "spice_scale"
+        label = "spice_scale",
     )
 
     IconButton(
@@ -161,7 +161,7 @@ private fun SpiceLevelButton(
                 scaleX = scale
                 scaleY = scale
             },
-        interactionSource = interactionSource
+        interactionSource = interactionSource,
     ) {
         Box(
             modifier = Modifier
@@ -169,19 +169,22 @@ private fun SpiceLevelButton(
                 .clip(CircleShape)
                 .background(
                     if (isActive) {
-                        if (isSelected) getSpiceColor(level)
-                        else getSpiceColor(level).copy(alpha = 0.6f)
+                        if (isSelected) {
+                            getSpiceColor(level)
+                        } else {
+                            getSpiceColor(level).copy(alpha = 0.6f)
+                        }
                     } else {
                         Color.White.copy(alpha = 0.3f)
-                    }
+                    },
                 ),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             Text(
                 text = level.toString(),
                 color = if (isActive) Color.White else MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = if (isSelected) FontWeight.ExtraBold else FontWeight.Bold,
-                fontSize = if (isSelected) 18.sp else 14.sp
+                fontSize = if (isSelected) 18.sp else 14.sp,
             )
         }
     }

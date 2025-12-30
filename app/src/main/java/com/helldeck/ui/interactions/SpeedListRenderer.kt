@@ -13,14 +13,14 @@ import com.helldeck.ui.state.RoundState
 fun SpeedListRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var item by remember { mutableStateOf("") }
     var items by remember { mutableStateOf(listOf<String>()) }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "List as many as you can!", style = MaterialTheme.typography.headlineSmall)
         Spacer(modifier = Modifier.height(8.dp))
@@ -31,7 +31,7 @@ fun SpeedListRenderer(
             value = item,
             onValueChange = { item = it },
             label = { Text("Next item") },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -45,7 +45,7 @@ fun SpeedListRenderer(
                         item = ""
                     }
                 },
-                enabled = item.isNotBlank()
+                enabled = item.isNotBlank(),
             ) {
                 Text("Add")
             }

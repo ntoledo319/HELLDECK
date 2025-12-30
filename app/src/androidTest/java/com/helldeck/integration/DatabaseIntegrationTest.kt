@@ -4,14 +4,21 @@ import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.helldeck.data.*
-import com.helldeck.engine.Feedback
+import com.helldeck.content.db.HelldeckDb
+import com.helldeck.content.db.TemplateStatDao
+import com.helldeck.data.Repository
+import com.helldeck.data.RoundMetricsEntity
 import com.helldeck.fixtures.TestDataFactory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -24,14 +31,16 @@ class DatabaseIntegrationTest {
     private lateinit var database: HelldeckDb
     private lateinit var repository: Repository
     private lateinit var context: Context
+    private lateinit var templateDao: TemplateStatDao
 
     @Before
     fun setup() {
         context = ApplicationProvider.getApplicationContext()
         database = Room.inMemoryDatabaseBuilder(
             context,
-            HelldeckDb::class.java
+            HelldeckDb::class.java,
         ).build()
+        templateDao = database.templateStatDao()
         repository = Repository.get(context)
     }
 
@@ -45,21 +54,21 @@ class DatabaseIntegrationTest {
         // Arrange
         val playerNames = listOf("Player 1", "Player 2", "Player 3")
         val sessionId = repository.createGameSession(playerNames)
-        
+
         val template = TestDataFactory.createTemplateEntity(
             id = "test_template",
-            game = "ROAST_CONSENSUS"
+            game = "ROAST_CONSENSUS",
         )
-        database.templates().insert(template)
+        templateDao.upsert(template)
 
         // Act - Record a round
         val roundId = repository.recordRound(
             sessionId = sessionId,
-            templateId = template.id,
+            templateId = template.templateId,
             game = "ROAST_CONSENSUS",
             filledText = "Test filled text",
             feedback = TestDataFactory.createFeedback(lol = 2, meh = 1, trash = 0, latencyMs = 1500),
-            points = 3
+            points = 3,
         )
 
         // Assert
@@ -68,12 +77,12 @@ class DatabaseIntegrationTest {
         // Verify session was created
         val session = repository.getSessionById(sessionId)
         assertNotNull("Session should exist", session)
-        assertEquals("Session should have correct player count", playerNames.size, session.playerCount)
+        assertEquals("Session should have correct player count", playerNames.size, session?.playerCount ?: 0)
 
         // Verify round was recorded
         val rounds = repository.getRoundsForSession(sessionId).first()
         assertEquals("Should have one round", 1, rounds.size)
-        assertEquals("Round should have correct template ID", template.id, rounds.first().templateId)
+        assertEquals("Round should have correct template ID", template.templateId, rounds.first().cardId)
 
         // Verify players were created
         val players = repository.getAllPlayers().first()
@@ -84,19 +93,19 @@ class DatabaseIntegrationTest {
     fun `multiple rounds persist correctly`() = runBlocking {
         // Arrange
         val sessionId = repository.createGameSession(listOf("Player 1", "Player 2"))
-        
+
         val templates = TestDataFactory.createTemplateEntityList(3, "ROAST_CONSENSUS")
-        database.templates().insertAll(templates)
+        templates.forEach { templateDao.upsert(it) }
 
         // Act - Record multiple rounds
         val roundIds = templates.map { template ->
             repository.recordRound(
                 sessionId = sessionId,
-                templateId = template.id,
+                templateId = template.templateId,
                 game = "ROAST_CONSENSUS",
-                filledText = "Round with ${template.id}",
+                filledText = "Round with ${template.templateId}",
                 feedback = TestDataFactory.createFeedback(),
-                points = 2
+                points = 2,
             )
         }
 
@@ -129,8 +138,11 @@ class DatabaseIntegrationTest {
         // Assert
         val updatedPlayer = repository.getAllPlayers().first().find { it.id == player.id }
         assertNotNull("Player should exist", updatedPlayer)
-        assertEquals("Player score should be updated correctly",
-            initialPoints + 5 + 3 - 2, updatedPlayer?.sessionPoints)
+        assertEquals(
+            "Player score should be updated correctly",
+            initialPoints + 5 + 3 - 2,
+            updatedPlayer?.sessionPoints,
+        )
     }
 
     @Test
@@ -143,24 +155,24 @@ class DatabaseIntegrationTest {
         val player2 = repository.addPlayer("Extra Player 2", "👻")
 
         val template = TestDataFactory.createTemplateEntity()
-        database.templates().insert(template)
+        templateDao.upsert(template)
 
         val round1Id = repository.recordRound(
             sessionId = sessionId,
-            templateId = template.id,
+            templateId = template.templateId,
             game = "ROAST_CONSENSUS",
             filledText = "Concurrent round 1",
             feedback = TestDataFactory.createFeedback(),
-            points = 2
+            points = 2,
         )
 
         val round2Id = repository.recordRound(
             sessionId = sessionId,
-            templateId = template.id,
+            templateId = template.templateId,
             game = "ROAST_CONSENSUS",
             filledText = "Concurrent round 2",
             feedback = TestDataFactory.createFeedback(),
-            points = 3
+            points = 3,
         )
 
         // Assert
@@ -189,7 +201,7 @@ class DatabaseIntegrationTest {
                 game = "INVALID_GAME",
                 filledText = "Invalid round",
                 feedback = TestDataFactory.createFeedback(),
-                points = 0
+                points = 0,
             )
             fail("Should have thrown exception for invalid data")
         } catch (e: Exception) {

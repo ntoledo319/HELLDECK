@@ -39,7 +39,7 @@ class GeneratorV3InvariantsTest {
         GameIds.ALIBI,
         GameIds.REALITY_CHECK,
         GameIds.SCATTER,
-        GameIds.OVER_UNDER
+        GameIds.OVER_UNDER,
     )
 
     @Test
@@ -51,7 +51,9 @@ class GeneratorV3InvariantsTest {
         abGames.forEach { gameId ->
             repeat(30) { idx ->
                 val engine = engineFor(1_000L + idx + gameId.hashCode())
-                val result = engine.next(GameEngine.Request("ab_${gameId}_$idx", gameId, listOf("A","B","C"), spiceMax = 2))
+                val result = engine.next(
+                    GameEngine.Request("ab_${gameId}_$idx", gameId, listOf("A", "B", "C"), spiceMax = 2),
+                )
                 val options = result.options
                 if (options is GameOptions.AB) {
                     checks++
@@ -71,7 +73,9 @@ class GeneratorV3InvariantsTest {
         games.forEach { gameId ->
             repeat(15) { idx ->
                 val engine = engineFor(2_000L + idx + gameId.hashCode())
-                val result = engine.next(GameEngine.Request("txt_${gameId}_$idx", gameId, listOf("A","B","C"), spiceMax = 2))
+                val result = engine.next(
+                    GameEngine.Request("txt_${gameId}_$idx", gameId, listOf("A", "B", "C"), spiceMax = 2),
+                )
                 val text = result.filledCard.text
                 assertTrue("Generated text should be non-empty", text.isNotBlank())
                 assertFalse("Text should not contain placeholders", text.contains('{') || text.contains('}'))
@@ -88,7 +92,9 @@ class GeneratorV3InvariantsTest {
         games.forEach { gameId ->
             repeat(10) { idx ->
                 val engine = engineFor(3_000L + idx + gameId.hashCode())
-                val result = engine.next(GameEngine.Request("rep_${gameId}_$idx", gameId, listOf("A","B","C"), spiceMax = 2))
+                val result = engine.next(
+                    GameEngine.Request("rep_${gameId}_$idx", gameId, listOf("A", "B", "C"), spiceMax = 2),
+                )
                 val words = result.filledCard.text.split(Regex("\\s+")).filter { it.isNotBlank() }
                 val counts = words.groupingBy { it.lowercase() }.eachCount()
                 val maxCount = counts.values.maxOrNull() ?: 0
@@ -105,7 +111,7 @@ class GeneratorV3InvariantsTest {
 
         repeat(20) { idx ->
             val taboo = engineFor(4_000L + idx).next(
-                GameEngine.Request("tab_$idx", GameIds.TABOO, listOf("A","B","C"), spiceMax = 2)
+                GameEngine.Request("tab_$idx", GameIds.TABOO, listOf("A", "B", "C"), spiceMax = 2),
             ).options
             if (taboo is GameOptions.Taboo) {
                 assertFalse(taboo.word.isBlank())
@@ -114,7 +120,7 @@ class GeneratorV3InvariantsTest {
             }
 
             val scatter = engineFor(4_500L + idx).next(
-                GameEngine.Request("sc_$idx", GameIds.SCATTER, listOf("A","B","C"), spiceMax = 2)
+                GameEngine.Request("sc_$idx", GameIds.SCATTER, listOf("A", "B", "C"), spiceMax = 2),
             ).options
             if (scatter is GameOptions.Scatter) {
                 assertFalse(scatter.category.isBlank())

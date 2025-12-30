@@ -19,7 +19,7 @@ class GameContractValidatorTest {
             text = text,
             family = "test_family",
             spice = 1,
-            locality = 1
+            locality = 1,
         )
     }
 
@@ -30,7 +30,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.NONE,
             options = GameOptions.None,
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertTrue("NONE interaction should pass with None options", result.isValid)
     }
@@ -42,7 +42,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.A_B_CHOICE,
             options = GameOptions.AB("Option A", "Option B"),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertTrue("A_B_CHOICE with valid AB options should pass", resultValid.isValid)
 
@@ -51,7 +51,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.A_B_CHOICE,
             options = GameOptions.None,
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("A_B_CHOICE with None options should fail", resultInvalid.isValid)
         assertTrue("Should have failure reason", resultInvalid.reasons.isNotEmpty())
@@ -64,11 +64,13 @@ class GameContractValidatorTest {
             interactionType = InteractionType.A_B_CHOICE,
             options = GameOptions.AB("Same", "Same"),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("A_B_CHOICE with identical options should fail", result.isValid)
-        assertTrue("Should mention options must be different",
-            result.reasons.any { it.contains("must be different") })
+        assertTrue(
+            "Should mention options must be different",
+            result.reasons.any { it.contains("must be different") },
+        )
     }
 
     @Test
@@ -78,7 +80,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.A_B_CHOICE,
             options = GameOptions.AB("", "Option B"),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("A_B_CHOICE with empty option should fail", result.isValid)
     }
@@ -90,7 +92,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.VOTE_PLAYER,
             options = GameOptions.PlayerVote(listOf("Player1", "Player2", "Player3")),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertTrue("VOTE_PLAYER with 3 players should pass", resultValid.isValid)
 
@@ -99,7 +101,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.VOTE_PLAYER,
             options = GameOptions.PlayerVote(listOf("Player1")),
             filledCard = createTestCard(),
-            playersCount = 1
+            playersCount = 1,
         )
         assertFalse("VOTE_PLAYER with 1 player should fail", resultInvalid.isValid)
     }
@@ -111,7 +113,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.TABOO_GUESS,
             options = GameOptions.Taboo("password", listOf("computer", "login", "security")),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertTrue("TABOO with valid word and forbidden list should pass", resultValid.isValid)
 
@@ -120,7 +122,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.TABOO_GUESS,
             options = GameOptions.Taboo("", listOf("word1", "word2")),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("TABOO with empty word should fail", resultNoWord.isValid)
 
@@ -129,7 +131,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.TABOO_GUESS,
             options = GameOptions.Taboo("password", emptyList()),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("TABOO with empty forbidden list should fail", resultNoForbidden.isValid)
     }
@@ -141,11 +143,13 @@ class GameContractValidatorTest {
             interactionType = InteractionType.NONE,
             options = GameOptions.None,
             filledCard = createTestCard("This has {placeholder} in it"),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("Card with {placeholder} should fail", result.isValid)
-        assertTrue("Should mention placeholder",
-            result.reasons.any { it.contains("placeholder") })
+        assertTrue(
+            "Should mention placeholder",
+            result.reasons.any { it.contains("placeholder") },
+        )
     }
 
     @Test
@@ -155,7 +159,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.NONE,
             options = GameOptions.None,
             filledCard = createTestCard("This has null in it"),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("Card with 'null' text should fail", result.isValid)
     }
@@ -167,11 +171,13 @@ class GameContractValidatorTest {
             interactionType = InteractionType.NONE,
             options = GameOptions.None,
             filledCard = createTestCard("Too short"),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("Card with <4 words should fail", result.isValid)
-        assertTrue("Should mention too short",
-            result.reasons.any { it.contains("too short") })
+        assertTrue(
+            "Should mention too short",
+            result.reasons.any { it.contains("too short") },
+        )
     }
 
     @Test
@@ -182,11 +188,13 @@ class GameContractValidatorTest {
             interactionType = InteractionType.NONE,
             options = GameOptions.None,
             filledCard = createTestCard(longText),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("Card with >50 words should fail", result.isValid)
-        assertTrue("Should mention too long",
-            result.reasons.any { it.contains("too long") })
+        assertTrue(
+            "Should mention too long",
+            result.reasons.any { it.contains("too long") },
+        )
     }
 
     @Test
@@ -196,7 +204,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.TRUE_FALSE,
             options = GameOptions.TrueFalse,
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertTrue("TRUE_FALSE with TrueFalse options should pass", resultValid.isValid)
 
@@ -205,7 +213,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.TRUE_FALSE,
             options = GameOptions.None,
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("TRUE_FALSE with None options should fail", resultInvalid.isValid)
     }
@@ -217,7 +225,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.ODD_EXPLAIN,
             options = GameOptions.OddOneOut(listOf("Item1", "Item2", "Item3")),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertTrue("ODD_EXPLAIN with 3 items should pass", resultValid.isValid)
 
@@ -226,7 +234,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.ODD_EXPLAIN,
             options = GameOptions.OddOneOut(listOf("Item1", "Item2")),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("ODD_EXPLAIN with <3 items should fail", resultInvalid.isValid)
     }
@@ -238,7 +246,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.SPEED_LIST,
             options = GameOptions.Scatter("Animals", "S"),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertTrue("SPEED_LIST with category and letter should pass", resultValid.isValid)
 
@@ -247,7 +255,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.SPEED_LIST,
             options = GameOptions.Scatter("", "S"),
             filledCard = createTestCard(),
-            playersCount = 3
+            playersCount = 3,
         )
         assertFalse("SPEED_LIST with empty category should fail", resultNoCategory.isValid)
     }
@@ -259,7 +267,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.MINI_DUEL,
             options = GameOptions.Challenge("Duel!"),
             filledCard = createTestCard(),
-            playersCount = 2
+            playersCount = 2,
         )
         assertTrue("MINI_DUEL with 2 players should pass", resultValid.isValid)
 
@@ -268,7 +276,7 @@ class GameContractValidatorTest {
             interactionType = InteractionType.MINI_DUEL,
             options = GameOptions.Challenge("Duel!"),
             filledCard = createTestCard(),
-            playersCount = 1
+            playersCount = 1,
         )
         assertFalse("MINI_DUEL with 1 player should fail", resultInvalid.isValid)
     }

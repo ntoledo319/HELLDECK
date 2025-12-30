@@ -14,12 +14,12 @@ import com.helldeck.ui.vm.GameNightViewModel
 @Composable
 fun PacksScreen(
     vm: GameNightViewModel,
-    onClose: () -> Unit = {}
+    onClose: () -> Unit = {},
 ) {
     val availablePacks = listOf("Core", "Party", "Dark Humor", "Wholesome", "Office", "NSFW")
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         Text("Card Packs", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
@@ -38,20 +38,22 @@ fun PacksScreen(
                         }
                     },
                     colors = CardDefaults.cardColors(
-                        containerColor = if (pack in vm.selectedPacks)
+                        containerColor = if (pack in vm.selectedPacks) {
                             MaterialTheme.colorScheme.primaryContainer
-                        else MaterialTheme.colorScheme.surface
-                    )
+                        } else {
+                            MaterialTheme.colorScheme.surface
+                        },
+                    ),
                 ) {
                     Row(
                         modifier = Modifier.fillMaxWidth().padding(16.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(pack, style = MaterialTheme.typography.bodyLarge)
                         Checkbox(
                             checked = pack in vm.selectedPacks,
-                            onCheckedChange = null
+                            onCheckedChange = null,
                         )
                     }
                 }

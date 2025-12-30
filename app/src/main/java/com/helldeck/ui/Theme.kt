@@ -1,13 +1,14 @@
 package com.helldeck.ui
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -16,15 +17,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.engine.Config
 import com.helldeck.settings.SettingsStore
-import androidx.compose.foundation.shape.RoundedCornerShape
 
 /**
  * Helldeck Theme (HELL'S LIVING ROOM)
@@ -77,7 +75,7 @@ private val HellLivingRoomDarkColorSchemeBase = darkColorScheme(
     inverseSurface = Color(0xFFECECF6),
     inverseOnSurface = Color(0xFF0C0C0F),
     inversePrimary = Color(0xFFFF2768),
-    surfaceTint = Color(0xFFFF2768)
+    surfaceTint = Color(0xFFFF2768),
 )
 
 /**
@@ -120,7 +118,7 @@ private val HellLivingRoomLightColorSchemeBase = lightColorScheme(
     inverseSurface = Color(0xFF101016),
     inverseOnSurface = Color(0xFFFFFFFF),
     inversePrimary = Color(0xFFFF2768),
-    surfaceTint = Color(0xFFFF2768)
+    surfaceTint = Color(0xFFFF2768),
 )
 
 /**
@@ -132,7 +130,7 @@ private val HellLivingRoomLightColorSchemeBase = lightColorScheme(
 @Composable
 fun HelldeckTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val reducedMotion by SettingsStore.reducedMotionFlow().collectAsState(initial = false)
     val highContrast by SettingsStore.highContrastFlow().collectAsState(initial = false)
@@ -152,20 +150,20 @@ fun HelldeckTheme(
         base.copy(
             onSurfaceVariant = Color(0xFFE7E7F4),
             outline = Color(0xFF6A6A92),
-            outlineVariant = Color(0xFF4A4A66)
+            outlineVariant = Color(0xFF4A4A66),
         )
     }
 
     CompositionLocalProvider(
         LocalReducedMotion provides reducedMotion,
         LocalHighContrast provides highContrast,
-        LocalNoFlash provides noFlash
+        LocalNoFlash provides noFlash,
     ) {
         MaterialTheme(
             colorScheme = colorScheme,
             typography = HellLivingRoomTypography,
             shapes = HellLivingRoomShapes,
-            content = content
+            content = content,
         )
     }
 }
@@ -175,12 +173,12 @@ fun HelldeckTheme(
  */
 @Composable
 fun HelldeckPreviewTheme(
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     HelldeckTheme {
         Surface(
             color = MaterialTheme.colorScheme.background,
-            content = content
+            content = content,
         )
     }
 }
@@ -233,11 +231,11 @@ object HelldeckColors {
     val Error = Color(0xFFD72638)
 
     // Keep/define LOL/MEH/TRASH
-    val Lol = Color(0xFFFFD166)  // bright gold
-    val Meh = Color(0xFF8E8E9E)  // medium gray
+    val Lol = Color(0xFFFFD166) // bright gold
+    val Meh = Color(0xFF8E8E9E) // medium gray
     val Trash = Color(0xFFD72638)
 
-    val VoteSelected = Color(0xFFCBFF4D)  // high-contrast lime
+    val VoteSelected = Color(0xFFCBFF4D) // high-contrast lime
     val VoteUnselected = Color(0xFF60606E) // muted gray
 
     // Timer colors (legible on dark)
@@ -303,6 +301,7 @@ object HelldeckSpacing {
     val Large = 16
     val ExtraLarge = 24
     val Huge = 32
+
     // Back-compat: keep Massive, but avoid introducing a new scale value.
     val Massive = 32
 }
@@ -337,56 +336,56 @@ private val HellLivingRoomTypography = Typography(
     displayLarge = TextStyle(
         fontSize = 34.sp,
         lineHeight = 42.sp,
-        fontWeight = FontWeight.Black
+        fontWeight = FontWeight.Black,
     ),
     displayMedium = TextStyle(
         fontSize = 30.sp,
         lineHeight = 38.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
     ),
     headlineLarge = TextStyle(
         fontSize = 28.sp,
         lineHeight = 36.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
     ),
     headlineMedium = TextStyle(
         fontSize = 24.sp,
         lineHeight = 32.sp,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
     ),
 
     // Body (instructions)
     bodyLarge = TextStyle(
         fontSize = 20.sp,
         lineHeight = 28.sp,
-        fontWeight = FontWeight.Normal
+        fontWeight = FontWeight.Normal,
     ),
     bodyMedium = TextStyle(
         fontSize = 18.sp,
         lineHeight = 25.sp,
-        fontWeight = FontWeight.Normal
+        fontWeight = FontWeight.Normal,
     ),
 
     // Buttons / labels
     labelLarge = TextStyle(
         fontSize = 20.sp,
         lineHeight = 24.sp,
-        fontWeight = FontWeight.SemiBold
+        fontWeight = FontWeight.SemiBold,
     ),
     labelMedium = TextStyle(
         fontSize = 18.sp,
         lineHeight = 22.sp,
-        fontWeight = FontWeight.SemiBold
+        fontWeight = FontWeight.SemiBold,
     ),
     labelSmall = TextStyle(
         fontSize = 14.sp,
         lineHeight = 18.sp,
-        fontWeight = FontWeight.SemiBold
-    )
+        fontWeight = FontWeight.SemiBold,
+    ),
 )
 
 private val HellLivingRoomShapes = Shapes(
     small = RoundedCornerShape(HelldeckRadius.Medium),
     medium = RoundedCornerShape(HelldeckRadius.Large),
-    large = RoundedCornerShape(HelldeckRadius.ExtraLarge)
+    large = RoundedCornerShape(HelldeckRadius.ExtraLarge),
 )

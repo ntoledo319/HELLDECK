@@ -18,13 +18,13 @@ import com.helldeck.ui.state.RoundState
 fun TargetSelectRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var selectedIndex by remember { mutableStateOf<Int?>(null) }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Select target player", style = MaterialTheme.typography.headlineSmall)
 
@@ -37,7 +37,7 @@ fun TargetSelectRenderer(
             columns = GridCells.Fixed(2),
             contentPadding = PaddingValues(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             itemsIndexed(items = playerNames) { index, playerName ->
                 Card(
@@ -48,8 +48,10 @@ fun TargetSelectRenderer(
                     colors = CardDefaults.cardColors(
                         containerColor = if (selectedIndex == index) {
                             MaterialTheme.colorScheme.primaryContainer
-                        } else MaterialTheme.colorScheme.surface
-                    )
+                        } else {
+                            MaterialTheme.colorScheme.surface
+                        },
+                    ),
                 ) {
                     Box(modifier = Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) {
                         Text(text = playerName, fontSize = 18.sp)

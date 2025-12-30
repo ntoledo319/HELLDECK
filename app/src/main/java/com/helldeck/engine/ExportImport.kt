@@ -2,24 +2,23 @@ package com.helldeck.engine
 
 import android.content.Context
 import android.net.Uri
+import androidx.room.withTransaction
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.helldeck.content.db.HelldeckDb
 import com.helldeck.content.db.TemplateExposureEntity
 import com.helldeck.content.db.TemplateStatEntity
 import com.helldeck.data.PlayerEntity
+import com.helldeck.utils.Logger
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.InputStream
-import java.io.InputStreamReader
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import java.util.zip.ZipOutputStream
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.CancellationException
-import androidx.room.withTransaction
-import com.helldeck.utils.Logger
 
 /**
  * Handles export & import of "brainpacks" (player history + template performance).
@@ -42,7 +41,7 @@ object ExportImport {
                     exportedAt = System.currentTimeMillis(),
                     players = players,
                     templateStats = stats,
-                    templateExposure = exposures
+                    templateExposure = exposures,
                 )
             }
 
@@ -86,7 +85,7 @@ object ExportImport {
             ImportResult.Success(
                 templatesImported = payload.templateStats.size,
                 playersImported = payload.players.size,
-                roundsImported = payload.templateExposure.size
+                roundsImported = payload.templateExposure.size,
             )
         } catch (e: CancellationException) {
             throw e
@@ -126,7 +125,7 @@ object ExportImport {
         val exportedAt: Long,
         val players: List<PlayerEntity>,
         val templateStats: List<TemplateStatEntity>,
-        val templateExposure: List<TemplateExposureEntity>
+        val templateExposure: List<TemplateExposureEntity>,
     )
 }
 

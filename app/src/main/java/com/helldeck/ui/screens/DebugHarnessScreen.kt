@@ -12,14 +12,14 @@ import kotlinx.coroutines.launch
 @Composable
 fun DebugHarnessScreen(
     vm: GameNightViewModel,
-    onClose: () -> Unit = {}
+    onClose: () -> Unit = {},
 ) {
     val scope = rememberCoroutineScope()
     var generationCount by remember { mutableStateOf(0) }
     var failures by remember { mutableStateOf(listOf<String>()) }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = Modifier.fillMaxSize().padding(16.dp),
     ) {
         Text("Debug Harness", style = MaterialTheme.typography.headlineLarge)
         Spacer(modifier = Modifier.height(16.dp))
@@ -48,7 +48,7 @@ fun DebugHarnessScreen(
                             }
                         }
                     },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     Text("Generate 25 Cards")
                 }

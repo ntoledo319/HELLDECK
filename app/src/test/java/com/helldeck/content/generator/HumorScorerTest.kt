@@ -22,13 +22,13 @@ class HumorScorerTest {
                 BlueprintSegment.Text("A "),
                 BlueprintSegment.Slot("a", "sexual_innuendo"),
                 BlueprintSegment.Text(" and "),
-                BlueprintSegment.Slot("b", "bodily_functions")
-            )
+                BlueprintSegment.Slot("b", "bodily_functions"),
+            ),
         )
 
         val slots: Map<String, SlotData> = mapOf(
             "a" to SlotData(slotType = "sexual_innuendo", text = "suggestive stuff", spice = 4, tone = "wild"),
-            "b" to SlotData(slotType = "bodily_functions", text = "gross stuff", spice = 4, tone = "wild")
+            "b" to SlotData(slotType = "bodily_functions", text = "gross stuff", spice = 4, tone = "wild"),
         )
 
         val score = scorer.evaluate("A test", blueprint, slots)
@@ -39,4 +39,3 @@ class HumorScorerTest {
         assertTrue("overall score within 0..1", score.overallScore in 0.0..1.0)
     }
 }
-

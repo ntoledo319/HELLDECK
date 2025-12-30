@@ -8,6 +8,7 @@ object GameIds {
     const val CONFESS_CAP = "CONFESSION_OR_CAP"
     const val POISON_PITCH = "POISON_PITCH"
     const val FILLIN = "FILL_IN_FINISHER"
+
     // Back-compat alias for older callers
     const val FILL_IN = FILLIN
     const val RED_FLAG = "RED_FLAG_RALLY"
@@ -32,7 +33,7 @@ enum class Interaction(
     val description: String,
     val requiresTimer: Boolean = true,
     val supportsPreChoice: Boolean = false,
-    val supportsOptions: Boolean = false
+    val supportsOptions: Boolean = false,
 ) {
     // Voting interactions
     VOTE_AVATAR("Vote for a player avatar", true, false, false),
@@ -51,7 +52,8 @@ enum class Interaction(
     DUEL("Quick duel between players", true, false, false),
     SMUGGLE("Hide words in a story", true, false, false),
     PITCH("Give a sales pitch", true, false, false),
-    SPEED_LIST("Quickly list items", true, false, false);
+    SPEED_LIST("Quickly list items", true, false, false),
+    ;
 
     companion object {
         fun fromGameId(gameId: String): Interaction {
@@ -78,7 +80,7 @@ enum class InteractionType {
     HIDE_WORDS,
     SALES_PITCH,
     SPEED_LIST,
-    PREDICT_VOTE
+    PREDICT_VOTE,
 }
 
 /**
@@ -90,7 +92,7 @@ enum class GameCategory(val displayName: String) {
     WORD("Word Games"),
     VOTING("Voting Games"),
     CREATIVE("Creative Games"),
-    QUICK("Quick Games")
+    QUICK("Quick Games"),
 }
 
 /**
@@ -100,7 +102,7 @@ enum class GameDifficulty(val displayName: String, val multiplier: Double) {
     EASY("Easy", 0.8),
     MEDIUM("Medium", 1.0),
     HARD("Hard", 1.2),
-    EXPERT("Expert", 1.5)
+    EXPERT("Expert", 1.5),
 }
 
 /**
@@ -123,7 +125,7 @@ object GameRegistry {
             maxPlayers = metadata.maxPlayers,
             category = metadata.category,
             difficulty = metadata.difficulty,
-            tags = metadata.tags
+            tags = metadata.tags,
         )
     }
 
@@ -142,7 +144,7 @@ object GameRegistry {
                 maxPlayers = metadata.maxPlayers,
                 category = metadata.category,
                 difficulty = metadata.difficulty,
-                tags = metadata.tags
+                tags = metadata.tags,
             )
         }
     }
@@ -162,7 +164,7 @@ object GameRegistry {
                 maxPlayers = metadata.maxPlayers,
                 category = metadata.category,
                 difficulty = metadata.difficulty,
-                tags = metadata.tags
+                tags = metadata.tags,
             )
         }
     }
@@ -182,7 +184,7 @@ object GameRegistry {
                 maxPlayers = metadata.maxPlayers,
                 category = metadata.category,
                 difficulty = metadata.difficulty,
-                tags = metadata.tags
+                tags = metadata.tags,
             )
         }
     }
@@ -202,7 +204,7 @@ object GameRegistry {
                 maxPlayers = metadata.maxPlayers,
                 category = metadata.category,
                 difficulty = metadata.difficulty,
-                tags = metadata.tags
+                tags = metadata.tags,
             )
         }
     }
@@ -222,7 +224,7 @@ object GameRegistry {
             maxPlayers = metadata.maxPlayers,
             category = metadata.category,
             difficulty = metadata.difficulty,
-            tags = metadata.tags
+            tags = metadata.tags,
         )
     }
 
@@ -241,7 +243,7 @@ object GameRegistry {
                 maxPlayers = metadata.maxPlayers,
                 category = metadata.category,
                 difficulty = metadata.difficulty,
-                tags = metadata.tags
+                tags = metadata.tags,
             )
         }
     }
@@ -282,7 +284,7 @@ object GameRegistry {
                 maxPlayers = metadata.maxPlayers,
                 category = metadata.category,
                 difficulty = metadata.difficulty,
-                tags = metadata.tags
+                tags = metadata.tags,
             )
         }
     }
@@ -301,5 +303,5 @@ data class GameSpec(
     val maxPlayers: Int = 16,
     val category: GameCategory = GameCategory.MAIN,
     val difficulty: GameDifficulty = GameDifficulty.MEDIUM,
-    val tags: Set<String> = emptySet()
+    val tags: Set<String> = emptySet(),
 )

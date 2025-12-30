@@ -14,14 +14,14 @@ import com.helldeck.ui.state.RoundState
 fun PredictVoteRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var prediction by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "Predict the majority vote", style = MaterialTheme.typography.headlineSmall)
 
@@ -33,7 +33,7 @@ fun PredictVoteRenderer(
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Button(
                 onClick = {
@@ -42,9 +42,12 @@ fun PredictVoteRenderer(
                 },
                 modifier = Modifier.weight(1f).height(80.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (prediction == "A") MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (prediction == "A") {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text(text = optA, fontSize = 20.sp)
             }
@@ -56,9 +59,12 @@ fun PredictVoteRenderer(
                 },
                 modifier = Modifier.weight(1f).height(80.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (prediction == "B") MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (prediction == "B") {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text(text = optB, fontSize = 20.sp)
             }

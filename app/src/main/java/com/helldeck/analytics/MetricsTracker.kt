@@ -1,10 +1,10 @@
 package com.helldeck.analytics
 
 import com.helldeck.content.data.ContentRepository
+import com.helldeck.data.GameAnalytics
 import com.helldeck.data.RoundMetricsEntity
 import com.helldeck.data.SessionAnalytics
 import com.helldeck.data.SessionMetricsEntity
-import com.helldeck.data.GameAnalytics
 import com.helldeck.utils.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -27,7 +27,7 @@ import org.json.JSONObject
  * - Improving content recommendations
  */
 class MetricsTracker(
-    private val repo: ContentRepository
+    private val repo: ContentRepository,
 ) {
     private var currentRoundId: String? = null
     private var currentRoundStartMs: Long = 0L
@@ -41,7 +41,7 @@ class MetricsTracker(
             val session = SessionMetricsEntity(
                 sessionId = sessionId,
                 startedAtMs = System.currentTimeMillis(),
-                participatingPlayers = JSONArray(playerIds).toString()
+                participatingPlayers = JSONArray(playerIds).toString(),
             )
             repo.db.sessionMetrics().upsert(session)
             Logger.i("MetricsTracker: Started session $sessionId with ${playerIds.size} players")
@@ -61,7 +61,7 @@ class MetricsTracker(
         cardId: String,
         cardText: String,
         activePlayerId: String,
-        spiceLevel: Int
+        spiceLevel: Int,
     ) = withContext(Dispatchers.IO) {
         try {
             currentRoundId = roundId
@@ -75,7 +75,7 @@ class MetricsTracker(
                 cardText = cardText,
                 activePlayerId = activePlayerId,
                 startedAtMs = currentRoundStartMs,
-                spiceLevel = spiceLevel
+                spiceLevel = spiceLevel,
             )
             repo.db.roundMetrics().upsert(round)
             Logger.d("MetricsTracker: Started round $roundId for game $gameId")
@@ -92,7 +92,7 @@ class MetricsTracker(
         lolCount: Int,
         mehCount: Int,
         trashCount: Int,
-        points: Int
+        points: Int,
     ) = withContext(Dispatchers.IO) {
         try {
             val roundId = currentRoundId ?: run {
@@ -115,7 +115,7 @@ class MetricsTracker(
                 trashCount = trashCount,
                 points = points,
                 completedAtMs = completedAtMs,
-                durationMs = durationMs
+                durationMs = durationMs,
             )
             repo.db.roundMetrics().upsert(updatedRound)
 
@@ -128,7 +128,9 @@ class MetricsTracker(
             // Update games played map
             updateGamesPlayedMap(round.sessionId, round.gameId)
 
-            Logger.d("MetricsTracker: Completed round $roundId (${durationMs}ms, LOL:$lolCount, MEH:$mehCount, TRASH:$trashCount)")
+            Logger.d(
+                "MetricsTracker: Completed round $roundId (${durationMs}ms, LOL:$lolCount, MEH:$mehCount, TRASH:$trashCount)",
+            )
             currentRoundId = null
         } catch (e: Exception) {
             Logger.e("MetricsTracker: Failed to complete round", e)
@@ -176,14 +178,16 @@ class MetricsTracker(
                     participantCount = parsePlayerIds(session.participatingPlayers).size,
                     longestRound = 0,
                     shortestRound = 0,
-                    heatMoments = 0
+                    heatMoments = 0,
                 )
             }
 
             val totalReactions = session.totalLolCount + session.totalMehCount + session.totalTrashCount
             val averageLaughScore = if (totalReactions > 0) {
                 session.totalLolCount.toDouble() / totalReactions
-            } else 0.0
+            } else {
+                0.0
+            }
 
             val gamePlayCounts = rounds.groupBy { it.gameId }.mapValues { it.value.size }
             val topGame = gamePlayCounts.maxByOrNull { it.value }?.toPair()
@@ -197,7 +201,9 @@ class MetricsTracker(
                 if (total > 0) {
                     val heatPercentage = (round.lolCount + round.trashCount).toDouble() / total
                     heatPercentage > 0.7
-                } else false
+                } else {
+                    false
+                }
             }
 
             SessionAnalytics(
@@ -210,7 +216,7 @@ class MetricsTracker(
                 participantCount = parsePlayerIds(session.participatingPlayers).size,
                 longestRound = longestRound,
                 shortestRound = shortestRound,
-                heatMoments = heatMoments
+                heatMoments = heatMoments,
             )
         } catch (e: Exception) {
             Logger.e("MetricsTracker: Failed to compute session analytics", e)
@@ -233,12 +239,16 @@ class MetricsTracker(
 
             val averageLaughScore = if (totalReactions > 0) {
                 totalLols.toDouble() / totalReactions
-            } else 0.0
+            } else {
+                0.0
+            }
 
             val durations = rounds.mapNotNull { if (it.durationMs > 0) it.durationMs else null }
             val averageDuration = if (durations.isNotEmpty()) {
                 durations.average().toLong()
-            } else 0L
+            } else {
+                0L
+            }
 
             GameAnalytics(
                 gameId = gameId,
@@ -247,7 +257,7 @@ class MetricsTracker(
                 averageDuration = averageDuration,
                 totalLols = totalLols,
                 totalMehs = totalMehs,
-                totalTrash = totalTrash
+                totalTrash = totalTrash,
             )
         } catch (e: Exception) {
             Logger.e("MetricsTracker: Failed to compute game analytics for $gameId", e)
@@ -266,7 +276,7 @@ class MetricsTracker(
             gamesMap[gameId] = (gamesMap[gameId] ?: 0) + 1
 
             val updated = session.copy(
-                gamesPlayed = JSONObject(gamesMap as Map<*, *>).toString()
+                gamesPlayed = JSONObject(gamesMap as Map<*, *>).toString(),
             )
             repo.db.sessionMetrics().upsert(updated)
         } catch (e: Exception) {

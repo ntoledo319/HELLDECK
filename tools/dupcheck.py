@@ -6,10 +6,10 @@ Scans for duplicate class names, screen routes, and core components.
 Fails build if duplicates are found.
 """
 
-import re
-import sys
 import glob
 import os
+import re
+import sys
 from collections import defaultdict
 
 ROOT = "app/src/main/java"
@@ -21,21 +21,27 @@ if not os.path.exists(ROOT):
 files = glob.glob(ROOT + "/**/*.kt", recursive=True)
 
 # Regex patterns
-class_re = re.compile(r'^\s*(data\s+class|class|object|interface)\s+([A-Za-z0-9_]+)\b', re.M)
-fun_re = re.compile(r'^\s*(?:@Composable\s+)?fun\s+([A-Za-z0-9_]+)\s*\(', re.M)
+class_re = re.compile(r"^\s*(data\s+class|class|object|interface)\s+([A-Za-z0-9_]+)\b", re.M)
+fun_re = re.compile(r"^\s*(?:@Composable\s+)?fun\s+([A-Za-z0-9_]+)\s*\(", re.M)
 
 # Core names that MUST have exactly one instance
-core_names = {
-    "GameNightViewModel", "InteractionRenderer", "HelldeckDb",
-    "GameEngine", "RouteAudit"
-}
+core_names = {"GameNightViewModel", "InteractionRenderer", "HelldeckDb", "GameEngine", "RouteAudit"}
 
 # Screen functions that MUST have exactly one instance
 core_screens = {
-    "HouseRulesScreen", "GroupDnaScreen", "PacksScreen", "RolesScreen",
-    "HighlightsScreen", "DebugHarnessScreen",
-    "HomeScreen", "LobbyScreen", "RoundScreen", "FeedbackScreen",
-    "StatsScreen", "SettingsScreen", "CardLabScreen"
+    "HouseRulesScreen",
+    "GroupDnaScreen",
+    "PacksScreen",
+    "RolesScreen",
+    "HighlightsScreen",
+    "DebugHarnessScreen",
+    "HomeScreen",
+    "LobbyScreen",
+    "RoundScreen",
+    "FeedbackScreen",
+    "StatsScreen",
+    "SettingsScreen",
+    "CardLabScreen",
 }
 
 classes = defaultdict(list)
@@ -43,7 +49,7 @@ funs = defaultdict(list)
 
 for fp in files:
     try:
-        with open(fp, "r", encoding="utf-8") as f:
+        with open(fp, encoding="utf-8") as f:
             text = f.read()
     except Exception as e:
         print(f"Warning: Could not read {fp}: {e}")
@@ -73,7 +79,7 @@ for name, paths in funs.items():
 screen_files = [f for f in files if f.endswith("Screen.kt") and "ui/nav" in f.replace("\\", "/")]
 if screen_files:
     try:
-        with open(screen_files[0], "r", encoding="utf-8") as f:
+        with open(screen_files[0], encoding="utf-8") as f:
             text = f.read()
         routes = re.findall(r'Screen\("([^"]+)"\)', text)
         route_counts = defaultdict(int)

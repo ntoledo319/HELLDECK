@@ -33,10 +33,9 @@ class TemplateEngineTest {
             spice = 1,
             locality = 1,
             text = "Hello world",
-            max_words = 10
+            max_words = 10,
         )
         val out = engine.fill(t, TemplateEngine.Context())
         assertEquals("Hello world", out.text)
     }
 }
-

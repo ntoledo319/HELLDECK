@@ -9,13 +9,13 @@ import com.helldeck.content.model.GameOptions
 import com.helldeck.engine.Config
 import com.helldeck.engine.GameIds
 import com.helldeck.engine.GameMetadata
-import kotlin.reflect.KClass
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.reflect.KClass
 import org.robolectric.annotation.Config as RoboConfig
 
 @RunWith(AndroidJUnit4::class)
@@ -24,7 +24,7 @@ class GameFamilyIntegrationTest {
 
     private data class Expectation(
         val gameId: String,
-        val expectedOptionType: KClass<out GameOptions>
+        val expectedOptionType: KClass<out GameOptions>,
     )
 
     // Test expectations for all 14 official games from HDRealRules.md
@@ -42,7 +42,7 @@ class GameFamilyIntegrationTest {
         Expectation(GameIds.ALIBI, GameOptions.HiddenWords::class),
         Expectation(GameIds.REALITY_CHECK, GameOptions.Challenge::class),
         Expectation(GameIds.SCATTER, GameOptions.Scatter::class),
-        Expectation(GameIds.OVER_UNDER, GameOptions.AB::class)
+        Expectation(GameIds.OVER_UNDER, GameOptions.AB::class),
         // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
     )
 
@@ -65,21 +65,28 @@ class GameFamilyIntegrationTest {
                         sessionId = "int_${expectation.gameId}_$idx",
                         gameId = expectation.gameId,
                         players = listOf("A", "B", "C"),
-                        spiceMax = 2
-                    )
+                        spiceMax = 2,
+                    ),
                 )
 
                 val metadata = GameMetadata.getGameMetadata(expectation.gameId)
                 assertNotNull("Metadata available for ${expectation.gameId}", metadata)
                 if (metadata != null) {
                     assertEquals("Timer should match metadata", metadata.timerSec, result.timer)
-                    assertEquals("Interaction type should match metadata", metadata.interactionType, result.interactionType)
+                    assertEquals(
+                        "Interaction type should match metadata",
+                        metadata.interactionType,
+                        result.interactionType,
+                    )
                 }
 
                 val card = result.filledCard
                 assertEquals("Returned card game should match request", expectation.gameId, card.game)
                 assertTrue("Card text should be non-blank", card.text.isNotBlank())
-                assertFalse("Card text should not contain placeholders", card.text.contains('{') || card.text.contains('}'))
+                assertFalse(
+                    "Card text should not contain placeholders",
+                    card.text.contains('{') || card.text.contains('}'),
+                )
                 val words = card.text.split(Regex("\\s+")).filter { it.isNotBlank() }
                 assertTrue("Word count should be reasonable", words.size in 4..36)
 
@@ -89,7 +96,7 @@ class GameFamilyIntegrationTest {
                     options is GameOptions.None
                 assertTrue(
                     "Unexpected options type for ${expectation.gameId}: ${options::class.simpleName}",
-                    optionMatches
+                    optionMatches,
                 )
 
                 when (options) {

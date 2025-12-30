@@ -38,7 +38,7 @@ sealed class Screen(val route: String) {
         val ALL = listOf(
             Home, Lobby, HouseRules, GroupDna, Packs, Roles,
             Round, Feedback, Highlights, Stats, Settings, CardLab, DebugHarness,
-            Rollcall, Players, Rules, Scoreboard, Profile, GameRules
+            Rollcall, Players, Rules, Scoreboard, Profile, GameRules,
         )
 
         /**

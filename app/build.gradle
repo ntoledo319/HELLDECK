@@ -20,6 +20,10 @@ android {
 
     kotlinOptions {
         jvmTarget = '17'
+        freeCompilerArgs += [
+            '-opt-in=androidx.compose.material3.ExperimentalMaterial3Api',
+            '-opt-in=androidx.compose.foundation.layout.ExperimentalLayoutApi',
+        ]
     }
 
     defaultConfig {
@@ -327,7 +331,6 @@ detekt {
   parallel = true
   ignoreFailures = false
   source = files("src/main/java", "src/test/java", "src/androidTest/java")
-  exclude("**/generated/**", "**/build/**", "**/third_party/**")
 }
 
 spotless {

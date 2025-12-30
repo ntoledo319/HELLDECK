@@ -17,7 +17,7 @@ data class SessionMetricsEntity(
     val totalMehCount: Int = 0,
     val totalTrashCount: Int = 0,
     val participatingPlayers: String = "[]", // JSON list of player IDs
-    val durationMs: Long = 0
+    val durationMs: Long = 0,
 )
 
 /**
@@ -30,10 +30,10 @@ data class SessionMetricsEntity(
             entity = SessionMetricsEntity::class,
             parentColumns = ["sessionId"],
             childColumns = ["sessionId"],
-            onDelete = ForeignKey.CASCADE
-        )
+            onDelete = ForeignKey.CASCADE,
+        ),
     ],
-    indices = [Index(value = ["sessionId"]), Index(value = ["gameId"])]
+    indices = [Index(value = ["sessionId"]), Index(value = ["gameId"])],
 )
 data class RoundMetricsEntity(
     @PrimaryKey val roundId: String,
@@ -49,7 +49,7 @@ data class RoundMetricsEntity(
     val startedAtMs: Long = System.currentTimeMillis(),
     val completedAtMs: Long? = null,
     val durationMs: Long = 0,
-    val spiceLevel: Int = 1
+    val spiceLevel: Int = 1,
 )
 
 @Dao
@@ -105,18 +105,22 @@ interface RoundMetricsDao {
     @Query("DELETE FROM round_metrics WHERE sessionId = :sessionId")
     suspend fun deleteRoundsForSession(sessionId: String)
 
-    @Query("""
+    @Query(
+        """
         SELECT AVG(lolCount + mehCount + trashCount) as avgReactions
         FROM round_metrics
         WHERE gameId = :gameId AND (lolCount + mehCount + trashCount) > 0
-    """)
+    """,
+    )
     suspend fun getAverageReactionsForGame(gameId: String): Double?
 
-    @Query("""
+    @Query(
+        """
         SELECT AVG(CAST(lolCount AS REAL) / (lolCount + mehCount + trashCount)) as avgLaughScore
         FROM round_metrics
         WHERE gameId = :gameId AND (lolCount + mehCount + trashCount) > 0
-    """)
+    """,
+    )
     suspend fun getAverageLaughScoreForGame(gameId: String): Double?
 }
 
@@ -133,7 +137,7 @@ data class SessionAnalytics(
     val participantCount: Int,
     val longestRound: Long,
     val shortestRound: Long,
-    val heatMoments: Int // rounds with >70% LOL+TRASH
+    val heatMoments: Int, // rounds with >70% LOL+TRASH
 )
 
 /**
@@ -146,5 +150,5 @@ data class GameAnalytics(
     val averageDuration: Long,
     val totalLols: Int,
     val totalMehs: Int,
-    val totalTrash: Int
+    val totalTrash: Int,
 )

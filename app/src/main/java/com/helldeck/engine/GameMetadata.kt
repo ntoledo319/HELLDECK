@@ -18,7 +18,7 @@ object GameMetadata {
             interaction = Interaction.VOTE_AVATAR,
             interactionType = InteractionType.VOTE_PLAYER,
             tags = setOf("roast", "vote", "avatar"),
-            spice = 2
+            spice = 2,
         ),
 
         // 2. Confession or Cap 🤥
@@ -34,7 +34,7 @@ object GameMetadata {
             interaction = Interaction.TRUE_FALSE,
             interactionType = InteractionType.TRUE_FALSE,
             tags = setOf("confession", "true_false", "prepick"),
-            spice = 1
+            spice = 1,
         ),
 
         // 3. Poison Pitch 💀
@@ -50,7 +50,7 @@ object GameMetadata {
             interaction = Interaction.AB_VOTE,
             interactionType = InteractionType.A_B_CHOICE,
             tags = setOf("wyr", "ab", "pitch"),
-            spice = 2
+            spice = 2,
         ),
 
         // 4. Fill-In Finisher ✍️
@@ -66,7 +66,7 @@ object GameMetadata {
             interaction = Interaction.JUDGE_PICK,
             interactionType = InteractionType.JUDGE_PICK,
             tags = setOf("fill_in", "judge", "write"),
-            spice = 1
+            spice = 1,
         ),
 
         // 5. Red Flag Rally 🚩
@@ -82,7 +82,7 @@ object GameMetadata {
             interaction = Interaction.SMASH_PASS,
             interactionType = InteractionType.SMASH_PASS,
             tags = setOf("dating", "smash_pass"),
-            spice = 2
+            spice = 2,
         ),
 
         // 6. Hot Seat Imposter 🎭
@@ -98,7 +98,7 @@ object GameMetadata {
             interaction = Interaction.JUDGE_PICK,
             interactionType = InteractionType.JUDGE_PICK,
             tags = setOf("imposter", "target", "judge"),
-            spice = 1
+            spice = 1,
         ),
 
         // 7. Text Thread Trap 📱
@@ -114,7 +114,7 @@ object GameMetadata {
             interaction = Interaction.REPLY_TONE,
             interactionType = InteractionType.REPLY_TONE,
             tags = setOf("text", "tone", "judge"),
-            spice = 1
+            spice = 1,
         ),
 
         // 8. Taboo Timer ⏱️
@@ -130,7 +130,7 @@ object GameMetadata {
             interaction = Interaction.TABOO_CLUE,
             interactionType = InteractionType.TABOO_GUESS,
             tags = setOf("taboo", "team", "timer"),
-            spice = 1
+            spice = 1,
         ),
 
         // 9. The Unifying Theory 📐
@@ -146,7 +146,7 @@ object GameMetadata {
             interaction = Interaction.ODD_REASON,
             interactionType = InteractionType.ODD_EXPLAIN,
             tags = setOf("unifying", "explain", "judge"),
-            spice = 1
+            spice = 1,
         ),
 
         // 10. Title Fight 🥊
@@ -162,7 +162,7 @@ object GameMetadata {
             interaction = Interaction.DUEL,
             interactionType = InteractionType.MINI_DUEL,
             tags = setOf("duel", "mini_game", "judge"),
-            spice = 1
+            spice = 1,
         ),
 
         // 11. Alibi Drop 🕵️
@@ -178,7 +178,7 @@ object GameMetadata {
             interaction = Interaction.SMUGGLE,
             interactionType = InteractionType.HIDE_WORDS,
             tags = setOf("smuggle", "story", "judge"),
-            spice = 1
+            spice = 1,
         ),
 
         // 12. Reality Check 🪞
@@ -194,7 +194,7 @@ object GameMetadata {
             interaction = Interaction.TARGET_PICK,
             interactionType = InteractionType.TARGET_SELECT,
             tags = setOf("rating", "self-awareness", "vote"),
-            spice = 2
+            spice = 2,
         ),
 
         // 13. Scatterblast 💣
@@ -210,7 +210,7 @@ object GameMetadata {
             interaction = Interaction.SPEED_LIST,
             interactionType = InteractionType.SPEED_LIST,
             tags = setOf("scatter", "speed", "timer"),
-            spice = 1
+            spice = 1,
         ),
 
         // 14. Over / Under 📉
@@ -226,8 +226,8 @@ object GameMetadata {
             interaction = Interaction.AB_VOTE,
             interactionType = InteractionType.PREDICT_VOTE,
             tags = setOf("betting", "numbers", "vote"),
-            spice = 1
-        )
+            spice = 1,
+        ),
 
         // NOTE: HYPE_YIKE, MAJORITY, and ODD_ONE are NOT in HDRealRules.md and are excluded from the 14 official games.
         // They may exist in legacy content but are not part of the official game collection.
@@ -236,16 +236,22 @@ object GameMetadata {
     fun getGameMetadata(gameId: String): GameInfo? = GameDefinitions[gameId]
     fun getAllGames(): List<GameInfo> = GameDefinitions.values.toList()
     fun getGamesByCategory(category: GameCategory): List<GameInfo> = getAllGames().filter { it.category == category }
-    fun getGamesByDifficulty(difficulty: GameDifficulty): List<GameInfo> = getAllGames().filter { it.difficulty == difficulty }
-    fun getGamesForPlayerCount(playerCount: Int): List<GameInfo> = getAllGames().filter { playerCount in it.minPlayers..it.maxPlayers }
+    fun getGamesByDifficulty(
+        difficulty: GameDifficulty,
+    ): List<GameInfo> = getAllGames().filter { it.difficulty == difficulty }
+    fun getGamesForPlayerCount(
+        playerCount: Int,
+    ): List<GameInfo> = getAllGames().filter { playerCount in it.minPlayers..it.maxPlayers }
     fun getGamesWithTags(tags: Set<String>): List<GameInfo> = getAllGames().filter { it.tags.any(tags::contains) }
-    fun getRandomGame(playerCount: Int): GameInfo = (getGamesForPlayerCount(playerCount).ifEmpty { getAllGames() }).random(Random)
+    fun getRandomGame(
+        playerCount: Int,
+    ): GameInfo = (getGamesForPlayerCount(playerCount).ifEmpty { getAllGames() }).random(Random)
     fun getAllGameIds(): List<String> = GameDefinitions.keys.toList()
 
     fun getGameStats(): Map<String, Any> = mapOf(
         "count" to GameDefinitions.size,
         "categories" to getAllGames().groupBy { it.category }.mapValues { it.value.size },
-        "difficulties" to getAllGames().groupBy { it.difficulty }.mapValues { it.value.size }
+        "difficulties" to getAllGames().groupBy { it.difficulty }.mapValues { it.value.size },
     )
 
     fun validateAllGames(): List<String> {
@@ -267,7 +273,9 @@ object GameMetadata {
         val cats = GameCategory.values().toList()
         val nextCat = cats[(cats.indexOf(current.category) + 1) % cats.size]
         val pool = getGamesForPlayerCount(playerCount)
-        return pool.filter { it.category == nextCat && it.difficulty.multiplier in (current.difficulty.multiplier - 0.2)..(current.difficulty.multiplier + 0.2) }
+        return pool.filter {
+            it.category == nextCat && it.difficulty.multiplier in (current.difficulty.multiplier - 0.2)..(current.difficulty.multiplier + 0.2)
+        }
             .ifEmpty { pool.filter { it.category == nextCat } }
             .ifEmpty { pool }
     }
@@ -285,5 +293,5 @@ data class GameInfo(
     val interaction: Interaction,
     val interactionType: InteractionType,
     val tags: Set<String>,
-    val spice: Int
+    val spice: Int,
 )

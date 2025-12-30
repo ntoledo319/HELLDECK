@@ -5,7 +5,6 @@ import com.helldeck.content.model.GameOptions
 import com.helldeck.engine.GameIds
 import com.helldeck.engine.InteractionType
 import kotlin.math.min
-import kotlin.math.max
 
 /**
  * Per-game quality profiles + evaluator.
@@ -31,7 +30,7 @@ object GameQualityProfiles {
         val pass: Boolean,
         val score01: Double, // 0..1 composite
         val issues: List<Issue>,
-        val metrics: Map<String, Any?>
+        val metrics: Map<String, Any?>,
     )
 
     data class QualityProfile(
@@ -42,67 +41,67 @@ object GameQualityProfiles {
         val minHumor: Double? = null,
         val requireOptions: Boolean = false,
         val requireContrastAB: Boolean = false,
-        val requireTargeting: Boolean = false
+        val requireTargeting: Boolean = false,
     )
 
     private val profiles: Map<String, QualityProfile> = mapOf(
         GameIds.ROAST_CONS to QualityProfile(
-            minWords = 6, minHumor = 0.35, requireTargeting = true
+            minWords = 6, minHumor = 0.35, requireTargeting = true,
         ),
         GameIds.CONFESS_CAP to QualityProfile(
-            minWords = 5, minHumor = 0.35
+            minWords = 5, minHumor = 0.35,
         ),
         GameIds.POISON_PITCH to QualityProfile(
-            minWords = 6, minHumor = 0.30, requireOptions = true, requireContrastAB = true
+            minWords = 6, minHumor = 0.30, requireOptions = true, requireContrastAB = true,
         ),
         GameIds.FILLIN to QualityProfile(
-            minWords = 5, minHumor = 0.35
+            minWords = 5, minHumor = 0.35,
         ),
         GameIds.RED_FLAG to QualityProfile(
-            minWords = 6, minHumor = 0.40, requireOptions = true, requireContrastAB = true
+            minWords = 6, minHumor = 0.40, requireOptions = true, requireContrastAB = true,
         ),
         GameIds.HOTSEAT_IMP to QualityProfile(
-            minWords = 6, minHumor = 0.35
+            minWords = 6, minHumor = 0.35,
         ),
         GameIds.TEXT_TRAP to QualityProfile(
-            minWords = 5, minHumor = 0.35, requireOptions = true
+            minWords = 5, minHumor = 0.35, requireOptions = true,
         ),
         GameIds.TABOO to QualityProfile(
-            minWords = 3, minHumor = null, requireOptions = true
+            minWords = 3, minHumor = null, requireOptions = true,
         ),
         GameIds.TITLE_FIGHT to QualityProfile(
-            minWords = 5, minHumor = 0.35
+            minWords = 5, minHumor = 0.35,
         ),
         GameIds.ALIBI to QualityProfile(
-            minWords = 5, minHumor = 0.35, requireOptions = true
+            minWords = 5, minHumor = 0.35, requireOptions = true,
         ),
         GameIds.SCATTER to QualityProfile(
-            minWords = 3, minHumor = null, requireOptions = true
+            minWords = 3, minHumor = null, requireOptions = true,
         ),
         GameIds.UNIFYING_THEORY to QualityProfile(
-            minWords = 5, minHumor = 0.35, requireOptions = false
+            minWords = 5, minHumor = 0.35, requireOptions = false,
         ),
         GameIds.REALITY_CHECK to QualityProfile(
-            minWords = 5, minHumor = 0.30, requireOptions = false
+            minWords = 5, minHumor = 0.30, requireOptions = false,
         ),
         GameIds.OVER_UNDER to QualityProfile(
-            minWords = 5, minHumor = 0.30, requireOptions = false
-        )
+            minWords = 5, minHumor = 0.30, requireOptions = false,
+        ),
     )
 
     /**
-      * Evaluate a card against a per-game quality profile using:
-      * - Word length and repetition
-      * - Placeholder leftovers
-      * - Options structure and AB contrast (if applicable)
-      * - Generator metadata (pairScore, humorScore when present)
-      * - Optional LLM signals (humor/sense/clarity)
-      */
+     * Evaluate a card against a per-game quality profile using:
+     * - Word length and repetition
+     * - Placeholder leftovers
+     * - Options structure and AB contrast (if applicable)
+     * - Generator metadata (pairScore, humorScore when present)
+     * - Optional LLM signals (humor/sense/clarity)
+     */
     suspend fun evaluate(
         gameId: String,
         interaction: InteractionType,
         card: FilledCard,
-        options: GameOptions
+        options: GameOptions,
     ): Evaluation {
         val profile = profiles[gameId] ?: QualityProfile()
         val issues = mutableListOf<Issue>()
@@ -165,7 +164,12 @@ object GameQualityProfiles {
         try {
             val inspectorIssues = CardQualityInspector.evaluate(card, options)
             if (inspectorIssues.isNotEmpty()) {
-                if (inspectorIssues.contains(CardQualityInspector.Issue.PLACEHOLDER_LEFTOVER)) issues += Issue.PLACEHOLDER
+                if (inspectorIssues.contains(
+                        CardQualityInspector.Issue.PLACEHOLDER_LEFTOVER,
+                    )
+                ) {
+                    issues += Issue.PLACEHOLDER
+                }
                 if (inspectorIssues.contains(CardQualityInspector.Issue.TOO_SHORT)) issues += Issue.TOO_SHORT
                 if (inspectorIssues.contains(CardQualityInspector.Issue.TOO_LONG)) issues += Issue.TOO_LONG
                 if (inspectorIssues.contains(CardQualityInspector.Issue.EXCESS_REPEAT)) issues += Issue.EXCESS_REPEAT
@@ -174,7 +178,13 @@ object GameQualityProfiles {
         } catch (_: Exception) {}
 
         // Composite score: structure (0.3) + humor (0.5) + AI (0.2)
-        val structIssues = listOf(Issue.TOO_SHORT, Issue.TOO_LONG, Issue.EXCESS_REPEAT, Issue.PLACEHOLDER, Issue.OPTIONS_BAD)
+        val structIssues = listOf(
+            Issue.TOO_SHORT,
+            Issue.TOO_LONG,
+            Issue.EXCESS_REPEAT,
+            Issue.PLACEHOLDER,
+            Issue.OPTIONS_BAD,
+        )
             .count { issues.contains(it) }
         val structure = (1.0 - (structIssues.toDouble() / 5.0)).coerceIn(0.0, 1.0)
         val humorComp = humorScore?.let { if (it.isFinite()) it else 0.4 } ?: 0.4
@@ -193,8 +203,8 @@ object GameQualityProfiles {
                 "humorScore" to humorScore,
                 "aiHumor" to ai.humor01,
                 "aiSense" to ai.makesSense01,
-                "aiUnderstandable" to ai.understandable01
-            )
+                "aiUnderstandable" to ai.understandable01,
+            ),
         )
     }
 
@@ -226,7 +236,7 @@ object GameQualityProfiles {
         val keywords = listOf(
             "most likely", "who ", "who's", "whoever", "who would", "who'd", "who’d",
             "call out", "point at", "pick", "vote", "name the", "tag the",
-            "among", "in the room", "because"
+            "among", "in the room", "because",
         )
         if (keywords.any { it in t }) return true
         val hasYou = t.contains("you ") || t.contains("you're") || t.contains("your ")

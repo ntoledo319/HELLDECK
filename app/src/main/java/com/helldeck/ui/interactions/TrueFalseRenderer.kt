@@ -14,20 +14,20 @@ import com.helldeck.ui.state.RoundState
 fun TrueFalseRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var selected by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "True or False?", style = MaterialTheme.typography.headlineSmall)
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Button(
                 onClick = {
@@ -36,9 +36,12 @@ fun TrueFalseRenderer(
                 },
                 modifier = Modifier.weight(1f).height(80.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selected == "T") MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (selected == "T") {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text(text = "TRUE", fontSize = 20.sp)
             }
@@ -50,9 +53,12 @@ fun TrueFalseRenderer(
                 },
                 modifier = Modifier.weight(1f).height(80.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selected == "F") MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (selected == "F") {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text(text = "FALSE", fontSize = 20.sp)
             }

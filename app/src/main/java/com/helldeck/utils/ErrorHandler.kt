@@ -3,7 +3,6 @@ package com.helldeck.utils
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -37,14 +36,14 @@ object ErrorHandler {
         error: Throwable,
         context: String? = null,
         severity: ErrorSeverity = ErrorSeverity.MEDIUM,
-        userMessage: String? = null
+        userMessage: String? = null,
     ) {
         var errorInfo = ErrorInfo(
             error = error,
             context = context,
             severity = severity,
             userMessage = userMessage,
-            timestamp = System.currentTimeMillis()
+            timestamp = System.currentTimeMillis(),
         )
 
         // Log the error
@@ -70,7 +69,7 @@ object ErrorHandler {
      */
     fun createCoroutineExceptionHandler(
         context: String,
-        severity: ErrorSeverity = ErrorSeverity.MEDIUM
+        severity: ErrorSeverity = ErrorSeverity.MEDIUM,
     ): CoroutineExceptionHandler {
         return CoroutineExceptionHandler { _, throwable ->
             handleError(throwable, context, severity)
@@ -83,7 +82,7 @@ object ErrorHandler {
     suspend fun <T> withErrorHandling(
         context: String,
         severity: ErrorSeverity = ErrorSeverity.MEDIUM,
-        block: suspend () -> T
+        block: suspend () -> T,
     ): Result<T> {
         return try {
             var result = block()
@@ -100,7 +99,7 @@ object ErrorHandler {
     fun <T> executeWithErrorHandling(
         context: String,
         severity: ErrorSeverity = ErrorSeverity.MEDIUM,
-        block: () -> T
+        block: () -> T,
     ): Result<T> {
         return try {
             var result = block()
@@ -116,10 +115,10 @@ object ErrorHandler {
  * Error severity levels
  */
 enum class ErrorSeverity {
-    LOW,      // Minor issues, app continues to function
-    MEDIUM,   // Moderate issues, some features may not work
-    HIGH,     // Serious issues, app may be unstable
-    CRITICAL  // Critical issues, app cannot continue
+    LOW, // Minor issues, app continues to function
+    MEDIUM, // Moderate issues, some features may not work
+    HIGH, // Serious issues, app may be unstable
+    CRITICAL, // Critical issues, app cannot continue
 }
 
 /**
@@ -130,7 +129,7 @@ data class ErrorInfo(
     val context: String?,
     val severity: ErrorSeverity,
     val userMessage: String?,
-    val timestamp: Long
+    val timestamp: Long,
 )
 
 /**
@@ -155,7 +154,7 @@ class DefaultErrorListener : ErrorListener {
  */
 class ErrorHandlingScope(
     context: CoroutineContext = Dispatchers.Default,
-    errorContext: String = "CoroutineScope"
+    errorContext: String = "CoroutineScope",
 ) : CoroutineScope {
 
     override val coroutineContext: CoroutineContext = context + ErrorHandler.createCoroutineExceptionHandler(errorContext)
@@ -179,7 +178,7 @@ class ErrorHandlingScope(
 suspend fun <T> withErrorHandling(
     context: String,
     severity: ErrorSeverity = ErrorSeverity.MEDIUM,
-    block: suspend () -> T
+    block: suspend () -> T,
 ): T? {
     return ErrorHandler.withErrorHandling(context, severity, block).getOrNull()
 }
@@ -195,7 +194,7 @@ suspend fun <T> withErrorHandling(
 fun <T> executeWithErrorHandling(
     context: String,
     severity: ErrorSeverity = ErrorSeverity.MEDIUM,
-    block: () -> T
+    block: () -> T,
 ): T? {
     return ErrorHandler.executeWithErrorHandling(context, severity, block).getOrNull()
 }
@@ -226,7 +225,7 @@ inline fun <T> tryOrNull(block: () -> T): T? {
 inline fun <T> tryOrHandle(
     context: String,
     severity: ErrorSeverity = ErrorSeverity.MEDIUM,
-    block: () -> T
+    block: () -> T,
 ): T? {
     return try {
         block()

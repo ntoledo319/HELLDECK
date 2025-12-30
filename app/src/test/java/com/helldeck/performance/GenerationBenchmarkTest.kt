@@ -28,14 +28,14 @@ class GenerationBenchmarkTest {
         val p95: Long,
         val p99: Long,
         val max: Long,
-        val mean: Double
+        val mean: Double,
     )
 
     @Test
     fun benchmarkAllGames() = kotlinx.coroutines.runBlocking {
         Config.setSafeModeGoldOnly(false)
         Config.setEnableV3Generator(true)
-        
+
         // Test all 14 official games from HDRealRules.md
         val games = listOf(
             GameIds.ROAST_CONS,
@@ -51,52 +51,54 @@ class GenerationBenchmarkTest {
             GameIds.ALIBI,
             GameIds.REALITY_CHECK,
             GameIds.SCATTER,
-            GameIds.OVER_UNDER
+            GameIds.OVER_UNDER,
         )
-        
+
         val results = mutableListOf<BenchmarkResult>()
         val iterations = 100
-        
+
         games.forEach { gameId ->
             val timings = mutableListOf<Long>()
             val ctx: Context = ApplicationProvider.getApplicationContext()
-            
+
             repeat(iterations) { i ->
                 val engine = ContentEngineProvider.get(ctx, 5000L + i)
                 val req = GameEngine.Request(
                     sessionId = "bench_${gameId}_$i",
                     gameId = gameId,
                     players = listOf("A", "B", "C"),
-                    spiceMax = 2
+                    spiceMax = 2,
                 )
-                
+
                 val start = System.nanoTime()
                 engine.next(req)
                 val end = System.nanoTime()
-                
+
                 val durationMs = (end - start) / 1_000_000
                 timings.add(durationMs)
             }
-            
+
             timings.sort()
             val p50 = timings[timings.size / 2]
             val p95 = timings[(timings.size * 0.95).toInt().coerceAtMost(timings.lastIndex)]
             val p99 = timings[(timings.size * 0.99).toInt().coerceAtMost(timings.lastIndex)]
             val mean = timings.average()
-            
-            results.add(BenchmarkResult(
-                game = gameId,
-                count = iterations,
-                timings = timings,
-                min = timings.first(),
-                p50 = p50,
-                p95 = p95,
-                p99 = p99,
-                max = timings.last(),
-                mean = mean
-            ))
+
+            results.add(
+                BenchmarkResult(
+                    game = gameId,
+                    count = iterations,
+                    timings = timings,
+                    min = timings.first(),
+                    p50 = p50,
+                    p95 = p95,
+                    p99 = p99,
+                    max = timings.last(),
+                    mean = mean,
+                ),
+            )
         }
-        
+
         // Print results in table format
         println("\n═══════════════════════════════════════════════════════════")
         println("HELLDECK Generator V3 - Performance Benchmark Results")
@@ -106,21 +108,29 @@ class GenerationBenchmarkTest {
         println()
         println("Game                  | p50   | p95   | p99   | Mean  | Max   | Status")
         println("----------------------|-------|-------|-------|-------|-------|--------")
-        
+
         results.forEach { r ->
             val status = if (r.p95 <= 12) "✅ PASS" else "⚠️ SLOW"
             val gameName = r.game.padEnd(20)
-            println("$gameName| ${r.p50.toString().padStart(5)}ms| ${r.p95.toString().padStart(5)}ms| ${r.p99.toString().padStart(5)}ms| ${"%.1f".format(r.mean).padStart(5)}ms| ${r.max.toString().padStart(5)}ms| $status")
+            println(
+                "$gameName| ${r.p50.toString().padStart(
+                    5,
+                )}ms| ${r.p95.toString().padStart(
+                    5,
+                )}ms| ${r.p99.toString().padStart(
+                    5,
+                )}ms| ${"%.1f".format(r.mean).padStart(5)}ms| ${r.max.toString().padStart(5)}ms| $status",
+            )
         }
-        
+
         println()
         println("═══════════════════════════════════════════════════════════")
-        
+
         // Overall summary
         val overallP95 = results.map { it.p95 }.sorted()[(results.size * 0.95).toInt().coerceAtMost(results.lastIndex)]
         val passCount = results.count { it.p95 <= 12 }
         val passRate = (passCount * 100.0) / results.size
-        
+
         println("Overall Performance:")
         println("  p95 across all games: ${overallP95}ms")
         println("  Games passing target (p95 ≤ 12ms): $passCount/${results.size} (${"%.1f".format(passRate)}%)")
@@ -131,33 +141,33 @@ class GenerationBenchmarkTest {
         }
         println("═══════════════════════════════════════════════════════════\n")
     }
-    
+
     @Test
     fun benchmarkSingleGameDeep() = kotlinx.coroutines.runBlocking {
         Config.setSafeModeGoldOnly(false)
         Config.setEnableV3Generator(true)
-        
+
         val gameId = GameIds.ROAST_CONS
         val iterations = 500
         val timings = mutableListOf<Long>()
         val ctx: Context = ApplicationProvider.getApplicationContext()
-        
+
         repeat(iterations) { i ->
             val engine = ContentEngineProvider.get(ctx, 10000L + i)
             val req = GameEngine.Request(
                 sessionId = "deep_${gameId}_$i",
                 gameId = gameId,
                 players = listOf("Jay", "Pip", "Mo"),
-                spiceMax = 2
+                spiceMax = 2,
             )
-            
+
             val start = System.nanoTime()
             engine.next(req)
             val end = System.nanoTime()
-            
+
             timings.add((end - start) / 1_000_000)
         }
-        
+
         timings.sort()
         println("\n═══ Deep Benchmark: $gameId ($iterations iterations) ═══")
         println("Min: ${timings.first()}ms")
@@ -173,7 +183,7 @@ class GenerationBenchmarkTest {
         println("StdDev: ${"%.2f".format(calculateStdDev(timings))}ms")
         println("═════════════════════════════════════════════════════\n")
     }
-    
+
     private fun calculateStdDev(values: List<Long>): Double {
         val mean = values.average()
         val variance = values.map { (it - mean) * (it - mean) }.average()

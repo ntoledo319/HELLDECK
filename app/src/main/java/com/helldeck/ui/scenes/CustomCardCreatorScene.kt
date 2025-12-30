@@ -45,35 +45,35 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                     IconButton(onClick = { vm.goBack() }) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Back")
                     }
-                }
+                },
             )
-        }
+        },
     ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
                 .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             // Instructions
             Text(
                 text = "Create personalized cards for your game nights! Use {PLAYER} for player names.",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             // Game type selector
             OutlinedButton(
                 onClick = { showGamePicker = true },
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(
                     text = if (selectedGameId.isEmpty()) {
                         "Select Game Type"
                     } else {
                         GameMetadata.getGameMetadata(selectedGameId)?.title ?: "Select Game Type"
-                    }
+                    },
                 )
             }
 
@@ -90,9 +90,9 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                 supportingText = {
                     Text(
                         text = "${cardText.length}/300",
-                        style = MaterialTheme.typography.bodySmall
+                        style = MaterialTheme.typography.bodySmall,
                     )
-                }
+                },
             )
 
             // Add card button
@@ -121,7 +121,7 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                     }
                 },
                 modifier = Modifier.fillMaxWidth(),
-                enabled = cardText.isNotBlank() && selectedGameId.isNotEmpty()
+                enabled = cardText.isNotBlank() && selectedGameId.isNotEmpty(),
             ) {
                 Text("ADD TO DECK")
             }
@@ -131,7 +131,7 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                 Text(
                     text = error,
                     color = MaterialTheme.colorScheme.error,
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
 
@@ -140,7 +140,7 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
             // Existing cards list
             Text(
                 text = "Your Custom Cards (${customCards.size})",
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
             )
 
             if (customCards.isEmpty()) {
@@ -148,18 +148,18 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(32.dp),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = "No custom cards yet.\nCreate your first one above!",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             } else {
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     items(customCards) { card ->
                         CustomCardItem(
@@ -173,7 +173,7 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                                         errorMessage = "Failed to delete card"
                                     }
                                 }
-                            }
+                            },
                         )
                     }
                 }
@@ -195,11 +195,11 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                                 selectedGameId = gameId
                                 showGamePicker = false
                             },
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         ) {
                             Text(
                                 text = game?.title ?: gameId,
-                                modifier = Modifier.fillMaxWidth()
+                                modifier = Modifier.fillMaxWidth(),
                             )
                         }
                     }
@@ -209,7 +209,7 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
                 TextButton(onClick = { showGamePicker = false }) {
                     Text("Cancel")
                 }
-            }
+            },
         )
     }
 }
@@ -217,37 +217,37 @@ fun CustomCardCreatorScene(vm: GameNightViewModel) {
 @Composable
 private fun CustomCardItem(
     card: com.helldeck.data.CustomCardEntity,
-    onDelete: () -> Unit
+    onDelete: () -> Unit,
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top
+            verticalAlignment = Alignment.Top,
         ) {
             Column(
                 modifier = Modifier.weight(1f),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 Text(
                     text = card.cardText,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
                 )
                 Text(
                     text = "${GameMetadata.getGameMetadata(card.gameId)?.title ?: card.gameId} • Used ${card.timesUsed} times",
                     style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
             IconButton(onClick = onDelete) {
                 Icon(
                     Icons.Filled.Delete,
                     contentDescription = "Delete card",
-                    tint = MaterialTheme.colorScheme.error
+                    tint = MaterialTheme.colorScheme.error,
                 )
             }
         }

@@ -3,7 +3,6 @@ package com.helldeck.content.tools
 import android.content.Context
 import com.helldeck.utils.Logger
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
@@ -17,7 +16,7 @@ object TemplateLint {
     data class LintResult(
         val file: String,
         val errors: List<String>,
-        val warnings: List<String>
+        val warnings: List<String>,
     ) {
         val isClean: Boolean get() = errors.isEmpty() && warnings.isEmpty()
     }
@@ -59,19 +58,19 @@ object TemplateLint {
 
                 // Required fields
                 if (!template.containsKey("id")) {
-                    errors.add("[${templateId}] Missing required field: id")
+                    errors.add("[$templateId] Missing required field: id")
                 }
                 if (!template.containsKey("game")) {
-                    errors.add("[${templateId}] Missing required field: game")
+                    errors.add("[$templateId] Missing required field: game")
                 }
                 if (!template.containsKey("blueprint")) {
-                    errors.add("[${templateId}] Missing required field: blueprint")
+                    errors.add("[$templateId] Missing required field: blueprint")
                 }
 
                 // Validate blueprint
                 template["blueprint"]?.jsonArray?.let { blueprint ->
                     if (blueprint.isEmpty()) {
-                        errors.add("[${templateId}] Empty blueprint")
+                        errors.add("[$templateId] Empty blueprint")
                     }
 
                     blueprint.forEach { segment ->
@@ -82,24 +81,24 @@ object TemplateLint {
                             "text" -> {
                                 val value = segmentObj["value"]?.jsonPrimitive?.content
                                 if (value.isNullOrBlank()) {
-                                    warnings.add("[${templateId}] Empty text segment")
+                                    warnings.add("[$templateId] Empty text segment")
                                 }
                                 // Check for unresolved placeholders
                                 if (value?.contains("{") == true || value?.contains("}") == true) {
-                                    errors.add("[${templateId}] Text segment contains placeholder: $value")
+                                    errors.add("[$templateId] Text segment contains placeholder: $value")
                                 }
                             }
                             "slot" -> {
                                 if (!segmentObj.containsKey("slot_type")) {
-                                    errors.add("[${templateId}] Slot missing slot_type")
+                                    errors.add("[$templateId] Slot missing slot_type")
                                 }
                                 val slotType = segmentObj["slot_type"]?.jsonPrimitive?.content
                                 if (slotType.isNullOrBlank()) {
-                                    errors.add("[${templateId}] Empty slot_type")
+                                    errors.add("[$templateId] Empty slot_type")
                                 }
                             }
                             null -> {
-                                errors.add("[${templateId}] Blueprint segment missing type")
+                                errors.add("[$templateId] Blueprint segment missing type")
                             }
                         }
                     }
@@ -109,32 +108,31 @@ object TemplateLint {
                 template["constraints"]?.jsonObject?.let { constraints ->
                     val maxWords = constraints["max_words"]?.jsonPrimitive?.content?.toIntOrNull()
                     if (maxWords != null && maxWords > 100) {
-                        warnings.add("[${templateId}] Very high max_words: $maxWords")
+                        warnings.add("[$templateId] Very high max_words: $maxWords")
                     }
                     if (maxWords != null && maxWords < 5) {
-                        warnings.add("[${templateId}] Very low max_words: $maxWords")
+                        warnings.add("[$templateId] Very low max_words: $maxWords")
                     }
                 }
 
                 // Validate spice level
                 val spiceMax = template["spice_max"]?.jsonPrimitive?.content?.toIntOrNull()
                 if (spiceMax != null && (spiceMax < 1 || spiceMax > 3)) {
-                    warnings.add("[${templateId}] Invalid spice_max: $spiceMax (should be 1-3)")
+                    warnings.add("[$templateId] Invalid spice_max: $spiceMax (should be 1-3)")
                 }
 
                 // Validate weight
                 val weight = template["weight"]?.jsonPrimitive?.content?.toDoubleOrNull()
                 if (weight != null && weight <= 0) {
-                    warnings.add("[${templateId}] Invalid weight: $weight (should be > 0)")
+                    warnings.add("[$templateId] Invalid weight: $weight (should be > 0)")
                 }
 
                 // Check for game ID existence (basic check)
                 val gameId = template["game"]?.jsonPrimitive?.content
                 if (gameId != null && !isValidGameId(gameId)) {
-                    errors.add("[${templateId}] Unknown game ID: $gameId")
+                    errors.add("[$templateId] Unknown game ID: $gameId")
                 }
             }
-
         } catch (e: Exception) {
             errors.add("Failed to parse JSON: ${e.message}")
         }
@@ -153,7 +151,7 @@ object TemplateLint {
             "ROAST_CONSENSUS", "CONFESSION_OR_CAP", "POISON_PITCH", "FILL_IN_FINISHER",
             "RED_FLAG_RALLY", "HOT_SEAT_IMPOSTER", "TEXT_THREAD_TRAP", "TABOO_TIMER",
             "THE_UNIFYING_THEORY", "TITLE_FIGHT", "ALIBI_DROP", "REALITY_CHECK",
-            "SCATTERBLAST", "OVER_UNDER"
+            "SCATTERBLAST", "OVER_UNDER",
         )
         return knownGameIds.contains(gameId)
     }

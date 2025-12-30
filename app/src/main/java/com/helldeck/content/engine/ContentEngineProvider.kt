@@ -5,32 +5,31 @@ import com.helldeck.content.data.ContentRepository
 import com.helldeck.content.engine.augment.Augmentor
 import com.helldeck.content.engine.augment.GenerationCache
 import com.helldeck.content.engine.augment.Validator
-import com.helldeck.content.util.SeededRng
-import com.helldeck.llm.LocalLLM
-import com.helldeck.llm.llamacpp.LlamaCppLLM
 import com.helldeck.content.generator.BlueprintRepositoryV3
 import com.helldeck.content.generator.CardGeneratorV3
 import com.helldeck.content.generator.CardLabBanlist
 import com.helldeck.content.generator.GeneratorArtifacts
-import com.helldeck.content.generator.LexiconRepositoryV2
 import com.helldeck.content.generator.LLMCardGeneratorV2
+import com.helldeck.content.generator.LexiconRepositoryV2
 import com.helldeck.content.generator.gold.GoldBank
+import com.helldeck.content.util.SeededRng
 import com.helldeck.content.validation.AssetValidator
 import com.helldeck.engine.Config
-import java.io.File
-import kotlin.random.Random
-import kotlinx.coroutines.runBlocking
+import com.helldeck.llm.LocalLLM
+import com.helldeck.llm.llamacpp.LlamaCppLLM
+import com.helldeck.utils.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import com.helldeck.utils.Logger
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
-import kotlinx.serialization.json.jsonPrimitive
+import java.io.File
+import kotlin.random.Random
 
 object ContentEngineProvider {
 
@@ -51,7 +50,7 @@ object ContentEngineProvider {
         ModelAsset("qwen2.5-1.5b-instruct-q4_k_m.gguf", 2048),
         // TinyLlama variants
         ModelAsset("tinyllama-1.1b-chat-Q4_K_M.gguf", 1024),
-        ModelAsset("tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf", 1024)
+        ModelAsset("tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf", 1024),
     )
 
     fun get(context: Context, sessionSeed: Long = System.currentTimeMillis()): GameEngine =
@@ -66,7 +65,7 @@ object ContentEngineProvider {
         // Validate V3 assets at boot
         val validationResult = AssetValidator.validateAll(context, strictMode = false)
         AssetValidator.logValidationResult(validationResult)
-        
+
         // Force gold-only mode on critical validation errors
         if (!validationResult.isValid) {
             Logger.w("Asset validation failed; forcing gold-only mode for safety")
@@ -144,7 +143,7 @@ object ContentEngineProvider {
             augmentor = augmentor,
             modelId = localLLM?.modelId ?: "none",
             cardGeneratorV3 = cardGeneratorV3,
-            llmCardGeneratorV2 = llmCardGeneratorV2
+            llmCardGeneratorV2 = llmCardGeneratorV2,
         )
     }
 
@@ -195,7 +194,7 @@ object ContentEngineProvider {
             llmCardGeneratorV2 = null
         }
     }
-    
+
     fun updateBanlist(context: Context, banlist: CardLabBanlist) {
         cardGeneratorV3?.setBanlist(banlist)
     }

@@ -14,20 +14,20 @@ import com.helldeck.ui.state.RoundState
 fun SmashPassRenderer(
     roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var selected by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = modifier.fillMaxWidth().padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Text(text = "Smash or Pass?", style = MaterialTheme.typography.headlineSmall)
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             Button(
                 onClick = {
@@ -36,9 +36,12 @@ fun SmashPassRenderer(
                 },
                 modifier = Modifier.weight(1f).height(80.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selected == "SMASH") MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (selected == "SMASH") {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text(text = "SMASH", fontSize = 20.sp)
             }
@@ -50,9 +53,12 @@ fun SmashPassRenderer(
                 },
                 modifier = Modifier.weight(1f).height(80.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = if (selected == "PASS") MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.surfaceVariant
-                )
+                    containerColor = if (selected == "PASS") {
+                        MaterialTheme.colorScheme.primary
+                    } else {
+                        MaterialTheme.colorScheme.surfaceVariant
+                    },
+                ),
             ) {
                 Text(text = "PASS", fontSize = 20.sp)
             }

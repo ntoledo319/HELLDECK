@@ -84,7 +84,7 @@ class GeneratorArtifacts(assetManager: AssetManager) {
                 enableSemanticValidation = (yaml["enable_semantic_validation"] as? Boolean) ?: true,
                 semanticThreshold = (yaml["semantic_threshold"] as? Number)?.toDouble() ?: 0.50,
                 spiceRampPerRound = (yaml["spice_ramp_per_round"] as? Number)?.toDouble() ?: 0.0,
-                spiceRampCap = (yaml["spice_ramp_cap"] as? Number)?.toDouble() ?: 5.0
+                spiceRampCap = (yaml["spice_ramp_cap"] as? Number)?.toDouble() ?: 5.0,
             )
         }.getOrElse {
             GeneratorRules()
@@ -98,7 +98,7 @@ data class PriorStats(val alpha: Double, val beta: Double) {
 
 data class LogisticModel(
     private val features: Map<String, Double>,
-    private val threshold: Double
+    private val threshold: Double,
 ) {
     private val bias = features["bias"] ?: 0.0
 
@@ -125,44 +125,44 @@ data class GeneratorRules(
     val enableSemanticValidation: Boolean = true,
     val semanticThreshold: Double = 0.50,
     val spiceRampPerRound: Double = 0.0,
-    val spiceRampCap: Double = 5.0
+    val spiceRampCap: Double = 5.0,
 )
 
 @Serializable
 private data class PriorFile(
     val version: Int,
-    val blueprints: List<PriorEntry>
+    val blueprints: List<PriorEntry>,
 )
 
 @Serializable
 private data class PriorEntry(
     val id: String,
     val alpha: Double,
-    val beta: Double
+    val beta: Double,
 )
 
 @Serializable
 private data class PairingsFile(
     val version: Int,
-    val pairs: List<PairEntry>
+    val pairs: List<PairEntry>,
 )
 
 @Serializable
 private data class PairEntry(
     @SerialName("slot_type") val slotType: String,
-    val compatibility: Map<String, Double>
+    val compatibility: Map<String, Double>,
 )
 
 @Serializable
 private data class LogitFile(
     val version: Int,
     val features: Map<String, Double>,
-    val threshold: Double
+    val threshold: Double,
 )
 
 @Serializable
 private data class BannedFile(
     val version: Int,
     val tokens: List<String> = emptyList(),
-    val phrases: List<String> = emptyList()
+    val phrases: List<String> = emptyList(),
 )
