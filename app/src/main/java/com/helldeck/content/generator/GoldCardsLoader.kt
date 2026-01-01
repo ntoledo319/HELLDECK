@@ -101,7 +101,7 @@ object GoldCardsLoader {
             // New games from HDRealRules.md
             GameIds.UNIFYING_THEORY -> "the_unifying_theory"
             GameIds.REALITY_CHECK -> "reality_check"
-            GameIds.OVER_UNDER -> "over_under" // Note: not in current gold_cards.json yet
+            GameIds.OVER_UNDER -> "over_under"
 
             else -> return emptyList()
         }

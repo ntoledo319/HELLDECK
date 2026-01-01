@@ -209,10 +209,10 @@ private fun getSpiceLabel(level: Int): String = when (level) {
 }
 
 private fun getSpiceDescription(level: Int): String = when (level) {
-    1 -> "Family-friendly, PG-13 humor"
-    2 -> "Fun and playful with light edge"
-    3 -> "Edgy and provocative, not mean-spirited"
-    4 -> "Wild and unhinged, but not offensive"
-    5 -> "Maximum chaos (keep it funny, not cruel)"
+    1 -> "Wholesome roasts, safe for family game night"
+    2 -> "Playful chaos, office party approved"
+    3 -> "Edgy content, light moral flexibility required"
+    4 -> "Wild scenarios, questionable life choices"
+    5 -> "Maximum chaos, morally bankrupt but hilarious"
     else -> ""
 }

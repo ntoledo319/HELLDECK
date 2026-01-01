@@ -3,8 +3,10 @@ package com.helldeck.ui.components
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -27,18 +29,26 @@ import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.absoluteValue
 
 /**
- * Modern, interactive onboarding tutorial for first-time users.
- *
- * Features:
- * - Smooth animations and transitions
- * - Interactive demos with haptic feedback
- * - Clear visual hierarchy
- * - Progress indicators
- * - Skip option
- *
- * Total steps: 5 (Welcome, Draw Cards, Spice Control, Game Selection, Ready)
+ * Streamlined onboarding for first-time users.
+ * 
+ * Design Philosophy:
+ * - Get users playing in <30 seconds
+ * - Focus on ONE core mechanic: long-press to draw
+ * - Make skipping obvious and guilt-free
+ * - Progressive disclosure (teach advanced features contextually later)
+ * 
+ * Flow: Welcome (5s) → Core Gesture (15s) → Ready (10s)
+ * Total: 3 steps, ~30 seconds
+ * 
+ * UX Improvements:
+ * - Swipe navigation (natural mobile gesture)
+ * - Prominent skip button from step 1
+ * - Removed info overload (export, spice, game lists)
+ * - Interactive, fun elements
+ * - Direct path to gameplay
  */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -48,7 +58,8 @@ fun OnboardingFlow(
 ) {
     var currentStep by remember { mutableStateOf(0) }
     val haptic = LocalHapticFeedback.current
-    val totalSteps = 5
+    val totalSteps = 3
+    var swipeOffset by remember { mutableStateOf(0f) }
 
     Box(
         modifier = modifier
@@ -57,10 +68,29 @@ fun OnboardingFlow(
                 Brush.verticalGradient(
                     colors = listOf(
                         MaterialTheme.colorScheme.background,
-                        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.3f),
+                        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f),
                     ),
                 ),
-            ),
+            )
+            .pointerInput(currentStep) {
+                detectDragGestures(
+                    onDragEnd = {
+                        if (swipeOffset.absoluteValue > 100f) {
+                            if (swipeOffset < 0 && currentStep < totalSteps - 1) {
+                                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
+                                currentStep++
+                            } else if (swipeOffset > 0 && currentStep > 0) {
+                                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
+                                currentStep--
+                            }
+                        }
+                        swipeOffset = 0f
+                    },
+                    onDrag = { _, dragAmount ->
+                        swipeOffset += dragAmount.x
+                    },
+                )
+            },
     ) {
         // Main content with smooth transitions
         AnimatedContent(
@@ -96,40 +126,54 @@ fun OnboardingFlow(
                         currentStep = 2
                     },
                 )
-                2 -> SpiceControlDemo(
-                    onNext = {
-                        haptic.performHapticFeedback(
-                            androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove,
-                        )
-                        currentStep = 3
-                    },
-                )
-                3 -> GameSelectionDemo(
-                    onNext = {
-                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                        currentStep = 4
-                    },
-                )
-                4 -> ReadyToPlayStep(onComplete = onComplete)
+                2 -> ReadyToPlayStep(onComplete = onComplete)
             }
         }
 
-        // Top progress bar
-        LinearProgressIndicator(
-            progress = { (currentStep + 1).toFloat() / totalSteps },
+        // Top bar with progress and skip
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.TopCenter)
-                .height(4.dp),
-            color = MaterialTheme.colorScheme.primary,
-            trackColor = MaterialTheme.colorScheme.surfaceVariant,
-        )
+                .padding(HelldeckSpacing.Medium.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            // Progress indicator
+            LinearProgressIndicator(
+                progress = { (currentStep + 1).toFloat() / totalSteps },
+                modifier = Modifier
+                    .weight(1f)
+                    .height(4.dp)
+                    .clip(RoundedCornerShape(2.dp)),
+                color = MaterialTheme.colorScheme.primary,
+                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+            )
 
-        // Step indicators (dots)
+            Spacer(Modifier.width(HelldeckSpacing.Medium.dp))
+
+            // Prominent skip button
+            FilledTonalButton(
+                onClick = onComplete,
+                colors = ButtonDefaults.filledTonalButtonColors(
+                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                ),
+                modifier = Modifier.height(36.dp),
+            ) {
+                Text(
+                    text = "Skip",
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.SemiBold,
+                )
+            }
+        }
+
+        // Step indicators (dots) - bottom center
         Row(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = HelldeckSpacing.ExtraLarge.dp),
+                .padding(bottom = 80.dp),
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
         ) {
             repeat(totalSteps) { index ->
@@ -147,7 +191,7 @@ fun OnboardingFlow(
                     modifier = Modifier
                         .size(if (isActive) 12.dp else 8.dp)
                         .scale(scale)
-                        .clip(RoundedCornerShape(50))
+                        .clip(CircleShape)
                         .background(
                             if (index <= currentStep) {
                                 MaterialTheme.colorScheme.primary
@@ -158,27 +202,13 @@ fun OnboardingFlow(
                 )
             }
         }
-
-        // Skip button (top right)
-        TextButton(
-            onClick = onComplete,
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(HelldeckSpacing.Medium.dp),
-            colors = ButtonDefaults.textButtonColors(
-                contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            ),
-        ) {
-            Text(
-                text = "Skip",
-                style = MaterialTheme.typography.labelMedium,
-            )
-        }
     }
 }
 
 @Composable
-private fun WelcomeStep(onNext: () -> Unit) {
+private fun WelcomeStep(
+    onNext: () -> Unit,
+) {
     var showContent by remember { mutableStateOf(false) }
     val scale by animateFloatAsState(
         targetValue = if (showContent) 1f else 0.8f,
@@ -202,7 +232,6 @@ private fun WelcomeStep(onNext: () -> Unit) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Animated logo/emoji
         val emojiScale by animateFloatAsState(
             targetValue = if (showContent) 1f else 0f,
             animationSpec = spring(
@@ -240,22 +269,21 @@ private fun WelcomeStep(onNext: () -> Unit) {
 
         Text(
             text = "The party game that learns\nwhat your crew finds funny",
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            lineHeight = 24.sp,
+            lineHeight = 28.sp,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        // Feature highlights
         Column(
             verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
             modifier = Modifier.fillMaxWidth(),
         ) {
-            FeatureHighlight("🎯", "${GameMetadata.getAllGames().size} Unique Games")
-            FeatureHighlight("🧠", "AI Learns Your Humor")
-            FeatureHighlight("📱", "Single Phone, Everyone Plays")
+            FeatureHighlight("🎯", "${GameMetadata.getAllGames().size} unique games")
+            FeatureHighlight("📱", "One phone, 3-16 players")
+            FeatureHighlight("🧠", "AI adapts to your humor")
         }
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
@@ -271,34 +299,39 @@ private fun WelcomeStep(onNext: () -> Unit) {
             ),
         ) {
             Text(
-                "Let's Go!",
+                "Get Started",
                 style = MaterialTheme.typography.labelLarge,
                 fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
             )
         }
     }
 }
 
 @Composable
-private fun DrawCardDemo(onComplete: () -> Unit) {
+private fun DrawCardDemo(
+    onComplete: () -> Unit,
+) {
     var showHint by remember { mutableStateOf(true) }
     var pulseScale by remember { mutableStateOf(1f) }
     var isPressed by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
+    val haptic = LocalHapticFeedback.current
 
     LaunchedEffect(showHint) {
         if (showHint) {
             while (true) {
                 animate(
                     initialValue = 1f,
-                    targetValue = 1.05f,
-                    animationSpec = tween(800, easing = FastOutSlowInEasing),
+                    targetValue = 1.08f,
+                    animationSpec = tween(1000, easing = FastOutSlowInEasing),
                 ) { value, _ -> pulseScale = value }
                 animate(
-                    initialValue = 1.05f,
+                    initialValue = 1.08f,
                     targetValue = 1f,
-                    animationSpec = tween(800, easing = FastOutSlowInEasing),
+                    animationSpec = tween(1000, easing = FastOutSlowInEasing),
                 ) { value, _ -> pulseScale = value }
+                delay(200)
             }
         }
     }
@@ -311,7 +344,7 @@ private fun DrawCardDemo(onComplete: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Drawing Cards",
+            text = "One Simple Gesture",
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,
@@ -320,18 +353,16 @@ private fun DrawCardDemo(onComplete: () -> Unit) {
         Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
 
         Text(
-            text = "Long-press anywhere to draw a new card",
-            style = MaterialTheme.typography.bodyLarge,
+            text = "Long-press anywhere to draw cards",
+            style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            lineHeight = 24.sp,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        // Interactive demo area
         val cardScale by animateFloatAsState(
-            targetValue = if (isPressed) 0.95f else pulseScale,
+            targetValue = if (isPressed) 0.92f else pulseScale,
             animationSpec = spring(
                 dampingRatio = Spring.DampingRatioMediumBouncy,
                 stiffness = Spring.StiffnessMedium,
@@ -341,15 +372,18 @@ private fun DrawCardDemo(onComplete: () -> Unit) {
 
         Card(
             modifier = Modifier
-                .size(240.dp)
+                .size(260.dp)
                 .scale(cardScale)
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onLongPress = {
                             showHint = false
                             isPressed = true
+                            haptic.performHapticFeedback(
+                                androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
+                            )
                             coroutineScope.launch {
-                                delay(200)
+                                delay(300)
                                 onComplete()
                             }
                         },
@@ -365,7 +399,7 @@ private fun DrawCardDemo(onComplete: () -> Unit) {
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
             ),
             elevation = CardDefaults.cardElevation(
-                defaultElevation = if (isPressed) 2.dp else 8.dp,
+                defaultElevation = if (isPressed) 4.dp else 12.dp,
             ),
         ) {
             Box(
@@ -375,18 +409,22 @@ private fun DrawCardDemo(onComplete: () -> Unit) {
                 if (showHint) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+                        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
                     ) {
                         Text(
                             text = "👆",
-                            fontSize = 48.sp,
+                            fontSize = 64.sp,
                         )
                         Text(
-                            text = "Long-press here",
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.SemiBold,
+                            text = "Try it!",
+                            style = MaterialTheme.typography.headlineMedium,
+                            fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            textAlign = TextAlign.Center,
+                        )
+                        Text(
+                            text = "Long-press this card",
+                            style = MaterialTheme.typography.bodyLarge,
+                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
                         )
                     }
                 } else {
@@ -396,12 +434,12 @@ private fun DrawCardDemo(onComplete: () -> Unit) {
                     ) {
                         Text(
                             text = "✓",
-                            fontSize = 48.sp,
+                            fontSize = 56.sp,
                             color = HelldeckColors.Green,
                         )
                         Text(
                             text = "Perfect!",
-                            style = MaterialTheme.typography.headlineSmall,
+                            style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
@@ -410,208 +448,17 @@ private fun DrawCardDemo(onComplete: () -> Unit) {
             }
         }
 
-        Spacer(Modifier.height(HelldeckSpacing.Large.dp))
+        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
         Text(
-            text = "💡 Tip: Cards appear instantly when you long-press",
-            style = MaterialTheme.typography.bodySmall,
+            text = "💡 That's it! This is how you'll play the game",
+            style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center,
         )
     }
 }
 
-@Composable
-private fun SpiceControlDemo(onNext: () -> Unit) {
-    var sliderValue by remember { mutableStateOf(3f) }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(HelldeckSpacing.ExtraLarge.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(
-            text = "Spice Control",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
-        )
-
-        Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
-
-        Text(
-            text = "Adjust how wild the cards get",
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            lineHeight = 24.sp,
-        )
-
-        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
-
-        // Spice slider with visual feedback
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(HelldeckRadius.Large),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            ),
-        ) {
-            Column(
-                modifier = Modifier.padding(HelldeckSpacing.Large.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-            ) {
-                val spiceLevel = sliderValue.toInt()
-                val spiceData = when (spiceLevel) {
-                    1 -> SpiceData("😇", "Wholesome", "Family-friendly fun", HelldeckColors.Green)
-                    2 -> SpiceData("😄", "Playful", "Light roasting", HelldeckColors.Orange)
-                    3 -> SpiceData("😈", "Edgy", "Spicy content", MaterialTheme.colorScheme.primary)
-                    4 -> SpiceData("🔥", "Wild", "No holds barred", HelldeckColors.Orange)
-                    else -> SpiceData("💀", "Chaos", "Maximum chaos", HelldeckColors.Red)
-                }
-
-                Text(
-                    text = spiceData.emoji,
-                    fontSize = 64.sp,
-                )
-
-                Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
-
-                Text(
-                    text = spiceData.label,
-                    style = MaterialTheme.typography.headlineMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = spiceData.color,
-                )
-
-                Spacer(Modifier.height(HelldeckSpacing.Small.dp))
-
-                Text(
-                    text = spiceData.description,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-
-                Spacer(Modifier.height(HelldeckSpacing.Large.dp))
-
-                Slider(
-                    value = sliderValue,
-                    onValueChange = { sliderValue = it },
-                    valueRange = 1f..5f,
-                    steps = 3,
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = SliderDefaults.colors(
-                        thumbColor = spiceData.color,
-                        activeTrackColor = spiceData.color,
-                    ),
-                )
-            }
-        }
-
-        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
-
-        Button(
-            onClick = onNext,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            shape = RoundedCornerShape(HelldeckRadius.Pill),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-            ),
-        ) {
-            Text(
-                "Continue",
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold,
-            )
-        }
-    }
-}
-
-private data class SpiceData(
-    val emoji: String,
-    val label: String,
-    val description: String,
-    val color: Color,
-)
-
-private data class GameSample(
-    val emoji: String,
-    val title: String,
-    val description: String,
-)
-
-@Composable
-private fun GameSelectionDemo(onNext: () -> Unit) {
-    val sampleGames = remember {
-        listOf(
-            GameSample("🔥", "Roast Consensus", "Vote who fits best"),
-            GameSample("☠️", "Poison Pitch", "Sell impossible choices"),
-            GameSample("🚩", "Red Flag Rally", "Defend terrible dates"),
-        )
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(HelldeckSpacing.ExtraLarge.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        Text(
-            text = "Choose Your Game",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
-        )
-
-        Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
-
-        Text(
-            text = "${GameMetadata.getAllGames().size} different party games\nto keep things fresh",
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            lineHeight = 24.sp,
-        )
-
-        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
-
-        // Sample game cards
-        Column(
-            verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            sampleGames.forEach { game ->
-                GameSampleCard(
-                    emoji = game.emoji,
-                    title = game.title,
-                    description = game.description,
-                )
-            }
-        }
-
-        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
-
-        Button(
-            onClick = onNext,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            shape = RoundedCornerShape(HelldeckRadius.Pill),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-            ),
-        ) {
-            Text(
-                "Continue",
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold,
-            )
-        }
-    }
-}
 
 @Composable
 private fun ReadyToPlayStep(onComplete: () -> Unit) {
@@ -647,20 +494,39 @@ private fun ReadyToPlayStep(onComplete: () -> Unit) {
         Spacer(Modifier.height(HelldeckSpacing.Large.dp))
 
         Text(
-            text = "You're All Set!",
-            style = MaterialTheme.typography.headlineLarge,
-            fontWeight = FontWeight.Bold,
+            text = "Ready to Play!",
+            style = MaterialTheme.typography.displaySmall,
+            fontWeight = FontWeight.ExtraBold,
+            color = MaterialTheme.colorScheme.primary,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
 
         Text(
-            text = "Add 3-16 players and start playing.\nThe game learns what your crew finds funny!",
-            style = MaterialTheme.typography.bodyLarge,
+            text = "Add 3-16 players and jump in",
+            style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            lineHeight = 24.sp,
         )
+
+        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
+
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(HelldeckRadius.Large),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.5f),
+            ),
+        ) {
+            Column(
+                modifier = Modifier.padding(HelldeckSpacing.Large.dp),
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+            ) {
+                QuickTip("🎯", "Spice level in settings")
+                QuickTip("🧠", "Game learns from votes")
+                QuickTip("↩️", "Two-finger tap to undo")
+            }
+        }
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
@@ -668,15 +534,15 @@ private fun ReadyToPlayStep(onComplete: () -> Unit) {
             onClick = onComplete,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(64.dp),
+                .height(60.dp),
             shape = RoundedCornerShape(HelldeckRadius.Pill),
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.primary,
             ),
         ) {
             Text(
-                "Start Playing!",
-                style = MaterialTheme.typography.titleMedium,
+                "Let's Play!",
+                style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,
             )
         }
@@ -703,36 +569,19 @@ private fun FeatureHighlight(emoji: String, text: String) {
 }
 
 @Composable
-private fun GameSampleCard(emoji: String, title: String, description: String) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(HelldeckRadius.Medium),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-        ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
+private fun QuickTip(emoji: String, text: String) {
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Row(
-            modifier = Modifier.padding(HelldeckSpacing.Medium.dp),
-            horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = emoji,
-                fontSize = 32.sp,
-            )
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = description,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
+        Text(
+            text = emoji,
+            fontSize = 20.sp,
+        )
+        Text(
+            text = text,
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSecondaryContainer,
+        )
     }
 }

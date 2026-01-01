@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.engine.GameMetadata
@@ -44,9 +45,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScene(vm: HelldeckVm) {
-    val ctx = LocalContext.current
     val scope = rememberCoroutineScope()
-    val games = remember { (0 until com.helldeck.engine.Games.size).map { com.helldeck.engine.Games[it] } }
     var showGamePicker by remember { mutableStateOf(false) }
     val spiceLevel by vm.spiceLevel.collectAsState()
     val isAIAvailable = remember { ContentEngineProvider.isAIEnhancementAvailable() }
@@ -122,12 +121,10 @@ fun HomeScene(vm: HelldeckVm) {
 
             // Primary CTA: Start random game
             PrimaryButton(
-                text = "Start Chaos",
+                text = "🔥 Start the Chaos",
                 onClick = { scope.launch { vm.startRound(null) } },
                 modifier = Modifier.fillMaxWidth(),
-                icon = {
-                    Text("🎲", style = MaterialTheme.typography.bodyLarge)
-                },
+                icon = null,
             )
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
@@ -165,9 +162,10 @@ fun HomeScene(vm: HelldeckVm) {
             Spacer(modifier = Modifier.weight(1f))
 
             Text(
-                text = "Single-phone party game • 3–16 players • ${GameMetadata.getAllGames().size} mini-games",
+                text = "Pass one phone • Judge, roast, and betray your friends • ${GameMetadata.getAllGames().size} mini-games",
                 style = MaterialTheme.typography.labelSmall,
                 color = HelldeckColors.colorMuted,
+                textAlign = TextAlign.Center,
             )
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
@@ -220,9 +218,9 @@ private fun HellTitleCard() {
                 color = HelldeckColors.colorOnDark,
             )
             Text(
-                text = "One possessed phone. The room is the controller.",
-                style = MaterialTheme.typography.bodyMedium,
-                color = HelldeckColors.colorOnDark.copy(alpha = 0.9f),
+                text = "Low Cognitive Load. High Social Stakes. Maximum Chaos.",
+                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
+                color = HelldeckColors.colorOnDark.copy(alpha = 0.95f),
             )
         }
     }

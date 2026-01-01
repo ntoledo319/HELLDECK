@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Paint
 import androidx.compose.ui.graphics.PaintingStyle
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -148,6 +149,12 @@ private fun AutoResizeText(
 
 /**
  * Main card face for displaying game content with enhanced visual design
+ * 
+ * DESIGN PRINCIPLE (HDRealRules.md):
+ * - "Low Cognitive Load. High Social Stakes. Maximum Chaos."
+ * - Instant readability at arm's length in dim room
+ * - Stakes must be immediately clear
+ * - Pass the "Drunk Person Test" (3 drinks in, still comprehensible)
  */
 @Composable
 fun CardFace(
@@ -157,6 +164,7 @@ fun CardFace(
     backgroundColor: Color = HelldeckColors.DarkGray,
     borderColor: Color = HelldeckColors.Yellow,
     onClick: (() -> Unit)? = null,
+    stakesLabel: String? = null,
 ) {
     val reducedMotion = LocalReducedMotion.current
     val interactionSource = remember { MutableInteractionSource() }
@@ -263,6 +271,26 @@ fun CardFace(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                 ) {
+                    // Stakes label (What's at risk?) - HDRealRules.md: "Stakes Must Be Clear"
+                    stakesLabel?.let { stakes ->
+                        Surface(
+                            shape = RoundedCornerShape(12.dp),
+                            color = borderColor.copy(alpha = 0.15f),
+                            border = BorderStroke(1.dp, borderColor.copy(alpha = 0.4f)),
+                        ) {
+                            Text(
+                                text = stakes,
+                                style = MaterialTheme.typography.labelLarge.copy(
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                ),
+                                color = borderColor,
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                    }
+
                     AutoResizeText(
                         text = title,
                         maxLines = 10,
@@ -293,7 +321,7 @@ fun CardFace(
                         Text(
                             text = sub,
                             style = MaterialTheme.typography.bodyLarge.copy(
-                                fontSize = 20.sp,
+                                fontSize = 18.sp,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Medium,
                                 shadow = androidx.compose.ui.graphics.Shadow(
@@ -304,7 +332,7 @@ fun CardFace(
                             ),
                             color = HelldeckColors.LightGray,
                             textAlign = TextAlign.Center,
-                            maxLines = 3,
+                            maxLines = 2,
                             overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
                             modifier = Modifier.fillMaxWidth(),
                         )
@@ -1315,12 +1343,6 @@ fun PodiumCard(
         HelldeckColors.Orange, // Bronze for 3rd
     )
 
-    val positionColors = listOf(
-        HelldeckColors.Lol, // Gold
-        HelldeckColors.LightGray, // Silver-ish
-        HelldeckColors.Orange, // Bronze-ish
-    )
-
     val cardColor = if (isWinner) {
         podiumColors[0]
     } else {
@@ -1498,21 +1520,7 @@ private fun formatTime(milliseconds: Int): String {
 fun ScoreCelebration(
     score: Int,
     modifier: Modifier = Modifier,
-    onAnimationComplete: () -> Unit = {},
 ) {
-    val infiniteTransition = rememberInfiniteTransition()
-
-    val particles = remember {
-        List(12) { index ->
-            Particle(
-                id = index,
-                initialDelay = index * 100L,
-                angle = (360f / 12) * index,
-                distance = 100f + (index % 3) * 50f,
-            )
-        }
-    }
-
     val scale by animateFloatAsState(
         targetValue = 1.2f,
         animationSpec = tween(300, easing = EaseOutBack),
@@ -1669,11 +1677,6 @@ private fun DotsPattern(
     Canvas(
         modifier = Modifier.fillMaxSize(),
     ) {
-        val paint = androidx.compose.ui.graphics.Paint().apply {
-            color = HelldeckColors.Yellow.copy(alpha = opacity)
-            style = androidx.compose.ui.graphics.PaintingStyle.Fill
-        }
-
         val canvasWidth = size.width
         val canvasHeight = size.height
 
@@ -1684,7 +1687,7 @@ private fun DotsPattern(
                 drawCircle(
                     center = Offset(x, y),
                     radius = dotSize.toPx() / 2,
-                    color = Color.Black,
+                    color = HelldeckColors.Yellow.copy(alpha = opacity),
                 )
                 x += spacing.toPx()
             }
@@ -1705,14 +1708,10 @@ private fun GridPattern(
     Canvas(
         modifier = Modifier.fillMaxSize(),
     ) {
-        val paint = androidx.compose.ui.graphics.Paint().apply {
-            color = HelldeckColors.LightGray.copy(alpha = opacity)
-            style = androidx.compose.ui.graphics.PaintingStyle.Stroke
-            strokeWidth = lineWidth.toPx()
-        }
-
         val canvasWidth = size.width
         val canvasHeight = size.height
+        val color = HelldeckColors.LightGray.copy(alpha = opacity)
+        val strokeWidth = lineWidth.toPx()
 
         // Vertical lines
         var x = 0f
@@ -1720,7 +1719,8 @@ private fun GridPattern(
             drawLine(
                 start = Offset(x, 0f),
                 end = Offset(x, canvasHeight),
-                color = Color.Gray,
+                color = color,
+                strokeWidth = strokeWidth,
             )
             x += spacing.toPx()
         }
@@ -1731,7 +1731,8 @@ private fun GridPattern(
             drawLine(
                 start = Offset(0f, y),
                 end = Offset(canvasWidth, y),
-                color = Color.Gray,
+                color = color,
+                strokeWidth = strokeWidth,
             )
             y += spacing.toPx()
         }
@@ -1749,15 +1750,10 @@ private fun HexagonPattern(
     Canvas(
         modifier = Modifier.fillMaxSize(),
     ) {
-        val paint = androidx.compose.ui.graphics.Paint().apply {
-            color = HelldeckColors.Orange.copy(alpha = opacity)
-            style = androidx.compose.ui.graphics.PaintingStyle.Stroke
-            strokeWidth = 1.dp.toPx()
-        }
-
         val hexRadius = size.toPx() / 2
         val canvasWidth = size.toPx()
         val canvasHeight = size.toPx()
+        val color = HelldeckColors.Orange.copy(alpha = opacity)
 
         val hexHeight = hexRadius * sqrt(3f)
         val hexWidth = hexRadius * 1.5f
@@ -1772,7 +1768,7 @@ private fun HexagonPattern(
                 drawHexagon(
                     center = Offset(x, y),
                     radius = hexRadius,
-
+                    color = color,
                 )
                 x += hexWidth * 2
             }
@@ -1794,27 +1790,23 @@ private fun CircuitPattern(
     Canvas(
         modifier = Modifier.fillMaxSize(),
     ) {
-        val paint = androidx.compose.ui.graphics.Paint().apply {
-            color = HelldeckColors.Green.copy(alpha = opacity)
-            style = androidx.compose.ui.graphics.PaintingStyle.Stroke
-            strokeWidth = 1.dp.toPx()
-        }
-
         val canvasWidth = size.width
         val canvasHeight = size.height
         val segments = complexity * 4
+        val color = HelldeckColors.Green.copy(alpha = opacity)
+        val strokeWidth = 1.dp.toPx()
 
         // Draw circuit-like lines
         repeat(segments) { i ->
             val startX = (i * canvasWidth / segments).coerceIn(0f, canvasWidth)
-            val endX = ((i + 1) * canvasWidth / segments).coerceIn(0f, canvasWidth)
             val y = (i * canvasHeight / segments).coerceIn(0f, canvasHeight)
 
             // Horizontal lines
             drawLine(
                 start = Offset(0f, y),
                 end = Offset(canvasWidth, y),
-                color = Color.Cyan,
+                color = color,
+                strokeWidth = strokeWidth,
             )
 
             // Vertical lines with occasional branches
@@ -1822,7 +1814,8 @@ private fun CircuitPattern(
                 drawLine(
                     start = Offset(startX, 0f),
                     end = Offset(startX, canvasHeight),
-                    color = Color.Cyan,
+                    color = color,
+                    strokeWidth = strokeWidth,
                 )
 
                 // Add some connection nodes
@@ -1842,6 +1835,7 @@ private fun CircuitPattern(
 private fun DrawScope.drawHexagon(
     center: Offset,
     radius: Float,
+    color: Color,
 ) {
     val path = Path().apply {
         for (i in 0..5) {
@@ -1858,7 +1852,7 @@ private fun DrawScope.drawHexagon(
         close()
     }
 
-    drawPath(path = path, color = Color.Black)
+    drawPath(path = path, color = color, style = Stroke(width = 1.dp.toPx()))
 }
 
 /**

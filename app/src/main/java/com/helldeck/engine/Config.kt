@@ -152,7 +152,7 @@ data class GeneratorCfg(
  */
 object Config {
 
-    lateinit var current: HelldeckCfg
+    var current: HelldeckCfg = getDefaultConfig()
         private set
 
     var spicyMode: Boolean = false

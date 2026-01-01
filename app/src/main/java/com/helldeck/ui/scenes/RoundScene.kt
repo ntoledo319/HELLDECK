@@ -1,6 +1,7 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -8,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.helldeck.content.model.GameOptions
 import com.helldeck.engine.Config
@@ -85,11 +87,11 @@ fun RoundScene(vm: HelldeckVm) {
                     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
                         Text(
                             text = when (roundState.phase) {
-                                com.helldeck.ui.state.RoundPhase.INTRO -> "INTRO"
-                                com.helldeck.ui.state.RoundPhase.INPUT -> "INPUT"
-                                com.helldeck.ui.state.RoundPhase.REVEAL -> "REVEAL"
-                                com.helldeck.ui.state.RoundPhase.FEEDBACK -> "FEEDBACK"
-                                com.helldeck.ui.state.RoundPhase.DONE -> "DONE"
+                                com.helldeck.ui.state.RoundPhase.INTRO -> "GET READY"
+                                com.helldeck.ui.state.RoundPhase.INPUT -> "VOTING"
+                                com.helldeck.ui.state.RoundPhase.REVEAL -> "RESULTS"
+                                com.helldeck.ui.state.RoundPhase.FEEDBACK -> "RATE IT"
+                                com.helldeck.ui.state.RoundPhase.DONE -> "COMPLETE"
                             },
                             style = MaterialTheme.typography.labelSmall,
                             color = HelldeckColors.colorMuted,
@@ -129,11 +131,11 @@ fun RoundScene(vm: HelldeckVm) {
                     }
 
                     val primaryLabel = when (roundState.phase) {
-                        com.helldeck.ui.state.RoundPhase.INTRO -> "START ROUND"
-                        com.helldeck.ui.state.RoundPhase.INPUT -> "LOCK IN"
-                        com.helldeck.ui.state.RoundPhase.REVEAL -> "NEXT"
-                        com.helldeck.ui.state.RoundPhase.FEEDBACK -> "RATE"
-                        com.helldeck.ui.state.RoundPhase.DONE -> "NEXT"
+                        com.helldeck.ui.state.RoundPhase.INTRO -> "🎯 START"
+                        com.helldeck.ui.state.RoundPhase.INPUT -> "✅ LOCK IT"
+                        com.helldeck.ui.state.RoundPhase.REVEAL -> "👀 SEE RESULTS"
+                        com.helldeck.ui.state.RoundPhase.FEEDBACK -> "⭐ RATE"
+                        com.helldeck.ui.state.RoundPhase.DONE -> "➡️ NEXT ROUND"
                     }
                     Button(
                         onClick = {
@@ -181,6 +183,23 @@ fun RoundScene(vm: HelldeckVm) {
             CardFace(
                 title = roundState.filledCard.text,
                 subtitle = game?.description,
+                stakesLabel = when (game?.id) {
+                    com.helldeck.engine.GameIds.ROAST_CONS -> "Majority pick: +2pts • Room heat bonus: +1"
+                    com.helldeck.engine.GameIds.CONFESS_CAP -> "Fool everyone: +2pts • Guess right: +1pt"
+                    com.helldeck.engine.GameIds.POISON_PITCH -> "Best pitch wins: +2pts"
+                    com.helldeck.engine.GameIds.FILLIN -> "Judge's favorite: +1pt"
+                    com.helldeck.engine.GameIds.RED_FLAG -> "Win vote: +2pts • Lose: Penalty"
+                    com.helldeck.engine.GameIds.HOTSEAT_IMP -> "Fool them: +2pts • Catch them: +1pt"
+                    com.helldeck.engine.GameIds.TEXT_TRAP -> "Nail the vibe: +2pts"
+                    com.helldeck.engine.GameIds.TABOO -> "+2 per word • -1 per forbidden"
+                    com.helldeck.engine.GameIds.UNIFYING_THEORY -> "Best theory: +2pts"
+                    com.helldeck.engine.GameIds.TITLE_FIGHT -> "Winner: +1pt • Loser: -1pt"
+                    com.helldeck.engine.GameIds.ALIBI -> "Innocent: +2pts • Caught: -1pt"
+                    com.helldeck.engine.GameIds.REALITY_CHECK -> "Self-aware: +2pts • Delusional: Drink"
+                    com.helldeck.engine.GameIds.SCATTER -> "Last standing survives"
+                    com.helldeck.engine.GameIds.OVER_UNDER -> "Right bet: +1pt • Subject gets points"
+                    else -> null
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
@@ -264,7 +283,8 @@ fun RoundScene(vm: HelldeckVm) {
                         title = "Who won the duel?",
                         options = listOf("Active Player wins", "Other wins"),
                         onPick = { choice ->
-                            if (choice.startsWith("Active")) vm.commitDirectWin() else vm.goToFeedbackNoPoints()
+                            // Title Fight: Winner +1, Loser -1 (per HDRealRules.md)
+                            if (choice.startsWith("Active")) vm.commitDirectWin(pts = 1) else vm.goToFeedbackNoPoints()
                         },
                     )
                     Interaction.PITCH -> OptionsPickFlow(
@@ -336,11 +356,23 @@ fun RoundScene(vm: HelldeckVm) {
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
             } else {
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
-                Text(
-                    text = "Tap START ROUND when the room is ready.",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = HelldeckColors.colorMuted,
-                )
+                Surface(
+                    shape = RoundedCornerShape(HelldeckRadius.Medium),
+                    color = HelldeckColors.colorSecondary.copy(alpha = 0.15f),
+                    border = BorderStroke(1.dp, HelldeckColors.colorSecondary.copy(alpha = 0.3f)),
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(
+                        text = when (roundState.phase) {
+                            com.helldeck.ui.state.RoundPhase.INTRO -> "📱 Pass the phone around. When everyone's ready, hit START."
+                            else -> "Waiting for the room..."
+                        },
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = HelldeckColors.colorOnDark,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.padding(16.dp),
+                    )
+                }
             }
         }
     }
