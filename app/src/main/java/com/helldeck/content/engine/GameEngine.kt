@@ -1,5 +1,6 @@
 package com.helldeck.content.engine
 
+import com.helldeck.analytics.PerformanceTracker
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.content.engine.augment.Augmentor
 import com.helldeck.content.generator.CardGeneratorV3
@@ -12,6 +13,7 @@ import com.helldeck.engine.Config
 import com.helldeck.engine.GameMetadata
 import com.helldeck.engine.InteractionType
 import com.helldeck.utils.Logger
+import com.helldeck.utils.MemoryMonitor
 
 class GameEngine(
     private val repo: ContentRepository,
@@ -45,7 +47,13 @@ class GameEngine(
     )
 
     suspend fun next(req: Request): Result {
+        val opId = PerformanceTracker.startGeneration(req.gameId ?: "unknown")
         val maxContractAttempts = 15 // Bounded retry for contract validation
+        
+        // Check memory pressure and adjust quality if needed
+        if (MemoryMonitor.shouldDegradeQuality()) {
+            Logger.w("High memory pressure detected, may fallback to gold cards")
+        }
 
         // PRIORITY 1: Try LLM Card Generator V2 (quality-first with gold examples)
         llmCardGeneratorV2?.let { llmGen ->
@@ -66,9 +74,11 @@ class GameEngine(
                 )
                 if (validateContract(result, req)) {
                     Logger.d("LLM V2 generated card with quality score: ${llmResult.qualityScore}")
+                    PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.LLM_V2, req.gameId, true)
                     return result
                 } else {
                     Logger.w("LLM V2 card failed contract validation, falling back")
+                    PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.LLM_V2, req.gameId, false, "contract_validation_failed")
                 }
             }
         }
@@ -80,9 +90,11 @@ class GameEngine(
                 generator.goldOnly(req, rng)?.let {
                     val result = convert(it)
                     if (validateContract(result, req)) {
+                        PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.GOLD_CARD, req.gameId ?: "unknown", true)
                         return result
                     } else {
                         Logger.w("Gold card failed contract validation: ${result.filledCard.id}")
+                        PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.GOLD_CARD, req.gameId ?: "unknown", false, "contract_validation_failed")
                     }
                 }
             }
@@ -99,8 +111,10 @@ class GameEngine(
                             playersCount = req.players.size,
                         )
                         if (contractCheck.isValid) {
+                            PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.TEMPLATE_V3, req.gameId ?: "unknown", true)
                             return result
                         } else {
+                            PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.TEMPLATE_V3, req.gameId ?: "unknown", false, contractCheck.reasons.firstOrNull() ?: "unknown")
                             Logger.d(
                                 "Contract validation failed (attempt ${attempt + 1}): ${contractCheck.reasons.joinToString(
                                     ", ",
@@ -172,10 +186,13 @@ class GameEngine(
 
         // Validate last attempt; if it fails, use gold fallback
         if (validateContract(lastAttempt, req)) {
+            PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.TEMPLATE_V3, req.gameId ?: "unknown", true)
             return lastAttempt
         } else {
             Logger.w("V2 generation failed contract; using gold fallback")
-            return createGoldFallback(req)
+            val fallback = createGoldFallback(req)
+            PerformanceTracker.recordGeneration(opId, PerformanceTracker.GenerationMethod.FALLBACK, req.gameId ?: "unknown", true)
+            return fallback
         }
     }
 

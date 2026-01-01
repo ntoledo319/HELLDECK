@@ -91,6 +91,39 @@ class GameNightViewModel : ViewModel() {
     var preChoice by mutableStateOf<String?>(null)
     var votesAvatar by mutableStateOf<Map<String, String>>(emptyMap())
     var votesAB by mutableStateOf<Map<String, String>>(emptyMap())
+    
+    // ========== GAME-SPECIFIC STATE ==========
+    // Taboo Timer: track successful guesses and forbidden word violations
+    var tabooSuccessfulGuesses by mutableStateOf(0)
+    var tabooForbiddenWordCount by mutableStateOf(0)
+    
+    // Reality Check: track ego and group ratings
+    var realityCheckEgoRating by mutableStateOf<Int?>(null)
+    var realityCheckGroupRating by mutableStateOf<Int?>(null)
+    
+    // Over/Under: track the betting line and actual value
+    var overUnderLine by mutableStateOf<Int?>(null)
+    var overUnderActualValue by mutableStateOf<Int?>(null)
+    
+    // Scatterblast: track turn ownership when bomb explodes
+    var scatterblastVictimId by mutableStateOf<String?>(null)
+    
+    // Hot Seat Imposter: track target and imposter roles
+    var hotSeatTargetId by mutableStateOf<String?>(null)
+    var hotSeatImposterId by mutableStateOf<String?>(null)
+    
+    // Alibi Drop: track mandatory words and whether jury caught them
+    var alibiMandatoryWords by mutableStateOf<List<String>>(emptyList())
+    var alibiWordsDetected by mutableStateOf<List<String>>(emptyList())
+    var alibiStoryBelievable by mutableStateOf<Boolean?>(null)
+    
+    // Title Fight: track duel participants and winner
+    var titleFightChallengerId by mutableStateOf<String?>(null)
+    var titleFightWinnerId by mutableStateOf<String?>(null)
+    
+    // Poison Pitch: track which players defend which option
+    var poisonPitchDefenderA by mutableStateOf<String?>(null) // Player ID defending Option A
+    var poisonPitchDefenderB by mutableStateOf<String?>(null) // Player ID defending Option B
 
     // ========== FEEDBACK STATE ==========
     private var lol = 0
@@ -403,11 +436,18 @@ class GameNightViewModel : ViewModel() {
 
         // Generate card
         val playersList = activePlayers.map { it.name }
-        val activePlayerId = activePlayer()?.id
         val targetPlayerId = if (currentGame?.interaction == Interaction.TARGET_PICK) {
             activePlayers.randomOrNull()?.id
         } else {
             null
+        }
+        
+        // Poison Pitch: Randomly assign two players to defend Option A and Option B
+        if (nextGame == GameIds.POISON_PITCH && activePlayers.size >= 2) {
+            val debaters = activePlayers.shuffled().take(2)
+            poisonPitchDefenderA = debaters[0].id
+            poisonPitchDefenderB = debaters[1].id
+            com.helldeck.utils.Logger.d("Poison Pitch debaters assigned: A=${debaters[0].name}, B=${debaters[1].name}")
         }
 
         val sessionId = gameNightSessionId
@@ -520,6 +560,99 @@ class GameNightViewModel : ViewModel() {
     fun endRoundAdvanceTurn() {
         val poolSize = activePlayers.size.coerceAtLeast(1)
         turnIdx = (turnIdx + 1) % poolSize
+        
+        // Reset all game-specific state
+        resetGameSpecificState()
+    }
+    
+    /**
+     * Resets all game-specific state variables between rounds.
+     * Called at the end of each round to ensure clean slate for next game.
+     */
+    private fun resetGameSpecificState() {
+        // Taboo Timer
+        tabooSuccessfulGuesses = 0
+        tabooForbiddenWordCount = 0
+        
+        // Reality Check
+        realityCheckEgoRating = null
+        realityCheckGroupRating = null
+        
+        // Over/Under
+        overUnderLine = null
+        overUnderActualValue = null
+        
+        // Scatterblast
+        scatterblastVictimId = null
+        
+        // Hot Seat Imposter
+        hotSeatTargetId = null
+        hotSeatImposterId = null
+        
+        // Alibi Drop
+        alibiMandatoryWords = emptyList()
+        alibiWordsDetected = emptyList()
+        alibiStoryBelievable = null
+        
+        // Title Fight
+        titleFightChallengerId = null
+        titleFightWinnerId = null
+        
+        // Poison Pitch
+        poisonPitchDefenderA = null
+        poisonPitchDefenderB = null
+        
+        // Reset general voting state
+        preChoice = null
+        votesAvatar = emptyMap()
+        votesAB = emptyMap()
+    }
+    
+    // ========== GAME-SPECIFIC STATE SETTERS ==========
+    
+    fun setTabooGuess(success: Boolean) {
+        if (success) {
+            tabooSuccessfulGuesses++
+        }
+    }
+    
+    fun setTabooForbiddenWord() {
+        tabooForbiddenWordCount++
+    }
+    
+    fun setRealityCheckRatings(ego: Int, group: Int) {
+        realityCheckEgoRating = ego
+        realityCheckGroupRating = group
+    }
+    
+    fun setOverUnderData(line: Int, actualValue: Int) {
+        overUnderLine = line
+        overUnderActualValue = actualValue
+    }
+    
+    fun setScatterblastVictim(playerId: String) {
+        scatterblastVictimId = playerId
+    }
+    
+    fun setHotSeatRoles(targetId: String, imposterId: String) {
+        hotSeatTargetId = targetId
+        hotSeatImposterId = imposterId
+    }
+    
+    fun setAlibiData(mandatoryWords: List<String>, detectedWords: List<String>, believable: Boolean) {
+        alibiMandatoryWords = mandatoryWords
+        alibiWordsDetected = detectedWords
+        alibiStoryBelievable = believable
+    }
+    
+    fun setTitleFightResult(challengerId: String, winnerId: String) {
+        titleFightChallengerId = challengerId
+        titleFightWinnerId = winnerId
+    }
+    
+    fun setPoisonPitchDefenders(defenderAId: String, defenderBId: String) {
+        poisonPitchDefenderA = defenderAId
+        poisonPitchDefenderB = defenderBId
     }
 
     fun activePlayer(): Player? {
@@ -598,6 +731,8 @@ class GameNightViewModel : ViewModel() {
 
     fun resolveInteraction() {
         val state = roundState
+        val gameId = currentGame?.id
+        
         if (state != null) {
             when (state.interactionType) {
                 InteractionType.VOTE_PLAYER -> resolveRoastConsensus()
@@ -605,10 +740,24 @@ class GameNightViewModel : ViewModel() {
                 InteractionType.A_B_CHOICE -> resolveAB()
                 InteractionType.PREDICT_VOTE -> resolveAB()
                 InteractionType.SMASH_PASS -> resolveSmashPass()
+                InteractionType.REPLY_TONE -> resolveTextThreadTrap()
+                InteractionType.TABOO_GUESS -> resolveTabooTimer()
+                InteractionType.ODD_EXPLAIN -> resolveUnifyingTheory()
+                InteractionType.MINI_DUEL -> resolveTitleFight()
+                InteractionType.HIDE_WORDS -> resolveAlibiDrop()
+                InteractionType.TARGET_SELECT -> resolveRealityCheck()
+                InteractionType.SPEED_LIST -> resolveScatterblast()
                 InteractionType.JUDGE_PICK -> {
-                    judgeWin = true
-                    points = Config.current.scoring.win
-                    awardActive(points)
+                    // Hot Seat Imposter has specific resolution logic
+                    if (gameId == GameIds.HOTSEAT_IMP) {
+                        resolveHotSeatImposter()
+                    } else {
+                        // Fill-In Finisher awards +1 point per HDRealRules.md, other judge games use default
+                        val pointsToAward = if (gameId == GameIds.FILLIN) 1 else Config.current.scoring.win
+                        judgeWin = true
+                        points = pointsToAward
+                        awardActive(pointsToAward)
+                    }
                 }
                 else -> {
                     judgeWin = true
@@ -623,10 +772,24 @@ class GameNightViewModel : ViewModel() {
                 Interaction.TRUE_FALSE -> resolveConfession()
                 Interaction.AB_VOTE -> resolveAB()
                 Interaction.SMASH_PASS -> resolveSmashPass()
+                Interaction.REPLY_TONE -> resolveTextThreadTrap()
+                Interaction.TABOO_CLUE -> resolveTabooTimer()
+                Interaction.ODD_REASON -> resolveUnifyingTheory()
+                Interaction.DUEL -> resolveTitleFight()
+                Interaction.SMUGGLE -> resolveAlibiDrop()
+                Interaction.TARGET_PICK -> resolveRealityCheck()
+                Interaction.SPEED_LIST -> resolveScatterblast()
                 Interaction.JUDGE_PICK -> {
-                    judgeWin = true
-                    points = Config.current.scoring.win
-                    awardActive(points)
+                    // Hot Seat Imposter has specific resolution logic
+                    if (game.id == GameIds.HOTSEAT_IMP) {
+                        resolveHotSeatImposter()
+                    } else {
+                        // Fill-In Finisher awards +1 point per HDRealRules.md, other judge games use default
+                        val pointsToAward = if (game.id == GameIds.FILLIN) 1 else Config.current.scoring.win
+                        judgeWin = true
+                        points = pointsToAward
+                        awardActive(pointsToAward)
+                    }
                 }
                 else -> {
                     judgeWin = true
@@ -694,12 +857,13 @@ class GameNightViewModel : ViewModel() {
                 }
             }
 
-            // Room Heat Bonus: If the entire room agrees and gets it right, everyone gets +1 bonus
-            val allVotedCorrect = votesAB.values.all { it == correctAnswer }
-            if (allVotedCorrect && correctAnswer != null) {
+            // Room Heat Bonus: If the ENTIRE room agrees (100%) and gets it right, everyone gets +1 bonus
+            // This means all voters voted the same correct answer
+            val allVotedCorrect = votesAB.values.isNotEmpty() && votesAB.values.all { it == correctAnswer }
+            if (allVotedCorrect && correctAnswer != null && totalVoters > 0) {
                 players.forEach { p ->
                     if (votesAB.containsKey(p.id)) {
-                        addPoints(p.id, 1) // Bonus point
+                        addPoints(p.id, 1) // Bonus point for unanimous correct vote
                     }
                 }
             }
@@ -720,26 +884,65 @@ class GameNightViewModel : ViewModel() {
 
         when (currentGameId) {
             GameIds.POISON_PITCH -> {
-                // Poison Pitch: Active wins if majority matches their pre-pick
-                if (preChoice != null && preChoice == majority) {
-                    awardActive(Config.current.scoring.win)
+                // Poison Pitch: Winning Pitcher gets +2 points (per HDRealRules.md)
+                // Players are ASSIGNED their side randomly, not by choice
+                val defenderA = poisonPitchDefenderA
+                val defenderB = poisonPitchDefenderB
+                
+                if (defenderA != null && defenderB != null && majority != "TIE") {
+                    // Award to the player who defended the winning option
+                    val winnerId = when (majority) {
+                        "A" -> defenderA
+                        "B" -> defenderB
+                        else -> null
+                    }
+                    winnerId?.let { 
+                        addPoints(it, 2)
+                        // Track for feedback display
+                        if (activePlayer()?.id == winnerId) {
+                            judgeWin = true
+                            points = 2
+                        }
+                    }
                 }
             }
             // MAJORITY_REPORT removed - not in official 14 games
             GameIds.OVER_UNDER -> {
-                // Over/Under: Winners get +1, Subject gets points equal to wrong guesses
-                // Note: Actual number comparison would need to be implemented separately
-                // For now, treat OVER as A and UNDER as B
-                val correctBet = majority // This would be determined by actual number vs line
-                players.forEach { p ->
-                    if (p.id != ap.id && votesAB[p.id] == correctBet) {
-                        addPoints(p.id, 1) // Winners: +1 point
+                // Over/Under: Proper implementation per HDRealRules.md
+                val line = overUnderLine
+                val actualValue = overUnderActualValue
+                
+                if (line != null && actualValue != null) {
+                    // Check for exact match first (everyone drinks except Subject who is "god")
+                    if (actualValue == line) {
+                        // Exact match: everyone drinks, Subject gets 0 points (but is celebrated)
+                        judgeWin = false
+                        points = 0
+                    } else {
+                        // Determine correct bet
+                        val correctBet = if (actualValue > line) "OVER" else "UNDER"
+                        
+                        // Winners: Those who bet correctly get +1
+                        players.forEach { p ->
+                            if (p.id != ap.id) {
+                                val playerBet = votesAB[p.id]
+                                if (playerBet == correctBet || 
+                                    (playerBet == "A" && correctBet == "OVER") ||
+                                    (playerBet == "B" && correctBet == "UNDER")) {
+                                    addPoints(p.id, 1)
+                                }
+                            }
+                        }
+                        
+                        // Subject (The House): Gets points equal to number of wrong guesses
+                        val wrongGuesses = votesAB.values.count { bet ->
+                            bet != correctBet && 
+                            !((bet == "A" && correctBet == "OVER") || (bet == "B" && correctBet == "UNDER"))
+                        }
+                        if (wrongGuesses > 0) {
+                            addPoints(ap.id, wrongGuesses)
+                        }
                     }
-                }
-                // Subject gets points equal to number of wrong guesses
-                val wrongGuesses = votesAB.values.count { it != correctBet }
-                if (wrongGuesses > 0) {
-                    addPoints(ap.id, wrongGuesses)
                 }
             }
             else -> {
@@ -755,9 +958,224 @@ class GameNightViewModel : ViewModel() {
         val smash = votesAB.values.count { it.equals("SMASH", ignoreCase = true) || it == "A" }
         val pass = votesAB.values.count { it.equals("PASS", ignoreCase = true) || it == "B" }
         if (smash > pass) {
-            awardActive(Config.current.scoring.win)
+            // Red Flag Rally: Defender (Majority SMASH) gets +2 points (per HDRealRules.md)
+            awardActive(2)
             judgeWin = true
-            points = Config.current.scoring.win
+            points = 2
+        }
+    }
+
+    /**
+     * Hot Seat Imposter (Game 6) - HDRealRules.md compliant
+     * Scoring:
+     * - Imposter (Fools Majority): +2 Points
+     * - Target (Group Sees Through): +1 Point
+     * - Voters (Correct Guess): +1 Point each
+     */
+    private fun resolveHotSeatImposter() {
+        val targetId = hotSeatTargetId ?: return
+        val imposterId = hotSeatImposterId ?: return
+        
+        val realVotes = votesAB.values.count { it == "REAL" }
+        val fakeVotes = votesAB.values.count { it == "FAKE" }
+        val majorityBelieved = realVotes > fakeVotes
+        
+        if (majorityBelieved) {
+            // Imposter fooled majority: +2 points to imposter
+            addPoints(imposterId, 2)
+            judgeWin = true
+            points = 2
+        } else {
+            // Group saw through it: +1 to target
+            addPoints(targetId, 1)
+            // All voters who correctly voted FAKE get +1
+            players.forEach { p ->
+                if (votesAB[p.id] == "FAKE") {
+                    addPoints(p.id, 1)
+                }
+            }
+        }
+    }
+
+    /**
+     * Text Thread Trap (Game 7) - HDRealRules.md compliant
+     * Scoring:
+     * - Success (Majority Vote): +2 Points
+     * - Failure (Breaking Character): -1 Point
+     * - Room Heat Bonus: +1 for perfect improvisation
+     */
+    private fun resolveTextThreadTrap() {
+        val successVotes = votesAB.values.count { it == "SUCCESS" || it == "A" }
+        val failureVotes = votesAB.values.count { it == "FAILURE" || it == "B" }
+        val totalVotes = votesAB.size
+        
+        if (successVotes > failureVotes) {
+            // Success: +2 points
+            var pointsToAward = 2
+            
+            // Room Heat Bonus: if everyone voted success (perfect improvisation)
+            if (successVotes == totalVotes && totalVotes > 0) {
+                pointsToAward += 1
+            }
+            
+            awardActive(pointsToAward)
+            judgeWin = true
+            points = pointsToAward
+        } else {
+            // Failure: -1 point penalty
+            awardActive(-1)
+            points = -1
+        }
+    }
+
+    /**
+     * Taboo Timer (Game 8) - HDRealRules.md compliant
+     * Scoring:
+     * - +2 per successful guess (within 60 seconds)
+     * - -1 for each forbidden word spoken
+     * - Bonus: +1 if team guesses 5+ words in one round
+     */
+    private fun resolveTabooTimer() {
+        var totalPoints = 0
+        
+        // +2 per successful guess
+        totalPoints += tabooSuccessfulGuesses * 2
+        
+        // -1 per forbidden word
+        totalPoints -= tabooForbiddenWordCount
+        
+        // Bonus if 5+ words guessed
+        if (tabooSuccessfulGuesses >= 5) {
+            totalPoints += 1
+        }
+        
+        if (totalPoints > 0) {
+            awardActive(totalPoints)
+            judgeWin = true
+            points = totalPoints
+        } else if (totalPoints < 0) {
+            awardActive(totalPoints)
+            points = totalPoints
+        }
+    }
+
+    /**
+     * The Unifying Theory (Game 9) - HDRealRules.md compliant
+     * Scoring:
+     * - +2 for most convincing/hilarious theory
+     * - -1 for stating fact that only applies to two items
+     */
+    private fun resolveUnifyingTheory() {
+        val successVotes = votesAB.values.count { it == "SUCCESS" || it == "A" }
+        val failureVotes = votesAB.values.count { it == "FAILURE" || it == "B" }
+        
+        if (successVotes > failureVotes) {
+            // Theory holds water: +2 points
+            awardActive(2)
+            judgeWin = true
+            points = 2
+        } else {
+            // Theory failed (or only applies to 2 items): -1 penalty
+            awardActive(-1)
+            points = -1
+        }
+    }
+
+    /**
+     * Title Fight (Game 10) - HDRealRules.md compliant
+     * Scoring:
+     * - Winner: +1 Point
+     * - Loser: -1 Point (and penalty/drink)
+     */
+    private fun resolveTitleFight() {
+        val challengerId = titleFightChallengerId ?: return
+        val winnerId = titleFightWinnerId ?: return
+        val ap = activePlayer() ?: return
+        
+        // Winner gets +1
+        addPoints(winnerId, 1)
+        
+        // Loser gets -1
+        val loserId = if (winnerId == ap.id) challengerId else ap.id
+        addPoints(loserId, -1)
+        
+        if (winnerId == ap.id) {
+            judgeWin = true
+            points = 1
+        }
+    }
+
+    /**
+     * Alibi Drop (Game 11) - HDRealRules.md compliant
+     * Scoring:
+     * - Innocent (Success): +2 Points (good story AND group failed to guess words)
+     * - Guilty (Failure): -1 Point (bad story OR group caught words)
+     */
+    private fun resolveAlibiDrop() {
+        val believable = alibiStoryBelievable ?: false
+        val wordsDetectedCount = alibiWordsDetected.size
+        val mandatoryWordsCount = alibiMandatoryWords.size
+        
+        // Success requires: believable story AND group didn't catch all mandatory words
+        val innocent = believable && wordsDetectedCount < mandatoryWordsCount
+        
+        if (innocent) {
+            // Innocent: +2 points
+            awardActive(2)
+            judgeWin = true
+            points = 2
+        } else {
+            // Guilty: -1 penalty
+            awardActive(-1)
+            points = -1
+        }
+    }
+
+    /**
+     * Reality Check (Game 12) - HDRealRules.md compliant
+     * Scoring:
+     * - Self-Aware (Gap 0-1): +2 Points
+     * - Delusional (Ego Higher): Roasted + Drink (0 points)
+     * - The Fisher (Ego Lower): Booed + Drink (0 points)
+     * - Critical Delusion (Gap 6+): Must finish drink
+     */
+    private fun resolveRealityCheck() {
+        val egoRating = realityCheckEgoRating ?: return
+        val groupRating = realityCheckGroupRating ?: return
+        val gap = kotlin.math.abs(egoRating - groupRating)
+        
+        when {
+            gap <= 1 -> {
+                // Self-aware: +2 points
+                awardActive(2)
+                judgeWin = true
+                points = 2
+            }
+            gap >= 6 -> {
+                // Critical delusion: must finish drink, 0 points
+                judgeWin = false
+                points = 0
+            }
+            else -> {
+                // Delusional or Fisher: roasted/booed, 0 points
+                judgeWin = false
+                points = 0
+            }
+        }
+    }
+
+    /**
+     * Scatterblast (Game 13) - HDRealRules.md compliant
+     * Scoring:
+     * - The Casualty: Penalty (whoever's turn when bomb explodes)
+     * - The Survivors: Safe (0 points change)
+     */
+    private fun resolveScatterblast() {
+        val victimId = scatterblastVictimId
+        if (victimId != null) {
+            // Victim takes penalty (no points awarded, just marked for penalty)
+            judgeWin = false
+            points = 0
         }
     }
 
@@ -847,12 +1265,8 @@ class GameNightViewModel : ViewModel() {
 
     suspend fun commitFeedbackAndNext() {
         val card = currentCard ?: return
-        val latency = (System.currentTimeMillis() - t0).toInt()
 
         val laughsScore = Rewards.fromCounts(lol, meh, trash)
-        val responseTimeMs = System.currentTimeMillis() - t0
-        val heatPercentage = (lol + trash).toDouble() / (lol + meh + trash).coerceAtLeast(1).toDouble()
-        val winnerId = if (judgeWin) activePlayer()?.id else null
 
         try {
             if (!isInitialized) {

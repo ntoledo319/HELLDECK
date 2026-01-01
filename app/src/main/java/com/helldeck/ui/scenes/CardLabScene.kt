@@ -213,7 +213,7 @@ fun CardLabScene(onClose: () -> Unit) {
                         onClick = {
                             banlist = CardLabBanlist()
                             CardLabBanlist.save(AppCtx.ctx, banlist)
-                            ContentEngineProvider.updateBanlist(AppCtx.ctx, banlist)
+                            ContentEngineProvider.updateBanlist(banlist)
                         },
                         label = { Text("Clear Bans ($bannedCount)") },
                     )
@@ -449,10 +449,10 @@ fun CardLabScene(onClose: () -> Unit) {
                                                 TextButton(
                                                     onClick = {
                                                         banlist = banlist.withBannedLexiconItem(slotType, v)
-                                                        CardLabBanlist.save(AppCtx.ctx, banlist)
-                                                        ContentEngineProvider.updateBanlist(AppCtx.ctx, banlist)
-                                                    },
-                                                    contentPadding = PaddingValues(4.dp),
+                                                    CardLabBanlist.save(AppCtx.ctx, banlist)
+                                                    ContentEngineProvider.updateBanlist(banlist)
+                                                },
+                                                contentPadding = PaddingValues(4.dp),
                                                 ) {
                                                     Text("🚫 Ban", style = MaterialTheme.typography.labelSmall)
                                                 }
@@ -519,7 +519,7 @@ fun CardLabScene(onClose: () -> Unit) {
                                                 onClick = {
                                                     banlist = banlist.withBannedBlueprint(bpId)
                                                     CardLabBanlist.save(AppCtx.ctx, banlist)
-                                                    ContentEngineProvider.updateBanlist(AppCtx.ctx, banlist)
+                                                    ContentEngineProvider.updateBanlist(banlist)
                                                 },
                                                 contentPadding = PaddingValues(4.dp),
                                             ) {

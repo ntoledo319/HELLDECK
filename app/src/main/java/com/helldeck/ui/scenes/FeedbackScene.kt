@@ -1,6 +1,7 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -11,6 +12,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
@@ -30,7 +33,6 @@ import kotlinx.coroutines.launch
 fun FeedbackScene(vm: HelldeckVm) {
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-    val repo = remember { ContentRepository(AppCtx.ctx) }
     val hapticsEnabled = Config.hapticsEnabled
     val roundState = vm.roundState
 
@@ -126,21 +128,30 @@ fun FeedbackScene(vm: HelldeckVm) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             CardFace(
-                title = roundState?.filledCard?.text ?: (vm.currentCard?.text ?: "Rate that card"),
-                subtitle = "Everyone taps once: LOL / MEH / TRASH",
+                title = roundState?.filledCard?.text ?: (vm.currentCard?.text ?: "How was that?"),
+                subtitle = "Did that card land? Was it funny or trash?",
+                stakesLabel = "Your ratings train the AI • Help make the game better",
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
                     .padding(HelldeckSpacing.Medium.dp),
             )
 
-            // Optional rating buttons (non-blocking)
-            Text(
-                text = "Rate this card (optional)",
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(bottom = 8.dp),
-            )
+            // Rating prompt with social context
+            Surface(
+                shape = RoundedCornerShape(HelldeckRadius.Medium),
+                color = HelldeckColors.colorSecondary.copy(alpha = 0.12f),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = HelldeckSpacing.Large.dp),
+            ) {
+                Text(
+                    text = "💬 Quick rating (helps train the AI)",
+                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                    color = HelldeckColors.colorOnDark,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(10.dp),
+                )
+            }
+            Spacer(modifier = Modifier.height(8.dp))
 
             RatingRail(
                 onLol = {
@@ -165,17 +176,19 @@ fun FeedbackScene(vm: HelldeckVm) {
 
             // Undo button (appears after rating)
             if (vm.canUndoFeedback) {
-                TextButton(
+                OutlinedButton(
                     onClick = {
                         vm.undoLastRating()
                         GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
                     },
-                    modifier = Modifier.padding(top = 4.dp),
+                    modifier = Modifier.padding(top = 8.dp),
+                    shape = RoundedCornerShape(HelldeckRadius.Medium),
+                    border = BorderStroke(1.dp, HelldeckColors.colorMuted),
                 ) {
                     Text(
-                        text = "↶ UNDO LAST RATING",
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.primary,
+                        text = "↶ UNDO",
+                        style = MaterialTheme.typography.labelMedium,
+                        color = HelldeckColors.colorOnDark,
                     )
                 }
             }
@@ -235,13 +248,19 @@ fun FeedbackScene(vm: HelldeckVm) {
                 }
             }
 
-            // Small hint text
-            Text(
-                text = "Auto-advancing in ${secondsRemaining}s • Tap SKIP to go faster",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            // Auto-advance hint with clear timing
+            Surface(
+                shape = RoundedCornerShape(HelldeckRadius.Small),
+                color = HelldeckColors.surfaceElevated.copy(alpha = 0.5f),
                 modifier = Modifier.padding(top = 8.dp),
-            )
+            ) {
+                Text(
+                    text = if (secondsRemaining > 0) "⏱️ Auto-advancing in ${secondsRemaining}s" else "⏱️ Moving on...",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = HelldeckColors.colorMuted,
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                )
+            }
         }
     }
 }

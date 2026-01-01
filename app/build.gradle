@@ -53,6 +53,28 @@ android {
     }
   }
 
+  // signingConfigs MUST be defined before buildTypes references them
+  signingConfigs {
+    debug {
+      storeFile file('debug.keystore')
+      storePassword 'android'
+      keyAlias 'androiddebugkey'
+      keyPassword 'android'
+    }
+    release {
+      // Production signing configuration
+      // These should be configured via environment variables or gradle.properties
+      storeFile file(System.getenv('KEYSTORE_PATH') ?: 'release.keystore')
+      storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'default_password'
+      keyAlias System.getenv('KEY_ALIAS') ?: 'helldeck'
+      keyPassword System.getenv('KEY_PASSWORD') ?: 'default_password'
+
+      // Enable v1 and v2 signing
+      v1SigningEnabled true
+      v2SigningEnabled true
+    }
+  }
+
   buildTypes {
     release {
       minifyEnabled true
@@ -74,27 +96,6 @@ android {
 
       // Use debug signing for development
       signingConfig signingConfigs.debug
-    }
-  }
-
-  signingConfigs {
-    debug {
-      storeFile file('debug.keystore')
-      storePassword 'android'
-      keyAlias 'androiddebugkey'
-      keyPassword 'android'
-    }
-    release {
-      // Production signing configuration
-      // These should be configured via environment variables or gradle.properties
-      storeFile file(System.getenv('KEYSTORE_PATH') ?: 'release.keystore')
-      storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'default_password'
-      keyAlias System.getenv('KEY_ALIAS') ?: 'helldeck'
-      keyPassword System.getenv('KEY_PASSWORD') ?: 'default_password'
-
-      // Enable v1 and v2 signing
-      v1SigningEnabled true
-      v2SigningEnabled true
     }
   }
 

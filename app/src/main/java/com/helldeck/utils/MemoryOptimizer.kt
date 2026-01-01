@@ -12,8 +12,8 @@ import java.util.concurrent.ConcurrentHashMap
  */
 object MemoryOptimizer {
 
-    private lateinit var context: Context
-    private lateinit var memoryInfo: ActivityManager.MemoryInfo
+    private var context: Context? = null
+    private var memoryInfo: ActivityManager.MemoryInfo? = null
     private var memoryWatchers = ConcurrentHashMap<String, MemoryWatcher>()
     private var optimizationLevel = MemoryStrategy.MODERATE
 
@@ -35,19 +35,20 @@ object MemoryOptimizer {
 
     fun initialize(ctx: Context) {
         context = ctx.applicationContext
-        memoryInfo = ActivityManager.MemoryInfo()
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        activityManager.getMemoryInfo(memoryInfo)
+        val mi = ActivityManager.MemoryInfo()
+        val activityManager = context!!.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        activityManager.getMemoryInfo(mi)
+        memoryInfo = mi
 
         // Set optimization level based on available memory
         optimizationLevel = when {
-            memoryInfo.totalMem < 1024 * 1024 * 1024L -> MemoryStrategy.AGGRESSIVE // <1GB
-            memoryInfo.totalMem < 2L * 1024 * 1024 * 1024L -> MemoryStrategy.MODERATE // 1-2GB
+            mi.totalMem < 1024 * 1024 * 1024L -> MemoryStrategy.AGGRESSIVE // <1GB
+            mi.totalMem < 2L * 1024 * 1024 * 1024L -> MemoryStrategy.MODERATE // 1-2GB
             else -> MemoryStrategy.CONSERVATIVE // >2GB
         }
 
         Logger.i(
-            "MemoryOptimizer initialized with level: $optimizationLevel, Total RAM: ${memoryInfo.totalMem / 1024 / 1024}MB",
+            "MemoryOptimizer initialized with level: $optimizationLevel, Total RAM: ${mi.totalMem / 1024 / 1024}MB",
         )
     }
 
@@ -69,18 +70,21 @@ object MemoryOptimizer {
      * Check current memory status and trigger optimizations if needed
      */
     fun checkMemoryStatus(): MemoryStatus {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        activityManager.getMemoryInfo(memoryInfo)
+        val ctx = context ?: return MemoryStatus.NORMAL
+        val mi = memoryInfo ?: ActivityManager.MemoryInfo()
+        val activityManager = ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        activityManager.getMemoryInfo(mi)
+        memoryInfo = mi
 
         val status = when {
-            memoryInfo.availMem < CRITICAL_MEMORY_THRESHOLD -> MemoryStatus.CRITICAL
-            memoryInfo.availMem < LOW_MEMORY_THRESHOLD -> MemoryStatus.LOW
-            memoryInfo.availMem < MODERATE_MEMORY_THRESHOLD -> MemoryStatus.MODERATE
+            mi.availMem < CRITICAL_MEMORY_THRESHOLD -> MemoryStatus.CRITICAL
+            mi.availMem < LOW_MEMORY_THRESHOLD -> MemoryStatus.LOW
+            mi.availMem < MODERATE_MEMORY_THRESHOLD -> MemoryStatus.MODERATE
             else -> MemoryStatus.NORMAL
         }
 
         if (status != MemoryStatus.NORMAL) {
-            triggerMemoryOptimization(status)
+            triggerMemoryOptimization(status, mi)
         }
 
         return status
@@ -89,8 +93,8 @@ object MemoryOptimizer {
     /**
      * Trigger memory optimization based on current status
      */
-    private fun triggerMemoryOptimization(status: MemoryStatus) {
-        Logger.w("Memory status: $status, Available: ${memoryInfo.availMem / 1024 / 1024}MB")
+    private fun triggerMemoryOptimization(status: MemoryStatus, mi: ActivityManager.MemoryInfo) {
+        Logger.w("Memory status: $status, Available: ${mi.availMem / 1024 / 1024}MB")
 
         when (status) {
             MemoryStatus.CRITICAL -> {
@@ -129,9 +133,10 @@ object MemoryOptimizer {
 
         // Clear background processes if possible
         try {
-            val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val ctx = context ?: return
+            val activityManager = ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                activityManager.killBackgroundProcesses(context.packageName)
+                activityManager.killBackgroundProcesses(ctx.packageName)
             }
         } catch (e: Exception) {
             Logger.e("Failed to kill background processes", e)
@@ -246,15 +251,16 @@ object MemoryOptimizer {
      * Get current memory usage information
      */
     fun getMemoryInfo(): MemoryInfo {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val memoryInfo = ActivityManager.MemoryInfo()
-        activityManager.getMemoryInfo(memoryInfo)
+        val ctx = context ?: return MemoryInfo(0, 0, 0, false)
+        val activityManager = ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val mi = ActivityManager.MemoryInfo()
+        activityManager.getMemoryInfo(mi)
 
         return MemoryInfo(
-            totalMemoryMB = memoryInfo.totalMem / 1024 / 1024,
-            availableMemoryMB = memoryInfo.availMem / 1024 / 1024,
-            thresholdMB = memoryInfo.threshold / 1024 / 1024,
-            isLowMemory = memoryInfo.lowMemory,
+            totalMemoryMB = mi.totalMem / 1024 / 1024,
+            availableMemoryMB = mi.availMem / 1024 / 1024,
+            thresholdMB = mi.threshold / 1024 / 1024,
+            isLowMemory = mi.lowMemory,
         )
     }
 
@@ -286,6 +292,7 @@ object MemoryOptimizer {
     /**
      * Monitor memory usage periodically
      */
+    @OptIn(kotlinx.coroutines.DelicateCoroutinesApi::class)
     fun startMemoryMonitoring(intervalMs: Long = 30000L) { // Check every 30 seconds
         kotlinx.coroutines.GlobalScope.launch {
             while (true) {
@@ -506,9 +513,11 @@ object MemoryTracker {
     }
 
     fun trackDeallocation(component: String, size: Long) {
-        allocations[component] = allocations.getOrDefault(component, 0L) - size
-        if (allocations[component]!! <= 0) {
+        val newValue = allocations.getOrDefault(component, 0L) - size
+        if (newValue <= 0) {
             allocations.remove(component)
+        } else {
+            allocations[component] = newValue
         }
     }
 

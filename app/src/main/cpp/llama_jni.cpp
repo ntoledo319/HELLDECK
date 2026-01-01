@@ -35,7 +35,7 @@ Java_com_helldeck_llm_llamacpp_LlamaCppLLM_00024LlamaNativeBridge_nativeInit(
     LOGI("Initializing llama.cpp model: %s (ctx_size=%d)", path, contextSize);
     llama_backend_init();
     llama_model_params mparams = llama_model_default_params();
-    llama_model * model = llama_load_model_from_file(path, mparams);
+    llama_model * model = llama_model_load_from_file(path, mparams);
     env->ReleaseStringUTFChars(modelPath, path);
     if (!model) {
         LOGE("Failed to load model file");
@@ -43,10 +43,10 @@ Java_com_helldeck_llm_llamacpp_LlamaCppLLM_00024LlamaNativeBridge_nativeInit(
     }
     llama_context_params cparams = llama_context_default_params();
     cparams.n_ctx = contextSize > 0 ? contextSize : 2048;
-    llama_context * ctx = llama_new_context_with_model(model, cparams);
+    llama_context * ctx = llama_init_from_model(model, cparams);
     if (!ctx) {
         LOGE("Failed to create llama context");
-        llama_free_model(model);
+        llama_model_free(model);
         return 0L;
     }
     auto * holder = new llama_holder();
@@ -79,7 +79,7 @@ Java_com_helldeck_llm_llamacpp_LlamaCppLLM_00024LlamaNativeBridge_nativeGenerate
     const char *promptStr = env->GetStringUTFChars(prompt, nullptr);
     std::string result;
     // Reset KV cache for a fresh generation
-    llama_kv_cache_clear(holder->ctx);
+    llama_memory_clear(llama_get_memory(holder->ctx), true);
     std::string fullPrompt(promptStr);
     env->ReleaseStringUTFChars(prompt, promptStr);
 
@@ -87,7 +87,8 @@ Java_com_helldeck_llm_llamacpp_LlamaCppLLM_00024LlamaNativeBridge_nativeGenerate
     std::vector<llama_token> tokens;
     tokens.resize(fullPrompt.size() + 8);
     int add_bos = 1;
-    int n_toks = llama_tokenize(holder->model, fullPrompt.c_str(), tokens.data(), (int)tokens.size(), add_bos, true);
+    const struct llama_vocab * vocab = llama_model_get_vocab(holder->model);
+    int n_toks = llama_tokenize(vocab, fullPrompt.c_str(), fullPrompt.length(), tokens.data(), (int)tokens.size(), add_bos, true);
     if (n_toks < 0) n_toks = 0;
     tokens.resize((size_t)n_toks);
 
@@ -101,8 +102,8 @@ Java_com_helldeck_llm_llamacpp_LlamaCppLLM_00024LlamaNativeBridge_nativeGenerate
         }
     }
 
-    const int n_vocab = llama_n_vocab(holder->model);
-    const llama_token eos = llama_token_eos(holder->model);
+    const int n_vocab = llama_vocab_n_tokens(vocab);
+    const llama_token eos = llama_vocab_eos(vocab);
     int produced = 0;
     while (produced < maxTokens) {
         const float * logits = llama_get_logits(holder->ctx);
@@ -117,7 +118,7 @@ Java_com_helldeck_llm_llamacpp_LlamaCppLLM_00024LlamaNativeBridge_nativeGenerate
         if (best_id == eos) break;
         // Convert token to piece
         char buf[512];
-        int n = (int) llama_token_to_piece(holder->model, best_id, buf, sizeof(buf), true);
+        int n = (int) llama_token_to_piece(vocab, best_id, buf, sizeof(buf), 0, true);
         if (n > 0) result.append(buf, (size_t) n);
         // Decode the newly generated token
         llama_token tok = (llama_token) best_id;
@@ -146,7 +147,7 @@ Java_com_helldeck_llm_llamacpp_LlamaCppLLM_00024LlamaNativeBridge_nativeFree(
     auto * holder = reinterpret_cast<llama_holder *>(modelHandle);
     if (holder) {
         if (holder->ctx) llama_free(holder->ctx);
-        if (holder->model) llama_free_model(holder->model);
+        if (holder->model) llama_model_free(holder->model);
         delete holder;
     }
     llama_backend_free();

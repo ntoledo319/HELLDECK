@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -48,10 +49,27 @@ fun AvatarVoteFlow(
             .padding(HelldeckSpacing.Medium.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(
-            text = "Voter: ${voter.name}",
-            style = MaterialTheme.typography.titleMedium,
-        )
+        Surface(
+            shape = RoundedCornerShape(HelldeckRadius.Medium),
+            color = HelldeckColors.colorPrimary.copy(alpha = 0.15f),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Column(
+                modifier = Modifier.padding(12.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Text(
+                    text = "${voter.avatar} ${voter.name}",
+                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                    color = HelldeckColors.colorPrimary,
+                )
+                Text(
+                    text = "Pick who gets roasted",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = HelldeckColors.colorMuted,
+                )
+            }
+        }
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
@@ -105,8 +123,17 @@ fun AvatarVoteFlow(
                     }
                     chosen = null
                 },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = HelldeckColors.colorPrimary,
+                    disabledContainerColor = HelldeckColors.colorMuted,
+                ),
+                modifier = Modifier.height(HelldeckHeights.Button.dp),
+                shape = RoundedCornerShape(HelldeckRadius.Pill),
             ) {
-                Text(if (idx < players.lastIndex) "Lock & Next" else "Finish Voting")
+                Text(
+                    text = if (idx < players.lastIndex) "✅ LOCK & NEXT" else "🎯 FINISH",
+                    style = MaterialTheme.typography.labelLarge,
+                )
             }
         }
     }
@@ -140,7 +167,19 @@ fun SingleAvatarPickFlow(
             .padding(HelldeckSpacing.Medium.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(title, style = MaterialTheme.typography.titleMedium)
+        Surface(
+            shape = RoundedCornerShape(HelldeckRadius.Medium),
+            color = HelldeckColors.colorSecondary.copy(alpha = 0.15f),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                color = HelldeckColors.colorOnDark,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(12.dp),
+            )
+        }
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
         androidx.compose.foundation.layout.FlowRow(
             modifier = Modifier.fillMaxWidth(),
@@ -160,9 +199,18 @@ fun SingleAvatarPickFlow(
         Button(
             enabled = chosen != null,
             onClick = { chosen?.let { onPick(it) } },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green),
-        ) { Text("Lock") }
+            modifier = Modifier.fillMaxWidth().height(HelldeckHeights.Button.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = HelldeckColors.colorPrimary,
+                disabledContainerColor = HelldeckColors.colorMuted,
+            ),
+            shape = RoundedCornerShape(HelldeckRadius.Pill),
+        ) {
+            Text(
+                text = "✅ LOCK IT IN",
+                style = MaterialTheme.typography.labelLarge,
+            )
+        }
     }
 }
 
@@ -179,16 +227,35 @@ fun OptionsPickFlow(
             .padding(HelldeckSpacing.Medium.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(title, style = MaterialTheme.typography.titleMedium)
+        Surface(
+            shape = RoundedCornerShape(HelldeckRadius.Medium),
+            color = HelldeckColors.colorAccentWarm.copy(alpha = 0.15f),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                color = HelldeckColors.colorOnDark,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(12.dp),
+            )
+        }
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
         options.forEach { opt ->
             Button(
                 onClick = { onPick(opt) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 2.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Orange),
-            ) { Text(opt) }
+                    .height(HelldeckHeights.Button.dp)
+                    .padding(vertical = 4.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.colorAccentWarm),
+                shape = RoundedCornerShape(HelldeckRadius.Medium),
+            ) {
+                Text(
+                    text = opt,
+                    style = MaterialTheme.typography.labelLarge,
+                )
+            }
         }
     }
 }

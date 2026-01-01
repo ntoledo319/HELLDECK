@@ -248,6 +248,8 @@ object HelldeckColors {
     val Green = colorSecondary
     val Orange = colorAccentWarm
     val Red = Error
+    val Blue = Color(0xFF4361EE) // Added for compatibility
+    val Purple = Color(0xFF7209B7) // Added for compatibility
 
     val Black = background
     val DarkGray = surfacePrimary

@@ -81,7 +81,7 @@ object ContentEngineProvider {
         val profanityList = runCatching {
             // Reuse generator's banned tokens/phrases for augmentation safety
             val text = context.assets.open("model/banned.json").bufferedReader().use { it.readText() }
-            val json = kotlinx.serialization.json.Json { ignoreUnknownKeys = true }
+            val json = Json { ignoreUnknownKeys = true }
             val node = json.parseToJsonElement(text).jsonObject
             val tokens = node["tokens"]?.jsonArray?.mapNotNull { it.toString().trim('"') } ?: emptyList()
             val phrases = node["phrases"]?.jsonArray?.mapNotNull { it.toString().trim('"') } ?: emptyList()
@@ -125,14 +125,15 @@ object ContentEngineProvider {
         // Seed selector priors from persisted stats for lasting quality
         runBlocking {
             try {
-                val stats = contentRepository.db.templateStatDao().getAll()
-                val priors = stats.associate { s ->
-                    // Alpha ~ successes, Beta ~ failures; add small prior to avoid zero
-                    val a = 1.0 + s.rewardSum
-                    val b = 1.0 + (s.visits - s.rewardSum).coerceAtLeast(0.0)
-                    s.templateId to (a to b)
+                contentRepository.db.templateStatDao().getAll().let { stats ->
+                    val priors = stats.associate { s ->
+                        // Alpha ~ successes, Beta ~ failures; add small prior to avoid zero
+                        val a = 1.0 + s.rewardSum
+                        val b = 1.0 + (s.visits - s.rewardSum).coerceAtLeast(0.0)
+                        s.templateId to (a to b)
+                    }
+                    if (priors.isNotEmpty()) selector.seed(priors)
                 }
-                if (priors.isNotEmpty()) selector.seed(priors)
             } catch (_: Exception) { /* ignore */ }
         }
 
@@ -195,7 +196,7 @@ object ContentEngineProvider {
         }
     }
 
-    fun updateBanlist(context: Context, banlist: CardLabBanlist) {
+    fun updateBanlist(banlist: CardLabBanlist) {
         cardGeneratorV3?.setBanlist(banlist)
     }
 

@@ -12,6 +12,8 @@ if(EXISTS ${CMAKE_SOURCE_DIR}/../third_party/llama.cpp)
         src/main/cpp/llama_jni.cpp
     )
     
+    target_compile_definitions(helldeck_llama PRIVATE HAVE_LLAMA_CPP=1)
+    
     target_include_directories(helldeck_llama PRIVATE
         ${CMAKE_SOURCE_DIR}/../third_party/llama.cpp
     )
