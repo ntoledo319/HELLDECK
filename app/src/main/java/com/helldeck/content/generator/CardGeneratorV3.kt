@@ -38,6 +38,8 @@ class CardGeneratorV3(
         this.banlist = banlist
     }
 
+    fun getBanlist(): CardLabBanlist? = banlist
+
     data class GenerationResult(
         val filledCard: FilledCard,
         val options: GameOptions,

@@ -3,6 +3,7 @@ package com.helldeck.ui.scenes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Row
@@ -129,34 +130,71 @@ fun HomeScene(vm: HelldeckVm) {
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
-            Column(
+            // Secondary actions grid
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
             ) {
-                SecondaryActionButton(
-                    icon = "🎮",
-                    title = "Mini Games",
-                    subtitle = "Pick a specific game",
-                    onClick = { showGamePicker = true },
-                )
-                SecondaryActionButton(
-                    icon = "🧠",
-                    title = "Crew Brain",
-                    subtitle = "Stats, highlights, and learning",
-                    onClick = { vm.navigateTo(Scene.STATS) },
-                )
-                SecondaryActionButton(
-                    icon = "🛟",
-                    title = "Safety & Filters",
-                    subtitle = "Chaos level, reduced motion, high contrast",
-                    onClick = { vm.navigateTo(Scene.SETTINGS) },
-                )
-                SecondaryActionButton(
-                    icon = "✏️",
-                    title = "Custom Cards",
-                    subtitle = "Create personalized cards for your group",
-                    onClick = { vm.navigateTo(Scene.CUSTOM_CARDS) },
-                )
+                Box(modifier = Modifier.weight(1f)) {
+                    SecondaryActionButton(
+                        icon = "🎲",
+                        title = "Mini Games",
+                        subtitle = "Quick party games",
+                        onClick = { showGamePicker = true },
+                    )
+                }
+                Box(modifier = Modifier.weight(1f)) {
+                    SecondaryActionButton(
+                        icon = "📖",
+                        title = "Game Rules",
+                        subtitle = "Learn how to play",
+                        onClick = { vm.navigateTo(Scene.FULL_RULES_BROWSER) },
+                    )
+                }
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+            ) {
+                Box(modifier = Modifier.weight(1f)) {
+                    SecondaryActionButton(
+                        icon = "📊",
+                        title = "Crew Brain",
+                        subtitle = "View statistics",
+                        onClick = { vm.navigateTo(Scene.STATS) },
+                    )
+                }
+                Box(modifier = Modifier.weight(1f)) {
+                    SecondaryActionButton(
+                        icon = "🛡️",
+                        title = "Safety",
+                        subtitle = "Settings & controls",
+                        onClick = { vm.navigateTo(Scene.SETTINGS) },
+                    )
+                }
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+            ) {
+                Box(modifier = Modifier.weight(1f)) {
+                    SecondaryActionButton(
+                        icon = "✨",
+                        title = "Custom Cards",
+                        subtitle = "Create your own",
+                        onClick = { vm.navigateTo(Scene.CUSTOM_CARDS) },
+                    )
+                }
+                Box(modifier = Modifier.weight(1f)) {
+                    SecondaryActionButton(
+                        icon = "⭐",
+                        title = "Favorites",
+                        subtitle = "Saved moments",
+                        onClick = { vm.navigateTo(Scene.FAVORITES) },
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.weight(1f))

@@ -19,12 +19,14 @@ import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.engine.Config
 import com.helldeck.engine.GameFeedback
+import com.helldeck.engine.GameMetadata
 import com.helldeck.engine.HapticEvent
 import com.helldeck.ui.CardFace
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckVm
+import com.helldeck.ui.components.ReportContentDialog
 import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.launch
 
@@ -39,23 +41,26 @@ fun FeedbackScene(vm: HelldeckVm) {
     // Auto-advance countdown (5 seconds)
     var secondsRemaining by remember { mutableStateOf(5) }
     var isAutoAdvancing by remember { mutableStateOf(true) }
+    var hasAdvanced by remember { mutableStateOf(false) }
 
     // Favorite state
     var isFavorited by remember { mutableStateOf(false) }
 
-    LaunchedEffect(roundState?.filledCard?.id ?: vm.currentCard?.id) {
+    LaunchedEffect(roundState?.filledCard?.id) {
         GameFeedback.triggerFeedback(context, HapticEvent.ROUND_END, useHaptics = hapticsEnabled)
         isFavorited = vm.isCurrentCardFavorited()
+        hasAdvanced = false // Reset guard on new card
     }
 
-    // Auto-advance timer
-    LaunchedEffect(isAutoAdvancing) {
-        if (isAutoAdvancing) {
+    // Auto-advance timer with guard against double-execution
+    LaunchedEffect(isAutoAdvancing, hasAdvanced) {
+        if (isAutoAdvancing && !hasAdvanced) {
             while (secondsRemaining > 0) {
                 kotlinx.coroutines.delay(1000)
                 secondsRemaining--
             }
-            if (secondsRemaining == 0) {
+            if (secondsRemaining == 0 && !hasAdvanced) {
+                hasAdvanced = true
                 vm.commitFeedbackAndNext()
             }
         }
@@ -76,8 +81,8 @@ fun FeedbackScene(vm: HelldeckVm) {
                     // Share card as image
                     IconButton(
                         onClick = {
-                            val card = vm.currentCard
-                            val game = vm.currentGame
+                            val card = roundState?.filledCard
+                            val game = roundState?.gameId?.let { GameMetadata.getGameMetadata(it) }
                             val player = vm.activePlayer()
                             if (card != null && game != null) {
                                 com.helldeck.utils.ShareUtils.shareCardAsImage(
@@ -128,7 +133,7 @@ fun FeedbackScene(vm: HelldeckVm) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             CardFace(
-                title = roundState?.filledCard?.text ?: (vm.currentCard?.text ?: "How was that?"),
+                title = roundState?.filledCard?.text ?: "How was that?",
                 subtitle = "Did that card land? Was it funny or trash?",
                 stakesLabel = "Your ratings train the AI • Help make the game better",
                 modifier = Modifier
@@ -193,7 +198,20 @@ fun FeedbackScene(vm: HelldeckVm) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+
+            TextButton(
+                onClick = { vm.openReportDialog() },
+                modifier = Modifier.align(Alignment.End),
+            ) {
+                Text(
+                    text = "🚩 Report Offensive Content",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HelldeckColors.LightGray.copy(alpha = 0.7f),
+                )
+            }
+
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
 
             // Replay button (if available)
             if (vm.canReplay()) {
@@ -222,20 +240,32 @@ fun FeedbackScene(vm: HelldeckVm) {
             ) {
                 // Skip button (instant advance)
                 OutlinedButton(
-                    onClick = { scope.launch { vm.commitFeedbackAndNext() } },
+                    onClick = {
+                        if (!hasAdvanced) {
+                            hasAdvanced = true
+                            scope.launch { vm.commitFeedbackAndNext() }
+                        }
+                    },
                     modifier = Modifier
                         .weight(1f)
                         .height(HelldeckHeights.Button.dp),
+                    enabled = !hasAdvanced,
                 ) {
                     Text(text = "SKIP", style = MaterialTheme.typography.labelLarge)
                 }
 
                 // Auto-advance countdown button
                 Button(
-                    onClick = { scope.launch { vm.commitFeedbackAndNext() } },
+                    onClick = {
+                        if (!hasAdvanced) {
+                            hasAdvanced = true
+                            scope.launch { vm.commitFeedbackAndNext() }
+                        }
+                    },
                     modifier = Modifier
                         .weight(1f)
                         .height(HelldeckHeights.Button.dp),
+                    enabled = !hasAdvanced,
                     colors = ButtonDefaults.buttonColors(
                         containerColor = HelldeckColors.colorSecondary,
                     ),
@@ -262,6 +292,14 @@ fun FeedbackScene(vm: HelldeckVm) {
                 )
             }
         }
+    }
+
+    if (vm.showReportDialog && roundState != null) {
+        ReportContentDialog(
+            cardText = roundState.filledCard.text,
+            onDismiss = { vm.closeReportDialog() },
+            onReport = { reason -> vm.reportOffensiveContent(reason) },
+        )
     }
 }
 

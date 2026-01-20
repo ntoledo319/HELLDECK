@@ -19,6 +19,7 @@ import com.helldeck.engine.HapticEvent
 import com.helldeck.engine.Interaction
 import com.helldeck.engine.InteractionType
 import com.helldeck.ui.*
+import com.helldeck.ui.components.ReportContentDialog
 import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.delay
 
@@ -27,7 +28,7 @@ import kotlinx.coroutines.delay
 fun RoundScene(vm: HelldeckVm) {
     val context = LocalContext.current
     val roundState = vm.roundState ?: return
-    val game = remember(roundState.gameId) { GameMetadata.getGameMetadata(roundState.gameId) } ?: vm.currentGame
+    val game = remember(roundState.gameId) { GameMetadata.getGameMetadata(roundState.gameId) }
 
     val hapticsEnabled = Config.hapticsEnabled
     var timerGateStarted by remember(roundState.filledCard.id) {
@@ -55,12 +56,12 @@ fun RoundScene(vm: HelldeckVm) {
 
     // Timer is authoritative, but some games (e.g., Taboo) require a manual start gate.
     val timerRunning = roundState.isTimerActive() && totalTimeMs > 0 && timerGateStarted
-    LaunchedEffect(totalTimeMs, roundState.filledCard.id, timerRunning) {
+    LaunchedEffect(totalTimeMs, roundState.filledCard.id, timerRunning, roundState.phase) {
         if (totalTimeMs <= 0) return@LaunchedEffect
         if (!timerRunning) return@LaunchedEffect
 
         timeRemainingMs = totalTimeMs
-        while (timeRemainingMs > 0 && timerRunning) {
+        while (timeRemainingMs > 0) {
             delay(1000)
             timeRemainingMs = (timeRemainingMs - 1000).coerceAtLeast(0)
             val progress = timeRemainingMs.toFloat() / totalTimeMs.toFloat()
@@ -191,14 +192,14 @@ fun RoundScene(vm: HelldeckVm) {
                     com.helldeck.engine.GameIds.RED_FLAG -> "Win vote: +2pts • Lose: Penalty"
                     com.helldeck.engine.GameIds.HOTSEAT_IMP -> "Fool them: +2pts • Catch them: +1pt"
                     com.helldeck.engine.GameIds.TEXT_TRAP -> "Nail the vibe: +2pts"
-                    com.helldeck.engine.GameIds.TABOO -> "+2 per word • -1 per forbidden"
-                    com.helldeck.engine.GameIds.UNIFYING_THEORY -> "Best theory: +2pts"
+                    com.helldeck.engine.GameIds.TABOO -> "+2 per word • -1 per forbidden • 5+ bonus: +1"
+                    com.helldeck.engine.GameIds.UNIFYING_THEORY -> "Best theory: +2pts • Weak theory: -1pt"
                     com.helldeck.engine.GameIds.TITLE_FIGHT -> "Winner: +1pt • Loser: -1pt"
                     com.helldeck.engine.GameIds.ALIBI -> "Innocent: +2pts • Caught: -1pt"
-                    com.helldeck.engine.GameIds.REALITY_CHECK -> "Self-aware: +2pts • Delusional: Drink"
-                    com.helldeck.engine.GameIds.SCATTER -> "Last standing survives"
-                    com.helldeck.engine.GameIds.OVER_UNDER -> "Right bet: +1pt • Subject gets points"
-                    else -> null
+                    com.helldeck.engine.GameIds.REALITY_CHECK -> "Self-aware (gap 0-1): +2pts • Delusional: 0pts"
+                    com.helldeck.engine.GameIds.SCATTER -> "Last one standing survives • Others: elimination"
+                    com.helldeck.engine.GameIds.OVER_UNDER -> "Correct bet: +1pt • Subject gets wrong guesses"
+                    else -> "Winner earns points • Everyone else: watch and laugh"
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -206,6 +207,19 @@ fun RoundScene(vm: HelldeckVm) {
                 backgroundColor = HelldeckColors.surfacePrimary,
                 borderColor = HelldeckColors.colorPrimary,
             )
+
+            TextButton(
+                onClick = { vm.openReportDialog() },
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(vertical = HelldeckSpacing.Small.dp),
+            ) {
+                Text(
+                    text = "🚩 Report Offensive Content",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HelldeckColors.LightGray.copy(alpha = 0.7f),
+                )
+            }
 
             // Interaction controls only during INPUT to keep the mental model stable.
             if (roundState.phase == com.helldeck.ui.state.RoundPhase.INPUT) {
@@ -215,7 +229,7 @@ fun RoundScene(vm: HelldeckVm) {
                         players = vm.activePlayers,
                         onVote = vm::onAvatarVote,
                         onDone = { vm.resolveInteraction() },
-                        onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
+                        onManagePlayers = { vm.navigateTo(Scene.PLAYERS) },
                     )
                     Interaction.AB_VOTE -> {
                         val abOptions = (roundState.options as? GameOptions.AB)
@@ -248,7 +262,7 @@ fun RoundScene(vm: HelldeckVm) {
                         rightLabel = "F",
                         onVote = vm::onABVote,
                         onDone = { vm.resolveInteraction() },
-                        onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
+                        onManagePlayers = { vm.navigateTo(Scene.PLAYERS) },
                     )
                     Interaction.SMASH_PASS -> {
                         val abOptions = (roundState.options as? GameOptions.AB)
@@ -276,7 +290,7 @@ fun RoundScene(vm: HelldeckVm) {
                             players = vm.activePlayers,
                             title = targetLabel,
                             onPick = { _ -> vm.goToFeedbackNoPoints() },
-                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
+                            onManagePlayers = { vm.navigateTo(Scene.PLAYERS) },
                         )
                     }
                     Interaction.DUEL -> OptionsPickFlow(
@@ -375,5 +389,13 @@ fun RoundScene(vm: HelldeckVm) {
                 }
             }
         }
+    }
+
+    if (vm.showReportDialog) {
+        ReportContentDialog(
+            cardText = roundState.filledCard.text,
+            onDismiss = { vm.closeReportDialog() },
+            onReport = { reason -> vm.reportOffensiveContent(reason) },
+        )
     }
 }

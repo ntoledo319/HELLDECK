@@ -15,6 +15,8 @@ import com.helldeck.content.model.GameOptions
 import com.helldeck.content.model.Player
 import com.helldeck.content.quality.Rating
 import com.helldeck.content.quality.Rewards
+import com.helldeck.content.reporting.ContentReport
+import com.helldeck.content.reporting.ContentReportStore
 import com.helldeck.data.PlayerEntity
 import com.helldeck.data.computePlayerProfiles
 import com.helldeck.data.toPlayer
@@ -49,7 +51,7 @@ class GameNightViewModel : ViewModel() {
     var isLoading by mutableStateOf(true)
     var selectedPlayerId by mutableStateOf<String?>(null)
     var selectedGameId by mutableStateOf<String?>(null)
-    private val navStack = mutableListOf<Scene>()
+    private val navStack = ArrayDeque<Scene>(10) // Bounded to 10 scenes max to prevent memory leak
 
     // ========== GAME CONFIGURATION ==========
     var spicy by mutableStateOf(false)
@@ -77,11 +79,6 @@ class GameNightViewModel : ViewModel() {
 
     // ========== ROUND STATE (AUTHORITATIVE) ==========
     var roundState by mutableStateOf<RoundState?>(null)
-
-    // Legacy fields (kept for backward compatibility during transition)
-    var currentCard by mutableStateOf<FilledCard?>(null)
-    var currentGame by mutableStateOf<GameInfo?>(null)
-    var phase by mutableStateOf(RoundPhase.INTRO)
 
     // Last card for replay functionality
     private var lastCard: FilledCard? = null
@@ -161,6 +158,10 @@ class GameNightViewModel : ViewModel() {
     var crewBrains by mutableStateOf<List<CrewBrain>>(emptyList())
     var activeCrewBrainId by mutableStateOf<String?>(null)
 
+    // ========== CONTENT REPORTING ==========
+    var showReportDialog by mutableStateOf(false)
+    private var reportStore: ContentReportStore = ContentReportStore()
+
     private suspend fun buildCoreSystems() {
         val context = AppCtx.ctx
         repo = ContentRepository(context)
@@ -192,6 +193,10 @@ class GameNightViewModel : ViewModel() {
             val soundEnabled = com.helldeck.settings.SettingsStore.readSoundEnabled()
             val soundManager = com.helldeck.audio.SoundManager.get(context)
             soundManager.enabled = soundEnabled
+
+            // Load content reports
+            reportStore = ContentReportStore.load(context)
+            com.helldeck.utils.Logger.i("Loaded ${reportStore.getReportCount()} content reports")
 
             // Load initial data
             reloadPlayers()
@@ -283,8 +288,6 @@ class GameNightViewModel : ViewModel() {
             isInitialized = true
 
             roundState = null
-            currentCard = null
-            currentGame = null
             preChoice = null
             votesAvatar = emptyMap()
             votesAB = emptyMap()
@@ -319,13 +322,16 @@ class GameNightViewModel : ViewModel() {
     }
 
     fun openRulesForCurrentGame() {
-        selectedGameId = currentGame?.id
+        selectedGameId = roundState?.gameId
         navigateTo(Scene.GAME_RULES)
     }
 
     fun navigateTo(target: Scene) {
         if (target != scene) {
-            navStack.add(scene)
+            if (navStack.size >= 10) {
+                navStack.removeFirst() // Remove oldest if at capacity
+            }
+            navStack.addLast(scene)
             scene = target
         }
     }
@@ -334,7 +340,7 @@ class GameNightViewModel : ViewModel() {
 
     fun goBack() {
         if (navStack.isNotEmpty()) {
-            scene = navStack.removeAt(navStack.lastIndex)
+            scene = navStack.removeLast()
         } else {
             scene = Scene.HOME
         }
@@ -420,13 +426,11 @@ class GameNightViewModel : ViewModel() {
         }
 
         scene = Scene.ROUND
-        phase = RoundPhase.INTRO
-
         Config.spicyMode = _spiceLevel.value >= 3
 
         // Pick next game (random or selected)
         val nextGame = gameId ?: pickNextGame()
-        currentGame = GameMetadata.getGameMetadata(nextGame)
+        val currentGameMeta = GameMetadata.getGameMetadata(nextGame)
 
         // Pick starter if not already picked
         if (!starterPicked) {
@@ -436,7 +440,7 @@ class GameNightViewModel : ViewModel() {
 
         // Generate card
         val playersList = activePlayers.map { it.name }
-        val targetPlayerId = if (currentGame?.interaction == Interaction.TARGET_PICK) {
+        val targetPlayerId = if (currentGameMeta?.interaction == Interaction.TARGET_PICK) {
             activePlayers.randomOrNull()?.id
         } else {
             null
@@ -454,6 +458,8 @@ class GameNightViewModel : ViewModel() {
 
         try {
             // Create request for card generation
+            val gameMeta = GameMetadata.getGameMetadata(nextGame)
+
             val request = GameEngine.Request(
                 gameId = nextGame,
                 sessionId = sessionId,
@@ -468,18 +474,8 @@ class GameNightViewModel : ViewModel() {
                 cardBuffer.start(request)
             }
 
-            // Get card from buffer (instant if buffer ready, otherwise generates on-demand)
+            // Get card from buffer
             val gameResult = cardBuffer.getNext()
-
-            // Safety check: ensure we have valid game result
-            if (gameResult.filledCard.text.isBlank()) {
-                com.helldeck.utils.Logger.w("Received empty card, retrying...")
-                // Fallback: try again or use gold card
-                val fallbackResult = cardBuffer.getNext()
-                if (fallbackResult.filledCard.text.isBlank()) {
-                    throw IllegalStateException("Failed to generate valid card")
-                }
-            }
 
             // Create authoritative RoundState from engine result
             roundState = RoundState(
@@ -489,21 +485,19 @@ class GameNightViewModel : ViewModel() {
                 timerSec = gameResult.timer,
                 interactionType = gameResult.interactionType,
                 activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
-                judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
+                judgePlayerIndex = if (gameMeta?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
                     (turnIdx + 1) % activePlayers.size
                 } else {
                     null
                 },
-                targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK && targetPlayerId != null) {
-                    activePlayers.indexOfFirst { it.id == targetPlayerId }.takeIf { it >= 0 }
+                targetPlayerIndex = if (gameMeta?.interaction == Interaction.TARGET_PICK) {
+                    activePlayers.randomOrNull()?.let { activePlayers.indexOf(it) }?.takeIf { it >= 0 }
                 } else {
                     null
                 },
                 phase = com.helldeck.ui.state.RoundPhase.INTRO,
                 sessionId = sessionId,
             )
-
-            currentCard = gameResult.filledCard
 
             // Save for replay
             lastCard = gameResult.filledCard
@@ -731,7 +725,7 @@ class GameNightViewModel : ViewModel() {
 
     fun resolveInteraction() {
         val state = roundState
-        val gameId = currentGame?.id
+        val gameId = state?.gameId
         
         if (state != null) {
             when (state.interactionType) {
@@ -766,7 +760,8 @@ class GameNightViewModel : ViewModel() {
                 }
             }
         } else {
-            val game = currentGame ?: return
+            val r = roundState ?: return
+            val game = GameMetadata.getGameMetadata(r.gameId) ?: return
             when (game.interaction) {
                 Interaction.VOTE_AVATAR -> resolveRoastConsensus()
                 Interaction.TRUE_FALSE -> resolveConfession()
@@ -799,7 +794,7 @@ class GameNightViewModel : ViewModel() {
             }
         }
 
-        phase = RoundPhase.FEEDBACK
+        roundState = roundState?.copy(phase = RoundPhase.FEEDBACK)
         scene = Scene.FEEDBACK
     }
 
@@ -880,7 +875,7 @@ class GameNightViewModel : ViewModel() {
         }
 
         val ap = activePlayer() ?: return
-        val currentGameId = currentGame?.id
+        val currentGameId = roundState?.gameId
 
         when (currentGameId) {
             GameIds.POISON_PITCH -> {
@@ -1182,15 +1177,14 @@ class GameNightViewModel : ViewModel() {
     fun goToFeedbackNoPoints() {
         judgeWin = false
         points = 0
-        phase = RoundPhase.FEEDBACK
         scene = Scene.FEEDBACK
     }
 
     fun commitDirectWin(pts: Int = Config.current.scoring.win) {
         awardActive(pts)
-        judgeWin = true
-        points = pts
-        phase = RoundPhase.FEEDBACK
+        judgeWin = false
+        points = 0
+        roundState = roundState?.copy(phase = RoundPhase.FEEDBACK)
         scene = Scene.FEEDBACK
     }
 
@@ -1264,7 +1258,7 @@ class GameNightViewModel : ViewModel() {
     }
 
     suspend fun commitFeedbackAndNext() {
-        val card = currentCard ?: return
+        val card = roundState?.filledCard ?: return
 
         val laughsScore = Rewards.fromCounts(lol, meh, trash)
 
@@ -1300,7 +1294,7 @@ class GameNightViewModel : ViewModel() {
 
         // Track milestones
         totalRoundsThisSession++
-        currentGame?.id?.let { gamesPlayedThisSession.add(it) }
+        roundState?.gameId?.let { gamesPlayedThisSession.add(it) }
 
         // Update win streak
         if (judgeWin && points > 0) {
@@ -1361,8 +1355,8 @@ class GameNightViewModel : ViewModel() {
      * Returns true if favorited, false if unfavorited.
      */
     suspend fun toggleFavorite(): Boolean {
-        val card = currentCard ?: return false
-        val game = currentGame ?: return false
+        val card = roundState?.filledCard ?: return false
+        val game = GameMetadata.getGameMetadata(roundState?.gameId ?: return false) ?: return false
         val player = activePlayer()
 
         return try {
@@ -1399,7 +1393,7 @@ class GameNightViewModel : ViewModel() {
      * Checks if the current card is favorited.
      */
     suspend fun isCurrentCardFavorited(): Boolean {
-        val card = currentCard ?: return false
+        val card = roundState?.filledCard ?: return false
         return try {
             repo.db.favorites().isFavorited(card.id, gameNightSessionId) != null
         } catch (e: Exception) {
@@ -1474,14 +1468,11 @@ class GameNightViewModel : ViewModel() {
 
         // Reset scene to round with same card
         scene = Scene.ROUND
-        phase = RoundPhase.INTRO
-
-        currentCard = replayCard
-        currentGame = GameMetadata.getGameMetadata(replayGameId)
+        val replayGameMeta = GameMetadata.getGameMetadata(replayGameId)
 
         // Create new round state with same card
         val playersList = activePlayers.map { it.name }
-        val targetPlayerId = if (currentGame?.interaction == Interaction.TARGET_PICK) {
+        val targetPlayerId = if (replayGameMeta?.interaction == Interaction.TARGET_PICK) {
             activePlayers.randomOrNull()?.id
         } else {
             null
@@ -1500,15 +1491,15 @@ class GameNightViewModel : ViewModel() {
                         players = playersList,
                     ),
                 ),
-                timerSec = currentGame?.timerSec ?: 6,
-                interactionType = currentGame?.interactionType ?: InteractionType.JUDGE_PICK,
+                timerSec = replayGameMeta?.timerSec ?: 6,
+                interactionType = replayGameMeta?.interactionType ?: InteractionType.JUDGE_PICK,
                 activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
-                judgePlayerIndex = if (currentGame?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
+                judgePlayerIndex = if (replayGameMeta?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
                     (turnIdx + 1) % activePlayers.size
                 } else {
                     null
                 },
-                targetPlayerIndex = if (currentGame?.interaction == Interaction.TARGET_PICK && targetPlayerId != null) {
+                targetPlayerIndex = if (replayGameMeta?.interaction == Interaction.TARGET_PICK && targetPlayerId != null) {
                     activePlayers.indexOfFirst { it.id == targetPlayerId }.takeIf { it >= 0 }
                 } else {
                     null
@@ -1605,4 +1596,58 @@ class GameNightViewModel : ViewModel() {
             emptyList()
         }
     }
+
+    // ========== CONTENT REPORTING ==========
+
+    /**
+     * Reports offensive AI-generated content.
+     * Per Google Play policy: apps with AI content must provide in-app reporting.
+     */
+    fun reportOffensiveContent(reason: ContentReport.ReportReason) {
+        val currentRound = roundState ?: return
+        val context = AppCtx.ctx
+
+        val report = ContentReport(
+            cardText = currentRound.filledCard.text,
+            blueprintId = currentRound.filledCard.id,
+            gameId = currentRound.gameId,
+            reportReason = reason,
+            sessionId = gameNightSessionId,
+        )
+
+        reportStore = reportStore.withReport(report)
+        ContentReportStore.save(context, reportStore)
+
+        com.helldeck.utils.Logger.i("Content reported: ${reason.name} for card: ${currentRound.filledCard.text}")
+        
+        // Update content filtering to avoid showing this card again
+        viewModelScope.launch {
+            try {
+                ContentEngineProvider.reportOffensiveContent(currentRound.filledCard.id)
+            } catch (e: Exception) {
+                com.helldeck.utils.Logger.e("Failed to update content filter", e)
+            }
+        }
+
+        showReportDialog = false
+    }
+
+    /**
+     * Opens the report dialog
+     */
+    fun openReportDialog() {
+        showReportDialog = true
+    }
+
+    /**
+     * Closes the report dialog
+     */
+    fun closeReportDialog() {
+        showReportDialog = false
+    }
+
+    /**
+     * Gets the total number of reports submitted
+     */
+    fun getReportCount(): Int = reportStore.getReportCount()
 }
