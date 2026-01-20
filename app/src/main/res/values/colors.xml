@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- HELLDECK Brand Colors -->
-    <color name="helldeck_red_20">#FFEBEE</color>
-    <color name="helldeck_red_40">#EF5350</color>
-    <color name="helldeck_orange_20">#FFF3E0</color>
-    <color name="helldeck_orange_40">#FF9800</color>
-
-    <!-- Material Design Colors -->
+    <!-- 
+    NOTE: App colors are defined in Compose (Theme.kt).
+    These XML colors kept only for legacy compatibility.
+    -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

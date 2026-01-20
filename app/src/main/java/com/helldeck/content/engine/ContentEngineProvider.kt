@@ -200,6 +200,15 @@ object ContentEngineProvider {
         cardGeneratorV3?.setBanlist(banlist)
     }
 
+    fun reportOffensiveContent(blueprintId: String?) {
+        if (blueprintId != null) {
+            val currentBanlist = cardGeneratorV3?.getBanlist() ?: CardLabBanlist()
+            val updatedBanlist = currentBanlist.withBannedBlueprint(blueprintId)
+            cardGeneratorV3?.setBanlist(updatedBanlist)
+            Logger.i("Banned blueprint from reports: $blueprintId")
+        }
+    }
+
     private fun tryInitModel(file: File, ctxSize: Int): LocalLLM? {
         return try {
             val llm = LlamaCppLLM(file, ctxSize)

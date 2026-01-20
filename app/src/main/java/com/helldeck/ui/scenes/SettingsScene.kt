@@ -293,6 +293,11 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         onClick = { vm.goPlayers() },
                         modifier = Modifier.fillMaxWidth(),
                     ) { Text("📝 Manage Players") }
+
+                    OutlinedButton(
+                        onClick = { vm.navigateTo(com.helldeck.ui.Scene.FULL_RULES_BROWSER) },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) { Text("📖 Browse Game Rules") }
                 }
             }
 

@@ -22,7 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.helldeck.engine.*
-import com.helldeck.ui.components.GameRulesScene
+import com.helldeck.ui.scenes.GameRulesScene
+import com.helldeck.ui.scenes.FullRulesBrowserScene
 import com.helldeck.ui.components.HelldeckBackgroundPattern
 import com.helldeck.ui.components.PlayerProfileScene
 import com.helldeck.ui.components.RulesSheet
@@ -41,7 +42,7 @@ import kotlinx.coroutines.launch
  * Scene enumeration for navigation
  */
 enum class Scene {
-    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES, CARD_LAB, ONBOARDING, FAVORITES, CUSTOM_CARDS
+    HOME, ROLLCALL, PLAYERS, ROUND, FEEDBACK, RULES, SCOREBOARD, STATS, SETTINGS, PROFILE, GAME_RULES, FULL_RULES_BROWSER, CARD_LAB, ONBOARDING, FAVORITES, CUSTOM_CARDS
 }
 
 @Composable
@@ -181,6 +182,7 @@ fun HelldeckAppUI(
                         Scene.SETTINGS -> SettingsScene(onClose = { vm.scene = Scene.HOME }, vm = vm)
                         Scene.PROFILE -> PlayerProfileScene(vm = vm, onClose = { vm.scene = Scene.HOME })
                         Scene.GAME_RULES -> GameRulesScene(vm = vm, onClose = { vm.goBack() })
+                        Scene.FULL_RULES_BROWSER -> FullRulesBrowserScene(vm = vm)
                         Scene.CARD_LAB -> com.helldeck.ui.scenes.CardLabScene(onClose = { vm.goBack() })
                         Scene.FAVORITES -> com.helldeck.ui.scenes.FavoritesScene(vm = vm, onClose = { vm.goBack() })
                         Scene.CUSTOM_CARDS -> com.helldeck.ui.scenes.CustomCardCreatorScene(vm = vm)

@@ -3,8 +3,11 @@ package com.helldeck.ui.components
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
@@ -24,8 +28,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.engine.GameMetadata
+import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
+import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
+import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,21 +41,17 @@ import kotlin.math.absoluteValue
 /**
  * Streamlined onboarding for first-time users.
  * 
- * Design Philosophy:
+ * Design Philosophy (Hell's Living Room):
  * - Get users playing in <30 seconds
  * - Focus on ONE core mechanic: long-press to draw
  * - Make skipping obvious and guilt-free
  * - Progressive disclosure (teach advanced features contextually later)
+ * - NEON-SOAKED dark-first aesthetic
  * 
  * Flow: Welcome (5s) → Core Gesture (15s) → Ready (10s)
  * Total: 3 steps, ~30 seconds
  * 
- * UX Improvements:
- * - Swipe navigation (natural mobile gesture)
- * - Prominent skip button from step 1
- * - Removed info overload (export, spice, game lists)
- * - Interactive, fun elements
- * - Direct path to gameplay
+ * @ai_prompt Onboarding uses HELLDECK neon styling with glow effects
  */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -56,6 +59,7 @@ fun OnboardingFlow(
     onComplete: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val reducedMotion = LocalReducedMotion.current
     var currentStep by remember { mutableStateOf(0) }
     val haptic = LocalHapticFeedback.current
     val totalSteps = 3
@@ -67,8 +71,8 @@ fun OnboardingFlow(
             .background(
                 Brush.verticalGradient(
                     colors = listOf(
-                        MaterialTheme.colorScheme.background,
-                        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f),
+                        HelldeckColors.background,
+                        HelldeckColors.surfacePrimary,
                     ),
                 ),
             )
@@ -115,22 +119,27 @@ fun OnboardingFlow(
         ) { step ->
             when (step) {
                 0 -> WelcomeStep(
+                    reducedMotion = reducedMotion,
                     onNext = {
                         haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
                         currentStep = 1
                     },
                 )
                 1 -> DrawCardDemo(
+                    reducedMotion = reducedMotion,
                     onComplete = {
                         haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
                         currentStep = 2
                     },
                 )
-                2 -> ReadyToPlayStep(onComplete = onComplete)
+                2 -> ReadyToPlayStep(
+                    reducedMotion = reducedMotion,
+                    onComplete = onComplete,
+                )
             }
         }
 
-        // Top bar with progress and skip
+        // Top bar with progress and skip - HELLDECK styled
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -139,64 +148,96 @@ fun OnboardingFlow(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            // Progress indicator
-            LinearProgressIndicator(
-                progress = { (currentStep + 1).toFloat() / totalSteps },
+            // Neon progress indicator
+            Box(
                 modifier = Modifier
                     .weight(1f)
-                    .height(4.dp)
-                    .clip(RoundedCornerShape(2.dp)),
-                color = MaterialTheme.colorScheme.primary,
-                trackColor = MaterialTheme.colorScheme.surfaceVariant,
-            )
+                    .height(6.dp)
+                    .clip(RoundedCornerShape(3.dp))
+                    .background(HelldeckColors.surfaceElevated),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth((currentStep + 1).toFloat() / totalSteps)
+                        .clip(RoundedCornerShape(3.dp))
+                        .background(
+                            Brush.horizontalGradient(
+                                colors = listOf(
+                                    HelldeckColors.colorPrimary,
+                                    HelldeckColors.colorSecondary,
+                                ),
+                            ),
+                        ),
+                )
+            }
 
             Spacer(Modifier.width(HelldeckSpacing.Medium.dp))
 
-            // Prominent skip button
-            FilledTonalButton(
+            // Skip button with HELLDECK styling
+            TextButton(
                 onClick = onComplete,
-                colors = ButtonDefaults.filledTonalButtonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                    contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
+                colors = ButtonDefaults.textButtonColors(
+                    contentColor = HelldeckColors.colorMuted,
                 ),
-                modifier = Modifier.height(36.dp),
             ) {
                 Text(
-                    text = "Skip",
+                    text = "Skip →",
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold,
                 )
             }
         }
 
-        // Step indicators (dots) - bottom center
+        // Step indicators (dots) with neon glow - bottom center
         Row(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 80.dp),
-            horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+            horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         ) {
             repeat(totalSteps) { index ->
                 val isActive = index == currentStep
+                val isPast = index < currentStep
                 val scale by animateFloatAsState(
-                    targetValue = if (isActive) 1.2f else 1f,
-                    animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessMedium,
-                    ),
+                    targetValue = if (isActive) 1.3f else 1f,
+                    animationSpec = if (reducedMotion) {
+                        tween(HelldeckAnimations.Instant)
+                    } else {
+                        spring(
+                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                            stiffness = Spring.StiffnessMedium,
+                        )
+                    },
                     label = "step_indicator_scale",
                 )
 
+                val dotColor = when {
+                    isActive -> HelldeckColors.colorPrimary
+                    isPast -> HelldeckColors.colorSecondary
+                    else -> HelldeckColors.surfaceElevated
+                }
+
                 Box(
                     modifier = Modifier
-                        .size(if (isActive) 12.dp else 8.dp)
+                        .size(if (isActive) 14.dp else 10.dp)
                         .scale(scale)
+                        .shadow(
+                            elevation = if (isActive) 8.dp else 0.dp,
+                            shape = CircleShape,
+                            spotColor = HelldeckColors.colorPrimary.copy(alpha = 0.6f),
+                        )
                         .clip(CircleShape)
-                        .background(
-                            if (index <= currentStep) {
-                                MaterialTheme.colorScheme.primary
+                        .background(dotColor)
+                        .then(
+                            if (isActive) {
+                                Modifier.border(
+                                    width = 2.dp,
+                                    color = HelldeckColors.colorPrimary.copy(alpha = 0.5f),
+                                    shape = CircleShape,
+                                )
                             } else {
-                                MaterialTheme.colorScheme.surfaceVariant
+                                Modifier
                             },
                         ),
                 )
@@ -207,15 +248,20 @@ fun OnboardingFlow(
 
 @Composable
 private fun WelcomeStep(
+    reducedMotion: Boolean,
     onNext: () -> Unit,
 ) {
     var showContent by remember { mutableStateOf(false) }
     val scale by animateFloatAsState(
         targetValue = if (showContent) 1f else 0.8f,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow,
-        ),
+        animationSpec = if (reducedMotion) {
+            tween(HelldeckAnimations.Instant)
+        } else {
+            spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessLow,
+            )
+        },
         label = "welcome_scale",
     )
 
@@ -234,15 +280,19 @@ private fun WelcomeStep(
     ) {
         val emojiScale by animateFloatAsState(
             targetValue = if (showContent) 1f else 0f,
-            animationSpec = spring(
-                dampingRatio = Spring.DampingRatioLowBouncy,
-                stiffness = Spring.StiffnessVeryLow,
-            ),
+            animationSpec = if (reducedMotion) {
+                tween(HelldeckAnimations.Instant)
+            } else {
+                spring(
+                    dampingRatio = Spring.DampingRatioLowBouncy,
+                    stiffness = Spring.StiffnessVeryLow,
+                )
+            },
             label = "emoji_scale",
         )
 
         Text(
-            text = "🎮",
+            text = "🔥",
             fontSize = (80 * emojiScale).sp,
             modifier = Modifier.scale(emojiScale),
         )
@@ -252,7 +302,7 @@ private fun WelcomeStep(
         Text(
             text = "Welcome to",
             style = MaterialTheme.typography.headlineSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = HelldeckColors.colorMuted,
             fontWeight = FontWeight.Normal,
         )
 
@@ -261,8 +311,8 @@ private fun WelcomeStep(
         Text(
             text = "HELLDECK",
             style = MaterialTheme.typography.displayLarge,
-            fontWeight = FontWeight.ExtraBold,
-            color = MaterialTheme.colorScheme.primary,
+            fontWeight = FontWeight.Black,
+            color = HelldeckColors.colorPrimary,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
@@ -271,7 +321,7 @@ private fun WelcomeStep(
             text = "The party game that learns\nwhat your crew finds funny",
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = HelldeckColors.colorOnDark.copy(alpha = 0.8f),
             lineHeight = 28.sp,
         )
 
@@ -281,30 +331,19 @@ private fun WelcomeStep(
             verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
             modifier = Modifier.fillMaxWidth(),
         ) {
-            FeatureHighlight("🎯", "${GameMetadata.getAllGames().size} unique games")
-            FeatureHighlight("📱", "One phone, 3-16 players")
-            FeatureHighlight("🧠", "AI adapts to your humor")
+            FeatureHighlight("🎯", "${GameMetadata.getAllGames().size} unique games", HelldeckColors.colorSecondary)
+            FeatureHighlight("📱", "One phone, 3-16 players", HelldeckColors.colorAccentCool)
+            FeatureHighlight("🧠", "AI adapts to your humor", HelldeckColors.colorAccentWarm)
         }
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        Button(
+        // HELLDECK styled CTA button with glow
+        OnboardingButton(
+            text = "🔥 Get Started",
+            reducedMotion = reducedMotion,
             onClick = onNext,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(56.dp),
-            shape = RoundedCornerShape(HelldeckRadius.Pill),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
-            ),
-        ) {
-            Text(
-                "Get Started",
-                style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold,
-                fontSize = 16.sp,
-            )
-        }
+        )
     }
 }
 

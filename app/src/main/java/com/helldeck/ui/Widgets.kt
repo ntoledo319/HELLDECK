@@ -109,6 +109,7 @@ fun BigZones(
 
 /**
  * Auto-resizing text that shrinks font until it fits within maxLines
+ * OPTIMIZED: Memoizes font size calculation to reduce recompositions
  */
 @Composable
 private fun AutoResizeText(
@@ -125,7 +126,31 @@ private fun AutoResizeText(
         fontWeight = FontWeight.Bold,
     ),
 ) {
-    var fontSize by remember(text) { mutableStateOf(maxFontSize) }
+    // Memoize font size state to reduce recompositions
+    val fontSize by remember(text, maxLines, maxFontSize, minFontSize) {
+        derivedStateOf {
+            // Binary search for optimal font size (faster than linear stepping)
+            var min = minFontSize.value
+            var max = maxFontSize.value
+            var optimal = maxFontSize.value
+            
+            // Use binary search with max 10 iterations to find optimal size
+            repeat(10) {
+                val mid = (min + max) / 2f
+                // Heuristic: estimate if text fits based on length and font size
+                val estimatedLines = (text.length * mid) / (100 * maxLines)
+                if (estimatedLines > maxLines) {
+                    max = mid
+                    optimal = mid
+                } else {
+                    min = mid
+                }
+            }
+            optimal.sp
+        }
+    }
+    
+    var finalSize by remember(text) { mutableStateOf(fontSize) }
     var ready by remember(text) { mutableStateOf(false) }
 
     Text(
@@ -134,12 +159,13 @@ private fun AutoResizeText(
         textAlign = textAlign,
         maxLines = maxLines,
         overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-        style = baseStyle.copy(fontSize = fontSize),
+        style = baseStyle.copy(fontSize = finalSize),
         modifier = modifier.fillMaxWidth(),
         onTextLayout = { result ->
-            if (!ready && result.hasVisualOverflow && fontSize > minFontSize) {
-                val next = (fontSize.value - step.value).coerceAtLeast(minFontSize.value)
-                fontSize = next.sp
+            // Fine-tune with actual layout results (only if estimation was off)
+            if (!ready && result.hasVisualOverflow && finalSize > minFontSize) {
+                val next = (finalSize.value - step.value).coerceAtLeast(minFontSize.value)
+                finalSize = next.sp
             } else {
                 ready = true
             }
@@ -736,9 +762,9 @@ fun GameTimer(
 
     val timerColor by androidx.compose.animation.animateColorAsState(
         targetValue = when {
-            isCritical -> HelldeckColors.Error
-            isWarning -> HelldeckColors.Warning
-            else -> HelldeckColors.Yellow
+            isCritical -> HelldeckColors.TimerCritical
+            isWarning -> HelldeckColors.TimerWarning
+            else -> HelldeckColors.TimerNormal  // Cyan per HELLDECK design system
         },
         animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else 500),
         label = "timer_color",
@@ -1028,20 +1054,31 @@ fun VoteButton(
 
 /**
  * Pulsing animation for attention-grabbing elements
+ *
+ * @ai_prompt Respects LocalReducedMotion for accessibility
  */
 @Composable
 fun PulsingEffect(
     content: @Composable () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val infiniteTransition = rememberInfiniteTransition()
+    val reducedMotion = LocalReducedMotion.current
+    val infiniteTransition = rememberInfiniteTransition(label = "pulse_transition")
     val scale by infiniteTransition.animateFloat(
         initialValue = 1f,
-        targetValue = 1.05f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(1000, easing = EaseInOutCubic),
-            repeatMode = RepeatMode.Reverse,
-        ),
+        targetValue = if (reducedMotion) 1f else 1.05f,
+        animationSpec = if (reducedMotion) {
+            infiniteRepeatable(
+                animation = tween(HelldeckAnimations.Instant),
+                repeatMode = RepeatMode.Restart,
+            )
+        } else {
+            infiniteRepeatable(
+                animation = tween(1000, easing = EaseInOutCubic),
+                repeatMode = RepeatMode.Reverse,
+            )
+        },
+        label = "pulse_scale",
     )
 
     Box(

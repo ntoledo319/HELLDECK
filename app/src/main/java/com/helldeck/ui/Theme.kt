@@ -310,8 +310,14 @@ object HelldeckSpacing {
 
 /**
  * Component heights for HELLDECK
+ *
+ * @ai_prompt Touch targets must pass the Drunk Person Test™ - 48dp minimum, 60dp preferred
  */
 object HelldeckHeights {
+    // Touch target minimums (Drunk Person Test™ compliance)
+    val MinimumTapTarget = 48
+    val RecommendedTapTarget = 60
+
     // Comfortable tap targets for parties.
     val Button = 60
     val Card = 200

@@ -164,10 +164,12 @@ private fun GameCard(
                     text = gameDescription,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center,
-                    fontSize = 11.sp,
-                    lineHeight = 14.sp,
+                    fontSize = 10.sp,
+                    lineHeight = 13.sp,
                     maxLines = 3,
+                    overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
             
