@@ -1,6 +1,7 @@
 package com.helldeck.content.engine
 
 import android.content.Context
+import android.os.Build
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.content.engine.augment.Augmentor
 import com.helldeck.content.engine.augment.GenerationCache
@@ -29,6 +30,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
 import kotlinx.serialization.json.jsonObject
 import java.io.File
+import java.util.Locale
 import kotlin.random.Random
 
 object ContentEngineProvider {
@@ -149,6 +151,9 @@ object ContentEngineProvider {
     }
 
     private fun initializeLocalLLM(context: Context): LocalLLM? {
+        if (isUnitTestEnvironment()) {
+            return null // Skip heavy model prep during JVM/unit tests
+        }
         // Opt-in proxy LLM for JVM tests (no device/emulator needed)
         val mode = System.getProperty("HELDECK_LLM_MODE") ?: System.getenv("HELDECK_LLM_MODE")
         if (mode?.equals("proxy", ignoreCase = true) == true) {
@@ -220,6 +225,7 @@ object ContentEngineProvider {
     }
 
     private fun scheduleModelPreparation(context: Context, modelsDir: File) {
+        if (isUnitTestEnvironment()) return
         if (llmPrepJob?.isActive == true) return
         llmPrepJob = scope.launch {
             val assetSet = runCatching { context.assets.list("models")?.toSet() ?: emptySet() }
@@ -246,5 +252,11 @@ object ContentEngineProvider {
                 }
             }
         }
+    }
+
+    private fun isUnitTestEnvironment(): Boolean {
+        val fingerprint = Build.FINGERPRINT?.lowercase(Locale.US) ?: ""
+        if (fingerprint.contains("robolectric") || fingerprint.contains("generic")) return true
+        return runCatching { Class.forName("org.robolectric.Robolectric") }.isSuccess
     }
 }

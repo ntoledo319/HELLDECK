@@ -425,9 +425,29 @@ object AssetValidator {
 
     private fun validateGoldBank(assets: AssetManager, errors: MutableList<ValidationError>, warnings: MutableList<String>) {
         try {
-            val content = assets.open("gold/gold_cards.json").bufferedReader().use { it.readText() }
+            val candidates = listOf("gold/gold_cards.json", "gold_cards.json")
+            var usedPath = "gold/gold_cards.json"
+            val content = candidates.firstNotNullOfOrNull { path ->
+                runCatching { assets.open(path).bufferedReader().use { it.readText() } }
+                    .onSuccess { usedPath = path }
+                    .getOrNull()
+            } ?: run {
+                errors.add(
+                    ValidationError(
+                        "gold/gold_cards.json",
+                        Severity.CRITICAL,
+                        "Cannot load gold bank fallback",
+                        "Missing gold/gold_cards.json (and legacy gold_cards.json)",
+                    ),
+                )
+                return
+            }
             val json = Json { ignoreUnknownKeys = true }
             json.parseToJsonElement(content)
+
+            if (usedPath != "gold/gold_cards.json") {
+                warnings.add("Using legacy gold_cards.json path; prefer gold/gold_cards.json")
+            }
 
             // Count gold cards (approximate)
             val cardCount = content.count { it == '{' } - 1

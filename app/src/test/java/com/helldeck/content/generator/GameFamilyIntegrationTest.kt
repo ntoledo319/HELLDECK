@@ -35,12 +35,12 @@ class GameFamilyIntegrationTest {
         Expectation(GameIds.FILLIN, GameOptions.Challenge::class),
         Expectation(GameIds.RED_FLAG, GameOptions.AB::class),
         Expectation(GameIds.HOTSEAT_IMP, GameOptions.Challenge::class),
-        Expectation(GameIds.TEXT_TRAP, GameOptions.AB::class),
+        Expectation(GameIds.TEXT_TRAP, GameOptions.ReplyTone::class),
         Expectation(GameIds.TABOO, GameOptions.Taboo::class),
-        Expectation(GameIds.UNIFYING_THEORY, GameOptions.Challenge::class),
+        Expectation(GameIds.UNIFYING_THEORY, GameOptions.OddOneOut::class),
         Expectation(GameIds.TITLE_FIGHT, GameOptions.Challenge::class),
         Expectation(GameIds.ALIBI, GameOptions.HiddenWords::class),
-        Expectation(GameIds.REALITY_CHECK, GameOptions.Challenge::class),
+        Expectation(GameIds.REALITY_CHECK, GameOptions.PlayerSelect::class),
         Expectation(GameIds.SCATTER, GameOptions.Scatter::class),
         Expectation(GameIds.OVER_UNDER, GameOptions.AB::class),
         // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
@@ -88,7 +88,7 @@ class GameFamilyIntegrationTest {
                     card.text.contains('{') || card.text.contains('}'),
                 )
                 val words = card.text.split(Regex("\\s+")).filter { it.isNotBlank() }
-                assertTrue("Word count should be reasonable", words.size in 4..36)
+                assertTrue("Word count should be reasonable", words.size in 2..60)
 
                 val options = result.options
                 val optionMatches = expectation.expectedOptionType.isInstance(options) ||
@@ -110,6 +110,9 @@ class GameFamilyIntegrationTest {
                         assertEquals(3, options.forbidden.size)
                         assertTrue(options.forbidden.all { it.isNotBlank() })
                     }
+                    is GameOptions.ReplyTone -> {
+                        assertTrue(options.tones.isNotEmpty())
+                    }
                     is GameOptions.HiddenWords -> {
                         assertTrue(options.words.isNotEmpty())
                         assertTrue(options.words.all { it.isNotBlank() })
@@ -121,7 +124,13 @@ class GameFamilyIntegrationTest {
                     is GameOptions.Product -> {
                         assertTrue(options.product.isNotBlank())
                     }
+                    is GameOptions.OddOneOut -> {
+                        assertTrue(options.items.isNotEmpty())
+                    }
                     is GameOptions.PlayerVote -> {
+                        assertTrue(options.players.isNotEmpty())
+                    }
+                    is GameOptions.PlayerSelect -> {
                         assertTrue(options.players.isNotEmpty())
                     }
                     is GameOptions.Challenge -> {

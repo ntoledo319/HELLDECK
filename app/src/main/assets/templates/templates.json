@@ -16,8 +16,8 @@
   { "id": "rif4", "game": "FILL_IN_FINISHER", "text": "My therapist said _____ but I heard _____", "family": "fillin_therapist", "spice": 2, "locality": 1, "max_words": 20, "tags": ["fill_in","judge","write"], "instructions": "Judge fills first blank verbally, others write punchline" },
   { "id": "rif5", "game": "FILL_IN_FINISHER", "text": "I thought _____ was a good idea until _____", "family": "fillin_goodidea", "spice": 2, "locality": 1, "max_words": 20, "tags": ["fill_in","judge","write"], "instructions": "Judge fills first blank verbally, others write punchline" },
 
-  { "id": "rfr1", "game": "RED_FLAG_RALLY", "text": "They've got {perk}, but… {red_flag}. Smash or pass?", "family": "perk_vs_flag", "spice": 2, "locality": 1, "max_words": 18, "tags": ["dating","smash_pass"] },
-  { "id": "rfr2", "game": "RED_FLAG_RALLY", "text": "Perk: {perk}. Red flag: {red_flag}. Are you smashing or passing?", "family": "perk_flag_alt", "spice": 2, "locality": 1, "max_words": 20, "tags": ["dating","smash_pass"] },
+  { "id": "rfr1", "game": "RED_FLAG_RALLY", "text": "They've got {perk}, but… {red_flag}. Smash or pass?", "family": "perk_vs_flag", "spice": 2, "locality": 1, "max_words": 30, "tags": ["dating","smash_pass"] },
+  { "id": "rfr2", "game": "RED_FLAG_RALLY", "text": "Perk: {perk}. Red flag: {red_flag}. Are you smashing or passing?", "family": "perk_flag_alt", "spice": 2, "locality": 1, "max_words": 30, "tags": ["dating","smash_pass"] },
 
   { "id": "hsi1", "game": "HOT_SEAT_IMPOSTER", "text": "As {target_name}: my secret guilty pleasure is {guilty_prompt:a_an}.", "family": "imposter_guilty", "spice": 1, "locality": 1, "max_words": 20, "tags": ["imposter","target","judge"] },
   { "id": "hsi2", "game": "HOT_SEAT_IMPOSTER", "text": "As {target_name}: the most 'me' habit is {guilty_prompt:a_an}.", "family": "imposter_habit", "spice": 1, "locality": 1, "max_words": 20, "tags": ["imposter","target","judge"] },
@@ -28,15 +28,12 @@
   { "id": "tab1", "game": "TABOO_TIMER", "text": "Make them guess: {meme}. Forbidden: {meme:unique}, {meme:unique}, {meme:unique}.", "family": "taboo_memes", "spice": 1, "locality": 1, "max_words": 22, "tags": ["taboo","team","timer"] },
   { "id": "tab2", "game": "TABOO_TIMER", "text": "Target word: {meme}. Taboo: {meme:unique}, {meme:unique}, {meme:unique}.", "family": "taboo_memes_alt", "spice": 1, "locality": 1, "max_words": 22, "tags": ["taboo","team","timer"] },
 
-
   { "id": "tf1", "game": "TITLE_FIGHT", "text": "Challenge the title holder in: {meme:title}. Roll a duel and go.", "family": "title_challenge", "spice": 1, "locality": 1, "max_words": 18, "tags": ["duel","mini_game","judge"] },
   { "id": "tf2", "game": "TITLE_FIGHT", "text": "Title bout: {meme:title}. Countdown and duel.", "family": "title_bout", "spice": 1, "locality": 1, "max_words": 14, "tags": ["duel","mini_game","judge"] },
 
   { "id": "ad1", "game": "ALIBI_DROP", "text": "Hide these in an alibi: {meme#3,sep=' / ',unique}.", "family": "alibi_memes", "spice": 1, "locality": 1, "max_words": 20, "tags": ["smuggle","story","judge"] },
   { "id": "ad2", "game": "ALIBI_DROP", "text": "Your alibi must include: {meme#3,sep=', ',unique}. Don’t get caught.", "family": "alibi_memes_alt", "spice": 1, "locality": 1, "max_words": 20, "tags": ["smuggle","story","judge"] },
 
-
   { "id": "sb1", "game": "SCATTERBLAST", "text": "Category: {category:title}. Letter: {letter}. Say 3 in 10s.", "family": "scatterblast_basic", "spice": 1, "locality": 1, "max_words": 18, "tags": ["scatter","speed","timer"] },
-  { "id": "sb2", "game": "SCATTERBLAST", "text": "Category: {category:title}. Letter: {letter}. No repeats. 10s.", "family": "scatterblast_norepeat", "spice": 1, "locality": 1, "max_words": 18, "tags": ["scatter","speed","timer"] },
-
+  { "id": "sb2", "game": "SCATTERBLAST", "text": "Category: {category:title}. Letter: {letter}. No repeats. 10s.", "family": "scatterblast_norepeat", "spice": 1, "locality": 1, "max_words": 18, "tags": ["scatter","speed","timer"] }
 ]

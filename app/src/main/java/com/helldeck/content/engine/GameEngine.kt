@@ -130,6 +130,11 @@ class GameEngine(
         val pool = repo.templatesV2()
         var avoid = req.avoidTemplateIds.toMutableSet()
 
+        if (pool.isEmpty() || (req.gameId != null && pool.none { it.game == req.gameId })) {
+            Logger.w("No templates available for ${req.gameId ?: "any"}; using gold fallback")
+            return createGoldFallback(req)
+        }
+
         repeat(4) { _ ->
             val ctx = ContextualSelector.Context(
                 players = req.players,
@@ -142,7 +147,10 @@ class GameEngine(
                 tagAffinity = req.tagAffinity,
             )
 
-            val chosen = selector.pick(ctx, pool)
+            val chosen = runCatching { selector.pick(ctx, pool) }.getOrElse {
+                Logger.w("Template selection failed: ${it.message}; using gold fallback")
+                return createGoldFallback(req)
+            }
             val filled = fill(chosen, req)
             val augmented = augment(chosen, filled, req)
             var options = optionsCompiler.compile(chosen, augmented, req.players)
@@ -314,14 +322,14 @@ class GameEngine(
             }
             InteractionType.JUDGE_PICK -> {
                 "Complete this: The worst superpower would be..." to
-                    GameOptions.None
+                    GameOptions.Challenge("Pick the strongest pitch")
             }
             InteractionType.REPLY_TONE -> {
                 "Your ex texts: 'Hey, you up?' Pick your vibe:" to
                     GameOptions.ReplyTone(listOf("Petty", "Wholesome", "Chaotic", "Deadpan"))
             }
             InteractionType.ODD_EXPLAIN -> {
-                "Which doesn't belong?" to
+                "Find the thread connecting these three weird things." to
                     GameOptions.OddOneOut(listOf("Dolphins", "Bats", "Penguins"))
             }
             InteractionType.HIDE_WORDS -> {

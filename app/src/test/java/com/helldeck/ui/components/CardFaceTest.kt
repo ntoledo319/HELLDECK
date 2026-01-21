@@ -387,9 +387,9 @@ class CardFaceTest {
         }
 
         // Assert
-        composeTestRule
-            .onNodeWithText("   ")
-            .assertIsDisplayed()
+        val nodes = composeTestRule.onAllNodesWithText("   ", ignoreCase = false)
+        assertTrue("Expected whitespace to render", nodes.fetchSemanticsNodes().isNotEmpty())
+        nodes.onFirst().assertIsDisplayed()
     }
 
     @Test

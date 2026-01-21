@@ -3,10 +3,13 @@ package com.helldeck.content.generator.gold
 import android.content.res.AssetManager
 import com.helldeck.content.model.FilledCard
 import com.helldeck.content.model.GameOptions
+import com.helldeck.engine.GameIds
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import org.json.JSONObject
+import java.util.Locale
 import kotlin.random.Random
 
 class GoldBank(assetManager: AssetManager) {
@@ -14,18 +17,54 @@ class GoldBank(assetManager: AssetManager) {
     private val cardsByGame: Map<String, List<GoldCard>> = load(assetManager)
 
     private fun load(assetManager: AssetManager): Map<String, List<GoldCard>> {
-        val path = "gold/gold_cards.json"
-        return try {
-            val text = assetManager.open(path).bufferedReader().use { it.readText() }
-            val goldCards: List<GoldCard> = json.decodeFromString(text)
-            goldCards.groupBy { it.game }
-        } catch (t: Throwable) {
-            emptyMap()
+        val candidates = listOf("gold/gold_cards.json", "gold_cards.json")
+        candidates.forEach { path ->
+            val text = runCatching { assetManager.open(path).bufferedReader().use { it.readText() } }.getOrNull()
+            if (text != null) {
+                val parsed = parseGoldCards(text)
+                if (parsed.isNotEmpty()) return parsed
+            }
         }
+        return emptyMap()
+    }
+
+    private fun parseGoldCards(text: String): Map<String, List<GoldCard>> {
+        runCatching {
+            val goldCards: List<GoldCard> = json.decodeFromString(text)
+            if (goldCards.isNotEmpty()) return goldCards.groupBy { it.game }
+        }
+
+        return runCatching {
+            val root = JSONObject(text)
+            val gamesObj = root.optJSONObject("games") ?: return@runCatching emptyMap<String, List<GoldCard>>()
+            val byGame = mutableMapOf<String, MutableList<GoldCard>>()
+
+            gamesObj.keys().forEach { gameKey ->
+                val gameObj = gamesObj.optJSONObject(gameKey) ?: return@forEach
+                val cardsArray = gameObj.optJSONArray("cards") ?: return@forEach
+
+                for (i in 0 until cardsArray.length()) {
+                    val cardObj = cardsArray.optJSONObject(i) ?: continue
+                    val textValue = cardObj.optString("text").takeIf { it.isNotBlank() } ?: continue
+                    val normalizedGame = gameKey.uppercase(Locale.US)
+                    val card = GoldCard(
+                        id = cardObj.optString("id").ifBlank { "${normalizedGame.lowercase(Locale.US)}_${i + 1}" },
+                        game = normalizedGame,
+                        family = cardObj.optString("family").ifBlank { "gold_${normalizedGame.lowercase(Locale.US)}" },
+                        text = textValue.trim(),
+                        spice = cardObj.optInt("spice", 1),
+                        locality = cardObj.optInt("locality", 1),
+                        options = null,
+                    )
+                    byGame.getOrPut(normalizedGame) { mutableListOf() }.add(card)
+                }
+            }
+            byGame
+        }.getOrDefault(emptyMap())
     }
 
     fun draw(game: String, random: Random): GoldCard? {
-        val list = cardsByGame[game].orEmpty()
+        val list = cardsByGame[game] ?: cardsByGame[game.uppercase(Locale.US)].orEmpty()
         if (list.isEmpty()) return null
         return list[random.nextInt(list.size)]
     }
@@ -42,6 +81,8 @@ class GoldBank(assetManager: AssetManager) {
     }
 
     fun toGameOptions(card: GoldCard, filledSlots: Map<String, String>): GameOptions {
+        val normalizedGame = card.game.uppercase(Locale.US)
+        val default = defaultOptionsFor(normalizedGame)
         return when (val opt = card.options) {
             is GoldOptions.PlayerVote -> GameOptions.PlayerVote(emptyList())
             is GoldOptions.AB -> {
@@ -49,7 +90,27 @@ class GoldBank(assetManager: AssetManager) {
                 val optionB = opt.optionB ?: filledSlots[opt.slotB ?: "gross"] ?: "Option B"
                 GameOptions.AB(optionA, optionB)
             }
-            null -> GameOptions.None
+            null -> default
+        }
+    }
+
+    private fun defaultOptionsFor(game: String): GameOptions {
+        return when (game) {
+            GameIds.ROAST_CONS -> GameOptions.PlayerVote(listOf("Player 1", "Player 2", "Player 3"))
+            GameIds.CONFESS_CAP -> GameOptions.TrueFalse
+            GameIds.POISON_PITCH,
+            GameIds.RED_FLAG,
+            GameIds.OVER_UNDER,
+            GameIds.TEXT_TRAP -> GameOptions.AB("Option A", "Option B")
+            GameIds.FILLIN -> GameOptions.Challenge("Fill in the blanks")
+            GameIds.HOTSEAT_IMP,
+            GameIds.UNIFYING_THEORY,
+            GameIds.TITLE_FIGHT,
+            GameIds.REALITY_CHECK -> GameOptions.Challenge("Freestyle challenge")
+            GameIds.TABOO -> GameOptions.Taboo("Secret word", listOf("forbidden 1", "forbidden 2", "forbidden 3"))
+            GameIds.SCATTER -> GameOptions.Scatter("Category", "A")
+            GameIds.ALIBI -> GameOptions.HiddenWords(listOf("word1", "word2", "word3"))
+            else -> GameOptions.None
         }
     }
 }

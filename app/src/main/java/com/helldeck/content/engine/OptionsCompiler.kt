@@ -23,7 +23,7 @@ class OptionsCompiler(
             is OptionProvider.PlayerVote -> GameOptions.PlayerVote(players)
             is OptionProvider.Taboo -> compileTaboo(provider)
             is OptionProvider.Scatter -> compileScatter(provider)
-            is OptionProvider.None -> compileFallback(template.game, card)
+            is OptionProvider.None -> compileFallback(template.game, card, players)
         }
     }
 
@@ -56,10 +56,22 @@ class OptionsCompiler(
         return GameOptions.Scatter(category, letter)
     }
 
-    private fun compileFallback(gameId: String, card: FilledCard): GameOptions {
+    private fun compileFallback(gameId: String, card: FilledCard, players: List<String>): GameOptions {
+        val votePlayers = if (players.size >= 2) players else listOf("Player 1", "Player 2")
         return when (gameId) {
+            GameIds.ROAST_CONS -> GameOptions.PlayerVote(votePlayers)
+            GameIds.CONFESS_CAP -> GameOptions.TrueFalse
+            GameIds.RED_FLAG -> GameOptions.AB("SMASH", "PASS")
             GameIds.TEXT_TRAP -> compileTextTrap()
             GameIds.POISON_PITCH -> compilePoisonPitch(card)
+            GameIds.TABOO -> GameOptions.Taboo("Secret word", listOf("Forbidden 1", "Forbidden 2", "Forbidden 3"))
+            GameIds.UNIFYING_THEORY,
+            GameIds.TITLE_FIGHT,
+            GameIds.HOTSEAT_IMP,
+            GameIds.REALITY_CHECK -> GameOptions.Challenge("Freestyle")
+            GameIds.ALIBI -> GameOptions.HiddenWords(listOf("alibi one", "alibi two", "alibi three"))
+            GameIds.SCATTER -> GameOptions.Scatter("Category", "A")
+            GameIds.OVER_UNDER -> GameOptions.AB("Over", "Under")
             // Legacy games removed: ODD_ONE, MAJORITY
             else -> GameOptions.None
         }
