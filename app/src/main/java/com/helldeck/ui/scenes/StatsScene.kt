@@ -29,6 +29,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -44,13 +45,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
@@ -81,6 +85,8 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
     var newBrainEmoji by remember { mutableStateOf("🧠") }
     var brainError by remember { mutableStateOf<String?>(null) }
 
+    var showCrewBrainHelp by remember { mutableStateOf(false) }
+    
     LaunchedEffect(activeBrainId, brains) {
         vm.activeCrewBrainId = activeBrainId
         vm.crewBrains = brains
@@ -100,6 +106,9 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
             TopAppBar(
                 title = { Text("📊 Stats & Insights") },
                 actions = {
+                    IconButton(onClick = { showCrewBrainHelp = true }) {
+                        Text("❓", fontSize = 20.sp)
+                    }
                     TextButton(onClick = onClose) { Text("Close") }
                 },
             )
@@ -135,6 +144,13 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                         },
                         onAdd = { showBrainDialog = true },
                     )
+                    
+                    if (brains.size == 1) {
+                        com.helldeck.ui.components.InfoBanner(
+                            message = "💡 Crew Brains let you track different friend groups separately. The AI learns each group's humor!",
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
                 }
                 // Overview Cards
                 item {
@@ -198,6 +214,44 @@ fun StatsScene(onClose: () -> Unit, vm: HelldeckVm = viewModel()) {
                 }
             }
         }
+    }
+    
+    // Crew Brain help dialog
+    if (showCrewBrainHelp) {
+        AlertDialog(
+            onDismissRequest = { showCrewBrainHelp = false },
+            icon = { Text("🧠", fontSize = 48.sp) },
+            title = { Text("What are Crew Brains?") },
+            text = {
+                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(
+                        "Crew Brains let you track stats and AI learning for different friend groups separately.",
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                    
+                    com.helldeck.ui.components.NeonCard(accentColor = HelldeckColors.colorSecondary) {
+                        Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            Text("✅ Separate player rosters", style = MaterialTheme.typography.bodyMedium)
+                            Text("✅ Independent stats tracking", style = MaterialTheme.typography.bodyMedium)
+                            Text("✅ AI learns each group's humor", style = MaterialTheme.typography.bodyMedium)
+                            Text("✅ Switch between groups instantly", style = MaterialTheme.typography.bodyMedium)
+                        }
+                    }
+                    
+                    Text(
+                        "Example: Create one for 'Work Friends' and another for 'College Crew' to keep their games separate.",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = HelldeckColors.colorMuted,
+                    )
+                }
+            },
+            confirmButton = {
+                com.helldeck.ui.components.GlowButton(
+                    text = "Got It",
+                    onClick = { showCrewBrainHelp = false },
+                )
+            },
+        )
     }
 
     if (showBrainDialog) {

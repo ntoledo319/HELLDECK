@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.helldeck.data.toEntity
 import com.helldeck.engine.*
 import com.helldeck.ui.scenes.GameRulesScene
 import com.helldeck.ui.scenes.FullRulesBrowserScene
@@ -73,7 +74,6 @@ fun HelldeckAppUI(
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
-        Config.load()
         com.helldeck.utils.Logger.i("HelldeckAppUI: Initializing ViewModel")
         try {
             vm.initOnce()
@@ -165,8 +165,16 @@ fun HelldeckAppUI(
                     when (targetScene) {
                         Scene.HOME -> HomeScene(vm)
                         Scene.ONBOARDING -> com.helldeck.ui.components.OnboardingFlow(
-                            onComplete = {
+                            onComplete = { players ->
                                 coroutineScope.launch {
+                                    // Save onboarding players to database
+                                    if (players.isNotEmpty()) {
+                                        val repo = com.helldeck.content.data.ContentRepository(com.helldeck.AppCtx.ctx)
+                                        players.forEach { player ->
+                                            repo.db.players().upsert(player.toEntity())
+                                        }
+                                        vm.reloadPlayers()
+                                    }
                                     com.helldeck.settings.SettingsStore.writeHasSeenOnboarding(true)
                                     vm.scene = Scene.HOME
                                 }

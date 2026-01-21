@@ -3,29 +3,17 @@ package com.helldeck.ui.scenes
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.Button
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Slider
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.helldeck.AppCtx
 import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.content.engine.GameEngine
@@ -33,6 +21,9 @@ import com.helldeck.content.generator.CardLabBanlist
 import com.helldeck.engine.Config
 import com.helldeck.engine.GameMetadata
 import com.helldeck.ui.HelldeckColors
+import com.helldeck.ui.components.GlowButton
+import com.helldeck.ui.components.InfoBanner
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 
@@ -68,8 +59,8 @@ data class LabResult(
 @Composable
 fun CardLabScene(onClose: () -> Unit) {
     val scope = rememberCoroutineScope()
-    val allGames = remember { GameMetadata.getAllGameIds() }
-    var selectedGame by remember { mutableStateOf(allGames.firstOrNull() ?: "ROAST_CONSENSUS") }
+    val context = LocalContext.current
+    var selectedGame by remember { mutableStateOf(GameMetadata.getAllGameIds().firstOrNull() ?: "ROAST_CONSENSUS") }
     var seedText by remember { mutableStateOf("12345") }
     var seedRangeEnabled by remember { mutableStateOf(false) }
     var seedRangeEnd by remember { mutableStateOf("12355") }
@@ -93,6 +84,8 @@ fun CardLabScene(onClose: () -> Unit) {
     val originalGoldOnly = remember { Config.current.generator.safe_mode_gold_only }
     val originalV3 = remember { Config.current.generator.enable_v3_generator }
     val originalLocalityCap = remember { Config.generatorLocalityCap() }
+    var showHelp by remember { mutableStateOf(false) }
+    var generationProgress by remember { mutableStateOf(0f) }
 
     // Restore flags and save banlist when leaving the lab
     DisposableEffect(Unit) {
@@ -108,8 +101,13 @@ fun CardLabScene(onClose: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("🔬 Card Lab") },
-                actions = { TextButton(onClick = onClose) { Text("Close") } },
+                title = { Text("🧪 Card Lab", fontWeight = FontWeight.Bold) },
+                actions = {
+                    IconButton(onClick = { showHelp = true }) {
+                        Text("❓", fontSize = 20.sp)
+                    }
+                    TextButton(onClick = onClose) { Text("Close") }
+                },
             )
         },
     ) { padding ->
@@ -130,12 +128,12 @@ fun CardLabScene(onClose: () -> Unit) {
                 }
                 // Simple next/prev for games
                 TextButton(onClick = {
-                    val idx = allGames.indexOf(selectedGame).coerceAtLeast(0)
-                    selectedGame = allGames[(idx - 1 + allGames.size) % allGames.size]
+                    val idx = GameMetadata.getAllGameIds().indexOf(selectedGame).coerceAtLeast(0)
+                    selectedGame = GameMetadata.getAllGameIds()[(idx - 1 + GameMetadata.getAllGameIds().size) % GameMetadata.getAllGameIds().size]
                 }) { Text("Prev") }
                 TextButton(onClick = {
-                    val idx = allGames.indexOf(selectedGame).coerceAtLeast(0)
-                    selectedGame = allGames[(idx + 1) % allGames.size]
+                    val idx = GameMetadata.getAllGameIds().indexOf(selectedGame).coerceAtLeast(0)
+                    selectedGame = GameMetadata.getAllGameIds()[(idx + 1) % GameMetadata.getAllGameIds().size]
                 }) { Text("Next") }
             }
 
@@ -243,121 +241,150 @@ fun CardLabScene(onClose: () -> Unit) {
                 )
             }
 
-            Button(
-                onClick = {
-                    val startSeed = seedText.toLongOrNull() ?: 1234L
-                    val endSeed = if (seedRangeEnabled) seedRangeEnd.toLongOrNull() ?: (startSeed + 10) else startSeed
-                    val countPerSeed = countText.toIntOrNull()?.coerceIn(1, 100) ?: 10
-                    isGenerating = true
-                    outputs = emptyList()
-                    generationStats = null
-
-                    scope.launch {
-                        val ctx = AppCtx.ctx
-                        val results = mutableListOf<LabResult>()
-                        val timings = mutableListOf<Long>()
-                        var passCount = 0
-                        var failCount = 0
-
-                        val seeds = if (seedRangeEnabled) {
-                            (startSeed..endSeed.coerceAtLeast(startSeed)).toList()
-                        } else {
-                            listOf(startSeed)
-                        }
-
-                        seeds.forEach { seed ->
-                            val engine = ContentEngineProvider.get(ctx, seed)
-                            repeat(countPerSeed) { i ->
-                                val startTime = System.nanoTime()
-                                val req = GameEngine.Request(
-                                    sessionId = "lab_${seed}_$i",
-                                    gameId = selectedGame,
-                                    players = listOf("Jay", "Pip", "Mo"),
-                                    spiceMax = spiceCap,
-                                    localityMax = localityCap,
-                                )
-
-                                val r = engine.next(req)
-                                val endTime = System.nanoTime()
-                                val durationMs = (endTime - startTime) / 1_000_000
-                                timings.add(durationMs)
-
-                                val meta = r.filledCard.metadata
-                                val slots = (meta["slots"] as? Map<*, *>)
-                                    ?.mapNotNull { (k, v) ->
-                                        val key = k as? String ?: return@mapNotNull null
-                                        val value = v as? String ?: return@mapNotNull null
-                                        key to value
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                GlowButton(
+                    text = if (isGenerating) "⌛ Generating..." else "⚡ Generate Cards",
+                    onClick = {
+                        if (!isGenerating) {
+                            isGenerating = true
+                            generationProgress = 0f
+                            scope.launch {
+                                try {
+                                    // Simulate progress (real progress tracking would need VM updates)
+                                    launch {
+                                        while (isGenerating && generationProgress < 0.9f) {
+                                            delay(100)
+                                            generationProgress += 0.05f
+                                        }
                                     }
-                                    ?.toMap() ?: emptyMap()
-                                val slotTypes = (meta["slot_types"] as? Map<*, *>)
-                                    ?.mapNotNull { (k, v) ->
-                                        val key = k as? String ?: return@mapNotNull null
-                                        val value = v as? String ?: return@mapNotNull null
-                                        key to value
+                                    val startSeed = seedText.toLongOrNull() ?: 1234L
+                                    val endSeed = if (seedRangeEnabled) seedRangeEnd.toLongOrNull() ?: (startSeed + 10) else startSeed
+                                    val countPerSeed = countText.toIntOrNull()?.coerceIn(1, 100) ?: 10
+                                    val seeds = if (seedRangeEnabled) {
+                                        (startSeed..endSeed.coerceAtLeast(startSeed)).toList()
+                                    } else {
+                                        listOf(startSeed)
                                     }
-                                    ?.toMap() ?: emptyMap()
-                                val features = (meta["features"] as? List<*>)
-                                    ?.mapNotNull { it as? String } ?: emptyList()
-                                val pairScore = (meta["pairScore"] as? Number)?.toDouble()
-                                val blueprintId = r.filledCard.id
-                                val humorScore = (meta["humorScore"] as? Number)?.toDouble()
-                                val absurdity = (meta["absurdity"] as? Number)?.toDouble()
-                                val shockValue = (meta["shockValue"] as? Number)?.toDouble()
-                                val relatability = (meta["relatability"] as? Number)?.toDouble()
-                                val cringeFactor = (meta["cringeFactor"] as? Number)?.toDouble()
-                                val benignViolation = (meta["benignViolation"] as? Number)?.toDouble()
 
-                                // Check if generation passed quality gates
-                                val hasPlaceholders = r.filledCard.text.contains('{') || r.filledCard.text.contains('}')
-                                val wordCount = r.filledCard.text.split(Regex("\\s+")).filter { it.isNotBlank() }.size
-                                val passed = !hasPlaceholders && wordCount in 5..32
+                                    val results = mutableListOf<LabResult>()
+                                    val timings = mutableListOf<Long>()
+                                    var passCount = 0
+                                    var failCount = 0
 
-                                if (passed) passCount++ else failCount++
+                                    seeds.forEach { seed ->
+                                        val engine = ContentEngineProvider.get(context, seed)
+                                        repeat(countPerSeed) { i ->
+                                            val startTime = System.nanoTime()
+                                            val req = GameEngine.Request(
+                                                sessionId = "lab_${seed}_$i",
+                                                gameId = selectedGame,
+                                                players = listOf("Jay", "Pip", "Mo"),
+                                                spiceMax = spiceCap,
+                                                localityMax = localityCap,
+                                            )
 
-                                results += LabResult(
-                                    text = r.filledCard.text,
-                                    options = r.options.toString(),
-                                    slots = slots,
-                                    slotTypes = slotTypes,
-                                    features = features,
-                                    pairScore = pairScore,
-                                    blueprintId = blueprintId,
-                                    spice = r.filledCard.spice,
-                                    humorScore = humorScore,
-                                    absurdity = absurdity,
-                                    shockValue = shockValue,
-                                    relatability = relatability,
-                                    cringeFactor = cringeFactor,
-                                    benignViolation = benignViolation,
-                                )
+                                            val r = engine.next(req)
+                                            val endTime = System.nanoTime()
+                                            val durationMs = (endTime - startTime) / 1_000_000
+                                            timings.add(durationMs)
+
+                                            val meta = r.filledCard.metadata
+                                            val slots = (meta["slots"] as? Map<*, *>)
+                                                ?.mapNotNull { (k, v) ->
+                                                    val key = k as? String ?: return@mapNotNull null
+                                                    val value = v as? String ?: return@mapNotNull null
+                                                    key to value
+                                                }
+                                                ?.toMap() ?: emptyMap()
+                                            val slotTypes = (meta["slot_types"] as? Map<*, *>)
+                                                ?.mapNotNull { (k, v) ->
+                                                    val key = k as? String ?: return@mapNotNull null
+                                                    val value = v as? String ?: return@mapNotNull null
+                                                    key to value
+                                                }
+                                                ?.toMap() ?: emptyMap()
+                                            val features = (meta["features"] as? List<*>)
+                                                ?.mapNotNull { it as? String } ?: emptyList()
+                                            val pairScore = (meta["pairScore"] as? Number)?.toDouble()
+                                            val blueprintId = r.filledCard.id
+                                            val humorScore = (meta["humorScore"] as? Number)?.toDouble()
+                                            val absurdity = (meta["absurdity"] as? Number)?.toDouble()
+                                            val shockValue = (meta["shockValue"] as? Number)?.toDouble()
+                                            val relatability = (meta["relatability"] as? Number)?.toDouble()
+                                            val cringeFactor = (meta["cringeFactor"] as? Number)?.toDouble()
+                                            val benignViolation = (meta["benignViolation"] as? Number)?.toDouble()
+
+                                            // Check if generation passed quality gates
+                                            val hasPlaceholders = r.filledCard.text.contains('{') || r.filledCard.text.contains('}')
+                                            val wordCount = r.filledCard.text.split(Regex("\\s+")).filter { it.isNotBlank() }.size
+                                            val passed = !hasPlaceholders && wordCount in 5..32
+
+                                            if (passed) passCount++ else failCount++
+
+                                            results += LabResult(
+                                                text = r.filledCard.text,
+                                                options = r.options.toString(),
+                                                slots = slots,
+                                                slotTypes = slotTypes,
+                                                features = features,
+                                                pairScore = pairScore,
+                                                blueprintId = blueprintId,
+                                                spice = r.filledCard.spice,
+                                                humorScore = humorScore,
+                                                absurdity = absurdity,
+                                                shockValue = shockValue,
+                                                relatability = relatability,
+                                                cringeFactor = cringeFactor,
+                                                benignViolation = benignViolation,
+                                            )
+                                        }
+                                    }
+
+                                    // Calculate stats
+                                    if (timings.isNotEmpty()) {
+                                        val sorted = timings.sorted()
+                                        val p50 = sorted[sorted.size / 2]
+                                        val p95 = sorted[(sorted.size * 0.95).toInt().coerceAtMost(sorted.lastIndex)]
+                                        val p99 = sorted[(sorted.size * 0.99).toInt().coerceAtMost(sorted.lastIndex)]
+                                        generationStats = GenerationStats(
+                                            total = timings.size,
+                                            passed = passCount,
+                                            failed = failCount,
+                                            timings = timings,
+                                            p50 = p50,
+                                            p95 = p95,
+                                            p99 = p99,
+                                        )
+                                    }
+
+                                    outputs = results
+                                    generationProgress = 1f
+                                } finally {
+                                    isGenerating = false
+                                    generationProgress = 0f
+                                }
                             }
                         }
+                    },
+                    enabled = !isGenerating,
+                    modifier = Modifier.fillMaxWidth(),
+                    accentColor = HelldeckColors.colorPrimary,
+                )
 
-                        // Calculate stats
-                        if (timings.isNotEmpty()) {
-                            val sorted = timings.sorted()
-                            val p50 = sorted[sorted.size / 2]
-                            val p95 = sorted[(sorted.size * 0.95).toInt().coerceAtMost(sorted.lastIndex)]
-                            val p99 = sorted[(sorted.size * 0.99).toInt().coerceAtMost(sorted.lastIndex)]
-                            generationStats = GenerationStats(
-                                total = timings.size,
-                                passed = passCount,
-                                failed = failCount,
-                                timings = timings,
-                                p50 = p50,
-                                p95 = p95,
-                                p99 = p99,
-                            )
-                        }
-
-                        outputs = results
-                        isGenerating = false
-                    }
-                },
-                enabled = !isGenerating,
-                modifier = Modifier.fillMaxWidth(),
-            ) { Text(if (isGenerating) "Generating…" else "Generate") }
+                if (isGenerating) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    LinearProgressIndicator(
+                        progress = generationProgress,
+                        modifier = Modifier.fillMaxWidth(),
+                        color = HelldeckColors.colorPrimary,
+                    )
+                    Text(
+                        text = "${(generationProgress * 100).toInt()}% complete",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = HelldeckColors.colorMuted,
+                    )
+                }
+            }
 
             // Display generation stats
             generationStats?.let { stats ->
@@ -369,10 +396,9 @@ fun CardLabScene(onClose: () -> Unit) {
                             "Total: ${stats.total} | ✅ Pass: ${stats.passed} | ❌ Fail: ${stats.failed}",
                             style = MaterialTheme.typography.bodyMedium,
                         )
-                        Text(
-                            "Timing: p50=${stats.p50}ms, p95=${stats.p95}ms, p99=${stats.p99}ms",
-                            style = MaterialTheme.typography.bodySmall,
-                            color = HelldeckColors.Yellow,
+                        InfoBanner(
+                            message = "💡 Tip: Use filters to test specific generation patterns. Tap ? for detailed help.",
+                            modifier = Modifier.fillMaxWidth(),
                         )
                         val passRate = if (stats.total > 0) (stats.passed * 100.0 / stats.total) else 0.0
                         Text(
@@ -449,10 +475,10 @@ fun CardLabScene(onClose: () -> Unit) {
                                                 TextButton(
                                                     onClick = {
                                                         banlist = banlist.withBannedLexiconItem(slotType, v)
-                                                    CardLabBanlist.save(AppCtx.ctx, banlist)
-                                                    ContentEngineProvider.updateBanlist(banlist)
-                                                },
-                                                contentPadding = PaddingValues(4.dp),
+                                                        CardLabBanlist.save(AppCtx.ctx, banlist)
+                                                        ContentEngineProvider.updateBanlist(banlist)
+                                                    },
+                                                    contentPadding = PaddingValues(4.dp),
                                                 ) {
                                                     Text("🚫 Ban", style = MaterialTheme.typography.labelSmall)
                                                 }
@@ -538,6 +564,58 @@ fun CardLabScene(onClose: () -> Unit) {
                 }
             }
         }
+    }
+    
+    // Help dialog
+    if (showHelp) {
+        AlertDialog(
+            onDismissRequest = { showHelp = false },
+            icon = { Text("🧪", fontSize = 48.sp) },
+            title = { Text("Card Lab Guide") },
+            text = {
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                ) {
+                    item {
+                        Text(
+                            "The Card Lab is a developer tool for testing and debugging card generation.",
+                            style = MaterialTheme.typography.bodyLarge,
+                        )
+                    }
+                    
+                    item {
+                        Text("🎮 Game Selection", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                        Text("Choose which game to generate cards for. Use Prev/Next to cycle through games.", style = MaterialTheme.typography.bodySmall)
+                    }
+                    
+                    item {
+                        Text("🎲 Seeds", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                        Text("Seed numbers control randomness. Same seed = same cards. Enable Range to test multiple seeds.", style = MaterialTheme.typography.bodySmall)
+                    }
+                    
+                    item {
+                        Text("🔍 Filters", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                        Text("Test specific generation patterns:\n• Low Pair: Cards with weak word relationships\n• A/B Equal: Cards with similar option lengths\n• Short/Long: Test text length extremes\n• High Repeat: Cards with repetitive words", style = MaterialTheme.typography.bodySmall)
+                    }
+                    
+                    item {
+                        Text("📊 Stats", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                        Text("Pass/Fail counts show quality gate success. Timing shows generation performance (p50/p95/p99).", style = MaterialTheme.typography.bodySmall)
+                    }
+                    
+                    item {
+                        Text("🚫 Banning", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                        Text("Ban problematic blueprints or lexicon items to prevent them from appearing in games.", style = MaterialTheme.typography.bodySmall)
+                    }
+                }
+            },
+            confirmButton = {
+                com.helldeck.ui.components.GlowButton(
+                    text = "Got It",
+                    onClick = { showHelp = false },
+                )
+            },
+        )
     }
 }
 

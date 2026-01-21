@@ -35,6 +35,8 @@ fun FavoritesScene(
     val repo = remember { ContentRepository(AppCtx.ctx) }
     var favorites by remember { mutableStateOf<List<FavoriteCardEntity>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
+    var searchQuery by remember { mutableStateOf("") }
+    var sortMode by remember { mutableStateOf("Recent") } // Recent, Oldest, Game
 
     LaunchedEffect(Unit) {
         favorites = repo.db.favorites().getAllFavoritesSnapshot()
@@ -59,6 +61,17 @@ fun FavoritesScene(
                     }
                 },
                 actions = {
+                    if (favorites.isNotEmpty()) {
+                        TextButton(onClick = {
+                            sortMode = when (sortMode) {
+                                "Recent" -> "Oldest"
+                                "Oldest" -> "Game"
+                                else -> "Recent"
+                            }
+                        }) {
+                            Text("🔃 $sortMode")
+                        }
+                    }
                     Text(
                         text = "${favorites.size} saved",
                         style = MaterialTheme.typography.labelMedium,
@@ -79,30 +92,71 @@ fun FavoritesScene(
                 CircularProgressIndicator()
             }
         } else if (favorites.isEmpty()) {
-            EmptyFavoritesState(
-                onClose = onClose,
+            com.helldeck.ui.components.EmptyState(
+                icon = "♥️",
+                title = "No Favorites Yet",
+                message = "Tap the heart button on cards you love during gameplay to save them here for later.",
+                actionLabel = "Start Playing",
+                onActionClick = onClose,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding),
             )
         } else {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                contentPadding = PaddingValues(HelldeckSpacing.Medium.dp),
-                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
-            ) {
-                items(favorites, key = { it.id }) { favorite ->
-                    FavoriteCardItem(
-                        favorite = favorite,
-                        onDelete = {
-                            scope.launch {
-                                repo.db.favorites().delete(favorite)
-                                favorites = repo.db.favorites().getAllFavoritesSnapshot()
-                            }
-                        },
+            Column(modifier = Modifier.fillMaxSize().padding(padding)) {
+                // Search bar
+                if (favorites.size > 3) {
+                    OutlinedTextField(
+                        value = searchQuery,
+                        onValueChange = { searchQuery = it },
+                        placeholder = { Text("Search favorites...") },
+                        leadingIcon = { Text("🔍") },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(HelldeckSpacing.Medium.dp),
+                        singleLine = true,
                     )
+                }
+                
+                // Filtered and sorted list
+                val filtered = favorites.filter {
+                    searchQuery.isBlank() || 
+                    it.cardText.contains(searchQuery, ignoreCase = true) ||
+                    it.gameName.contains(searchQuery, ignoreCase = true) ||
+                    it.playerName?.contains(searchQuery, ignoreCase = true) == true
+                }
+                
+                val sorted = when (sortMode) {
+                    "Oldest" -> filtered.sortedBy { it.addedAtMs }
+                    "Game" -> filtered.sortedBy { it.gameName }
+                    else -> filtered.sortedByDescending { it.addedAtMs }
+                }
+                
+                if (filtered.isEmpty() && searchQuery.isNotBlank()) {
+                    com.helldeck.ui.components.EmptyState(
+                        icon = "🔍",
+                        title = "No Results",
+                        message = "No favorites match '$searchQuery'",
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                } else {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(HelldeckSpacing.Medium.dp),
+                        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+                    ) {
+                        items(sorted, key = { it.id }) { favorite ->
+                            FavoriteCardItem(
+                                favorite = favorite,
+                                onDelete = {
+                                    scope.launch {
+                                        repo.db.favorites().delete(favorite)
+                                        favorites = repo.db.favorites().getAllFavoritesSnapshot()
+                                    }
+                                },
+                            )
+                        }
+                    }
                 }
             }
         }

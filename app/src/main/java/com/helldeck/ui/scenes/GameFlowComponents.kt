@@ -344,8 +344,8 @@ fun ABVoteFlow(
             .padding(HelldeckSpacing.Medium.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Pre-choice selection
-        if (!lockPre) {
+        // Pre-choice selection (only if preChoices is not empty)
+        if (!lockPre && preChoices.isNotEmpty()) {
             Text(
                 text = preChoiceLabel,
                 style = MaterialTheme.typography.titleMedium,

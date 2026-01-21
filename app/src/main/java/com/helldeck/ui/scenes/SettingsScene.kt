@@ -132,22 +132,35 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                     onToggle = { expandedSafety = !expandedSafety },
                 ) {
                     // Content filter: simple 3-step chaos slider (Soft / Mixed / Spicy).
-                    Text(
-                        text = "Chaos level",
-                        style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                        color = HelldeckColors.Yellow,
+                    com.helldeck.ui.components.SectionHeader(
+                        title = "Chaos Level",
+                        subtitle = "Controls how spicy the content gets",
                     )
                     Spacer(modifier = Modifier.height(8.dp))
 
                     val chaosLabel = when {
-                        heat < 0.62f -> "Soft"
-                        heat < 0.72f -> "Mixed"
-                        else -> "Spicy"
+                        heat < 0.62f -> "😊 Soft"
+                        heat < 0.72f -> "🌶️ Mixed"
+                        else -> "🔥 Spicy"
                     }
                     Text(
-                        text = "$chaosLabel (${(heat * 100).toInt()}%)",
-                        style = MaterialTheme.typography.bodyLarge,
-                        color = HelldeckColors.White,
+                        text = chaosLabel,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                        color = when {
+                            heat < 0.62f -> HelldeckColors.Green
+                            heat < 0.72f -> HelldeckColors.Yellow
+                            else -> HelldeckColors.Red
+                        },
+                    )
+                    Text(
+                        text = when {
+                            heat < 0.62f -> "Family-friendly, safe for all audiences"
+                            heat < 0.72f -> "Mix of tame and edgy content"
+                            else -> "Adult humor, not for the easily offended"
+                        },
+                        style = MaterialTheme.typography.bodySmall,
+                        color = HelldeckColors.colorMuted,
                     )
                     Slider(
                         value = heat.coerceIn(0.55f, 0.78f),
@@ -212,59 +225,28 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
 
             // Players Section
             item {
+                var showAddPlayerDialog by remember { mutableStateOf(false) }
+                
                 SettingsSection(
                     title = "👥 Players",
                     isExpanded = expandedPlayers,
                     onToggle = { expandedPlayers = !expandedPlayers },
                 ) {
-                    var newName by remember { mutableStateOf("") }
-                    val emojis = listOf("😎", "🦊", "🐸", "🐼", "🦄", "🐙", "🐯", "🦁", "🐵", "🐧", "🦖", "🐺")
-                    var newEmoji by remember { mutableStateOf(emojis.random()) }
-
-                    Row(
+                    com.helldeck.ui.components.InfoBanner(
+                        message = "Manage your player roster. Players persist across sessions.",
+                        icon = "ℹ️",
                         modifier = Modifier.fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
-                        OutlinedButton(
-                            onClick = { newEmoji = emojis.random() },
-                            modifier = Modifier.size(56.dp),
-                        ) { Text(newEmoji, style = MaterialTheme.typography.headlineSmall) }
-
-                        OutlinedTextField(
-                            value = newName,
-                            onValueChange = { newName = it },
-                            label = { Text("Player name") },
-                            placeholder = { Text("e.g., Jay") },
-                            modifier = Modifier.weight(1f),
-                            colors = hdFieldColors(),
-                            singleLine = true,
-                        )
-                    }
-
-                    Button(
-                        onClick = {
-                            if (newName.isNotBlank()) {
-                                val id = "p${Random.nextInt(100000)}"
-                                scope.launch {
-                                    repo.db.players().upsert(
-                                        PlayerEntity(
-                                            id = id,
-                                            name = newName.trim(),
-                                            avatar = newEmoji,
-                                            sessionPoints = 0,
-                                        ),
-                                    )
-                                    vm.reloadPlayers()
-                                    newName = ""
-                                    newEmoji = emojis.random()
-                                }
-                            }
-                        },
-                        enabled = newName.isNotBlank(),
+                    )
+                    
+                    Spacer(modifier = Modifier.height(8.dp))
+                    
+                    com.helldeck.ui.components.GlowButton(
+                        text = "Add Player",
+                        onClick = { showAddPlayerDialog = true },
                         modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green),
-                    ) { Text("➕ Add Player") }
+                        icon = "➕",
+                        accentColor = HelldeckColors.Green,
+                    )
 
                     if (vm.players.isNotEmpty()) {
                         Spacer(modifier = Modifier.height(8.dp))
@@ -289,15 +271,35 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         )
                     }
 
-                    OutlinedButton(
+                    Spacer(modifier = Modifier.height(8.dp))
+                    
+                    com.helldeck.ui.components.OutlineButton(
+                        text = "Manage All Players",
                         onClick = { vm.goPlayers() },
                         modifier = Modifier.fillMaxWidth(),
-                    ) { Text("📝 Manage Players") }
-
-                    OutlinedButton(
-                        onClick = { vm.navigateTo(com.helldeck.ui.Scene.FULL_RULES_BROWSER) },
-                        modifier = Modifier.fillMaxWidth(),
-                    ) { Text("📖 Browse Game Rules") }
+                        icon = "📝",
+                    )
+                    
+                    if (showAddPlayerDialog) {
+                        com.helldeck.ui.components.AddPlayerDialog(
+                            existingPlayers = vm.players,
+                            onDismiss = { showAddPlayerDialog = false },
+                            onPlayerCreated = { name, emoji ->
+                                scope.launch {
+                                    val id = com.helldeck.utils.ValidationUtils.generateUniquePlayerId(vm.players)
+                                    repo.db.players().upsert(
+                                        PlayerEntity(
+                                            id = id,
+                                            name = name,
+                                            avatar = emoji,
+                                            sessionPoints = 0,
+                                        ),
+                                    )
+                                    vm.reloadPlayers()
+                                }
+                            },
+                        )
+                    }
                 }
             }
 
@@ -318,12 +320,17 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
 
                     SettingRow(
                         label = "Rollcall at Launch",
-                        description = "Ask who's here when app starts",
+                        description = "Automatically show player attendance screen when app starts",
                         isChecked = rollcallOnLaunch,
                         onCheckedChange = {
                             rollcallOnLaunch = it
                             scope.launch { SettingsStore.writeRollcallOnLaunch(it) }
                         },
+                    )
+                    
+                    com.helldeck.ui.components.InfoBanner(
+                        message = "💡 Tip: Enable this to quickly set who's playing each session",
+                        modifier = Modifier.fillMaxWidth(),
                     )
                 }
             }

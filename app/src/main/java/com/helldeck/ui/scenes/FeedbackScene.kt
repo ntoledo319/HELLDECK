@@ -38,10 +38,11 @@ fun FeedbackScene(vm: HelldeckVm) {
     val hapticsEnabled = Config.hapticsEnabled
     val roundState = vm.roundState
 
-    // Auto-advance countdown (5 seconds)
-    var secondsRemaining by remember { mutableStateOf(5) }
+    // Auto-advance countdown (8 seconds for more discussion time)
+    var secondsRemaining by remember { mutableStateOf(8) }
     var isAutoAdvancing by remember { mutableStateOf(true) }
     var hasAdvanced by remember { mutableStateOf(false) }
+    var isPaused by remember { mutableStateOf(false) }
 
     // Favorite state
     var isFavorited by remember { mutableStateOf(false) }
@@ -52,14 +53,16 @@ fun FeedbackScene(vm: HelldeckVm) {
         hasAdvanced = false // Reset guard on new card
     }
 
-    // Auto-advance timer with guard against double-execution
-    LaunchedEffect(isAutoAdvancing, hasAdvanced) {
-        if (isAutoAdvancing && !hasAdvanced) {
-            while (secondsRemaining > 0) {
+    // Auto-advance timer with pause support
+    LaunchedEffect(isAutoAdvancing, hasAdvanced, isPaused) {
+        if (isAutoAdvancing && !hasAdvanced && !isPaused) {
+            while (secondsRemaining > 0 && !isPaused) {
                 kotlinx.coroutines.delay(1000)
-                secondsRemaining--
+                if (!isPaused) {
+                    secondsRemaining--
+                }
             }
-            if (secondsRemaining == 0 && !hasAdvanced) {
+            if (secondsRemaining == 0 && !hasAdvanced && !isPaused) {
                 hasAdvanced = true
                 vm.commitFeedbackAndNext()
             }
@@ -134,29 +137,23 @@ fun FeedbackScene(vm: HelldeckVm) {
         ) {
             CardFace(
                 title = roundState?.filledCard?.text ?: "How was that?",
-                subtitle = "Did that card land? Was it funny or trash?",
-                stakesLabel = "Your ratings train the AI • Help make the game better",
+                subtitle = "Rate this card to help improve future games",
+                stakesLabel = "Your feedback trains the AI to generate better cards for YOUR group's humor",
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
                     .padding(HelldeckSpacing.Medium.dp),
             )
+            
+            // Explain AI learning
+            com.helldeck.ui.components.InfoBanner(
+                message = "💡 The AI learns: Loved cards = more like this. Trash cards = avoid similar content.",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = HelldeckSpacing.Medium.dp),
+            )
 
-            // Rating prompt with social context
-            Surface(
-                shape = RoundedCornerShape(HelldeckRadius.Medium),
-                color = HelldeckColors.colorSecondary.copy(alpha = 0.12f),
-                modifier = Modifier.fillMaxWidth().padding(horizontal = HelldeckSpacing.Large.dp),
-            ) {
-                Text(
-                    text = "💬 Quick rating (helps train the AI)",
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    color = HelldeckColors.colorOnDark,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(10.dp),
-                )
-            }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
             RatingRail(
                 onLol = {
@@ -231,66 +228,67 @@ fun FeedbackScene(vm: HelldeckVm) {
                 Spacer(modifier = Modifier.height(8.dp))
             }
 
-            // Auto-advance countdown with skip button
+            // Auto-advance controls with pause
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = HelldeckSpacing.Large.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                // Skip button (instant advance)
-                OutlinedButton(
+                // Pause/Resume button
+                com.helldeck.ui.components.OutlineButton(
+                    text = if (isPaused) "▶️" else "⏸️",
+                    onClick = { isPaused = !isPaused },
+                    modifier = Modifier.weight(0.5f),
+                    enabled = !hasAdvanced && secondsRemaining > 0,
+                )
+                
+                // Skip button
+                com.helldeck.ui.components.OutlineButton(
+                    text = "Skip",
                     onClick = {
                         if (!hasAdvanced) {
                             hasAdvanced = true
                             scope.launch { vm.commitFeedbackAndNext() }
                         }
                     },
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(HelldeckHeights.Button.dp),
+                    modifier = Modifier.weight(1f),
                     enabled = !hasAdvanced,
-                ) {
-                    Text(text = "SKIP", style = MaterialTheme.typography.labelLarge)
-                }
+                )
 
-                // Auto-advance countdown button
-                Button(
+                // Next/Continue button
+                com.helldeck.ui.components.GlowButton(
+                    text = when {
+                        hasAdvanced -> "Next"
+                        secondsRemaining > 0 && !isPaused -> "Next ($secondsRemaining)"
+                        isPaused -> "Continue"
+                        else -> "Next"
+                    },
                     onClick = {
                         if (!hasAdvanced) {
                             hasAdvanced = true
                             scope.launch { vm.commitFeedbackAndNext() }
                         }
                     },
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(HelldeckHeights.Button.dp),
+                    modifier = Modifier.weight(1.5f),
                     enabled = !hasAdvanced,
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = HelldeckColors.colorSecondary,
-                    ),
-                ) {
-                    Text(
-                        text = if (secondsRemaining > 0) "NEXT ($secondsRemaining)" else "NEXT",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = HelldeckColors.Black,
-                    )
-                }
-            }
-
-            // Auto-advance hint with clear timing
-            Surface(
-                shape = RoundedCornerShape(HelldeckRadius.Small),
-                color = HelldeckColors.surfaceElevated.copy(alpha = 0.5f),
-                modifier = Modifier.padding(top = 8.dp),
-            ) {
-                Text(
-                    text = if (secondsRemaining > 0) "⏱️ Auto-advancing in ${secondsRemaining}s" else "⏱️ Moving on...",
-                    style = MaterialTheme.typography.bodySmall,
-                    color = HelldeckColors.colorMuted,
-                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                    accentColor = HelldeckColors.colorSecondary,
                 )
             }
+
+            // Status hint
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = when {
+                    isPaused -> "⏸️ Paused - Take your time to discuss"
+                    secondsRemaining > 0 -> "⏱️ Auto-advancing in ${secondsRemaining}s (tap ⏸️ to pause)"
+                    else -> "⏱️ Moving on..."
+                },
+                style = MaterialTheme.typography.bodySmall,
+                color = HelldeckColors.colorMuted,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
     }
 

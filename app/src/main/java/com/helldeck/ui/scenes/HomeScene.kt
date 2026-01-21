@@ -40,7 +40,11 @@ import com.helldeck.ui.*
 import com.helldeck.ui.components.GamePickerSheet
 import com.helldeck.ui.components.PrimaryButton
 import com.helldeck.ui.components.SpiceSlider
+import com.helldeck.ui.components.EmptyState
+import com.helldeck.ui.components.InfoBanner
+import com.helldeck.ui.components.WarningBanner
 import com.helldeck.ui.theme.HelldeckSpacing
+import com.helldeck.utils.ValidationUtils
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
@@ -50,11 +54,26 @@ fun HomeScene(vm: HelldeckVm) {
     var showGamePicker by remember { mutableStateOf(false) }
     val spiceLevel by vm.spiceLevel.collectAsState()
     val isAIAvailable = remember { ContentEngineProvider.isAIEnhancementAvailable() }
+    
+    val activePlayers = vm.players.filter { it.afk == 0 }
+    val playerCountValidation = ValidationUtils.validatePlayerCount(activePlayers.size)
+    val playerCountWarning = ValidationUtils.getPlayerCountWarning(activePlayers.size)
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("HELLDECK", fontWeight = FontWeight.Black) },
+                title = {
+                    Column {
+                        Text("HELLDECK", fontWeight = FontWeight.Black)
+                        if (activePlayers.isNotEmpty()) {
+                            Text(
+                                "${activePlayers.size} players ready",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = HelldeckColors.colorMuted,
+                            )
+                        }
+                    }
+                },
                 actions = {
                     IconButton(onClick = { vm.navigateTo(Scene.ROLLCALL) }) {
                         Icon(Icons.Rounded.HowToReg, contentDescription = "Rollcall")
@@ -75,41 +94,52 @@ fun HomeScene(vm: HelldeckVm) {
             )
         },
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(HelldeckSpacing.Large.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            HellTitleCard()
+        if (vm.players.isEmpty()) {
+            // Empty state - no players
+            EmptyState(
+                icon = "👥",
+                title = "Welcome to HELLDECK",
+                message = "Add players to start your first game session.\n\nRecommended: 3-10 players for best experience.",
+                actionLabel = "Add Players",
+                onActionClick = { vm.navigateTo(Scene.PLAYERS) },
+                modifier = Modifier.fillMaxSize().padding(padding),
+            )
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .padding(HelldeckSpacing.Large.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                HellTitleCard()
 
-            Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
+                Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-            // AI Enhancement Indicator
-            if (isAIAvailable) {
-                Surface(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(HelldeckRadius.Small),
-                    color = MaterialTheme.colorScheme.tertiaryContainer,
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 12.dp, vertical = 8.dp),
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        verticalAlignment = Alignment.CenterVertically,
+                // AI Enhancement Indicator
+                if (isAIAvailable) {
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(HelldeckRadius.Small),
+                        color = MaterialTheme.colorScheme.tertiaryContainer,
                     ) {
-                        Text("✨", style = MaterialTheme.typography.bodyMedium)
-                        Text(
-                            text = "AI Enhancement Active",
-                            style = MaterialTheme.typography.labelMedium,
-                            color = MaterialTheme.colorScheme.onTertiaryContainer,
-                        )
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 8.dp),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text("✨", style = MaterialTheme.typography.bodyMedium)
+                            Text(
+                                text = "AI Enhancement Active",
+                                style = MaterialTheme.typography.labelMedium,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            )
+                        }
                     }
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
                 }
-                Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
-            }
 
             // Spice Level Slider
             SpiceSlider(
@@ -118,15 +148,40 @@ fun HomeScene(vm: HelldeckVm) {
                 modifier = Modifier.fillMaxWidth(),
             )
 
-            Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
+                
+                // Player count validation warnings
+                if (!playerCountValidation.isValid) {
+                    WarningBanner(
+                        message = playerCountValidation.errorMessage ?: "Need more players",
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+                } else if (playerCountWarning != null) {
+                    InfoBanner(
+                        message = playerCountWarning,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+                }
 
-            // Primary CTA: Start random game
-            PrimaryButton(
-                text = "🔥 Start the Chaos",
-                onClick = { scope.launch { vm.startRound(null) } },
-                modifier = Modifier.fillMaxWidth(),
-                icon = null,
-            )
+                // Primary CTA: Start random game
+                PrimaryButton(
+                    text = if (playerCountValidation.isValid) {
+                        "🔥 Start the Chaos"
+                    } else {
+                        "⚠️ Add Players First"
+                    },
+                    onClick = {
+                        if (playerCountValidation.isValid) {
+                            scope.launch { vm.startRound(null) }
+                        } else {
+                            vm.navigateTo(Scene.PLAYERS)
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    icon = null,
+                )
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
@@ -199,14 +254,15 @@ fun HomeScene(vm: HelldeckVm) {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            Text(
-                text = "Pass one phone • Judge, roast, and betray your friends • ${GameMetadata.getAllGames().size} mini-games",
-                style = MaterialTheme.typography.labelSmall,
-                color = HelldeckColors.colorMuted,
-                textAlign = TextAlign.Center,
-            )
+                Text(
+                    text = "Pass one phone • Judge, roast, and betray your friends • ${GameMetadata.getAllGames().size} mini-games",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = HelldeckColors.colorMuted,
+                    textAlign = TextAlign.Center,
+                )
 
-            Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+            }
         }
 
         // Game Picker Modal Sheet
