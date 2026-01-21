@@ -9,6 +9,8 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -34,6 +36,7 @@ import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.ui.theme.HelldeckSpacing
+import com.helldeck.content.model.Player
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
@@ -48,22 +51,23 @@ import kotlin.math.absoluteValue
  * - Progressive disclosure (teach advanced features contextually later)
  * - NEON-SOAKED dark-first aesthetic
  * 
- * Flow: Welcome (5s) → Core Gesture (15s) → Ready (10s)
- * Total: 3 steps, ~30 seconds
+ * Flow: Welcome (5s) → Core Gesture (15s) → Add Players (20s) → Ready (10s)
+ * Total: 4 steps, ~50 seconds
  * 
  * @ai_prompt Onboarding uses HELLDECK neon styling with glow effects
  */
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun OnboardingFlow(
-    onComplete: () -> Unit,
+    onComplete: (players: List<Player>) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
     var currentStep by remember { mutableStateOf(0) }
     val haptic = LocalHapticFeedback.current
-    val totalSteps = 3
+    val totalSteps = 4
     var swipeOffset by remember { mutableStateOf(0f) }
+    var onboardingPlayers by remember { mutableStateOf<List<Player>>(emptyList()) }
 
     Box(
         modifier = modifier
@@ -132,9 +136,19 @@ fun OnboardingFlow(
                         currentStep = 2
                     },
                 )
-                2 -> ReadyToPlayStep(
+                2 -> AddPlayersStep(
                     reducedMotion = reducedMotion,
-                    onComplete = onComplete,
+                    players = onboardingPlayers,
+                    onPlayersChanged = { onboardingPlayers = it },
+                    onNext = {
+                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                        currentStep = 3
+                    },
+                )
+                3 -> ReadyToPlayStep(
+                    reducedMotion = reducedMotion,
+                    playerCount = onboardingPlayers.size,
+                    onComplete = { onComplete(onboardingPlayers) },
                 )
             }
         }
@@ -176,7 +190,7 @@ fun OnboardingFlow(
 
             // Skip button with HELLDECK styling
             TextButton(
-                onClick = onComplete,
+                onClick = { onComplete(onboardingPlayers) },
                 colors = ButtonDefaults.textButtonColors(
                     contentColor = HelldeckColors.colorMuted,
                 ),
@@ -528,8 +542,210 @@ private fun DrawCardDemo(
 
 
 @Composable
+private fun AddPlayersStep(
+    reducedMotion: Boolean,
+    players: List<Player>,
+    onPlayersChanged: (List<Player>) -> Unit,
+    onNext: () -> Unit,
+) {
+    var showContent by remember { mutableStateOf(false) }
+    var showAddDialog by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) {
+        delay(100)
+        showContent = true
+    }
+
+    val scale by animateFloatAsState(
+        targetValue = if (showContent) 1f else 0.8f,
+        animationSpec = if (reducedMotion) {
+            tween(HelldeckAnimations.Instant)
+        } else {
+            spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessLow,
+            )
+        },
+        label = "players_scale",
+    )
+
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = HelldeckSpacing.ExtraLarge.dp),
+        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        item { Spacer(Modifier.height(HelldeckSpacing.Large.dp)) }
+        
+        // Header
+        item {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+            ) {
+                Text(
+                    text = "👥",
+                    fontSize = (64 * scale).sp,
+                    modifier = Modifier.scale(scale),
+                )
+
+                Text(
+                    text = "Add Your Crew",
+                    style = MaterialTheme.typography.displaySmall,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = HelldeckColors.colorPrimary,
+                    textAlign = TextAlign.Center,
+                )
+
+                Text(
+                    text = "Need 3-16 players for the best experience",
+                    style = MaterialTheme.typography.titleMedium,
+                    textAlign = TextAlign.Center,
+                    color = HelldeckColors.colorMuted,
+                )
+            }
+        }
+
+        // Player count indicator
+        item {
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(HelldeckRadius.Large),
+                colors = CardDefaults.cardColors(
+                    containerColor = if (players.size >= 3) {
+                        HelldeckColors.colorSecondary.copy(alpha = 0.2f)
+                    } else {
+                        HelldeckColors.surfaceElevated
+                    },
+                ),
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(HelldeckSpacing.Large.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    Text(
+                        text = "${players.size} Players Added",
+                        style = MaterialTheme.typography.headlineMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = if (players.size >= 3) HelldeckColors.colorSecondary else HelldeckColors.colorMuted,
+                    )
+                    if (players.size < 3) {
+                        Text(
+                            text = "Add ${3 - players.size} more to continue",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = HelldeckColors.colorMuted,
+                        )
+                    }
+                }
+            }
+        }
+
+        // Add player button
+        item {
+            OnboardingButton(
+                text = "➕ Add Player",
+                reducedMotion = reducedMotion,
+                onClick = { showAddDialog = true },
+            )
+        }
+
+        // Show added players header
+        if (players.isNotEmpty()) {
+            item {
+                Text(
+                    text = "Your Crew",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = HelldeckColors.colorSecondary,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = HelldeckSpacing.Medium.dp),
+                )
+            }
+        }
+        
+        // Player list
+        items(players.size) { index ->
+            val player = players[index]
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = HelldeckColors.surfaceElevated,
+                ),
+                shape = RoundedCornerShape(HelldeckRadius.Medium),
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(HelldeckSpacing.Medium.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Text(text = player.avatar, fontSize = 32.sp)
+                        Text(
+                            text = player.name,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                    TextButton(
+                        onClick = {
+                            onPlayersChanged(players.filter { it.id != player.id })
+                        },
+                    ) {
+                        Text("✕", fontSize = 20.sp, color = HelldeckColors.Red)
+                    }
+                }
+            }
+        }
+
+        // Continue button
+        item {
+            Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
+        }
+        
+        item {
+            OnboardingButton(
+                text = if (players.size >= 3) "Continue →" else "Skip for Now",
+                reducedMotion = reducedMotion,
+                accentColor = if (players.size >= 3) HelldeckColors.colorSecondary else HelldeckColors.colorMuted,
+                onClick = onNext,
+            )
+        }
+        
+        item { Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp)) }
+    }
+
+    // Add player dialog
+    if (showAddDialog) {
+        AddPlayerDialog(
+            existingPlayers = players,
+            onDismiss = { showAddDialog = false },
+            onPlayerCreated = { name, emoji ->
+                val newPlayer = Player(
+                    id = com.helldeck.utils.ValidationUtils.generateUniquePlayerId(players),
+                    name = name,
+                    avatar = emoji,
+                )
+                onPlayersChanged(players + newPlayer)
+            },
+        )
+    }
+}
+
+@Composable
 private fun ReadyToPlayStep(
     reducedMotion: Boolean,
+    playerCount: Int,
     onComplete: () -> Unit,
 ) {
     var showContent by remember { mutableStateOf(false) }
@@ -577,7 +793,11 @@ private fun ReadyToPlayStep(
         Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
 
         Text(
-            text = "Add 3-16 players and jump in",
+            text = if (playerCount > 0) {
+                "You've added $playerCount players. Let's go!"
+            } else {
+                "You can add players anytime from the menu"
+            },
             style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center,
             color = HelldeckColors.colorMuted,

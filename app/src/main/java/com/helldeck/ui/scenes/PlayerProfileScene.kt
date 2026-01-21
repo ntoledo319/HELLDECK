@@ -34,6 +34,7 @@ fun PlayerProfileScene(vm: HelldeckVm, onClose: () -> Unit) {
     var profile by remember { mutableStateOf<com.helldeck.data.PlayerProfile?>(null) }
     var summaryText by remember { mutableStateOf("") }
     var isLoading by remember { mutableStateOf(true) }
+    var showEditDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(playerId) {
         if (playerId != null) {
@@ -62,13 +63,18 @@ fun PlayerProfileScene(vm: HelldeckVm, onClose: () -> Unit) {
                 title = { Text("${profile?.avatar ?: "👤"} Profile") },
                 actions = {
                     profile?.let {
-                        TextButton(onClick = {
+                        IconButton(onClick = { showEditDialog = true }) {
+                            Text("✏️", fontSize = 20.sp)
+                        }
+                        IconButton(onClick = {
                             val intent = android.content.Intent(android.content.Intent.ACTION_SEND).apply {
                                 type = "text/plain"
                                 putExtra(android.content.Intent.EXTRA_TEXT, summaryText)
                             }
                             ctx.startActivity(android.content.Intent.createChooser(intent, "Share Profile"))
-                        }) { Text("📤 Share") }
+                        }) {
+                            Text("📤", fontSize = 20.sp)
+                        }
                     }
                     TextButton(onClick = onClose) { Text("Close") }
                 },
@@ -196,6 +202,27 @@ fun PlayerProfileScene(vm: HelldeckVm, onClose: () -> Unit) {
                                     }
                                 }
                             }
+                        }
+                    }
+
+                    // Quick actions
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        ) {
+                            com.helldeck.ui.components.OutlineButton(
+                                text = "Edit Player",
+                                onClick = { showEditDialog = true },
+                                modifier = Modifier.weight(1f),
+                                icon = "✏️",
+                            )
+                            com.helldeck.ui.components.OutlineButton(
+                                text = "View All",
+                                onClick = { vm.navigateTo(Scene.PLAYERS) },
+                                modifier = Modifier.weight(1f),
+                                icon = "👥",
+                            )
                         }
                     }
 

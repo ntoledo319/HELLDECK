@@ -359,12 +359,28 @@ fun RoundScene(vm: HelldeckVm) {
                         )
                     }
                     else -> {
-                        BigZones(
-                            onLeft = { /* left */ },
-                            onCenter = { vm.resolveInteraction() },
-                            onRight = { /* right */ },
-                            onLong = { /* long */ },
-                        )
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(HelldeckSpacing.Medium.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                        ) {
+                            Button(
+                                onClick = { vm.resolveInteraction() },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(HelldeckHeights.Button.dp),
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = HelldeckColors.colorPrimary,
+                                ),
+                                shape = RoundedCornerShape(HelldeckRadius.Pill),
+                            ) {
+                                Text(
+                                    text = "CONTINUE",
+                                    style = MaterialTheme.typography.labelLarge,
+                                )
+                            }
+                        }
                     }
                 }
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))

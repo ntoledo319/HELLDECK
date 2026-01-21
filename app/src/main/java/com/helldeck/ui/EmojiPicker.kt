@@ -5,13 +5,17 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.helldeck.settings.SettingsStore
+import kotlinx.coroutines.launch
 
 private data class EmojiCategory(val name: String, val items: List<String>)
 
@@ -51,14 +55,20 @@ private val Symbols = listOf(
     "☑️", "✔️", "❌", "➕", "➖", "➗", "✳️", "✴️", "❇️", "⚠️", "🚸", "⛔", "🚫", "🔞", "♻️", "🔆", "🔅", "🆕", "🆙", "🆒",
 )
 
-private val emojiCategories = listOf(
-    EmojiCategory("Faces", Faces),
-    EmojiCategory("Animals", Animals),
-    EmojiCategory("Food", Food),
-    EmojiCategory("Activities", Activities),
-    EmojiCategory("Objects", Objects),
-    EmojiCategory("Symbols", Symbols),
-)
+private val recentEmojis = mutableStateListOf<String>()
+private val emojiCategories = buildList {
+    if (recentEmojis.isNotEmpty()) {
+        add(EmojiCategory("Recent", recentEmojis))
+    }
+    addAll(listOf(
+        EmojiCategory("Faces", Faces),
+        EmojiCategory("Animals", Animals),
+        EmojiCategory("Food", Food),
+        EmojiCategory("Activities", Activities),
+        EmojiCategory("Objects", Objects),
+        EmojiCategory("Symbols", Symbols),
+    ))
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -67,10 +77,19 @@ fun EmojiPicker(
     onDismiss: () -> Unit,
     onPick: (String) -> Unit,
 ) {
-    if (!show) return
+    val scope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-    var tabIndex by remember { mutableIntStateOf(0) }
+    var tabIndex by remember { mutableStateOf(0) }
     var query by remember { mutableStateOf("") }
+    var recentEmojis by remember { mutableStateOf<List<String>>(emptyList()) }
+
+    LaunchedEffect(show) {
+        if (show) {
+            // Load recent emojis from settings
+            val stored = SettingsStore.readRecentEmojis()
+            recentEmojis = stored
+        }
+    }
 
     val allEmojis = remember { emojiCategories.flatMap { it.items } }
     val keywordMap = remember {
@@ -154,20 +173,35 @@ fun EmojiPicker(
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(itemsToShow) { emoji ->
-                    Box(
+                    Surface(
                         modifier = Modifier
-                            .size(64.dp)
+                            .size(48.dp)
                             .clickable {
+                                // Save to recent emojis
+                                scope.launch {
+                                    val updated = (listOf(emoji) + recentEmojis)
+                                        .distinct()
+                                        .take(24)
+                                    SettingsStore.writeRecentEmojis(updated)
+                                    recentEmojis = updated
+                                }
                                 onPick(emoji)
+                                scope.launch { sheetState.hide() }
                                 onDismiss()
                             },
-                        contentAlignment = Alignment.Center,
+                        shape = RoundedCornerShape(8.dp),
+                        color = Color.Transparent,
                     ) {
-                        Text(
-                            text = emoji,
-                            fontSize = 28.sp,
-                            textAlign = TextAlign.Center,
-                        )
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier.fillMaxSize(),
+                        ) {
+                            Text(
+                                text = emoji,
+                                fontSize = 28.sp,
+                                textAlign = TextAlign.Center,
+                            )
+                        }
                     }
                 }
             }

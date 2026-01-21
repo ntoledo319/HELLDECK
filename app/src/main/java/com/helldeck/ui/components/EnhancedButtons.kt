@@ -215,7 +215,7 @@ fun IconButton(
         label = "icon_button_scale",
     )
 
-    IconButton(
+    androidx.compose.material3.IconButton(
         onClick = {
             if (enabled) {
                 haptic.performHapticFeedback(HapticFeedbackType.LongPress)
