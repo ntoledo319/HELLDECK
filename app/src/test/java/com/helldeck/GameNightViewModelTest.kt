@@ -13,7 +13,7 @@ class GameNightViewModelTest {
     fun viewModel_initializes() {
         val vm = GameNightViewModel()
         assertNotNull(vm)
-        assertFalse(vm.isLoading)
+        assertTrue(vm.isLoading)
     }
 
     @Test

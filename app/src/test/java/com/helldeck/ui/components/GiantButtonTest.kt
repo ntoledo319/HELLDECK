@@ -4,15 +4,20 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.unit.dp
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.helldeck.ui.GiantButton
 import com.helldeck.ui.HelldeckTheme
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.annotation.Config
 
 /**
  * Comprehensive UI tests for GiantButton component
  */
+@RunWith(AndroidJUnit4::class)
+@Config(sdk = [33])
 class GiantButtonTest {
 
     @get:Rule

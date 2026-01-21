@@ -349,6 +349,7 @@ private fun WelcomeStep(
 
 @Composable
 private fun DrawCardDemo(
+    reducedMotion: Boolean,
     onComplete: () -> Unit,
 ) {
     var showHint by remember { mutableStateOf(true) }
@@ -357,8 +358,8 @@ private fun DrawCardDemo(
     val coroutineScope = rememberCoroutineScope()
     val haptic = LocalHapticFeedback.current
 
-    LaunchedEffect(showHint) {
-        if (showHint) {
+    LaunchedEffect(showHint, reducedMotion) {
+        if (showHint && !reducedMotion) {
             while (true) {
                 animate(
                     initialValue = 1f,
@@ -386,7 +387,7 @@ private fun DrawCardDemo(
             text = "One Simple Gesture",
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface,
+            color = HelldeckColors.colorOnDark,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
@@ -395,24 +396,35 @@ private fun DrawCardDemo(
             text = "Long-press anywhere to draw cards",
             style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = HelldeckColors.colorMuted,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
         val cardScale by animateFloatAsState(
             targetValue = if (isPressed) 0.92f else pulseScale,
-            animationSpec = spring(
-                dampingRatio = Spring.DampingRatioMediumBouncy,
-                stiffness = Spring.StiffnessMedium,
-            ),
+            animationSpec = if (reducedMotion) {
+                tween(HelldeckAnimations.Instant)
+            } else {
+                spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessMedium,
+                )
+            },
             label = "card_scale",
         )
 
+        // HELLDECK styled demo card with neon glow
         Card(
             modifier = Modifier
                 .size(260.dp)
                 .scale(cardScale)
+                .shadow(
+                    elevation = if (isPressed) 4.dp else 16.dp,
+                    shape = RoundedCornerShape(HelldeckRadius.Large),
+                    spotColor = HelldeckColors.colorPrimary.copy(alpha = 0.5f),
+                    ambientColor = HelldeckColors.colorPrimary.copy(alpha = 0.3f),
+                )
                 .pointerInput(Unit) {
                     detectTapGestures(
                         onLongPress = {
@@ -435,14 +447,30 @@ private fun DrawCardDemo(
                 },
             shape = RoundedCornerShape(HelldeckRadius.Large),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-            ),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = if (isPressed) 4.dp else 12.dp,
+                containerColor = HelldeckColors.surfaceElevated,
             ),
         ) {
             Box(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                HelldeckColors.surfaceElevated,
+                                HelldeckColors.surfacePrimary,
+                            ),
+                        ),
+                    )
+                    .border(
+                        width = 2.dp,
+                        brush = Brush.linearGradient(
+                            colors = listOf(
+                                HelldeckColors.colorPrimary.copy(alpha = 0.6f),
+                                HelldeckColors.colorSecondary.copy(alpha = 0.4f),
+                            ),
+                        ),
+                        shape = RoundedCornerShape(HelldeckRadius.Large),
+                    ),
                 contentAlignment = Alignment.Center,
             ) {
                 if (showHint) {
@@ -458,12 +486,12 @@ private fun DrawCardDemo(
                             text = "Try it!",
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = HelldeckColors.colorPrimary,
                         )
                         Text(
                             text = "Long-press this card",
                             style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.8f),
+                            color = HelldeckColors.colorMuted,
                         )
                     }
                 } else {
@@ -474,13 +502,13 @@ private fun DrawCardDemo(
                         Text(
                             text = "✓",
                             fontSize = 56.sp,
-                            color = HelldeckColors.Green,
+                            color = HelldeckColors.colorSecondary,
                         )
                         Text(
                             text = "Perfect!",
                             style = MaterialTheme.typography.headlineMedium,
                             fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            color = HelldeckColors.colorSecondary,
                         )
                     }
                 }
@@ -492,7 +520,7 @@ private fun DrawCardDemo(
         Text(
             text = "💡 That's it! This is how you'll play the game",
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = HelldeckColors.colorMuted,
             textAlign = TextAlign.Center,
         )
     }
@@ -500,7 +528,10 @@ private fun DrawCardDemo(
 
 
 @Composable
-private fun ReadyToPlayStep(onComplete: () -> Unit) {
+private fun ReadyToPlayStep(
+    reducedMotion: Boolean,
+    onComplete: () -> Unit,
+) {
     var showContent by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
@@ -517,10 +548,14 @@ private fun ReadyToPlayStep(onComplete: () -> Unit) {
     ) {
         val scale by animateFloatAsState(
             targetValue = if (showContent) 1f else 0.8f,
-            animationSpec = spring(
-                dampingRatio = Spring.DampingRatioMediumBouncy,
-                stiffness = Spring.StiffnessLow,
-            ),
+            animationSpec = if (reducedMotion) {
+                tween(HelldeckAnimations.Instant)
+            } else {
+                spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow,
+                )
+            },
             label = "ready_scale",
         )
 
@@ -536,7 +571,7 @@ private fun ReadyToPlayStep(onComplete: () -> Unit) {
             text = "Ready to Play!",
             style = MaterialTheme.typography.displaySmall,
             fontWeight = FontWeight.ExtraBold,
-            color = MaterialTheme.colorScheme.primary,
+            color = HelldeckColors.colorSecondary,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
@@ -545,51 +580,104 @@ private fun ReadyToPlayStep(onComplete: () -> Unit) {
             text = "Add 3-16 players and jump in",
             style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = HelldeckColors.colorMuted,
         )
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
+        // Tips card with HELLDECK styling
         Card(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(
+                    width = 1.dp,
+                    brush = Brush.linearGradient(
+                        colors = listOf(
+                            HelldeckColors.colorSecondary.copy(alpha = 0.3f),
+                            HelldeckColors.colorAccentCool.copy(alpha = 0.2f),
+                        ),
+                    ),
+                    shape = RoundedCornerShape(HelldeckRadius.Large),
+                ),
             shape = RoundedCornerShape(HelldeckRadius.Large),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.5f),
+                containerColor = HelldeckColors.surfaceElevated.copy(alpha = 0.8f),
             ),
         ) {
             Column(
                 modifier = Modifier.padding(HelldeckSpacing.Large.dp),
                 verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
             ) {
-                QuickTip("🎯", "Spice level in settings")
-                QuickTip("🧠", "Game learns from votes")
-                QuickTip("↩️", "Two-finger tap to undo")
+                QuickTip("🎯", "Spice level in settings", HelldeckColors.colorSecondary)
+                QuickTip("🧠", "Game learns from votes", HelldeckColors.colorAccentCool)
+                QuickTip("↩️", "Two-finger tap to undo", HelldeckColors.colorAccentWarm)
             }
         }
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        Button(
+        // Final CTA button with HELLDECK styling
+        OnboardingButton(
+            text = "🎉 Let's Play!",
+            reducedMotion = reducedMotion,
+            accentColor = HelldeckColors.colorSecondary,
             onClick = onComplete,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(60.dp),
-            shape = RoundedCornerShape(HelldeckRadius.Pill),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.primary,
+        )
+    }
+}
+
+/**
+ * HELLDECK styled CTA button with glow and spring physics
+ */
+@Composable
+private fun OnboardingButton(
+    text: String,
+    reducedMotion: Boolean,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    accentColor: Color = HelldeckColors.colorPrimary,
+) {
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.95f else 1f,
+        animationSpec = if (reducedMotion) {
+            tween(HelldeckAnimations.Instant)
+        } else {
+            spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
+        },
+        label = "button_scale",
+    )
+
+    Button(
+        onClick = onClick,
+        modifier = modifier
+            .fillMaxWidth()
+            .height(HelldeckHeights.Button.dp)
+            .scale(scale)
+            .shadow(
+                elevation = if (isPressed) 4.dp else 12.dp,
+                shape = RoundedCornerShape(HelldeckRadius.Pill),
+                spotColor = accentColor.copy(alpha = 0.5f),
             ),
-        ) {
-            Text(
-                "Let's Play!",
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.Bold,
-            )
-        }
+        interactionSource = interactionSource,
+        shape = RoundedCornerShape(HelldeckRadius.Pill),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = accentColor,
+            contentColor = HelldeckColors.background,
+        ),
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.titleLarge,
+            fontWeight = FontWeight.Bold,
+        )
     }
 }
 
 @Composable
-private fun FeatureHighlight(emoji: String, text: String) {
+private fun FeatureHighlight(emoji: String, text: String, accentColor: Color) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
@@ -602,13 +690,14 @@ private fun FeatureHighlight(emoji: String, text: String) {
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface,
+            color = accentColor,
+            fontWeight = FontWeight.Medium,
         )
     }
 }
 
 @Composable
-private fun QuickTip(emoji: String, text: String) {
+private fun QuickTip(emoji: String, text: String, accentColor: Color) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -620,7 +709,8 @@ private fun QuickTip(emoji: String, text: String) {
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSecondaryContainer,
+            color = accentColor,
+            fontWeight = FontWeight.Medium,
         )
     }
 }
