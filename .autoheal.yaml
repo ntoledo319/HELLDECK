@@ -1,0 +1,42 @@
+# Universal Auto-Heal Configuration - HELLDECK
+# React Web Application
+
+version: "1.0"
+project_type: "nodejs"
+environment: "production"
+
+settings:
+  enabled: true
+  mode: "auto"
+  check_interval: 60
+
+healers:
+  core:
+    - memory_healer:
+        enabled: true
+        
+    - disk_healer:
+        enabled: true
+        cleanup_temp: true
+        
+  code:
+    - ai_attribution_cleaner:
+        enabled: true
+        exclude_patterns:
+          - "**/node_modules/**"
+          - "**/build/**"
+          
+    - code_quality_healer:
+        enabled: true
+        auto_format: true
+        formatters:
+          javascript: ["prettier"]
+          typescript: ["prettier"]
+          
+  security:
+    - security_healer:
+        enabled: true
+
+git:
+  enabled: true
+  create_pr: true
