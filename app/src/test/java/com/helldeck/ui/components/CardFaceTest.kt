@@ -85,6 +85,7 @@ class CardFaceTest {
     @Test
     fun `CardFace does not trigger onClick when null`() {
         // Arrange
+        @Suppress("UNUSED_VARIABLE")
         var clicked = false
         composeTestRule.setContent {
             HelldeckTheme {

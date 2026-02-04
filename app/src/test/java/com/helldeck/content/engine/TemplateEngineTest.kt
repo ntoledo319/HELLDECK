@@ -270,6 +270,7 @@ class TemplateEngineTest {
 
         val result = engine.fill(template, context)
 
+        @Suppress("UNUSED_VARIABLE")
         val expected = "Word: HELLO WORLD,hello world,Hello World"
         assertTrue(
             "Should include upper, lower, and title variants",
