@@ -1,3 +1,161 @@
+# HELLDECK TODO - Build & Architecture
+
+## Current Build Status (2026-02-03)
+
+### ✅ Completed
+- JDK 17 installed (`C:\Program Files\Microsoft\jdk-17.0.18.8-hotspot`)
+- Android SDK configured (`C:\Android\Sdk`)
+- AGP 8.5.2 + Gradle 8.7 restored
+- Debug keystore created
+- **APK builds successfully** (21.7 MB)
+- **148/149 tests pass**
+
+### ❌ Issues to Fix
+
+#### 1. Test Failure: ExportImportTest
+- **File**: `app/src/test/java/com/helldeck/engine/ExportImportTest.kt`
+- **Test**: `brainpack export and import round trip`
+- **Error**: `IllegalStateException at ShadowLegacySQLiteConnection.java:418`
+- **Root Cause**: Robolectric SQLite shadow incompatibility with Room database operations
+- **Fix**: Update Robolectric config or mock database layer for this test
+
+#### 2. Native Build Disabled (llama.cpp)
+- **File**: `app/CMakeLists.txt`
+- **Issue**: llama.cpp integration disabled due to Android NDK compatibility
+- **Error**: `POSIX_MADV_WILLNEED` undefined in latest llama.cpp
+- **Fix**: Pin llama.cpp to Android-compatible version or patch mmap code
+
+#### 3. Test Code Warnings (12 total)
+Suppressed but should be properly fixed:
+
+| File | Line | Issue |
+|------|------|-------|
+| `TemplateEngineTest.kt` | 273 | Unused variable `expected` |
+| `CardAuditTest.kt` | 88-90 | Nullable receiver on `System.getProperty` |
+| `CardAuditTest.kt` | 135,165,248,283 | Type mismatch String? vs String |
+| `GameQualitySuite.kt` | 58,60,61 | Nullable receiver on `System.getProperty` |
+| `CardFaceTest.kt` | 88 | Unused variable `clicked` |
+
+---
+
+## Architecture Overview
+
+### Application Structure
+```
+com.helldeck/
+├── HelldeckApp.kt          # Application entry point
+├── MainActivity.kt         # Main activity with Compose UI
+├── AppCtx.kt               # Global application context holder
+│
+├── ui/                     # Presentation Layer
+│   ├── Scenes.kt           # Scene enum + HelldeckAppUI
+│   ├── vm/
+│   │   └── GameNightViewModel.kt  # Single source of truth for game state
+│   ├── nav/
+│   │   └── Screen.kt       # Navigation routes
+│   └── components/         # Reusable UI components
+│
+├── content/                # Content Engine Layer
+│   ├── engine/
+│   │   ├── ContentEngineProvider.kt  # Engine factory/singleton
+│   │   ├── GameEngine.kt             # Card generation orchestrator
+│   │   ├── CardBuffer.kt             # Pre-fetch card buffer
+│   │   └── ContextualSelector.kt     # Template selection with MAB
+│   ├── data/
+│   │   └── ContentRepository.kt      # Content data access
+│   ├── db/
+│   │   └── HelldeckDb.kt             # Room database
+│   ├── generator/
+│   │   ├── CardGeneratorV3.kt        # Blueprint-based generation
+│   │   └── LLMCardGeneratorV2.kt     # LLM-augmented generation
+│   └── model/              # Data models (FilledCard, GameOptions, etc.)
+│
+├── data/                   # Data Layer
+│   ├── Repository.kt       # Session/round data operations
+│   ├── PlayerEntity.kt     # Player data model
+│   └── *Dao.kt             # Room DAOs
+│
+├── engine/                 # Core Engine
+│   ├── Config.kt           # App configuration
+│   └── ExportImport.kt     # Brainpack export/import
+│
+├── llm/                    # Local LLM Integration
+│   ├── LocalLLM.kt         # LLM interface
+│   └── llamacpp/
+│       └── LlamaCppLLM.kt  # llama.cpp JNI bridge
+│
+└── settings/               # User Settings
+    ├── SettingsStore.kt    # Preferences persistence
+    └── CrewBrainStore.kt   # Multi-profile management
+```
+
+### Data Flow
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      MainActivity                            │
+│                           │                                  │
+│                    HelldeckAppUI                             │
+│                           │                                  │
+│              ┌────────────┴────────────┐                     │
+│              ▼                         ▼                     │
+│     GameNightViewModel            Scene Router               │
+│              │                                               │
+│    ┌─────────┴─────────┐                                     │
+│    ▼                   ▼                                     │
+│ GameEngine      ContentRepository                            │
+│    │                   │                                     │
+│    ├──────────────────┬┘                                     │
+│    ▼                  ▼                                      │
+│ CardGeneratorV3   HelldeckDb                                 │
+│    │                  │                                      │
+│    ▼                  ▼                                      │
+│ LLM (optional)   Room DAOs                                   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Key Design Patterns
+
+1. **Single ViewModel**: `GameNightViewModel` is the ONLY ViewModel for game flow
+2. **Provider Pattern**: `ContentEngineProvider` manages singleton GameEngine
+3. **Repository Pattern**: `ContentRepository` abstracts data access
+4. **Multi-Armed Bandit**: `ContextualSelector` uses Thompson Sampling for template selection
+5. **Card Buffer**: Pre-fetches cards for smooth UX
+6. **Crew Brain**: Multi-profile support with separate databases per brain
+
+### Navigation Flow
+
+```
+HOME → ROLLCALL → ROUND → FEEDBACK → (repeat or HOME)
+         │
+         └→ PLAYERS → PROFILE
+         └→ SETTINGS
+         └→ STATS
+         └→ CARD_LAB
+```
+
+---
+
+## Priority Fixes
+
+### High Priority
+1. [ ] Fix ExportImportTest - Database mocking issue
+2. [ ] Re-enable llama.cpp native build with compatible version
+
+### Medium Priority
+3. [ ] Fix nullable warnings properly (not just suppress)
+4. [ ] Add missing unit tests for new features
+5. [ ] Update documentation for build setup
+
+### Low Priority
+6. [ ] Clean up deprecated code paths
+7. [ ] Add instrumented tests for UI flows
+8. [ ] Performance profiling and optimization
+
+---
+
+# Previous Refactoring Work (Reference)
+
 # HELLDECK Comprehensive Codebase Audit & Refactoring
 
 ## Phase 1: Discovery & Analysis ✅

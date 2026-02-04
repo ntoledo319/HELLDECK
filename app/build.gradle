@@ -117,14 +117,12 @@ android {
         "/META-INF/NOTICE",
         "/META-INF/LICENSE"
       ]
-      // Avoid compressing large local LLM models for faster copy-on-first-run
-      // AGP 8: use noCompress on androidResources; fallback here for compatibility
     }
     jniLibs {
       useLegacyPackaging = true
     }
   }
-  // Ensure .gguf model files are stored uncompressed in the APK
+  
   androidResources {
     noCompress 'gguf'
   }
@@ -136,7 +134,6 @@ android {
     }
   }
 
-  // Enhanced lint options
   lint {
     abortOnError false
     checkReleaseBuilds false
