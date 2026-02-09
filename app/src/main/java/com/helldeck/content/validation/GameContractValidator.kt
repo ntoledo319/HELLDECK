@@ -42,6 +42,10 @@ object GameContractValidator {
     ): ContractResult {
         val failures = mutableListOf<String>()
 
+        if (gameId.isBlank()) {
+            failures.add("Missing gameId")
+        }
+
         // Global validation: card text must not contain unresolved placeholders
         if (filledCard.text.contains("{") || filledCard.text.contains("}")) {
             failures.add("Card contains unresolved placeholder: ${filledCard.text}")
@@ -82,18 +86,18 @@ object GameContractValidator {
                 }
             }
 
-            InteractionType.VOTE_PLAYER -> {
+            InteractionType.VOTE_PLAYER, InteractionType.VOTE_SEAT -> {
                 when (options) {
-                    is GameOptions.PlayerVote -> {
-                        if (options.players.size < 2) {
-                            failures.add("VOTE_PLAYER requires at least 2 players, got ${options.players.size}")
+                    is GameOptions.SeatVote -> {
+                        if (options.seatNumbers.size < 2) {
+                            failures.add("VOTE requires at least 2 seats, got ${options.seatNumbers.size}")
                         }
                         if (playersCount < 2) {
-                            failures.add("VOTE_PLAYER requires at least 2 players in game, got $playersCount")
+                            failures.add("VOTE requires at least 2 participants in game, got $playersCount")
                         }
                     }
                     else -> failures.add(
-                        "VOTE_PLAYER requires GameOptions.PlayerVote, got ${options::class.simpleName}",
+                        "VOTE requires GameOptions.SeatVote, got ${options::class.simpleName}",
                     )
                 }
             }
@@ -136,20 +140,22 @@ object GameContractValidator {
                 }
             }
 
-            InteractionType.TARGET_SELECT -> {
+            InteractionType.TARGET_SELECT, InteractionType.SELF_RATE -> {
                 when (options) {
-                    is GameOptions.PlayerSelect -> {
-                        if (options.players.isEmpty()) {
-                            failures.add("TARGET_SELECT requires players list")
+                    is GameOptions.SeatSelect -> {
+                        if (options.seatNumbers.isEmpty()) {
+                            failures.add("TARGET_SELECT requires seats list")
                         }
                     }
+                    is GameOptions.SeatVote,
+                    is GameOptions.Challenge,
+                    GameOptions.None -> {
+                        // These are all acceptable for target selection / self-rating games
+                    }
                     else -> {
-                        // Can also work with PlayerVote
-                        if (options !is GameOptions.PlayerVote) {
-                            failures.add(
-                                "TARGET_SELECT requires GameOptions.PlayerSelect or PlayerVote, got ${options::class.simpleName}",
-                            )
-                        }
+                        failures.add(
+                            "TARGET_SELECT requires GameOptions.SeatSelect, SeatVote, Challenge, or None, got ${options::class.simpleName}",
+                        )
                     }
                 }
             }

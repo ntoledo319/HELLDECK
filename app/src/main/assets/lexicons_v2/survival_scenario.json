@@ -1,0 +1,170 @@
+{
+  "slot_type": "survival_scenario",
+  "entries": [
+    {
+      "text": "a zombie apocalypse",
+      "tags": [
+        "survival"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a deserted island",
+      "tags": [
+        "survival"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a horror movie",
+      "tags": [
+        "survival"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a week without your phone",
+      "tags": [
+        "survival"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being lost in a foreign country with no money",
+      "tags": [
+        "survival"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a month of no internet",
+      "tags": [
+        "survival"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a bar fight",
+      "tags": [
+        "survival"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a home invasion",
+      "tags": [
+        "survival"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "an escape room with your worst enemy",
+      "tags": [
+        "survival"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being the last person left awake at a sleepover",
+      "tags": [
+        "survival"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a 24-hour road trip with no aux cord",
+      "tags": [
+        "survival"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a power outage lasting a week",
+      "tags": [
+        "survival"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sharing a tiny apartment with 5 strangers",
+      "tags": [
+        "survival"
+      ],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a wilderness camping trip with no supplies",
+      "tags": [
+        "survival"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a reality TV show elimination",
+      "tags": [
+        "survival"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

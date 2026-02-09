@@ -111,6 +111,9 @@ class AnalyticsManager private constructor(
         outcome: String,
         score: Int? = null,
     ) {
+        val safeScore = score ?: 0
+        val completionRate = if (score != null) 1.0 else 0.0
+
         trackEvent(
             "game_session_completed",
             mapOf(
@@ -119,8 +122,8 @@ class AnalyticsManager private constructor(
                 "player_count" to (playerCount as Any),
                 "duration_ms" to duration,
                 "outcome" to outcome,
-                "score" to (score as Any),
-                "completion_rate" to if (score != null) 1.0 else 0.0,
+                "score" to safeScore,
+                "completion_rate" to completionRate,
             ),
         )
     }

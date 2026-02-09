@@ -1425,9 +1425,9 @@ fun PodiumCard(
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            // Player name
+            // Seat identifier (anonymized)
             Text(
-                text = player.name,
+                text = "Seat", // Anonymized - no player names
                 style = MaterialTheme.typography.bodyMedium.copy(
                     fontWeight = FontWeight.Bold,
                     color = Color.Black,
@@ -1511,10 +1511,10 @@ fun PlayerScoreCard(
 
                 Spacer(modifier = Modifier.width(4.dp))
 
-                // Player info
+                // Seat info (anonymized)
                 Column {
                     Text(
-                        text = player.name,
+                        text = "Seat ${position}", // Anonymized - no player names
                         style = MaterialTheme.typography.bodyLarge.copy(
                             fontWeight = FontWeight.Bold,
                         ),

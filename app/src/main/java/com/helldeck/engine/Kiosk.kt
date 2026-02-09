@@ -279,7 +279,7 @@ object Kiosk {
     fun isKioskModeSupported(context: Context): Boolean {
         return try {
             // Check for device admin support
-            val devicePolicyManager = context.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
+            val devicePolicyManager = context.getSystemService(DevicePolicyManager::class.java)
             devicePolicyManager != null
         } catch (e: Exception) {
             false
@@ -398,7 +398,7 @@ class KioskBroadcastReceiver : android.content.BroadcastReceiver() {
         isRegistered = false
     }
 
-    private fun getCurrentActivity(context: Context): Activity? {
+    private fun getCurrentActivity(@Suppress("UNUSED_PARAMETER") context: Context): Activity? {
         return try {
             // This is a simplified approach - in practice you'd need a more robust method
             // to get the current activity
@@ -419,8 +419,8 @@ object KioskUtils {
      */
     fun isDeviceKioskReady(context: Context): Boolean {
         return try {
-            val devicePolicyManager = context.getSystemService(Context.DEVICE_POLICY_SERVICE) as DevicePolicyManager
-            val userManager = context.getSystemService(Context.USER_SERVICE) as UserManager
+            val devicePolicyManager = context.getSystemService(DevicePolicyManager::class.java)
+            val userManager = context.getSystemService(UserManager::class.java)
 
             // Check if device is in a user that supports device owner
             val isUserSupported = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

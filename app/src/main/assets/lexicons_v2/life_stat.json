@@ -1,0 +1,225 @@
+{
+  "slot_type": "life_stat",
+  "entries": [
+    {
+      "text": "serious relationships",
+      "tags": [
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "jobs they've been fired from",
+      "tags": [
+        "personal"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "times they've cried in public this year",
+      "tags": [
+        "personal"
+      ],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "countries they've visited",
+      "tags": [
+        "personal"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "tattoos they regret",
+      "tags": [
+        "personal"
+      ],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "times they've been in love",
+      "tags": [
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "speeding tickets in their lifetime",
+      "tags": [
+        "personal"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "times they've lied on a resume",
+      "tags": [
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bones they've broken",
+      "tags": [
+        "personal"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "concerts they've been to",
+      "tags": [
+        "personal"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "times they've ghosted someone",
+      "tags": [
+        "personal"
+      ],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "apartments or houses they've lived in",
+      "tags": [
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "embarrassing nicknames they've had",
+      "tags": [
+        "personal"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "times they've blacked out from drinking",
+      "tags": [
+        "personal"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pets they've owned",
+      "tags": [
+        "personal"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "weddings they've been to this year",
+      "tags": [
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "first dates in the past year",
+      "tags": [
+        "personal"
+      ],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "times they've been pulled over",
+      "tags": [
+        "personal"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "people they'd call at 3am in an emergency",
+      "tags": [
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "New Year's resolutions they actually kept",
+      "tags": [
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

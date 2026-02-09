@@ -252,7 +252,7 @@ object Logger {
     /**
      * Export logs to file
      */
-    fun exportLogs(context: android.content.Context, outputFile: File): Boolean {
+    fun exportLogs(@Suppress("UNUSED_PARAMETER") context: android.content.Context, outputFile: File): Boolean {
         return try {
             val logFiles = getLogFiles()
             PrintWriter(FileWriter(outputFile)).use { writer ->
@@ -494,15 +494,15 @@ object GameEventLogger {
     /**
      * Log game event
      */
-    fun logEvent(event: String, data: Map<String, Any> = emptyMap()) {
-        val eventData = mapOf(
-            "event" to event,
-            "timestamp" to System.currentTimeMillis(),
-            "session" to "current_session", // Would get from game engine
-        ) + data
+        fun logEvent(event: String, data: Map<String, Any> = emptyMap()) {
+            val eventData = mapOf(
+                "event" to event,
+                "timestamp" to System.currentTimeMillis(),
+                "session" to "current_session", // Would get from game engine
+            ) + data
 
-        Logger.i("Game Event: $event - $data")
-    }
+            Logger.i("Game Event: $eventData")
+        }
 
     /**
      * Log player action

@@ -42,7 +42,7 @@ class CardQualityInspectorTest {
             locality = 1,
             metadata = emptyMap(),
         )
-        val issues = CardQualityInspector.evaluate(card, GameOptions.PlayerVote(listOf("A", "B")))
+        val issues = CardQualityInspector.evaluate(card, GameOptions.SeatVote(listOf(1, 2)))
         assertTrue("Should flag leftover placeholder", issues.contains(CardQualityInspector.Issue.PLACEHOLDER_LEFTOVER))
         assertTrue("Should flag repeated filler", issues.contains(CardQualityInspector.Issue.EXCESS_REPEAT))
     }

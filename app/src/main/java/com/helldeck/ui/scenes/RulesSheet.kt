@@ -37,7 +37,7 @@ fun RulesSheet(onClose: () -> Unit) {
             val vmLocal: HelldeckVm = viewModel()
             TopAppBar(
                 title = { Text("HELLDECK — Rules & How-To") },
-                navigationIcon = { TextButton(onClick = { vmLocal.goBack() }) { Text("Back") } },
+                navigationIcon = { TextButton(onClick = { onClose() }) { Text("Back") } },
                 actions = { TextButton(onClick = { vmLocal.goHome() }) { Text("Home") } },
             )
         },

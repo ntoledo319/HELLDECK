@@ -247,7 +247,7 @@ fun PlayersScene(vm: HelldeckVm) {
             icon = { Text("🗑️", fontSize = 48.sp) },
             title = { Text("Delete Player?") },
             text = {
-                Text("Remove ${player.avatar} ${player.name}? This cannot be undone.")
+                Text("Remove ${player.avatar}? This cannot be undone.")
             },
             confirmButton = {
                 Button(
@@ -255,7 +255,7 @@ fun PlayersScene(vm: HelldeckVm) {
                         scope.launch {
                             repo.db.players().delete(player.toEntity())
                             vm.reloadPlayers()
-                            snackbarHostState.showSnackbar("Deleted ${player.name}")
+                            snackbarHostState.showSnackbar("Deleted ${player.avatar}")
                             showDeleteConfirm = null
                         }
                     },
@@ -371,7 +371,7 @@ private fun PlayerCard(
                 )
                 Column {
                     Text(
-                        text = player.name,
+                        text = "Seat", // Anonymized - no player names
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = if (isAFK) HelldeckColors.colorMuted else HelldeckColors.colorOnDark,

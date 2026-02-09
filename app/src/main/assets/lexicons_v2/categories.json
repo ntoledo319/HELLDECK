@@ -1,62 +1,693 @@
 {
   "slot_type": "categories",
   "entries": [
-    { "text": "Animals", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Countries", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Fruits", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Sports", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Movies", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Brands", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Musicians", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Video Games", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Books", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Jobs", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Foods", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Vegetables", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Cities", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Colors", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Car Brands", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Clothing Items", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "TV Shows", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Celebrities", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Desserts", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Drinks", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Social Media Apps", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Hobbies", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "School Subjects", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Kitchen Appliances", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Cartoon Characters", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Toys", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Musical Instruments", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Dance Styles", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Body Parts", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Weather Types", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Emotions", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Pizza Toppings", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Holidays", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Superheroes", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Breakfast Items", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Office Supplies", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Dog Breeds", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Ice Cream Flavors", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Outdoor Activities", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Fast Food Chains", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Coffee Drinks", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Streaming Services", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Phone Apps", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Board Games", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Candies", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Party Themes", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Podcast Genres", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Snacks", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Furniture", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Plants", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Memes", "tags": ["category"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Emojis", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Internet Slang", "tags": ["category"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Hairstyles", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Shoes", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Tools", "tags": ["category"], "tone": "neutral", "spice": 0, "locality": 1, "pluralizable": false, "needs_article": "none" }
+    {
+      "text": "Things you'd hide from your parents",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reasons to ghost someone",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that shouldn't be spicy but are",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Excuses for being late that are technically true",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you'd never say at a funeral",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Red flags in someone's apartment",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that sound like compliments but aren't",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst things to yell in a library",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things your Uber driver doesn't want to hear",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Rejected Halloween costumes",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that would ruin a first date",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Suspicious items to buy at 3am",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things your pet would say about you",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst pickup lines",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you shouldn't google at work",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reasons someone might be secretly a robot",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that are only cool when you're drunk",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst celebrity baby names",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you'd find in a Florida Man headline",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that are normal at home but weird in public",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Texts you never want from your boss",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you shouldn't put on a resume",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst flavors for a candle",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that seem fine at 2pm but terrifying at 2am",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reasons to quit your job dramatically",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that would make a therapist quit",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Names for a terrible restaurant",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst superhero powers",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you shouldn't whisper to a stranger",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reasons your neighbor might be a supervillain",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that are technically legal but deeply wrong",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst things to say during surgery",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that would get you banned from a buffet",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Phrases that have never been said before",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you'd find in a haunted Airbnb",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst things to put on a dating profile",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that would make a dog judge you",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reasons to fake your own death",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that sound dirty but aren't",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst brand collaborations",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you'd overhear at a gym",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Rejected Hallmark card messages",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that would ruin a wedding speech",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst advice from a fortune cookie",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that are only acceptable on vacation",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reasons to avoid someone at a party",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things you shouldn't do in an elevator",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Worst things to hear from a dentist",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Things that make you question reality",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Names for a terrible band",
+      "tags": [
+        "category",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Animals",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Countries",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Celebrities",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Movies",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "TV Shows",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Brands",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Songs",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Sports",
+      "tags": [
+        "category"
+      ],
+      "tone": "neutral",
+      "spice": 0,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }
-

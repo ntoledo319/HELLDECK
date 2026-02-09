@@ -22,9 +22,9 @@ object TemplateCatalogueAuditor {
             if (template.spice !in 0..3) {
                 issues += Issue(template.id, "Spice ${template.spice} outside expected range 0..3")
             }
-            template.slots.forEach { slot ->
+            template.slots.forEach slots@{ slot ->
                 val from = slot.from
-                if (from in SPECIAL_SLOTS) return@forEach
+                if (from in SPECIAL_SLOTS) return@slots
                 if (!lexiconRepository.hasLexicon(from)) {
                     issues += Issue(template.id, "Missing lexicon for slot '${slot.name}' -> '$from'")
                 }

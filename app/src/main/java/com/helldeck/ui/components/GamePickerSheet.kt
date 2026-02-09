@@ -1,5 +1,7 @@
 package com.helldeck.ui.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -11,14 +13,18 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
@@ -26,8 +32,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.helldeck.billing.PurchaseManager
 import com.helldeck.engine.DetailedGameRules
 import com.helldeck.engine.GameMetadata
+import com.helldeck.ui.HelldeckColors
+import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.gameIconFor
 
 /**
@@ -41,6 +50,8 @@ fun GamePickerSheet(
 ) {
     val haptic = LocalHapticFeedback.current
     var showRulesFor by remember { mutableStateOf<String?>(null) }
+    var showUpgradeFor by remember { mutableStateOf<String?>(null) }
+    val isPremiumUnlocked by PurchaseManager.isPremiumUnlocked.collectAsState()
 
     ModalBottomSheet(
         onDismissRequest = onDismiss,
@@ -71,6 +82,20 @@ fun GamePickerSheet(
                 }
             }
 
+            // Upgrade banner (only show if not premium)
+            if (!isPremiumUnlocked && !PurchaseManager.isUnlockAllMode()) {
+                UpgradePromptBanner(
+                    onUpgradeClick = {
+                        // Show upgrade modal for first locked game
+                        val firstLockedGame = GameMetadata.getAllGameIds().firstOrNull { 
+                            !PurchaseManager.isGameUnlocked(it) 
+                        }
+                        firstLockedGame?.let { showUpgradeFor = it }
+                    },
+                    modifier = Modifier.padding(bottom = 16.dp),
+                )
+            }
+
             // Game grid
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
@@ -79,11 +104,17 @@ fun GamePickerSheet(
                 contentPadding = PaddingValues(bottom = 24.dp),
             ) {
                 items(GameMetadata.getAllGameIds()) { gameId ->
+                    val isUnlocked = PurchaseManager.isGameUnlocked(gameId)
                     GameCard(
                         gameId = gameId,
+                        isLocked = !isUnlocked,
                         onClick = {
                             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                            onGameSelected(gameId)
+                            if (isUnlocked) {
+                                onGameSelected(gameId)
+                            } else {
+                                showUpgradeFor = gameId
+                            }
                         },
                         onInfoClick = {
                             showRulesFor = gameId
@@ -101,9 +132,26 @@ fun GamePickerSheet(
             onDismiss = { showRulesFor = null },
             onStartGame = {
                 showRulesFor = null
-                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
-                onGameSelected(gameId)
+                val isUnlocked = PurchaseManager.isGameUnlocked(gameId)
+                if (isUnlocked) {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onGameSelected(gameId)
+                } else {
+                    showUpgradeFor = gameId
+                }
             }
+        )
+    }
+
+    // Upgrade modal for locked games
+    showUpgradeFor?.let { gameId ->
+        UpgradeModal(
+            gameId = gameId,
+            onDismiss = { showUpgradeFor = null },
+            onPurchaseComplete = {
+                showUpgradeFor = null
+                // Optionally auto-select the game after purchase
+            },
         )
     }
 }
@@ -111,6 +159,7 @@ fun GamePickerSheet(
 @Composable
 private fun GameCard(
     gameId: String,
+    isLocked: Boolean = false,
     onClick: () -> Unit,
     onInfoClick: () -> Unit,
 ) {
@@ -123,12 +172,26 @@ private fun GameCard(
         modifier = Modifier
             .fillMaxWidth()
             .height(180.dp),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(HelldeckRadius.Large),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
+            containerColor = if (isLocked) 
+                HelldeckColors.surfaceElevated.copy(alpha = 0.8f)
+            else 
+                MaterialTheme.colorScheme.surfaceVariant,
         ),
+        border = if (isLocked) {
+            BorderStroke(
+                width = 1.5.dp,
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        HelldeckColors.colorPrimary.copy(alpha = 0.4f),
+                        HelldeckColors.colorPrimary.copy(alpha = 0.15f),
+                    ),
+                ),
+            )
+        } else null,
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp,
+            defaultElevation = if (isLocked) 4.dp else 2.dp,
             pressedElevation = 6.dp,
         ),
     ) {
@@ -142,11 +205,33 @@ private fun GameCard(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween,
             ) {
-                // Emoji
-                Text(
-                    text = gameEmoji,
-                    fontSize = 36.sp,
-                )
+                // Emoji with lock overlay for locked games
+                Box(contentAlignment = Alignment.Center) {
+                    Text(
+                        text = gameEmoji,
+                        fontSize = 36.sp,
+                        modifier = Modifier.alpha(if (isLocked) 0.4f else 1f),
+                    )
+                    if (isLocked) {
+                        // Lock icon with subtle glow
+                        Box(
+                            modifier = Modifier
+                                .size(32.dp)
+                                .background(
+                                    color = HelldeckColors.surfacePrimary.copy(alpha = 0.9f),
+                                    shape = RoundedCornerShape(50),
+                                ),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.Lock,
+                                contentDescription = "Locked",
+                                tint = HelldeckColors.colorPrimary,
+                                modifier = Modifier.size(18.dp),
+                            )
+                        }
+                    }
+                }
 
                 // Game name
                 Text(
@@ -157,6 +242,7 @@ private fun GameCard(
                     fontSize = 14.sp,
                     lineHeight = 18.sp,
                     maxLines = 2,
+                    color = if (isLocked) HelldeckColors.colorMuted else MaterialTheme.colorScheme.onSurface,
                 )
 
                 // Description
@@ -168,9 +254,32 @@ private fun GameCard(
                     lineHeight = 13.sp,
                     maxLines = 3,
                     overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = if (isLocked) 
+                        HelldeckColors.colorMuted.copy(alpha = 0.7f) 
+                    else 
+                        MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.fillMaxWidth()
                 )
+            }
+            
+            // Premium badge - top left for locked games
+            if (isLocked) {
+                Surface(
+                    shape = RoundedCornerShape(bottomEnd = HelldeckRadius.Medium),
+                    color = HelldeckColors.colorPrimary,
+                    shadowElevation = 4.dp,
+                    modifier = Modifier.align(Alignment.TopStart),
+                ) {
+                    Text(
+                        text = "✨ PRO",
+                        style = MaterialTheme.typography.labelSmall,
+                        fontWeight = FontWeight.Black,
+                        color = HelldeckColors.background,
+                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp),
+                        fontSize = 10.sp,
+                        letterSpacing = 0.5.sp,
+                    )
+                }
             }
             
             // Info button overlay - top right
@@ -183,7 +292,7 @@ private fun GameCard(
                 Icon(
                     imageVector = Icons.Rounded.Info,
                     contentDescription = "View rules",
-                    tint = MaterialTheme.colorScheme.primary,
+                    tint = if (isLocked) HelldeckColors.colorMuted else MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(18.dp)
                 )
             }

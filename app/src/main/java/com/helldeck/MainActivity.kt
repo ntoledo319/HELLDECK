@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.tracing.trace
+import com.helldeck.billing.PurchaseManager
 import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.engine.Config
 import com.helldeck.ui.HelldeckAppUI
@@ -160,6 +161,11 @@ class MainActivity : ComponentActivity() {
                 ContentEngineProvider.get(this)
             }
 
+            // Initialize billing/purchase manager
+            trace("PurchaseManager.init") {
+                PurchaseManager.initBilling(this)
+            }
+
             // HELLDECK 2.0: Route validation in DEBUG builds
             if (BuildConfig.DEBUG) {
                 val routeIssues = com.helldeck.ui.nav.RouteAudit.validate()
@@ -215,10 +221,14 @@ class MainActivity : ComponentActivity() {
 
     /**
      * Called when the activity is being destroyed.
-     * Logs the destroy event for debugging.
+     * Logs the destroy event for debugging and cleans up billing resources.
      */
     override fun onDestroy() {
         super.onDestroy()
+        // Clean up billing client connection
+        if (isFinishing) {
+            PurchaseManager.destroy()
+        }
         Logger.d("MainActivity destroyed")
     }
 

@@ -2,7 +2,7 @@ package com.helldeck.content.generator
 
 import android.content.Context
 import com.helldeck.engine.GameIds
-import org.json.JSONObject
+import org.json.JSONArray
 
 /**
  * Loads high-quality gold standard cards from assets.
@@ -10,7 +10,12 @@ import org.json.JSONObject
  */
 object GoldCardsLoader {
 
+    // Feedback-based quality thresholds
+    const val AUTO_EXCLUDE_THRESHOLD = 0.15f  // Cards below this score are never shown
+    const val LOW_PRIORITY_THRESHOLD = 0.35f  // Cards below this are shown less often
+
     data class GoldCard(
+        val id: String = "",  // Unique identifier for feedback tracking
         val text: String,
         val quality_score: Int,
         val spice: Int,
@@ -31,51 +36,50 @@ object GoldCardsLoader {
     fun load(context: Context): Map<String, List<GoldCard>> {
         if (goldCards != null) return goldCards!!
 
-        val json = context.assets.open("gold_cards.json").bufferedReader().use { it.readText() }
-        val root = JSONObject(json)
-        val games = root.getJSONObject("games")
+        val json = context.assets.open("gold/gold_cards_v2.json").bufferedReader().use { it.readText() }
+        val cardsArray = JSONArray(json)
 
-        val loaded = mutableMapOf<String, List<GoldCard>>()
+        val grouped = mutableMapOf<String, MutableList<GoldCard>>()
 
-        games.keys().forEach { gameKey ->
-            val gameObj = games.getJSONObject(gameKey)
-            val cardsArray = gameObj.getJSONArray("cards")
-            val cards = mutableListOf<GoldCard>()
+        for (i in 0 until cardsArray.length()) {
+            val cardObj = cardsArray.getJSONObject(i)
+            val text = cardObj.optString("text", "")
+            val family = cardObj.optString("family", "")
+            if (text.isBlank() || family.isBlank()) continue
 
-            for (i in 0 until cardsArray.length()) {
-                val cardObj = cardsArray.getJSONObject(i)
-                cards.add(
-                    GoldCard(
-                        text = cardObj.optString("text", ""),
-                        quality_score = cardObj.optInt("quality_score", 7),
-                        spice = cardObj.optInt("spice", 2),
-                        optionA = cardObj.optString("optionA").takeIf { it.isNotEmpty() },
-                        optionB = cardObj.optString("optionB").takeIf { it.isNotEmpty() },
-                        word = cardObj.optString("word").takeIf { it.isNotEmpty() },
-                        forbidden = cardObj.optJSONArray("forbidden")?.let { arr ->
-                            (0 until arr.length()).map { arr.getString(it) }
-                        },
-                        items = cardObj.optJSONArray("items")?.let { arr ->
-                            (0 until arr.length()).map { arr.getString(it) }
-                        },
-                        words = cardObj.optJSONArray("words")?.let { arr ->
-                            (0 until arr.length()).map { arr.getString(it) }
-                        },
-                        product = cardObj.optString("product").takeIf { it.isNotEmpty() },
-                        category = cardObj.optString("category").takeIf { it.isNotEmpty() },
-                        letter = cardObj.optString("letter").takeIf { it.isNotEmpty() },
-                        tones = cardObj.optJSONArray("tones")?.let { arr ->
-                            (0 until arr.length()).map { arr.getString(it) }
-                        },
-                    ),
-                )
-            }
+            val cardId = cardObj.optString("id").takeIf { it.isNotEmpty() }
+                ?: "${family}_${text.hashCode().toString(16)}"
 
-            loaded[gameKey] = cards
+            val card = GoldCard(
+                id = cardId,
+                text = text,
+                quality_score = cardObj.optInt("quality_score", 7),
+                spice = cardObj.optInt("spice", 2),
+                optionA = cardObj.optString("optionA").takeIf { it.isNotEmpty() },
+                optionB = cardObj.optString("optionB").takeIf { it.isNotEmpty() },
+                word = cardObj.optString("word").takeIf { it.isNotEmpty() },
+                forbidden = cardObj.optJSONArray("forbidden")?.let { arr ->
+                    (0 until arr.length()).map { arr.getString(it) }
+                },
+                items = cardObj.optJSONArray("items")?.let { arr ->
+                    (0 until arr.length()).map { arr.getString(it) }
+                },
+                words = cardObj.optJSONArray("words")?.let { arr ->
+                    (0 until arr.length()).map { arr.getString(it) }
+                },
+                product = cardObj.optString("product").takeIf { it.isNotEmpty() },
+                category = cardObj.optString("category").takeIf { it.isNotEmpty() },
+                letter = cardObj.optString("letter").takeIf { it.isNotEmpty() },
+                tones = cardObj.optJSONArray("tones")?.let { arr ->
+                    (0 until arr.length()).map { arr.getString(it) }
+                },
+            )
+
+            grouped.getOrPut(family) { mutableListOf() }.add(card)
         }
 
-        goldCards = loaded
-        return loaded
+        goldCards = grouped
+        return grouped
     }
 
     fun getExamplesForGame(
@@ -83,6 +87,8 @@ object GoldCardsLoader {
         gameId: String,
         count: Int = 10, // Increased from 5 to 10
         seed: Int? = null, // Optional seed for deterministic rotation
+        maxSpice: Int = 5, // Filter examples by spice level
+        cardScores: Map<String, Float>? = null, // Optional feedback-based scores
     ): List<GoldCard> {
         val allCards = load(context)
         val gameKey = when (gameId) {
@@ -106,8 +112,14 @@ object GoldCardsLoader {
             else -> return emptyList()
         }
 
+        // Filter by quality score, spice, and feedback-based exclusion
         val eligible = allCards[gameKey]
-            ?.filter { it.quality_score >= 7 } // Only gold-tier cards (7+)
+            ?.filter { card ->
+                val feedbackScore = cardScores?.get(card.id) ?: 0.5f
+                card.quality_score >= 7 &&
+                    card.spice <= maxSpice &&
+                    feedbackScore >= AUTO_EXCLUDE_THRESHOLD
+            }
             ?: return emptyList()
 
         if (eligible.isEmpty()) return emptyList()
@@ -119,26 +131,34 @@ object GoldCardsLoader {
                 .take(count)
         }
 
-        // Weighted random selection: higher quality scores = higher probability
-        // This ensures ALL cards can train the AI, but better cards appear more often
+        // Weighted random selection: combines quality_score with feedback-based scores
         val rng = kotlin.random.Random(seed)
 
         return eligible
             .map { card ->
-                // Weight calculation: quality_score * (0.5 to 1.0 random factor)
-                // Score 10: weight 5.0-10.0
-                // Score 9:  weight 4.5-9.0
-                // Score 8:  weight 4.0-8.0
-                // Score 7:  weight 3.5-7.0
-                val weight = card.quality_score * (0.5 + rng.nextDouble() * 0.5)
+                // Base weight from quality score
+                val baseWeight = card.quality_score.toFloat()
+
+                // Feedback multiplier: cards with good feedback get boosted
+                val feedbackScore = cardScores?.get(card.id) ?: 0.5f
+                val feedbackMultiplier = when {
+                    feedbackScore >= 0.7f -> 1.5f  // High performers get 50% boost
+                    feedbackScore >= LOW_PRIORITY_THRESHOLD -> 1.0f  // Normal
+                    else -> 0.5f  // Low performers get 50% penalty
+                }
+
+                // Random factor for variety (0.7 to 1.0)
+                val randomFactor = 0.7f + rng.nextFloat() * 0.3f
+
+                val weight = baseWeight * feedbackMultiplier * randomFactor
                 card to weight
             }
-            .sortedByDescending { it.second } // Sort by weight
-            .take(count) // Take top N weighted cards
-            .map { it.first } // Extract the cards
+            .sortedByDescending { it.second }
+            .take(count)
+            .map { it.first }
     }
 
-    fun getRandomFallback(context: Context, gameId: String): GoldCard? {
+    fun getRandomFallback(context: Context, gameId: String, maxSpice: Int = 5): GoldCard? {
         val allCards = load(context)
         val gameKey = when (gameId) {
             GameIds.ROAST_CONS -> "roast_consensus"
@@ -161,6 +181,8 @@ object GoldCardsLoader {
             else -> return null
         }
 
-        return allCards[gameKey]?.randomOrNull()
+        return allCards[gameKey]
+            ?.filter { it.spice <= maxSpice }
+            ?.randomOrNull()
     }
 }

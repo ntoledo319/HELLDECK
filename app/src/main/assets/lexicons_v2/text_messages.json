@@ -1,0 +1,30 @@
+{
+  "slot_type": "text_messages",
+  "entries": [
+    { "text": "We need to talk when you get home", "tags": ["dread", "relationship"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Can you explain this photo I found?", "tags": ["dread", "accusation"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I saw what you posted last night", "tags": ["social", "accusation"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Are you free to chat for a minute?", "tags": ["work", "dread"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I've been thinking about us...", "tags": ["relationship", "bomb"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "So about last night...", "tags": ["relationship", "dread"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I need to tell you something but promise not to be mad", "tags": ["dread", "social"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your name came up in conversation today", "tags": ["dread", "social"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Call me ASAP it's urgent", "tags": ["dread", "emergency"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I know what you did", "tags": ["accusation", "dread"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Please come to my office when you arrive", "tags": ["work", "authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I had a dream about you last night", "tags": ["relationship", "cringe"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Can I ask you something private?", "tags": ["social", "dread"], "tone": "cringe", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I need to enter your apartment today", "tags": ["authority", "dread"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Sorry wrong person lol... unless?", "tags": ["relationship", "cringe"], "tone": "playful", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Who is this person in your tagged photos?", "tags": ["relationship", "accusation"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I found something in your room", "tags": ["family", "dread"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Don't be mad but I accidentally told everyone", "tags": ["social", "dread"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Can we talk when you get home?", "tags": ["family", "dread"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I just saw you but you didn't see me", "tags": ["stranger", "creepy"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Congratulations on the new relationship ;)", "tags": ["relationship", "passive"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "We've noticed something on your account", "tags": ["work", "authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Is this your wallet I found?", "tags": ["stranger", "social"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Where were you last night?", "tags": ["relationship", "accusation"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "I miss you", "tags": ["relationship", "bomb"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" }
+  ]
+}

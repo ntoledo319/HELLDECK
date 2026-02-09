@@ -99,7 +99,7 @@ object GameQualityProfiles {
      */
     suspend fun evaluate(
         gameId: String,
-        interaction: InteractionType,
+        @Suppress("UNUSED_PARAMETER") interaction: InteractionType,
         card: FilledCard,
         options: GameOptions,
     ): Evaluation {
@@ -122,7 +122,7 @@ object GameQualityProfiles {
         val optionsOk = when (options) {
             is GameOptions.AB -> options.optionA.isNotBlank() && options.optionB.isNotBlank() &&
                 !options.optionA.equals(options.optionB, true)
-            is GameOptions.PlayerVote -> options.players.distinct().size >= 2
+            is GameOptions.SeatVote -> options.seatNumbers.distinct().size >= 2
             is GameOptions.Taboo -> options.word.isNotBlank() && options.forbidden.count { it.isNotBlank() } >= 3
             is GameOptions.Scatter -> options.category.isNotBlank() && options.letter.length == 1
             is GameOptions.ReplyTone -> options.tones.distinct().size >= 3
@@ -131,7 +131,7 @@ object GameQualityProfiles {
             is GameOptions.Product -> options.product.isNotBlank()
             is GameOptions.PredictVote -> options.optionA.isNotBlank() && options.optionB.isNotBlank()
             is GameOptions.Challenge -> options.challenge.isNotBlank()
-            is GameOptions.TextInput, GameOptions.TrueFalse, GameOptions.SmashPass, is GameOptions.PlayerSelect, GameOptions.None -> true
+            is GameOptions.TextInput, GameOptions.TrueFalse, GameOptions.SmashPass, is GameOptions.SeatSelect, GameOptions.None -> true
         }
         if (profile.requireOptions && !optionsOk) issues += Issue.OPTIONS_BAD
 

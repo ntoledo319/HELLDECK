@@ -28,7 +28,7 @@ object HapticsTorch {
             val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
             vibratorManager.defaultVibrator
         } else {
-            context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            context.getSystemService(Vibrator::class.java)
         }
         mainHandler = Handler(Looper.getMainLooper())
     }
@@ -69,6 +69,7 @@ object HapticsTorch {
                     }
                 }
             } else {
+                @Suppress("DEPRECATION")
                 vib.vibrate(durationMs)
             }
         }
@@ -96,6 +97,7 @@ object HapticsTorch {
                 )
                 vib.vibrate(effect)
             } else {
+                @Suppress("DEPRECATION")
                 vib.vibrate(pattern, repeat)
             }
         }
@@ -105,9 +107,9 @@ object HapticsTorch {
      * Flash the camera torch
      */
     fun flash(
-        context: Context,
-        durationMs: Long = 120,
-        intensity: FlashIntensity = FlashIntensity.NORMAL,
+        @Suppress("UNUSED_PARAMETER") context: Context,
+        @Suppress("UNUSED_PARAMETER") durationMs: Long = 120,
+        @Suppress("UNUSED_PARAMETER") intensity: FlashIntensity = FlashIntensity.NORMAL,
     ) {
         // Vibration-only build: torch feedback disabled (no-op)
         return
@@ -117,9 +119,9 @@ object HapticsTorch {
      * Flash torch in a pattern
      */
     fun flashPattern(
-        context: Context,
-        pattern: List<FlashPattern>,
-        repeatCount: Int = 0,
+        @Suppress("UNUSED_PARAMETER") context: Context,
+        @Suppress("UNUSED_PARAMETER") pattern: List<FlashPattern>,
+        @Suppress("UNUSED_PARAMETER") repeatCount: Int = 0,
     ) {
         // Vibration-only build: torch feedback disabled (no-op)
         return
@@ -136,7 +138,7 @@ object HapticsTorch {
     /**
      * Check if device has camera flash
      */
-    fun hasFlash(context: Context): Boolean {
+    fun hasFlash(@Suppress("UNUSED_PARAMETER") context: Context): Boolean {
         // Vibration-only build
         return false
     }
@@ -352,12 +354,15 @@ object GameFeedback {
             }
             result.roomTrash -> {
                 if (useHaptics) HapticsTorch.buzzPattern(context, HapticPatterns.ERROR)
+                if (useTorch) HapticsTorch.flash(context)
             }
             result.points > 0 -> {
                 if (useHaptics) HapticsTorch.buzzPattern(context, HapticPatterns.VOTE_CONFIRM)
+                if (useTorch) HapticsTorch.flash(context)
             }
             else -> {
                 if (useHaptics) HapticsTorch.buzz(context, 100, VibrationIntensity.LIGHT)
+                if (useTorch) HapticsTorch.flash(context)
             }
         }
     }
@@ -378,14 +383,17 @@ object GameFeedback {
             progress < 0.1 -> {
                 // Critical time - rapid feedback
                 if (useHaptics) HapticsTorch.buzz(context, 100, VibrationIntensity.HEAVY)
+                if (useTorch) HapticsTorch.flash(context)
             }
             progress < 0.3 -> {
                 // Warning time - medium feedback
                 if (useHaptics) HapticsTorch.buzz(context, 75, VibrationIntensity.MEDIUM)
+                if (useTorch) HapticsTorch.flash(context)
             }
             else -> {
                 // Normal time - light feedback
                 if (useHaptics) HapticsTorch.buzz(context, 35, VibrationIntensity.LIGHT)
+                if (useTorch) HapticsTorch.flash(context)
             }
         }
     }

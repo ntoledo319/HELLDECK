@@ -1,0 +1,25 @@
+{
+  "slot_type": "text_senders",
+  "entries": [
+    { "text": "Mom", "tags": ["family"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Dad", "tags": ["family"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Grandma", "tags": ["family"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Ex", "tags": ["relationship"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Boss", "tags": ["work"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "HR", "tags": ["work"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Crush", "tags": ["relationship"], "tone": "playful", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Landlord", "tags": ["authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Unknown Number", "tags": ["stranger"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Roommate", "tags": ["social"], "tone": "playful", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Best Friend", "tags": ["social"], "tone": "playful", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Uber Driver", "tags": ["stranger"], "tone": "cringe", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Doctor", "tags": ["authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Neighbor", "tags": ["social"], "tone": "cringe", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Ex's Best Friend", "tags": ["relationship"], "tone": "wild", "spice": 4, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Group Chat", "tags": ["social"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Therapist", "tags": ["authority"], "tone": "dry", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
+    { "text": "Blocked Number", "tags": ["stranger"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Dentist", "tags": ["authority"], "tone": "cringe", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
+    { "text": "Your Coworker", "tags": ["work"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" }
+  ]
+}

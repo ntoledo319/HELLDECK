@@ -28,6 +28,7 @@ fun PlayerProfileScene(
     onClose: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
+    val context = androidx.compose.ui.platform.LocalContext.current
     var isLoading by remember { mutableStateOf(true) }
     var profile by remember { mutableStateOf<PlayerProfile?>(null) }
     var summaryText by remember { mutableStateOf("") }
@@ -67,8 +68,11 @@ fun PlayerProfileScene(
                                 putExtra(android.content.Intent.EXTRA_TEXT, summaryText)
                             }
                             try {
-                                // This would need context in real implementation
-                                // ctx.startActivity(android.content.Intent.createChooser(intent, "Share Profile"))
+                                context.startActivity(
+                                    android.content.Intent.createChooser(intent, "Share Profile").addFlags(
+                                        android.content.Intent.FLAG_ACTIVITY_NEW_TASK,
+                                    ),
+                                )
                             } catch (e: Exception) {
                                 // Handle share error
                             }
@@ -278,7 +282,7 @@ private fun ProfileStatWithBar(label: String, value: Int, total: Int, color: Col
         }
         Spacer(modifier = Modifier.height(4.dp))
         LinearProgressIndicator(
-            progress = if (total > 0) value.toFloat() / total.toFloat() else 0f,
+            progress = { if (total > 0) value.toFloat() / total.toFloat() else 0f },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(6.dp),

@@ -103,7 +103,7 @@ private fun EnhancedPodiumCard(
                 )
 
                 Text(
-                    text = player.name,
+                    text = "Seat ${position}", // Anonymized - no player names
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = if (isWinner) FontWeight.ExtraBold else FontWeight.Bold,
                     ),
@@ -165,7 +165,7 @@ private fun EnhancedPlayerScoreCard(
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
-                    text = player.name,
+                    text = "Seat ${position}", // Anonymized - no player names
                     style = MaterialTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
                     color = HelldeckColors.White,
                 )

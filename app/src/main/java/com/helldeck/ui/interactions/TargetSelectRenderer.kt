@@ -81,8 +81,8 @@ fun TargetSelectRenderer(
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
 
-        val playerNames: List<String> = when (val opts = roundState.options) {
-            is com.helldeck.content.model.GameOptions.PlayerSelect -> opts.players
+        val seatNumbers: List<Int> = when (val opts = roundState.options) {
+            is com.helldeck.content.model.GameOptions.SeatSelect -> opts.seatNumbers
             else -> emptyList()
         }
 
@@ -92,10 +92,10 @@ fun TargetSelectRenderer(
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
             verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         ) {
-            itemsIndexed(items = playerNames) { index, playerName ->
+            itemsIndexed(items = seatNumbers) { index, seatNumber ->
                 TargetPlayerCard(
-                    playerName = playerName,
-                    playerEmoji = getTargetEmoji(index),
+                    playerName = "Seat $seatNumber",
+                    playerEmoji = getTargetEmoji(seatNumber - 1),
                     isSelected = selectedIndex == index,
                     reducedMotion = reducedMotion,
                     onClick = {

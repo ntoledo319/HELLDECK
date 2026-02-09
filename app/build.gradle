@@ -38,6 +38,8 @@ android {
     // Enhanced build config
     buildConfigField "String", "BUILD_TIME", "\"${new Date().format('yyyy-MM-dd HH:mm:ss')}\""
     buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
+    // Default UNLOCK_ALL to false (overridden by tester flavor)
+    buildConfigField "boolean", "UNLOCK_ALL", "false"
     
     // NDK configuration for llama.cpp
     // Only build for arm64-v8a to avoid float16 intrinsics issues on armeabi-v7a
@@ -50,6 +52,21 @@ android {
         cppFlags "-std=c++17 -O3"
         arguments "-DANDROID_STL=c++_shared"
       }
+    }
+  }
+
+  // Product flavors for production vs internal (tester) builds
+  flavorDimensions "version"
+  productFlavors {
+    production {
+      dimension "version"
+      buildConfigField "boolean", "UNLOCK_ALL", "false"
+    }
+    internal {
+      dimension "version"
+      applicationIdSuffix ".internal"
+      versionNameSuffix "-internal"
+      buildConfigField "boolean", "UNLOCK_ALL", "true"
     }
   }
 
@@ -164,6 +181,9 @@ dependencies {
   implementation 'androidx.core:core-ktx:1.13.1'
   implementation 'androidx.appcompat:appcompat:1.7.0'
   implementation 'androidx.activity:activity-compose:1.9.2'
+
+  // Google Play Billing for in-app purchases
+  implementation "com.android.billingclient:billing-ktx:6.0.1"
 
   // Compose BOM and UI
   implementation platform('androidx.compose:compose-bom:2024.06.00')

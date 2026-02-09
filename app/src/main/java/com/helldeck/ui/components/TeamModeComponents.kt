@@ -34,7 +34,7 @@ import com.helldeck.ui.theme.HelldeckSpacing
 @Composable
 fun TeamModeWarning(
     playerCount: Int,
-    onEnableTeamMode: () -> Unit,
+    @Suppress("UNUSED_PARAMETER") onEnableTeamMode: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     if (playerCount >= 8) {
@@ -155,7 +155,7 @@ fun TeamDisplay(
             subtitle = "${teams.size} teams • 1 vote per team",
         )
         
-        teams.entries.forEachIndexed { index, (teamId, members) ->
+        teams.entries.forEachIndexed { index, (_, members) ->
             val teamName = "Team ${index + 1}"
             val teamColor = when (index % 4) {
                 0 -> HelldeckColors.colorPrimary

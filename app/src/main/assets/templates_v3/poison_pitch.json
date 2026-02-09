@@ -7,8 +7,8 @@
     "spice_max": 3,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Would you rather live with " },
-      { "type": "slot", "name": "perk", "slot_type": "perks_plus" },
+      { "type": "text", "value": "Would you rather deal with " },
+      { "type": "slot", "name": "cost_a", "slot_type": "would_you_rather_costs" },
       { "type": "text", "value": " or survive " },
       { "type": "slot", "name": "gross", "slot_type": "gross_problem" },
       { "type": "text", "value": "?" }
@@ -20,7 +20,7 @@
     "option_provider": {
       "type": "AB",
       "options": [
-        { "from_slot": "perk" },
+        { "from_slot": "cost_a" },
         { "from_slot": "gross" }
       ]
     }
@@ -33,11 +33,11 @@
     "spice_max": 2,
     "locality_max": 3,
     "blueprint": [
-      { "type": "text", "value": "Sell the crew on " },
-      { "type": "slot", "name": "perk", "slot_type": "perks_plus" },
-      { "type": "text", "value": " even though it comes with " },
-      { "type": "slot", "name": "red_flag", "slot_type": "red_flag_issue" },
-      { "type": "text", "value": "." }
+      { "type": "text", "value": "Would you rather live with " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
+      { "type": "text", "value": " forever or endure " },
+      { "type": "slot", "name": "cost", "slot_type": "would_you_rather_costs" },
+      { "type": "text", "value": " for a year?" }
     ],
     "constraints": {
       "max_words": 26,
@@ -46,8 +46,8 @@
     "option_provider": {
       "type": "AB",
       "options": [
-        { "from_slot": "perk" },
-        { "from_slot": "red_flag" }
+        { "from_slot": "selfish" },
+        { "from_slot": "cost" }
       ]
     }
   },
@@ -59,11 +59,11 @@
     "spice_max": 2,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Choose: undo " },
-      { "type": "slot", "name": "problem", "slot_type": "gross_problem" },
-      { "type": "text", "value": " or gain " },
-      { "type": "slot", "name": "perk", "slot_type": "perks_plus" },
-      { "type": "text", "value": " forever." }
+      { "type": "text", "value": "Pick your nightmare: " },
+      { "type": "slot", "name": "gross", "slot_type": "gross_problem" },
+      { "type": "text", "value": " or " },
+      { "type": "slot", "name": "red_flag", "slot_type": "red_flag_issue" },
+      { "type": "text", "value": "?" }
     ],
     "constraints": {
       "max_words": 22,
@@ -72,8 +72,8 @@
     "option_provider": {
       "type": "AB",
       "options": [
-        { "from_slot": "problem" },
-        { "from_slot": "perk" }
+        { "from_slot": "gross" },
+        { "from_slot": "red_flag" }
       ]
     }
   },
@@ -85,10 +85,10 @@
     "spice_max": 3,
     "locality_max": 1,
     "blueprint": [
-      { "type": "text", "value": "Trade " },
-      { "type": "slot", "name": "perk_a", "slot_type": "perks_plus" },
-      { "type": "text", "value": " to avoid " },
-      { "type": "slot", "name": "problem", "slot_type": "gross_problem" },
+      { "type": "text", "value": "Would you rather be known for " },
+      { "type": "slot", "name": "bodily", "slot_type": "bodily_functions" },
+      { "type": "text", "value": " or caught " },
+      { "type": "slot", "name": "selfish", "slot_type": "selfish_behaviors" },
       { "type": "text", "value": "?" }
     ],
     "constraints": {
@@ -98,8 +98,8 @@
     "option_provider": {
       "type": "AB",
       "options": [
-        { "from_slot": "perk_a" },
-        { "from_slot": "problem" }
+        { "from_slot": "bodily" },
+        { "from_slot": "selfish" }
       ]
     }
   }

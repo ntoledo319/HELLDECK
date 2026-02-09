@@ -112,8 +112,13 @@ class LLMCardGenerator(
      * Build quality-focused prompts with gold standard examples
      */
     private fun buildQualityPrompt(request: GenerationRequest, attempt: Int): Prompt {
-        // Load gold examples for this game
-        val goldExamples = GoldCardsLoader.getExamplesForGame(context, request.gameId, count = 5)
+        // Load gold examples for this game (filtered by spice level)
+        val goldExamples = GoldCardsLoader.getExamplesForGame(
+            context,
+            request.gameId,
+            count = 5,
+            maxSpice = request.spiceMax,
+        )
 
         val spiceGuidance = when (request.spiceMax) {
             1 -> "wholesome and PG-13 (family-friendly)"
@@ -743,7 +748,7 @@ Make it verifiable and potentially embarrassing or revealing.
 
     private fun parseOptionsFromJson(json: JSONObject, request: GenerationRequest): GameOptions {
         return when (request.gameId) {
-            GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
+            GameIds.ROAST_CONS -> GameOptions.SeatVote((1..request.players.size.coerceAtLeast(2)).toList())
 
             GameIds.POISON_PITCH -> {
                 val a = json.optString("optionA", "Option A")
@@ -791,6 +796,15 @@ Make it verifiable and potentially embarrassing or revealing.
 
             GameIds.FILL_IN -> GameOptions.None
 
+            GameIds.REALITY_CHECK -> GameOptions.SeatSelect((1..request.players.size.coerceAtLeast(2)).toList(), null)
+
+            GameIds.UNIFYING_THEORY -> {
+                val items = json.optString("text", "A, B, C").split(", ")
+                GameOptions.Challenge("Find what connects: ${items.joinToString(", ")}")
+            }
+
+            GameIds.OVER_UNDER -> GameOptions.AB("Over", "Under")
+
             else -> GameOptions.None
         }
     }
@@ -828,7 +842,7 @@ Make it verifiable and potentially embarrassing or revealing.
      * Fallback to curated gold standard cards
      */
     private fun fallbackToGold(request: GenerationRequest): GenerationResult? {
-        val goldCard = GoldCardsLoader.getRandomFallback(context, request.gameId) ?: return null
+        val goldCard = GoldCardsLoader.getRandomFallback(context, request.gameId, request.spiceMax) ?: return null
 
         val card = FilledCard(
             id = "gold_${request.gameId}_${System.currentTimeMillis()}",
@@ -868,7 +882,7 @@ Make it verifiable and potentially embarrassing or revealing.
                     goldCard.tones ?: listOf("Casual", "Formal", "Chaotic", "Petty"),
                 )
             }
-            GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
+            GameIds.ROAST_CONS -> GameOptions.SeatVote((1..request.players.size.coerceAtLeast(2)).toList())
             GameIds.CONFESS_CAP -> GameOptions.TrueFalse
             GameIds.RED_FLAG -> GameOptions.AB("SMASH", "PASS")
             else -> GameOptions.None

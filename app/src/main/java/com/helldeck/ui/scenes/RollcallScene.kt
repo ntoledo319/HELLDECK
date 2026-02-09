@@ -43,7 +43,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun RollcallScene(vm: HelldeckVm) {
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current
     val repo = remember { ContentRepository(AppCtx.ctx) }
     val snackbarHostState = remember { SnackbarHostState() }
     
@@ -60,7 +59,6 @@ fun RollcallScene(vm: HelldeckVm) {
     val absentPlayers = players.filter { it.id !in present }
     
     // Validation
-    val countValidation = ValidationUtils.validatePlayerCount(presentPlayers.size)
     val countWarning = ValidationUtils.getPlayerCountWarning(presentPlayers.size)
     
     Scaffold(
@@ -296,7 +294,7 @@ private fun RollcallPlayerCard(
                 )
                 Column {
                     Text(
-                        text = player.name,
+                        text = "Seat", // Anonymized - no player names
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = if (isPresent) {

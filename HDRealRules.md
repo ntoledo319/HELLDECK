@@ -19,7 +19,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 ### The Mechanics:
 
 -   **Simultaneous Reveal:** No one sees votes until the timer hits zero. No bandwagoning.
--   **Majority Rules:** The player with the most votes is crowned the Mayo Goblin (or whatever the prompt was).
+-   **Majority Rules:** The person with the most votes is crowned the Mayo Goblin (or whatever the prompt was).
 -   **Ties:** Rock-paper-scissors. Loser takes the roast.
 
 ### Scoring:
@@ -46,7 +46,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 ### How to Play:
 
-1.  **The Confessor:** One player is chosen and receives a potentially embarrassing prompt (e.g., _"Have you ever stalked an ex on social media for over an hour?"_).
+1.  **The Confessor:** Someone is chosen and receives a potentially embarrassing prompt (e.g., _"Have you ever stalked an ex on social media for over an hour?"_).
 2.  **The Claim:** The Confessor answers **TRUE** or **FALSE**.
 3.  **The Jury:** Everyone else votes on whether they believe the Confessor.
 4.  **The Truth:** The answer is revealed.
@@ -80,7 +80,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 -   **Sell the truth like a lie.** If it's true, act suspicious. People will think you're bluffing.
 -   **Sell the lie like the truth.** Confidence is everything. Say it fast and move on.
--   **Study the player.** If they're a chronic oversharer, a "FALSE" answer is probably a lie.
+-   **Study the person.** If they're a chronic oversharer, a "FALSE" answer is probably a lie.
 
 * * *
 
@@ -89,8 +89,8 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 ### How to Play:
 
 1.  **The Dilemma:** A "Would You Rather" card is drawn with two horrifying options (e.g., _"Would you rather fight one horse-sized duck OR 100 duck-sized horses?"_).
-2.  **The Assignment:** One player is randomly assigned to defend **Option A**. Another player defends **Option B**.
-3.  **The Pitch:** Each player has 30 seconds to argue why their option is the _better_ choice.
+2.  **The Assignment:** One person is randomly assigned to defend **Option A**. Another person defends **Option B**.
+3.  **The Pitch:** Each pitcher has 30 seconds to argue why their option is the _better_ choice.
 4.  **The Vote:** The group votes for the most convincing argument (not the better option—the better _pitch_).
 
 ### The Rules:
@@ -129,11 +129,11 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 ### How to Play:
 
-1.  **The Judge:** One player is the Judge. They draw a card with a two-part prompt (e.g., _"I got kicked out of Disney World for \_\_\_\_\_, and now I'm banned from \_\_\_\_\_."_).
+1.  **The Judge:** Someone is the Judge. They draw a card with a two-part prompt (e.g., _"I got kicked out of Disney World for \_\_\_\_\_, and now I'm banned from \_\_\_\_\_."_).
 2.  **The Setup:** The Judge reads the card aloud and fills in the **first blank** verbally (e.g., _"I got kicked out of Disney World for **punching Goofy**..."_).
-3.  **The Punchline:** All other players have **60 seconds** to write down their answer for the **second blank** (e.g., _"...and now I'm banned from **all theme parks in North America**."_).
+3.  **The Punchline:** Everyone else has **60 seconds** to write down their answer for the **second blank** (e.g., _"...and now I'm banned from **all theme parks in North America**."_).
 4.  **The Reading:** The Judge reads all anonymous responses aloud.
-5.  **The Winner:** The Judge picks their favorite. That player wins the round.
+5.  **The Winner:** The Judge picks their favorite. That person wins the round.
 
 ### The Strategy:
 
@@ -172,7 +172,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 ### How to Play:
 
 1.  **The Scenario:** A dating card is revealed with a **Perk** and a **Red Flag** (e.g., _"They're a billionaire, BUT they collect toenail clippings."_).
-2.  **The Defender:** One player is randomly assigned to defend this person and argue why they're still dateable.
+2.  **The Defender:** Someone is randomly assigned to defend this person and argue why they're still dateable.
 3.  **The Pitch:** The Defender has 45 seconds to make their case.
 4.  **The Vote:** Everyone else votes **SMASH** (would date) or **PASS** (absolutely not).
 
@@ -211,8 +211,8 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 ### How to Play:
 
-1.  **The Target:** One player is selected as the "Target."
-2.  **The Imposter:** Another player is secretly chosen to impersonate the Target.
+1.  **The Target:** Someone is selected as the "Target."
+2.  **The Imposter:** Another person is secretly chosen to impersonate the Target.
 3.  **The Questions:** The group asks 3-5 personal questions (e.g., _"What's your biggest fear?"_ or _"What's the last thing you Googled?"_).
 4.  **The Performance:** The Imposter answers each question _as if they were the Target_, trying to sound convincing.
 5.  **The Vote:** After all questions are answered, the group votes: **REAL** (they believe the Imposter) or **FAKE** (they see through the act).
@@ -255,8 +255,8 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 1.  **The Scenario:** A card is drawn displaying an awkward or high-stakes "received text message."
 2.  **The Modifier:** A Mandatory Tone is generated (1-22).
-3.  **The Reply:** The player must verbally improvise the text reply (or dictate it to the group) while strictly acting out that specific Tone.
-4.  **The Vote:** The group votes on whether the player survived the social interaction.
+3.  **The Reply:** The person must verbally improvise the text reply (or dictate it to the group) while strictly acting out that specific Tone.
+4.  **The Vote:** The group votes on whether the person survived the social interaction.
 
 ### The Mandatory Tones:
 
@@ -322,7 +322,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 ### How to Play:
 
-1.  **The Guesser & The Clue-Giver:** Players split into two roles. One player is the Clue-Giver, the rest are Guessers.
+1.  **The Guesser & The Clue-Giver:** Everyone splits into two roles. One person is the Clue-Giver, the rest are Guessers.
 2.  **The Target Word:** The Clue-Giver draws a card with a target word (e.g., _"WEDDING"_).
 3.  **The Forbidden Words:** The card lists 3-5 words the Clue-Giver **cannot say** (e.g., _"Bride, Groom, Ceremony, Ring, Dress"_).
 4.  **The Clock:** 60 seconds on the timer. The Clue-Giver must describe the target word without using any forbidden words.
@@ -331,7 +331,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 ### The Penalty:
 
 -   **Forbidden Word Spoken:** If the Clue-Giver accidentally says a forbidden word, the card is discarded and they lose 1 point.
--   **Buzzer Role:** One player acts as the "Buzzer" and listens carefully for slip-ups.
+-   **Buzzer Role:** One person acts as the "Buzzer" and listens carefully for slip-ups.
 
 ### Card Archetypes:
 
@@ -365,7 +365,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 ### How to Play:
 
 1.  **The Trio:** A card is revealed displaying three completely unrelated items (e.g., _"A Catholic Priest, A Referee, A Zebra"_).
-2.  **The Challenge:** The player must explain exactly why these three things are **The Same**.
+2.  **The Challenge:** The person must explain exactly why these three things are **The Same**.
 3.  **The Logic:** You must find the single thread—no matter how thin, absurd, or dark—that connects all three.
 4.  **The Delivery:** Present your "Unifying Theory" to the group.
 5.  **The Vote:** The group decides if your theory holds water or if you're just rambling.
@@ -410,9 +410,9 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 ### How to Play:
 
-1.  **The Ambush:** You draw a card. Immediately point at another player and yell **"FIGHT!"**
+1.  **The Ambush:** You draw a card. Immediately point at someone else and yell **"FIGHT!"**
 2.  **The Challenge:** Read the challenge on the card aloud (e.g., _"Category: Pizza Toppings"_).
-3.  **The Clash:** You and that player compete instantly. No countdowns, no warm-ups.
+3.  **The Clash:** You and that person compete instantly. No countdowns, no warm-ups.
 4.  **The End:** The first person to mess up, pause, or quit is the Loser.
 
 ### The 3 Ways to Fight:
@@ -444,7 +444,7 @@ _Low Cognitive Load. High Social Stakes. Maximum Chaos._
 
 -   **Pick Your Victim Wisely:** If the card is a staring contest, don't pick the person with the glassy, unblinking eyes.
 -   **Be Loud:** If you shout your answer with confidence, people might not notice it was wrong.
--   **Referees:** The players not fighting are the judges. If they say you paused too long, you lose. No arguments.
+-   **Referees:** The people not fighting are the judges. If they say you paused too long, you lose. No arguments.
 
 * * *
 
@@ -488,11 +488,11 @@ You must tell a smooth story _AND_ fool the group so they can't tell which words
 
 ### The Concept:
 
-A brutal game of self-awareness. A player rates themselves on a specific trait, and the group rates them on the same trait. If the numbers don't match, you are either **Delusional** or **Fishing**.
+A brutal game of self-awareness. Someone rates themselves on a specific trait, and the group rates them on the same trait. If the numbers don't match, you are either **Delusional** or **Fishing**.
 
 ### How to Play:
 
-1.  **The Question:** The active player (The Subject) draws a card with a specific trait (e.g., _"How funny are you, really?"_).
+1.  **The Question:** The active person (The Subject) draws a card with a specific trait (e.g., _"How funny are you, really?"_).
 2.  **The Ego Score:** The Subject _secretly_ writes down a rating from **1 to 10** based on how they view themselves.
 3.  **The Reality Score:** Simultaneously, the rest of the group discusses aloud and agrees on a single rating (1-10) for The Subject.
 4.  **The Reveal:** Both numbers are revealed at the same time.
@@ -533,14 +533,14 @@ A high-speed category elimination game. The phone acts as a bomb with a hidden t
 
 -   Player 1 shouts a valid answer (_"Jennifer Aniston!"_).
 -   The Host (or Player 1) taps the **"Next"** button on the screen.
--   The "Turn" instantly passes to the player on the left.
+-   The "Turn" instantly passes to the person on the left.
 -   Player 2 must shout a new answer (_"Jack Black!"_) and the button is tapped again.
 
 5.  **The Explosion:** If the bomb sound plays while it is _your_ turn to speak, you lose.
 
 ### The "Challenge" Rule:
 
-If a player shouts a nonsense answer or repeats a word, the group yells **"LOCKED!"** The Host _does not_ tap the button. The current player keeps the turn and must come up with a _new_ answer while the timer burns down.
+If someone shouts a nonsense answer or repeats a word, the group yells **"LOCKED!"** The Host _does not_ tap the button. The current person keeps the turn and must come up with a _new_ answer while the timer burns down.
 
 ### Card Variations:
 
@@ -570,11 +570,11 @@ If a player shouts a nonsense answer or repeats a word, the group yells **"LOCKE
 
 ### The Concept:
 
-A social betting game. A player is put on the spot with a question that has a specific number answer. The group sets a "Betting Line," and everyone gambles on whether the actual number is Higher (Over) or Lower (Under).
+A social betting game. Someone is put on the spot with a question that has a specific number answer. The group sets a "Betting Line," and everyone gambles on whether the actual number is Higher (Over) or Lower (Under).
 
 ### How to Play:
 
-1.  **The Subject:** One player is chosen (The Subject).
+1.  **The Subject:** Someone is chosen (The Subject).
 2.  **The Stat:** A card is drawn asking for a number regarding The Subject (e.g., _"Total number of photos in their Camera Roll"_).
 3.  **The Line:** The group briefly discusses and agrees on a "Line" (e.g., _"We think he's vain, but not crazy... let's set the line at 1,500"_).
 4.  **The Bet:** Everyone (except The Subject) votes:
@@ -651,7 +651,7 @@ The secret to addictive party games isn't complexity—it's **emotional leverage
 
 1.  **Brevity is King:** If a card requires more than 10 seconds to read, it's too long.
 2.  **Ambiguity Creates Chaos:** The best cards have multiple valid interpretations.
-3.  **Stakes Must Be Clear:** Players need to know immediately what they're risking (reputation, points, dignity).
+3.  **Stakes Must Be Clear:** People need to know immediately what they're risking (reputation, points, dignity).
 4.  **Relatability Wins:** Inside jokes are great, but universal human experiences are better.
 5.  **The Roast Must Land:** Cards should make people laugh _at_ someone, not feel genuinely hurt.
 
@@ -830,7 +830,7 @@ Confessions about dating, romance, and intimacy.
 
 -   **Avoid illegal activities.** "Have you ever committed tax fraud?" isn't fun—it's a liability.
 -   **Keep it relatable.** "Have you ever been to space?" is too niche.
--   **Make it recent.** "Have you ever used a rotary phone?" only works for older players.
+-   **Make it recent.** "Have you ever used a rotary phone?" only works for older groups.
 -   **Balance shame and humor.** The confession should be embarrassing, not traumatic.
 
 ### The "Spice Level" Modifier:
@@ -857,7 +857,7 @@ Confessions about dating, romance, and intimacy.
 
 ### What the AI is Generating:
 
-**"Would You Rather" Scenarios** - Two equally terrible options that force players to defend the indefensible.
+**"Would You Rather" Scenarios** - Two equally terrible options that force people to defend the indefensible.
 
 ### The Formula:
 
@@ -877,7 +877,7 @@ Painful, disgusting, or dangerous scenarios.
 -   _"Would you rather fight one horse-sized duck OR 100 duck-sized horses?"_
 -   _"Would you rather have permanent hiccups OR always smell like garlic?"_
 
-**Why it works:** These are visceral. Players can _feel_ the horror of each option.
+**Why it works:** These are visceral. People can _feel_ the horror of each option.
 
 #### **The Social Suicide:**
 
@@ -897,7 +897,7 @@ Ethically questionable choices that reveal your character.
 -   _"Would you rather cheat to win $1 million OR play fair and lose?"_
 -   _"Would you rather save your pet OR a stranger's child?"_
 
-**Why it works:** These cards force players to reveal their values. The group will judge them either way.
+**Why it works:** These cards force people to reveal their values. The group will judge them either way.
 
 #### **The Absurd Hypothetical:**
 
@@ -907,7 +907,7 @@ Scenarios so ridiculous that logic doesn't apply.
 -   _"Would you rather have fingers for toes OR toes for fingers?"_
 -   _"Would you rather speak only in rhymes OR sing everything you say?"_
 
-**Why it works:** The absurdity removes the pressure. Players can be creative and silly.
+**Why it works:** The absurdity removes the pressure. People can be creative and silly.
 
 #### **The "Forever" Curse:**
 
@@ -960,15 +960,15 @@ Both options are so bad that choosing feels impossible.
 
 ### What the AI is Generating:
 
-**Two-Part Prompts** - Sentences with two blanks where the Judge fills in the first blank (The Setup) and players write the second blank (The Punchline).
+**Two-Part Prompts** - Sentences with two blanks where the Judge fills in the first blank (The Setup) and everyone else writes the second blank (The Punchline).
 
 ### The Formula:
 
-`"[CONTEXT] _____ (Judge fills this), and now _____ (Players fill this)."`
+`"[CONTEXT] _____ (Judge fills this), and now _____ (Others fill this)."`
 
 ### The Psychology:
 
-This game is **collaborative improv**. The Judge sets the tone, and the players riff off it. The best prompts are open-ended enough to allow for multiple types of humor (dark, absurd, wholesome, sexual) but structured enough to guide the punchline.
+This game is **collaborative improv**. The Judge sets the tone, and everyone riffs off it. The best prompts are open-ended enough to allow for multiple types of humor (dark, absurd, wholesome, sexual) but structured enough to guide the punchline.
 
 ### Card Categories:
 
@@ -980,7 +980,7 @@ Prompts about getting in trouble, breaking rules, or facing consequences.
 -   _"I got kicked out of \_\_\_\_\_ for \_\_\_\_\_, and now I'm banned from \_\_\_\_\_."_
 -   _"I got fired from my job for \_\_\_\_\_, and my boss told me \_\_\_\_\_."_
 
-**Why it works:** Everyone fantasizes about getting away with something. These prompts let players live vicariously through chaos.
+**Why it works:** Everyone fantasizes about getting away with something. These prompts let people live vicariously through chaos.
 
 #### **The Breakup:**
 
@@ -1010,7 +1010,7 @@ Prompts about awkward family moments, holiday disasters, or generational clashes
 -   _"My parents found out about \_\_\_\_\_, and now they think I'm \_\_\_\_\_."_
 -   _"Christmas dinner got awkward when my uncle started talking about \_\_\_\_\_, and my mom said \_\_\_\_\_."_
 
-**Why it works:** Family gatherings are universally chaotic. These prompts let players vent through humor.
+**Why it works:** Family gatherings are universally chaotic. These prompts let people vent through humor.
 
 #### **The Public Embarrassment:**
 
@@ -1020,7 +1020,7 @@ Prompts about social failures, cringe moments, or public humiliation.
 -   _"I accidentally said \_\_\_\_\_ in front of \_\_\_\_\_, and now they think I'm \_\_\_\_\_."_
 -   _"I got caught \_\_\_\_\_ at \_\_\_\_\_, and the security guard said \_\_\_\_\_."_
 
-**Why it works:** Public embarrassment is a primal fear. These prompts let players laugh at their worst nightmares.
+**Why it works:** Public embarrassment is a primal fear. These prompts let people laugh at their worst nightmares.
 
 #### **The Medical Mystery:**
 
@@ -1066,7 +1066,7 @@ The best punchlines reference the setup in unexpected ways.
 
 ### What the AI is Generating:
 
-**Dating Scenarios** - Cards with a **Perk** (something attractive) and a **Red Flag** (something horrifying) that players must defend.
+**Dating Scenarios** - Cards with a **Perk** (something attractive) and a **Red Flag** (something horrifying) that people must defend.
 
 ### The Formula:
 
@@ -1287,7 +1287,7 @@ Questions that only the Target (and maybe their closest friends) would know.
 
 ### The Psychology:
 
-This game exploits **social anxiety** and **tonal dissonance**. The humor comes from the mismatch between the message's context and the Tone the player must use. A "Seductive Whisper" reply to "Grandma is in the hospital" is objectively horrifying, which makes it hilarious.
+This game exploits **social anxiety** and **tonal dissonance**. The humor comes from the mismatch between the message's context and the Tone the person must use. A "Seductive Whisper" reply to "Grandma is in the hospital" is objectively horrifying, which makes it hilarious.
 
 ### Card Categories:
 
@@ -1481,7 +1481,7 @@ Universal experiences or objects that are easy to guess but hard to describe.
 
 ### What the AI is Generating:
 
-**Trios of Unrelated Items** - Three things that seem completely disconnected, forcing players to find a creative (or absurd) connection.
+**Trios of Unrelated Items** - Three things that seem completely disconnected, forcing people to find a creative (or absurd) connection.
 
 ### The Formula:
 
@@ -1501,7 +1501,7 @@ Three things that look vaguely similar but serve different purposes.
 -   _"A Traffic Cone, A Witch's Hat, A Dunce Cap"_
 -   _"A Banana, A Boomerang, A Crescent Moon"_
 
-**Why it works:** The connection is visual. Players can say "They're all long and pointy" or "They're all yellow and curved."
+**Why it works:** The connection is visual. People can say "They're all long and pointy" or "They're all yellow and curved."
 
 #### **The "Social Hazard":**
 
@@ -1521,17 +1521,17 @@ Three things so distinct it seems impossible to connect them.
 -   _"A Dolphin, A Tax Return, The Color Purple"_
 -   _"A Rubber Duck, The French Revolution, A Taco"_
 
-**Why it works:** The absurdity forces players to get creative. "They all involve circles" or "They all end badly."
+**Why it works:** The absurdity forces people to get creative. "They all involve circles" or "They all end badly."
 
 #### **The "Setup":**
 
-Two innocent things and one terrible thing, forcing players to ruin the innocent things.
+Two innocent things and one terrible thing, forcing people to ruin the innocent things.
 
 -   _"A Puppy, A Baby, A Serial Killer"_
 -   _"Christmas, Your Birthday, A Funeral"_
 -   _"A Rainbow, A Unicorn, A Colonoscopy"_
 
-**Why it works:** Players have to find a way to make the innocent things sound sinister to include the dark one.
+**Why it works:** People have to find a way to make the innocent things sound sinister to include the dark one.
 
 #### **The "Pop Culture Mix":**
 
@@ -1558,7 +1558,7 @@ Three things connected by what they _do_ rather than what they _are_.
 -   **Make them visually distinct.** "A Cat, A Dog, A Hamster" is too easy. "A Cat, A Helicopter, The Concept of Time" is better.
 -   **Avoid obvious connections.** "A Fork, A Spoon, A Knife" is boring. "A Fork, A Trident, Poseidon" is interesting.
 -   **Test for multiple solutions.** The best trios have 3-5 possible connections, not just one.
--   **Balance absurdity and solvability.** If the trio is _too_ random, players will give up. If it's too easy, it's not fun.
+-   **Balance absurdity and solvability.** If the trio is _too_ random, people will give up. If it's too easy, it's not fun.
 
 ### The "Spice Level" Modifier:
 
@@ -1583,7 +1583,7 @@ Three things connected by what they _do_ rather than what they _are_.
 
 ### What the AI is Generating:
 
-**Fight Challenges** - Prompts that pit two players against each other in a battle of brains, body, or guts.
+**Fight Challenges** - Prompts that pit two people against each other in a battle of brains, body, or guts.
 
 ### The Formula:
 
@@ -1601,7 +1601,7 @@ This game taps into **competitive instinct** and **social dominance**. The best 
 
 #### **The Brain (Categories):**
 
-Rapid-fire back-and-forth where players name items in a category.
+Rapid-fire back-and-forth where people name items in a category.
 
 -   _"Category: Pizza Toppings"_
 -   _"Category: Countries in Europe"_
@@ -1630,7 +1630,7 @@ Tests of willpower, awkwardness, or endurance.
 -   _"Hold your breath. First person to breathe loses."_
 -   _"Arm wrestling. First person to give up loses."_
 
-**Why it works:** These challenges are uncomfortable. The tension builds as players try not to crack.
+**Why it works:** These challenges are uncomfortable. The tension builds as people try not to crack.
 
 #### **The Hybrid (Brain + Body):**
 
@@ -1640,7 +1640,7 @@ Challenges that require both thinking and physical action.
 -   _"Spell a word backwards while doing a handstand."_
 -   _"Count to 20 in a foreign language while hopping on one foot."_
 
-**Why it works:** Multitasking under pressure is hilarious. Players will mess up immediately.
+**Why it works:** Multitasking under pressure is hilarious. People will mess up immediately.
 
 #### **The "Impossible" Challenge:**
 
@@ -1650,7 +1650,7 @@ Challenges that are technically possible but extremely difficult.
 -   _"Name 10 US presidents in chronological order."_
 -   _"Do the Macarena perfectly from memory."_
 
-**Why it works:** These challenges are designed to make both players fail, which is funny.
+**Why it works:** These challenges are designed to make both people fail, which is funny.
 
 #### **The "Social Torture":**
 
@@ -1667,7 +1667,7 @@ Challenges that are embarrassing regardless of who wins.
 -   **Keep it simple.** "Name a fruit" is better than "Name a fruit that starts with the letter corresponding to your birth month."
 -   **Make it fast.** If a challenge takes longer than 30 seconds, it's too slow.
 -   **Avoid equipment.** "First person to solve this Rubik's Cube" only works if you have a Rubik's Cube.
--   **Test for fairness.** "First person to dunk a basketball" is unfair if one player is 5'2" and the other is 6'8".
+-   **Test for fairness.** "First person to dunk a basketball" is unfair if one person is 5'2" and the other is 6'8".
 
 ### The "Difficulty Scale":
 
@@ -1694,7 +1694,7 @@ Challenges that are embarrassing regardless of who wins.
 
 ### What the AI is Generating:
 
-**Crime Scenarios + 3 Mandatory Words** - Accusations that force players to create an alibi while secretly incorporating three random words.
+**Crime Scenarios + 3 Mandatory Words** - Accusations that force people to create an alibi while secretly incorporating three random words.
 
 ### The Formula:
 
@@ -1702,7 +1702,7 @@ Challenges that are embarrassing regardless of who wins.
 
 ### The Psychology:
 
-This game combines **improvisation** and **deception**. The player must:
+This game combines **improvisation** and **deception**. The person must:
 
 1.  Tell a convincing story.
 2.  Hide three random words in the story.
@@ -1714,7 +1714,7 @@ The best cards have crimes that are _specific enough_ to guide the story but _va
 
 #### **The Suspicious Package:**
 
-Scenarios where the player is caught with something they shouldn't have.
+Scenarios where the person is caught with something they shouldn't have.
 
 -   _"What is in this bag you're trying to sneak onto the plane?"_
     -   **MANDATORY WORDS:** _A Hamster, Glitter, The Declaration of Independence_
@@ -1723,7 +1723,7 @@ Scenarios where the player is caught with something they shouldn't have.
 
 #### **The Missing Person:**
 
-Scenarios where the player must explain their whereabouts during a suspicious event.
+Scenarios where the person must explain their whereabouts during a suspicious event.
 
 -   _"Where were you the night your boss disappeared?"_
     -   **MANDATORY WORDS:** _Zumba Class, A Chainsaw, Gluten-Free Bread_
@@ -1741,7 +1741,7 @@ Scenarios involving search history, texts, or online activity.
 
 #### **The Public Incident:**
 
-Scenarios where the player caused a scene in public.
+Scenarios where the person caused a scene in public.
 
 -   _"Why did security escort you out of the museum?"_
     -   **MANDATORY WORDS:** _A Kazoo, A Mannequin, Hot Sauce_
@@ -1770,7 +1770,7 @@ Scenarios involving money, theft, or fraud.
 
 -   **Make the crime specific.** "Why are you suspicious?" is too vague. "Why is your trunk full of garden gnomes?" is specific.
 -   **Choose random mandatory words.** The words should have _no_ logical connection to the crime. That's what makes it hard.
--   **Avoid impossible combinations.** If the mandatory words are "A Cloud, Infinity, The Concept of Time," the player can't incorporate them naturally.
+-   **Avoid impossible combinations.** If the mandatory words are "A Cloud, Infinity, The Concept of Time," the person can't incorporate them naturally.
 -   **Test for story potential.** Can someone create a 30-second alibi using these words? If not, the card is broken.
 
 ### The "Word Selection" Strategy:
@@ -1797,7 +1797,7 @@ Scenarios involving money, theft, or fraud.
 
 ### What the AI is Generating:
 
-**Self-Rating Prompts** - Questions that ask players to rate themselves on a specific trait, then compare their rating to the group's rating.
+**Self-Rating Prompts** - Questions that ask people to rate themselves on a specific trait, then compare their rating to the group's rating.
 
 ### The Formula:
 
@@ -1914,7 +1914,7 @@ Niche skills or bizarre abilities.
 
 ### What the AI is Generating:
 
-**Category + Letter Combinations** - A category (e.g., "Celebrities") and a starting letter (e.g., "J") that players must use to generate rapid-fire answers.
+**Category + Letter Combinations** - A category (e.g., "Celebrities") and a starting letter (e.g., "J") that people must use to generate rapid-fire answers.
 
 ### The Formula:
 
@@ -1925,7 +1925,7 @@ Niche skills or bizarre abilities.
 This game exploits **time pressure** and **mental blanking**. The best categories are:
 
 1.  **Broad enough** that there are many possible answers.
-2.  **Specific enough** that players can't just say random words.
+2.  **Specific enough** that people can't just say random words.
 3.  **Accessible enough** that everyone knows _some_ answers.
 
 ### Card Categories:
@@ -1988,7 +1988,7 @@ Categories paired with difficult letters (Q, X, Z).
 -   _"CATEGORY: Animals / LETTER: X"_ (X-ray fish? Xenops?)
 -   _"CATEGORY: Foods / LETTER: Z"_ (Zucchini, ziti, and... uh...)
 
-**Why it works:** These combinations are designed to make players struggle. The bomb will explode before they think of a third answer.
+**Why it works:** These combinations are designed to make people struggle. The bomb will explode before they think of a third answer.
 
 ### Generation Rules:
 
@@ -2004,7 +2004,7 @@ Instead of a starting letter, the last letter of one answer becomes the first le
 -   _"CATEGORY: Animals"_
 -   _"CHAIN: Dog → Giraffe → Elephant → Tiger → Raccoon..."_
 
-**Why it works:** This adds an extra layer of difficulty. Players must think ahead to avoid dead-end letters.
+**Why it works:** This adds an extra layer of difficulty. People must think ahead to avoid dead-end letters.
 
 ### Bad Examples (and Why):
 
@@ -2024,7 +2024,7 @@ Instead of a starting letter, the last letter of one answer becomes the first le
 
 ### What the AI is Generating:
 
-**Numerical Questions About a Player** - Questions that have a specific number answer, allowing the group to bet on whether the real number is higher or lower than their guess.
+**Numerical Questions About Someone** - Questions that have a specific number answer, allowing the group to bet on whether the real number is higher or lower than their guess.
 
 ### The Formula:
 

@@ -41,7 +41,7 @@ import com.helldeck.ui.state.RoundState
  */
 @Composable
 fun TrueFalseRenderer(
-    roundState: RoundState,
+    @Suppress("UNUSED_PARAMETER") roundState: RoundState,
     onEvent: (RoundEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {

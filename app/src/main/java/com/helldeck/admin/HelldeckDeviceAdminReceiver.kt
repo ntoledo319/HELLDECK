@@ -165,7 +165,7 @@ class HelldeckDeviceAdminReceiver : DeviceAdminReceiver() {
                 } else {
                     false
                 },
-                "lockTaskPackages" to (dpm.getLockTaskPackages(adminComponent)?.toList() ?: emptyList<String>()),
+                "lockTaskPackages" to dpm.getLockTaskPackages(adminComponent).toList(),
             )
 
             logDeviceAdminEvent(context, "status_check", status)

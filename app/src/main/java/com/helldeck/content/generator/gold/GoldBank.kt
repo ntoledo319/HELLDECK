@@ -63,10 +63,11 @@ class GoldBank(assetManager: AssetManager) {
         }.getOrDefault(emptyMap())
     }
 
-    fun draw(game: String, random: Random): GoldCard? {
+    fun draw(game: String, random: Random, maxSpice: Int = 5): GoldCard? {
         val list = cardsByGame[game] ?: cardsByGame[game.uppercase(Locale.US)].orEmpty()
-        if (list.isEmpty()) return null
-        return list[random.nextInt(list.size)]
+        val filtered = list.filter { it.spice <= maxSpice }
+        if (filtered.isEmpty()) return null
+        return filtered[random.nextInt(filtered.size)]
     }
 
     fun toFilledCard(card: GoldCard): FilledCard {
@@ -84,7 +85,7 @@ class GoldBank(assetManager: AssetManager) {
         val normalizedGame = card.game.uppercase(Locale.US)
         val default = defaultOptionsFor(normalizedGame)
         return when (val opt = card.options) {
-            is GoldOptions.PlayerVote -> GameOptions.PlayerVote(emptyList())
+            is GoldOptions.PlayerVote -> GameOptions.SeatVote(listOf(1, 2, 3))
             is GoldOptions.AB -> {
                 val optionA = opt.optionA ?: filledSlots[opt.slotA ?: "perk"] ?: "Option A"
                 val optionB = opt.optionB ?: filledSlots[opt.slotB ?: "gross"] ?: "Option B"
@@ -96,7 +97,7 @@ class GoldBank(assetManager: AssetManager) {
 
     private fun defaultOptionsFor(game: String): GameOptions {
         return when (game) {
-            GameIds.ROAST_CONS -> GameOptions.PlayerVote(listOf("Player 1", "Player 2", "Player 3"))
+            GameIds.ROAST_CONS -> GameOptions.SeatVote(listOf(1, 2, 3))
             GameIds.CONFESS_CAP -> GameOptions.TrueFalse
             GameIds.POISON_PITCH,
             GameIds.RED_FLAG,
@@ -105,8 +106,8 @@ class GoldBank(assetManager: AssetManager) {
             GameIds.FILLIN -> GameOptions.Challenge("Fill in the blanks")
             GameIds.HOTSEAT_IMP,
             GameIds.UNIFYING_THEORY,
-            GameIds.TITLE_FIGHT,
-            GameIds.REALITY_CHECK -> GameOptions.Challenge("Freestyle challenge")
+            GameIds.TITLE_FIGHT -> GameOptions.Challenge("Freestyle challenge")
+            GameIds.REALITY_CHECK -> GameOptions.SeatSelect(listOf(1, 2, 3), null)
             GameIds.TABOO -> GameOptions.Taboo("Secret word", listOf("forbidden 1", "forbidden 2", "forbidden 3"))
             GameIds.SCATTER -> GameOptions.Scatter("Category", "A")
             GameIds.ALIBI -> GameOptions.HiddenWords(listOf("word1", "word2", "word3"))

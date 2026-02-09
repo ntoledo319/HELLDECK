@@ -326,7 +326,7 @@ fun ErrorBoundary(
  * NOTE: Composable try-catch is not supported. Use error state management instead.
  * This function is kept for reference but should not be used around @Composable content.
  */
-fun convertExceptionToHelldeckError(e: Exception): HelldeckError {
+fun convertExceptionToHelldeckError(e: Throwable): HelldeckError {
     return when {
         e is java.net.SocketException ||
             e is java.net.UnknownHostException ||

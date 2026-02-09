@@ -31,6 +31,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -403,6 +404,33 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         Text("🔄 Reset to Defaults")
                     }
                 }
+            }
+
+            // Support Section (Tip Jar)
+            item {
+                Spacer(modifier = Modifier.height(8.dp))
+                com.helldeck.ui.components.TipJarSection(
+                    modifier = Modifier.fillMaxWidth(),
+                )
+            }
+
+            // Promo Code Section (if not premium)
+            item {
+                val isPremiumUnlocked = com.helldeck.billing.PurchaseManager.isPremiumUnlocked.collectAsState()
+                if (!isPremiumUnlocked.value && !com.helldeck.billing.PurchaseManager.isUnlockAllMode()) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    com.helldeck.ui.components.PromoCodeEntry(
+                        modifier = Modifier.fillMaxWidth(),
+                        onRedeemed = {
+                            // Promo code redeemed - premium is now unlocked
+                        },
+                    )
+                }
+            }
+
+            // Bottom spacing
+            item {
+                Spacer(modifier = Modifier.height(24.dp))
             }
         }
     }

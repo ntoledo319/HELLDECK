@@ -50,6 +50,18 @@ data class BlueprintOptionProvider(
 
         @SerialName("AB")
         AB,
+
+        @SerialName("JUDGE_PICK")
+        JUDGE_PICK,
+
+        @SerialName("RATING_1_10")
+        RATING_1_10,
+
+        @SerialName("OVER_UNDER")
+        OVER_UNDER,
+
+        @SerialName("None")
+        NONE,
     }
 
     @Serializable

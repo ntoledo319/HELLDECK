@@ -94,7 +94,7 @@ fun GameRulesScene(
                             Spacer(modifier = Modifier.height(8.dp))
 
                             Text(
-                                text = it.description ?: "No specific rules available for this game.",
+                                text = it.description,
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )

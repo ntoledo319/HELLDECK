@@ -68,11 +68,13 @@ enum class Interaction(
 enum class InteractionType {
     NONE,
     VOTE_PLAYER,
+    VOTE_SEAT,      // Anonymous seat-based voting (replaces VOTE_PLAYER for user removal)
     TRUE_FALSE,
     A_B_CHOICE,
     JUDGE_PICK,
     SMASH_PASS,
     TARGET_SELECT,
+    SELF_RATE,      // Self-rating without targeting others (for Reality Check)
     REPLY_TONE,
     TABOO_GUESS,
     ODD_EXPLAIN,

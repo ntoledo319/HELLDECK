@@ -4,18 +4,16 @@ import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -32,31 +30,31 @@ import androidx.compose.ui.unit.sp
 import com.helldeck.engine.GameMetadata
 import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.ui.theme.HelldeckSpacing
 import com.helldeck.content.model.Player
+import com.helldeck.utils.ValidationUtils
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.math.absoluteValue
 
 /**
- * Streamlined onboarding for first-time users.
+ * Redesigned onboarding for first-time users.
  * 
- * Design Philosophy (Hell's Living Room):
- * - Get users playing in <30 seconds
- * - Focus on ONE core mechanic: long-press to draw
- * - Make skipping obvious and guilt-free
- * - Progressive disclosure (teach advanced features contextually later)
- * - NEON-SOAKED dark-first aesthetic
+ * Design Philosophy:
+ * - Get users playing in <20 seconds
+ * - 3 streamlined steps (Welcome → Gesture → Setup)
+ * - Uses design system components (NeonCard, GlowButton, etc.)
+ * - Proper Scaffold architecture with safe insets
+ * - Progressive disclosure (advanced features taught contextually)
+ * - Clear visual hierarchy with spacing tokens
  * 
- * Flow: Welcome (5s) → Core Gesture (15s) → Add Players (20s) → Ready (10s)
- * Total: 4 steps, ~50 seconds
+ * Flow: Welcome (5s) → Core Gesture (10s) → Quick Setup (5-15s)
+ * Total: 3 steps, ~20 seconds
  * 
- * @ai_prompt Onboarding uses HELLDECK neon styling with glow effects
+ * @ai_prompt Redesigned onboarding using HELLDECK design system
  */
-@OptIn(ExperimentalAnimationApi::class)
+@OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun OnboardingFlow(
     onComplete: (players: List<Player>) -> Unit,
@@ -65,116 +63,150 @@ fun OnboardingFlow(
     val reducedMotion = LocalReducedMotion.current
     var currentStep by remember { mutableStateOf(0) }
     val haptic = LocalHapticFeedback.current
-    val totalSteps = 4
-    var swipeOffset by remember { mutableStateOf(0f) }
+    val totalSteps = 3
     var onboardingPlayers by remember { mutableStateOf<List<Player>>(emptyList()) }
 
-    Box(
-        modifier = modifier
-            .fillMaxSize()
-            .background(
-                Brush.verticalGradient(
-                    colors = listOf(
-                        HelldeckColors.background,
-                        HelldeckColors.surfacePrimary,
-                    ),
-                ),
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = {
+            OnboardingTopBar(
+                currentStep = currentStep,
+                totalSteps = totalSteps,
+                onSkip = { onComplete(onboardingPlayers) },
             )
-            .pointerInput(currentStep) {
-                detectDragGestures(
-                    onDragEnd = {
-                        if (swipeOffset.absoluteValue > 100f) {
-                            if (swipeOffset < 0 && currentStep < totalSteps - 1) {
-                                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
-                                currentStep++
-                            } else if (swipeOffset > 0 && currentStep > 0) {
-                                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
-                                currentStep--
-                            }
-                        }
-                        swipeOffset = 0f
-                    },
-                    onDrag = { _, dragAmount ->
-                        swipeOffset += dragAmount.x
-                    },
-                )
-            },
-    ) {
-        // Main content with smooth transitions
-        AnimatedContent(
-            targetState = currentStep,
-            transitionSpec = {
-                slideInHorizontally(
-                    initialOffsetX = { fullWidth -> fullWidth },
-                    animationSpec = spring(
-                        dampingRatio = Spring.DampingRatioMediumBouncy,
-                        stiffness = Spring.StiffnessLow,
+        },
+        containerColor = HelldeckColors.background,
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    Brush.verticalGradient(
+                        colors = listOf(
+                            HelldeckColors.background,
+                            HelldeckColors.surfacePrimary,
+                        ),
                     ),
-                ) + fadeIn(animationSpec = tween(300)) togetherWith
-                    slideOutHorizontally(
-                        targetOffsetX = { fullWidth -> -fullWidth },
+                )
+                .padding(padding),
+        ) {
+            // Main content with smooth transitions
+            AnimatedContent(
+                targetState = currentStep,
+                transitionSpec = {
+                    slideInHorizontally(
+                        initialOffsetX = { fullWidth -> fullWidth },
                         animationSpec = spring(
                             dampingRatio = Spring.DampingRatioMediumBouncy,
                             stiffness = Spring.StiffnessLow,
                         ),
-                    ) + fadeOut(animationSpec = tween(300))
-            },
-            label = "onboarding_step",
-        ) { step ->
-            when (step) {
-                0 -> WelcomeStep(
-                    reducedMotion = reducedMotion,
-                    onNext = {
-                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                        currentStep = 1
-                    },
-                )
-                1 -> DrawCardDemo(
-                    reducedMotion = reducedMotion,
-                    onComplete = {
-                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                        currentStep = 2
-                    },
-                )
-                2 -> AddPlayersStep(
-                    reducedMotion = reducedMotion,
-                    players = onboardingPlayers,
-                    onPlayersChanged = { onboardingPlayers = it },
-                    onNext = {
-                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                        currentStep = 3
-                    },
-                )
-                3 -> ReadyToPlayStep(
-                    reducedMotion = reducedMotion,
-                    playerCount = onboardingPlayers.size,
-                    onComplete = { onComplete(onboardingPlayers) },
-                )
+                    ) + fadeIn(animationSpec = tween(300)) togetherWith
+                        slideOutHorizontally(
+                            targetOffsetX = { fullWidth -> -fullWidth },
+                            animationSpec = spring(
+                                dampingRatio = Spring.DampingRatioMediumBouncy,
+                                stiffness = Spring.StiffnessLow,
+                            ),
+                        ) + fadeOut(animationSpec = tween(300))
+                },
+                label = "onboarding_step",
+            ) { step ->
+                when (step) {
+                    0 -> WelcomeStepV2(
+                        reducedMotion = reducedMotion,
+                        onNext = {
+                            haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                            currentStep = 1
+                        },
+                    )
+                    1 -> GestureDemoV2(
+                        reducedMotion = reducedMotion,
+                        onComplete = {
+                            haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                            currentStep = 2
+                        },
+                    )
+                    2 -> QuickSetupV2(
+                        reducedMotion = reducedMotion,
+                        players = onboardingPlayers,
+                        onPlayersChanged = { onboardingPlayers = it },
+                        onComplete = {
+                            haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                            onComplete(onboardingPlayers)
+                        },
+                    )
+                }
             }
-        }
 
-        // Top bar with progress and skip - HELLDECK styled
+            // Step indicators at bottom
+            StepIndicators(
+                currentStep = currentStep,
+                totalSteps = totalSteps,
+                reducedMotion = reducedMotion,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = HelldeckSpacing.ExtraLarge.dp),
+            )
+        }
+    }
+}
+
+/**
+ * Top bar with progress indicator and skip button
+ */
+@Composable
+private fun OnboardingTopBar(
+    currentStep: Int,
+    totalSteps: Int,
+    onSkip: () -> Unit,
+) {
+    val reducedMotion = LocalReducedMotion.current
+    
+    // Animated progress
+    val animatedProgress by animateFloatAsState(
+        targetValue = (currentStep + 1).toFloat() / totalSteps,
+        animationSpec = if (reducedMotion) {
+            tween(HelldeckAnimations.Instant)
+        } else {
+            spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessMedium,
+            )
+        },
+        label = "progress_animation",
+    )
+    
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = HelldeckColors.background.copy(alpha = 0.95f),
+        tonalElevation = 4.dp,
+        shadowElevation = 2.dp,
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.TopCenter)
-                .padding(HelldeckSpacing.Medium.dp),
+                .padding(horizontal = HelldeckSpacing.Large.dp, vertical = HelldeckSpacing.Medium.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            // Neon progress indicator
+            // Progress indicator with glow
             Box(
                 modifier = Modifier
                     .weight(1f)
-                    .height(6.dp)
-                    .clip(RoundedCornerShape(3.dp))
+                    .height(8.dp)
+                    .shadow(
+                        elevation = 4.dp,
+                        shape = RoundedCornerShape(4.dp),
+                        spotColor = HelldeckColors.colorPrimary.copy(alpha = 0.3f),
+                    )
+                    .clip(RoundedCornerShape(4.dp))
                     .background(HelldeckColors.surfaceElevated),
             ) {
                 Box(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .fillMaxWidth((currentStep + 1).toFloat() / totalSteps)
-                        .clip(RoundedCornerShape(3.dp))
+                        .fillMaxWidth(animatedProgress)
+                        .clip(RoundedCornerShape(4.dp))
                         .background(
                             Brush.horizontalGradient(
                                 colors = listOf(
@@ -186,86 +218,118 @@ fun OnboardingFlow(
                 )
             }
 
-            Spacer(Modifier.width(HelldeckSpacing.Medium.dp))
+            Spacer(Modifier.width(HelldeckSpacing.Large.dp))
 
-            // Skip button with HELLDECK styling
+            // Skip button with hover effect
+            val interactionSource = remember { MutableInteractionSource() }
+            val isPressed by interactionSource.collectIsPressedAsState()
+            
+            val skipScale by animateFloatAsState(
+                targetValue = if (isPressed) 0.92f else 1f,
+                animationSpec = if (reducedMotion) {
+                    tween(HelldeckAnimations.Instant)
+                } else {
+                    spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
+                },
+                label = "skip_scale",
+            )
+            
             TextButton(
-                onClick = { onComplete(onboardingPlayers) },
+                onClick = onSkip,
+                interactionSource = interactionSource,
+                modifier = Modifier.scale(skipScale),
                 colors = ButtonDefaults.textButtonColors(
-                    contentColor = HelldeckColors.colorMuted,
+                    contentColor = HelldeckColors.colorOnDark,
                 ),
             ) {
                 Text(
-                    text = "Skip →",
+                    text = "Skip",
                     style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Bold,
                 )
-            }
-        }
-
-        // Step indicators (dots) with neon glow - bottom center
-        Row(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 80.dp),
-            horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
-        ) {
-            repeat(totalSteps) { index ->
-                val isActive = index == currentStep
-                val isPast = index < currentStep
-                val scale by animateFloatAsState(
-                    targetValue = if (isActive) 1.3f else 1f,
-                    animationSpec = if (reducedMotion) {
-                        tween(HelldeckAnimations.Instant)
-                    } else {
-                        spring(
-                            dampingRatio = Spring.DampingRatioMediumBouncy,
-                            stiffness = Spring.StiffnessMedium,
-                        )
-                    },
-                    label = "step_indicator_scale",
-                )
-
-                val dotColor = when {
-                    isActive -> HelldeckColors.colorPrimary
-                    isPast -> HelldeckColors.colorSecondary
-                    else -> HelldeckColors.surfaceElevated
-                }
-
-                Box(
-                    modifier = Modifier
-                        .size(if (isActive) 14.dp else 10.dp)
-                        .scale(scale)
-                        .shadow(
-                            elevation = if (isActive) 8.dp else 0.dp,
-                            shape = CircleShape,
-                            spotColor = HelldeckColors.colorPrimary.copy(alpha = 0.6f),
-                        )
-                        .clip(CircleShape)
-                        .background(dotColor)
-                        .then(
-                            if (isActive) {
-                                Modifier.border(
-                                    width = 2.dp,
-                                    color = HelldeckColors.colorPrimary.copy(alpha = 0.5f),
-                                    shape = CircleShape,
-                                )
-                            } else {
-                                Modifier
-                            },
-                        ),
+                Text(
+                    text = " →",
+                    style = MaterialTheme.typography.labelLarge,
                 )
             }
         }
     }
 }
 
+/**
+ * Step indicator dots at bottom
+ */
 @Composable
-private fun WelcomeStep(
+private fun StepIndicators(
+    currentStep: Int,
+    totalSteps: Int,
+    reducedMotion: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+    ) {
+        repeat(totalSteps) { index ->
+            val isActive = index == currentStep
+            val isPast = index < currentStep
+            val scale by animateFloatAsState(
+                targetValue = if (isActive) 1.3f else 1f,
+                animationSpec = if (reducedMotion) {
+                    tween(HelldeckAnimations.Instant)
+                } else {
+                    spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessMedium,
+                    )
+                },
+                label = "step_indicator_scale",
+            )
+
+            val dotColor = when {
+                isActive -> HelldeckColors.colorPrimary
+                isPast -> HelldeckColors.colorSecondary
+                else -> HelldeckColors.surfaceElevated
+            }
+
+            Box(
+                modifier = Modifier
+                    .size(if (isActive) 14.dp else 10.dp)
+                    .scale(scale)
+                    .shadow(
+                        elevation = if (isActive) 8.dp else 0.dp,
+                        shape = CircleShape,
+                        spotColor = HelldeckColors.colorPrimary.copy(alpha = 0.6f),
+                    )
+                    .clip(CircleShape)
+                    .background(dotColor)
+                    .then(
+                        if (isActive) {
+                            Modifier.border(
+                                width = 2.dp,
+                                color = HelldeckColors.colorPrimary.copy(alpha = 0.5f),
+                                shape = CircleShape,
+                            )
+                        } else {
+                            Modifier
+                        },
+                    ),
+            )
+        }
+    }
+}
+
+/**
+ * Step 1: Welcome screen with value proposition
+ */
+@Composable
+private fun WelcomeStepV2(
     reducedMotion: Boolean,
     onNext: () -> Unit,
 ) {
     var showContent by remember { mutableStateOf(false) }
+    var showFeatures by remember { mutableStateOf(false) }
+    
     val scale by animateFloatAsState(
         targetValue = if (showContent) 1f else 0.8f,
         animationSpec = if (reducedMotion) {
@@ -282,6 +346,8 @@ private fun WelcomeStep(
     LaunchedEffect(Unit) {
         delay(100)
         showContent = true
+        delay(200)
+        showFeatures = true
     }
 
     Column(
@@ -341,37 +407,68 @@ private fun WelcomeStep(
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
-            modifier = Modifier.fillMaxWidth(),
+        // Feature banners with staggered entrance
+        AnimatedVisibility(
+            visible = showFeatures,
+            enter = fadeIn(animationSpec = tween(HelldeckAnimations.Normal)) +
+                slideInVertically(
+                    initialOffsetY = { it / 4 },
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow,
+                    ),
+                ),
         ) {
-            FeatureHighlight("🎯", "${GameMetadata.getAllGames().size} unique games", HelldeckColors.colorSecondary)
-            FeatureHighlight("📱", "One phone, 3-16 players", HelldeckColors.colorAccentCool)
-            FeatureHighlight("🧠", "AI adapts to your humor", HelldeckColors.colorAccentWarm)
+            Column(
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                InfoBanner(
+                    message = "${GameMetadata.getAllGames().size} unique party games",
+                    icon = "🎯",
+                    backgroundColor = HelldeckColors.colorSecondary.copy(alpha = 0.12f),
+                )
+                InfoBanner(
+                    message = "One phone, 3-16 players",
+                    icon = "📱",
+                    backgroundColor = HelldeckColors.colorAccentCool.copy(alpha = 0.12f),
+                )
+                InfoBanner(
+                    message = "AI that adapts to your humor",
+                    icon = "🧠",
+                    backgroundColor = HelldeckColors.colorAccentWarm.copy(alpha = 0.12f),
+                )
+            }
         }
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        // HELLDECK styled CTA button with glow
-        OnboardingButton(
-            text = "🔥 Get Started",
-            reducedMotion = reducedMotion,
+        GlowButton(
+            text = "Let's Go",
             onClick = onNext,
+            modifier = Modifier.fillMaxWidth(),
+            icon = "🔥",
         )
     }
 }
 
+/**
+ * Step 2: Interactive gesture demo
+ */
 @Composable
-private fun DrawCardDemo(
+private fun GestureDemoV2(
     reducedMotion: Boolean,
     onComplete: () -> Unit,
 ) {
     var showHint by remember { mutableStateOf(true) }
     var pulseScale by remember { mutableStateOf(1f) }
     var isPressed by remember { mutableStateOf(false) }
+    var pressProgress by remember { mutableStateOf(0f) }
+    var showSuccess by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
     val haptic = LocalHapticFeedback.current
 
+    // Pulsing animation for hint
     LaunchedEffect(showHint, reducedMotion) {
         if (showHint && !reducedMotion) {
             while (true) {
@@ -387,6 +484,14 @@ private fun DrawCardDemo(
                 ) { value, _ -> pulseScale = value }
                 delay(200)
             }
+        }
+    }
+    
+    // Success animation before advancing
+    LaunchedEffect(showSuccess) {
+        if (showSuccess) {
+            delay(600)
+            onComplete()
         }
     }
 
@@ -407,7 +512,7 @@ private fun DrawCardDemo(
         Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
 
         Text(
-            text = "Long-press anywhere to draw cards",
+            text = "Long-press to draw cards",
             style = MaterialTheme.typography.titleMedium,
             textAlign = TextAlign.Center,
             color = HelldeckColors.colorMuted,
@@ -428,179 +533,197 @@ private fun DrawCardDemo(
             label = "card_scale",
         )
 
-        // HELLDECK styled demo card with neon glow
-        Card(
+        Box(
             modifier = Modifier
-                .size(260.dp)
-                .scale(cardScale)
-                .shadow(
-                    elevation = if (isPressed) 4.dp else 16.dp,
-                    shape = RoundedCornerShape(HelldeckRadius.Large),
-                    spotColor = HelldeckColors.colorPrimary.copy(alpha = 0.5f),
-                    ambientColor = HelldeckColors.colorPrimary.copy(alpha = 0.3f),
-                )
-                .pointerInput(Unit) {
-                    detectTapGestures(
-                        onLongPress = {
-                            showHint = false
-                            isPressed = true
-                            haptic.performHapticFeedback(
-                                androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
-                            )
-                            coroutineScope.launch {
-                                delay(300)
-                                onComplete()
-                            }
-                        },
-                        onPress = {
-                            isPressed = true
-                            tryAwaitRelease()
-                            isPressed = false
-                        },
-                    )
-                },
-            shape = RoundedCornerShape(HelldeckRadius.Large),
-            colors = CardDefaults.cardColors(
-                containerColor = HelldeckColors.surfaceElevated,
-            ),
+                .size(280.dp)
+                .scale(cardScale),
+            contentAlignment = Alignment.Center,
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        Brush.verticalGradient(
-                            colors = listOf(
-                                HelldeckColors.surfaceElevated,
-                                HelldeckColors.surfacePrimary,
-                            ),
-                        ),
-                    )
-                    .border(
-                        width = 2.dp,
-                        brush = Brush.linearGradient(
-                            colors = listOf(
-                                HelldeckColors.colorPrimary.copy(alpha = 0.6f),
-                                HelldeckColors.colorSecondary.copy(alpha = 0.4f),
-                            ),
-                        ),
-                        shape = RoundedCornerShape(HelldeckRadius.Large),
-                    ),
-                contentAlignment = Alignment.Center,
+                modifier = Modifier.fillMaxSize(),
             ) {
-                if (showHint) {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+                NeonCard(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .pointerInput(Unit) {
+                            detectTapGestures(
+                                onLongPress = {
+                                    showHint = false
+                                    isPressed = false
+                                    showSuccess = true
+                                    haptic.performHapticFeedback(
+                                        androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
+                                    )
+                                },
+                                onPress = {
+                                    isPressed = true
+                                    coroutineScope.launch {
+                                        animate(
+                                            initialValue = 0f,
+                                            targetValue = 1f,
+                                            animationSpec = tween(800),
+                                        ) { value, _ ->
+                                            pressProgress = value
+                                        }
+                                    }
+                                    val released = tryAwaitRelease()
+                                    isPressed = false
+                                    if (released) {
+                                        pressProgress = 0f
+                                    }
+                                },
+                            )
+                        },
+                    accentColor = if (showHint) HelldeckColors.colorPrimary else HelldeckColors.colorSecondary,
+                    elevation = if (isPressed) 4.dp else 16.dp,
+                ) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center,
                     ) {
-                        Text(
-                            text = "👆",
-                            fontSize = 64.sp,
-                        )
-                        Text(
-                            text = "Try it!",
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = HelldeckColors.colorPrimary,
-                        )
-                        Text(
-                            text = "Long-press this card",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = HelldeckColors.colorMuted,
-                        )
+                        if (showHint) {
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+                            ) {
+                                Text(
+                                    text = "👆",
+                                    fontSize = 64.sp,
+                                )
+                                Text(
+                                    text = "Try it!",
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = HelldeckColors.colorPrimary,
+                                )
+                                Text(
+                                    text = "Long-press here",
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = HelldeckColors.colorMuted,
+                                )
+                            }
+                        } else {
+                            // Success celebration
+                            val successScale by animateFloatAsState(
+                                targetValue = if (showSuccess) 1f else 0.8f,
+                                animationSpec = spring(
+                                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                                    stiffness = Spring.StiffnessMedium,
+                                ),
+                                label = "success_scale",
+                            )
+                            
+                            Column(
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+                                modifier = Modifier.scale(successScale),
+                            ) {
+                                Text(
+                                    text = "✓",
+                                    fontSize = 56.sp,
+                                    color = HelldeckColors.colorSecondary,
+                                )
+                                Text(
+                                    text = "Perfect!",
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = HelldeckColors.colorSecondary,
+                                )
+                            }
+                        }
                     }
-                } else {
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
-                    ) {
-                        Text(
-                            text = "✓",
-                            fontSize = 56.sp,
-                            color = HelldeckColors.colorSecondary,
-                        )
-                        Text(
-                            text = "Perfect!",
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = HelldeckColors.colorSecondary,
-                        )
-                    }
+                }
+
+                // Progress indicator when pressing
+                if (isPressed && pressProgress > 0f) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(pressProgress)
+                            .height(4.dp)
+                            .background(
+                                Brush.horizontalGradient(
+                                    colors = listOf(
+                                        HelldeckColors.colorPrimary,
+                                        HelldeckColors.colorSecondary,
+                                    ),
+                                ),
+                            )
+                            .align(Alignment.BottomStart),
+                    )
                 }
             }
         }
 
         Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        Text(
-            text = "💡 That's it! This is how you'll play the game",
-            style = MaterialTheme.typography.bodyMedium,
-            color = HelldeckColors.colorMuted,
-            textAlign = TextAlign.Center,
+        InfoBanner(
+            message = "That's it! This is how you'll play",
+            icon = "💡",
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
 
 
+/**
+ * Step 3: Quick setup - add players or skip
+ */
 @Composable
-private fun AddPlayersStep(
-    reducedMotion: Boolean,
+private fun QuickSetupV2(
+    @Suppress("UNUSED_PARAMETER") reducedMotion: Boolean,
     players: List<Player>,
     onPlayersChanged: (List<Player>) -> Unit,
-    onNext: () -> Unit,
+    onComplete: () -> Unit,
 ) {
-    var showContent by remember { mutableStateOf(false) }
     var showAddDialog by remember { mutableStateOf(false) }
-
+    var showContent by remember { mutableStateOf(false) }
+    val scrollState = rememberScrollState()
+    val warning = ValidationUtils.getPlayerCountWarning(players.size)
+    
     LaunchedEffect(Unit) {
         delay(100)
         showContent = true
     }
 
-    val scale by animateFloatAsState(
-        targetValue = if (showContent) 1f else 0.8f,
-        animationSpec = if (reducedMotion) {
-            tween(HelldeckAnimations.Instant)
-        } else {
-            spring(
-                dampingRatio = Spring.DampingRatioMediumBouncy,
-                stiffness = Spring.StiffnessLow,
-            )
-        },
-        label = "players_scale",
-    )
-
-    LazyColumn(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = HelldeckSpacing.ExtraLarge.dp),
-        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
+            .verticalScroll(scrollState)
+            .padding(HelldeckSpacing.Large.dp),
+        verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Large.dp),
     ) {
-        item { Spacer(Modifier.height(HelldeckSpacing.Large.dp)) }
-        
-        // Header
-        item {
+        // Header with entrance animation
+        AnimatedVisibility(
+            visible = showContent,
+            enter = fadeIn(animationSpec = tween(HelldeckAnimations.Normal)) +
+                slideInVertically(
+                    initialOffsetY = { -it / 3 },
+                    animationSpec = spring(
+                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                        stiffness = Spring.StiffnessLow,
+                    ),
+                ),
+        ) {
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
             ) {
                 Text(
-                    text = "👥",
-                    fontSize = (64 * scale).sp,
-                    modifier = Modifier.scale(scale),
+                    text = "🎉",
+                    fontSize = 64.sp,
                 )
 
                 Text(
-                    text = "Add Your Crew",
+                    text = "You're Ready!",
                     style = MaterialTheme.typography.displaySmall,
                     fontWeight = FontWeight.ExtraBold,
-                    color = HelldeckColors.colorPrimary,
+                    color = HelldeckColors.colorSecondary,
                     textAlign = TextAlign.Center,
                 )
 
                 Text(
-                    text = "Need 3-16 players for the best experience",
+                    text = "Add players now or explore first",
                     style = MaterialTheme.typography.titleMedium,
                     textAlign = TextAlign.Center,
                     color = HelldeckColors.colorMuted,
@@ -608,121 +731,175 @@ private fun AddPlayersStep(
             }
         }
 
-        // Player count indicator
-        item {
-            Card(
+        // Player count status
+        if (players.isEmpty()) {
+            EmptyState(
+                icon = "👥",
+                title = "No Players Yet",
+                message = "Best with 3+ players, but you can add them later from the menu",
+                actionLabel = "Add First Player",
+                onActionClick = { showAddDialog = true },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = HelldeckSpacing.Large.dp),
+            )
+        } else {
+            // Player count card
+            NeonCard(
                 modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(HelldeckRadius.Large),
-                colors = CardDefaults.cardColors(
-                    containerColor = if (players.size >= 3) {
-                        HelldeckColors.colorSecondary.copy(alpha = 0.2f)
-                    } else {
-                        HelldeckColors.surfaceElevated
-                    },
-                ),
+                accentColor = if (players.size >= 3) {
+                    HelldeckColors.colorSecondary
+                } else {
+                    HelldeckColors.colorPrimary
+                },
             ) {
                 Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(HelldeckSpacing.Large.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
                 ) {
                     Text(
-                        text = "${players.size} Players Added",
+                        text = "${players.size} ${if (players.size == 1) "Player" else "Players"}",
                         style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
-                        color = if (players.size >= 3) HelldeckColors.colorSecondary else HelldeckColors.colorMuted,
+                        color = if (players.size >= 3) {
+                            HelldeckColors.colorSecondary
+                        } else {
+                            HelldeckColors.colorOnDark
+                        },
                     )
                     if (players.size < 3) {
                         Text(
-                            text = "Add ${3 - players.size} more to continue",
+                            text = "Add ${3 - players.size} more for best experience",
                             style = MaterialTheme.typography.bodyMedium,
                             color = HelldeckColors.colorMuted,
                         )
                     }
                 }
             }
-        }
 
-        // Add player button
-        item {
-            OnboardingButton(
-                text = "➕ Add Player",
-                reducedMotion = reducedMotion,
-                onClick = { showAddDialog = true },
-            )
-        }
-
-        // Show added players header
-        if (players.isNotEmpty()) {
-            item {
-                Text(
-                    text = "Your Crew",
-                    style = MaterialTheme.typography.titleLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = HelldeckColors.colorSecondary,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = HelldeckSpacing.Medium.dp),
+            // Validation warning
+            if (warning != null) {
+                InfoBanner(
+                    message = warning,
+                    icon = "ℹ️",
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
-        }
-        
-        // Player list
-        items(players.size) { index ->
-            val player = players[index]
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(
-                    containerColor = HelldeckColors.surfaceElevated,
-                ),
-                shape = RoundedCornerShape(HelldeckRadius.Medium),
+
+            // Player list with enter/exit animations
+            Column(
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
             ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(HelldeckSpacing.Medium.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(text = player.avatar, fontSize = 32.sp)
-                        Text(
-                            text = player.name,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    }
-                    TextButton(
-                        onClick = {
-                            onPlayersChanged(players.filter { it.id != player.id })
-                        },
-                    ) {
-                        Text("✕", fontSize = 20.sp, color = HelldeckColors.Red)
+                players.forEach { player ->
+                    key(player.id) {
+                        AnimatedVisibility(
+                            visible = true,
+                            enter = fadeIn(animationSpec = tween(HelldeckAnimations.Normal)) +
+                                expandVertically(
+                                    animationSpec = spring(
+                                        dampingRatio = Spring.DampingRatioMediumBouncy,
+                                        stiffness = Spring.StiffnessMedium,
+                                    ),
+                                ),
+                            exit = fadeOut(animationSpec = tween(HelldeckAnimations.Fast)) +
+                                shrinkVertically(
+                                    animationSpec = tween(HelldeckAnimations.Normal),
+                                ),
+                        ) {
+                            NeonCard(
+                                modifier = Modifier.fillMaxWidth(),
+                                accentColor = HelldeckColors.colorAccentCool,
+                            ) {
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Row(
+                                        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                    ) {
+                                        Text(text = player.avatar, fontSize = 32.sp)
+                                        Text(
+                                            text = player.name,
+                                            style = MaterialTheme.typography.titleMedium,
+                                            fontWeight = FontWeight.Bold,
+                                            color = HelldeckColors.colorOnDark,
+                                        )
+                                    }
+                                    IconButton(
+                                        onClick = {
+                                            onPlayersChanged(players.filter { it.id != player.id })
+                                        },
+                                    ) {
+                                        Text(
+                                            text = "✕",
+                                            fontSize = 20.sp,
+                                            color = HelldeckColors.colorDangerText,
+                                        )
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
-        }
 
-        // Continue button
-        item {
-            Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
-        }
-        
-        item {
-            OnboardingButton(
-                text = if (players.size >= 3) "Continue →" else "Skip for Now",
-                reducedMotion = reducedMotion,
-                accentColor = if (players.size >= 3) HelldeckColors.colorSecondary else HelldeckColors.colorMuted,
-                onClick = onNext,
+            // Add another player button
+            OutlineButton(
+                text = "Add Another",
+                onClick = { showAddDialog = true },
+                modifier = Modifier.fillMaxWidth(),
+                icon = "➕",
             )
         }
-        
-        item { Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp)) }
+
+        Spacer(Modifier.weight(1f))
+
+        // Quick tips
+        NeonCard(
+            modifier = Modifier.fillMaxWidth(),
+            accentColor = HelldeckColors.colorAccentCool,
+        ) {
+            Column(
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+            ) {
+                Text(
+                    text = "Quick Tips",
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = HelldeckColors.colorAccentCool,
+                )
+                InfoBanner(
+                    message = "Long-press anywhere to draw cards",
+                    icon = "👆",
+                    backgroundColor = HelldeckColors.surfacePrimary,
+                )
+                InfoBanner(
+                    message = "Two-finger tap to undo",
+                    icon = "↩️",
+                    backgroundColor = HelldeckColors.surfacePrimary,
+                )
+                InfoBanner(
+                    message = "Adjust spice level in settings",
+                    icon = "🌶️",
+                    backgroundColor = HelldeckColors.surfacePrimary,
+                )
+            }
+        }
+
+        // Primary CTA
+        GlowButton(
+            text = if (players.size >= 3) "Start Playing" else "Explore App",
+            onClick = onComplete,
+            modifier = Modifier.fillMaxWidth(),
+            icon = "🎉",
+            accentColor = if (players.size >= 3) {
+                HelldeckColors.colorSecondary
+            } else {
+                HelldeckColors.colorPrimary
+            },
+        )
     }
 
     // Add player dialog
@@ -732,205 +909,12 @@ private fun AddPlayersStep(
             onDismiss = { showAddDialog = false },
             onPlayerCreated = { name, emoji ->
                 val newPlayer = Player(
-                    id = com.helldeck.utils.ValidationUtils.generateUniquePlayerId(players),
+                    id = ValidationUtils.generateUniquePlayerId(players),
                     name = name,
                     avatar = emoji,
                 )
                 onPlayersChanged(players + newPlayer)
             },
-        )
-    }
-}
-
-@Composable
-private fun ReadyToPlayStep(
-    reducedMotion: Boolean,
-    playerCount: Int,
-    onComplete: () -> Unit,
-) {
-    var showContent by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        delay(100)
-        showContent = true
-    }
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(HelldeckSpacing.ExtraLarge.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        val scale by animateFloatAsState(
-            targetValue = if (showContent) 1f else 0.8f,
-            animationSpec = if (reducedMotion) {
-                tween(HelldeckAnimations.Instant)
-            } else {
-                spring(
-                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                    stiffness = Spring.StiffnessLow,
-                )
-            },
-            label = "ready_scale",
-        )
-
-        Text(
-            text = "🎉",
-            fontSize = (80 * scale).sp,
-            modifier = Modifier.scale(scale),
-        )
-
-        Spacer(Modifier.height(HelldeckSpacing.Large.dp))
-
-        Text(
-            text = "Ready to Play!",
-            style = MaterialTheme.typography.displaySmall,
-            fontWeight = FontWeight.ExtraBold,
-            color = HelldeckColors.colorSecondary,
-        )
-
-        Spacer(Modifier.height(HelldeckSpacing.Medium.dp))
-
-        Text(
-            text = if (playerCount > 0) {
-                "You've added $playerCount players. Let's go!"
-            } else {
-                "You can add players anytime from the menu"
-            },
-            style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center,
-            color = HelldeckColors.colorMuted,
-        )
-
-        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
-
-        // Tips card with HELLDECK styling
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .border(
-                    width = 1.dp,
-                    brush = Brush.linearGradient(
-                        colors = listOf(
-                            HelldeckColors.colorSecondary.copy(alpha = 0.3f),
-                            HelldeckColors.colorAccentCool.copy(alpha = 0.2f),
-                        ),
-                    ),
-                    shape = RoundedCornerShape(HelldeckRadius.Large),
-                ),
-            shape = RoundedCornerShape(HelldeckRadius.Large),
-            colors = CardDefaults.cardColors(
-                containerColor = HelldeckColors.surfaceElevated.copy(alpha = 0.8f),
-            ),
-        ) {
-            Column(
-                modifier = Modifier.padding(HelldeckSpacing.Large.dp),
-                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
-            ) {
-                QuickTip("🎯", "Spice level in settings", HelldeckColors.colorSecondary)
-                QuickTip("🧠", "Game learns from votes", HelldeckColors.colorAccentCool)
-                QuickTip("↩️", "Two-finger tap to undo", HelldeckColors.colorAccentWarm)
-            }
-        }
-
-        Spacer(Modifier.height(HelldeckSpacing.ExtraLarge.dp))
-
-        // Final CTA button with HELLDECK styling
-        OnboardingButton(
-            text = "🎉 Let's Play!",
-            reducedMotion = reducedMotion,
-            accentColor = HelldeckColors.colorSecondary,
-            onClick = onComplete,
-        )
-    }
-}
-
-/**
- * HELLDECK styled CTA button with glow and spring physics
- */
-@Composable
-private fun OnboardingButton(
-    text: String,
-    reducedMotion: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    accentColor: Color = HelldeckColors.colorPrimary,
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
-    val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.95f else 1f,
-        animationSpec = if (reducedMotion) {
-            tween(HelldeckAnimations.Instant)
-        } else {
-            spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
-        },
-        label = "button_scale",
-    )
-
-    Button(
-        onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(HelldeckHeights.Button.dp)
-            .scale(scale)
-            .shadow(
-                elevation = if (isPressed) 4.dp else 12.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Pill),
-                spotColor = accentColor.copy(alpha = 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Pill),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = accentColor,
-            contentColor = HelldeckColors.background,
-        ),
-    ) {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
-        )
-    }
-}
-
-@Composable
-private fun FeatureHighlight(emoji: String, text: String, accentColor: Color) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = emoji,
-            fontSize = 24.sp,
-        )
-        Text(
-            text = text,
-            style = MaterialTheme.typography.bodyMedium,
-            color = accentColor,
-            fontWeight = FontWeight.Medium,
-        )
-    }
-}
-
-@Composable
-private fun QuickTip(emoji: String, text: String, accentColor: Color) {
-    Row(
-        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = emoji,
-            fontSize = 20.sp,
-        )
-        Text(
-            text = text,
-            style = MaterialTheme.typography.bodyMedium,
-            color = accentColor,
-            fontWeight = FontWeight.Medium,
         )
     }
 }
