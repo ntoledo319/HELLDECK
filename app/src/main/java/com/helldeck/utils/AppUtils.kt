@@ -28,6 +28,7 @@ object AppUtils {
                 versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     packageInfo.longVersionCode.toInt()
                 } else {
+                    @Suppress("DEPRECATION")
                     packageInfo.versionCode
                 },
                 buildTime = getBuildTime(),
@@ -563,6 +564,7 @@ object NetworkUtils {
     /**
      * Check if device is connected to internet
      */
+    @Suppress("DEPRECATION")
     fun isNetworkAvailable(context: Context): Boolean {
         return try {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
@@ -577,6 +579,7 @@ object NetworkUtils {
                         capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_ETHERNET)
                     )
             } else {
+                @Suppress("DEPRECATION")
                 val activeNetworkInfo = connectivityManager.activeNetworkInfo
                 activeNetworkInfo != null && activeNetworkInfo.isConnected
             }
@@ -588,6 +591,7 @@ object NetworkUtils {
     /**
      * Get network type
      */
+    @Suppress("DEPRECATION")
     fun getNetworkType(context: Context): String {
         return try {
             val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
@@ -604,6 +608,7 @@ object NetworkUtils {
                     else -> "Unknown"
                 }
             } else {
+                @Suppress("DEPRECATION")
                 val activeNetworkInfo = connectivityManager.activeNetworkInfo
                 activeNetworkInfo?.typeName ?: "Unknown"
             }

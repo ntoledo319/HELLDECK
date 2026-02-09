@@ -4,94 +4,65 @@
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
     "weight": 1.0,
-    "spice_max": 1,
+    "spice_max": 3,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Pick the perfect reply vibe." }
+      { "type": "slot", "name": "sender", "slot_type": "text_senders" },
+      { "type": "text", "value": " texts: \"" },
+      { "type": "slot", "name": "message", "slot_type": "text_messages" },
+      { "type": "text", "value": "\"" }
     ],
-    "constraints": { "max_words": 12, "distinct_slots": false },
-    "option_provider": {
-      "type": "AB",
-      "options": [
-        { "from_slot": "toneA" },
-        { "from_slot": "toneB" }
-      ]
-    }
+    "constraints": { "max_words": 30, "distinct_slots": true },
+    "option_provider": { "type": "None" }
   },
   {
     "id": "text_trap_blueprint_2",
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
     "weight": 0.9,
-    "spice_max": 2,
+    "spice_max": 3,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Choose your reply energy for the incoming text." }
+      { "type": "text", "value": "New message from " },
+      { "type": "slot", "name": "sender", "slot_type": "text_senders" },
+      { "type": "text", "value": ": \"" },
+      { "type": "slot", "name": "message", "slot_type": "text_messages" },
+      { "type": "text", "value": "\"" }
     ],
-    "constraints": { "max_words": 12, "distinct_slots": false },
-    "option_provider": {
-      "type": "AB",
-      "options": [
-        { "from_slot": "toneA" },
-        { "from_slot": "toneB" }
-      ]
-    }
+    "constraints": { "max_words": 30, "distinct_slots": true },
+    "option_provider": { "type": "None" }
   },
   {
     "id": "text_trap_blueprint_3",
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
-    "weight": 0.8,
-    "spice_max": 1,
-    "locality_max": 1,
+    "weight": 0.85,
+    "spice_max": 3,
+    "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "What vibe should your reply have?" }
+      { "type": "slot", "name": "sender", "slot_type": "text_senders" },
+      { "type": "text", "value": " just sent: \"" },
+      { "type": "slot", "name": "message", "slot_type": "text_messages" },
+      { "type": "text", "value": "\" — Reply NOW." }
     ],
-    "constraints": { "max_words": 10, "distinct_slots": false },
-    "option_provider": {
-      "type": "AB",
-      "options": [
-        { "from_slot": "toneA" },
-        { "from_slot": "toneB" }
-      ]
-    }
+    "constraints": { "max_words": 30, "distinct_slots": true },
+    "option_provider": { "type": "None" }
   },
   {
     "id": "text_trap_blueprint_4",
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
-    "weight": 0.75,
-    "spice_max": 1,
+    "weight": 0.8,
+    "spice_max": 3,
     "locality_max": 2,
     "blueprint": [
-      { "type": "text", "value": "Pick the reply tone that saves the chat." }
+      { "type": "text", "value": "🔔 " },
+      { "type": "slot", "name": "sender", "slot_type": "text_senders" },
+      { "type": "text", "value": ": \"" },
+      { "type": "slot", "name": "message", "slot_type": "text_messages" },
+      { "type": "text", "value": "\"" }
     ],
-    "constraints": { "max_words": 12, "distinct_slots": false },
-    "option_provider": {
-      "type": "AB",
-      "options": [
-        { "from_slot": "toneA" },
-        { "from_slot": "toneB" }
-      ]
-    }
-  },
-  {
-    "id": "text_trap_blueprint_5",
-    "game": "TEXT_THREAD_TRAP",
-    "family": "texttrap_core",
-    "weight": 0.7,
-    "spice_max": 1,
-    "locality_max": 1,
-    "blueprint": [
-      { "type": "text", "value": "Choose the mood for your comeback message." }
-    ],
-    "constraints": { "max_words": 12, "distinct_slots": false },
-    "option_provider": {
-      "type": "AB",
-      "options": [
-        { "from_slot": "toneA" },
-        { "from_slot": "toneB" }
-      ]
-    }
+    "constraints": { "max_words": 30, "distinct_slots": true },
+    "option_provider": { "type": "None" }
   }
 ]

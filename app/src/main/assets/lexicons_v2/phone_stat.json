@@ -1,0 +1,225 @@
+{
+  "slot_type": "phone_stat",
+  "entries": [
+    {
+      "text": "unread emails",
+      "tags": [
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unread text messages",
+      "tags": [
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "photos in their camera roll",
+      "tags": [
+        "digital"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "screenshots they're embarrassed about",
+      "tags": [
+        "digital"
+      ],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "open tabs in their browser right now",
+      "tags": [
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "apps they check within 5 minutes of waking up",
+      "tags": [
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "contacts saved under fake names",
+      "tags": [
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "minutes of screen time yesterday",
+      "tags": [
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "alarms set for tomorrow morning",
+      "tags": [
+        "digital"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unsaved phone numbers in their recents",
+      "tags": [
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "group chats they've muted",
+      "tags": [
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "dating app matches they never messaged",
+      "tags": [
+        "digital"
+      ],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "notes app entries they'd never show anyone",
+      "tags": [
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "selfies taken before picking the 'right one'",
+      "tags": [
+        "digital"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "podcasts in their queue they'll never listen to",
+      "tags": [
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "saved Instagram posts they forgot about",
+      "tags": [
+        "digital"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "playlists they made for a specific mood or person",
+      "tags": [
+        "digital"
+      ],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "food delivery orders this month",
+      "tags": [
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "apps hidden on their home screen",
+      "tags": [
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "times they've rage-quit an app today",
+      "tags": [
+        "digital"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
+  ]
+}

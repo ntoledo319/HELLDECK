@@ -29,7 +29,7 @@ class GameFamilyIntegrationTest {
 
     // Test expectations for all 14 official games from HDRealRules.md
     private val expectations = listOf(
-        Expectation(GameIds.ROAST_CONS, GameOptions.PlayerVote::class),
+        Expectation(GameIds.ROAST_CONS, GameOptions.SeatVote::class),
         Expectation(GameIds.CONFESS_CAP, GameOptions.TrueFalse::class),
         Expectation(GameIds.POISON_PITCH, GameOptions.AB::class),
         Expectation(GameIds.FILLIN, GameOptions.Challenge::class),
@@ -40,7 +40,7 @@ class GameFamilyIntegrationTest {
         Expectation(GameIds.UNIFYING_THEORY, GameOptions.OddOneOut::class),
         Expectation(GameIds.TITLE_FIGHT, GameOptions.Challenge::class),
         Expectation(GameIds.ALIBI, GameOptions.HiddenWords::class),
-        Expectation(GameIds.REALITY_CHECK, GameOptions.PlayerSelect::class),
+        Expectation(GameIds.REALITY_CHECK, GameOptions.SeatSelect::class),
         Expectation(GameIds.SCATTER, GameOptions.Scatter::class),
         Expectation(GameIds.OVER_UNDER, GameOptions.AB::class),
         // Legacy games removed: MAJORITY, ODD_ONE, HYPE_YIKE
@@ -92,7 +92,7 @@ class GameFamilyIntegrationTest {
 
                 val options = result.options
                 val optionMatches = expectation.expectedOptionType.isInstance(options) ||
-                    options is GameOptions.PlayerVote ||
+                    options is GameOptions.SeatVote ||
                     options is GameOptions.None
                 assertTrue(
                     "Unexpected options type for ${expectation.gameId}: ${options::class.simpleName}",
@@ -127,11 +127,11 @@ class GameFamilyIntegrationTest {
                     is GameOptions.OddOneOut -> {
                         assertTrue(options.items.isNotEmpty())
                     }
-                    is GameOptions.PlayerVote -> {
-                        assertTrue(options.players.isNotEmpty())
+                    is GameOptions.SeatVote -> {
+                        assertTrue(options.seatNumbers.isNotEmpty())
                     }
-                    is GameOptions.PlayerSelect -> {
-                        assertTrue(options.players.isNotEmpty())
+                    is GameOptions.SeatSelect -> {
+                        assertTrue(options.seatNumbers.isNotEmpty())
                     }
                     is GameOptions.Challenge -> {
                         assertTrue(options.challenge.isNotBlank())

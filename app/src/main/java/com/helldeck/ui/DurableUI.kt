@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import com.helldeck.content.model.GameOptions
 import com.helldeck.engine.FlashIntensity
 import com.helldeck.engine.HapticsTorch
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -128,8 +129,8 @@ fun GameOptionButtons(
             modifier = modifier,
         )
 
-        is GameOptions.PlayerVote -> PlayerVoteGrid(
-            players = options.players,
+        is GameOptions.SeatVote -> PlayerVoteGrid(
+            players = options.seatNumbers.map { "Seat $it" },
             onVote = onOptionSelected,
             modifier = modifier,
         )
@@ -664,7 +665,7 @@ fun PlayerVoteGrid(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                rowPlayers.forEachIndexed { index, player ->
+                rowPlayers.forEachIndexed { _, player ->
                     PlayerVoteButton(
                         playerName = player,
                         emoji = playerEmojis.getOrElse(players.indexOf(player)) { "👤" },
@@ -894,7 +895,7 @@ fun GiantTimer(
             contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator(
-                progress = progress,
+                progress = { progress },
                 modifier = Modifier.fillMaxSize().padding(8.dp),
                 color = Color.White.copy(alpha = 0.3f),
                 strokeWidth = 8.dp,
@@ -1010,6 +1011,7 @@ fun ScoreRow(
 /**
  * Enhanced torch feedback with patterns
  */
+@OptIn(DelicateCoroutinesApi::class)
 object TorchFeedback {
     private val hapticsTorch = HapticsTorch
 
@@ -1098,7 +1100,7 @@ fun GamePhaseIndicator(
             Spacer(modifier = Modifier.height(8.dp))
 
             LinearProgressIndicator(
-                progress = phasesComplete.toFloat() / totalPhases.toFloat(),
+                progress = { phasesComplete.toFloat() / totalPhases.toFloat() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(8.dp)
@@ -1180,7 +1182,7 @@ fun HeatMeter(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 LinearProgressIndicator(
-                    progress = heatLevel,
+                    progress = { heatLevel },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(12.dp)
@@ -1481,7 +1483,10 @@ fun DurableTheme(
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
-    val colors = if (darkTheme) {
+    val context = LocalContext.current
+    val colors = if (dynamicColor && android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+        if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+    } else if (darkTheme) {
         darkColorScheme(
             primary = Color(0xFFFF6B35),
             onPrimary = Color.Black,

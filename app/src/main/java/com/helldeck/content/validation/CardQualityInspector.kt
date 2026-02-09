@@ -20,6 +20,8 @@ object CardQualityInspector {
         EXCESS_REPEAT,
         SLOT_MISSING_IN_TEXT,
         OPTIONS_UNUSABLE,
+        REDUNDANT_OPTIONS,
+        INSTRUCTION_LEAKAGE,
     }
 
     private val wordRegex = Regex("[\\p{L}\\p{N}'][\\p{L}\\p{N}'-]*")
@@ -67,6 +69,25 @@ object CardQualityInspector {
             issues += Issue.OPTIONS_UNUSABLE
         }
 
+        // Reject cards where AB options are near-identical
+        if (options is GameOptions.AB) {
+            val a = options.optionA.trim().lowercase()
+            val b = options.optionB.trim().lowercase()
+            if (a == b || a.contains(b) || b.contains(a)) {
+                issues += Issue.REDUNDANT_OPTIONS
+            }
+        }
+
+        // Reject cards leaking meta-instructions into card text
+        val instructionPatterns = listOf(
+            "pick the perfect", "choose your reply", "choose the mood",
+            "what vibe should", "pick the reply", "choose your energy",
+        )
+        val lowerForInstruction = text.lowercase()
+        if (instructionPatterns.any { lowerForInstruction.contains(it) }) {
+            issues += Issue.INSTRUCTION_LEAKAGE
+        }
+
         return issues
     }
 
@@ -77,11 +98,11 @@ object CardQualityInspector {
         is GameOptions.AB -> options.optionA.isNotBlank() &&
             options.optionB.isNotBlank() &&
             !options.optionA.equals(options.optionB, ignoreCase = true)
-        is GameOptions.PlayerVote -> options.players.distinct().size >= 2
+        is GameOptions.SeatVote -> options.seatNumbers.distinct().size >= 2
         is GameOptions.Taboo -> options.word.isNotBlank() && options.forbidden.count { it.isNotBlank() } >= 3
         is GameOptions.Scatter -> options.category.isNotBlank() && options.letter.length == 1
         is GameOptions.TextInput -> options.prompt.isNotBlank()
-        is GameOptions.PlayerSelect -> options.players.isNotEmpty()
+        is GameOptions.SeatSelect -> options.seatNumbers.isNotEmpty()
         is GameOptions.ReplyTone -> options.tones.distinct().size >= 3
         is GameOptions.OddOneOut -> options.items.distinct().size >= 3
         is GameOptions.Challenge -> options.challenge.isNotBlank()

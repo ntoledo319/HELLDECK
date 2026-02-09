@@ -77,6 +77,12 @@ class GameNightViewModel : ViewModel() {
     private val gamesPlayedThisSession = mutableSetOf<String>()
     private var totalRoundsThisSession = 0
 
+    // ========== FEEDBACK TRACKING ==========
+    private var feedbackSessionId: Long = System.currentTimeMillis()
+    private var currentImpressionId: Long? = null
+    private val sessionCardIds = mutableListOf<String>()
+    private var quickFireTriggered = false
+
     // ========== ROUND STATE (AUTHORITATIVE) ==========
     var roundState by mutableStateOf<RoundState?>(null)
 
@@ -438,20 +444,20 @@ class GameNightViewModel : ViewModel() {
             starterPicked = true
         }
 
-        // Generate card
-        val playersList = activePlayers.map { it.name }
+        // Generate card - use seat numbers instead of player names for anonymity
+        val playersList = activePlayers.mapIndexed { idx, _ -> "Seat ${idx + 1}" }
         val targetPlayerId = if (currentGameMeta?.interaction == Interaction.TARGET_PICK) {
             activePlayers.randomOrNull()?.id
         } else {
             null
         }
-        
+
         // Poison Pitch: Randomly assign two players to defend Option A and Option B
         if (nextGame == GameIds.POISON_PITCH && activePlayers.size >= 2) {
             val debaters = activePlayers.shuffled().take(2)
             poisonPitchDefenderA = debaters[0].id
             poisonPitchDefenderB = debaters[1].id
-            com.helldeck.utils.Logger.d("Poison Pitch debaters assigned: A=${debaters[0].name}, B=${debaters[1].name}")
+            com.helldeck.utils.Logger.d("Poison Pitch debaters assigned: A=Seat ${activePlayers.indexOf(debaters[0]) + 1}, B=Seat ${activePlayers.indexOf(debaters[1]) + 1}")
         }
 
         val sessionId = gameNightSessionId
@@ -490,10 +496,8 @@ class GameNightViewModel : ViewModel() {
                 } else {
                     null
                 },
-                targetPlayerIndex = if (gameMeta?.interaction == Interaction.TARGET_PICK) {
-                    activePlayers.randomOrNull()?.let { activePlayers.indexOf(it) }?.takeIf { it >= 0 }
-                } else {
-                    null
+                targetPlayerIndex = targetPlayerId?.let { id ->
+                    activePlayers.indexOfFirst { it.id == id }.takeIf { it >= 0 }
                 },
                 phase = com.helldeck.ui.state.RoundPhase.INTRO,
                 sessionId = sessionId,
@@ -515,6 +519,22 @@ class GameNightViewModel : ViewModel() {
                     activePlayerId = activePlayer()?.id ?: "unknown",
                     spiceLevel = _spiceLevel.value,
                 )
+            }
+
+            // Track card impression for feedback system
+            try {
+                val impression = com.helldeck.data.CardImpressionEntity(
+                    sessionId = feedbackSessionId,
+                    cardId = gameResult.filledCard.id,
+                    gameId = nextGame,
+                )
+                currentImpressionId = repo.db.cardFeedback().insertImpression(impression)
+                if (!sessionCardIds.contains(gameResult.filledCard.id)) {
+                    sessionCardIds.add(gameResult.filledCard.id)
+                }
+                quickFireTriggered = false
+            } catch (e: Exception) {
+                com.helldeck.utils.Logger.e("Failed to track card impression", e)
             }
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("startRound: engine.next failed", e)
@@ -1237,6 +1257,243 @@ class GameNightViewModel : ViewModel() {
     }
 
     /**
+     * Marks current card as skipped and advances to next round.
+     */
+    fun skipCurrentCard() {
+        viewModelScope.launch {
+            currentImpressionId?.let { impId ->
+                try {
+                    repo.db.cardFeedback().markSkipped(impId)
+                    com.helldeck.utils.Logger.d("Marked card as skipped: impressionId=$impId")
+                } catch (e: Exception) {
+                    com.helldeck.utils.Logger.e("Failed to mark card skipped", e)
+                }
+            }
+            commitFeedbackAndNext()
+        }
+    }
+
+    /**
+     * Marks current card with a quick fire (🔥) reaction.
+     */
+    fun triggerQuickFire() {
+        if (quickFireTriggered) return
+        quickFireTriggered = true
+
+        viewModelScope.launch {
+            currentImpressionId?.let { impId ->
+                try {
+                    repo.db.cardFeedback().markQuickFire(impId)
+                    com.helldeck.utils.Logger.d("Quick fire triggered: impressionId=$impId")
+                } catch (e: Exception) {
+                    com.helldeck.utils.Logger.e("Failed to mark quick fire", e)
+                }
+            }
+        }
+    }
+
+    /**
+     * Handle quick reaction from REVEAL phase.
+     * This is the opt-in feedback system that maintains party flow.
+     * 
+     * @param reaction The quick reaction type (FIRE, STAR, THUMBS_DOWN)
+     */
+    fun handleQuickReaction(reaction: com.helldeck.ui.components.QuickReaction) {
+        viewModelScope.launch {
+            when (reaction) {
+                com.helldeck.ui.components.QuickReaction.FIRE -> {
+                    // Fire = LOL feedback
+                    feedbackLol()
+                    triggerQuickFire()
+                    com.helldeck.utils.Logger.d("Quick reaction: FIRE (LOL)")
+                }
+                com.helldeck.ui.components.QuickReaction.STAR -> {
+                    // Star = LOL + Save to favorites
+                    feedbackLol()
+                    toggleFavorite()
+                    com.helldeck.utils.Logger.d("Quick reaction: STAR (LOL + Favorite)")
+                }
+                com.helldeck.ui.components.QuickReaction.THUMBS_DOWN -> {
+                    // Thumbs down = TRASH feedback
+                    feedbackTrash()
+                    com.helldeck.utils.Logger.d("Quick reaction: THUMBS_DOWN (TRASH)")
+                }
+            }
+            // Auto-advance to next round after reaction
+            commitFeedbackAndNext()
+        }
+    }
+
+    /**
+     * Handle auto-advance when no reaction given (implicit MEH).
+     * Called when the quick reaction timer expires without user input.
+     */
+    fun handleAutoAdvanceNoReaction() {
+        viewModelScope.launch {
+            // No reaction = implicit MEH (neutral feedback)
+            feedbackMeh()
+            com.helldeck.utils.Logger.d("Auto-advance: No reaction (implicit MEH)")
+            commitFeedbackAndNext()
+        }
+    }
+
+    /**
+     * Gets list of unique card IDs shown in current session for MVP/Dud selection.
+     */
+    suspend fun getSessionCardsForVoting(): List<String> {
+        return try {
+            repo.db.cardFeedback().getSessionCardIds(feedbackSessionId)
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to get session cards", e)
+            sessionCardIds.toList()
+        }
+    }
+
+    /**
+     * Marks a card as MVP for current session.
+     */
+    suspend fun markCardAsMvp(cardId: String) {
+        try {
+            repo.db.cardFeedback().markMvp(feedbackSessionId, cardId)
+            com.helldeck.utils.Logger.d("Marked MVP: cardId=$cardId")
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to mark MVP", e)
+        }
+    }
+
+    /**
+     * Marks a card as Dud for current session.
+     */
+    suspend fun markCardAsDud(cardId: String) {
+        try {
+            repo.db.cardFeedback().markDud(feedbackSessionId, cardId)
+            com.helldeck.utils.Logger.d("Marked Dud: cardId=$cardId")
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to mark Dud", e)
+        }
+    }
+
+    // ========== END GAME SUMMARY ==========
+    var showEndGameSummary by mutableStateOf(false)
+        private set
+
+    fun showEndGameSummary() {
+        showEndGameSummary = true
+    }
+
+    fun dismissEndGameSummary() {
+        showEndGameSummary = false
+    }
+
+    fun finishGameAndGoHome() {
+        viewModelScope.launch {
+            // Recompute scores for cards played this session
+            sessionCardIds.forEach { cardId ->
+                recomputeCardScore(cardId)
+            }
+        }
+
+        showEndGameSummary = false
+        sessionCardIds.clear()
+        feedbackSessionId = System.currentTimeMillis()
+        scene = Scene.HOME
+    }
+
+    /**
+     * Recomputes quality score for a single card from its aggregate stats.
+     */
+    private suspend fun recomputeCardScore(cardId: String) {
+        try {
+            val stats = repo.db.cardFeedback().getAggregatedStats(cardId) ?: return
+            val score = com.helldeck.data.CardScoreCalculator.toScoreEntity(stats)
+            repo.db.cardFeedback().upsertScore(score)
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to recompute score for $cardId", e)
+        }
+    }
+
+    /**
+     * Recomputes quality scores for all tracked cards.
+     */
+    suspend fun recomputeAllCardScores() {
+        try {
+            val cardIds = repo.db.cardFeedback().getAllTrackedCardIds()
+            for (cardId in cardIds) {
+                recomputeCardScore(cardId)
+            }
+            com.helldeck.utils.Logger.d("Recomputed scores for ${cardIds.size} cards")
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to recompute card scores", e)
+        }
+    }
+
+    /**
+     * Gets cards that have fallen below quality threshold.
+     */
+    suspend fun getCardsNeedingReview(): List<com.helldeck.data.CardScoreEntity> {
+        return try {
+            repo.db.cardFeedback().getLowScoringCards(threshold = 0.2f)
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to get low scoring cards", e)
+            emptyList()
+        }
+    }
+
+    /**
+     * Exports card quality data for manual review.
+     */
+    suspend fun exportCardQualityReport(): String {
+        return try {
+            val allScores = mutableListOf<com.helldeck.data.CardScoreEntity>()
+            val gameIds = listOf(
+                "roast_consensus", "poison_pitch", "red_flag_rally",
+                "hot_seat_imposter", "scatterblast", "taboo_timer",
+                "alibi_drop", "text_thread_trap", "over_under",
+                "reality_check", "fill_in_finisher", "confession_or_cap",
+                "title_fight", "the_unifying_theory",
+            )
+
+            for (gameId in gameIds) {
+                allScores.addAll(repo.db.cardFeedback().getScoresByGame(gameId))
+            }
+
+            buildString {
+                appendLine("=== HELLDECK Card Quality Report ===")
+                appendLine("Generated: ${java.time.LocalDateTime.now()}")
+                appendLine("Total tracked cards: ${allScores.size}")
+                appendLine()
+
+                if (allScores.isEmpty()) {
+                    appendLine("No cards tracked yet.")
+                    return@buildString
+                }
+
+                val avgScore = allScores.map { it.computedScore }.average()
+                val lowScoring = allScores.filter { it.computedScore < 0.35f }
+                val highScoring = allScores.filter { it.computedScore > 0.7f }
+
+                appendLine("Average score: %.2f".format(avgScore))
+                appendLine("High performers (>0.7): ${highScoring.size}")
+                appendLine("Low performers (<0.35): ${lowScoring.size}")
+                appendLine()
+
+                appendLine("=== TOP 10 CARDS ===")
+                allScores.sortedByDescending { it.computedScore }.take(10).forEach { score ->
+                    appendLine("${score.cardId.take(40)} | ${score.gameId} | %.2f".format(score.computedScore))
+                }
+                appendLine()
+
+                appendLine("=== BOTTOM 10 CARDS ===")
+                allScores.sortedBy { it.computedScore }.take(10).forEach { score ->
+                    appendLine("${score.cardId.take(40)} | ${score.gameId} | %.2f".format(score.computedScore))
+                }
+            }
+        } catch (e: Exception) {
+            "Error generating report: ${e.message}"
+        }
+    }
+
+    /**
      * Undoes the last feedback rating
      */
     fun undoLastRating() {
@@ -1259,6 +1516,15 @@ class GameNightViewModel : ViewModel() {
 
     suspend fun commitFeedbackAndNext() {
         val card = roundState?.filledCard ?: return
+
+        // Mark round as completed in feedback tracking
+        currentImpressionId?.let { impId ->
+            try {
+                repo.db.cardFeedback().markRoundCompleted(impId)
+            } catch (e: Exception) {
+                com.helldeck.utils.Logger.e("Failed to mark round completed", e)
+            }
+        }
 
         val laughsScore = Rewards.fromCounts(lol, meh, trash)
 
@@ -1318,6 +1584,8 @@ class GameNightViewModel : ViewModel() {
         points = 0
         feedbackSnapshot = null
         canUndoFeedback = false
+        quickFireTriggered = false
+        currentImpressionId = null
 
         if (isInitialized) {
             activePlayer()?.id?.let { pid ->
@@ -1368,6 +1636,7 @@ class GameNightViewModel : ViewModel() {
                 false
             } else {
                 // Favorite
+                val seatNumber = player?.let { p -> activePlayers.indexOfFirst { it.id == p.id } + 1 }
                 val favorite = com.helldeck.data.FavoriteCardEntity(
                     id = "fav_${System.currentTimeMillis()}_${card.id}",
                     cardId = card.id,
@@ -1376,7 +1645,7 @@ class GameNightViewModel : ViewModel() {
                     gameName = game.title,
                     sessionId = gameNightSessionId,
                     playerId = player?.id,
-                    playerName = player?.name,
+                    playerName = seatNumber?.let { "Seat $it" }, // Anonymized
                     lolCount = lol,
                 )
                 repo.db.favorites().insert(favorite)
@@ -1471,7 +1740,7 @@ class GameNightViewModel : ViewModel() {
         val replayGameMeta = GameMetadata.getGameMetadata(replayGameId)
 
         // Create new round state with same card
-        val playersList = activePlayers.map { it.name }
+        val playersList = activePlayers.mapIndexed { idx, _ -> "Seat ${idx + 1}" }
         val targetPlayerId = if (replayGameMeta?.interaction == Interaction.TARGET_PICK) {
             activePlayers.randomOrNull()?.id
         } else {
@@ -1536,12 +1805,13 @@ class GameNightViewModel : ViewModel() {
         if (!isInitialized) return
 
         val player = activePlayer()
+        val seatNumber = player?.let { p -> activePlayers.indexOfFirst { it.id == p.id } + 1 }
         val customCard = com.helldeck.data.CustomCardEntity(
             id = "custom_${System.currentTimeMillis()}_${kotlin.random.Random.nextInt(1000)}",
             gameId = gameId,
             cardText = cardText,
             createdBy = player?.id,
-            creatorName = player?.name,
+            creatorName = seatNumber?.let { "Seat $it" }, // Anonymized
             createdAtMs = System.currentTimeMillis(),
         )
 

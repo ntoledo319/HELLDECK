@@ -374,7 +374,7 @@ fun CardLabScene(onClose: () -> Unit) {
                 if (isGenerating) {
                     Spacer(modifier = Modifier.height(8.dp))
                     LinearProgressIndicator(
-                        progress = generationProgress,
+                        progress = { generationProgress },
                         modifier = Modifier.fillMaxWidth(),
                         color = HelldeckColors.colorPrimary,
                     )

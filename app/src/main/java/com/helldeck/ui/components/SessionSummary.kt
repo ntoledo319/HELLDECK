@@ -40,7 +40,6 @@ fun SessionSummaryDialog(
     onDismiss: () -> Unit,
     onExport: (String) -> Unit,
 ) {
-    val scope = rememberCoroutineScope()
     var analytics by remember { mutableStateOf<SessionAnalytics?>(null) }
     var isLoading by remember { mutableStateOf(true) }
 

@@ -14,6 +14,8 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helldeck.ui.HelldeckRadius
@@ -153,7 +155,7 @@ fun SecondaryButton(
  * Enhanced text button with subtle animations
  */
 @Composable
-fun TextButton(
+fun EnhancedTextButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -196,7 +198,7 @@ fun TextButton(
  * Icon button with enhanced feedback
  */
 @Composable
-fun IconButton(
+fun EnhancedIconButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -253,12 +255,18 @@ fun FloatingActionButton(
         label = "fab_scale",
     )
 
+    val semanticsModifier = if (contentDescription != null) {
+        modifier.semantics { this.contentDescription = contentDescription }
+    } else {
+        modifier
+    }
+
     androidx.compose.material3.FloatingActionButton(
         onClick = {
             haptic.performHapticFeedback(HapticFeedbackType.LongPress)
             onClick()
         },
-        modifier = modifier.scale(scale),
+        modifier = semanticsModifier.scale(scale),
         interactionSource = interactionSource,
         containerColor = MaterialTheme.colorScheme.primary,
         contentColor = MaterialTheme.colorScheme.onPrimary,

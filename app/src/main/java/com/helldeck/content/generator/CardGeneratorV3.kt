@@ -146,6 +146,25 @@ class CardGeneratorV3(
             return null
         }
 
+        // Comedy science validation: specificity, visual imagery, game-mechanic alignment
+        val comedyValidation = ComedyScienceValidator.validate(
+            text = text,
+            gameId = blueprint.game,
+            optionA = blueprint.option_provider?.let { provider ->
+                if (provider.type == BlueprintOptionProvider.OptionProviderType.AB) {
+                    provider.options.getOrNull(0)?.fromSlot?.let { slots[it]?.displayText }
+                } else null
+            },
+            optionB = blueprint.option_provider?.let { provider ->
+                if (provider.type == BlueprintOptionProvider.OptionProviderType.AB) {
+                    provider.options.getOrNull(1)?.fromSlot?.let { slots[it]?.displayText }
+                } else null
+            },
+        )
+        if (!comedyValidation.isValid) {
+            return null
+        }
+
         val locality = min(blueprint.locality_max, request.localityMax)
         val metadata = mutableMapOf(
             "slots" to slots.mapValues { it.value.originalText },
@@ -367,12 +386,20 @@ class CardGeneratorV3(
         val provider = blueprint.option_provider ?: return defaultOptionsForGame(blueprint.game, slots, request)
         return when (provider.type) {
             BlueprintOptionProvider.OptionProviderType.PLAYER_VOTE ->
-                GameOptions.PlayerVote(request.players.ifEmpty { listOf("Player 1", "Player 2", "Player 3") })
+                GameOptions.SeatVote((1..(if (request.players.isNotEmpty()) request.players.size else 3)).toList())
             BlueprintOptionProvider.OptionProviderType.AB -> {
                 val optA = provider.options.getOrNull(0)?.fromSlot?.let { inferOptionFromSlot(it, slots, request) } ?: "Option A"
                 val optB = provider.options.getOrNull(1)?.fromSlot?.let { inferOptionFromSlot(it, slots, request) } ?: "Option B"
                 GameOptions.AB(optA, optB)
             }
+            BlueprintOptionProvider.OptionProviderType.JUDGE_PICK ->
+                GameOptions.TextInput("Write your answer")
+            BlueprintOptionProvider.OptionProviderType.RATING_1_10 ->
+                GameOptions.SeatSelect((1..request.players.size.coerceAtLeast(2)).toList(), null)
+            BlueprintOptionProvider.OptionProviderType.OVER_UNDER ->
+                GameOptions.AB("Over", "Under")
+            BlueprintOptionProvider.OptionProviderType.NONE ->
+                defaultOptionsForGame(blueprint.game, slots, request)
         }
     }
 
@@ -397,7 +424,7 @@ class CardGeneratorV3(
         request: GameEngine.Request,
     ): GameOptions {
         return when (gameId) {
-            GameIds.ROAST_CONS -> GameOptions.PlayerVote(request.players)
+            GameIds.ROAST_CONS -> GameOptions.SeatVote((1..request.players.size.coerceAtLeast(2)).toList())
             GameIds.POISON_PITCH -> {
                 val perk = slots.values.firstOrNull()?.displayText ?: "Option A"
                 val other = slots.values.drop(1).firstOrNull()?.displayText ?: "Option B"
@@ -439,6 +466,9 @@ class CardGeneratorV3(
             }
             GameIds.TITLE_FIGHT -> GameOptions.Challenge("Pick the winner")
             GameIds.HOTSEAT_IMP -> GameOptions.Challenge("Answer as the target")
+            GameIds.REALITY_CHECK -> GameOptions.SeatSelect((1..request.players.size.coerceAtLeast(2)).toList(), null)
+            GameIds.UNIFYING_THEORY -> GameOptions.Challenge("Find the connection")
+            GameIds.OVER_UNDER -> GameOptions.AB("Over", "Under")
             else -> GameOptions.None
         }
     }
@@ -448,7 +478,7 @@ class CardGeneratorV3(
         rng: SeededRng,
     ): GenerationResult? {
         val gameId = request.gameId ?: return null
-        val gold = goldBank.draw(gameId, rng.random) ?: return null
+        val gold = goldBank.draw(gameId, rng.random, request.spiceMax) ?: return null
         val filledCard = goldBank.toFilledCard(gold)
         val options = goldBank.toGameOptions(gold, emptyMap())
         val timer = GameMetadata.getGameMetadata(gold.game)?.timerSec ?: 15

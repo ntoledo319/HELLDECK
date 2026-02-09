@@ -42,7 +42,12 @@ class ExportImportService : Service() {
                 startExport(filename)
             }
             ACTION_IMPORT_BRAINPACK -> {
-                val uri = intent.getParcelableExtra<android.net.Uri>(EXTRA_URI)
+                val uri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    intent.getParcelableExtra(EXTRA_URI, android.net.Uri::class.java)
+                } else {
+                    @Suppress("DEPRECATION")
+                    intent.getParcelableExtra(EXTRA_URI)
+                }
                 if (uri != null) {
                     startImport(uri)
                 }

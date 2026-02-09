@@ -6,8 +6,22 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 
 /**
- * Room entity for player persistence
+ * @deprecated This file is deprecated as part of the user removal refactor.
+ * Player tracking has been replaced with anonymous seat-based sessions.
+ * Use [com.helldeck.content.model.SessionParticipant] and [com.helldeck.engine.SeatManager] instead.
+ * 
+ * This file is retained for database migration compatibility only.
+ * DO NOT add new functionality here.
+ * 
+ * @see com.helldeck.content.model.SessionParticipant
+ * @see com.helldeck.engine.SeatManager
  */
+
+/**
+ * Room entity for player persistence
+ * @deprecated Use SessionParticipant instead - no persistent player data is stored
+ */
+@Deprecated("Use SessionParticipant for anonymous seat-based sessions")
 @Entity(tableName = "players", indices = [Index(value = ["name"], unique = true)])
 data class PlayerEntity(
     @PrimaryKey val id: String,

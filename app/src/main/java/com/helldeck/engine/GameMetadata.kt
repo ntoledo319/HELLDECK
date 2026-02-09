@@ -16,7 +16,7 @@ object GameMetadata {
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.VOTE_AVATAR,
-            interactionType = InteractionType.VOTE_PLAYER,
+            interactionType = InteractionType.VOTE_SEAT,
             tags = setOf("roast", "vote", "avatar"),
             spice = 2,
         ),
@@ -25,7 +25,7 @@ object GameMetadata {
         GameIds.CONFESS_CAP to GameInfo(
             id = GameIds.CONFESS_CAP,
             title = "Confession or Cap",
-            description = "One player receives a potentially embarrassing prompt. They answer TRUE or FALSE. Everyone else votes on whether they believe them. The truth is revealed.",
+            description = "Someone receives a potentially embarrassing prompt. They answer TRUE or FALSE. Everyone else votes on whether they believe them. The truth is revealed.",
             category = GameCategory.MAIN,
             difficulty = GameDifficulty.EASY,
             timerSec = 15,
@@ -41,7 +41,7 @@ object GameMetadata {
         GameIds.POISON_PITCH to GameInfo(
             id = GameIds.POISON_PITCH,
             title = "Poison Pitch",
-            description = "A 'Would You Rather' card with two horrifying options. One player defends Option A, another defends Option B. Each has 30 seconds to argue. The group votes for the most convincing pitch.",
+            description = "A 'Would You Rather' card with two horrifying options. One person defends Option A, another defends Option B. Each has 30 seconds to argue. The group votes for the most convincing pitch.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 30,
@@ -73,7 +73,7 @@ object GameMetadata {
         GameIds.RED_FLAG to GameInfo(
             id = GameIds.RED_FLAG,
             title = "Red Flag Rally",
-            description = "A dating card with a Perk and a Red Flag. One player defends this person and argues why they're still dateable. 45 seconds to make the case. Everyone votes SMASH or PASS.",
+            description = "A dating card with a Perk and a Red Flag. Someone defends this person and argues why they're still dateable. 45 seconds to make the case. Everyone votes SMASH or PASS.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 45,
@@ -89,7 +89,7 @@ object GameMetadata {
         GameIds.HOTSEAT_IMP to GameInfo(
             id = GameIds.HOTSEAT_IMP,
             title = "Hot Seat Imposter",
-            description = "One player is the Target. Another is secretly chosen to impersonate them. The group asks 3-5 personal questions. The Imposter answers as if they were the Target. The group votes: REAL or FAKE.",
+            description = "Someone is the Target. Another is secretly chosen to impersonate them. The group asks 3-5 personal questions. The Imposter answers as if they were the Target. The group votes: REAL or FAKE.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 15,
@@ -105,7 +105,7 @@ object GameMetadata {
         GameIds.TEXT_TRAP to GameInfo(
             id = GameIds.TEXT_TRAP,
             title = "Text Thread Trap",
-            description = "A card displays an awkward or high-stakes received text message. A Mandatory Tone is generated (1-22). The player must verbally improvise the text reply while acting out that specific Tone. The group votes on whether they survived.",
+            description = "A card displays an awkward or high-stakes received text message. A Mandatory Tone is generated (1-22). The person must verbally improvise the text reply while acting out that specific Tone. The group votes on whether they survived.",
             category = GameCategory.MAIN,
             difficulty = GameDifficulty.EASY,
             timerSec = 15,
@@ -137,7 +137,7 @@ object GameMetadata {
         GameIds.UNIFYING_THEORY to GameInfo(
             id = GameIds.UNIFYING_THEORY,
             title = "The Unifying Theory",
-            description = "A card reveals three completely unrelated items. The player must explain exactly why these three things are The Same. Find the single thread that connects all three. The group votes if your theory holds water.",
+            description = "A card reveals three completely unrelated items. The person must explain exactly why these three things are The Same. Find the single thread that connects all three. The group votes if your theory holds water.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 30,
@@ -153,7 +153,7 @@ object GameMetadata {
         GameIds.TITLE_FIGHT to GameInfo(
             id = GameIds.TITLE_FIGHT,
             title = "Title Fight",
-            description = "Draw a card. Immediately point at another player and yell FIGHT! Read the challenge. You and that player compete instantly. The first person to mess up, pause, or quit is the Loser.",
+            description = "Point at someone and yell FIGHT! The card shows a challenge. Battle it out — first to mess up loses. Three types: 🧠 Category (take turns naming things), 💪 Speed (race to do something), 👁️ Guts (outlast each other).",
             category = GameCategory.DUEL,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 15,
@@ -192,7 +192,7 @@ object GameMetadata {
             minPlayers = 3,
             maxPlayers = 16,
             interaction = Interaction.TARGET_PICK,
-            interactionType = InteractionType.TARGET_SELECT,
+            interactionType = InteractionType.SELF_RATE,
             tags = setOf("rating", "self-awareness", "vote"),
             spice = 2,
         ),
@@ -201,7 +201,7 @@ object GameMetadata {
         GameIds.SCATTER to GameInfo(
             id = GameIds.SCATTER,
             title = "Scatterblast",
-            description = "A high-speed category elimination game. The phone acts as a bomb with a hidden timer. A card reveals a Category + Letter. Players take turns shouting valid answers. If the bomb explodes on your turn, you lose.",
+            description = "A high-speed category elimination game. The phone acts as a bomb with a hidden timer. A card reveals a Category + Letter. Everyone takes turns shouting valid answers. If the bomb explodes on your turn, you lose.",
             category = GameCategory.WORD,
             difficulty = GameDifficulty.EASY,
             timerSec = 10,
@@ -217,7 +217,7 @@ object GameMetadata {
         GameIds.OVER_UNDER to GameInfo(
             id = GameIds.OVER_UNDER,
             title = "Over / Under",
-            description = "A social betting game. One player is the Subject. A card asks for a number about them. The group sets a Betting Line. Everyone votes OVER or UNDER. The Subject immediately reveals the exact number.",
+            description = "A social betting game. Someone is the Subject. A card asks for a number about them. The group sets a Betting Line. Everyone votes OVER or UNDER. The Subject immediately reveals the exact number.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.EASY,
             timerSec = 20,

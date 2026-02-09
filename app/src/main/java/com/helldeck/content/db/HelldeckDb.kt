@@ -23,8 +23,10 @@ import com.helldeck.settings.CrewBrainStore
         com.helldeck.data.RoundMetricsEntity::class,
         com.helldeck.data.FavoriteCardEntity::class,
         com.helldeck.data.CustomCardEntity::class,
+        com.helldeck.data.CardImpressionEntity::class,
+        com.helldeck.data.CardScoreEntity::class,
     ],
-    version = 8,
+    version = 9,
     exportSchema = false,
 )
 abstract class HelldeckDb : RoomDatabase() {
@@ -43,6 +45,7 @@ abstract class HelldeckDb : RoomDatabase() {
     abstract fun roundMetrics(): com.helldeck.data.RoundMetricsDao
     abstract fun favorites(): com.helldeck.data.FavoritesDao
     abstract fun customCards(): com.helldeck.data.CustomCardsDao
+    abstract fun cardFeedback(): com.helldeck.data.CardFeedbackDao
 
     companion object {
         @Volatile private var instances: MutableMap<String, HelldeckDb> = mutableMapOf()

@@ -452,7 +452,7 @@ object PlayerManager {
                     "wins" to player.wins,
                 )
             },
-            "teams" to _teams.value.map { (teamName, team) ->
+            "teams" to _teams.value.map { (_, team) ->
                 mapOf(
                     "name" to team.name,
                     "playerIds" to team.playerIds,

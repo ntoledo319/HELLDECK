@@ -97,7 +97,7 @@ private fun UndoSnackbarContent(
 
         // Progress indicator
         LinearProgressIndicator(
-            progress = (timeLeftMs / 3000f).coerceIn(0f, 1f),
+            progress = { (timeLeftMs / 3000f).coerceIn(0f, 1f) },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(3.dp),

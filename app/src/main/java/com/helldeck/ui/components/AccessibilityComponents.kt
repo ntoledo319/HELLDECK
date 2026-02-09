@@ -83,27 +83,40 @@ fun AccessibleCard(
     modifier: Modifier = Modifier,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    Card(
-        onClick = onClick ?: {},
-        enabled = onClick != null,
-        modifier = modifier.semantics(mergeDescendants = true) {
-            contentDescription = buildString {
-                append(title)
-                if (description != null) {
-                    append(". ")
-                    append(description)
-                }
+    val cardModifier = modifier.semantics(mergeDescendants = true) {
+        contentDescription = buildString {
+            append(title)
+            if (description != null) {
+                append(". ")
+                append(description)
             }
-            if (onClick != null) {
-                role = Role.Button
-            }
-        },
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            content = content,
-        )
+        }
+        if (onClick != null) {
+            role = Role.Button
+        }
+    }
+    
+    if (onClick != null) {
+        Card(
+            onClick = onClick,
+            modifier = cardModifier,
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                content = content,
+            )
+        }
+    } else {
+        Card(
+            modifier = cardModifier,
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                content = content,
+            )
+        }
     }
 }
 
@@ -205,25 +218,23 @@ fun AccessibleListItem(
     onClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier,
 ) {
-    Surface(
-        onClick = onClick ?: {},
-        enabled = onClick != null,
-        modifier = modifier
-            .fillMaxWidth()
-            .heightIn(min = 56.dp)
-            .semantics(mergeDescendants = true) {
-                contentDescription = buildString {
-                    append(title)
-                    if (subtitle != null) {
-                        append(". ")
-                        append(subtitle)
-                    }
+    val surfaceModifier = modifier
+        .fillMaxWidth()
+        .heightIn(min = 56.dp)
+        .semantics(mergeDescendants = true) {
+            contentDescription = buildString {
+                append(title)
+                if (subtitle != null) {
+                    append(". ")
+                    append(subtitle)
                 }
-                if (onClick != null) {
-                    role = Role.Button
-                }
-            },
-    ) {
+            }
+            if (onClick != null) {
+                role = Role.Button
+            }
+        }
+    
+    val content: @Composable () -> Unit = {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -245,6 +256,21 @@ fun AccessibleListItem(
                 }
             }
             trailing?.invoke()
+        }
+    }
+    
+    if (onClick != null) {
+        Surface(
+            onClick = onClick,
+            modifier = surfaceModifier,
+        ) {
+            content()
+        }
+    } else {
+        Surface(
+            modifier = surfaceModifier,
+        ) {
+            content()
         }
     }
 }

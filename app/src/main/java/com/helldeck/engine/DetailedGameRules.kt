@@ -41,7 +41,7 @@ object DetailedGameRules {
             ),
             mechanics = listOf(
                 "**Simultaneous Reveal:** No one sees votes until the timer hits zero. No bandwagoning.",
-                "**Majority Rules:** The player with the most votes is crowned the winner (or loser).",
+                "**Majority Rules:** The person with the most votes is crowned the winner (or loser).",
                 "**Ties:** Rock-paper-scissors. Loser takes the roast."
             ),
             scoring = listOf(
@@ -64,7 +64,7 @@ object DetailedGameRules {
         GameIds.CONFESS_CAP to DetailedRule(
             gameId = GameIds.CONFESS_CAP,
             howToPlay = listOf(
-                "**The Confessor:** One player is chosen and receives a potentially embarrassing prompt (e.g., \"Have you ever stalked an ex on social media for over an hour?\").",
+                "**The Confessor:** Someone is chosen and receives a potentially embarrassing prompt (e.g., \"Have you ever stalked an ex on social media for over an hour?\").",
                 "**The Claim:** The Confessor answers **TRUE** or **FALSE**.",
                 "**The Jury:** Everyone else votes on whether they believe the Confessor.",
                 "**The Truth:** The answer is revealed."
@@ -87,17 +87,18 @@ object DetailedGameRules {
             tips = listOf(
                 "**Sell the truth like a lie.** If it's true, act suspicious. People will think you're bluffing.",
                 "**Sell the lie like the truth.** Confidence is everything. Say it fast and move on.",
-                "**Study the player.** If they're a chronic oversharer, a \"FALSE\" answer is probably a lie."
+                "**Study the person.** If they're a chronic oversharer, a \"FALSE\" answer is probably a lie."
             )
         ),
         
         GameIds.POISON_PITCH to DetailedRule(
             gameId = GameIds.POISON_PITCH,
             howToPlay = listOf(
-                "**The Dilemma:** A \"Would You Rather\" card is drawn with two horrifying options (e.g., \"Would you rather fight one horse-sized duck OR 100 duck-sized horses?\").",
-                "**The Assignment:** One player is randomly assigned to defend **Option A**. Another player defends **Option B**.",
-                "**The Pitch:** Each player has 30 seconds to argue why their option is the _better_ choice.",
-                "**The Vote:** The group votes for the most convincing argument (not the better option—the better _pitch_)."
+                "**1. The Dilemma:** The active person draws a \"Would You Rather\" card with two horrifying options (e.g., \"Would you rather fight one horse-sized duck OR 100 duck-sized horses?\").",
+                "**2. Pick Your Opponents:** The active person selects TWO others to be the Pitchers. Pitcher A gets Option A, Pitcher B gets Option B. (Or tap \"Random\" to let the app choose.)",
+                "**3. The Pitch:** Each Pitcher has 30 seconds to argue why THEIR assigned option is the better choice. They must defend it even if it's terrible.",
+                "**4. The Vote:** Everyone else (including the active person) votes for the most convincing PITCH—not the better option, but who argued better.",
+                "**5. Winner Declared:** Whoever got more votes wins the round."
             ),
             mechanics = listOf(
                 "**You Don't Choose Your Side:** The game assigns you the option. You might have to defend the indefensible.",
@@ -123,11 +124,11 @@ object DetailedGameRules {
         GameIds.FILLIN to DetailedRule(
             gameId = GameIds.FILLIN,
             howToPlay = listOf(
-                "**The Judge:** One player is the Judge. They draw a card with a two-part prompt (e.g., \"I got kicked out of Disney World for _____, and now I'm banned from _____.\")",
+                "**The Judge:** Someone is the Judge. They draw a card with a two-part prompt (e.g., \"I got kicked out of Disney World for _____, and now I'm banned from _____.\")",
                 "**The Setup:** The Judge reads the card aloud and fills in the **first blank** verbally (e.g., \"I got kicked out of Disney World for **punching Goofy**...\")",
-                "**The Punchline:** All other players have **60 seconds** to write down their answer for the **second blank** (e.g., \"...and now I'm banned from **all theme parks in North America**.\").",
+                "**The Punchline:** Everyone else has **60 seconds** to write down their answer for the **second blank** (e.g., \"...and now I'm banned from **all theme parks in North America**.\").",
                 "**The Reading:** The Judge reads all anonymous responses aloud.",
-                "**The Winner:** The Judge picks their favorite. That player wins the round."
+                "**The Winner:** The Judge picks their favorite. That person wins the round."
             ),
             mechanics = listOf(
                 "**Write for the Judge:** If the Judge loves dark humor, go dark. If they love puns, go punny.",
@@ -154,7 +155,7 @@ object DetailedGameRules {
             gameId = GameIds.RED_FLAG,
             howToPlay = listOf(
                 "**The Scenario:** A dating card is revealed with a **Perk** and a **Red Flag** (e.g., \"They're a billionaire, BUT they collect toenail clippings.\").",
-                "**The Defender:** One player is randomly assigned to defend this person and argue why they're still dateable.",
+                "**The Defender:** Someone is randomly assigned to defend this person and argue why they're still dateable.",
                 "**The Pitch:** The Defender has 45 seconds to make their case.",
                 "**The Vote:** Everyone else votes **SMASH** (would date) or **PASS** (absolutely not)."
             ),
@@ -181,11 +182,11 @@ object DetailedGameRules {
         GameIds.HOTSEAT_IMP to DetailedRule(
             gameId = GameIds.HOTSEAT_IMP,
             howToPlay = listOf(
-                "**The Target:** One player is selected as the \"Target.\"",
-                "**The Imposter:** Another player is secretly chosen to impersonate the Target.",
-                "**The Questions:** The group asks 3-5 personal questions (e.g., \"What's your biggest fear?\" or \"What's the last thing you Googled?\").",
-                "**The Performance:** The Imposter answers each question _as if they were the Target_, trying to sound convincing.",
-                "**The Vote:** After all questions are answered, the group votes: **REAL** (they believe the Imposter) or **FAKE** (they see through the act)."
+                "**1. Select the Target:** The active person becomes the \"Target.\" They hand their phone to someone else and look away.",
+                "**2. Choose the Imposter:** The app secretly assigns one other person as the \"Imposter.\" Only the Imposter sees this notification. The Target doesn't know who the Imposter is.",
+                "**3. Ask Questions:** The group (including the Imposter) takes turns asking the Target 3-5 personal questions out loud (e.g., \"What's your biggest fear?\"). The Target CANNOT answer - they stay silent.",
+                "**4. The Imposter Answers:** The Imposter answers each question OUT LOUD, pretending to be the Target. They try to mimic speech patterns, reference inside jokes, and sound convincing.",
+                "**5. The Vote:** After all questions, everyone votes: **REAL** (they think the Imposter knows the Target well) or **FAKE** (the Imposter was unconvincing)."
             ),
             mechanics = listOf(
                 "**The Target Stays Silent:** The real Target cannot speak during the questioning. They just watch the Imposter try to become them.",
@@ -213,8 +214,8 @@ object DetailedGameRules {
             howToPlay = listOf(
                 "**The Scenario:** A card is drawn displaying an awkward or high-stakes \"received text message.\"",
                 "**The Modifier:** A Mandatory Tone is generated (e.g., \"The Seductive Whisper\" or \"The Raging Karen\").",
-                "**The Reply:** The player must verbally improvise the text reply (or dictate it to the group) while strictly acting out that specific Tone.",
-                "**The Vote:** The group votes on whether the player survived the social interaction."
+                "**The Reply:** The person must verbally improvise the text reply (or dictate it to the group) while strictly acting out that specific Tone.",
+                "**The Vote:** The group votes on whether the person survived the social interaction."
             ),
             mechanics = listOf(
                 "**Context matters, but the Tone rules:** You might have to use \"Seductive Whisper\" to reply to \"Grandma is in the hospital.\"",
@@ -241,7 +242,7 @@ object DetailedGameRules {
         GameIds.TABOO to DetailedRule(
             gameId = GameIds.TABOO,
             howToPlay = listOf(
-                "**The Guesser & The Clue-Giver:** Players split into two roles. One player is the Clue-Giver, the rest are Guessers.",
+                "**The Guesser & The Clue-Giver:** Everyone splits into two roles. One person is the Clue-Giver, the rest are Guessers.",
                 "**The Target Word:** The Clue-Giver draws a card with a target word (e.g., \"WEDDING\").",
                 "**The Forbidden Words:** The card lists 3-5 words the Clue-Giver **cannot say** (e.g., \"Bride, Groom, Ceremony, Ring, Dress\").",
                 "**The Clock:** 60 seconds on the timer. The Clue-Giver must describe the target word without using any forbidden words.",
@@ -249,7 +250,7 @@ object DetailedGameRules {
             ),
             mechanics = listOf(
                 "**Forbidden Word Spoken:** If the Clue-Giver accidentally says a forbidden word, the card is discarded and they lose 1 point.",
-                "**Buzzer Role:** One player acts as the \"Buzzer\" and listens carefully for slip-ups."
+                "**Buzzer Role:** One person acts as the \"Buzzer\" and listens carefully for slip-ups."
             ),
             scoring = listOf(
                 "**+2 per successful guess** (within the 60-second window).",
@@ -272,7 +273,7 @@ object DetailedGameRules {
             gameId = GameIds.UNIFYING_THEORY,
             howToPlay = listOf(
                 "**The Trio:** A card is revealed displaying three completely unrelated items (e.g., \"A Catholic Priest, A Referee, A Zebra\").",
-                "**The Challenge:** The player must explain exactly why these three things are **The Same**.",
+                "**The Challenge:** The person must explain exactly why these three things are **The Same**.",
                 "**The Logic:** You must find the single thread—no matter how thin, absurd, or dark—that connects all three.",
                 "**The Delivery:** Present your \"Unifying Theory\" to the group.",
                 "**The Vote:** The group decides if your theory holds water or if you're just rambling."
@@ -301,50 +302,51 @@ object DetailedGameRules {
         GameIds.TITLE_FIGHT to DetailedRule(
             gameId = GameIds.TITLE_FIGHT,
             howToPlay = listOf(
-                "**The Ambush:** You draw a card. Immediately point at another player and yell **\"FIGHT!\"**",
-                "**The Challenge:** Read the challenge on the card aloud (e.g., \"Category: Pizza Toppings\").",
-                "**The Clash:** You and that player compete instantly. No countdowns, no warm-ups.",
-                "**The End:** The first person to mess up, pause, or quit is the Loser."
+                "**1. Draw & Challenge:** Draw a card. Immediately point at someone else and yell **\"FIGHT!\"**",
+                "**2. Read the Card:** The card will say one of three things: \"Category: [topic]\", \"Speed: [task]\", or \"Guts: [challenge]\".",
+                "**3. START IMMEDIATELY:** No countdowns, no preparation. Begin the duel as soon as the challenge is read.",
+                "**4. Follow the Rules:** Each type has specific losing conditions (see Mechanics below).",
+                "**5. Others Judge:** The group watches and declares the loser when someone messes up."
             ),
             mechanics = listOf(
-                "**The Brain (Categories):** Ping-pong answers back and forth rapidly. Repeat an answer, stutter, or pause for more than 3 seconds = you lose.",
-                "**The Body (Speed):** A physical race to complete a simple task. Being second place = you lose.",
-                "**The Soul (Guts):** A test of willpower or awkwardness. Breaking eye contact, laughing, or flinching = you lose."
+                "**🧠 BRAIN (Category Challenges):** Take turns naming items in the category back-and-forth. YOU LOSE IF: You repeat an answer, pause for 3+ seconds, or can't think of anything. Example: \"Category: Pizza Toppings\" → You: \"Pepperoni\" → Them: \"Mushrooms\" → You: \"Sausage\"...",
+                "**💪 BODY (Speed Challenges):** Race to complete a physical task. YOU LOSE IF: You come in second place. Example: \"Speed: First person to touch a doorknob wins\" → Both people sprint to touch a doorknob. Slowest loses.",
+                "**👁️ SOUL (Guts Challenges):** Test of willpower or endurance. YOU LOSE IF: You break first (laugh, blink, breathe, flinch, etc.). Example: \"Guts: Staring contest\" → Both people lock eyes. First to blink or smile loses."
             ),
             scoring = listOf(
                 "**Winner:** +1 Point (and bragging rights).",
                 "**Loser:** -1 Point (and takes the penalty/drink)."
             ),
             theVibe = listOf(
-                "**Instant Combat:** No preparation, no warning. Pure reflex.",
-                "**Personal Vendettas:** Pick your victim wisely.",
-                "**Chaos Reigns:** The best part is watching two people suddenly locked in mortal combat."
+                "**Instant Combat:** No preparation, no warning. Pure reflex and chaos.",
+                "**Strategic Targeting:** Choose your opponent based on what challenge you drew.",
+                "**Group Judges:** Everyone else becomes the referee and heckler. Their word is final."
             ),
             tips = listOf(
-                "**Pick Your Victim Wisely:** If the card is a staring contest, don't pick the person with the glassy, unblinking eyes.",
-                "**Be Loud:** If you shout your answer with confidence, people might not notice it was wrong.",
-                "**Referees:** The players not fighting are the judges. If they say you paused too long, you lose. No arguments."
+                "**Read the card BEFORE picking your victim.** If it's a staring contest, don't pick the person with dead eyes. If it's a category about sports, don't pick the athlete.",
+                "**For Categories: Speak fast and loud.** Confidence can hide a wrong answer. The judges might not catch it.",
+                "**For Speed: Don't hesitate.** The moment the challenge is read, GO. Every millisecond counts.",
+                "**For Guts: Commit fully.** If you laugh at yourself, you've already lost. Stay stone-faced."
             )
         ),
         
         GameIds.ALIBI to DetailedRule(
             gameId = GameIds.ALIBI,
             howToPlay = listOf(
-                "**The Crime:** Draw a card that accuses you of a specific scenario (e.g., \"Why is your search history just 'how to hide a body'?\").",
-                "**The Evidence:** The card lists **3 Mandatory Words** (e.g., _Pineapple, Tinder, Spatula_).",
-                "**The Alibi:** You have 30 seconds to explain yourself. You must weave all three words into your story naturally.",
-                "**The Verdict:** After you finish, the group acts as the Jury.",
-                "**Phase 1 (Believability):** Was the story convincing? If it was nonsense, you are **Guilty**.",
-                "**Phase 2 (The Catch):** The group tries to guess your 3 Mandatory Words. If they correctly identify the words you hid, you are **Guilty**."
+                "**1. The Crime:** Draw a card that accuses you of a specific scenario (e.g., \"Why is your search history just 'how to hide a body'?\").",
+                "**2. See Your Words:** The app secretly shows you **3 Mandatory Words** that you MUST use (e.g., _Pineapple, Tinder, Spatula_). Only YOU can see these words.",
+                "**3. Tell Your Alibi:** You have 30 seconds to explain yourself OUT LOUD to the group. You must weave all three secret words into your story without being obvious.",
+                "**4. The Jury Deliberates:** After you finish, the group discusses: Was the story believable? Did they catch any weird words?",
+                "**5. The Vote:** The group votes INNOCENT (good story, didn't catch the words) or GUILTY (the story was bad OR they caught your words)."
             ),
             mechanics = listOf(
-                "**Smooth Integration:** The words must flow naturally. If you emphasize them, you'll get caught.",
-                "**Use Decoys:** Throw in other random, weird nouns (that aren't on the card) to confuse the Jury.",
-                "**Speed Kills:** Speaking faster makes it harder for the Jury to flag specific words."
+                "**Smooth Integration is Key:** The words must flow naturally. If you pause before saying a word or emphasize it weirdly, you'll get caught.",
+                "**Use Decoys:** Throw in OTHER random, weird nouns (that aren't on your card) to confuse the Jury. Make them guess wrong.",
+                "**The Group's Job:** After the story, the Jury tries to guess which 3 words were mandatory. If they nail all 3, you're GUILTY even if the story was good."
             ),
             scoring = listOf(
-                "**Innocent (Success):** +2 Points. (Story was good AND the group failed to guess your words).",
-                "**Guilty (Failure):** -1 Point/Penalty. (The story made no sense OR the group caught your words)."
+                "**Innocent (Success):** +2 Points. (Your story was convincing AND the group failed to guess your 3 words correctly).",
+                "**Guilty (Failure):** -1 Point. (Your story was nonsense OR the group correctly identified your 3 words)."
             ),
             theVibe = listOf(
                 "**Courtroom Drama:** You are the defendant with a terrible lawyer (yourself).",
@@ -364,11 +366,11 @@ object DetailedGameRules {
                 "**The Setup:** Place the phone in the center of the table (or assign a \"Host\" to hold it).",
                 "**The Trigger:** A card reveals a **Category** + **Letter** (e.g., \"Celebrities\" + \"J\").",
                 "**The Fuse:** The timer starts (invisible duration: 20s - 60s).",
-                "**The Relay:** Player 1 shouts a valid answer (\"Jennifer Aniston!\"). The Host (or Player 1) taps the \"Next\" button on the screen. The \"Turn\" instantly passes to the player on the left.",
+                "**The Relay:** Seat 1 shouts a valid answer (\"Jennifer Aniston!\"). The Host (or Seat 1) taps the \"Next\" button on the screen. The \"Turn\" instantly passes to the person on the left.",
                 "**The Explosion:** If the bomb sound plays while it is _your_ turn to speak, you lose."
             ),
             mechanics = listOf(
-                "**The Challenge Rule:** If a player shouts a nonsense answer or repeats a word, the group yells **\"LOCKED!\"** The Host _does not_ tap the button. The current player keeps the turn and must come up with a _new_ answer while the timer burns down.",
+                "**The Challenge Rule:** If someone shouts a nonsense answer or repeats a word, the group yells **\"LOCKED!\"** The Host _does not_ tap the button. The current person keeps the turn and must come up with a _new_ answer while the timer burns down.",
                 "**No Repeats:** You cannot repeat an answer ever used in previous rounds."
             ),
             scoring = listOf(
@@ -390,7 +392,7 @@ object DetailedGameRules {
         GameIds.REALITY_CHECK to DetailedRule(
             gameId = GameIds.REALITY_CHECK,
             howToPlay = listOf(
-                "**The Question:** The active player (The Subject) draws a card with a specific trait (e.g., \"How funny are you, really?\").",
+                "**The Question:** The active person (The Subject) draws a card with a specific trait (e.g., \"How funny are you, really?\").",
                 "**The Ego Score:** The Subject _secretly_ writes down a rating from **1 to 10** based on how they view themselves.",
                 "**The Reality Score:** Simultaneously, the rest of the group discusses aloud and agrees on a single rating (1-10) for The Subject.",
                 "**The Reveal:** Both numbers are revealed at the same time."
@@ -419,7 +421,7 @@ object DetailedGameRules {
         GameIds.OVER_UNDER to DetailedRule(
             gameId = GameIds.OVER_UNDER,
             howToPlay = listOf(
-                "**The Subject:** One player is chosen (The Subject).",
+                "**The Subject:** Someone is chosen (The Subject).",
                 "**The Stat:** A card is drawn asking for a number regarding The Subject (e.g., \"Total number of photos in their Camera Roll\").",
                 "**The Line:** The group briefly discusses and agrees on a \"Line\" (e.g., \"We think he's vain, but not crazy... let's set the line at 1,500\").",
                 "**The Bet:** Everyone (except The Subject) votes: **OVER** (The real number is higher) or **UNDER** (The real number is lower).",

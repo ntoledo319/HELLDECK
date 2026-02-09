@@ -78,9 +78,9 @@ fun VotePlayerRenderer(
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
 
-        // Get player names from options
-        val playerNames: List<String> = when (val opts = roundState.options) {
-            is com.helldeck.content.model.GameOptions.PlayerVote -> opts.players
+        // Get seat numbers from options
+        val seatNumbers: List<Int> = when (val opts = roundState.options) {
+            is com.helldeck.content.model.GameOptions.SeatVote -> opts.seatNumbers
             else -> emptyList()
         }
 
@@ -90,10 +90,10 @@ fun VotePlayerRenderer(
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
             verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         ) {
-            itemsIndexed(items = playerNames) { index, playerName ->
+            itemsIndexed(items = seatNumbers) { index, seatNumber ->
                 PlayerVoteCard(
-                    playerName = playerName,
-                    playerAvatar = getPlayerEmoji(index),
+                    playerName = "Seat $seatNumber",
+                    playerAvatar = getPlayerEmoji(seatNumber - 1),
                     isSelected = selectedIndex == index,
                     reducedMotion = reducedMotion,
                     onClick = {

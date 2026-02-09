@@ -75,6 +75,7 @@ object VisualIndicators {
                     color = Color.White,
                 ),
                 modifier = Modifier
+                    .scale(scale)
                     .background(
                         color = fireColor,
                         shape = CircleShape,

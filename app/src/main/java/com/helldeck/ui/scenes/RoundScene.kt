@@ -19,6 +19,8 @@ import com.helldeck.engine.HapticEvent
 import com.helldeck.engine.Interaction
 import com.helldeck.engine.InteractionType
 import com.helldeck.ui.*
+import com.helldeck.ui.components.GameActionHintBanner
+import com.helldeck.ui.components.QuickReactionBar
 import com.helldeck.ui.components.ReportContentDialog
 import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.delay
@@ -34,6 +36,9 @@ fun RoundScene(vm: HelldeckVm) {
     var timerGateStarted by remember(roundState.filledCard.id) {
         mutableStateOf(game?.interaction != Interaction.TABOO_CLUE)
     }
+    
+    // Track if action hint has been dismissed
+    var actionHintDismissed by remember(roundState.filledCard.id) { mutableStateOf(false) }
 
     LaunchedEffect(roundState.filledCard.id) {
         GameFeedback.triggerFeedback(context, HapticEvent.ROUND_START, useHaptics = hapticsEnabled)
@@ -131,6 +136,20 @@ fun RoundScene(vm: HelldeckVm) {
                         Text("Help")
                     }
 
+                    // Quick Fire button during REVEAL phase
+                    if (roundState.phase == com.helldeck.ui.state.RoundPhase.REVEAL) {
+                        OutlinedButton(
+                            onClick = { vm.triggerQuickFire() },
+                            modifier = Modifier.height(HelldeckHeights.Button.dp),
+                            shape = RoundedCornerShape(HelldeckRadius.Medium),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = androidx.compose.ui.graphics.Color(0xFFFF6B35),
+                            ),
+                        ) {
+                            Text("🔥")
+                        }
+                    }
+
                     val primaryLabel = when (roundState.phase) {
                         com.helldeck.ui.state.RoundPhase.INTRO -> "🎯 START"
                         com.helldeck.ui.state.RoundPhase.INPUT -> "✅ LOCK IT"
@@ -223,6 +242,19 @@ fun RoundScene(vm: HelldeckVm) {
 
             // Interaction controls only during INPUT to keep the mental model stable.
             if (roundState.phase == com.helldeck.ui.state.RoundPhase.INPUT) {
+                // Action Hint Banner - shows "what do I do?" instruction
+                if (!actionHintDismissed) {
+                    GameActionHintBanner(
+                        gameId = roundState.gameId,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(bottom = HelldeckSpacing.Medium.dp),
+                        isFirstTimePlayingGame = true, // TODO: Track per-game first play
+                        autoHideDelayMs = 4000L,
+                        onDismiss = { actionHintDismissed = true },
+                    )
+                }
+                
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
                 when (game?.interaction) {
                     Interaction.VOTE_AVATAR -> AvatarVoteFlow(
@@ -384,6 +416,36 @@ fun RoundScene(vm: HelldeckVm) {
                     }
                 }
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+            } else if (roundState.phase == com.helldeck.ui.state.RoundPhase.REVEAL) {
+                // REVEAL phase: Quick Reaction Bar for opt-in feedback
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+                
+                QuickReactionBar(
+                    onReaction = { reaction ->
+                        vm.handleQuickReaction(reaction)
+                    },
+                    onAutoAdvance = {
+                        vm.handleAutoAdvanceNoReaction()
+                    },
+                    autoAdvanceDelayMs = 5000L,
+                    showAutoAdvanceTimer = true,
+                    enabled = true,
+                    modifier = Modifier.fillMaxWidth(),
+                )
+                
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+                
+                // Option to go to full feedback screen
+                TextButton(
+                    onClick = { vm.navigateTo(Scene.FEEDBACK) },
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                ) {
+                    Text(
+                        text = "More options →",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = HelldeckColors.colorMuted,
+                    )
+                }
             } else {
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
                 Surface(

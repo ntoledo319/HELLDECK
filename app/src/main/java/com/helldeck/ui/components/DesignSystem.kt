@@ -66,46 +66,81 @@ fun NeonCard(
         label = "neon_card_scale",
     )
     
-    Card(
-        modifier = modifier
-            .scale(scale)
-            .shadow(
-                elevation = if (isPressed) elevation / 2 else elevation,
-                shape = RoundedCornerShape(HelldeckRadius.Large),
-                spotColor = accentColor.copy(alpha = 0.5f),
-                ambientColor = accentColor.copy(alpha = 0.3f),
+    val cardModifier = modifier
+        .scale(scale)
+        .shadow(
+            elevation = if (isPressed) elevation / 2 else elevation,
+            shape = RoundedCornerShape(HelldeckRadius.Large),
+            spotColor = accentColor.copy(alpha = 0.5f),
+            ambientColor = accentColor.copy(alpha = 0.3f),
+        )
+    
+    if (onClick != null) {
+        Card(
+            modifier = cardModifier,
+            shape = RoundedCornerShape(HelldeckRadius.Large),
+            colors = CardDefaults.cardColors(
+                containerColor = HelldeckColors.surfaceElevated,
             ),
-        shape = RoundedCornerShape(HelldeckRadius.Large),
-        colors = CardDefaults.cardColors(
-            containerColor = HelldeckColors.surfaceElevated,
-        ),
-        border = BorderStroke(
-            width = 2.dp,
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    accentColor.copy(alpha = 0.6f),
-                    accentColor.copy(alpha = 0.3f),
+            border = BorderStroke(
+                width = 2.dp,
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        accentColor.copy(alpha = 0.6f),
+                        accentColor.copy(alpha = 0.3f),
+                    ),
                 ),
             ),
-        ),
-        onClick = onClick ?: {},
-        interactionSource = if (onClick != null) interactionSource else remember { MutableInteractionSource() },
-        enabled = onClick != null,
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            HelldeckColors.surfaceElevated,
-                            HelldeckColors.surfacePrimary.copy(alpha = 0.8f),
+            onClick = onClick,
+            interactionSource = interactionSource,
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                HelldeckColors.surfaceElevated,
+                                HelldeckColors.surfacePrimary.copy(alpha = 0.8f),
+                            ),
                         ),
+                    )
+                    .padding(HelldeckSpacing.Large.dp),
+                content = content,
+            )
+        }
+    } else {
+        Card(
+            modifier = cardModifier,
+            shape = RoundedCornerShape(HelldeckRadius.Large),
+            colors = CardDefaults.cardColors(
+                containerColor = HelldeckColors.surfaceElevated,
+            ),
+            border = BorderStroke(
+                width = 2.dp,
+                brush = Brush.linearGradient(
+                    colors = listOf(
+                        accentColor.copy(alpha = 0.6f),
+                        accentColor.copy(alpha = 0.3f),
                     ),
-                )
-                .padding(HelldeckSpacing.Large.dp),
-            content = content,
-        )
+                ),
+            ),
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                HelldeckColors.surfaceElevated,
+                                HelldeckColors.surfacePrimary.copy(alpha = 0.8f),
+                            ),
+                        ),
+                    )
+                    .padding(HelldeckSpacing.Large.dp),
+                content = content,
+            )
+        }
     }
 }
 

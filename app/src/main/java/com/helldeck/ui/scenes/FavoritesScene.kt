@@ -28,7 +28,7 @@ import java.util.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FavoritesScene(
-    vm: GameNightViewModel,
+    @Suppress("UNUSED_PARAMETER") vm: GameNightViewModel,
     onClose: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()

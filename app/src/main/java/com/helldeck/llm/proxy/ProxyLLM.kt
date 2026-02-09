@@ -35,7 +35,6 @@ class ProxyLLM : LocalLLM {
             val funny = idxOf("funny")
             val ok = idxOf("ok")
             val meh = idxOf("meh")
-            val offensive = idxOf("offensive")
             val nonsensical = idxOf("nonsensical")
 
             if (braces || wc < 5) return if (wc < 3) nonsensical else meh

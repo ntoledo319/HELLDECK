@@ -1,0 +1,225 @@
+{
+  "slot_type": "mandatory_tones",
+  "entries": [
+    {
+      "text": "The Seductive Whisper",
+      "tags": ["performance", "voice"],
+      "tone": "raunchy",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Breathless, trying to take them home"
+    },
+    {
+      "text": "The Raging Karen",
+      "tags": ["performance", "voice"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Demanding a manager, everything is unacceptable"
+    },
+    {
+      "text": "The 1920s News Anchor",
+      "tags": ["performance", "voice"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Fast-talking, high-pitched, formal"
+    },
+    {
+      "text": "The Malfunctioning Robot",
+      "tags": ["performance", "voice"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Monotone with glitches and beeps"
+    },
+    {
+      "text": "The Noir Detective",
+      "tags": ["performance", "voice"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Gritty internal monologue, cynical"
+    },
+    {
+      "text": "The Weeping Soap Star",
+      "tags": ["performance", "voice"],
+      "tone": "cringe",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Hysterical sobbing, tragic"
+    },
+    {
+      "text": "The Aggressive Drill Sergeant",
+      "tags": ["performance", "voice"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Screaming, calling them maggots"
+    },
+    {
+      "text": "The Stoned Philosopher",
+      "tags": ["performance", "voice"],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Slow, mind-blown, whoa dude"
+    },
+    {
+      "text": "The Paralyzingly Shy",
+      "tags": ["performance", "voice"],
+      "tone": "cringe",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Stuttering, terrified, whispering"
+    },
+    {
+      "text": "The Used Car Salesman",
+      "tags": ["performance", "voice"],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Sleazy, fast, high-pressure"
+    },
+    {
+      "text": "The Shakespearean Actor",
+      "tags": ["performance", "voice"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Over-enunciated, dramatic projection"
+    },
+    {
+      "text": "The Conspiracy Theorist",
+      "tags": ["performance", "voice"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Paranoid, whispering, they are listening"
+    },
+    {
+      "text": "The Valley Girl",
+      "tags": ["performance", "voice"],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Vocal fry, constant up-speak"
+    },
+    {
+      "text": "The Medieval Peasant",
+      "tags": ["performance", "voice"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Downtrodden, scared of plague"
+    },
+    {
+      "text": "The Bond Villain",
+      "tags": ["performance", "voice"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Calm, slow, expecting them to die"
+    },
+    {
+      "text": "The Manic Squirrel",
+      "tags": ["performance", "voice"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "2x speed, twitchy, wide-eyed"
+    },
+    {
+      "text": "The Dying Breath",
+      "tags": ["performance", "voice"],
+      "tone": "cringe",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Gasping, 5 seconds to live"
+    },
+    {
+      "text": "The Condescending IT Guy",
+      "tags": ["performance", "voice"],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Sighing loudly, smarter than you"
+    },
+    {
+      "text": "The Possessed",
+      "tags": ["performance", "voice"],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Guttural growls, speaking in tongues"
+    },
+    {
+      "text": "The Confused Time Traveler",
+      "tags": ["performance", "voice"],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "From 1850, confused by technology"
+    },
+    {
+      "text": "The Golf Commentator",
+      "tags": ["performance", "voice"],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Hushed whisper, respectful, boring"
+    },
+    {
+      "text": "The Frantic 911 Caller",
+      "tags": ["performance", "voice"],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 2,
+      "pluralizable": false,
+      "needs_article": "none",
+      "instruction": "Emergency panic, everything is urgent"
+    }
+  ]
+}

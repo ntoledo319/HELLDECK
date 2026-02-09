@@ -9,22 +9,23 @@ import com.helldeck.engine.GameIds
 object StyleGuides {
 
     private val guides = mapOf(
-        GameIds.ROAST_CONS to "Roasty, playful, one sentence. Sounds like a group roast prompt. No direct harassment; keep it light.",
+        GameIds.ROAST_CONS to "Format: 'Who would [SPECIFIC VISUAL SCENARIO]?' Roast BEHAVIOR not people. Use vivid details: time of day, location, specific objects. Avoid generic ('be late') or appearance attacks.",
 
-        GameIds.POISON_PITCH to "Would-you-rather tone. Two balanced gross vs social disaster options; witty but clear.",
-        GameIds.FILLIN to "Finish-the-sentence setup with a clear blank (____). Teases a punchline.",
-        GameIds.RED_FLAG to "Dating scenario: present a perk vs red flag succinctly; ends with \"Smash or pass?\"",
-        GameIds.HOTSEAT_IMP to "Answer-as-character vibe; instruct as if speaking as target. Keep it playful, not mean.",
-        GameIds.TEXT_TRAP to "Text message scenario with quotes intact; prompt to pick a reply vibe.",
-        GameIds.TABOO to "Taboo rules: one target word with 3 forbiddens. Keep formatting clear.",
+        GameIds.POISON_PITCH to "Format: 'Would you rather [BAD OPTION A] or [BAD OPTION B]?' Both options equally terrible. Be specific and visceral. Never pair a perk with a problem — both must be bad.",
+        GameIds.FILL_IN to "Finish-the-sentence with _____ blank at punchline position. Setup creates expectation, blank allows surprise. Multiple funny answers must be possible.",
+        GameIds.RED_FLAG to "Format: 'They're [GREEN FLAG], but [RED FLAG].' Green flag genuinely tempting, red flag dealbreaker-absurd. Never use actual abuse/crime. Use 'but' as separator.",
+        GameIds.HOTSEAT_IMP to "Personal question that trips up fakers but is obvious to real friends. Must end with '?'. Avoid yes/no, too common, or too traumatic questions.",
+        GameIds.TEXT_TRAP to "Format: '[Sender] texts: \"[anxiety-inducing message]\"'. Create tension through the text itself. Player must reply in a mandatory character tone.",
+        GameIds.TABOO to "One common target word with 3 forbidden words that block the most obvious clues. Word must be well-known. Forbidden words = direct synonyms + category words.",
 
-        GameIds.TITLE_FIGHT to "Short, hype-y duel title; competitive energy, minimal words.",
-        GameIds.ALIBI to "Story smuggling: clearly list the words to include in the alibi.",
+        GameIds.TITLE_FIGHT to "Format: 'Who would win: [ABSURD THING A] vs [ABSURD THING B]?' Both sides must be debatable. Use scale mismatches, category clashes, or absurd specificity.",
+        GameIds.ALIBI to "Three COMPLETELY UNRELATED specific words to sneak into a story. Use concrete nouns from different categories: an animal, a brand, a location. Never use vague words.",
 
-        GameIds.SCATTER to "Category + letter; fast-paced. Make the task crystal clear and brief.",
-        GameIds.UNIFYING_THEORY to "List three unrelated items; ask to explain why they're the same.",
-        GameIds.REALITY_CHECK to "Self-rating prompt: ask to rate a trait 1-10. Keep it specific and personal.",
-        GameIds.OVER_UNDER to "Betting prompt: ask for a specific number about the subject. Make it verifiable.",
+        GameIds.SCATTER to "Creative/absurd category (not generic trivia). Format: 'Things that would [X]' or 'Reasons [Y]'. Category itself should be amusing. Pair with a random letter.",
+        GameIds.UNIFYING_THEORY to "Three items from DIFFERENT categories (profession, animal, object, relative) with a surprising hidden connection. No obvious link at first glance.",
+        GameIds.REALITY_CHECK to "Format: 'Rate: [TRAIT PEOPLE OVERESTIMATE]'. Target Dunning-Kruger goldmine traits: humor, intelligence, driving, social skills. Subjective, ego-linked, observable.",
+        GameIds.OVER_UNDER to "Format: 'Number of [REVEALING QUANTITY]'. Must be verifiable (phone check, memory). The number should reveal personality. Avoid same-for-everyone questions.",
+        GameIds.CONFESS_CAP to "Format: 'I once [SPECIFIC BORDERLINE-BELIEVABLE CONFESSION]'. First-person, Goldilocks zone of believability. Use specific locations, objects, consequences.",
     )
 
     private const val DEFAULT_GUIDE = "Punchy, social party-game tone. Keep one sentence, clear task, no extra fluff."

@@ -28,6 +28,15 @@ import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
 /**
+ * Challenge types for Title Fight
+ */
+private enum class ChallengeType(val emoji: String, val displayName: String, val instruction: String) {
+    BRAIN("🧠", "BRAIN", "Take turns naming items • Pause 3+ sec or repeat = LOSE"),
+    BODY("💪", "BODY", "Race to complete the task • Second place = LOSE"),
+    SOUL("👁️", "SOUL", "Endurance test • First to break = LOSE")
+}
+
+/**
  * Renders MINI_DUEL interaction for Title Fight game.
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
@@ -35,6 +44,7 @@ import com.helldeck.ui.state.RoundState
  * - Red vs Blue fighter colors
  * - Spring physics with victory animations
  * - Champion crown effect on selection
+ * - Contextual instructions based on challenge type
  *
  * @ai_prompt Epic VS battle screen, fighting game vibe, HELLDECK neon styling
  */
@@ -46,6 +56,15 @@ fun MiniDuelRenderer(
 ) {
     val reducedMotion = LocalReducedMotion.current
     var selectedWinner by remember { mutableStateOf<Int?>(null) }
+    
+    // Detect challenge type from card text
+    val cardText = roundState.filledCard.text
+    val challengeType = when {
+        cardText.startsWith("Category:", ignoreCase = true) -> ChallengeType.BRAIN
+        cardText.startsWith("Speed:", ignoreCase = true) -> ChallengeType.BODY
+        cardText.startsWith("Guts:", ignoreCase = true) -> ChallengeType.SOUL
+        else -> null
+    }
 
     // VS pulse animation
     val infiniteTransition = rememberInfiniteTransition(label = "vs_pulse")
@@ -87,6 +106,43 @@ fun MiniDuelRenderer(
             )
         }
 
+        Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+        
+        // Contextual instructions based on challenge type
+        if (challengeType != null) {
+            Surface(
+                shape = RoundedCornerShape(HelldeckRadius.Small),
+                color = HelldeckColors.colorAccentCool.copy(alpha = 0.1f),
+                border = BorderStroke(1.dp, HelldeckColors.colorAccentCool.copy(alpha = 0.3f)),
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(HelldeckSpacing.Medium.dp),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = challengeType.emoji,
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(end = 8.dp),
+                    )
+                    Text(
+                        text = "${challengeType.displayName}: ",
+                        style = MaterialTheme.typography.labelMedium.copy(
+                            fontWeight = FontWeight.Bold,
+                        ),
+                        color = HelldeckColors.colorAccentCool,
+                    )
+                    Text(
+                        text = challengeType.instruction,
+                        style = MaterialTheme.typography.labelMedium,
+                        color = HelldeckColors.colorOnDark.copy(alpha = 0.9f),
+                    )
+                }
+            }
+        }
+        
         Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
         Row(

@@ -254,6 +254,56 @@
           "text": "Who would accidentally send a work email to their entire company?",
           "quality_score": 10,
           "spice": 3
+        },
+        {
+          "text": "Who would forget someone's name immediately after being introduced?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would trip over nothing on a flat surface?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would bring snacks to every meeting?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would fall asleep during a movie in the theater?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would get lost in a parking lot looking for their car?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would wear mismatched socks on purpose?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would talk to animals like they understand every word?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would cry at a dog food commercial?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would make friends with the Uber driver?",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Who would still use a flip phone in 2024?",
+          "quality_score": 10,
+          "spice": 1
         }
       ]
     },
@@ -1019,6 +1069,131 @@
           "text": "My worst habit is _____, and my friends have staged an intervention about _____.",
           "quality_score": 10,
           "spice": 4
+        },
+        {
+          "text": "My teacher caught me _____, and I had to explain _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "I thought _____ was a good idea until _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "The worst part about _____ is definitely _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Scientists discovered that _____ is actually caused by _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "Breaking news: _____ has been cancelled due to _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "I didn't believe in _____ until I saw _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "The secret to _____ is surprisingly _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "If you want to impress _____, just make sure you _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "My New Year's resolution was _____, but I ended up _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "The recipe called for _____, but I substituted it with _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "I was today years old when I learned _____ is actually _____.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "My pet's favorite thing to destroy is _____, especially when I'm _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "The most relatable thing about _____ is definitely _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "I tried to fix _____, but somehow made it _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "The instructions said _____, but I interpreted that as _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "My morning routine includes _____ followed by _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "The WiFi went out, so I had to resort to _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "According to my horoscope, I should _____, but instead I _____.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "My grandparents think _____ is the same as _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "The meeting got awkward when someone asked about _____.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "I pretended to know about _____, and now I'm _____.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "The grocery store was out of _____, so I bought _____ instead.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "My autocorrect changed _____ to _____, and I sent it anyway.",
+          "quality_score": 10,
+          "spice": 2
+        },
+        {
+          "text": "The flight was delayed because of _____, and everyone started _____.",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "I panicked during _____ and accidentally _____.",
+          "quality_score": 10,
+          "spice": 2
         }
       ]
     },
@@ -1029,301 +1204,595 @@
           "perk": "They're a billionaire",
           "red_flag": "They don't believe in washing hands",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a billionaire, but they don't believe in washing hands",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a supermodel",
           "red_flag": "They think the Earth is flat",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a supermodel, but they think the earth is flat",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They own a private island",
           "red_flag": "They collect human teeth",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They own a private island, but they collect human teeth",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're hilarious",
           "red_flag": "They talk to their plants like children",
           "quality_score": 10,
-          "spice": 2
+          "spice": 2,
+          "text": "They're hilarious, but they talk to their plants like children",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're incredibly smart",
           "red_flag": "They only eat chicken nuggets",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're incredibly smart, but they only eat chicken nuggets",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're great in bed",
           "red_flag": "They sleep in a race car bed",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're great in bed, but they sleep in a race car bed",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a doctor who will take care of you forever",
           "red_flag": "They're in a cult",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're a doctor who will take care of you forever, but they're in a cult",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They'll pay off all your debt",
           "red_flag": "They want you to quit your job and be a stay-at-home partner",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They'll pay off all your debt, but they want you to quit your job and be a stay-at-home partner",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're your soulmate",
           "red_flag": "They have 47 cats",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're your soulmate, but they have 47 cats",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're really into astrology",
           "red_flag": "They also think vaccines cause autism",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're really into astrology, but they also think vaccines cause autism",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a TikTok influencer",
           "red_flag": "They film pranks on homeless people",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're a TikTok influencer, but they film pranks on homeless people",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're vegan",
           "red_flag": "They judge everyone who isn't",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're vegan, but they judge everyone who isn't",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're perfect in every way",
           "red_flag": "Their family hates you and will never accept you",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're perfect in every way, but their family hates you and will never accept you",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They want to get married immediately",
           "red_flag": "They also want 10 kids",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They want to get married immediately, but they also want 10 kids",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They'll move anywhere for you",
           "red_flag": "They expect you to do the same for them",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They'll move anywhere for you, but they expect you to do the same for them",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're incredible in bed",
           "red_flag": "They insist on role-playing as historical figures",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're incredible in bed, but they insist on role-playing as historical figures",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're extremely attractive",
           "red_flag": "They want to film everything",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're extremely attractive, but they want to film everything",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They have a great body",
           "red_flag": "They only want to have sex in public places",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They have a great body, but they only want to have sex in public places",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a chef who will cook for you every day",
           "red_flag": "They only make food from the medieval era",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a chef who will cook for you every day, but they only make food from the medieval era",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're your celebrity crush",
           "red_flag": "They want you to join their pyramid scheme",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're your celebrity crush, but they want you to join their pyramid scheme",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're independently wealthy",
           "red_flag": "They spend all their money on Funko Pops",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're independently wealthy, but they spend all their money on funko pops",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional athlete",
           "red_flag": "They're also a flat-earther",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a professional athlete, but they're also a flat-earther",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a famous musician",
           "red_flag": "They only write songs about their ex",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a famous musician, but they only write songs about their ex",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a successful entrepreneur",
           "red_flag": "They made their money selling essential oils",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a successful entrepreneur, but they made their money selling essential oils",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're incredibly romantic",
           "red_flag": "They write you poetry every single day",
           "quality_score": 10,
-          "spice": 2
+          "spice": 2,
+          "text": "They're incredibly romantic, but they write you poetry every single day",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're adventurous and spontaneous",
           "red_flag": "They've been arrested in 12 countries",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're adventurous and spontaneous, but they've been arrested in 12 countries",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a talented artist",
           "red_flag": "They only paint portraits of you while you sleep",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a talented artist, but they only paint portraits of you while you sleep",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a genius programmer",
           "red_flag": "They've hacked into your accounts to 'protect you'",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're a genius programmer, but they've hacked into your accounts to 'protect you'",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional gamer",
           "red_flag": "They rage quit and break controllers regularly",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a professional gamer, but they rage quit and break controllers regularly",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a yoga instructor",
           "red_flag": "They insist you do couples yoga every morning at 5am",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a yoga instructor, but they insist you do couples yoga every morning at 5am",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a successful lawyer",
           "red_flag": "They argue with you about everything using legal jargon",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a successful lawyer, but they argue with you about everything using legal jargon",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a veterinarian",
           "red_flag": "They love animals more than humans",
           "quality_score": 10,
-          "spice": 2
+          "spice": 2,
+          "text": "They're a veterinarian, but they love animals more than humans",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional photographer",
           "red_flag": "They document every moment of your relationship",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a professional photographer, but they document every moment of your relationship",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a bestselling author",
           "red_flag": "They're writing a book about your relationship without telling you",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a bestselling author, but they're writing a book about your relationship without telling you",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a marine biologist",
           "red_flag": "They smell like fish constantly",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a marine biologist, but they smell like fish constantly",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional dancer",
           "red_flag": "They choreograph every aspect of your life",
           "quality_score": 10,
-          "spice": 2
+          "spice": 2,
+          "text": "They're a professional dancer, but they choreograph every aspect of your life",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a sommelier",
           "red_flag": "They're a wine snob who judges your Two Buck Chuck",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a sommelier, but they're a wine snob who judges your two buck chuck",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a personal trainer",
           "red_flag": "They count your calories and judge your food choices",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a personal trainer, but they count your calories and judge your food choices",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a travel blogger",
           "red_flag": "They're never home and expect you to fund their trips",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a travel blogger, but they're never home and expect you to fund their trips",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a stand-up comedian",
           "red_flag": "They use your relationship as material",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a stand-up comedian, but they use your relationship as material",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional cuddler",
           "red_flag": "They cuddle other people for money",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a professional cuddler, but they cuddle other people for money",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a trust fund baby",
           "red_flag": "They've never worked a day in their life and don't plan to",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a trust fund baby, but they've never worked a day in their life and don't plan to",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional matchmaker",
           "red_flag": "They're constantly trying to set up your friends",
           "quality_score": 10,
-          "spice": 2
+          "spice": 2,
+          "text": "They're a professional matchmaker, but they're constantly trying to set up your friends",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a meditation guru",
           "red_flag": "They refuse to acknowledge negative emotions",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a meditation guru, but they refuse to acknowledge negative emotions",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional voice actor",
           "red_flag": "They do character voices during sex",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're a professional voice actor, but they do character voices during sex",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a cryptozoologist",
           "red_flag": "They genuinely believe Bigfoot is real and won't shut up about it",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a cryptozoologist, but they genuinely believe bigfoot is real and won't shut up about it",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional magician",
           "red_flag": "They never reveal their secrets, even about important things",
           "quality_score": 10,
-          "spice": 3
+          "spice": 3,
+          "text": "They're a professional magician, but they never reveal their secrets, even about important things",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a taxidermist",
           "red_flag": "They want to stuff your pets when they die",
           "quality_score": 10,
-          "spice": 5
+          "spice": 5,
+          "text": "They're a taxidermist, but they want to stuff your pets when they die",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a professional clown",
           "red_flag": "They're in full makeup and costume 24/7",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a professional clown, but they're in full makeup and costume 24/7",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         },
         {
           "perk": "They're a conspiracy theorist podcaster",
           "red_flag": "They think your relationship is a government psyop",
           "quality_score": 10,
-          "spice": 4
+          "spice": 4,
+          "text": "They're a conspiracy theorist podcaster, but they think your relationship is a government psyop",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're an amazing cook",
+          "red_flag": "They never clean up after themselves",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They're an amazing cook, but they never clean up after themselves",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They love board games",
+          "red_flag": "They always have to win and get upset when they don't",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They love board games, but they always have to win and get upset when they don't",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're super organized",
+          "red_flag": "They label everything including your belongings",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They're super organized, but they label everything including your belongings",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're an early bird",
+          "red_flag": "They expect you to wake up at 5am too",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They're an early bird, but they expect you to wake up at 5am too",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They love animals",
+          "red_flag": "They talk to every dog on the street for 20 minutes each",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They love animals, but they talk to every dog on the street for 20 minutes each",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're really into fitness",
+          "red_flag": "They count your calories out loud",
+          "quality_score": 10,
+          "spice": 2,
+          "text": "They're really into fitness, but they count your calories out loud",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're financially responsible",
+          "red_flag": "They track every penny you spend together",
+          "quality_score": 10,
+          "spice": 2,
+          "text": "They're financially responsible, but they track every penny you spend together",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They love road trips",
+          "red_flag": "They refuse to stop for bathroom breaks",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They love road trips, but they refuse to stop for bathroom breaks",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're a great listener",
+          "red_flag": "They remember every single thing you've ever said and quote you",
+          "quality_score": 10,
+          "spice": 2,
+          "text": "They're a great listener, but they remember every single thing you've ever said and quote you",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're really good at trivia",
+          "red_flag": "They correct you constantly",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They're really good at trivia, but they correct you constantly",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They love to travel",
+          "red_flag": "They plan every minute of every vacation",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They love to travel, but they plan every minute of every vacation",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're a morning person",
+          "red_flag": "They whistle while making breakfast at 6am",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They're a morning person, but they whistle while making breakfast at 6am",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're great with technology",
+          "red_flag": "They critique how you use your phone",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They're great with technology, but they critique how you use your phone",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're really punctual",
+          "red_flag": "They get visibly stressed if you're even 1 minute late",
+          "quality_score": 10,
+          "spice": 2,
+          "text": "They're really punctual, but they get visibly stressed if you're even 1 minute late",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They love hosting parties",
+          "red_flag": "They don't help clean up after",
+          "quality_score": 10,
+          "spice": 1,
+          "text": "They love hosting parties, but they don't help clean up after",
+          "optionA": "SMASH",
+          "optionB": "PASS"
+        },
+        {
+          "perk": "They're really good at gift giving",
+          "red_flag": "They expect equally thoughtful gifts in return",
+          "quality_score": 10,
+          "spice": 2,
+          "text": "They're really good at gift giving, but they expect equally thoughtful gifts in return",
+          "optionA": "SMASH",
+          "optionB": "PASS"
         }
       ]
     },
@@ -1842,603 +2311,603 @@
       "cards": [
         {
           "text": "PIZZA",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Cheese",
             "Italy",
             "Slice",
             "Delivery",
             "Pepperoni"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "LOVE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Heart",
             "Feeling",
             "Romance",
             "Relationship",
             "Emotion"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "HARRY POTTER",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Wizard",
             "Magic",
             "Hogwarts",
             "Wand",
             "Book"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "SPATULA",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Kitchen",
             "Flip",
             "Cook",
             "Pancake",
             "Utensil"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "RUNNING",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Jog",
             "Sprint",
             "Fast",
             "Exercise",
             "Legs"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "BIRTHDAY",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Cake",
             "Party",
             "Age",
             "Celebrate",
             "Candles"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "WEDDING",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Bride",
             "Groom",
             "Ceremony",
             "Ring",
             "Dress"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "COFFEE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Drink",
             "Caffeine",
             "Morning",
             "Starbucks",
             "Hot"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "NIGHTMARE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Dream",
             "Sleep",
             "Scary",
             "Bad",
             "Night"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "OCEAN",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Water",
             "Sea",
             "Blue",
             "Fish",
             "Waves"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "NOSTALGIA",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Memory",
             "Past",
             "Feeling",
             "Childhood",
             "Remember"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "SILENCE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Quiet",
             "Sound",
             "Noise",
             "Speak",
             "Hear"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "SMARTPHONE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Phone",
             "Cell",
             "iPhone",
             "Android",
             "Call"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "NETFLIX",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Streaming",
             "TV",
             "Movies",
             "Watch",
             "Show"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "INSTAGRAM",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Social",
             "Media",
             "Photo",
             "Post",
             "App"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "TIKTOK",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Video",
             "Dance",
             "App",
             "Viral",
             "Short"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "UBER",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Ride",
             "Car",
             "Driver",
             "App",
             "Taxi"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "AMAZON",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Shopping",
             "Online",
             "Delivery",
             "Prime",
             "Package"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "ZOOM",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Video",
             "Call",
             "Meeting",
             "Conference",
             "Online"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "MEME",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Funny",
             "Internet",
             "Picture",
             "Viral",
             "Joke"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "SELFIE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Photo",
             "Picture",
             "Camera",
             "Face",
             "Instagram"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "GHOSTING",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Ignore",
             "Dating",
             "Text",
             "Disappear",
             "Block"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "CATFISH",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Fake",
             "Dating",
             "Online",
             "Lie",
             "Profile"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "INFLUENCER",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Social",
             "Media",
             "Instagram",
             "Famous",
             "Follower"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "CRYPTOCURRENCY",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Bitcoin",
             "Money",
             "Digital",
             "Blockchain",
             "Invest"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "PODCAST",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Audio",
             "Listen",
             "Show",
             "Episode",
             "Talk"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "VEGAN",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Food",
             "Meat",
             "Animal",
             "Plant",
             "Diet"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "YOGA",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 1,
+          "forbidden": [
             "Exercise",
             "Stretch",
             "Meditation",
             "Mat",
             "Pose"
-          ],
-          "quality_score": 10,
-          "spice": 1
+          ]
         },
         {
           "text": "THERAPY",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Mental",
             "Health",
             "Counseling",
             "Talk",
             "Doctor"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "ANXIETY",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Worry",
             "Stress",
             "Fear",
             "Nervous",
             "Panic"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "DEPRESSION",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Sad",
             "Mental",
             "Health",
             "Mood",
             "Down"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "BURNOUT",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Work",
             "Tired",
             "Exhausted",
             "Stress",
             "Job"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "STUDENT LOANS",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Debt",
             "Money",
             "College",
             "Pay",
             "School"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "RENT",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Money",
             "Apartment",
             "Pay",
             "Landlord",
             "Housing"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "UNEMPLOYMENT",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Job",
             "Work",
             "Money",
             "Fired",
             "Jobless"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "INFLATION",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Money",
             "Price",
             "Cost",
             "Economy",
             "Expensive"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "CLIMATE CHANGE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Global",
             "Warming",
             "Environment",
             "Earth",
             "Temperature"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "PANDEMIC",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "COVID",
             "Virus",
             "Disease",
             "Sick",
             "Outbreak"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "VACCINE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Shot",
             "Needle",
             "Doctor",
             "Immune",
             "Disease"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "MASK",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Face",
             "COVID",
             "Cover",
             "Wear",
             "Protection"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "QUARANTINE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Isolation",
             "COVID",
             "Home",
             "Lockdown",
             "Stay"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "REMOTE WORK",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Home",
             "Job",
             "Computer",
             "Zoom",
             "Office"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "SIDE HUSTLE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Job",
             "Money",
             "Work",
             "Extra",
             "Income"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "GIG ECONOMY",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Work",
             "Job",
             "Freelance",
             "Uber",
             "Contract"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "WORK-LIFE BALANCE",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "forbidden": [
             "Job",
             "Time",
             "Personal",
             "Career",
             "Life"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "IMPOSTER SYNDROME",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Fake",
             "Doubt",
             "Confidence",
             "Work",
             "Feeling"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "TOXIC POSITIVITY",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Happy",
             "Positive",
             "Fake",
             "Smile",
             "Good"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "GASLIGHTING",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "forbidden": [
             "Manipulate",
             "Lie",
             "Crazy",
             "Reality",
             "Abuse"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "RED FLAG",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "forbidden": [
             "Warning",
             "Bad",
             "Sign",
             "Dating",
             "Relationship"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "SITUATIONSHIP",
-          "forbidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "forbidden": [
             "Dating",
             "Relationship",
             "Casual",
             "Undefined",
             "Complicated"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         }
       ]
     },
@@ -2694,6 +3163,86 @@
           "text": "A Lie, Work-Life Balance, The Cake Being Moist",
           "quality_score": 10,
           "spice": 3
+        },
+        {
+          "text": "A Pizza, A Wheel, The Sun",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Backpack, A Kangaroo Pouch, A Pocket",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Library, A Graveyard, A Movie Theater",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Snowflake, A Fingerprint, A Zebra's Stripes",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Chameleon, A Mood Ring, A Traffic Light",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Clock, A Pizza, A Pie Chart",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Blanket, A Burrito, A Sleeping Bag",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Ladder, Stairs, A Career Path",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Mirror, A Twin, A Photo",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Sponge, A Paper Towel, A Mop",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Sandwich, A Book, A Wallet",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Bridge, A Tunnel, A Door",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Teapot, A Kettle, A Volcano",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Balloon, A Basketball, A Watermelon",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Pencil, A Carrot, A Rocket",
+          "quality_score": 10,
+          "spice": 1
+        },
+        {
+          "text": "A Pillow, A Cloud, Cotton Candy",
+          "quality_score": 10,
+          "spice": 1
         }
       ]
     },
@@ -2957,503 +3506,703 @@
       "cards": [
         {
           "text": "What is in this bag you're trying to sneak onto the plane?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Hamster",
             "Glitter",
             "The Declaration of Independence"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Where were you the night your boss disappeared?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 5,
+          "words": [
             "Zumba Class",
             "A Chainsaw",
             "Gluten-Free Bread"
-          ],
-          "quality_score": 10,
-          "spice": 5
+          ]
         },
         {
           "text": "Why is your search history just 'how to hide a body'?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 5,
+          "words": [
             "A Shovel",
             "A Pineapple",
             "A Yoga Mat"
-          ],
-          "quality_score": 10,
-          "spice": 5
+          ]
         },
         {
           "text": "Why did security escort you out of the museum?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Kazoo",
             "A Mannequin",
             "Hot Sauce"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you seen leaving your ex's apartment at 3am?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 5,
+          "words": [
             "A Toaster",
             "A Map",
             "A Parrot"
-          ],
-          "quality_score": 10,
-          "spice": 5
+          ]
         },
         {
           "text": "Why is there $10,000 in cash hidden in your freezer?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Lottery Ticket",
             "A Rubber Duck",
             "A Cookbook"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you running from the police?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Baguette",
             "A Trampoline",
             "A Tax Return"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is your car full of rubber ducks?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Conspiracy Theory",
             "A Smoothie",
             "A Harmonica"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why were you banned from the library?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Megaphone",
             "A Pineapple",
             "A Tuxedo"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why did the neighbors call the cops on you?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Trombone",
             "Silly String",
             "A Mannequin"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you kicked out of the wedding?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Karaoke Machine",
             "Fireworks",
             "A Pi\u00f1ata"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is there a goat in your apartment?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Craigslist",
             "A Bet",
             "Cheese"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why did you get arrested at Disneyland?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Costume",
             "Fireworks",
             "A Megaphone"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is your trunk full of garden gnomes?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Heist",
             "eBay",
             "A Cult"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you escorted out of the casino?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Calculator",
             "A Disguise",
             "A Magnet"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is there a hole in your backyard?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Treasure Map",
             "A Pool",
             "A Time Capsule"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why did you get banned from the grocery store?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Unicycle",
             "Free Samples",
             "A Protest"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why is your phone full of pictures of strangers?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Scavenger Hunt",
             "Art Project",
             "Evidence"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you climbing the fence at the zoo?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Dare",
             "A Penguin",
             "A Shortcut"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is there glitter everywhere in your car?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Party",
             "A Craft Project",
             "Revenge"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why did you get kicked out of the Airbnb?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Party",
             "A Llama",
             "A Misunderstanding"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is your browser history so concerning?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "Research",
             "A Novel",
             "Curiosity"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you seen at three different cities in one day?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Road Trip",
             "Witness Protection",
             "A Scavenger Hunt"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is there a mannequin in your passenger seat?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "The HOV Lane",
             "Loneliness",
             "A Prank"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why did you get banned from the gym?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Protest",
             "Inappropriate Grunting",
             "A Flash Mob"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is your apartment full of traffic cones?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Collection",
             "A Party",
             "A Heist"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you caught on camera doing that?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Dare",
             "Sleepwalking",
             "A TikTok"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is there a chicken in your bathroom?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Bet",
             "Therapy",
             "Fresh Eggs"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why did you get kicked out of the movie theater?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Megaphone",
             "Snacks",
             "A Protest"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why is your credit card statement so suspicious?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Surprise",
             "Identity Theft",
             "A Business Venture"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you seen arguing with a statue?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Drunk",
             "Art Critique",
             "A Dare"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why is there a tent set up in your living room?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Camping Practice",
             "A Fort",
             "Rent Issues"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why did you get banned from the buffet?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "Tupperware",
             "A Challenge",
             "A Protest"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is your garage full of shopping carts?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Collection",
             "A Business",
             "Drunk Shopping"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you caught sneaking into the concert?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Disguise",
             "A Dare",
             "Broke"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why is there a kayak on your roof in the middle of winter?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 2,
+          "words": [
             "Optimism",
             "Storage",
             "A Statement"
-          ],
-          "quality_score": 10,
-          "spice": 2
+          ]
         },
         {
           "text": "Why did you get kicked out of the escape room?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Cheating",
             "A Meltdown",
             "Too Competitive"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why is your phone bill $800 this month?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "International Calls",
             "A Scam",
             "Pocket Dialing"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why were you seen talking to yourself in public?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Bluetooth",
             "Rehearsing",
             "Losing It"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why is there a shopping cart in your bedroom?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Drunk",
             "Furniture",
             "A Statement"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why did you get banned from the petting zoo?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Goat",
             "Inappropriate Behavior",
             "A Protest"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is your Venmo history so weird?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "Inside Jokes",
             "Blackmail",
             "A Business"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you caught on Ring camera doing that?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "Sleepwalking",
             "A Dare",
             "Drunk"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is there a life-size cutout of Danny DeVito in your apartment?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Inspiration",
             "A Gift",
             "Protection"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why were you seen leaving a casino at 4am with a briefcase full of rubber ducks?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Conspiracy Theory",
             "A Smoothie",
             "A Harmonica"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why is your Amazon order history so concerning?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Project",
             "Curiosity",
             "A Phase"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why were you banned from the karaoke bar?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Meltdown",
             "Too Many Songs",
             "Nudity"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is there a inflatable pool in your living room?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "A Party",
             "Leak",
             "Depression"
-          ],
-          "quality_score": 10,
-          "spice": 3
+          ]
         },
         {
           "text": "Why did animal control get called to your house?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 4,
+          "words": [
             "A Raccoon",
             "A Misunderstanding",
             "A Party"
-          ],
-          "quality_score": 10,
-          "spice": 4
+          ]
         },
         {
           "text": "Why is your Netflix watch history so embarrassing?",
-          "hidden_words": [
+          "quality_score": 10,
+          "spice": 3,
+          "words": [
             "Research",
             "Insomnia",
             "A Phase"
-          ],
+          ]
+        },
+        {
+          "text": "Why did you bring so many snacks to the movie?",
           "quality_score": 10,
-          "spice": 3
+          "spice": 1,
+          "words": [
+            "A Coupon",
+            "Sharing",
+            "A Long Film"
+          ]
+        },
+        {
+          "text": "Why is your desk covered in sticky notes?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Organization",
+            "Memory Issues",
+            "A System"
+          ]
+        },
+        {
+          "text": "Why did you take so many photos of your food?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Instagram",
+            "A Recipe",
+            "Documentation"
+          ]
+        },
+        {
+          "text": "Why is your closet organized by color?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Efficiency",
+            "A Video",
+            "Boredom"
+          ]
+        },
+        {
+          "text": "Why did you stay up so late last night?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "A Book",
+            "Work",
+            "Insomnia"
+          ]
+        },
+        {
+          "text": "Why is there a tent in your backyard?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Camping Practice",
+            "The Kids",
+            "Star Gazing"
+          ]
+        },
+        {
+          "text": "Why did you leave the party so early?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Tired",
+            "A Pet",
+            "Early Meeting"
+          ]
+        },
+        {
+          "text": "Why do you have so many plants in your apartment?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Air Quality",
+            "A Hobby",
+            "Loneliness"
+          ]
+        },
+        {
+          "text": "Why did you cancel plans at the last minute?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "A Headache",
+            "Traffic",
+            "Double Booked"
+          ]
+        },
+        {
+          "text": "Why is your calendar so colorful?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Categories",
+            "Fun",
+            "Visibility"
+          ]
+        },
+        {
+          "text": "Why did you take the scenic route home?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Traffic",
+            "Thinking Time",
+            "A Podcast"
+          ]
+        },
+        {
+          "text": "Why do you always carry such a big bag?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Snacks",
+            "Preparedness",
+            "A Book"
+          ]
+        },
+        {
+          "text": "Why did you reorganize your room at midnight?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Procrastination",
+            "Inspiration",
+            "Insomnia"
+          ]
+        },
+        {
+          "text": "Why is your fridge so empty?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Grocery Day",
+            "Takeout",
+            "Moving Soon"
+          ]
+        },
+        {
+          "text": "Why did you learn that random skill?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "A Video",
+            "Curiosity",
+            "Boredom"
+          ]
+        },
+        {
+          "text": "Why do you always arrive 15 minutes early?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Anxiety",
+            "Traffic Buffer",
+            "Parking"
+          ]
+        },
+        {
+          "text": "Why is your browser open to 47 tabs?",
+          "quality_score": 10,
+          "spice": 2,
+          "words": [
+            "Research",
+            "ADHD",
+            "Saving For Later"
+          ]
+        },
+        {
+          "text": "Why did you bring your laptop to the beach?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Work Emergency",
+            "A Deadline",
+            "Habit"
+          ]
+        },
+        {
+          "text": "Why is your coffee order so complicated?",
+          "quality_score": 10,
+          "spice": 1,
+          "words": [
+            "Preferences",
+            "A TikTok",
+            "Customization"
+          ]
+        },
+        {
+          "text": "Why do you keep checking your phone during dinner?",
+          "quality_score": 10,
+          "spice": 2,
+          "words": [
+            "Work",
+            "Expecting News",
+            "Habit"
+          ]
         }
       ]
     },

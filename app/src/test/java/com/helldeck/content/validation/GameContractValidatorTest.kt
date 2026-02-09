@@ -86,24 +86,24 @@ class GameContractValidatorTest {
     }
 
     @Test
-    fun `VOTE_PLAYER requires at least 2 players`() {
+    fun `VOTE_PLAYER requires at least 2 seats`() {
         val resultValid = GameContractValidator.validate(
             gameId = "TEST",
             interactionType = InteractionType.VOTE_PLAYER,
-            options = GameOptions.PlayerVote(listOf("Player1", "Player2", "Player3")),
+            options = GameOptions.SeatVote(listOf(1, 2, 3)),
             filledCard = createTestCard(),
             playersCount = 3,
         )
-        assertTrue("VOTE_PLAYER with 3 players should pass", resultValid.isValid)
+        assertTrue("VOTE_PLAYER with 3 seats should pass", resultValid.isValid)
 
         val resultInvalid = GameContractValidator.validate(
             gameId = "TEST",
             interactionType = InteractionType.VOTE_PLAYER,
-            options = GameOptions.PlayerVote(listOf("Player1")),
+            options = GameOptions.SeatVote(listOf(1)),
             filledCard = createTestCard(),
             playersCount = 1,
         )
-        assertFalse("VOTE_PLAYER with 1 player should fail", resultInvalid.isValid)
+        assertFalse("VOTE_PLAYER with 1 seat should fail", resultInvalid.isValid)
     }
 
     @Test

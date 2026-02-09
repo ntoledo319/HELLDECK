@@ -111,7 +111,7 @@ class GameEngineSimplified(
             }
             InteractionType.VOTE_PLAYER -> {
                 "Who is most likely to survive a zombie apocalypse?" to
-                    GameOptions.PlayerVote(req.players.ifEmpty { listOf("Player 1", "Player 2", "Player 3") })
+                    GameOptions.SeatVote((1..(if (req.players.isNotEmpty()) req.players.size else 3)).toList())
             }
             InteractionType.TRUE_FALSE -> {
                 "I once convinced someone I could speak three languages (I can't)." to
@@ -155,7 +155,7 @@ class GameEngineSimplified(
             }
             InteractionType.TARGET_SELECT -> {
                 "Pick someone to answer this: What's your secret talent?" to
-                    GameOptions.PlayerSelect(req.players, null)
+                    GameOptions.SeatSelect((1..req.players.size.coerceAtLeast(2)).toList(), null)
             }
             InteractionType.PREDICT_VOTE -> {
                 "Predict what the room will choose: Tacos vs Pizza?" to

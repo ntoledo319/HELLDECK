@@ -235,6 +235,19 @@ fun FeedbackScene(vm: HelldeckVm) {
                     .padding(horizontal = HelldeckSpacing.Large.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
+                // End Game button
+                com.helldeck.ui.components.OutlineButton(
+                    text = "🏁",
+                    onClick = {
+                        if (!hasAdvanced) {
+                            hasAdvanced = true
+                            vm.showEndGameSummary()
+                        }
+                    },
+                    modifier = Modifier.weight(0.5f),
+                    enabled = !hasAdvanced,
+                )
+
                 // Pause/Resume button
                 com.helldeck.ui.components.OutlineButton(
                     text = if (isPaused) "▶️" else "⏸️",
@@ -243,16 +256,16 @@ fun FeedbackScene(vm: HelldeckVm) {
                     enabled = !hasAdvanced && secondsRemaining > 0,
                 )
                 
-                // Skip button
+                // Skip button (marks card as skipped for feedback tracking)
                 com.helldeck.ui.components.OutlineButton(
                     text = "Skip",
                     onClick = {
                         if (!hasAdvanced) {
                             hasAdvanced = true
-                            scope.launch { vm.commitFeedbackAndNext() }
+                            vm.skipCurrentCard()
                         }
                     },
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(0.8f),
                     enabled = !hasAdvanced,
                 )
 
@@ -297,6 +310,13 @@ fun FeedbackScene(vm: HelldeckVm) {
             cardText = roundState.filledCard.text,
             onDismiss = { vm.closeReportDialog() },
             onReport = { reason -> vm.reportOffensiveContent(reason) },
+        )
+    }
+
+    if (vm.showEndGameSummary) {
+        com.helldeck.ui.components.EndGameVotingDialog(
+            vm = vm,
+            onDismiss = { vm.dismissEndGameSummary() },
         )
     }
 }

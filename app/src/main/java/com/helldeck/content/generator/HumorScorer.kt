@@ -81,15 +81,22 @@ class HumorScorer(
         val timing = calculateTiming(text, slots, blueprint)
         val specificity = calculateSpecificity(slots)
 
+        // Text-level content-aware adjustments
+        val coherencePenalty = calculateTextCoherence(text)
+        val textSpecBonus = calculateTextSpecificity(text)
+
+        // Blend slot-based specificity with text-based specificity
+        val blendedSpecificity = (specificity * 0.5 + textSpecBonus * 0.5).coerceIn(0.0, 1.0)
+
         return HumorScore.calculate(
             absurdity,
             shock,
-            relatable,
+            relatable * coherencePenalty,
             cringe,
             benignViolation,
             surprise,
             timing,
-            specificity,
+            blendedSpecificity,
         )
     }
 
@@ -206,7 +213,10 @@ class HumorScorer(
      * McGraw's Benign Violation Theory: humor occurs when something seems wrong but safe
      * Updated to require playful framing for high scores
      */
-    private fun calculateBenignViolation(slots: Map<String, SlotData>, shockValue: Double): Double {
+    private fun calculateBenignViolation(
+        slots: Map<String, SlotData>,
+        @Suppress("UNUSED_PARAMETER") shockValue: Double,
+    ): Double {
         // Need taboo elements (violation)
         val hasTaboo = slots.values.any { it.slotType in TABOO_TYPES }
         if (!hasTaboo) return 0.2 // No violation
@@ -266,7 +276,11 @@ class HumorScorer(
     /**
      * Timing Metric: Validates punchline position and comedic pacing.
      */
-    private fun calculateTiming(text: String, slots: Map<String, SlotData>, blueprint: TemplateBlueprint): Double {
+    private fun calculateTiming(
+        text: String,
+        slots: Map<String, SlotData>,
+        @Suppress("UNUSED_PARAMETER") blueprint: TemplateBlueprint,
+    ): Double {
         val words = text.split(Regex("\\s+"))
         if (words.size < 5) return 0.5 // Too short to evaluate timing
 
@@ -329,6 +343,62 @@ class HumorScorer(
         } else {
             0.5
         }
+    }
+
+    /**
+     * Text coherence: penalizes assembled text with repeated adjacent words,
+     * dangling prepositions, or excessive filler. Returns 0.0-1.0 multiplier.
+     */
+    private fun calculateTextCoherence(text: String): Double {
+        val words = text.lowercase().split(Regex("\\s+")).filter { it.isNotBlank() }
+        if (words.size < 3) return 0.5
+
+        var penalty = 1.0
+
+        // Adjacent duplicate words ("the the", "a a") = bad assembly
+        val adjacentDupes = words.zipWithNext().count { (a, b) -> a == b }
+        if (adjacentDupes > 0) penalty -= 0.3 * adjacentDupes
+
+        // High ratio of any single word = repetitive/boring
+        val counts = words.groupingBy { it }.eachCount()
+        val maxRatio = (counts.values.maxOrNull() ?: 0).toDouble() / words.size
+        if (maxRatio > 0.25 && words.size > 6) penalty -= 0.2
+
+        // Very short functional words dominating = vague template text
+        val fillerWords = setOf("the", "a", "an", "is", "of", "to", "and", "or", "in", "for", "it")
+        val fillerRatio = words.count { it in fillerWords }.toDouble() / words.size
+        if (fillerRatio > 0.5) penalty -= 0.15
+
+        return penalty.coerceIn(0.3, 1.0)
+    }
+
+    /**
+     * Text-level specificity: counts concrete details in the assembled sentence.
+     * Complements slot-based specificity with actual text analysis.
+     */
+    private fun calculateTextSpecificity(text: String): Double {
+        var score = 0.3 // Base
+
+        // Numbers ("3am", "$50", "10 jumping jacks") = highly specific
+        val numberCount = Regex("\\d+").findAll(text).count()
+        score += (numberCount * 0.15).coerceAtMost(0.3)
+
+        // Proper nouns (capitalized words not at sentence start)
+        val words = text.split(Regex("\\s+"))
+        val properNouns = words.drop(1).count {
+            it.firstOrNull()?.isUpperCase() == true && it.length > 1
+        }
+        score += (properNouns * 0.1).coerceAtMost(0.2)
+
+        // Brand/place indicators (possessives, specific modifiers)
+        if (text.contains("'s ") || text.contains("'")) score += 0.1
+
+        // Temporal/spatial specificity ("at 3am", "behind the", "in front of")
+        val specificPhrases = listOf("at ", "behind ", "in front of", "during ", "after ", "before ", "inside ")
+        val hasSpecificContext = specificPhrases.any { text.lowercase().contains(it) }
+        if (hasSpecificContext) score += 0.1
+
+        return score.coerceIn(0.0, 1.0)
     }
 
     data class SlotData(

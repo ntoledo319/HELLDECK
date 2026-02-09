@@ -21,7 +21,7 @@ fun InteractionRenderer(
     modifier: Modifier = Modifier,
 ) {
     when (roundState.interactionType) {
-        InteractionType.VOTE_PLAYER -> VotePlayerRenderer(
+        InteractionType.VOTE_PLAYER, InteractionType.VOTE_SEAT -> VotePlayerRenderer(
             roundState = roundState,
             onEvent = onEvent,
             modifier = modifier,
@@ -46,7 +46,7 @@ fun InteractionRenderer(
             onEvent = onEvent,
             modifier = modifier,
         )
-        InteractionType.TARGET_SELECT -> TargetSelectRenderer(
+        InteractionType.TARGET_SELECT, InteractionType.SELF_RATE -> TargetSelectRenderer(
             roundState = roundState,
             onEvent = onEvent,
             modifier = modifier,
