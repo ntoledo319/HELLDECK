@@ -2,9 +2,22 @@
   "slot_type": "skill_trait",
   "entries": [
     {
-      "text": "cook a full meal without a recipe",
+      "text": "parallel parking under pressure",
       "tags": [
-        "skill"
+        "skill",
+        "driving"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "remembering everyone's name at a party",
+      "tags": [
+        "skill",
+        "social"
       ],
       "tone": "playful",
       "spice": 1,
@@ -13,9 +26,70 @@
       "needs_article": "none"
     },
     {
-      "text": "parallel park on the first try",
+      "text": "cooking a full meal from whatever's in the fridge",
       "tags": [
-        "skill"
+        "skill",
+        "cooking"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "talking their way out of a speeding ticket",
+      "tags": [
+        "skill",
+        "charm"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "finding the best deals on anything",
+      "tags": [
+        "skill",
+        "shopping"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "telling a story that keeps everyone engaged",
+      "tags": [
+        "skill",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "starting a conversation with literally anyone",
+      "tags": [
+        "skill",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sleeping through any alarm",
+      "tags": [
+        "skill",
+        "sleep"
       ],
       "tone": "dry",
       "spice": 1,
@@ -24,20 +98,298 @@
       "needs_article": "none"
     },
     {
-      "text": "flirt with a stranger",
+      "text": "picking the slowest line at the grocery store",
       "tags": [
-        "skill"
+        "skill",
+        "bad-luck"
       ],
-      "tone": "cringe",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making awkward situations even more awkward",
+      "tags": [
+        "skill",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "assembling IKEA furniture without the instructions",
+      "tags": [
+        "skill",
+        "practical"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "giving advice they'd never follow themselves",
+      "tags": [
+        "skill",
+        "hypocrisy"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally breaking things",
+      "tags": [
+        "skill",
+        "clumsy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "turning a 5-minute story into a 30-minute saga",
+      "tags": [
+        "skill",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always knowing the best restaurant to go to",
+      "tags": [
+        "skill",
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "defusing tense situations with humor",
+      "tags": [
+        "skill",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "reading people like a book",
+      "tags": [
+        "skill",
+        "intuition"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ghosting people professionally",
+      "tags": [
+        "skill",
+        "dating"
+      ],
+      "tone": "dry",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "fix something around the house",
+      "text": "accidentally saying the wrong thing at the worst time",
       "tags": [
-        "skill"
+        "skill",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "winning any argument through sheer stubbornness",
+      "tags": [
+        "skill",
+        "debate"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "taking the perfect selfie in one try",
+      "tags": [
+        "skill",
+        "tech"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "packing an entire life into a carry-on bag",
+      "tags": [
+        "skill",
+        "travel"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "finding parking spots in impossible situations",
+      "tags": [
+        "skill",
+        "driving"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "remembering lyrics to songs they heard once 10 years ago",
+      "tags": [
+        "skill",
+        "music"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "falling asleep anywhere within 30 seconds",
+      "tags": [
+        "skill",
+        "sleep"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making friends with someone's pet faster than the owner",
+      "tags": [
+        "skill",
+        "animals"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sending the perfect meme for any situation",
+      "tags": [
+        "skill",
+        "internet"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "turning any topic into a debate",
+      "tags": [
+        "skill",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stress-cooking at 2am",
+      "tags": [
+        "skill",
+        "coping"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "picking the worst possible time to have a serious conversation",
+      "tags": [
+        "skill",
+        "timing"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ordering for the whole table and nailing it",
+      "tags": [
+        "skill",
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crying on command",
+      "tags": [
+        "skill",
+        "manipulation"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally spoiling movies and TV shows",
+      "tags": [
+        "skill",
+        "social"
       ],
       "tone": "dry",
       "spice": 1,
@@ -46,20 +398,22 @@
       "needs_article": "none"
     },
     {
-      "text": "tell a joke that actually lands",
+      "text": "making plans and immediately regretting it",
       "tags": [
-        "skill"
+        "skill",
+        "introvert"
       ],
-      "tone": "playful",
-      "spice": 2,
+      "tone": "dry",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "win an argument with facts",
+      "text": "attracting chaos wherever they go",
       "tags": [
-        "skill"
+        "skill",
+        "chaos"
       ],
       "tone": "wild",
       "spice": 2,
@@ -68,53 +422,22 @@
       "needs_article": "none"
     },
     {
-      "text": "remember someone's name after meeting them once",
+      "text": "looking busy while doing absolutely nothing",
       "tags": [
-        "skill"
+        "skill",
+        "work"
       ],
       "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "give a toast at a wedding",
-      "tags": [
-        "skill"
-      ],
-      "tone": "playful",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "navigate without GPS",
+      "text": "gaslighting people about what they said last week",
       "tags": [
-        "skill"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "keep a plant alive for a year",
-      "tags": [
-        "skill"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "lie convincingly under pressure",
-      "tags": [
-        "skill"
+        "skill",
+        "toxic"
       ],
       "tone": "wild",
       "spice": 3,
@@ -123,9 +446,10 @@
       "needs_article": "none"
     },
     {
-      "text": "comfort someone who's crying",
+      "text": "accidentally ending up in drama they didn't start",
       "tags": [
-        "skill"
+        "skill",
+        "social"
       ],
       "tone": "dry",
       "spice": 2,
@@ -134,20 +458,10 @@
       "needs_article": "none"
     },
     {
-      "text": "dance without looking ridiculous",
+      "text": "making someone's bad day better with one sentence",
       "tags": [
-        "skill"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "make small talk with anyone",
-      "tags": [
-        "skill"
+        "skill",
+        "emotional"
       ],
       "tone": "playful",
       "spice": 1,
@@ -156,31 +470,34 @@
       "needs_article": "none"
     },
     {
-      "text": "assemble IKEA furniture without instructions",
+      "text": "leaving on read with surgical precision",
       "tags": [
-        "skill"
+        "skill",
+        "dating"
       ],
       "tone": "dry",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "keep a secret for more than a week",
-      "tags": [
-        "skill"
-      ],
-      "tone": "wild",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "haggle the price down at a market",
+      "text": "knowing exactly when someone is lying",
       "tags": [
-        "skill"
+        "skill",
+        "intuition"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always being the first person to find out gossip",
+      "tags": [
+        "skill",
+        "social"
       ],
       "tone": "playful",
       "spice": 2,
@@ -189,35 +506,98 @@
       "needs_article": "none"
     },
     {
-      "text": "sing karaoke without embarrassing yourself",
+      "text": "tripping over absolutely nothing",
       "tags": [
-        "skill"
+        "skill",
+        "clumsy"
       ],
-      "tone": "cringe",
-      "spice": 2,
+      "tone": "playful",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "stay calm during an emergency",
+      "text": "burning water",
       "tags": [
-        "skill"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "tip the right amount at a restaurant",
-      "tags": [
-        "skill"
+        "skill",
+        "cooking"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "picking the one broken shopping cart every time",
+      "tags": [
+        "skill",
+        "bad-luck"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making any situation about themselves",
+      "tags": [
+        "skill",
+        "ego"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keeping a straight face during the worst moments",
+      "tags": [
+        "skill",
+        "composure"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "manifesting parking spots",
+      "tags": [
+        "skill",
+        "luck"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crying at dog videos consistently",
+      "tags": [
+        "skill",
+        "emotional"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "turning a casual hangout into a therapy session",
+      "tags": [
+        "skill",
+        "emotional"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     }

@@ -29,7 +29,11 @@ class ExportImportTest {
     @Before
     fun setUp() {
         context = ApplicationProvider.getApplicationContext()
-        db = HelldeckDb.get(context)
+        db = androidx.room.Room.inMemoryDatabaseBuilder(
+            context,
+            HelldeckDb::class.java,
+        ).allowMainThreadQueries().build()
+        HelldeckDb.setTestInstance(db)
         runBlocking {
             db.templateStatDao().deleteAll()
             db.templateExposureDao().deleteAll()
@@ -39,11 +43,7 @@ class ExportImportTest {
 
     @After
     fun tearDown() {
-        runBlocking {
-            db.templateStatDao().deleteAll()
-            db.templateExposureDao().deleteAll()
-            db.players().deleteAll()
-        }
+        HelldeckDb.clearCache()
     }
 
     @Test

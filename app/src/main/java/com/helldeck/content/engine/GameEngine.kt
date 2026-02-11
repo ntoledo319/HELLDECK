@@ -265,10 +265,12 @@ class GameEngine(
     }
 
     private fun timerFor(gameId: String): Int {
+        // GameMetadata is the single source of truth for timers; avoid divergent defaults
         return GameMetadata.getGameMetadata(gameId)?.timerSec ?: 10
     }
 
     private fun interactionFor(gameId: String): InteractionType {
+        // Keep interaction types aligned with metadata to satisfy contract-based tests
         return GameMetadata.getGameMetadata(gameId)?.interactionType ?: InteractionType.NONE
     }
 

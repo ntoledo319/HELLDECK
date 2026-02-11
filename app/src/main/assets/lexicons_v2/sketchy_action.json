@@ -2,8 +2,11 @@
   "slot_type": "sketchy_action",
   "entries": [
     {
-      "text": "steal the aux cord",
-      "tags": ["action", "party"],
+      "text": "steal the aux cord at a party",
+      "tags": [
+        "action",
+        "party"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -11,26 +14,11 @@
       "needs_article": "none"
     },
     {
-      "text": "ghost the group chat for 3 weeks",
-      "tags": ["action", "chaos"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "screenshot your story and send it back",
-      "tags": ["action", "messy"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "reply-all to a mass email",
-      "tags": ["action", "chaos"],
+      "text": "eat someone else's clearly labeled food",
+      "tags": [
+        "action",
+        "food"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -38,53 +26,11 @@
       "needs_article": "none"
     },
     {
-      "text": "leave someone on read for dramatic effect",
-      "tags": ["action", "petty"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "post a cryptic Instagram story",
-      "tags": ["action", "chaotic"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "change WiFi password without warning",
-      "tags": ["action", "chaos"],
-      "tone": "mischief",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "eat the last slice without asking",
-      "tags": ["action", "rude"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start drama in the group chat",
-      "tags": ["action", "messy"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "double-text after being left on read",
-      "tags": ["action", "desperate"],
+      "text": "double-dip a chip in front of everyone",
+      "tags": [
+        "action",
+        "food"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -92,17 +38,23 @@
       "needs_article": "none"
     },
     {
-      "text": "vague-post about someone in particular",
-      "tags": ["action", "messy"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 2,
+      "text": "take the last slice without asking",
+      "tags": [
+        "action",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "leave the groupchat dramatically",
-      "tags": ["action", "chaos"],
+      "text": "show up uninvited and act like they belong",
+      "tags": [
+        "action",
+        "social"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -110,62 +62,11 @@
       "needs_article": "none"
     },
     {
-      "text": "like their ex's photos from 2015",
-      "tags": ["action", "messy"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "drunk-text their boss",
-      "tags": ["action", "reckless"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start a fight in the comments section",
-      "tags": ["action", "chaos"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "slide into DMs with a pickup line from 2012",
-      "tags": ["action", "cringe"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "subtweet someone sitting next to them",
-      "tags": ["action", "petty"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "block someone then immediately unblock them",
-      "tags": ["action", "messy"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fake-laugh at their own jokes",
-      "tags": ["action", "cringe"],
+      "text": "clap when the plane lands",
+      "tags": [
+        "action",
+        "travel"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -173,35 +74,11 @@
       "needs_article": "none"
     },
     {
-      "text": "correct someone's grammar in a flirty text",
-      "tags": ["action", "petty"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "send a risky text to the wrong person",
-      "tags": ["action", "reckless"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "air their dirty laundry on social media",
-      "tags": ["action", "messy"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pretend they didn't see someone waving at them",
-      "tags": ["action", "awkward"],
+      "text": "read someone's texts over their shoulder",
+      "tags": [
+        "action",
+        "nosy"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -209,26 +86,35 @@
       "needs_article": "none"
     },
     {
-      "text": "unmatch someone mid-conversation",
-      "tags": ["action", "petty"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
+      "text": "correct someone's grammar mid-argument",
+      "tags": [
+        "action",
+        "petty"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "stalk their crush's entire Instagram history",
-      "tags": ["action", "creepy"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
+      "text": "take a phone call on speakerphone in public",
+      "tags": [
+        "action",
+        "annoying"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "pretend to be asleep to avoid conversation",
-      "tags": ["action", "avoidant"],
+      "text": "park in two spots on purpose",
+      "tags": [
+        "action",
+        "selfish"
+      ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
@@ -236,8 +122,95 @@
       "needs_article": "none"
     },
     {
-      "text": "fake an emergency to leave a bad date",
-      "tags": ["action", "escape"],
+      "text": "wave back at someone who wasn't waving at them",
+      "tags": [
+        "action",
+        "awkward"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bring a book to a party",
+      "tags": [
+        "action",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Google something mid-argument to prove a point",
+      "tags": [
+        "action",
+        "petty"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "narrate their own life out loud in public",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hold the elevator door for way too long",
+      "tags": [
+        "action",
+        "awkward"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "screenshot a private conversation and show everyone",
+      "tags": [
+        "action",
+        "messy"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ghost the group chat for 3 weeks then act normal",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "reply-all to a company email with personal drama",
+      "tags": [
+        "action",
+        "chaos"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -245,26 +218,11 @@
       "needs_article": "none"
     },
     {
-      "text": "check their phone during a serious conversation",
-      "tags": ["action", "rude"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "screenshot a private conversation",
-      "tags": ["action", "betrayal"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pretend they never got the message",
-      "tags": ["action", "avoidant"],
+      "text": "accidentally like an ex's photo from 2019 while stalking",
+      "tags": [
+        "action",
+        "dating"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -272,44 +230,11 @@
       "needs_article": "none"
     },
     {
-      "text": "cancel plans last minute with a fake excuse",
-      "tags": ["action", "flaky"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "one-up everyone's stories",
-      "tags": ["action", "annoying"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "talk loudly on the phone in public",
-      "tags": ["action", "rude"],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "show up uninvited to a party",
-      "tags": ["action", "bold"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "steal someone's joke and tell it louder",
-      "tags": ["action", "petty"],
+      "text": "send a risky text then throw their phone",
+      "tags": [
+        "action",
+        "chaos"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -317,35 +242,11 @@
       "needs_article": "none"
     },
     {
-      "text": "pretend to know a celebrity they've never met",
-      "tags": ["action", "liar"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "use someone else's Netflix without asking",
-      "tags": ["action", "moocher"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "leave a party without saying goodbye",
-      "tags": ["action", "irish-exit"],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "bring up an ex in every conversation",
-      "tags": ["action", "annoying"],
+      "text": "snitch on someone in the group for clout",
+      "tags": [
+        "action",
+        "messy"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -353,26 +254,23 @@
       "needs_article": "none"
     },
     {
-      "text": "make everything about their zodiac sign",
-      "tags": ["action", "annoying"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "overshare medical details at dinner",
-      "tags": ["action", "gross"],
-      "tone": "wild",
-      "spice": 3,
+      "text": "bring a PowerPoint to a casual argument",
+      "tags": [
+        "action",
+        "petty"
+      ],
+      "tone": "witty",
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "play devil's advocate for no reason",
-      "tags": ["action", "annoying"],
+      "text": "call someone out at dinner for owing them $5",
+      "tags": [
+        "action",
+        "petty"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -380,8 +278,11 @@
       "needs_article": "none"
     },
     {
-      "text": "humble-brag about their problems",
-      "tags": ["action", "annoying"],
+      "text": "vague-post about someone who's clearly in the room",
+      "tags": [
+        "action",
+        "messy"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -389,17 +290,23 @@
       "needs_article": "none"
     },
     {
-      "text": "send voice messages instead of texting",
-      "tags": ["action", "annoying"],
+      "text": "fake a phone call to avoid a conversation",
+      "tags": [
+        "action",
+        "social"
+      ],
       "tone": "playful",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "spoil a movie they haven't seen yet",
-      "tags": ["action", "rude"],
+      "text": "sign up for a pyramid scheme and recruit everyone here",
+      "tags": [
+        "action",
+        "chaos"
+      ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
@@ -407,8 +314,59 @@
       "needs_article": "none"
     },
     {
-      "text": "take credit for someone else's idea",
-      "tags": ["action", "shady"],
+      "text": "argue with a GPS giving them directions",
+      "tags": [
+        "action",
+        "stubborn"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "panic-buy 47 rolls of toilet paper",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pretend to be on a work call during a hangout",
+      "tags": [
+        "action",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start clapping at the wrong time during a performance",
+      "tags": [
+        "action",
+        "awkward"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "slide into a stranger's DMs with zero game",
+      "tags": [
+        "action",
+        "dating"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -416,37 +374,349 @@
       "needs_article": "none"
     },
     {
-      "text": "start a sentence with 'actually'",
-      "tags": ["action", "annoying"],
+      "text": "go back to a toxic ex without telling anyone",
+      "tags": [
+        "action",
+        "dating"
+      ],
       "tone": "dry",
-      "spice": 1,
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "chew with their mouth open",
-      "tags": ["action", "gross"],
-      "tone": "dry",
-      "spice": 2,
+      "text": "air dirty laundry at Thanksgiving dinner",
+      "tags": [
+        "action",
+        "family"
+      ],
+      "tone": "wild",
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "interrupt people to finish their sentences",
-      "tags": ["action", "rude"],
-      "tone": "dry",
-      "spice": 2,
+      "text": "create a fake dating profile to catfish someone",
+      "tags": [
+        "action",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "make plans they have no intention of keeping",
-      "tags": ["action", "flaky"],
+      "text": "cheat at a board game and deny it to the grave",
+      "tags": [
+        "action",
+        "petty"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a rumor just to see what happens",
+      "tags": [
+        "action",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leave someone on delivered for 72 hours out of spite",
+      "tags": [
+        "action",
+        "petty"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "talk trash about someone and get caught",
+      "tags": [
+        "action",
+        "messy"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stalk an ex's new partner for hours",
+      "tags": [
+        "action",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "show up to an ex's wedding uninvited",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "flirt with a bartender for free drinks",
+      "tags": [
+        "action",
+        "social"
+      ],
       "tone": "playful",
-      "spice": 2,
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a podcast nobody asked for",
+      "tags": [
+        "action",
+        "ego"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "record someone without them knowing",
+      "tags": [
+        "action",
+        "sketchy"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sell their friend out for a million dollars",
+      "tags": [
+        "action",
+        "betrayal"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ghost someone after the first date for a petty reason",
+      "tags": [
+        "action",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "text their ex 'wyd' at 2am then deny it",
+      "tags": [
+        "action",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hook up with someone and block them the next morning",
+      "tags": [
+        "action",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "go through someone's phone while they're sleeping",
+      "tags": [
+        "action",
+        "trust"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "date their friend's ex and act like it's fine",
+      "tags": [
+        "action",
+        "betrayal"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "send a nude to the wrong person",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "flirt their way out of a speeding ticket",
+      "tags": [
+        "action",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a fight at someone else's birthday party",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hook up at a family event",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sell feet pics without telling anyone",
+      "tags": [
+        "action",
+        "hustle"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "drunk-text their boss by accident",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fake their own death to avoid an awkward situation",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make an OnlyFans and tell no one",
+      "tags": [
+        "action",
+        "hustle"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hook up with someone at a funeral",
+      "tags": [
+        "action",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cheat on a partner and take it to the grave",
+      "tags": [
+        "action",
+        "betrayal"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "blackmail someone in this room if they had the chance",
+      "tags": [
+        "action",
+        "betrayal"
+      ],
+      "tone": "wild",
+      "spice": 5,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

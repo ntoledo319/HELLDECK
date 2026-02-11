@@ -1,68 +1,785 @@
 {
   "slot_type": "evidence_reason",
   "entries": [
-    {"text": "they always have a suspiciously specific example", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "their Venmo history is a cry for help", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "screenshots exist and they know it", "tone": "dry", "spice": 2, "locality": 2},
-    {"text": "they said 'no context' and posted it anyway", "tone": "playful", "spice": 2, "locality": 2},
-    {"text": "we've all seen the Notes app apology draft", "tone": "witty", "spice": 3, "locality": 2},
-    {"text": "they keep using 'allegedly' like a comma", "tone": "dry", "spice": 2, "locality": 2},
-    {"text": "their Finsta is more active than their main", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "the group chat receipts never lie", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they've already rehearsed the excuse", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "last time ended with a 'we need to talk'", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "they brought a slideshow to prove otherwise", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "they followed it up with 'but hear me out'", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "three sources confirmed and one was them", "tone": "dry", "spice": 2, "locality": 2},
-    {"text": "they archived the story five minutes later", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "their 'friend' did the exact same thing", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "they said 'long story short' and it wasn't", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they start every sentence with 'technically'", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "we found the notes from their debate practice", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "their search history is a legal gray area", "tone": "witty", "spice": 3, "locality": 2},
-    {"text": "they already asked for 'amnesty' before playing", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they say 'no screenshots' and then send one", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they bring a lawyer voice to petty arguments", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they keep a folder called 'Context' on their phone", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "the 'close friends' list is just damage control", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "they preface jokes with 'this stays here'", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they edit messages three times before sending", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "the apology drafts have bullet points", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they've muted half the group and we know why", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "their notes app has an alibi section", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "last week ended with 'no further questions'", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "their Uber rating tells a story", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they said 'respectfully' and meant the opposite", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they posted 'no context' with all the context", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "their camera roll has a 'receipts' album", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "their 'friend of a friend' keeps leaking details", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they say 'to be fair' before self‑incrimination", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "their keyboard autocorrects to 'allegedly'", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "everyone already made the meme", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "they're one screenshot away from a TED Talk", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "they labeled a folder 'oops' on desktop", "tone": "dry", "spice": 1, "locality": 1},
-    {"text": "everyone remembers the group trip incident", "tone": "playful", "spice": 1, "locality": 1},
-    {"text": "they preface stories with 'off the record'", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "there was a second apology after the apology", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "they reply 'context?' whenever tagged", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they keep their read receipts on", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "their BeReal timing was… suspicious", "tone": "witty", "spice": 2, "locality": 2},
-    {"text": "someone already made a spreadsheet about it", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they said 'I can explain' and couldn't", "tone": "playful", "spice": 1, "locality": 1},
-    {"text": "the witness list is just mutuals", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they used 'per my last text' irl", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "their close friends story vanished fast", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "the group chat title changed that night", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they brought a whiteboard to brunch", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "their camera roll search hits 'evidence'", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they start with 'wild if true'", "tone": "playful", "spice": 1, "locality": 2},
-    {"text": "they muted notifications 'for focus' again", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they're already drafting the statement", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they said 'hypothetically' and made it real", "tone": "witty", "spice": 2, "locality": 1},
-    {"text": "someone yelled 'receipts?' and three appeared", "tone": "playful", "spice": 1, "locality": 1},
-    {"text": "their phone auto-suggests 'in my defense'", "tone": "witty", "spice": 1, "locality": 2},
-    {"text": "the apology had sections and subheaders", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "they keep saying 'allegedly' mid-story", "tone": "dry", "spice": 1, "locality": 2},
-    {"text": "the group chat went silent for minutes", "tone": "playful", "spice": 1, "locality": 1}
+    {
+      "text": "the text messages don't add up",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their location history says otherwise",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone saw them there",
+      "tags": [
+        "evidence",
+        "witness"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "there's a screenshot",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the receipts are in the group chat",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their story changed three times",
+      "tags": [
+        "evidence",
+        "inconsistency"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the math doesn't add up",
+      "tags": [
+        "evidence",
+        "logic"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "there's video proof",
+      "tags": [
+        "evidence",
+        "visual"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a mutual friend confirmed it",
+      "tags": [
+        "evidence",
+        "witness"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the credit card statement tells a different story",
+      "tags": [
+        "evidence",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their search history was left open",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they pocket-dialed someone during the act",
+      "tags": [
+        "evidence",
+        "accidental"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the Ring camera caught everything",
+      "tags": [
+        "evidence",
+        "visual"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Uber receipt shows a suspicious address",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the timestamps on their photos don't match their story",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone forwarded the DMs",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Venmo transactions tell the whole story",
+      "tags": [
+        "evidence",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the AirTag in their bag revealed the truth",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they liked the wrong post at the wrong time",
+      "tags": [
+        "evidence",
+        "social-media"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Spotify 'recently played' was suspicious",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone screen-recorded the whole thing",
+      "tags": [
+        "evidence",
+        "visual"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the timestamps on the texts prove it",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they forgot they were on Find My Friends",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "there were witnesses at the bar",
+      "tags": [
+        "evidence",
+        "witness"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the parking receipt was from the wrong neighborhood",
+      "tags": [
+        "evidence",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their alibi fell apart under questioning",
+      "tags": [
+        "evidence",
+        "inconsistency"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they were tagged in a photo they said they weren't at",
+      "tags": [
+        "evidence",
+        "social-media"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the shared calendar showed a mysterious meeting",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they accidentally left their iCloud logged in",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the Netflix 'continue watching' showed a different show",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone heard them through thin apartment walls",
+      "tags": [
+        "evidence",
+        "witness"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the Uber Eats order was for two people",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their gym check-in times don't match",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "there was a hair that didn't belong to either of you",
+      "tags": [
+        "evidence",
+        "physical"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a notification popped up on the lock screen",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they forgot to close the incognito tab",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the smart speaker recorded everything",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Apple Watch health data told the story",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the photos in recently deleted told the real story",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the hotel keycard was for a double room",
+      "tags": [
+        "evidence",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their fitness tracker showed unusual activity at 2am",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the Amazon delivery went to the wrong address",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their 'work event' had no other coworkers who attended",
+      "tags": [
+        "evidence",
+        "inconsistency"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the perfume on their jacket wasn't yours",
+      "tags": [
+        "evidence",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their friends gave conflicting stories",
+      "tags": [
+        "evidence",
+        "inconsistency"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the bank statement showed a hotel charge they can't explain",
+      "tags": [
+        "evidence",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they deleted the conversation but forgot about the backup",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their 'read' receipts exposed the timing",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "there's a second phone in the drawer",
+      "tags": [
+        "evidence",
+        "physical"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the dog walker saw everything",
+      "tags": [
+        "evidence",
+        "witness"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their best friend spilled everything after one drink",
+      "tags": [
+        "evidence",
+        "witness"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they left their email logged in on a shared computer",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their watch logged steps at 3am on a 'quiet night in'",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the receipt in their pocket was from a restaurant they said they didn't go to",
+      "tags": [
+        "evidence",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their deleted messages were backed up to the cloud",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the shared family plan showed calls to an unknown number",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the toll pass records showed a trip they never mentioned",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a coworker casually mentioned seeing them somewhere they weren't supposed to be",
+      "tags": [
+        "evidence",
+        "witness"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the photo metadata revealed a different location than they claimed",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Starbucks mobile order was placed in the wrong city",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the dry cleaning receipt was for clothes you've never seen",
+      "tags": [
+        "evidence",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the shared calendar had a 'meeting' with no details at 9pm",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the neighbor's doorbell camera caught everything",
+      "tags": [
+        "evidence",
+        "visual"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a random person commented 'last night was fun' on their post",
+      "tags": [
+        "evidence",
+        "social-media"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the playlist they made at 2am told the whole story",
+      "tags": [
+        "evidence",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }

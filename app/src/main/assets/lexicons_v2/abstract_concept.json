@@ -2,166 +2,601 @@
   "slot_type": "abstract_concept",
   "entries": [
     {
-      "text": "Capitalism",
+      "text": "the concept of personal space",
       "tags": [
-        "concept"
+        "concept",
+        "social"
       ],
       "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Monday mornings",
-      "tags": [
-        "concept"
-      ],
-      "tone": "cringe",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "Student debt",
+      "text": "accountability",
       "tags": [
-        "concept"
+        "concept",
+        "moral"
       ],
       "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Existential dread",
-      "tags": [
-        "concept"
-      ],
-      "tone": "wild",
-      "spice": 3,
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "Tipping culture",
+      "text": "the illusion of free will",
       "tags": [
-        "concept"
+        "concept",
+        "philosophy"
       ],
       "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "The friend zone",
-      "tags": [
-        "concept"
-      ],
-      "tone": "cringe",
-      "spice": 3,
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "FOMO",
+      "text": "the five stages of grief",
       "tags": [
-        "concept"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Hustle culture",
-      "tags": [
-        "concept"
+        "concept",
+        "emotional"
       ],
       "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Main character energy",
-      "tags": [
-        "concept"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Passive aggression",
-      "tags": [
-        "concept"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "The algorithm",
-      "tags": [
-        "concept"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Imposter syndrome",
-      "tags": [
-        "concept"
-      ],
-      "tone": "cringe",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "Toxic positivity",
+      "text": "emotional intelligence",
       "tags": [
-        "concept"
+        "concept",
+        "psychology"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the audacity",
+      "tags": [
+        "concept",
+        "social"
       ],
       "tone": "dry",
-      "spice": 3,
-      "locality": 2,
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "The ick",
+      "text": "weaponized incompetence",
       "tags": [
-        "concept"
+        "concept",
+        "relationship"
       ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 2,
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "Love at first sight",
+      "text": "generational trauma",
       "tags": [
-        "concept"
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "toxic positivity",
+      "tags": [
+        "concept",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hustle culture",
+      "tags": [
+        "concept",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the algorithm",
+      "tags": [
+        "concept",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cancel culture",
+      "tags": [
+        "concept",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the patriarchy",
+      "tags": [
+        "concept",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "student loan debt",
+      "tags": [
+        "concept",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the American Dream",
+      "tags": [
+        "concept",
+        "society"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "LinkedIn influencer culture",
+      "tags": [
+        "concept",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "imposter syndrome",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "therapy speak",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the ick",
+      "tags": [
+        "concept",
+        "dating"
       ],
       "tone": "playful",
       "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "retroactive jealousy",
+      "tags": [
+        "concept",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "love languages",
+      "tags": [
+        "concept",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "attachment styles",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "main character syndrome",
+      "tags": [
+        "concept",
+        "ego"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "quiet luxury",
+      "tags": [
+        "concept",
+        "fashion"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the talking stage",
+      "tags": [
+        "concept",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "situationship limbo",
+      "tags": [
+        "concept",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "doom scrolling",
+      "tags": [
+        "concept",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "parasocial relationships",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the Sunday Scaries",
+      "tags": [
+        "concept",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "burnout",
+      "tags": [
+        "concept",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the mental load",
+      "tags": [
+        "concept",
+        "relationship"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "gaslighting",
+      "tags": [
+        "concept",
+        "toxic"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "breadcrumbing",
+      "tags": [
+        "concept",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "performative allyship",
+      "tags": [
+        "concept",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "virtue signaling",
+      "tags": [
+        "concept",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the sunk cost fallacy in relationships",
+      "tags": [
+        "concept",
+        "dating"
+      ],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "comparative suffering",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "selective vulnerability",
+      "tags": [
+        "concept",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "weaponized therapy language",
+      "tags": [
+        "concept",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emotional bandwidth",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the paradox of choice",
+      "tags": [
+        "concept",
+        "philosophy"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "death of the author",
+      "tags": [
+        "concept",
+        "literature"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hedonic adaptation",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "decision fatigue",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the spotlight effect",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "social battery",
+      "tags": [
+        "concept",
+        "introvert"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "confirmation bias",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "cognitive dissonance",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the Dunning-Kruger effect",
+      "tags": [
+        "concept",
+        "psychology"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "revenge bedtime procrastination",
+      "tags": [
+        "concept",
+        "sleep"
+      ],
+      "tone": "dry",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

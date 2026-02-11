@@ -2,8 +2,201 @@
   "slot_type": "social_context",
   "entries": [
     {
-      "text": "a job interview",
+      "text": "at a friend's wedding reception",
       "tags": [
+        "context",
+        "event"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a work Zoom call",
+      "tags": [
+        "context",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a house party that's getting out of hand",
+      "tags": [
+        "context",
+        "party"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in a packed elevator",
+      "tags": [
+        "context",
+        "public"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at Thanksgiving dinner with the whole family",
+      "tags": [
+        "context",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a first date at a fancy restaurant",
+      "tags": [
+        "context",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "on a road trip with no cell service",
+      "tags": [
+        "context",
+        "travel"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a job interview that's going badly",
+      "tags": [
+        "context",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in the middle of a breakup conversation",
+      "tags": [
+        "context",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at someone's birthday party",
+      "tags": [
+        "context",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a group project meeting",
+      "tags": [
+        "context",
+        "school"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a funeral that's more awkward than sad",
+      "tags": [
+        "context",
+        "death"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "on a packed subway during rush hour",
+      "tags": [
+        "context",
+        "public"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at brunch where everyone's slightly hungover",
+      "tags": [
+        "context",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in the back of an Uber with a chatty driver",
+      "tags": [
+        "context",
+        "transport"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a silent meditation retreat",
+      "tags": [
+        "context",
+        "wellness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a baby shower that nobody wanted to attend",
+      "tags": [
+        "context",
         "social"
       ],
       "tone": "dry",
@@ -13,20 +206,58 @@
       "needs_article": "none"
     },
     {
-      "text": "a first date",
+      "text": "in a hospital waiting room",
       "tags": [
-        "social"
+        "context",
+        "medical"
       ],
-      "tone": "cringe",
-      "spice": 3,
+      "tone": "neutral",
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "a family dinner",
+      "text": "at a family reunion with relatives you've never met",
       "tags": [
+        "context",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a power outage with strangers",
+      "tags": [
+        "context",
+        "emergency"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a house party where you only know one person",
+      "tags": [
+        "context",
         "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in the back row of a movie theater on a date",
+      "tags": [
+        "context",
+        "dating"
       ],
       "tone": "playful",
       "spice": 2,
@@ -35,8 +266,33 @@
       "needs_article": "none"
     },
     {
-      "text": "a house party",
+      "text": "at a bar where your ex just walked in",
       "tags": [
+        "context",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a company holiday party that's gone too far",
+      "tags": [
+        "context",
+        "work"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a friend's gender reveal that goes wrong",
+      "tags": [
+        "context",
         "social"
       ],
       "tone": "wild",
@@ -46,20 +302,154 @@
       "needs_article": "none"
     },
     {
-      "text": "an awkward elevator ride",
+      "text": "in a shared Airbnb with people you just met",
       "tags": [
-        "social"
+        "context",
+        "travel"
       ],
-      "tone": "cringe",
+      "tone": "neutral",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "a road trip with strangers",
+      "text": "at a potluck where someone brought store-bought everything",
       "tags": [
+        "context",
         "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a game night that got way too competitive",
+      "tags": [
+        "context",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at the DMV after waiting 3 hours",
+      "tags": [
+        "context",
+        "errands"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in a hot tub at a party you didn't plan on attending",
+      "tags": [
+        "context",
+        "party"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a concert where you're in the nosebleeds",
+      "tags": [
+        "context",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a couples therapy session",
+      "tags": [
+        "context",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at an all-you-can-eat buffet with competitive eaters",
+      "tags": [
+        "context",
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in the middle of a friend group intervention",
+      "tags": [
+        "context",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a karaoke bar when it's your turn and you're panicking",
+      "tags": [
+        "context",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "during a neighborhood block party with your nosy neighbor",
+      "tags": [
+        "context",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a gym where everyone is way more fit than you",
+      "tags": [
+        "context",
+        "fitness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in a dorm room at 3am",
+      "tags": [
+        "context",
+        "school"
       ],
       "tone": "wild",
       "spice": 2,
@@ -68,31 +458,22 @@
       "needs_article": "none"
     },
     {
-      "text": "a Zoom call with the camera on",
+      "text": "at an airport gate when the flight is delayed 5 hours",
       "tags": [
-        "social"
+        "context",
+        "travel"
       ],
-      "tone": "cringe",
-      "spice": 2,
+      "tone": "dry",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "meeting your partner's parents",
+      "text": "during a double date that isn't going well",
       "tags": [
-        "social"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a wedding where you know no one",
-      "tags": [
-        "social"
+        "context",
+        "dating"
       ],
       "tone": "dry",
       "spice": 2,
@@ -101,8 +482,9 @@
       "needs_article": "none"
     },
     {
-      "text": "a group project",
+      "text": "at a farmer's market with someone who takes it way too seriously",
       "tags": [
+        "context",
         "social"
       ],
       "tone": "dry",
@@ -112,9 +494,10 @@
       "needs_article": "none"
     },
     {
-      "text": "a karaoke night",
+      "text": "in line at a nightclub at midnight",
       "tags": [
-        "social"
+        "context",
+        "party"
       ],
       "tone": "playful",
       "spice": 2,
@@ -123,30 +506,57 @@
       "needs_article": "none"
     },
     {
-      "text": "a breakup conversation",
+      "text": "at a family dinner where politics come up",
       "tags": [
-        "social"
+        "context",
+        "family"
       ],
-      "tone": "cringe",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a gym class",
-      "tags": [
-        "social"
-      ],
-      "tone": "playful",
+      "tone": "wild",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "a networking event",
+      "text": "during a team-building retreat at work",
       "tags": [
+        "context",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a friend's housewarming where nothing is ready",
+      "tags": [
+        "context",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in the parking lot after a terrible date",
+      "tags": [
+        "context",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a surprise party that wasn't a surprise",
+      "tags": [
+        "context",
         "social"
       ],
       "tone": "dry",
@@ -156,12 +566,37 @@
       "needs_article": "none"
     },
     {
-      "text": "a public speaking moment",
+      "text": "during finals week in a coffee shop full of stressed students",
       "tags": [
-        "social"
+        "context",
+        "school"
       ],
-      "tone": "cringe",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "at a cookout where someone's clearly drunk already",
+      "tags": [
+        "context",
+        "party"
+      ],
+      "tone": "wild",
       "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "in a waiting room with one chair left next to a loud phone talker",
+      "tags": [
+        "context",
+        "public"
+      ],
+      "tone": "dry",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

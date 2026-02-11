@@ -2,31 +2,10 @@
   "slot_type": "product_item",
   "entries": [
     {
-      "text": "lost sock tracker",
+      "text": "a self-help book you'll never read",
       "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "queue jumper pass",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "meeting translator for vague emails",
-      "tags": [
-        "product"
+        "product",
+        "book"
       ],
       "tone": "dry",
       "spice": 1,
@@ -35,20 +14,10 @@
       "needs_article": "a"
     },
     {
-      "text": "ghost unfollower for social media",
+      "text": "a subscription box nobody asked for",
       "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "procrastination alarm that actually motivates",
-      "tags": [
-        "product"
+        "product",
+        "subscription"
       ],
       "tone": "dry",
       "spice": 1,
@@ -57,174 +26,10 @@
       "needs_article": "a"
     },
     {
-      "text": "automatic reply generator for awkward texts",
+      "text": "a weighted blanket",
       "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "passive aggressive note printer",
-      "tags": [
-        "product"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "excuse generator for canceled plans",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "eavesdrop blocker for open offices",
-      "tags": [
-        "product"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "small talk escape button",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "typo fixer for sent messages",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "midnight snack silencer",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "cringe memory eraser",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "awkward silence filler",
-      "tags": [
-        "product"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "group chat mute scheduler",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "automated birthday reminder with gift suggestions",
-      "tags": [
-        "product"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "laundry reminder that actually works",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "roommate chore enforcer",
-      "tags": [
-        "product"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "spam caller auto-roaster",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "earphone untangler",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "WiFi password sharer for guests",
-      "tags": [
-        "product"
+        "product",
+        "comfort"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -233,9 +38,10 @@
       "needs_article": "a"
     },
     {
-      "text": "automatic door holder for delivery drivers",
+      "text": "an air fryer",
       "tags": [
-        "product"
+        "product",
+        "kitchen"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -244,75 +50,10 @@
       "needs_article": "an"
     },
     {
-      "text": "grocery list sync across roommates",
+      "text": "a Peloton gathering dust",
       "tags": [
-        "product"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "playlist mood matcher",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "meme recommendation engine",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "autocomplete for real-life conversations",
-      "tags": [
-        "product"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "friend drama mediator bot",
-      "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "hangover prevention pill",
-      "tags": [
-        "product"
-      ],
-      "tone": "neutral",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "relationship red flag detector",
-      "tags": [
-        "product"
+        "product",
+        "fitness"
       ],
       "tone": "dry",
       "spice": 2,
@@ -321,9 +62,34 @@
       "needs_article": "a"
     },
     {
-      "text": "bad haircut reverser",
+      "text": "noise-canceling headphones",
       "tags": [
-        "product"
+        "product",
+        "tech"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a Squatty Potty",
+      "tags": [
+        "product",
+        "bathroom"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a matching pajama set",
+      "tags": [
+        "product",
+        "clothing"
       ],
       "tone": "playful",
       "spice": 1,
@@ -332,9 +98,34 @@
       "needs_article": "a"
     },
     {
-      "text": "outfit confidence booster",
+      "text": "a Stanley cup in limited edition",
       "tags": [
-        "product"
+        "product",
+        "trend"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Ring doorbell",
+      "tags": [
+        "product",
+        "tech"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an emotional support water bottle",
+      "tags": [
+        "product",
+        "wellness"
       ],
       "tone": "playful",
       "spice": 1,
@@ -343,9 +134,34 @@
       "needs_article": "an"
     },
     {
-      "text": "food delivery tracker with ETA accuracy",
+      "text": "a bidet attachment",
       "tags": [
-        "product"
+        "product",
+        "bathroom"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "protein powder that tastes like chalk",
+      "tags": [
+        "product",
+        "fitness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a meal prep container set",
+      "tags": [
+        "product",
+        "kitchen"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -354,20 +170,10 @@
       "needs_article": "a"
     },
     {
-      "text": "social battery level indicator",
+      "text": "a robot vacuum",
       "tags": [
-        "product"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "parking spot finder for crowded lots",
-      "tags": [
-        "product"
+        "product",
+        "tech"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -376,31 +182,106 @@
       "needs_article": "a"
     },
     {
-      "text": "second-hand embarrassment blocker",
+      "text": "a $7 latte",
       "tags": [
-        "product"
+        "product",
+        "food"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "a"
     },
     {
-      "text": "auto-reply for read receipts",
+      "text": "a standing desk you always sit at",
       "tags": [
-        "product"
+        "product",
+        "office"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "an"
+      "needs_article": "a"
     },
     {
-      "text": "weekend plan optimizer",
+      "text": "a jade roller for your face",
       "tags": [
-        "product"
+        "product",
+        "beauty"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a personalized Cameo from a D-list celebrity",
+      "tags": [
+        "product",
+        "entertainment"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a mattress from a podcast ad",
+      "tags": [
+        "product",
+        "home"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a tongue scraper",
+      "tags": [
+        "product",
+        "hygiene"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a gratitude journal with one entry",
+      "tags": [
+        "product",
+        "wellness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "CBD gummies",
+      "tags": [
+        "product",
+        "wellness"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a portable blender",
+      "tags": [
+        "product",
+        "kitchen"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -409,9 +290,166 @@
       "needs_article": "a"
     },
     {
-      "text": "impulse purchase blocker",
+      "text": "a smart watch that judges your activity",
       "tags": [
-        "product"
+        "product",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a candle that costs $65",
+      "tags": [
+        "product",
+        "home"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Vitamix used exclusively for smoothies",
+      "tags": [
+        "product",
+        "kitchen"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "creatine",
+      "tags": [
+        "product",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a NutriBullet",
+      "tags": [
+        "product",
+        "kitchen"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a face mask that makes you look like a serial killer",
+      "tags": [
+        "product",
+        "beauty"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a foam roller",
+      "tags": [
+        "product",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a teeth whitening kit",
+      "tags": [
+        "product",
+        "beauty"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a mushroom coffee blend",
+      "tags": [
+        "product",
+        "food"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a manifestation candle",
+      "tags": [
+        "product",
+        "spiritual"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a portable charger shaped like a lipstick",
+      "tags": [
+        "product",
+        "tech"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a DNA ancestry test",
+      "tags": [
+        "product",
+        "curiosity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a resistance band set",
+      "tags": [
+        "product",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an acupressure mat",
+      "tags": [
+        "product",
+        "wellness"
       ],
       "tone": "dry",
       "spice": 1,
@@ -420,9 +458,10 @@
       "needs_article": "an"
     },
     {
-      "text": "notification noise customizer by sender",
+      "text": "a sunrise alarm clock",
       "tags": [
-        "product"
+        "product",
+        "tech"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -431,20 +470,178 @@
       "needs_article": "a"
     },
     {
-      "text": "dream recorder and playback device",
+      "text": "a cold brew maker",
       "tags": [
-        "product"
+        "product",
+        "kitchen"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "a"
     },
     {
-      "text": "argument winner script generator",
+      "text": "a noise machine for sleeping",
       "tags": [
-        "product"
+        "product",
+        "comfort"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a cordless vacuum",
+      "tags": [
+        "product",
+        "home"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a silk pillowcase",
+      "tags": [
+        "product",
+        "comfort"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an ice roller for your face",
+      "tags": [
+        "product",
+        "beauty"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a reusable straw set with a tiny brush",
+      "tags": [
+        "product",
+        "eco"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Theragun",
+      "tags": [
+        "product",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "blue light glasses",
+      "tags": [
+        "product",
+        "tech"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a car phone mount from Amazon",
+      "tags": [
+        "product",
+        "tech"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a label maker",
+      "tags": [
+        "product",
+        "office"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a back posture corrector",
+      "tags": [
+        "product",
+        "health"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a $300 juicer used twice",
+      "tags": [
+        "product",
+        "kitchen"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a diffuser with essential oils",
+      "tags": [
+        "product",
+        "wellness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a smart scale that sends you guilt trips",
+      "tags": [
+        "product",
+        "fitness"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an at-home hair removal device",
+      "tags": [
+        "product",
+        "beauty"
       ],
       "tone": "dry",
       "spice": 2,
@@ -453,444 +650,256 @@
       "needs_article": "an"
     },
     {
-      "text": "compliment generator for awkward moments",
+      "text": "a sous vide machine still in the box",
       "tags": [
-        "product"
+        "product",
+        "kitchen"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "a"
     },
     {
-      "text": "iPhone",
+      "text": "a sauna blanket",
       "tags": [
         "product",
-        "tech",
-        "expensive"
+        "wellness"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "AirPods",
+      "text": "a personalized vitamin subscription",
       "tags": [
         "product",
-        "tech",
-        "trendy"
+        "health"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Apple Watch",
+      "text": "a tongue-scraping copper wand",
       "tags": [
         "product",
-        "tech",
-        "expensive"
+        "hygiene"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "MacBook",
+      "text": "a magnetic phone case wallet combo",
       "tags": [
         "product",
-        "tech",
-        "expensive"
+        "tech"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "iPad",
+      "text": "a countertop compost bin",
       "tags": [
         "product",
-        "tech",
-        "expensive"
+        "eco"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "PlayStation 5",
+      "text": "an Instant Pot still in the box",
       "tags": [
         "product",
-        "gaming",
-        "expensive"
+        "kitchen"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "an"
     },
     {
-      "text": "Xbox",
+      "text": "a streaming service you forgot you subscribed to",
       "tags": [
         "product",
-        "gaming",
-        "expensive"
+        "entertainment"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Nintendo Switch",
+      "text": "a gym membership used exactly twice",
       "tags": [
         "product",
-        "gaming",
-        "popular"
+        "fitness"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Tesla",
-      "tags": [
-        "product",
-        "car",
-        "expensive"
-      ],
-      "tone": "wild",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Rolex",
+      "text": "a bullet journal that lasted one week",
       "tags": [
         "product",
-        "luxury",
-        "expensive"
+        "productivity"
       ],
-      "tone": "wild",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an avocado slicer",
+      "tags": [
+        "product",
+        "kitchen"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a meditation app with 47 notifications",
+      "tags": [
+        "product",
+        "wellness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a vintage vinyl player used for aesthetics only",
+      "tags": [
+        "product",
+        "audio"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a KitchenAid mixer that's never mixed anything",
+      "tags": [
+        "product",
+        "kitchen"
+      ],
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Louis Vuitton bag",
+      "text": "a language learning app they've ignored for 6 months",
       "tags": [
         "product",
-        "luxury",
-        "expensive"
+        "education"
       ],
-      "tone": "wild",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a pasta maker gathering dust",
+      "tags": [
+        "product",
+        "kitchen"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a white noise machine for anxiety",
+      "tags": [
+        "product",
+        "wellness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an ab roller used once on January 2nd",
+      "tags": [
+        "product",
+        "fitness"
+      ],
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "an"
     },
     {
-      "text": "Gucci belt",
+      "text": "a self-help audiobook they fell asleep to",
       "tags": [
         "product",
-        "luxury",
-        "expensive"
+        "wellness"
       ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Balenciaga shoes",
-      "tags": [
-        "product",
-        "luxury",
-        "expensive"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Yeezy sneakers",
-      "tags": [
-        "product",
-        "fashion",
-        "expensive"
-      ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Jordan 1s",
+      "text": "a ring light that makes everything look like an interrogation",
       "tags": [
         "product",
-        "fashion",
-        "expensive"
+        "tech"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Crocs",
+      "text": "a fancy water filter pitcher",
       "tags": [
         "product",
-        "fashion",
-        "controversial"
+        "kitchen"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Birkenstock sandals",
-      "tags": [
-        "product",
-        "fashion",
-        "trendy"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Ugg boots",
-      "tags": [
-        "product",
-        "fashion",
-        "basic"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Canada Goose jacket",
-      "tags": [
-        "product",
-        "fashion",
-        "expensive"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Patagonia vest",
-      "tags": [
-        "product",
-        "fashion",
-        "basic"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Stanley cup",
-      "tags": [
-        "product",
-        "lifestyle",
-        "trendy"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Hydro Flask",
-      "tags": [
-        "product",
-        "lifestyle",
-        "trendy"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Dyson Airwrap",
-      "tags": [
-        "product",
-        "beauty",
-        "expensive"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Olaplex",
-      "tags": [
-        "product",
-        "beauty",
-        "expensive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Drunk Elephant skincare",
-      "tags": [
-        "product",
-        "beauty",
-        "expensive"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "La Mer cream",
-      "tags": [
-        "product",
-        "beauty",
-        "expensive"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Peloton bike",
-      "tags": [
-        "product",
-        "fitness",
-        "expensive"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Lululemon leggings",
-      "tags": [
-        "product",
-        "fitness",
-        "expensive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Alo Yoga set",
-      "tags": [
-        "product",
-        "fitness",
-        "expensive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Theragun",
-      "tags": [
-        "product",
-        "fitness",
-        "expensive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Vitamix blender",
-      "tags": [
-        "product",
-        "kitchen",
-        "expensive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Le Creuset pot",
-      "tags": [
-        "product",
-        "kitchen",
-        "expensive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Nespresso machine",
-      "tags": [
-        "product",
-        "kitchen",
-        "expensive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     }
   ]
 }

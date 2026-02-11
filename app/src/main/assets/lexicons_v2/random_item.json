@@ -2,279 +2,604 @@
   "slot_type": "random_item",
   "entries": [
     {
-      "text": "A Roomba",
+      "text": "a traffic cone",
       "tags": [
+        "item",
         "object"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a rubber duck",
+      "tags": [
+        "item",
+        "toy"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A katana",
-      "tags": [
-        "object"
-      ],
-      "tone": "wild",
-      "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A crockpot",
+      "text": "a single Croc",
       "tags": [
+        "item",
+        "fashion"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a yoga ball",
+      "tags": [
+        "item",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a VHS tape of Shrek",
+      "tags": [
+        "item",
+        "media"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a jar of pickles",
+      "tags": [
+        "item",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a lava lamp from 2003",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a foam finger",
+      "tags": [
+        "item",
+        "sports"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a kazoo",
+      "tags": [
+        "item",
+        "instrument"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a pair of Crocs with Jibbitz",
+      "tags": [
+        "item",
+        "fashion"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a signed photo of Guy Fieri",
+      "tags": [
+        "item",
+        "celebrity"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a half-eaten bag of Hot Cheetos",
+      "tags": [
+        "item",
+        "food"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a broken umbrella",
+      "tags": [
+        "item",
         "object"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A flamingo",
+      "text": "a fidget spinner",
       "tags": [
-        "animal"
+        "item",
+        "toy"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a whoopee cushion",
+      "tags": [
+        "item",
+        "prank"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A parking meter",
+      "text": "a banana peel",
       "tags": [
+        "item",
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a cowboy hat",
+      "tags": [
+        "item",
+        "fashion"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a disposable camera from a wedding",
+      "tags": [
+        "item",
+        "photo"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a pool noodle",
+      "tags": [
+        "item",
+        "toy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a novelty mug that says 'World's Okayest Employee'",
+      "tags": [
+        "item",
+        "gift"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a shopping cart with a broken wheel",
+      "tags": [
+        "item",
         "object"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A therapy dog",
+      "text": "a cactus wearing a sombrero",
       "tags": [
-        "animal"
+        "item",
+        "decor"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A trampoline",
+      "text": "a cardboard cutout of Dwayne Johnson",
       "tags": [
-        "object"
+        "item",
+        "celebrity"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A pi\u00f1ata",
+      "text": "a bag of frozen peas",
       "tags": [
-        "object"
+        "item",
+        "food"
       ],
-      "tone": "wild",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A lie detector test",
+      "text": "a harmonica nobody asked for",
       "tags": [
-        "concept"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A treadmill",
-      "tags": [
-        "object"
+        "item",
+        "instrument"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A capybara",
+      "text": "a lawn flamingo",
       "tags": [
-        "animal"
+        "item",
+        "decor"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Velcro shoes",
+      "text": "a parking ticket from 2019",
       "tags": [
-        "object"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A lava lamp",
-      "tags": [
-        "object"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A restraining order",
-      "tags": [
-        "concept"
-      ],
-      "tone": "wild",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A mariachi band",
-      "tags": [
-        "concept"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Swiss Army knife",
-      "tags": [
-        "object"
+        "item",
+        "paper"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A beehive",
+      "text": "a single chopstick",
       "tags": [
-        "nature"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A karaoke machine",
-      "tags": [
-        "object"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A dumpster",
-      "tags": [
-        "object"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A taxidermied raccoon",
-      "tags": [
-        "object"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "An air horn",
-      "tags": [
-        "object"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A crystal ball",
-      "tags": [
-        "object"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A fanny pack",
-      "tags": [
-        "object"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A time capsule",
-      "tags": [
-        "concept"
+        "item",
+        "utensil"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "A kazoo",
+      "text": "a Costco-sized jar of mayo",
       "tags": [
-        "object"
+        "item",
+        "food"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a trophy for participation",
+      "tags": [
+        "item",
+        "award"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a plunger",
+      "tags": [
+        "item",
+        "home"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a kazoo and a dream",
+      "tags": [
+        "item",
+        "combo"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
+    },
+    {
+      "text": "a half-deflated balloon from last week's party",
+      "tags": [
+        "item",
+        "party"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a receipt that's 3 feet long from CVS",
+      "tags": [
+        "item",
+        "paper"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Magic 8-Ball",
+      "tags": [
+        "item",
+        "toy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a microphone with no speakers",
+      "tags": [
+        "item",
+        "audio"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a plastic sword",
+      "tags": [
+        "item",
+        "toy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a bobblehead of a random politician",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a bag of airline peanuts",
+      "tags": [
+        "item",
+        "food"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a disco ball",
+      "tags": [
+        "item",
+        "party"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a lint roller",
+      "tags": [
+        "item",
+        "object"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a stolen hotel towel",
+      "tags": [
+        "item",
+        "object"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a fortune cookie with no fortune",
+      "tags": [
+        "item",
+        "food"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a flip phone from 2007",
+      "tags": [
+        "item",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a sock with no match",
+      "tags": [
+        "item",
+        "clothing"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a snow globe from a place they've never been",
+      "tags": [
+        "item",
+        "souvenir"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a half-used gift card with an unknown balance",
+      "tags": [
+        "item",
+        "money"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a pair of safety scissors",
+      "tags": [
+        "item",
+        "office"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Nicolas Cage body pillow",
+      "tags": [
+        "item",
+        "novelty"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a vuvuzela",
+      "tags": [
+        "item",
+        "instrument"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
     }
   ]
 }

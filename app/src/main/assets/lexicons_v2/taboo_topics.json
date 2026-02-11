@@ -2,377 +2,11 @@
   "slot_type": "taboo_topics",
   "entries": [
     {
-      "text": "weaponizing therapy language",
-      "tags": ["taboo", "modern", "toxic"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "faking a mental health diagnosis",
-      "tags": ["taboo", "lying", "problematic"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "joking about generational trauma",
-      "tags": ["taboo", "dark"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "casual conspiracy theories",
-      "tags": ["taboo", "weird"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "awkward political rants at dinner",
-      "tags": ["taboo", "politics", "social"],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "performative activism",
-      "tags": ["taboo", "social", "fake"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "telling dead relative stories for sympathy",
-      "tags": ["taboo", "death", "manipulation"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "making everything about astrology",
-      "tags": ["taboo", "modern", "annoying"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "cancel culture speedrun attempts",
-      "tags": ["taboo", "modern", "drama"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "trauma-dumping on first dates",
-      "tags": ["taboo", "dating", "overshare"],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "MLM recruitment disguised as friendship",
-      "tags": ["taboo", "scam", "fake"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "making their religion everyone's problem",
-      "tags": ["taboo", "religion", "pushy"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "LinkedIn hustle culture posts",
-      "tags": ["taboo", "modern", "cringe"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "crypto evangelism at parties",
-      "tags": ["taboo", "modern", "annoying"],
-      "tone": "witty",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "defending their problematic fave",
-      "tags": ["taboo", "modern", "stubborn"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "unsolicited parenting advice",
-      "tags": ["taboo", "annoying", "judgmental"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fetishizing entire ethnicities",
-      "tags": ["taboo", "problematic", "gross"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "poverty cosplay on social media",
-      "tags": ["taboo", "fake", "performative"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "oversharing medical details",
-      "tags": ["taboo", "gross", "TMI"],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "making funeral selfies",
-      "tags": ["taboo", "death", "inappropriate"],
-      "tone": "wild",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "divorce party TMI",
-      "tags": ["taboo", "overshare", "messy"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "bringing up salary unprompted",
-      "tags": ["taboo", "money", "awkward"],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "rating people's bodies out loud",
-      "tags": ["taboo", "gross", "rude"],
-      "tone": "wild",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "sharing graphic birth stories",
-      "tags": ["taboo", "gross", "overshare"],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "detailed bathroom emergency play-by-plays",
-      "tags": ["taboo", "gross", "TMI"],
-      "tone": "wild",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "using mental illness as an aesthetic",
-      "tags": ["taboo", "problematic", "fake"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "romanticizing toxic relationships",
-      "tags": ["taboo", "problematic", "dating"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "making their ED everyone's business",
-      "tags": ["taboo", "health", "overshare"],
-      "tone": "cringe",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "casual eugenics takes",
-      "tags": ["taboo", "dark", "problematic"],
-      "tone": "dark",
-      "spice": 5,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "defending billionaires unprompted",
-      "tags": ["taboo", "politics", "weird"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "unironic sigma male content",
-      "tags": ["taboo", "cringe", "modern"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "alpha/beta male pseudoscience",
-      "tags": ["taboo", "cringe", "fake"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pickup artist techniques",
-      "tags": ["taboo", "cringe", "dating"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "incel ideology at brunch",
-      "tags": ["taboo", "dark", "problematic"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "casual racism disguised as jokes",
-      "tags": ["taboo", "problematic", "offensive"],
-      "tone": "dark",
-      "spice": 5,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "misogyny but make it quirky",
-      "tags": ["taboo", "problematic", "fake"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "homophobia with a smile",
-      "tags": ["taboo", "problematic", "offensive"],
-      "tone": "dark",
-      "spice": 5,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "transphobia disguised as concern",
-      "tags": ["taboo", "problematic", "offensive"],
-      "tone": "dark",
-      "spice": 5,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "ableist language in every sentence",
-      "tags": ["taboo", "problematic", "offensive"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fatphobia masked as health advice",
-      "tags": ["taboo", "problematic", "fake"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "classism but make it aesthetic",
-      "tags": ["taboo", "problematic", "fake"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "ageism disguised as generational banter",
-      "tags": ["taboo", "problematic", "fake"],
+      "text": "Netflix and Chill",
+      "tags": [
+        "topic",
+        "dating"
+      ],
       "tone": "playful",
       "spice": 2,
       "locality": 1,
@@ -380,254 +14,830 @@
       "needs_article": "none"
     },
     {
-      "text": "xenophobia at the dinner table",
-      "tags": ["taboo", "problematic", "offensive"],
-      "tone": "dark",
-      "spice": 5,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "cultural appropriation for the aesthetic",
-      "tags": ["taboo", "problematic", "fake"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "white savior complex on full display",
-      "tags": ["taboo", "problematic", "cringe"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "toxic masculinity as a personality trait",
-      "tags": ["taboo", "problematic", "cringe"],
-      "tone": "wild",
+      "text": "Walk of Shame",
+      "tags": [
+        "topic",
+        "party"
+      ],
+      "tone": "playful",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "internalized misogyny on main",
-      "tags": ["taboo", "problematic", "modern"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "victim-blaming as life advice",
-      "tags": ["taboo", "problematic", "toxic"],
-      "tone": "dark",
-      "spice": 4,
+      "text": "Blind Date",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "slut-shaming disguised as feminism",
-      "tags": ["taboo", "problematic", "fake"],
-      "tone": "dark",
-      "spice": 4,
+      "text": "Escape Room",
+      "tags": [
+        "topic",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "body-shaming as motivation",
-      "tags": ["taboo", "problematic", "toxic"],
-      "tone": "dark",
-      "spice": 4,
+      "text": "Speed Dating",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "diet culture propaganda",
-      "tags": ["taboo", "problematic", "health"],
-      "tone": "wild",
-      "spice": 3,
+      "text": "Black Friday",
+      "tags": [
+        "topic",
+        "shopping"
+      ],
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "wellness MLM recruitment",
-      "tags": ["taboo", "scam", "health"],
-      "tone": "wild",
-      "spice": 3,
+      "text": "Ghosting",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "anti-vax conspiracy theories",
-      "tags": ["taboo", "dangerous", "fake"],
-      "tone": "dark",
-      "spice": 4,
+      "text": "Astrology",
+      "tags": [
+        "topic",
+        "spiritual"
+      ],
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "essential oils as medicine",
-      "tags": ["taboo", "dangerous", "fake"],
-      "tone": "wild",
-      "spice": 3,
+      "text": "Reality TV",
+      "tags": [
+        "topic",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "manifesting as financial advice",
-      "tags": ["taboo", "fake", "modern"],
+      "text": "Road Trip",
+      "tags": [
+        "topic",
+        "travel"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Karaoke Night",
+      "tags": [
+        "topic",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "House Party",
+      "tags": [
+        "topic",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Group Chat Drama",
+      "tags": [
+        "topic",
+        "social"
+      ],
       "tone": "playful",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "hustle culture toxicity",
-      "tags": ["taboo", "modern", "toxic"],
-      "tone": "wild",
+      "text": "Uber Pool",
+      "tags": [
+        "topic",
+        "transport"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Brunch",
+      "tags": [
+        "topic",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Social Media Stalking",
+      "tags": [
+        "topic",
+        "internet"
+      ],
+      "tone": "playful",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "grind mindset at all costs",
-      "tags": ["taboo", "modern", "toxic"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "rise and grind at 4am energy",
-      "tags": ["taboo", "modern", "cringe"],
+      "text": "Gym Selfie",
+      "tags": [
+        "topic",
+        "fitness"
+      ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "toxic productivity culture",
-      "tags": ["taboo", "modern", "toxic"],
-      "tone": "wild",
+      "text": "Drunk Text",
+      "tags": [
+        "topic",
+        "communication"
+      ],
+      "tone": "playful",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "workaholic as a flex",
-      "tags": ["taboo", "modern", "toxic"],
+      "text": "Thirst Trap",
+      "tags": [
+        "topic",
+        "social-media"
+      ],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Vague-posting",
+      "tags": [
+        "topic",
+        "social-media"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Meal Prep Sunday",
+      "tags": [
+        "topic",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Matching Tattoos",
+      "tags": [
+        "topic",
+        "relationship"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Air Fryer",
+      "tags": [
+        "topic",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Imposter Syndrome",
+      "tags": [
+        "topic",
+        "psychology"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Love Languages",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Attachment Styles",
+      "tags": [
+        "topic",
+        "psychology"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Therapy",
+      "tags": [
+        "topic",
+        "mental-health"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Podcast Binge",
+      "tags": [
+        "topic",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Cancel Culture",
+      "tags": [
+        "topic",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Influencer",
+      "tags": [
+        "topic",
+        "social-media"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Conspiracy Theory",
+      "tags": [
+        "topic",
+        "belief"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Side Hustle",
+      "tags": [
+        "topic",
+        "work"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Crypto",
+      "tags": [
+        "topic",
+        "finance"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "First Date",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Hangover Cure",
+      "tags": [
+        "topic",
+        "party"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "DMs",
+      "tags": [
+        "topic",
+        "social-media"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Talking Stage",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Soft Launch",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Main Character Energy",
+      "tags": [
+        "topic",
+        "personality"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Sunday Scaries",
+      "tags": [
+        "topic",
+        "mood"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Hot Take",
+      "tags": [
+        "topic",
+        "opinion"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Cheat Day",
+      "tags": [
+        "topic",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "ASMR",
+      "tags": [
+        "topic",
+        "internet"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Bucket List",
+      "tags": [
+        "topic",
+        "lifestyle"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Glow Up",
+      "tags": [
+        "topic",
+        "transformation"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Prenup",
+      "tags": [
+        "topic",
+        "legal"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Red Flag Bingo",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Adulting",
+      "tags": [
+        "topic",
+        "lifestyle"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Friend Zone",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "True Crime Podcast",
+      "tags": [
+        "topic",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Wine Night",
+      "tags": [
+        "topic",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Manifestation",
+      "tags": [
+        "topic",
+        "spiritual"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Retail Therapy",
+      "tags": [
+        "topic",
+        "shopping"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Doom Scrolling",
+      "tags": [
+        "topic",
+        "internet"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Passive Aggression",
+      "tags": [
+        "topic",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Ick Factor",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Hot Girl Summer",
+      "tags": [
+        "topic",
+        "trend"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "LinkedIn Hustler",
+      "tags": [
+        "topic",
+        "work"
+      ],
       "tone": "dry",
-      "spice": 2,
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "no days off mentality",
-      "tags": ["taboo", "modern", "toxic"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "sleep is for the weak energy",
-      "tags": ["taboo", "modern", "toxic"],
+      "text": "Stanley Cup Obsession",
+      "tags": [
+        "topic",
+        "trend"
+      ],
       "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Avocado Toast",
+      "tags": [
+        "topic",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Binge Watch",
+      "tags": [
+        "topic",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Emotional Baggage",
+      "tags": [
+        "topic",
+        "dating"
+      ],
+      "tone": "neutral",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "burnout as a badge of honor",
-      "tags": ["taboo", "modern", "toxic"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "mental health day shaming",
-      "tags": ["taboo", "toxic", "problematic"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "therapy is for weak people takes",
-      "tags": ["taboo", "toxic", "problematic"],
-      "tone": "dark",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "medication stigma at parties",
-      "tags": ["taboo", "problematic", "health"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "just smile more energy",
-      "tags": ["taboo", "toxic", "dismissive"],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "have you tried yoga advice",
-      "tags": ["taboo", "dismissive", "annoying"],
+      "text": "Screen Time Shame",
+      "tags": [
+        "topic",
+        "tech"
+      ],
       "tone": "playful",
-      "spice": 2,
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "positive vibes only toxicity",
-      "tags": ["taboo", "toxic", "fake"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
+      "text": "Fast Fashion Guilt",
+      "tags": [
+        "topic",
+        "shopping"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "good vibes only gatekeeping",
-      "tags": ["taboo", "toxic", "fake"],
+      "text": "Gym Rat",
+      "tags": [
+        "topic",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Plant Parent",
+      "tags": [
+        "topic",
+        "lifestyle"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Comfort Show",
+      "tags": [
+        "topic",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Guilty Pleasure",
+      "tags": [
+        "topic",
+        "general"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Main Character Moment",
+      "tags": [
+        "topic",
+        "personality"
+      ],
       "tone": "playful",
-      "spice": 2,
-      "locality": 2,
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Nostalgia Trip",
+      "tags": [
+        "topic",
+        "emotion"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     }

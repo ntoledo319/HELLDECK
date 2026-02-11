@@ -1,25 +1,305 @@
 {
   "slot_type": "text_senders",
   "entries": [
-    { "text": "Mom", "tags": ["family"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Dad", "tags": ["family"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Grandma", "tags": ["family"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Ex", "tags": ["relationship"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Boss", "tags": ["work"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "HR", "tags": ["work"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Crush", "tags": ["relationship"], "tone": "playful", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Landlord", "tags": ["authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Unknown Number", "tags": ["stranger"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Roommate", "tags": ["social"], "tone": "playful", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Best Friend", "tags": ["social"], "tone": "playful", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Uber Driver", "tags": ["stranger"], "tone": "cringe", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Doctor", "tags": ["authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Neighbor", "tags": ["social"], "tone": "cringe", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Ex's Best Friend", "tags": ["relationship"], "tone": "wild", "spice": 4, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Group Chat", "tags": ["social"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Therapist", "tags": ["authority"], "tone": "dry", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Blocked Number", "tags": ["stranger"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Dentist", "tags": ["authority"], "tone": "cringe", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your Coworker", "tags": ["work"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" }
+    {
+      "text": "Ex",
+      "tags": [
+        "sender",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Mom",
+      "tags": [
+        "sender",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Dad",
+      "tags": [
+        "sender",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Best Friend",
+      "tags": [
+        "sender",
+        "friends"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Boss",
+      "tags": [
+        "sender",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Roommate",
+      "tags": [
+        "sender",
+        "home"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Crush",
+      "tags": [
+        "sender",
+        "dating"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Sibling",
+      "tags": [
+        "sender",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Partner",
+      "tags": [
+        "sender",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Unknown Number",
+      "tags": [
+        "sender",
+        "mystery"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Coworker",
+      "tags": [
+        "sender",
+        "work"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Group Chat",
+      "tags": [
+        "sender",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Landlord",
+      "tags": [
+        "sender",
+        "home"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Ex's Best Friend",
+      "tags": [
+        "sender",
+        "drama"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Your Therapist",
+      "tags": [
+        "sender",
+        "professional"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "HR Department",
+      "tags": [
+        "sender",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Bank",
+      "tags": [
+        "sender",
+        "finance"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Your Ex's Mom",
+      "tags": [
+        "sender",
+        "awkward"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Tinder Match",
+      "tags": [
+        "sender",
+        "dating"
+      ],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Your Doctor",
+      "tags": [
+        "sender",
+        "medical"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Neighbor",
+      "tags": [
+        "sender",
+        "home"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Old Friend You Haven't Talked to in Years",
+      "tags": [
+        "sender",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Someone You Ghosted 6 Months Ago",
+      "tags": [
+        "sender",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "The Person Your Partner Told You Not to Worry About",
+      "tags": [
+        "sender",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Your Partner's Ex",
+      "tags": [
+        "sender",
+        "drama"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }

@@ -2,27 +2,24 @@
   "slot_type": "chaotic_plan",
   "entries": [
     {
-      "text": "organize a flash mob with zero practice",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "replace the office coffee with cold brew concentrate",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start a group chat just to leave dramatically",
-      "tags": ["chaos", "plan"],
+      "text": "organize a flash mob with zero rehearsal",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
       "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a group chat just to leave it dramatically",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
@@ -30,34 +27,10 @@
     },
     {
       "text": "rearrange all the furniture while everyone sleeps",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "convince everyone brunch is at different times",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "screenshot receipts for a burn book",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "reply to every text with only emojis for a week",
-      "tags": ["chaos", "plan"],
+      "tags": [
+        "plan",
+        "chaos"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -65,26 +38,11 @@
       "needs_article": "none"
     },
     {
-      "text": "fake a dramatic exit from the friend group",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "host a surprise party for someone who hates surprises",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "switch everyone's phone wallpapers at the party",
-      "tags": ["chaos", "plan"],
+      "text": "replace every family photo with pictures of Nicolas Cage",
+      "tags": [
+        "plan",
+        "prank"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
@@ -92,80 +50,503 @@
       "needs_article": "none"
     },
     {
-      "text": "start rumors about a fake celebrity sighting",
-      "tags": ["chaos", "plan"],
+      "text": "bring a megaphone to a whisper fight",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sign everyone up for a 5K without telling them",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "adopt a goat and name it after their boss",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "alphabetize someone's entire spice rack wrong",
+      "tags": [
+        "plan",
+        "prank"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "RSVP for a party and bring 15 extra people",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "set every clock in the house forward by 20 minutes",
+      "tags": [
+        "plan",
+        "prank"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "swap all the labels on someone's canned goods",
+      "tags": [
+        "plan",
+        "prank"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "show up to a casual hangout in a full suit",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sign someone up for 30 different email newsletters",
+      "tags": [
+        "plan",
+        "prank"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bring a portable karaoke machine to every gathering",
+      "tags": [
+        "plan",
+        "party"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "change everyone's phone contacts to celebrity names",
+      "tags": [
+        "plan",
+        "prank"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "create a fake Wikipedia page about themselves",
+      "tags": [
+        "plan",
+        "ego"
+      ],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a petition to rename their street",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make a PowerPoint about why their friend's ex was terrible",
+      "tags": [
+        "plan",
+        "messy"
+      ],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "catfish someone on a dating app as a social experiment",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "reorganize the shared Netflix account into chaos",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 1,
-      "locality": 2,
+      "text": "show up to an ex's party looking their absolute best",
+      "tags": [
+        "plan",
+        "petty"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "catfish someone using their own photos",
-      "tags": ["chaos", "plan", "digital"],
+      "text": "create a burner account to comment on their own posts",
+      "tags": [
+        "plan",
+        "ego"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a vlog nobody asked for",
+      "tags": [
+        "plan",
+        "ego"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "put laxatives in the office coffee",
+      "tags": [
+        "plan",
+        "prank"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "send a 'we need to talk' text then not respond for 6 hours",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bring their own food to a restaurant",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hire a mariachi band to follow someone all day",
+      "tags": [
+        "plan",
+        "prank"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "create a group chat specifically for roasting one person",
+      "tags": [
+        "plan",
+        "messy"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "write a Yelp review about their friend's cooking",
+      "tags": [
+        "plan",
+        "petty"
+      ],
+      "tone": "witty",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "schedule a meeting just to show a meme",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bring a therapy worksheet to a family dinner",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leak the group chat to an outsider",
+      "tags": [
+        "plan",
+        "betrayal"
+      ],
       "tone": "wild",
       "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pretend to be a food critic at a chain restaurant",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "gaslight everyone about a fake holiday",
-      "tags": ["chaos", "plan"],
+      "text": "set up a fake dating profile for their friend",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "create a fake dating profile for their pet",
-      "tags": ["chaos", "plan", "digital"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start a pyramid scheme with friendship bracelets",
-      "tags": ["chaos", "plan"],
+      "text": "start a rumor about themselves just for attention",
+      "tags": [
+        "plan",
+        "ego"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "convince their roommate the apartment is haunted",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 2,
+      "text": "steal a traffic cone and use it as a megaphone",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "fake their own death for attention",
-      "tags": ["chaos", "plan", "dark"],
+      "text": "crash a stranger's wedding and give a toast",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "send an anonymous tip about someone's parking habits",
+      "tags": [
+        "plan",
+        "petty"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "post a thirst trap immediately after a breakup",
+      "tags": [
+        "plan",
+        "petty"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make a burn book like Mean Girls but for their office",
+      "tags": [
+        "plan",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "expose someone's secrets at their own birthday party",
+      "tags": [
+        "plan",
+        "betrayal"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "file a noise complaint against themselves",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "start a fight in the comments of a friend's wholesome post",
+      "tags": [
+        "plan",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "become a landlord just to be petty about lease terms",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "create a diss track about their coworker",
+      "tags": [
+        "plan",
+        "petty"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "air someone out on their Instagram story",
+      "tags": [
+        "plan",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "show up to court in a costume",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hack into their ex's Spotify and change all the playlists",
+      "tags": [
+        "plan",
+        "petty"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
@@ -173,179 +554,11 @@
       "needs_article": "none"
     },
     {
-      "text": "start a cult based on a meme",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "photoshop themselves into everyone's vacation photos",
-      "tags": ["chaos", "plan", "digital"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "replace all family photos with stock images",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start beef with a local mascot",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fake a British accent for an entire month",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "convince everyone they're a twin",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "stage an intervention for someone's harmless hobby",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "create a fake emergency to skip work",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start a neighborhood watch for imaginary crimes",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pretend to be their own hype man in third person",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "write a tell-all memoir about made-up drama",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start a feud with their neighbor's garden gnome",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fake a talent for something they've never done",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "convince everyone they're allergic to Mondays",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start a petition to rename a street after themselves",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "create a fake award and give it to themselves",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "stage a dramatic public proposal to a stranger",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pretend to be a time traveler from 2050",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "start a rumor that they're secretly rich",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fake a medical condition for sympathy",
-      "tags": ["chaos", "plan"],
+      "text": "start a GoFundMe for their own bad decisions",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
       "tone": "wild",
       "spice": 4,
       "locality": 1,
@@ -353,190 +566,157 @@
       "needs_article": "none"
     },
     {
-      "text": "convince their friends they're in witness protection",
-      "tags": ["chaos", "plan"],
+      "text": "catfish their own partner to test their loyalty",
+      "tags": [
+        "plan",
+        "toxic"
+      ],
       "tone": "wild",
-      "spice": 3,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "start a conspiracy theory about the local Starbucks",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "create a fake influencer persona with zero followers",
-      "tags": ["chaos", "plan", "digital"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pretend to be a method actor preparing for a role",
-      "tags": ["chaos", "plan"],
+      "text": "expose someone's DMs on a projector at a party",
+      "tags": [
+        "plan",
+        "betrayal"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "stage a fake breakup for the drama",
-      "tags": ["chaos", "plan"],
+      "text": "anonymously send someone's nudes to their parents",
+      "tags": [
+        "plan",
+        "revenge"
+      ],
       "tone": "wild",
-      "spice": 3,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "start a neighborhood rivalry over parking spots",
-      "tags": ["chaos", "plan"],
-      "tone": "mischief",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fake a spiritual awakening for attention",
-      "tags": ["chaos", "plan"],
+      "text": "record a breakup and post it online",
+      "tags": [
+        "plan",
+        "messy"
+      ],
       "tone": "wild",
-      "spice": 3,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "convince everyone they have a secret twin",
-      "tags": ["chaos", "plan"],
+      "text": "hire a private investigator to follow their ex",
+      "tags": [
+        "plan",
+        "toxic"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "start a GoFundMe for something ridiculous",
-      "tags": ["chaos", "plan", "digital"],
+      "text": "create a dating profile using their ex's photos",
+      "tags": [
+        "plan",
+        "revenge"
+      ],
       "tone": "wild",
-      "spice": 3,
-      "locality": 2,
+      "spice": 4,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "pretend to be a food blogger at every meal",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fake a dramatic career change announcement",
-      "tags": ["chaos", "plan"],
+      "text": "leak screenshots of a private fight to the whole group",
+      "tags": [
+        "plan",
+        "betrayal"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "start a book club for books they've never read",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "convince everyone they're training for a fake marathon",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "stage a dramatic reading of their own texts",
-      "tags": ["chaos", "plan"],
+      "text": "key someone's car and blame the neighborhood cat",
+      "tags": [
+        "plan",
+        "revenge"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "create a fake documentary about their life",
-      "tags": ["chaos", "plan"],
+      "text": "fake their own kidnapping for attention",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 5,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "pretend to be psychic and make vague predictions",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 2,
+      "text": "start a cult based entirely on vibes",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 5,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "start a wellness trend based on nonsense",
-      "tags": ["chaos", "plan"],
+      "text": "destroy an ex's belongings and call it 'art'",
+      "tags": [
+        "plan",
+        "revenge"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 5,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "fake an engagement for the Instagram content",
-      "tags": ["chaos", "plan", "digital"],
+      "text": "create a revenge OnlyFans",
+      "tags": [
+        "plan",
+        "revenge"
+      ],
       "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "convince everyone they're writing a screenplay",
-      "tags": ["chaos", "plan"],
-      "tone": "playful",
-      "spice": 1,
+      "spice": 5,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "start a podcast about topics they know nothing about",
-      "tags": ["chaos", "plan", "digital"],
+      "text": "report their own car stolen after lending it out",
+      "tags": [
+        "plan",
+        "chaos"
+      ],
       "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fake a dramatic lifestyle change every month",
-      "tags": ["chaos", "plan"],
-      "tone": "wild",
-      "spice": 2,
+      "spice": 5,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

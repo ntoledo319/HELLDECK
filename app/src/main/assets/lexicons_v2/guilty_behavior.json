@@ -2,53 +2,10 @@
   "slot_type": "guilty_behavior",
   "entries": [
     {
-      "text": "stalked an ex on social media",
+      "text": "suddenly cleaning the entire apartment",
       "tags": [
-        "guilty"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "called in sick when they weren't",
-      "tags": [
-        "guilty"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "eaten someone else's food from the fridge",
-      "tags": [
-        "guilty"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pretended not to see someone they know in public",
-      "tags": [
-        "guilty"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "lied about reading the terms and conditions",
-      "tags": [
-        "guilty"
+        "behavior",
+        "deflection"
       ],
       "tone": "dry",
       "spice": 1,
@@ -57,42 +14,214 @@
       "needs_article": "none"
     },
     {
-      "text": "sent a screenshot of a conversation to someone",
+      "text": "over-explaining a simple question",
       "tags": [
-        "guilty"
+        "behavior",
+        "suspicious"
       ],
-      "tone": "wild",
-      "spice": 3,
+      "tone": "dry",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "googled their own name",
+      "text": "avoiding eye contact while talking",
       "tags": [
-        "guilty"
+        "behavior",
+        "tell"
       ],
-      "tone": "cringe",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "going silent for an unusually long time",
+      "tags": [
+        "behavior",
+        "withdrawal"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "buying surprise gifts out of nowhere",
+      "tags": [
+        "behavior",
+        "compensation"
+      ],
+      "tone": "dry",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "watched a show their partner wanted to watch together",
+      "text": "getting defensive before being accused of anything",
       "tags": [
-        "guilty"
+        "behavior",
+        "preemptive"
       ],
-      "tone": "cringe",
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "laughing too hard at something that isn't funny",
+      "tags": [
+        "behavior",
+        "nervous"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "checking their phone face-down",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "changing the subject when a specific topic comes up",
+      "tags": [
+        "behavior",
+        "avoidance"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "suddenly becoming extra nice",
+      "tags": [
+        "behavior",
+        "compensation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "deleting messages before handing over their phone",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "said 'I'm on my way' while still in bed",
+      "text": "starting every sentence with 'honestly'",
       "tags": [
-        "guilty"
+        "behavior",
+        "tell"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "clearing browser history the moment someone enters the room",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "offering way too many details about where they were",
+      "tags": [
+        "behavior",
+        "overcompensation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making nervous jokes about the exact thing they're guilty of",
+      "tags": [
+        "behavior",
+        "tell"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "immediately blaming someone else",
+      "tags": [
+        "behavior",
+        "deflection"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "suddenly wanting to change their phone password",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "agreeing to everything you say without pushback",
+      "tags": [
+        "behavior",
+        "appeasement"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "smiling while clearly panicking inside",
+      "tags": [
+        "behavior",
+        "nervous"
       ],
       "tone": "playful",
       "spice": 2,
@@ -101,9 +230,10 @@
       "needs_article": "none"
     },
     {
-      "text": "pretended to like a gift they hated",
+      "text": "typing and deleting a text 15 times before sending",
       "tags": [
-        "guilty"
+        "behavior",
+        "overthinking"
       ],
       "tone": "dry",
       "spice": 2,
@@ -112,20 +242,10 @@
       "needs_article": "none"
     },
     {
-      "text": "re-worn dirty clothes this week",
+      "text": "bringing up unrelated drama to distract from theirs",
       "tags": [
-        "guilty"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "faked laughing at a joke they didn't get",
-      "tags": [
-        "guilty"
+        "behavior",
+        "deflection"
       ],
       "tone": "dry",
       "spice": 2,
@@ -134,64 +254,46 @@
       "needs_article": "none"
     },
     {
-      "text": "stress-purchased something they didn't need",
+      "text": "going to bed unusually early to avoid conversation",
       "tags": [
-        "guilty"
+        "behavior",
+        "avoidance"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "judged someone's music taste out loud",
+      "text": "overusing 'I swear' and 'I promise'",
       "tags": [
-        "guilty"
+        "behavior",
+        "tell"
       ],
-      "tone": "wild",
+      "tone": "dry",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "gone through someone's phone without permission",
+      "text": "being weirdly specific about their alibi",
       "tags": [
-        "guilty"
+        "behavior",
+        "suspicious"
       ],
-      "tone": "wild",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "left someone on read on purpose",
-      "tags": [
-        "guilty"
-      ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "blamed a fart on someone else",
+      "text": "volunteering information nobody asked for",
       "tags": [
-        "guilty"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "regifted a present",
-      "tags": [
-        "guilty"
+        "behavior",
+        "overcompensation"
       ],
       "tone": "dry",
       "spice": 2,
@@ -200,23 +302,301 @@
       "needs_article": "none"
     },
     {
-      "text": "pretended to be on a phone call to avoid someone",
+      "text": "saying 'trust me' more than once in a sentence",
       "tags": [
-        "guilty"
+        "behavior",
+        "tell"
       ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "said 'I love you' and didn't mean it",
+      "text": "turning their phone on silent when someone enters the room",
       "tags": [
-        "guilty"
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "getting oddly quiet when a specific person is mentioned",
+      "tags": [
+        "behavior",
+        "avoidance"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "showering immediately when they get home",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "suddenly wanting to cook dinner when they never cook",
+      "tags": [
+        "behavior",
+        "compensation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "texting under the table and pretending they're not",
+      "tags": [
+        "behavior",
+        "hiding"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "laughing nervously and saying 'why would you even ask that?'",
+      "tags": [
+        "behavior",
+        "defensive"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being extra affectionate for no apparent reason",
+      "tags": [
+        "behavior",
+        "compensation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "offering to do all the chores without being asked",
+      "tags": [
+        "behavior",
+        "compensation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fidgeting with their hands while telling a story",
+      "tags": [
+        "behavior",
+        "nervous"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "avoiding a specific friend group all of a sudden",
+      "tags": [
+        "behavior",
+        "avoidance"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "constantly checking their DMs when they think nobody's looking",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "changing the passcode on their phone weekly",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "always keeping their phone face-down on the table",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "saying 'I can explain' before anyone asks them to",
+      "tags": [
+        "behavior",
+        "preemptive"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making plans to prove their alibi",
+      "tags": [
+        "behavior",
+        "calculated"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "suddenly wanting to spend way more quality time",
+      "tags": [
+        "behavior",
+        "compensation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "gaslighting you about what happened last Tuesday",
+      "tags": [
+        "behavior",
+        "toxic"
       ],
       "tone": "wild",
-      "spice": 4,
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "getting irrationally angry when questioned about something minor",
+      "tags": [
+        "behavior",
+        "defensive"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "leaving the room every time their phone rings",
+      "tags": [
+        "behavior",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "suddenly being really interested in your schedule and whereabouts",
+      "tags": [
+        "behavior",
+        "deflection"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "saying 'nothing' when asked what's wrong but clearly lying",
+      "tags": [
+        "behavior",
+        "avoidance"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "projecting their guilt onto you",
+      "tags": [
+        "behavior",
+        "toxic"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "nervously reorganizing the kitchen at 11pm",
+      "tags": [
+        "behavior",
+        "anxiety"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "triple-texting 'I love you' out of nowhere",
+      "tags": [
+        "behavior",
+        "compensation"
+      ],
+      "tone": "dry",
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

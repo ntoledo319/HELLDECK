@@ -2,220 +2,360 @@
   "slot_type": "life_stat",
   "entries": [
     {
-      "text": "serious relationships",
+      "text": "number of times you've been in love",
       "tags": [
-        "personal"
+        "stat",
+        "dating"
       ],
-      "tone": "dry",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "jobs they've been fired from",
-      "tags": [
-        "personal"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "times they've cried in public this year",
-      "tags": [
-        "personal"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "countries they've visited",
-      "tags": [
-        "personal"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "tattoos they regret",
-      "tags": [
-        "personal"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "times they've been in love",
-      "tags": [
-        "personal"
-      ],
-      "tone": "dry",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "speeding tickets in their lifetime",
-      "tags": [
-        "personal"
-      ],
-      "tone": "wild",
+      "tone": "neutral",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "times they've lied on a resume",
+      "text": "number of jobs you've quit",
       "tags": [
-        "personal"
+        "stat",
+        "work"
       ],
-      "tone": "dry",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "bones they've broken",
-      "tags": [
-        "personal"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "concerts they've been to",
-      "tags": [
-        "personal"
-      ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "times they've ghosted someone",
+      "text": "number of times you've moved",
       "tags": [
-        "personal"
+        "stat",
+        "life"
       ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "apartments or houses they've lived in",
-      "tags": [
-        "personal"
-      ],
-      "tone": "dry",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "embarrassing nicknames they've had",
+      "text": "number of countries you've visited",
       "tags": [
-        "personal"
+        "stat",
+        "travel"
       ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "times they've blacked out from drinking",
-      "tags": [
-        "personal"
-      ],
-      "tone": "wild",
-      "spice": 4,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pets they've owned",
-      "tags": [
-        "personal"
-      ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "weddings they've been to this year",
+      "text": "number of serious relationships",
       "tags": [
-        "personal"
+        "stat",
+        "dating"
       ],
-      "tone": "dry",
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've been ghosted",
+      "tags": [
+        "stat",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of pets you've had",
+      "tags": [
+        "stat",
+        "life"
+      ],
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "first dates in the past year",
+      "text": "number of concerts you've been to",
       "tags": [
-        "personal"
+        "stat",
+        "entertainment"
       ],
-      "tone": "cringe",
-      "spice": 3,
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "times they've been pulled over",
+      "text": "number of times you've cried this year",
       "tags": [
-        "personal"
+        "stat",
+        "emotional"
       ],
-      "tone": "wild",
+      "tone": "neutral",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "people they'd call at 3am in an emergency",
+      "text": "number of bones you've broken",
       "tags": [
-        "personal"
+        "stat",
+        "physical"
       ],
-      "tone": "dry",
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've been fired",
+      "tags": [
+        "stat",
+        "work"
+      ],
+      "tone": "neutral",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "New Year's resolutions they actually kept",
+      "text": "number of tattoos you have",
       "tags": [
-        "personal"
+        "stat",
+        "body"
       ],
-      "tone": "dry",
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of languages you speak",
+      "tags": [
+        "stat",
+        "skill"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of states you've lived in",
+      "tags": [
+        "stat",
+        "life"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've been in a fist fight",
+      "tags": [
+        "stat",
+        "physical"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of speeding tickets you've gotten",
+      "tags": [
+        "stat",
+        "driving"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've called in sick when not actually sick",
+      "tags": [
+        "stat",
+        "work"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of weddings you've been to",
+      "tags": [
+        "stat",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of books you've read this year",
+      "tags": [
+        "stat",
+        "intellectual"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of New Year's resolutions you've actually kept",
+      "tags": [
+        "stat",
+        "life"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've gone on a blind date",
+      "tags": [
+        "stat",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of friend groups you've cycled through",
+      "tags": [
+        "stat",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "age you had your first kiss",
+      "tags": [
+        "stat",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've been someone's plus-one",
+      "tags": [
+        "stat",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've pulled an all-nighter",
+      "tags": [
+        "stat",
+        "endurance"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of regrettable purchases over $100",
+      "tags": [
+        "stat",
+        "money"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've moved back in with your parents",
+      "tags": [
+        "stat",
+        "life"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "longest you've gone without texting anyone",
+      "tags": [
+        "stat",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you've been stood up",
+      "tags": [
+        "stat",
+        "dating"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of friendships that ended badly",
+      "tags": [
+        "stat",
+        "social"
+      ],
+      "tone": "neutral",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,

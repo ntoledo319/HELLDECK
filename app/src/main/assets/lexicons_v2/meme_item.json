@@ -2,893 +2,904 @@
   "slot_type": "meme_item",
   "entries": [
     {
-      "text": "distracted boyfriend",
+      "text": "a Crocs with socks combo",
       "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "woman yelling at cat",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "this is fine dog",
-      "tags": [
-        "meme"
+        "item",
+        "fashion"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "Hide the Pain Harold",
+      "text": "a fanny pack worn unironically",
       "tags": [
-        "meme"
+        "item",
+        "fashion"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Drake hotline bling",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "expanding brain",
-      "tags": [
-        "meme"
-      ],
-      "tone": "witty",
-      "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "surprised Pikachu",
+      "text": "a 'Live Laugh Love' sign",
       "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Bernie Sanders mittens",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "two buttons dilemma",
-      "tags": [
-        "meme"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "stonks guy",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Roll Safe thinking",
-      "tags": [
-        "meme"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "success kid",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "evil Kermit",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "galaxy brain",
-      "tags": [
-        "meme"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "blinking white guy",
-      "tags": [
-        "meme"
+        "item",
+        "decor"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "mocking SpongeBob",
+      "text": "a participation trophy",
       "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "change my mind",
-      "tags": [
-        "meme"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "disaster girl",
-      "tags": [
-        "meme"
+        "item",
+        "award"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "wojak crying",
-      "tags": [
-        "meme"
-      ],
-      "tone": "sad",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Chad yes",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "slaps roof of car",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they're the same picture",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "trade offer",
-      "tags": [
-        "meme"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "left exit 12",
-      "tags": [
-        "meme"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "American Chopper argument",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "monkey puppet",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "running away balloon",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "is this a pigeon",
+      "text": "a body pillow of an anime character",
       "tags": [
-        "meme"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "doge",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "cheems",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Y U NO guy",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "one does not simply",
-      "tags": [
-        "meme"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Batman slapping Robin",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "NPC Wojak",
-      "tags": [
-        "meme"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "brain size increases",
-      "tags": [
-        "meme"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Bugs Bunny no",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Leonardo DiCaprio pointing",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "always has been astronaut",
-      "tags": [
-        "meme"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Gru's plan",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "girl explaining to guy",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Pepe the Frog",
-      "tags": [
-        "meme"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "salt bae",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Spider-Man pointing",
-      "tags": [
-        "meme"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the friend who says 'let him cook'",
-      "tags": [
-        "meme",
-        "friend",
-        "supportive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one with main character energy",
-      "tags": [
-        "meme",
-        "personality",
-        "confident"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the chronically online one",
-      "tags": [
-        "meme",
-        "personality",
-        "internet"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the delulu one",
-      "tags": [
-        "meme",
-        "personality",
-        "delusional"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one with W rizz",
-      "tags": [
-        "meme",
-        "personality",
-        "charismatic"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one with L rizz",
-      "tags": [
-        "meme",
-        "personality",
-        "awkward"
+        "item",
+        "niche"
       ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the NPC friend",
+      "text": "a fake plant that's still somehow dying",
       "tags": [
-        "meme",
-        "personality",
-        "boring"
+        "item",
+        "decor"
       ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one who's always in their villain era",
-      "tags": [
-        "meme",
-        "mood",
-        "chaotic"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one in their healing era",
-      "tags": [
-        "meme",
-        "mood",
-        "growth"
-      ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the one in their flop era",
+      "text": "a Bluetooth speaker at a park",
       "tags": [
-        "meme",
-        "mood",
-        "struggling"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the golden retriever friend",
-      "tags": [
-        "meme",
-        "personality",
-        "happy"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the black cat friend",
-      "tags": [
-        "meme",
-        "personality",
-        "mysterious"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the himbo of the group",
-      "tags": [
-        "meme",
-        "personality",
-        "lovable"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the bimbo of the group",
-      "tags": [
-        "meme",
-        "personality",
-        "lovable"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the theater kid",
-      "tags": [
-        "meme",
-        "personality",
-        "dramatic"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the band kid",
-      "tags": [
-        "meme",
-        "personality",
-        "quirky"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the horse girl",
-      "tags": [
-        "meme",
-        "personality",
-        "unique"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one with goblin mode activated",
-      "tags": [
-        "meme",
-        "mood",
-        "chaotic"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the pick me friend",
-      "tags": [
-        "meme",
-        "personality",
+        "item",
         "annoying"
       ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a bumper sticker that says 'my other car is a BMW'",
+      "tags": [
+        "item",
+        "cringe"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a gym selfie ring light",
+      "tags": [
+        "item",
+        "fitness"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a monogrammed towel set",
+      "tags": [
+        "item",
+        "bougie"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an inspirational poster in Comic Sans",
+      "tags": [
+        "item",
+        "cringe"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a 'World's Best Dad' mug used ironically",
+      "tags": [
+        "item",
+        "ironic"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an expired coupon collection",
+      "tags": [
+        "item",
+        "frugal"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a foam finger at a non-sporting event",
+      "tags": [
+        "item",
+        "random"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a life-size cardboard cutout of Danny DeVito",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a bedazzled phone case",
+      "tags": [
+        "item",
+        "fashion"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a motivational poster in a cubicle",
+      "tags": [
+        "item",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a novelty mug that says something inappropriate",
+      "tags": [
+        "item",
+        "gift"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Costco-sized jar of mayo",
+      "tags": [
+        "item",
+        "food"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Squishmallow collection for adults",
+      "tags": [
+        "item",
+        "hobby"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Ring doorbell used to spy on neighbors",
+      "tags": [
+        "item",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a roomba named after an ex",
+      "tags": [
+        "item",
+        "tech"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an air fryer that someone won't stop talking about",
+      "tags": [
+        "item",
+        "food"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a car air freshener from 2019",
+      "tags": [
+        "item",
+        "car"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a vision board that's way too ambitious",
+      "tags": [
+        "item",
+        "self-help"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a weighted blanket used as emotional support",
+      "tags": [
+        "item",
+        "comfort"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a crystals collection for 'healing energy'",
+      "tags": [
+        "item",
+        "spiritual"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a yoga mat that's never seen a yoga class",
+      "tags": [
+        "item",
+        "fitness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a journal with exactly one entry",
+      "tags": [
+        "item",
+        "self-help"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Stanley cup in every color",
+      "tags": [
+        "item",
+        "trend"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Costco membership card flexed like a black AMEX",
+      "tags": [
+        "item",
+        "shopping"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an emotional support water bottle",
+      "tags": [
+        "item",
+        "comfort"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a meal prep container set that's only been used once",
+      "tags": [
+        "item",
+        "fitness"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Peloton used as a clothing rack",
+      "tags": [
+        "item",
+        "fitness"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a whiteboard with a to-do list from 3 months ago",
+      "tags": [
+        "item",
+        "productivity"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a selfie stick in 2025",
+      "tags": [
+        "item",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a matching pajama set for the whole family",
+      "tags": [
+        "item",
+        "family"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a novelty apron that says 'Kiss the Cook'",
+      "tags": [
+        "item",
+        "cooking"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a throw pillow with a celebrity's face on it",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a car with 47 bumper stickers",
+      "tags": [
+        "item",
+        "vehicle"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Craigslist futon with a backstory",
+      "tags": [
+        "item",
+        "furniture"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a framed motivational quote from Instagram",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a smart home device that's always listening",
+      "tags": [
+        "item",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a passport holder with zero stamps",
+      "tags": [
+        "item",
+        "travel"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a wine glass that holds an entire bottle",
+      "tags": [
+        "item",
+        "drinking"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Tinder Gold subscription",
+      "tags": [
+        "item",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a burner phone 'for emergencies'",
+      "tags": [
+        "item",
+        "sketchy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a backup phone charger in every room",
+      "tags": [
+        "item",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a LinkedIn profile that reads like a dating profile",
+      "tags": [
+        "item",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a therapy appointment reminder on the shared calendar",
+      "tags": [
+        "item",
+        "mental-health"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a protein shaker that hasn't been washed in a week",
+      "tags": [
+        "item",
+        "fitness"
+      ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the one who's always down bad",
+      "text": "a subscription box nobody asked for",
       "tags": [
-        "meme",
-        "mood",
-        "desperate"
+        "item",
+        "shopping"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a tarot card deck used for real decisions",
+      "tags": [
+        "item",
+        "spiritual"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a gratitude journal with increasingly unhinged entries",
+      "tags": [
+        "item",
+        "self-help"
       ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the simp",
+      "text": "a collection of hotel shampoo bottles",
       "tags": [
-        "meme",
-        "personality",
-        "desperate"
+        "item",
+        "frugal"
       ],
-      "tone": "wild",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a dating app still installed 'just in case'",
+      "tags": [
+        "item",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an astrology app that makes daily decisions",
+      "tags": [
+        "item",
+        "spiritual"
+      ],
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "an"
     },
     {
-      "text": "the one who needs to touch grass",
+      "text": "a signed celebrity photo on the nightstand",
       "tags": [
-        "meme",
-        "personality",
-        "online"
+        "item",
+        "obsession"
       ],
       "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one who's mid at best",
-      "tags": [
-        "meme",
-        "personality",
-        "mediocre"
-      ],
-      "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the one who's bussin",
+      "text": "a fidget spinner in 2025",
       "tags": [
-        "meme",
-        "personality",
-        "cool"
+        "item",
+        "outdated"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a shower beer holder",
+      "tags": [
+        "item",
+        "drinking"
       ],
       "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one who understood the assignment",
-      "tags": [
-        "meme",
-        "personality",
-        "successful"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one who ate and left no crumbs",
-      "tags": [
-        "meme",
-        "personality",
-        "successful"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the one living rent free in everyone's head",
-      "tags": [
-        "meme",
-        "personality",
-        "memorable"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the unhinged one",
-      "tags": [
-        "meme",
-        "personality",
-        "chaotic"
-      ],
-      "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the feral one",
+      "text": "a Costco hot dog combo for $1.50",
       "tags": [
-        "meme",
-        "personality",
-        "wild"
+        "item",
+        "food"
       ],
-      "tone": "wild",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a Chia Pet shaped like a celebrity",
+      "tags": [
+        "item",
+        "novelty"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a 'Baby on Board' sign with no baby",
+      "tags": [
+        "item",
+        "car"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an inspirational shower curtain",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a cat calendar from 3 years ago still on the wall",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an aggressive amount of scented candles",
+      "tags": [
+        "item",
+        "home"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a custom license plate that makes no sense",
+      "tags": [
+        "item",
+        "car"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a goldfish won at a carnival",
+      "tags": [
+        "item",
+        "pet"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a friendship bracelet from someone you no longer talk to",
+      "tags": [
+        "item",
+        "sentimental"
+      ],
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the one with no thoughts head empty",
+      "text": "a poster of a kitten hanging from a branch saying 'Hang in there'",
       "tags": [
-        "meme",
-        "personality",
-        "airhead"
+        "item",
+        "motivational"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the one with one brain cell",
+      "text": "a 'world's best' anything mug from the dollar store",
       "tags": [
-        "meme",
-        "personality",
-        "dumb"
+        "item",
+        "gift"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "the smooth brain",
+      "text": "a decorative sword mounted on the wall",
       "tags": [
-        "meme",
-        "personality",
-        "dumb"
+        "item",
+        "decor"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
+    },
+    {
+      "text": "a Bluetooth speaker clipped to a backpack",
+      "tags": [
+        "item",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "an expired Groupon",
+      "tags": [
+        "item",
+        "coupon"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "a neon sign that says 'Good Vibes Only'",
+      "tags": [
+        "item",
+        "decor"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
     }
   ]
 }

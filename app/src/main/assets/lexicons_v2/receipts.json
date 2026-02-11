@@ -2,26 +2,11 @@
   "slot_type": "receipts",
   "entries": [
     {
-      "text": "they've done it three times this week",
-      "tags": ["evidence", "frequency"],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "we all saw the screenshots",
-      "tags": ["evidence", "proof"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's literally their personality",
-      "tags": ["evidence", "character"],
+      "text": "a screenshot from 6 months ago",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -29,53 +14,11 @@
       "needs_article": "none"
     },
     {
-      "text": "everyone's thinking it",
-      "tags": ["evidence", "consensus"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they literally just did it yesterday",
-      "tags": ["evidence", "recent"],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Instagram proves it",
-      "tags": ["evidence", "social-media"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "we have a group chat about this",
-      "tags": ["evidence", "gossip"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's in their bio",
-      "tags": ["evidence", "self-proclaimed"],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they won't stop talking about it",
-      "tags": ["evidence", "annoying"],
+      "text": "the group chat backup",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -83,8 +26,59 @@
       "needs_article": "none"
     },
     {
-      "text": "their search history would confirm",
-      "tags": ["evidence", "creepy"],
+      "text": "a saved voicemail",
+      "tags": [
+        "receipt",
+        "audio"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "an Uber receipt to the wrong address",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a tagged photo they forgot about",
+      "tags": [
+        "receipt",
+        "social-media"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a Venmo transaction with a suspicious memo",
+      "tags": [
+        "receipt",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a forwarded DM from a mutual friend",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -92,71 +86,11 @@
       "needs_article": "none"
     },
     {
-      "text": "they've been caught before",
-      "tags": ["evidence", "repeat-offender"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's their go-to move",
-      "tags": ["evidence", "pattern"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they literally admitted it last week",
-      "tags": ["evidence", "confession"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Spotify wrapped exposed them",
-      "tags": ["evidence", "music"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "we've all seen their camera roll",
-      "tags": ["evidence", "photos"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's their entire vibe",
-      "tags": ["evidence", "energy"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they do it every single time",
-      "tags": ["evidence", "consistent"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their ex warned us",
-      "tags": ["evidence", "testimony"],
+      "text": "a screen recording of a suspicious live",
+      "tags": [
+        "receipt",
+        "visual"
+      ],
       "tone": "wild",
       "spice": 3,
       "locality": 1,
@@ -164,8 +98,23 @@
       "needs_article": "none"
     },
     {
-      "text": "they literally bragged about it",
-      "tags": ["evidence", "proud"],
+      "text": "a credit card statement they can't explain",
+      "tags": [
+        "receipt",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "an old text thread that contradicts their current story",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -173,17 +122,35 @@
       "needs_article": "none"
     },
     {
-      "text": "it's their toxic trait",
-      "tags": ["evidence", "flaw"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
+      "text": "a Ring camera notification at 3am",
+      "tags": [
+        "receipt",
+        "visual"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "they've been doing it since high school",
-      "tags": ["evidence", "longterm"],
+      "text": "a love letter found in a jacket pocket",
+      "tags": [
+        "receipt",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a notification that popped up at the wrong time",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -191,89 +158,71 @@
       "needs_article": "none"
     },
     {
-      "text": "their TikTok FYP is all about it",
-      "tags": ["evidence", "algorithm"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they can't help themselves",
-      "tags": ["evidence", "compulsion"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's their brand at this point",
-      "tags": ["evidence", "identity"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they literally have a reputation",
-      "tags": ["evidence", "known"],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Venmo history tells the story",
-      "tags": ["evidence", "financial"],
+      "text": "a burner app hidden on their phone",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they've been subtweeted about it",
-      "tags": ["evidence", "called-out"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's their comfort zone",
-      "tags": ["evidence", "habit"],
-      "tone": "dry",
-      "spice": 1,
+      "spice": 4,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "they literally wrote a thread about it",
-      "tags": ["evidence", "documented"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
+      "text": "a suspicious Google Maps search history",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their therapist probably knows",
-      "tags": ["evidence", "deep"],
+      "text": "a playlist dedicated to someone else",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a hotel booking confirmation email",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "an AirDrop that wasn't meant for you",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "they've made it their whole personality",
-      "tags": ["evidence", "obsessed"],
+      "text": "a conversation overheard through thin walls",
+      "tags": [
+        "receipt",
+        "witness"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -281,8 +230,11 @@
       "needs_article": "none"
     },
     {
-      "text": "it's literally documented",
-      "tags": ["evidence", "proof"],
+      "text": "a friend's confession over wine",
+      "tags": [
+        "receipt",
+        "witness"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -290,44 +242,23 @@
       "needs_article": "none"
     },
     {
-      "text": "they do it without thinking",
-      "tags": ["evidence", "automatic"],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Pinterest board is suspicious",
-      "tags": ["evidence", "planning"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they've been called out multiple times",
-      "tags": ["evidence", "notorious"],
+      "text": "an accidentally synced iCloud photo",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "wild",
-      "spice": 2,
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "it's their signature move",
-      "tags": ["evidence", "trademark"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they literally can't stop",
-      "tags": ["evidence", "addiction"],
+      "text": "a dated receipt from a jewelry store",
+      "tags": [
+        "receipt",
+        "financial"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -335,17 +266,35 @@
       "needs_article": "none"
     },
     {
-      "text": "their Amazon orders prove it",
-      "tags": ["evidence", "shopping"],
+      "text": "their recently deleted photos album",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "wild",
-      "spice": 2,
-      "locality": 2,
+      "spice": 3,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "they've been doing it for years",
-      "tags": ["evidence", "veteran"],
+      "text": "a lipstick stain on a collar",
+      "tags": [
+        "receipt",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a Spotify blend that reveals their listening buddy",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
@@ -353,101 +302,302 @@
       "needs_article": "none"
     },
     {
-      "text": "it's their coping mechanism",
-      "tags": ["evidence", "psychological"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they literally have a playlist for it",
-      "tags": ["evidence", "prepared"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "everyone's noticed",
-      "tags": ["evidence", "obvious"],
+      "text": "a saved Instagram story download",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "they've made TikToks about it",
-      "tags": ["evidence", "public"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's their default setting",
-      "tags": ["evidence", "natural"],
+      "text": "a flight booking for two",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
-      "spice": 1,
+      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "they literally have a system",
-      "tags": ["evidence", "organized"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Google calendar is full of it",
-      "tags": ["evidence", "scheduled"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they've been exposed",
-      "tags": ["evidence", "caught"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "it's their comfort activity",
-      "tags": ["evidence", "routine"],
+      "text": "a late-night DoorDash order for two",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
       "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "they literally have receipts saved",
-      "tags": ["evidence", "prepared"],
-      "tone": "wild",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "it's their Roman Empire",
-      "tags": ["evidence", "obsession"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "text": "security footage from the building",
+      "tags": [
+        "receipt",
+        "visual"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a friend's accidental confession in the group chat",
+      "tags": [
+        "receipt",
+        "witness"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a note left in the wrong jacket",
+      "tags": [
+        "receipt",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a shared Netflix profile showing their activity",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "an emergency contact listing someone unexpected",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a Find My Friends ping in the wrong location",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Apple Watch showing elevated heart rate at suspicious times",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a forgotten calendar event that tells the whole story",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a second set of keys found in a drawer",
+      "tags": [
+        "receipt",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a gym selfie geotagged at the wrong location",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a receipt for flowers you never received",
+      "tags": [
+        "receipt",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their phone screen lighting up with a suspicious name at dinner",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a text accidentally forwarded to the group chat",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a dating app notification on the lock screen",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a bathroom selfie at an unfamiliar apartment",
+      "tags": [
+        "receipt",
+        "visual"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their ex's stuff still in the closet",
+      "tags": [
+        "receipt",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a saved contact with a suspicious nickname",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a Polaroid found in a book",
+      "tags": [
+        "receipt",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a 'close friends' story they didn't know you could see",
+      "tags": [
+        "receipt",
+        "social-media"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their search history for 'how to delete messages permanently'",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a friend's phone accidentally showing your partner's DM",
+      "tags": [
+        "receipt",
+        "digital"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a parking ticket from a neighborhood they said they've never been to",
+      "tags": [
+        "receipt",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     }

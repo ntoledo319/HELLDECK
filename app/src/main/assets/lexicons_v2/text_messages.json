@@ -1,30 +1,485 @@
 {
   "slot_type": "text_messages",
   "entries": [
-    { "text": "We need to talk when you get home", "tags": ["dread", "relationship"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Can you explain this photo I found?", "tags": ["dread", "accusation"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I saw what you posted last night", "tags": ["social", "accusation"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Are you free to chat for a minute?", "tags": ["work", "dread"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I've been thinking about us...", "tags": ["relationship", "bomb"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "So about last night...", "tags": ["relationship", "dread"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I need to tell you something but promise not to be mad", "tags": ["dread", "social"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Your name came up in conversation today", "tags": ["dread", "social"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Call me ASAP it's urgent", "tags": ["dread", "emergency"], "tone": "wild", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I know what you did", "tags": ["accusation", "dread"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Please come to my office when you arrive", "tags": ["work", "authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I had a dream about you last night", "tags": ["relationship", "cringe"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Can I ask you something private?", "tags": ["social", "dread"], "tone": "cringe", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I need to enter your apartment today", "tags": ["authority", "dread"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Sorry wrong person lol... unless?", "tags": ["relationship", "cringe"], "tone": "playful", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Who is this person in your tagged photos?", "tags": ["relationship", "accusation"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I found something in your room", "tags": ["family", "dread"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Don't be mad but I accidentally told everyone", "tags": ["social", "dread"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Can we talk when you get home?", "tags": ["family", "dread"], "tone": "dry", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I just saw you but you didn't see me", "tags": ["stranger", "creepy"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Congratulations on the new relationship ;)", "tags": ["relationship", "passive"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "We've noticed something on your account", "tags": ["work", "authority"], "tone": "dry", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Is this your wallet I found?", "tags": ["stranger", "social"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Where were you last night?", "tags": ["relationship", "accusation"], "tone": "wild", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "I miss you", "tags": ["relationship", "bomb"], "tone": "cringe", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" }
+    {
+      "text": "hey are you up?",
+      "tags": [
+        "text",
+        "late-night"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "we need to talk",
+      "tags": [
+        "text",
+        "serious"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I just saw something and I'm shook",
+      "tags": [
+        "text",
+        "gossip"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "don't be mad but...",
+      "tags": [
+        "text",
+        "uh-oh"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I'm outside",
+      "tags": [
+        "text",
+        "surprise"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "can you come pick me up? long story",
+      "tags": [
+        "text",
+        "emergency"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I told my mom about us",
+      "tags": [
+        "text",
+        "relationship"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "check your email NOW",
+      "tags": [
+        "text",
+        "urgent"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I need a favor and you can't say no",
+      "tags": [
+        "text",
+        "suspicious"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're not gonna believe what just happened",
+      "tags": [
+        "text",
+        "gossip"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I just deleted the evidence lol",
+      "tags": [
+        "text",
+        "sketchy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pretend you don't know me if anyone asks",
+      "tags": [
+        "text",
+        "sketchy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I may have accidentally committed a crime",
+      "tags": [
+        "text",
+        "chaos"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "so funny story...",
+      "tags": [
+        "text",
+        "disaster"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I'm never drinking again",
+      "tags": [
+        "text",
+        "regret"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I think I left something at your place 👀",
+      "tags": [
+        "text",
+        "flirty"
+      ],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "my therapist said I should tell you this",
+      "tags": [
+        "text",
+        "serious"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I just got fired lol",
+      "tags": [
+        "text",
+        "disaster"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I miss you. wait wrong person",
+      "tags": [
+        "text",
+        "awkward"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "can you keep a secret?",
+      "tags": [
+        "text",
+        "gossip"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I know what you did",
+      "tags": [
+        "text",
+        "threatening"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you left your location on btw",
+      "tags": [
+        "text",
+        "busted"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lmaooo who told you that??",
+      "tags": [
+        "text",
+        "defensive"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "bro I just walked in on something I cannot unsee",
+      "tags": [
+        "text",
+        "disaster"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "can I crash at your place tonight? don't ask why",
+      "tags": [
+        "text",
+        "emergency"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I screenshot everything btw",
+      "tags": [
+        "text",
+        "threat"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I think your partner just followed me on Instagram",
+      "tags": [
+        "text",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hypothetically... how do you delete a text you already sent?",
+      "tags": [
+        "text",
+        "panic"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I'm at the hospital but I'm fine. mostly.",
+      "tags": [
+        "text",
+        "emergency"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "that was meant for someone else please delete",
+      "tags": [
+        "text",
+        "panic"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "so about last night...",
+      "tags": [
+        "text",
+        "regret"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I think we should talk in person",
+      "tags": [
+        "text",
+        "serious"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "don't look at my story rn",
+      "tags": [
+        "text",
+        "chaos"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I just saw your ex and WHEW",
+      "tags": [
+        "text",
+        "gossip"
+      ],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "okay but this stays between us",
+      "tags": [
+        "text",
+        "secret"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "new phone who dis",
+      "tags": [
+        "text",
+        "avoidance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "I can explain",
+      "tags": [
+        "text",
+        "defense"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "why is your car in my neighborhood at 3am?",
+      "tags": [
+        "text",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're trending on Twitter and not in a good way",
+      "tags": [
+        "text",
+        "disaster"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "congrats, you're going viral 😬",
+      "tags": [
+        "text",
+        "disaster"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }

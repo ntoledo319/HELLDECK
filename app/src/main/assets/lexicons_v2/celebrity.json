@@ -2,20 +2,274 @@
   "slot_type": "celebrity",
   "entries": [
     {
-      "text": "Your Ex",
+      "text": "Beyoncé",
       "tags": [
-        "person"
+        "celeb",
+        "music"
       ],
-      "tone": "cringe",
-      "spice": 3,
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "Your Dentist",
+      "text": "The Rock",
       "tags": [
-        "person"
+        "celeb",
+        "actor"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Taylor Swift",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Drake",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Kim Kardashian",
+      "tags": [
+        "celeb",
+        "reality"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Oprah",
+      "tags": [
+        "celeb",
+        "tv"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Elon Musk",
+      "tags": [
+        "celeb",
+        "tech"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Gordon Ramsay",
+      "tags": [
+        "celeb",
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Snoop Dogg",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Lady Gaga",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Kanye West",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Kevin Hart",
+      "tags": [
+        "celeb",
+        "comedy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Billie Eilish",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Post Malone",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Zendaya",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Ryan Reynolds",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Cardi B",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Bad Bunny",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Pete Davidson",
+      "tags": [
+        "celeb",
+        "comedy"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Lizzo",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Danny DeVito",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Ice Spice",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Jeff Bezos",
+      "tags": [
+        "celeb",
+        "tech"
       ],
       "tone": "dry",
       "spice": 1,
@@ -24,20 +278,70 @@
       "needs_article": "none"
     },
     {
-      "text": "A Florida Man",
+      "text": "Ariana Grande",
       "tags": [
-        "person"
+        "celeb",
+        "music"
       ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "Your Mom",
+      "text": "Timothée Chalamet",
       "tags": [
-        "person"
+        "celeb",
+        "actor"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Guy Fieri",
+      "tags": [
+        "celeb",
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Rihanna",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Nicolas Cage",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Doja Cat",
+      "tags": [
+        "celeb",
+        "music"
       ],
       "tone": "playful",
       "spice": 2,
@@ -46,42 +350,226 @@
       "needs_article": "none"
     },
     {
-      "text": "A Priest",
+      "text": "Travis Kelce",
       "tags": [
-        "person"
+        "celeb",
+        "sports"
       ],
-      "tone": "wild",
-      "spice": 3,
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "A Mall Santa",
+      "text": "Keanu Reeves",
       "tags": [
-        "person"
+        "celeb",
+        "actor"
       ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "The IRS",
+      "text": "Martha Stewart",
       "tags": [
-        "concept"
+        "celeb",
+        "lifestyle"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Nicki Minaj",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "MrBeast",
+      "tags": [
+        "celeb",
+        "youtube"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Kendrick Lamar",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "SZA",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Harry Styles",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Megan Thee Stallion",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Adam Sandler",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Jack Black",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Sydney Sweeney",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Tom Holland",
+      "tags": [
+        "celeb",
+        "actor"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Dolly Parton",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Shakira",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Lil Nas X",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Dua Lipa",
+      "tags": [
+        "celeb",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Mark Zuckerberg",
+      "tags": [
+        "celeb",
+        "tech"
       ],
       "tone": "dry",
-      "spice": 2,
-      "locality": 2,
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "A Magician",
+      "text": "Trevor Noah",
       "tags": [
-        "person"
+        "celeb",
+        "comedy"
       ],
       "tone": "playful",
       "spice": 1,
@@ -90,133 +578,25 @@
       "needs_article": "none"
     },
     {
-      "text": "Your Uber Driver",
+      "text": "Margot Robbie",
       "tags": [
-        "person"
+        "celeb",
+        "actor"
       ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Vampire",
-      "tags": [
-        "fiction"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Toddler With A Knife",
-      "tags": [
-        "fiction"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Zebra",
-      "tags": [
-        "animal"
-      ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "A Retired Wrestler",
+      "text": "Will Smith",
       "tags": [
-        "person"
+        "celeb",
+        "actor"
       ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Your Boss At 2am",
-      "tags": [
-        "person"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Conspiracy Theorist",
-      "tags": [
-        "person"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Sponge",
-      "tags": [
-        "object"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Sleep Paralysis Demon",
-      "tags": [
-        "fiction"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Pigeon",
-      "tags": [
-        "animal"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "Your Therapist Off The Clock",
-      "tags": [
-        "person"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "A Haunted Doll",
-      "tags": [
-        "fiction"
-      ],
-      "tone": "wild",
-      "spice": 3,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

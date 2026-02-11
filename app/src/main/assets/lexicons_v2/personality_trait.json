@@ -2,42 +2,10 @@
   "slot_type": "personality_trait",
   "entries": [
     {
-      "text": "funny",
+      "text": "chronically late to everything",
       "tags": [
-        "trait"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "emotionally available",
-      "tags": [
-        "trait"
-      ],
-      "tone": "dry",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "street smart",
-      "tags": [
-        "trait"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "book smart",
-      "tags": [
-        "trait"
+        "trait",
+        "flaw"
       ],
       "tone": "dry",
       "spice": 1,
@@ -46,64 +14,10 @@
       "needs_article": "none"
     },
     {
-      "text": "self-aware",
+      "text": "aggressively optimistic",
       "tags": [
-        "trait"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "intimidating",
-      "tags": [
-        "trait"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "trustworthy",
-      "tags": [
-        "trait"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "petty",
-      "tags": [
-        "trait"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "dramatic",
-      "tags": [
-        "trait"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "adventurous",
-      "tags": [
-        "trait"
+        "trait",
+        "positive"
       ],
       "tone": "playful",
       "spice": 1,
@@ -112,9 +26,34 @@
       "needs_article": "none"
     },
     {
-      "text": "empathetic",
+      "text": "passive-aggressive in group chats",
       "tags": [
-        "trait"
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a people-pleaser to a fault",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "terminally indecisive",
+      "tags": [
+        "trait",
+        "flaw"
       ],
       "tone": "dry",
       "spice": 1,
@@ -123,9 +62,58 @@
       "needs_article": "none"
     },
     {
-      "text": "charismatic",
+      "text": "obnoxiously confident",
       "tags": [
-        "trait"
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "secretly competitive about everything",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the person who always plays devil's advocate",
+      "tags": [
+        "trait",
+        "annoying"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emotionally unavailable but great at texting",
+      "tags": [
+        "trait",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a chronic oversharer",
+      "tags": [
+        "trait",
+        "social"
       ],
       "tone": "playful",
       "spice": 2,
@@ -134,9 +122,382 @@
       "needs_article": "none"
     },
     {
-      "text": "confrontational",
+      "text": "the friend who disappears in a relationship",
       "tags": [
-        "trait"
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone who makes everything a competition",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the one who always has a worse version of your story",
+      "tags": [
+        "trait",
+        "annoying"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "brutally honest at the worst times",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "lovably chaotic",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pathologically early to everything",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "incapable of keeping a secret",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the designated driver by default",
+      "tags": [
+        "trait",
+        "responsible"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a serial planner who hates spontaneity",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the friend everyone goes to for advice but never takes it",
+      "tags": [
+        "trait",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "effortlessly cool and it's infuriating",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "fiercely loyal to a fault",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a walking Wikipedia of useless facts",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the person who always says 'I told you so'",
+      "tags": [
+        "trait",
+        "annoying"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "catastrophically bad at reading the room",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unapologetically petty",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the human equivalent of a golden retriever",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "emotionally intelligent beyond their years",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the friend who always has a plan",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone who gives advice they never follow",
+      "tags": [
+        "trait",
+        "hypocrite"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "delusionally confident",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the life of the party until they're not",
+      "tags": [
+        "trait",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a control freak disguised as 'organized'",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "chaotically good-hearted",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the person who peaks at pre-gaming",
+      "tags": [
+        "trait",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "anxiety masquerading as productivity",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the person who cries at every movie",
+      "tags": [
+        "trait",
+        "emotional"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "terminally online",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a perfectionist about the dumbest things",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "loyal until proven stupid",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the friend who always knows someone who knows someone",
+      "tags": [
+        "trait",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pathologically funny at funerals",
+      "tags": [
+        "trait",
+        "flaw"
       ],
       "tone": "wild",
       "spice": 3,
@@ -145,9 +506,22 @@
       "needs_article": "none"
     },
     {
-      "text": "low-maintenance",
+      "text": "the emotional support friend of the group",
       "tags": [
-        "trait"
+        "trait",
+        "positive"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "unintentionally intimidating",
+      "tags": [
+        "trait",
+        "quirk"
       ],
       "tone": "dry",
       "spice": 2,
@@ -156,42 +530,10 @@
       "needs_article": "none"
     },
     {
-      "text": "bougie",
+      "text": "the world's worst liar",
       "tags": [
-        "trait"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "emotionally mature",
-      "tags": [
-        "trait"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "good under pressure",
-      "tags": [
-        "trait"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "chill",
-      "tags": [
-        "trait"
+        "trait",
+        "flaw"
       ],
       "tone": "playful",
       "spice": 1,
@@ -200,23 +542,181 @@
       "needs_article": "none"
     },
     {
-      "text": "stubborn",
+      "text": "aggressively generous",
       "tags": [
-        "trait"
+        "trait",
+        "positive"
       ],
-      "tone": "cringe",
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the friend who always knows the drama",
+      "tags": [
+        "trait",
+        "social"
+      ],
+      "tone": "playful",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "romantic",
+      "text": "suspiciously calm in emergencies",
       "tags": [
-        "trait"
+        "trait",
+        "quirk"
       ],
-      "tone": "cringe",
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the person who always has a snack",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "deeply awkward but owns it",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a hopeless romantic in denial",
+      "tags": [
+        "trait",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the person who brings a guitar to parties",
+      "tags": [
+        "trait",
+        "annoying"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the designated mom friend",
+      "tags": [
+        "trait",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "peak chaos energy at all times",
+      "tags": [
+        "trait",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "annoyingly good at everything they try",
+      "tags": [
+        "trait",
+        "positive"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the type to have a comeback 3 hours later",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "dangerously persuasive",
+      "tags": [
+        "trait",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a serial ghoster with zero guilt",
+      "tags": [
+        "trait",
+        "dating"
+      ],
+      "tone": "dry",
       "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the person who always says they're fine when they're clearly not",
+      "tags": [
+        "trait",
+        "flaw"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "physically incapable of whispering",
+      "tags": [
+        "trait",
+        "quirk"
+      ],
+      "tone": "playful",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

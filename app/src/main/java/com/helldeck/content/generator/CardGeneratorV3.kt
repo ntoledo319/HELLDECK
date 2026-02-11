@@ -53,6 +53,11 @@ class CardGeneratorV3(
         val candidates = blueprintRepository.forGame(gameId)
         if (candidates.isEmpty()) return goldFallback(request, rng)
 
+        // Gold-first: serve curated gold cards ~40% of the time for guaranteed quality
+        if (rng.random.nextDouble() < 0.40) {
+            goldFallback(request, rng)?.let { return it }
+        }
+
         val filtered = candidates.filter { blueprint ->
             banlist?.isBlueprintBanned(blueprint.id) != true &&
                 (blueprint.constraints.min_players <= (request.players.size))
@@ -201,6 +206,7 @@ class CardGeneratorV3(
         cardList.add(text)
 
         val options = resolveOptions(blueprint, slots, request)
+        // Align timer with authoritative metadata to keep tests/contracts in sync
         val timer = GameMetadata.getGameMetadata(blueprint.game)?.timerSec ?: 15
         val interactionType = GameMetadata.getGameMetadata(blueprint.game)?.interactionType ?: InteractionType.NONE
 

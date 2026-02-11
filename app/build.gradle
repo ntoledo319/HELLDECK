@@ -82,9 +82,9 @@ android {
       // Production signing configuration
       // These should be configured via environment variables or gradle.properties
       storeFile file(System.getenv('KEYSTORE_PATH') ?: 'release.keystore')
-      storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'default_password'
-      keyAlias System.getenv('KEY_ALIAS') ?: 'helldeck'
-      keyPassword System.getenv('KEY_PASSWORD') ?: 'default_password'
+      storePassword System.getenv('KEYSTORE_PASSWORD') ?: ''
+      keyAlias System.getenv('KEY_ALIAS') ?: ''
+      keyPassword System.getenv('KEY_PASSWORD') ?: ''
 
       // Enable v1 and v2 signing
       v1SigningEnabled true
@@ -103,7 +103,7 @@ android {
       // signingConfig signingConfigs.release
 
       // Enable crash reporting for release builds
-      buildConfigField "String", "CRASH_REPORTING_DSN", "\"https://your-crash-reporting-dsn@sentry.io/project-id\""
+      buildConfigField "String", "CRASH_REPORTING_DSN", "\"\""
     }
     debug {
       minifyEnabled false
@@ -229,6 +229,7 @@ dependencies {
   debugImplementation 'androidx.test.ext:junit:1.2.1'
   debugImplementation 'androidx.test:runner:1.6.1'
   debugImplementation 'androidx.compose.ui:ui-test-junit4'
+  debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
   // Enhanced Testing Dependencies
   testImplementation 'junit:junit:4.13.2'
@@ -244,6 +245,8 @@ dependencies {
   // Compose Testing
   testImplementation platform('androidx.compose:compose-bom:2024.06.00')
   testImplementation 'androidx.compose.ui:ui-test-junit4'
+  // Provide the Compose test manifest for ALL unit-test variants (debug + release flavors)
+  testImplementation 'androidx.compose.ui:ui-test-manifest'
 
   // Android Instrumented Testing
   androidTestImplementation platform('androidx.compose:compose-bom:2024.06.00')

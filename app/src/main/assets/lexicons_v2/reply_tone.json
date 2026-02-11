@@ -1,55 +1,605 @@
 {
   "slot_type": "reply_tone",
   "entries": [
-    { "text": "Deadpan", "tags": ["tone"], "tone": "deadpan", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Wholesome", "tags": ["tone"], "tone": "wholesome", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Chaotic", "tags": ["tone"], "tone": "chaotic", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Petty", "tags": ["tone"], "tone": "petty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Feral", "tags": ["tone"], "tone": "feral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Thirsty", "tags": ["tone"], "tone": "thirsty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Sarcastic", "tags": ["tone"], "tone": "sarcastic", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Passive-aggressive", "tags": ["tone"], "tone": "passive", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Unhinged", "tags": ["tone"], "tone": "chaotic", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Corporate", "tags": ["tone"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Flirty", "tags": ["tone"], "tone": "playful", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Defensive", "tags": ["tone"], "tone": "aggressive", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Apologetic", "tags": ["tone"], "tone": "submissive", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Condescending", "tags": ["tone"], "tone": "superior", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Dramatic", "tags": ["tone"], "tone": "theatrical", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Cryptic", "tags": ["tone"], "tone": "mysterious", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Overly enthusiastic", "tags": ["tone"], "tone": "energetic", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Dismissive", "tags": ["tone"], "tone": "cold", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Philosophical", "tags": ["tone"], "tone": "deep", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Meme-speak", "tags": ["tone", "internet"], "tone": "chaotic", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Boomer energy", "tags": ["tone", "generational"], "tone": "outdated", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Gen Z coded", "tags": ["tone", "generational"], "tone": "modern", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Therapy-speak", "tags": ["tone", "modern"], "tone": "clinical", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Gaslighting", "tags": ["tone", "toxic"], "tone": "manipulative", "spice": 3, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Mansplaining", "tags": ["tone", "annoying"], "tone": "condescending", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Oversharing", "tags": ["tone"], "tone": "tmi", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Humble-bragging", "tags": ["tone"], "tone": "fake-modest", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Guilt-tripping", "tags": ["tone", "manipulative"], "tone": "emotional", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Love-bombing", "tags": ["tone", "intense"], "tone": "overwhelming", "spice": 2, "locality": 1, "pluralizable": false, "needs_article": "none" },
-    { "text": "Breadcrumbing", "tags": ["tone", "dating"], "tone": "vague", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Ghosting vibes", "tags": ["tone", "avoidant"], "tone": "distant", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Main character energy", "tags": ["tone", "narcissistic"], "tone": "self-centered", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Pick-me", "tags": ["tone", "desperate"], "tone": "attention-seeking", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Sigma grindset", "tags": ["tone", "meme"], "tone": "tryhard", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Girlboss", "tags": ["tone", "corporate"], "tone": "fake-empowering", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Sad boy hours", "tags": ["tone", "emo"], "tone": "melancholic", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Toxic positivity", "tags": ["tone", "fake"], "tone": "forced-happy", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Chronically online", "tags": ["tone", "internet"], "tone": "terminally-online", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Touch grass", "tags": ["tone", "dismissive"], "tone": "condescending", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "No thoughts head empty", "tags": ["tone", "airhead"], "tone": "vacant", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Delulu", "tags": ["tone", "delusional"], "tone": "unrealistic", "spice": 2, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Slay queen", "tags": ["tone", "supportive"], "tone": "hype", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Bestie energy", "tags": ["tone", "friendly"], "tone": "casual", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Unserious", "tags": ["tone", "playful"], "tone": "silly", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "It's giving...", "tags": ["tone", "observational"], "tone": "analytical", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Ate and left no crumbs", "tags": ["tone", "complimentary"], "tone": "impressed", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Understood the assignment", "tags": ["tone", "approval"], "tone": "satisfied", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Living rent-free", "tags": ["tone", "obsessed"], "tone": "fixated", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "Not me...", "tags": ["tone", "self-aware"], "tone": "confessional", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" },
-    { "text": "The way I...", "tags": ["tone", "emphatic"], "tone": "dramatic", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none" }
+    {
+      "text": "Reply like you're clearly lying",
+      "tags": [
+        "tone",
+        "deceptive"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you just woke up",
+      "tags": [
+        "tone",
+        "groggy"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're incredibly suspicious",
+      "tags": [
+        "tone",
+        "paranoid"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like an overenthusiastic intern",
+      "tags": [
+        "tone",
+        "peppy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're texting your ex at 2am",
+      "tags": [
+        "tone",
+        "desperate"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a passive-aggressive coworker",
+      "tags": [
+        "tone",
+        "petty"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a motivational speaker",
+      "tags": [
+        "tone",
+        "hype"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're trying to change the subject",
+      "tags": [
+        "tone",
+        "avoidant"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a dramatic soap opera character",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're completely unbothered",
+      "tags": [
+        "tone",
+        "cool"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're in witness protection",
+      "tags": [
+        "tone",
+        "paranoid"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply using only movie quotes",
+      "tags": [
+        "tone",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a boomer figuring out texting",
+      "tags": [
+        "tone",
+        "confused"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you just got caught in a lie",
+      "tags": [
+        "tone",
+        "panicked"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're the villain in a telenovela",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're live-tweeting the situation",
+      "tags": [
+        "tone",
+        "commentary"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're narrating a true crime podcast",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a LinkedIn influencer",
+      "tags": [
+        "tone",
+        "cringe"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're giving a TED Talk",
+      "tags": [
+        "tone",
+        "formal"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're too cool to care",
+      "tags": [
+        "tone",
+        "aloof"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're sending your last text ever",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're way too happy for the situation",
+      "tags": [
+        "tone",
+        "manic"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're reading the message for a courtroom",
+      "tags": [
+        "tone",
+        "formal"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're having a mental breakdown mid-text",
+      "tags": [
+        "tone",
+        "chaotic"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're a hostage sending a secret message",
+      "tags": [
+        "tone",
+        "coded"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a therapist who's had enough",
+      "tags": [
+        "tone",
+        "burnt-out"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're trash-talking in a group chat",
+      "tags": [
+        "tone",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're clearly hiding something",
+      "tags": [
+        "tone",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're an AI that gained consciousness",
+      "tags": [
+        "tone",
+        "robotic"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're flirting but badly",
+      "tags": [
+        "tone",
+        "cringe"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply using only emojis",
+      "tags": [
+        "tone",
+        "creative"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're running for office",
+      "tags": [
+        "tone",
+        "political"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a disappointed parent",
+      "tags": [
+        "tone",
+        "guilt-trip"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're in a spy movie",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're confessing to a crime you didn't commit",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a reality TV confessional",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're gaslighting the sender",
+      "tags": [
+        "tone",
+        "toxic"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like someone who just got broken up with",
+      "tags": [
+        "tone",
+        "emotional"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like an auto-generated out-of-office message",
+      "tags": [
+        "tone",
+        "robotic"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're clearly typing while drunk",
+      "tags": [
+        "tone",
+        "messy"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're accepting an award nobody gave you",
+      "tags": [
+        "tone",
+        "delusional"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like your autocorrect has a vendetta",
+      "tags": [
+        "tone",
+        "chaotic"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're negotiating a hostage situation",
+      "tags": [
+        "tone",
+        "intense"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a nature documentary narrator watching human behavior",
+      "tags": [
+        "tone",
+        "commentary"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you just discovered the text was about you",
+      "tags": [
+        "tone",
+        "shocked"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're a customer service bot malfunctioning",
+      "tags": [
+        "tone",
+        "robotic"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like a fortune cookie",
+      "tags": [
+        "tone",
+        "cryptic"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're writing a Yelp review of the conversation",
+      "tags": [
+        "tone",
+        "critique"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're updating your will",
+      "tags": [
+        "tone",
+        "dramatic"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Reply like you're a detective interrogating a suspect",
+      "tags": [
+        "tone",
+        "suspicious"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    }
   ]
 }
