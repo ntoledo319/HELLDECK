@@ -2,977 +2,902 @@
   "slot_type": "awkward_contexts",
   "entries": [
     {
-      "text": "a work Zoom with camera on",
+      "text": "running into your ex at the grocery store while looking your worst",
       "tags": [
         "awkward",
-        "workplace",
-        "modern"
+        "dating"
       ],
       "tone": "dry",
-      "spice": 1,
-      "locality": 2,
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "family dinner",
+      "text": "being the only person who dressed up for a casual event",
       "tags": [
         "awkward",
-        "family",
         "social"
       ],
-      "tone": "neutral",
+      "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "first date at their parents' house",
+      "text": "accidentally calling your teacher 'Mom'",
       "tags": [
         "awkward",
-        "dating",
-        "cringe"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "job interview",
-      "tags": [
-        "awkward",
-        "workplace",
-        "professional"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "baby shower",
-      "tags": [
-        "awkward",
-        "social",
-        "family"
+        "school"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "wedding reception",
+      "text": "saying goodbye and then walking the same direction",
       "tags": [
         "awkward",
-        "social",
-        "formal"
+        "social"
       ],
-      "tone": "neutral",
+      "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "gym locker room",
+      "text": "waving at someone who was waving at the person behind you",
       "tags": [
         "awkward",
-        "public",
-        "gross"
+        "social"
       ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "parent-teacher conference",
-      "tags": [
-        "awkward",
-        "family",
-        "professional"
-      ],
-      "tone": "neutral",
+      "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "church service",
+      "text": "being stuck in a conversation you desperately want to leave",
       "tags": [
         "awkward",
-        "social",
-        "formal"
+        "social"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "stuck elevator",
+      "text": "your card getting declined on a first date",
       "tags": [
         "awkward",
-        "public",
-        "uncomfortable"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "dental appointment",
-      "tags": [
-        "awkward",
-        "medical",
-        "uncomfortable"
+        "dating"
       ],
       "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "waiting room",
-      "tags": [
-        "awkward",
-        "public",
-        "quiet"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "meeting their ex",
-      "tags": [
-        "awkward",
-        "dating",
-        "cringe"
-      ],
-      "tone": "cringe",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "silent yoga class",
+      "text": "accidentally sending a text about someone TO that someone",
       "tags": [
         "awkward",
-        "public",
-        "quiet"
+        "tech"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your stomach growling in a silent room",
+      "tags": [
+        "awkward",
+        "physical"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "Uber Pool with strangers",
+      "text": "going in for a hug when they're going for a handshake",
       "tags": [
         "awkward",
-        "public",
-        "modern"
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "walking into the wrong bathroom and someone's already there",
+      "tags": [
+        "awkward",
+        "public"
       ],
       "tone": "dry",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "standing ovation they didn't deserve",
-      "tags": [
-        "awkward",
-        "social",
-        "performative"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "karaoke bar",
-      "tags": [
-        "awkward",
-        "social",
-        "party"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "couples therapy",
-      "tags": [
-        "awkward",
-        "relationship",
-        "therapy"
-      ],
-      "tone": "dark",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "bridal shower game",
+      "text": "your phone playing music on full blast in a quiet place",
       "tags": [
         "awkward",
-        "social",
-        "family"
+        "tech"
       ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "open mic night",
+      "text": "trying to open a push door by pulling for way too long",
       "tags": [
         "awkward",
-        "social",
-        "performance"
+        "public"
       ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "an"
+      "needs_article": "none"
     },
     {
-      "text": "video call that won't mute",
+      "text": "being alone in an elevator with someone you just argued with",
       "tags": [
         "awkward",
-        "modern",
-        "technical"
+        "social"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "public bathroom with broken lock",
+      "text": "accidentally liking an ex's photo from 3 years ago",
       "tags": [
         "awkward",
-        "public",
+        "social-media"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "farting in an elevator right before the doors open to a crowd",
+      "tags": [
+        "awkward",
+        "physical"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "tripping on nothing and everyone sees",
+      "tags": [
+        "awkward",
+        "physical"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "forgetting someone's name mid-introduction",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "realizing halfway through a story that nobody's listening",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "making intense eye contact with a stranger by accident",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your credit card getting declined while the line watches",
+      "tags": [
+        "awkward",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "seeing your therapist in public and not knowing what to do",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "running into someone you ghosted at a small party",
+      "tags": [
+        "awkward",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally saying 'I love you' at the end of a work call",
+      "tags": [
+        "awkward",
+        "work"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "clogging the toilet at someone's house during a dinner party",
+      "tags": [
+        "awkward",
         "gross"
       ],
       "tone": "wild",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "running into their parents at a bar",
+      "text": "realizing you've been mispronouncing someone's name for months",
       "tags": [
         "awkward",
-        "dating",
         "social"
       ],
-      "tone": "cringe",
-      "spice": 2,
+      "tone": "dry",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "group project meeting",
+      "text": "being the only person who laughed at a joke that wasn't funny",
       "tags": [
         "awkward",
-        "work",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally hitting 'reply all' on a private rant",
+      "tags": [
+        "awkward",
+        "work"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your parent meeting your date and being way too excited",
+      "tags": [
+        "awkward",
+        "family"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sitting in the wrong class for 20 minutes before realizing",
+      "tags": [
+        "awkward",
         "school"
       ],
       "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "Friendsgiving with exes present",
+      "text": "the silence after a joke that didn't land",
       "tags": [
         "awkward",
-        "social",
-        "modern"
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "walking into a glass door in front of your crush",
+      "tags": [
+        "awkward",
+        "physical"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally showing the wrong photo when handing someone your phone",
+      "tags": [
+        "awkward",
+        "tech"
       ],
       "tone": "wild",
       "spice": 3,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "family dinner politics",
+      "text": "your parents showing up unannounced when you have company",
       "tags": [
         "awkward",
-        "social",
         "family"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "getting caught talking to yourself by a coworker",
+      "tags": [
+        "awkward",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "matching with your boss on a dating app",
+      "tags": [
+        "awkward",
+        "work"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being on speakerphone when someone says something they shouldn't",
+      "tags": [
+        "awkward",
+        "tech"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally pocket-dialing someone while talking about them",
+      "tags": [
+        "awkward",
+        "tech"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being the only sober person at a party",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "running into your one-night stand at a family event",
+      "tags": [
+        "awkward",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your phone reading a notification out loud in a meeting",
+      "tags": [
+        "awkward",
+        "tech"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "trying to take a sneaky photo and the flash goes off",
+      "tags": [
+        "awkward",
+        "tech"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "wearing the same outfit as someone else at a party",
+      "tags": [
+        "awkward",
+        "fashion"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being asked 'when are you due?' when you're not pregnant",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally calling your date by your ex's name",
+      "tags": [
+        "awkward",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "sneezing and something visible comes out",
+      "tags": [
+        "awkward",
+        "physical"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your FaceTime accidentally flipping to the front camera at the worst time",
+      "tags": [
+        "awkward",
+        "tech"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "falling asleep during a conversation about someone's passion project",
+      "tags": [
+        "awkward",
+        "social"
       ],
       "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "running into your ex at the gym",
+      "text": "making eye contact through the bathroom stall crack",
       "tags": [
         "awkward",
-        "social",
+        "public"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your autocorrect sending something wildly inappropriate",
+      "tags": [
+        "awkward",
+        "tech"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being the last one picked for a team at an adult event",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally video calling someone instead of voice calling",
+      "tags": [
+        "awkward",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "running into someone you told you were busy to",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a long pause after asking someone on a date",
+      "tags": [
+        "awkward",
         "dating"
       ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "accidentally liking an old photo",
+      "text": "getting caught lip-syncing in the car at a red light",
       "tags": [
         "awkward",
-        "social",
-        "digital"
+        "car"
       ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your parents meeting your friends",
-      "tags": [
-        "awkward",
-        "social",
-        "family"
-      ],
-      "tone": "cringe",
+      "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "bumping into your therapist",
+      "text": "being the only person who didn't get the inside joke",
       "tags": [
         "awkward",
-        "social",
-        "professional"
+        "social"
       ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "seeing your teacher outside school",
-      "tags": [
-        "awkward",
-        "social",
-        "professional"
-      ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "your boss following you on Instagram",
+      "text": "accidentally double-booking two different friend groups at the same place",
       "tags": [
         "awkward",
-        "social",
-        "professional"
+        "social"
       ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "accidentally sending a text to the wrong person",
+      "text": "your phone dying mid-text during an argument",
       "tags": [
         "awkward",
-        "social",
-        "digital"
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "spilling an entire drink on yourself at a formal event",
+      "tags": [
+        "awkward",
+        "physical"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "realizing your fly was down for an entire presentation",
+      "tags": [
+        "awkward",
+        "appearance"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being the only person who brought a gift to a party that wasn't a gift-giving event",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "accidentally stepping on someone's white sneakers",
+      "tags": [
+        "awkward",
+        "physical"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your food arriving before everyone else's and not knowing if you should eat",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "holding the door for someone who's too far away and now they have to jog",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "being in a meeting where two people are clearly fighting through subtext",
+      "tags": [
+        "awkward",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "getting caught staring at someone's unusual outfit",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "your card getting declined while the cashier announces the total",
+      "tags": [
+        "awkward",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "asking 'when are you due?' to someone who isn't pregnant",
+      "tags": [
+        "awkward",
+        "social"
       ],
       "tone": "wild",
       "spice": 3,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "walking in on your roommate",
+      "text": "laughing at something that wasn't a joke",
       "tags": [
         "awkward",
-        "social",
-        "living"
+        "social"
       ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your parents finding your search history",
-      "tags": [
-        "awkward",
-        "social",
-        "family"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally calling your teacher 'mom'",
-      "tags": [
-        "awkward",
-        "social",
-        "professional"
-      ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "waving at someone who wasn't waving at you",
+      "text": "being caught taking a selfie by a stranger",
       "tags": [
         "awkward",
-        "social",
         "public"
       ],
-      "tone": "cringe",
+      "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "holding the door for someone too far away",
+      "text": "ordering the same exact thing as your date after they ordered first",
       "tags": [
         "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "saying 'you too' when it doesn't make sense",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "laughing at a joke you didn't understand",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "forgetting someone's name mid-conversation",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally interrupting someone",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "walking the wrong way and having to turn around",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "making eye contact with someone through a window",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "being the third wheel",
-      "tags": [
-        "awkward",
-        "social",
         "dating"
       ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your friend's parents fighting in front of you",
-      "tags": [
-        "awkward",
-        "social",
-        "family"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally seeing someone's private messages",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your Spotify Wrapped being too revealing",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "someone reading over your shoulder",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally unmuting on a Zoom call",
-      "tags": [
-        "awkward",
-        "social",
-        "professional"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your camera being on when you thought it was off",
-      "tags": [
-        "awkward",
-        "social",
-        "professional"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "screen sharing the wrong tab",
-      "tags": [
-        "awkward",
-        "social",
-        "professional"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your alarm going off in a quiet place",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "your stomach growling loudly",
+      "text": "accidentally cutting someone off mid-story and they never get to finish",
       "tags": [
         "awkward",
-        "social",
-        "public"
+        "social"
       ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "tripping in public",
+      "text": "your phone ringing with an embarrassing ringtone in a meeting",
       "tags": [
         "awkward",
-        "social",
-        "public"
+        "tech"
       ],
-      "tone": "cringe",
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "running into your doctor at a bar the same week they told you to cut back",
+      "tags": [
+        "awkward",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "getting stuck in a revolving door",
+      "tags": [
+        "awkward",
+        "physical"
+      ],
+      "tone": "playful",
       "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "spilling something on yourself",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your card declining",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally farting in public",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "getting caught staring at someone",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally touching someone inappropriately",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your phone playing audio out loud",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "getting caught singing to yourself",
-      "tags": [
-        "awkward",
-        "social",
-        "public"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally liking someone's old post",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "sending a screenshot to the person in it",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your autocorrect betraying you",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "pocket dialing someone",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally sending a voice message",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your parents commenting on your posts",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "getting added to a family group chat",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "being tagged in an unflattering photo",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your ex watching your stories",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "accidentally posting to your story instead of close friends",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your crush seeing your embarrassing TikTok",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "getting ratio'd on Twitter",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "your tweet going viral for the wrong reasons",
-      "tags": [
-        "awkward",
-        "social",
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     }

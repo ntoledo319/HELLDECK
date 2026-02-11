@@ -2,220 +2,360 @@
   "slot_type": "phone_stat",
   "entries": [
     {
-      "text": "unread emails",
+      "text": "screen time in hours per day",
       "tags": [
-        "digital"
+        "phone",
+        "usage"
       ],
-      "tone": "dry",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "unread text messages",
+      "text": "number of unread emails",
       "tags": [
-        "digital"
+        "phone",
+        "emails"
       ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "photos in their camera roll",
-      "tags": [
-        "digital"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "screenshots they're embarrassed about",
-      "tags": [
-        "digital"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "open tabs in their browser right now",
-      "tags": [
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "apps they check within 5 minutes of waking up",
-      "tags": [
-        "digital"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "contacts saved under fake names",
-      "tags": [
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "minutes of screen time yesterday",
-      "tags": [
-        "digital"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "alarms set for tomorrow morning",
-      "tags": [
-        "digital"
-      ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "unsaved phone numbers in their recents",
+      "text": "number of unread texts",
       "tags": [
-        "digital"
+        "phone",
+        "texts"
       ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "group chats they've muted",
-      "tags": [
-        "digital"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "dating app matches they never messaged",
-      "tags": [
-        "digital"
-      ],
-      "tone": "cringe",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "notes app entries they'd never show anyone",
-      "tags": [
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "selfies taken before picking the 'right one'",
-      "tags": [
-        "digital"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "podcasts in their queue they'll never listen to",
-      "tags": [
-        "digital"
-      ],
-      "tone": "dry",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "saved Instagram posts they forgot about",
+      "text": "number of apps installed",
       "tags": [
-        "digital"
+        "phone",
+        "apps"
       ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "playlists they made for a specific mood or person",
+      "text": "number of photos in Camera Roll",
       "tags": [
-        "digital"
+        "phone",
+        "photos"
       ],
-      "tone": "cringe",
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of tabs open in browser",
+      "tags": [
+        "phone",
+        "browser"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of alarms set",
+      "tags": [
+        "phone",
+        "alarms"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of contacts saved",
+      "tags": [
+        "phone",
+        "contacts"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of group chats you're in",
+      "tags": [
+        "phone",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of screenshots taken this month",
+      "tags": [
+        "phone",
+        "usage"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of dating apps currently installed",
+      "tags": [
+        "phone",
+        "dating"
+      ],
+      "tone": "neutral",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "food delivery orders this month",
+      "text": "percentage of storage used",
       "tags": [
-        "digital"
+        "phone",
+        "storage"
       ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "apps hidden on their home screen",
-      "tags": [
-        "digital"
-      ],
-      "tone": "wild",
-      "spice": 3,
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "times they've rage-quit an app today",
+      "text": "number of podcasts subscribed to",
       "tags": [
-        "digital"
+        "phone",
+        "media"
       ],
-      "tone": "playful",
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of people you've blocked",
+      "tags": [
+        "phone",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "most used app daily hours",
+      "tags": [
+        "phone",
+        "usage"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of playlists on Spotify",
+      "tags": [
+        "phone",
+        "music"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of voice memos recorded",
+      "tags": [
+        "phone",
+        "media"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of muted conversations",
+      "tags": [
+        "phone",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of notes in your Notes app",
+      "tags": [
+        "phone",
+        "productivity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of times you check your phone per day",
+      "tags": [
+        "phone",
+        "usage"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "longest screen time day this week",
+      "tags": [
+        "phone",
+        "usage"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of reminders currently set",
+      "tags": [
+        "phone",
+        "productivity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of social media accounts",
+      "tags": [
+        "phone",
+        "social-media"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of streaming services subscribed to",
+      "tags": [
+        "phone",
+        "entertainment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of deleted messages this month",
+      "tags": [
+        "phone",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "TikTok daily average in minutes",
+      "tags": [
+        "phone",
+        "social-media"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of saved Instagram posts",
+      "tags": [
+        "phone",
+        "social-media"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of Amazon orders this month",
+      "tags": [
+        "phone",
+        "shopping"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of DoorDash orders this month",
+      "tags": [
+        "phone",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "number of emails in spam folder",
+      "tags": [
+        "phone",
+        "emails"
+      ],
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,

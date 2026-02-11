@@ -2,9 +2,58 @@
   "slot_type": "physical_challenge",
   "entries": [
     {
-      "text": "push-ups in a row",
+      "text": "hold a plank for 60 seconds",
       "tags": [
-        "physical"
+        "challenge",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do 20 jumping jacks right now",
+      "tags": [
+        "challenge",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hold your breath as long as you can",
+      "tags": [
+        "challenge",
+        "endurance"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do your best impression of someone in this room",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "speak in an accent for the next 3 rounds",
+      "tags": [
+        "challenge",
+        "performance"
       ],
       "tone": "playful",
       "spice": 1,
@@ -13,9 +62,10 @@
       "needs_article": "none"
     },
     {
-      "text": "seconds of a wall sit",
+      "text": "keep a straight face while everyone tries to make you laugh",
       "tags": [
-        "physical"
+        "challenge",
+        "endurance"
       ],
       "tone": "playful",
       "spice": 1,
@@ -24,9 +74,22 @@
       "needs_article": "none"
     },
     {
-      "text": "sit-ups in 60 seconds",
+      "text": "do 10 push-ups or take a drink",
       "tags": [
-        "physical"
+        "challenge",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "balance a cup on your head for 30 seconds",
+      "tags": [
+        "challenge",
+        "balance"
       ],
       "tone": "playful",
       "spice": 1,
@@ -35,9 +98,10 @@
       "needs_article": "none"
     },
     {
-      "text": "seconds of a plank",
+      "text": "staring contest with the person to your left",
       "tags": [
-        "physical"
+        "challenge",
+        "endurance"
       ],
       "tone": "playful",
       "spice": 1,
@@ -46,9 +110,10 @@
       "needs_article": "none"
     },
     {
-      "text": "jumping jacks without stopping",
+      "text": "do your best catwalk across the room",
       "tags": [
-        "physical"
+        "challenge",
+        "performance"
       ],
       "tone": "playful",
       "spice": 1,
@@ -57,9 +122,334 @@
       "needs_article": "none"
     },
     {
-      "text": "burpees without collapsing",
+      "text": "sing the chorus of the last song you listened to",
       "tags": [
-        "physical"
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do a convincing fake cry",
+      "tags": [
+        "challenge",
+        "acting"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stand on one foot for 60 seconds while answering questions",
+      "tags": [
+        "challenge",
+        "balance"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "say the alphabet backwards as fast as you can",
+      "tags": [
+        "challenge",
+        "mental"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do your best dance move with no music",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "speak only in questions for the next 2 rounds",
+      "tags": [
+        "challenge",
+        "speech"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "arm wrestle the person to your right",
+      "tags": [
+        "challenge",
+        "strength"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "thumb war — best of 3",
+      "tags": [
+        "challenge",
+        "dexterity"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do your most convincing evil laugh",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "compliment every person in the room in 30 seconds",
+      "tags": [
+        "challenge",
+        "speed"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "give a 30-second motivational speech about something ridiculous",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "make the funniest face you can and hold it for 10 seconds",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do your best robot dance",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "tell a joke — if nobody laughs, take a drink",
+      "tags": [
+        "challenge",
+        "comedy"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "whisper everything you say for the next 2 rounds",
+      "tags": [
+        "challenge",
+        "speech"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "roast the person across from you in 15 seconds",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do your best celebrity impression — group guesses who",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "keep eye contact with someone while complimenting them without laughing",
+      "tags": [
+        "challenge",
+        "endurance"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "name 5 things in a category in 10 seconds",
+      "tags": [
+        "challenge",
+        "speed"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do a backbend or at least try",
+      "tags": [
+        "challenge",
+        "flexibility"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "moonwalk across the room",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "hold a wall sit for 45 seconds",
+      "tags": [
+        "challenge",
+        "fitness"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "pretend to be a news anchor reporting on what just happened",
+      "tags": [
+        "challenge",
+        "performance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "yell the most embarrassing thing about yourself",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "let the group pick your next social media post",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "text your most recent contact 'I need to tell you something'",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "let someone go through your camera roll for 15 seconds",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "show the group your screen time report",
+      "tags": [
+        "challenge",
+        "dare"
       ],
       "tone": "wild",
       "spice": 2,
@@ -68,100 +458,145 @@
       "needs_article": "none"
     },
     {
-      "text": "pull-ups right now",
+      "text": "read your last 5 search history entries out loud",
       "tags": [
-        "physical"
+        "challenge",
+        "dare"
       ],
       "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "let someone type and send a text from your phone",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "show the last photo you took on your phone",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "read the last text you sent out loud",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "let the group go through your Spotify recently played",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "playful",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "times they can touch their toes in 30 seconds",
+      "text": "show your most embarrassing saved meme",
       "tags": [
-        "physical"
+        "challenge",
+        "dare"
       ],
       "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "flights of stairs without getting winded",
-      "tags": [
-        "physical"
-      ],
-      "tone": "dry",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "seconds they can hold their breath",
+      "text": "call a random contact and sing happy birthday to them",
       "tags": [
-        "physical"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "squats in a row",
-      "tags": [
-        "physical"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "consecutive claps behind their back",
-      "tags": [
-        "physical"
+        "challenge",
+        "dare"
       ],
       "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "post a story right now chosen by the group",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "show your Notes app to the group for 10 seconds",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "let someone pick a contact and you have to call them",
+      "tags": [
+        "challenge",
+        "dare"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "do 10 squats while maintaining a conversation",
+      "tags": [
+        "challenge",
+        "fitness"
+      ],
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "laps around this room without stopping",
+      "text": "give a dramatic soap opera confession to the person next to you",
       "tags": [
-        "physical"
+        "challenge",
+        "performance"
       ],
-      "tone": "wild",
+      "tone": "playful",
       "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "seconds balancing on one foot with eyes closed",
-      "tags": [
-        "physical"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "consecutive finger snaps in 10 seconds",
-      "tags": [
-        "physical"
-      ],
-      "tone": "playful",
-      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"

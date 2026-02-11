@@ -364,31 +364,15 @@ NEVER USE:
         }
     }
 
-    private fun getTimerForGame(gameId: String): Int = when (gameId) {
-        GameIds.TABOO -> 60
-        GameIds.SCATTER -> 30
-        GameIds.ALIBI -> 45
-        else -> 15
+    private fun getTimerForGame(gameId: String): Int {
+        // Source of truth for timers lives in GameMetadata; fall back to a sensible default
+        return com.helldeck.engine.GameMetadata.getGameMetadata(gameId)?.timerSec ?: 15
     }
 
-    private fun getInteractionTypeForGame(gameId: String): InteractionType = when (gameId) {
-        GameIds.ROAST_CONS -> InteractionType.VOTE_PLAYER
-        GameIds.POISON_PITCH -> InteractionType.A_B_CHOICE
-        GameIds.CONFESS_CAP -> InteractionType.TRUE_FALSE
-        GameIds.RED_FLAG -> InteractionType.SMASH_PASS
-        GameIds.TABOO -> InteractionType.TABOO_GUESS
-        GameIds.ALIBI -> InteractionType.HIDE_WORDS
-        GameIds.SCATTER -> InteractionType.SPEED_LIST
-        GameIds.TITLE_FIGHT -> InteractionType.MINI_DUEL
-        GameIds.TEXT_TRAP -> InteractionType.REPLY_TONE
-        GameIds.HOTSEAT_IMP, GameIds.FILL_IN -> InteractionType.JUDGE_PICK
-
-        // New games
-        GameIds.UNIFYING_THEORY -> InteractionType.JUDGE_PICK // Explaining the connection
-        GameIds.REALITY_CHECK -> InteractionType.TARGET_SELECT // Rating comparison
-        GameIds.OVER_UNDER -> InteractionType.PREDICT_VOTE // Over/Under betting
-
-        else -> InteractionType.NONE
+    private fun getInteractionTypeForGame(gameId: String): InteractionType {
+        // Always mirror the interaction type declared in GameMetadata to keep tests/contracts aligned
+        return com.helldeck.engine.GameMetadata.getGameMetadata(gameId)?.interactionType
+            ?: InteractionType.NONE
     }
 
     private fun fallbackToGold(request: GenerationRequest): GenerationResult? {

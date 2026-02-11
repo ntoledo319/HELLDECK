@@ -281,7 +281,7 @@ fun RoundScene(vm: HelldeckVm) {
                             rightLabel = abOptions.getOrNull(1) ?: "B",
                             onVote = vm::onABVote,
                             onDone = { vm.resolveInteraction() },
-                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
+                            onManagePlayers = { vm.navigateTo(Scene.PLAYERS) },
                         )
                     }
                     Interaction.TRUE_FALSE -> ABVoteFlow(
@@ -310,7 +310,7 @@ fun RoundScene(vm: HelldeckVm) {
                             rightLabel = abOptions.getOrNull(1) ?: "PASS",
                             onVote = vm::onABVote,
                             onDone = { vm.resolveInteraction() },
-                            onManagePlayers = { vm.navigateTo(Scene.SETTINGS) },
+                            onManagePlayers = { vm.navigateTo(Scene.PLAYERS) },
                         )
                     }
                     Interaction.TARGET_PICK -> {

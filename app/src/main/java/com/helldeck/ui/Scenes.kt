@@ -191,7 +191,11 @@ fun HelldeckAppUI(
                         Scene.PROFILE -> PlayerProfileScene(vm = vm, onClose = { vm.scene = Scene.HOME })
                         Scene.GAME_RULES -> GameRulesScene(vm = vm, onClose = { vm.goBack() })
                         Scene.FULL_RULES_BROWSER -> FullRulesBrowserScene(vm = vm)
-                        Scene.CARD_LAB -> com.helldeck.ui.scenes.CardLabScene(onClose = { vm.goBack() })
+                        Scene.CARD_LAB -> if (com.helldeck.BuildConfig.DEBUG_MODE) {
+                            com.helldeck.ui.scenes.CardLabScene(onClose = { vm.goBack() })
+                        } else {
+                            HomeScene(vm)
+                        }
                         Scene.FAVORITES -> com.helldeck.ui.scenes.FavoritesScene(vm = vm, onClose = { vm.goBack() })
                         Scene.CUSTOM_CARDS -> com.helldeck.ui.scenes.CustomCardCreatorScene(vm = vm)
                     }

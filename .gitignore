@@ -68,6 +68,9 @@ loader/helldeck_loader.py
 
 # Scripts
 run_tests.sh
+scripts/rewrite_*.py
+scripts/fix_*.py
+scripts/sync_*.py
 
 # Ignore large local models and native build outputs
 app/.cxx/

@@ -44,6 +44,10 @@ fun FeedbackScene(vm: HelldeckVm) {
     var hasAdvanced by remember { mutableStateOf(false) }
     var isPaused by remember { mutableStateOf(false) }
 
+    // Advance guard — ensures only one caller advances per card
+    val advanceLock = remember { java.util.concurrent.atomic.AtomicBoolean(false) }
+    val tryAdvance: () -> Boolean = { advanceLock.compareAndSet(false, true).also { if (it) hasAdvanced = true } }
+
     // Favorite state
     var isFavorited by remember { mutableStateOf(false) }
 
@@ -51,6 +55,7 @@ fun FeedbackScene(vm: HelldeckVm) {
         GameFeedback.triggerFeedback(context, HapticEvent.ROUND_END, useHaptics = hapticsEnabled)
         isFavorited = vm.isCurrentCardFavorited()
         hasAdvanced = false // Reset guard on new card
+        advanceLock.set(false)
     }
 
     // Auto-advance timer with pause support
@@ -63,8 +68,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 }
             }
             if (secondsRemaining == 0 && !hasAdvanced && !isPaused) {
-                hasAdvanced = true
-                vm.commitFeedbackAndNext()
+                if (tryAdvance()) { vm.commitFeedbackAndNext() }
             }
         }
     }
@@ -239,10 +243,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 com.helldeck.ui.components.OutlineButton(
                     text = "🏁",
                     onClick = {
-                        if (!hasAdvanced) {
-                            hasAdvanced = true
-                            vm.showEndGameSummary()
-                        }
+                        if (tryAdvance()) { vm.showEndGameSummary() }
                     },
                     modifier = Modifier.weight(0.5f),
                     enabled = !hasAdvanced,
@@ -260,10 +261,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 com.helldeck.ui.components.OutlineButton(
                     text = "Skip",
                     onClick = {
-                        if (!hasAdvanced) {
-                            hasAdvanced = true
-                            vm.skipCurrentCard()
-                        }
+                        if (tryAdvance()) { vm.skipCurrentCard() }
                     },
                     modifier = Modifier.weight(0.8f),
                     enabled = !hasAdvanced,
@@ -278,10 +276,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                         else -> "Next"
                     },
                     onClick = {
-                        if (!hasAdvanced) {
-                            hasAdvanced = true
-                            scope.launch { vm.commitFeedbackAndNext() }
-                        }
+                        if (tryAdvance()) { scope.launch { vm.commitFeedbackAndNext() } }
                     },
                     modifier = Modifier.weight(1.5f),
                     enabled = !hasAdvanced,

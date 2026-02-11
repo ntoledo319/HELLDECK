@@ -2,10 +2,46 @@
   "slot_type": "audience_type",
   "entries": [
     {
-      "text": "their three favorite baristas",
+      "text": "their entire family",
       "tags": [
         "audience",
-        "people"
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "all their coworkers",
+      "tags": [
+        "audience",
+        "work"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "a room full of strangers",
+      "tags": [
+        "audience",
+        "public"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "their Uber driver",
+      "tags": [
+        "audience",
+        "public"
       ],
       "tone": "playful",
       "spice": 1,
@@ -14,59 +50,22 @@
       "needs_article": "none"
     },
     {
-      "text": "the entire brunch waitlist",
+      "text": "a packed elevator",
       "tags": [
         "audience",
-        "crowd"
+        "public"
       ],
-      "tone": "witty",
+      "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "their future podcast listeners",
+      "text": "their dentist",
       "tags": [
         "audience",
-        "people"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "everyone at the gym",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Instagram followers",
-      "tags": [
-        "audience",
-        "people",
-        "modern"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the whole office",
-      "tags": [
-        "audience",
-        "crowd"
+        "professional"
       ],
       "tone": "dry",
       "spice": 1,
@@ -75,10 +74,34 @@
       "needs_article": "none"
     },
     {
-      "text": "strangers on the bus",
+      "text": "everyone at brunch",
       "tags": [
         "audience",
-        "people"
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "the entire office",
+      "tags": [
+        "audience",
+        "work"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their group chat",
+      "tags": [
+        "audience",
+        "friends"
       ],
       "tone": "playful",
       "spice": 1,
@@ -87,27 +110,74 @@
       "needs_article": "none"
     },
     {
-      "text": "their ex's new partner",
+      "text": "a security camera",
       "tags": [
         "audience",
-        "people"
+        "public"
       ],
-      "tone": "wild",
-      "spice": 2,
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their grandmother",
+      "tags": [
+        "audience",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the group chat",
+      "text": "the whole party",
       "tags": [
         "audience",
-        "people",
-        "modern"
+        "social"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their barista",
+      "tags": [
+        "audience",
+        "public"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a first date",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their childhood best friend",
+      "tags": [
+        "audience",
+        "friends"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
@@ -115,220 +185,10 @@
       "text": "their therapist",
       "tags": [
         "audience",
-        "people"
+        "professional"
       ],
-      "tone": "witty",
+      "tone": "dry",
       "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "random LinkedIn connections",
-      "tags": [
-        "audience",
-        "people",
-        "modern"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their parents",
-      "tags": [
-        "audience",
-        "people"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the neighborhood watch",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their TikTok audience",
-      "tags": [
-        "audience",
-        "people",
-        "modern"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the entire yoga class",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their dating app matches",
-      "tags": [
-        "audience",
-        "people",
-        "modern"
-      ],
-      "tone": "witty",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the PTA meeting",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Twitch chat",
-      "tags": [
-        "audience",
-        "people",
-        "modern"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "everyone at Sunday dinner",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the book club",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "strangers at the dog park",
-      "tags": [
-        "audience",
-        "people"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Discord server",
-      "tags": [
-        "audience",
-        "people",
-        "modern"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the HOA board",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their college roommates",
-      "tags": [
-        "audience",
-        "people"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the entire wedding reception",
-      "tags": [
-        "audience",
-        "crowd"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Uber driver",
-      "tags": [
-        "audience",
-        "people",
-        "modern"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "strangers in the elevator",
-      "tags": [
-        "audience",
-        "people"
-      ],
-      "tone": "dry",
-      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
@@ -337,220 +197,71 @@
       "text": "their crush",
       "tags": [
         "audience",
-        "romantic",
-        "personal"
+        "dating"
       ],
       "tone": "playful",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their ex",
+      "text": "their ex's new partner",
       "tags": [
         "audience",
-        "romantic",
-        "personal"
+        "dating"
       ],
-      "tone": "wild",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their parents",
+      "text": "a job interviewer",
       "tags": [
         "audience",
-        "family",
-        "personal"
+        "work"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their boss",
-      "tags": [
-        "audience",
-        "professional",
-        "personal"
-      ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "their coworkers",
+      "text": "everyone at the gym",
       "tags": [
         "audience",
-        "professional",
-        "group"
+        "public"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their therapist",
-      "tags": [
-        "audience",
-        "professional",
-        "personal"
-      ],
-      "tone": "wild",
+      "tone": "neutral",
       "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
+      "locality": 1,
+      "pluralizable": true,
       "needs_article": "none"
     },
     {
-      "text": "their landlord",
+      "text": "their partner's parents",
       "tags": [
         "audience",
-        "professional",
-        "personal"
+        "family"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their roommates",
-      "tags": [
-        "audience",
-        "living",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their siblings",
-      "tags": [
-        "audience",
-        "family",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their grandparents",
-      "tags": [
-        "audience",
-        "family",
-        "group"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their in-laws",
-      "tags": [
-        "audience",
-        "family",
-        "group"
-      ],
-      "tone": "cringe",
+      "tone": "neutral",
       "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
+      "locality": 1,
+      "pluralizable": true,
       "needs_article": "none"
     },
     {
-      "text": "their neighbors",
+      "text": "the entire Zoom meeting",
       "tags": [
         "audience",
-        "living",
-        "group"
+        "work"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "strangers on the internet",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "wild",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their followers",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their haters",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their fans",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their teacher",
-      "tags": [
-        "audience",
-        "professional",
-        "personal"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
@@ -558,404 +269,637 @@
       "text": "their professor",
       "tags": [
         "audience",
-        "professional",
-        "personal"
+        "school"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their classmates",
+      "text": "a packed subway car",
       "tags": [
         "audience",
-        "school",
-        "group"
+        "public"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "a room of judgmental aunties",
+      "tags": [
+        "audience",
+        "family"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their neighbor through thin walls",
+      "tags": [
+        "audience",
+        "public"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a baby shower",
+      "tags": [
+        "audience",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "the person next to them on the plane",
+      "tags": [
+        "audience",
+        "travel"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a potential employer checking their social media",
+      "tags": [
+        "audience",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their strict religious parent",
+      "tags": [
+        "audience",
+        "family"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their ex at a party",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a cop who just pulled them over",
+      "tags": [
+        "audience",
+        "authority"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "all their exes in the same room",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "their partner's entire family at Thanksgiving",
+      "tags": [
+        "audience",
+        "family"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a live audience",
+      "tags": [
+        "audience",
+        "public"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their followers on Instagram Live",
+      "tags": [
+        "audience",
+        "social-media"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the HR department",
+      "tags": [
+        "audience",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a priest during confession",
+      "tags": [
+        "audience",
+        "religious"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "the entire courtroom",
+      "tags": [
+        "audience",
+        "legal"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone at the funeral",
+      "tags": [
+        "audience",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "their probation officer",
+      "tags": [
+        "audience",
+        "legal"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a judge who's already annoyed",
+      "tags": [
+        "audience",
+        "legal"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their ex's lawyer",
+      "tags": [
+        "audience",
+        "legal"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "10,000 TikTok viewers",
+      "tags": [
+        "audience",
+        "social-media"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "a lie detector test proctor",
+      "tags": [
+        "audience",
+        "authority"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their mom reading their group chat",
+      "tags": [
+        "audience",
+        "family"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their partner who just found their phone unlocked",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "someone recording them for WorldStar",
+      "tags": [
+        "audience",
+        "public"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their entire graduating class at a reunion",
+      "tags": [
+        "audience",
+        "social"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a national news audience",
+      "tags": [
+        "audience",
+        "media"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "the person reading their diary",
+      "tags": [
+        "audience",
+        "private"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their AA sponsor",
+      "tags": [
+        "audience",
+        "personal"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their partner's suspicious best friend",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a hiring manager Googling them",
+      "tags": [
+        "audience",
+        "work"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "a"
+    },
+    {
+      "text": "their future children",
+      "tags": [
+        "audience",
+        "family"
+      ],
+      "tone": "dry",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "their parents who just opened their laptop",
+      "tags": [
+        "audience",
+        "family"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone who's ever swiped left on them",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "their partner who just checked their location history",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the FBI agent watching through their webcam",
+      "tags": [
+        "audience",
+        "authority"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "God and everyone",
+      "tags": [
+        "audience",
+        "universal"
+      ],
+      "tone": "wild",
+      "spice": 5,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their significant other's ex",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "dry",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "an entire waiting room",
+      "tags": [
+        "audience",
+        "public"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "an"
+    },
+    {
+      "text": "their favorite teacher from high school",
+      "tags": [
+        "audience",
+        "school"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the TSA agent at the airport",
+      "tags": [
+        "audience",
+        "travel"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "every person they've ever dated in one room",
+      "tags": [
+        "audience",
+        "dating"
+      ],
+      "tone": "wild",
+      "spice": 4,
+      "locality": 1,
+      "pluralizable": true,
+      "needs_article": "none"
+    },
+    {
+      "text": "their dentist mid-procedure",
+      "tags": [
+        "audience",
+        "professional"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a packed drive-through speaker",
+      "tags": [
+        "audience",
+        "public"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "their teammates",
+      "text": "the delivery driver who shows up early",
       "tags": [
         "audience",
-        "sports",
-        "group"
+        "public"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their coach",
+      "text": "a church congregation",
       "tags": [
         "audience",
-        "sports",
-        "personal"
+        "religious"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "their doctor",
+      "text": "their Lyft driver rating them",
       "tags": [
         "audience",
-        "professional",
-        "personal"
+        "transport"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their dentist",
+      "text": "every barista they've ever been rude to",
       "tags": [
         "audience",
-        "professional",
-        "personal"
+        "public"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": true,
       "needs_article": "none"
     },
     {
-      "text": "their hairdresser",
+      "text": "their own reflection in a mirror",
       "tags": [
         "audience",
-        "professional",
-        "personal"
+        "self"
       ],
-      "tone": "playful",
+      "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their barber",
+      "text": "a packed airplane cabin",
       "tags": [
         "audience",
-        "professional",
-        "personal"
+        "travel"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "a"
     },
     {
-      "text": "their Uber driver",
+      "text": "their most judgmental cousin",
       "tags": [
         "audience",
-        "service",
-        "personal"
+        "family"
       ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "their delivery person",
+      "text": "an entire wedding party",
       "tags": [
         "audience",
-        "service",
-        "personal"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their barista",
-      "tags": [
-        "audience",
-        "service",
-        "personal"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their waiter",
-      "tags": [
-        "audience",
-        "service",
-        "personal"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their bartender",
-      "tags": [
-        "audience",
-        "service",
-        "personal"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "random people at the gym",
-      "tags": [
-        "audience",
-        "public",
-        "group"
-      ],
-      "tone": "cringe",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "everyone at the party",
-      "tags": [
-        "audience",
-        "social",
-        "group"
+        "event"
       ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the whole friend group",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their squad",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their crew",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their besties",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their ride or dies",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their day ones",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their childhood friends",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their college friends",
-      "tags": [
-        "audience",
-        "social",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their work friends",
-      "tags": [
-        "audience",
-        "professional",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their gym buddies",
-      "tags": [
-        "audience",
-        "fitness",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their gaming squad",
-      "tags": [
-        "audience",
-        "gaming",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Discord server",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Twitch chat",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Reddit community",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Twitter mutuals",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "their Instagram close friends",
-      "tags": [
-        "audience",
-        "digital",
-        "group"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
+      "needs_article": "an"
     }
   ]
 }

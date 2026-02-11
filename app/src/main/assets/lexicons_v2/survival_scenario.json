@@ -2,9 +2,10 @@
   "slot_type": "survival_scenario",
   "entries": [
     {
-      "text": "a zombie apocalypse",
+      "text": "a zombie apocalypse breaks out tomorrow",
       "tags": [
-        "survival"
+        "survival",
+        "apocalypse"
       ],
       "tone": "wild",
       "spice": 2,
@@ -13,9 +14,10 @@
       "needs_article": "none"
     },
     {
-      "text": "a deserted island",
+      "text": "you're stranded on a deserted island with one person from this room",
       "tags": [
-        "survival"
+        "survival",
+        "island"
       ],
       "tone": "playful",
       "spice": 1,
@@ -24,108 +26,10 @@
       "needs_article": "none"
     },
     {
-      "text": "a horror movie",
+      "text": "the internet shuts down permanently",
       "tags": [
-        "survival"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a week without your phone",
-      "tags": [
-        "survival"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "being lost in a foreign country with no money",
-      "tags": [
-        "survival"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a month of no internet",
-      "tags": [
-        "survival"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a bar fight",
-      "tags": [
-        "survival"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a home invasion",
-      "tags": [
-        "survival"
-      ],
-      "tone": "wild",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "an escape room with your worst enemy",
-      "tags": [
-        "survival"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "being the last person left awake at a sleepover",
-      "tags": [
-        "survival"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a 24-hour road trip with no aux cord",
-      "tags": [
-        "survival"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a power outage lasting a week",
-      "tags": [
-        "survival"
+        "survival",
+        "tech"
       ],
       "tone": "dry",
       "spice": 1,
@@ -134,20 +38,22 @@
       "needs_article": "none"
     },
     {
-      "text": "sharing a tiny apartment with 5 strangers",
+      "text": "you have to survive a week in the wilderness with no supplies",
       "tags": [
-        "survival"
+        "survival",
+        "nature"
       ],
-      "tone": "cringe",
-      "spice": 3,
+      "tone": "neutral",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "a wilderness camping trip with no supplies",
+      "text": "a reality TV show kidnaps everyone here",
       "tags": [
-        "survival"
+        "survival",
+        "entertainment"
       ],
       "tone": "wild",
       "spice": 2,
@@ -156,13 +62,542 @@
       "needs_article": "none"
     },
     {
-      "text": "a reality TV show elimination",
+      "text": "aliens land and choose one person here as their ambassador",
       "tags": [
-        "survival"
+        "survival",
+        "sci-fi"
       ],
       "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you wake up in a Saw trap with everyone here",
+      "tags": [
+        "survival",
+        "horror"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're stuck in an elevator for 24 hours with one person here",
+      "tags": [
+        "survival",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "society collapses and your friend group has to form a government",
+      "tags": [
+        "survival",
+        "political"
+      ],
+      "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have to survive one night in a haunted house for $10,000",
+      "tags": [
+        "survival",
+        "horror"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the purge becomes real for 12 hours starting now",
+      "tags": [
+        "survival",
+        "horror"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone here is dropped into a battle royale",
+      "tags": [
+        "survival",
+        "gaming"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're snowed in at a cabin for a week with this group",
+      "tags": [
+        "survival",
+        "nature"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a major earthquake hits and you have 60 seconds to grab 3 things",
+      "tags": [
+        "survival",
+        "disaster"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're in witness protection and have to start a new life",
+      "tags": [
+        "survival",
+        "crime"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the power goes out for 30 days",
+      "tags": [
+        "survival",
+        "disaster"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have to hitchhike across the country with no money",
+      "tags": [
+        "survival",
+        "travel"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're locked in a mall overnight with this group",
+      "tags": [
+        "survival",
+        "adventure"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the world floods and you can only save 3 people from this room",
+      "tags": [
+        "survival",
+        "disaster"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you wake up 100 years in the future",
+      "tags": [
+        "survival",
+        "sci-fi"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have 48 hours to escape the country with what you have now",
+      "tags": [
+        "survival",
+        "thriller"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a global food shortage makes everyone compete for meals",
+      "tags": [
+        "survival",
+        "disaster"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're trapped in a time loop living the same day forever",
+      "tags": [
+        "survival",
+        "sci-fi"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone in this room has to compete on Survivor",
+      "tags": [
+        "survival",
+        "entertainment"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're drafted into a gladiator tournament",
+      "tags": [
+        "survival",
+        "ancient"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have to survive a home invasion with only what's in this room",
+      "tags": [
+        "survival",
+        "thriller"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're the last person on Earth",
+      "tags": [
+        "survival",
+        "apocalypse"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you wake up in a random country with no phone and $20",
+      "tags": [
+        "survival",
+        "travel"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone here is trapped in an escape room for real",
+      "tags": [
+        "survival",
+        "puzzle"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have to live off the grid for a year",
+      "tags": [
+        "survival",
+        "nature"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a meteor is hitting Earth in 24 hours",
+      "tags": [
+        "survival",
+        "apocalypse"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're on a sinking cruise ship and there's one lifeboat left",
+      "tags": [
+        "survival",
+        "disaster"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you find out you're living in a simulation",
+      "tags": [
+        "survival",
+        "sci-fi"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a pandemic hits that turns people into toddlers mentally",
+      "tags": [
+        "survival",
+        "sci-fi"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you can only eat one food for the rest of your life",
+      "tags": [
+        "survival",
+        "food"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're trapped in the last movie you watched",
+      "tags": [
+        "survival",
+        "entertainment"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone here has to survive a month with a shared bank account",
+      "tags": [
+        "survival",
+        "financial"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're shipwrecked with one item from your phone's recent purchases",
+      "tags": [
+        "survival",
+        "island"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have to survive high school all over again",
+      "tags": [
+        "survival",
+        "nostalgia"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the world turns into a video game and everyone has 3 lives",
+      "tags": [
+        "survival",
+        "gaming"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're in a heist movie and have to plan a robbery with this group",
+      "tags": [
+        "survival",
+        "crime"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone in this room wakes up with a random superpower",
+      "tags": [
+        "survival",
+        "fantasy"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the entire internet is deleted and you have to rebuild it",
+      "tags": [
+        "survival",
+        "tech"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're stranded at an airport for 72 hours with a dying phone",
+      "tags": [
+        "survival",
+        "travel"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have to live in the last place you vacationed forever",
+      "tags": [
+        "survival",
+        "relocation"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you're stuck in traffic for 12 hours with one person here",
+      "tags": [
+        "survival",
+        "social"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "a blackout hits and you have to survive 48 hours in NYC",
+      "tags": [
+        "survival",
+        "urban"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "everyone here enters the Hunger Games",
+      "tags": [
+        "survival",
+        "entertainment"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you discover your neighbor is a serial killer",
+      "tags": [
+        "survival",
+        "crime"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "you have to plan a surprise party for someone who hates surprises",
+      "tags": [
+        "survival",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     }

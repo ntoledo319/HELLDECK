@@ -2,58 +2,10 @@
   "slot_type": "perks_plus",
   "entries": [
     {
-      "text": "unlimited airline lounge passes",
+      "text": "unlimited airline lounge access for life",
       "tags": [
         "perk",
-        "luxury"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "a private meme archivist",
-      "tags": [
-        "perk",
-        "quirky"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "front-row seats to every reunion tour",
-      "tags": [
-        "perk",
-        "music"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect parallel parking every time",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never sunburned skin",
-      "tags": [
-        "perk",
-        "comfort"
+        "travel"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -62,487 +14,7 @@
       "needs_article": "none"
     },
     {
-      "text": "instant WiFi connection anywhere",
-      "tags": [
-        "perk",
-        "tech"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "fresh laundry smell that never fades",
-      "tags": [
-        "perk",
-        "comfort"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "perfect hair days forever",
-      "tags": [
-        "perk",
-        "appearance"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "unlimited travel miles",
-      "tags": [
-        "perk",
-        "luxury"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "free concert tickets for life",
-      "tags": [
-        "perk",
-        "entertainment"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect memory recall",
-      "tags": [
-        "perk",
-        "ability"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never get sick immunity",
-      "tags": [
-        "perk",
-        "health"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "instant package delivery",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "always find your keys",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect grammar in every text",
-      "tags": [
-        "perk",
-        "communication"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "unlimited battery life on all devices",
-      "tags": [
-        "perk",
-        "tech"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never awkward silence",
-      "tags": [
-        "perk",
-        "social"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect timing for every joke",
-      "tags": [
-        "perk",
-        "social"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "endless closet space",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect playlist curation",
-      "tags": [
-        "perk",
-        "entertainment"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never run out of phone storage",
-      "tags": [
-        "perk",
-        "tech"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "instant meal delivery",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "always comfortable temperature",
-      "tags": [
-        "perk",
-        "comfort"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "never forget a birthday",
-      "tags": [
-        "perk",
-        "social"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect coffee every morning",
-      "tags": [
-        "perk",
-        "comfort"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "unlimited streaming subscriptions",
-      "tags": [
-        "perk",
-        "entertainment"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never bed head",
-      "tags": [
-        "perk",
-        "appearance"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "always fresh breath",
-      "tags": [
-        "perk",
-        "hygiene"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "instant laundry folding",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect handwriting",
-      "tags": [
-        "perk",
-        "skill"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never spill your drink",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "unlimited gym motivation",
-      "tags": [
-        "perk",
-        "health"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect pitch singing voice",
-      "tags": [
-        "perk",
-        "skill"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "never lose your wallet",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "instant outfit coordination",
-      "tags": [
-        "perk",
-        "appearance"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect eyebrows always",
-      "tags": [
-        "perk",
-        "appearance"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "unlimited vacation days",
-      "tags": [
-        "perk",
-        "luxury"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never hit traffic",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "instant language fluency",
-      "tags": [
-        "perk",
-        "skill"
-      ],
-      "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "perfect selfie lighting everywhere",
-      "tags": [
-        "perk",
-        "appearance"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "never lose a sock again",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "VIP holds at every coffee shop",
-      "tags": [
-        "perk",
-        "luxury"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "instant upgrade on all flights",
-      "tags": [
-        "perk",
-        "luxury"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "built-in playlist DJ",
-      "tags": [
-        "perk",
-        "entertainment"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "parking spot always waiting",
-      "tags": [
-        "perk",
-        "convenience"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "free dessert at every restaurant",
+      "text": "they always know the best restaurants",
       "tags": [
         "perk",
         "food"
@@ -554,7 +26,127 @@
       "needs_article": "none"
     },
     {
-      "text": "never step in puddles",
+      "text": "they never snore",
+      "tags": [
+        "perk",
+        "comfort"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they give incredible back massages",
+      "tags": [
+        "perk",
+        "physical"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a beach house you can use whenever",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always smell amazing",
+      "tags": [
+        "perk",
+        "attraction"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they can fix anything around the house",
+      "tags": [
+        "perk",
+        "practical"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're an incredible cook",
+      "tags": [
+        "perk",
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a golden retriever that loves you",
+      "tags": [
+        "perk",
+        "pets"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always drive so you can nap",
+      "tags": [
+        "perk",
+        "comfort"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never forget an anniversary",
+      "tags": [
+        "perk",
+        "thoughtful"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have season tickets to your favorite team",
+      "tags": [
+        "perk",
+        "entertainment"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have the most comfortable bed you've ever slept in",
       "tags": [
         "perk",
         "comfort"
@@ -566,10 +158,10 @@
       "needs_article": "none"
     },
     {
-      "text": "always green lights",
+      "text": "they always pick the best movies",
       "tags": [
         "perk",
-        "convenience"
+        "taste"
       ],
       "tone": "playful",
       "spice": 1,
@@ -578,22 +170,550 @@
       "needs_article": "none"
     },
     {
-      "text": "front-row seats at every show",
+      "text": "they know how to make the perfect cocktail",
       "tags": [
         "perk",
-        "entertainment"
+        "skill"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "permanent good hair days",
+      "text": "they have an unlimited coffee supply",
       "tags": [
         "perk",
-        "appearance"
+        "food"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they'll always be your plus-one without complaining",
+      "tags": [
+        "perk",
+        "reliable"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "their family is incredible and welcoming",
+      "tags": [
+        "perk",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a heated pool",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they plan surprise trips without you having to lift a finger",
+      "tags": [
+        "perk",
+        "thoughtful"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have connections that can get you into any event",
+      "tags": [
+        "perk",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they look even better in the morning",
+      "tags": [
+        "perk",
+        "attraction"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never get jealous",
+      "tags": [
+        "perk",
+        "trust"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they genuinely get along with all your friends",
+      "tags": [
+        "perk",
+        "social"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make six figures and are humble about it",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a cabin in the mountains",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're incredible at giving gifts",
+      "tags": [
+        "perk",
+        "thoughtful"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a motorcycle",
+      "tags": [
+        "perk",
+        "cool"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they own a boat",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're best friends with a celebrity",
+      "tags": [
+        "perk",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always have snacks in their bag",
+      "tags": [
+        "perk",
+        "prepared"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have the cutest laugh",
+      "tags": [
+        "perk",
+        "attraction"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they know exactly what to order for you",
+      "tags": [
+        "perk",
+        "thoughtful"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always let you pick the movie",
+      "tags": [
+        "perk",
+        "generous"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make your parents love them immediately",
+      "tags": [
+        "perk",
+        "family"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always know when you need space vs. comfort",
+      "tags": [
+        "perk",
+        "emotional-intelligence"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have amazing health insurance",
+      "tags": [
+        "perk",
+        "practical"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a hot tub",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're incredible in bed",
+      "tags": [
+        "perk",
+        "physical"
+      ],
+      "tone": "wild",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have zero baggage from past relationships",
+      "tags": [
+        "perk",
+        "emotional"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they treat your mom like royalty",
+      "tags": [
+        "perk",
+        "family"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a wine collection",
+      "tags": [
+        "perk",
+        "taste"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they look like a model but act like a normal person",
+      "tags": [
+        "perk",
+        "attraction"
+      ],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have the best sense of humor of anyone you've met",
+      "tags": [
+        "perk",
+        "humor"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they give you their jacket without you asking",
+      "tags": [
+        "perk",
+        "thoughtful"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always have your back in an argument, even if you're wrong",
+      "tags": [
+        "perk",
+        "loyalty"
+      ],
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they can dance",
+      "tags": [
+        "perk",
+        "skill"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have courtside seats",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they fly you first class",
+      "tags": [
+        "perk",
+        "wealth"
+      ],
+      "tone": "playful",
+      "spice": 3,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're a doctor who gives free medical advice",
+      "tags": [
+        "perk",
+        "practical"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they write you love letters",
+      "tags": [
+        "perk",
+        "romantic"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make you feel like the most attractive person in the room",
+      "tags": [
+        "perk",
+        "confidence"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they can sing",
+      "tags": [
+        "perk",
+        "talent"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always split dessert with you",
+      "tags": [
+        "perk",
+        "generous"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they remember your go-to order everywhere",
+      "tags": [
+        "perk",
+        "attention"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they carry your bags without being asked",
+      "tags": [
+        "perk",
+        "thoughtful"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they write the sweetest birthday captions about you",
+      "tags": [
+        "perk",
+        "romantic"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they get along with your siblings",
+      "tags": [
+        "perk",
+        "family"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they always hold your hand in public",
+      "tags": [
+        "perk",
+        "affection"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they never judge your food choices at 2am",
+      "tags": [
+        "perk",
+        "accepting"
       ],
       "tone": "playful",
       "spice": 1,
@@ -601,16 +721,5 @@
       "pluralizable": false,
       "needs_article": "none"
     }
-    ,
-    { "text": "always perfect parking karma", "tags": ["perk","convenience"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    { "text": "instant potluck hit recipes", "tags": ["perk","food"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    { "text": "friends who help you move", "tags": ["perk","social"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    { "text": "free upgrades on birthdays", "tags": ["perk","luxury"], "tone": "playful", "spice": 1, "locality": 2, "pluralizable": false, "needs_article": "none"},
-    { "text": "perfect pet that never sheds", "tags": ["perk","comfort"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "a"},
-    { "text": "plants that never die", "tags": ["perk","home"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    { "text": "always-on vacation brain", "tags": ["perk","mood"], "tone": "playful", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    { "text": "chef-level leftovers mysteriously appear", "tags": ["perk","food"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    { "text": "neighbors who never make noise", "tags": ["perk","comfort"], "tone": "neutral", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"},
-    { "text": "autofill for life logistics", "tags": ["perk","convenience"], "tone": "witty", "spice": 1, "locality": 1, "pluralizable": false, "needs_article": "none"}
   ]
 }

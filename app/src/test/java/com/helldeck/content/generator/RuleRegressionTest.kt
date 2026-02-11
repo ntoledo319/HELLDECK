@@ -85,7 +85,7 @@ class RuleRegressionTest {
     @Test
     fun goldBankHasMinimumCoverage() {
         val ctx: Context = ApplicationProvider.getApplicationContext()
-        val content = ctx.assets.open("gold/gold_cards.json").bufferedReader().use { it.readText() }
+        val content = ctx.assets.open("gold/gold_cards_v2.json").bufferedReader().use { it.readText() }
 
         // Count approximate number of gold cards
         val cardCount = content.count { it == '{' } - 1 // Subtract outer object

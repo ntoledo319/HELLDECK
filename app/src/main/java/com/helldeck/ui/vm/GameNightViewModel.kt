@@ -222,26 +222,6 @@ class GameNightViewModel : ViewModel() {
     }
 
     /**
-     * DEPRECATED: UI should use options from RoundState instead of recomputing.
-     */
-    @Deprecated("Use options from RoundState instead", ReplaceWith("roundState?.options"))
-    fun getOptionsFor(
-        card: FilledCard,
-        req: GameEngine.Request,
-    ): GameOptions {
-        return try {
-            if (!isInitialized) {
-                com.helldeck.utils.Logger.w("getOptionsFor called before initialization")
-                return GameOptions.None
-            }
-            engine.getOptionsFor(card, req)
-        } catch (e: Exception) {
-            com.helldeck.utils.Logger.e("getOptionsFor failed", e)
-            GameOptions.None
-        }
-    }
-
-    /**
      * Reloads players from the database and updates active players.
      * Adds default players if none exist.
      */
@@ -262,7 +242,7 @@ class GameNightViewModel : ViewModel() {
                 "🐸 Mo" to "🐸",
             )
             defaultPlayers.forEach { (name, avatar) ->
-                val id = "p${Random.nextInt(100000)}"
+                val id = java.util.UUID.randomUUID().toString()
                 repo.db.players().upsert(
                     PlayerEntity(
                         id = id,

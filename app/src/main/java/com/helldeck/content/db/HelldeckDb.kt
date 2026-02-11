@@ -85,5 +85,12 @@ abstract class HelldeckDb : RoomDatabase() {
                 instances.clear()
             }
         }
+
+        @androidx.annotation.VisibleForTesting
+        fun setTestInstance(db: HelldeckDb) {
+            synchronized(this) {
+                instances[CrewBrainStore.DEFAULT_BRAIN_ID] = db
+            }
+        }
     }
 }

@@ -57,7 +57,7 @@ object AssetValidator {
         // 3. Validate model artifacts (model/*.{yaml,json})
         validateModelArtifacts(context.assets, errors, warnings)
 
-        // 4. Validate gold bank (gold/gold_cards.json)
+        // 4. Validate gold bank (gold/gold_cards_v2.json)
         validateGoldBank(context.assets, errors, warnings)
 
         // Determine overall status
@@ -425,19 +425,15 @@ object AssetValidator {
 
     private fun validateGoldBank(assets: AssetManager, errors: MutableList<ValidationError>, warnings: MutableList<String>) {
         try {
-            val candidates = listOf("gold/gold_cards.json", "gold_cards.json")
-            var usedPath = "gold/gold_cards.json"
-            val content = candidates.firstNotNullOfOrNull { path ->
-                runCatching { assets.open(path).bufferedReader().use { it.readText() } }
-                    .onSuccess { usedPath = path }
-                    .getOrNull()
-            } ?: run {
+            val content = runCatching {
+                assets.open("gold/gold_cards_v2.json").bufferedReader().use { it.readText() }
+            }.getOrNull() ?: run {
                 errors.add(
                     ValidationError(
-                        "gold/gold_cards.json",
+                        "gold/gold_cards_v2.json",
                         Severity.CRITICAL,
                         "Cannot load gold bank fallback",
-                        "Missing gold/gold_cards.json (and legacy gold_cards.json)",
+                        "Missing gold/gold_cards_v2.json",
                     ),
                 )
                 return
@@ -445,9 +441,6 @@ object AssetValidator {
             val json = Json { ignoreUnknownKeys = true }
             json.parseToJsonElement(content)
 
-            if (usedPath != "gold/gold_cards.json") {
-                warnings.add("Using legacy gold_cards.json path; prefer gold/gold_cards.json")
-            }
 
             // Count gold cards (approximate)
             val cardCount = content.count { it == '{' } - 1
@@ -471,7 +464,7 @@ object AssetValidator {
         } catch (e: SerializationException) {
             errors.add(
                 ValidationError(
-                    "gold/gold_cards.json",
+                    "gold/gold_cards_v2.json",
                     Severity.CRITICAL,
                     "Invalid JSON format in gold bank",
                     e.message,
@@ -480,7 +473,7 @@ object AssetValidator {
         } catch (e: Exception) {
             errors.add(
                 ValidationError(
-                    "gold/gold_cards.json",
+                    "gold/gold_cards_v2.json",
                     Severity.CRITICAL,
                     "Cannot load gold bank fallback",
                     e.message,
@@ -495,7 +488,7 @@ object AssetValidator {
     fun validateEssentials(context: Context): Boolean {
         return try {
             // Just check critical files exist and are parseable
-            context.assets.open("gold/gold_cards.json").close()
+            context.assets.open("gold/gold_cards_v2.json").close()
             context.assets.open("model/rules.yaml").close()
             true
         } catch (e: Exception) {

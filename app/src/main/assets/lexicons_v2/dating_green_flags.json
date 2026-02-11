@@ -2,50 +2,10 @@
   "slot_type": "dating_green_flags",
   "entries": [
     {
-      "text": "perfect breakfast cook",
+      "text": "they remember small details about your life",
       "tags": [
-        "green_flag",
-        "dating",
-        "skill"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "emotionally available",
-      "tags": [
-        "green_flag",
-        "dating",
-        "healthy"
-      ],
-      "tone": "dry",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "great with animals",
-      "tags": [
-        "green_flag",
-        "dating",
-        "wholesome"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "remembers important dates",
-      "tags": [
-        "green_flag",
-        "dating",
-        "thoughtful"
+        "green-flag",
+        "attention"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -54,24 +14,10 @@
       "needs_article": "none"
     },
     {
-      "text": "excellent texter",
+      "text": "they get along with your friends effortlessly",
       "tags": [
-        "green_flag",
-        "dating",
-        "modern"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "an"
-    },
-    {
-      "text": "financially responsible",
-      "tags": [
-        "green_flag",
-        "dating",
-        "mature"
+        "green-flag",
+        "social"
       ],
       "tone": "neutral",
       "spice": 1,
@@ -80,37 +26,466 @@
       "needs_article": "none"
     },
     {
-      "text": "killer playlist curator",
+      "text": "they text you back within a reasonable time",
       "tags": [
-        "green_flag",
-        "dating",
-        "modern"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "amazing listener",
-      "tags": [
-        "green_flag",
-        "dating",
+        "green-flag",
         "communication"
       ],
       "tone": "neutral",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "an"
+      "needs_article": "none"
     },
     {
-      "text": "gives world-class massages",
+      "text": "they always offer to pay but don't make it weird",
       "tags": [
-        "green_flag",
-        "dating",
-        "skill"
+        "green-flag",
+        "generosity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have their own hobbies and passions",
+      "tags": [
+        "green-flag",
+        "independence"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they ask how your day went and actually listen",
+      "tags": [
+        "green-flag",
+        "communication"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they support your career goals",
+      "tags": [
+        "green-flag",
+        "support"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they apologize when they're wrong without being asked",
+      "tags": [
+        "green-flag",
+        "maturity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they introduce you to their friends and family",
+      "tags": [
+        "green-flag",
+        "commitment"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make you laugh when you're stressed",
+      "tags": [
+        "green-flag",
+        "humor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're kind to animals and strangers",
+      "tags": [
+        "green-flag",
+        "character"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they show up when they say they will",
+      "tags": [
+        "green-flag",
+        "reliability"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they don't check their phone when you're talking",
+      "tags": [
+        "green-flag",
+        "attention"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they respect your boundaries without being asked twice",
+      "tags": [
+        "green-flag",
+        "respect"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they remember your coffee order",
+      "tags": [
+        "green-flag",
+        "attention"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they plan actual dates instead of just 'hanging out'",
+      "tags": [
+        "green-flag",
+        "effort"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they hype you up in front of their friends",
+      "tags": [
+        "green-flag",
+        "support"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they handle disagreements calmly instead of yelling",
+      "tags": [
+        "green-flag",
+        "maturity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're honest even when it's uncomfortable",
+      "tags": [
+        "green-flag",
+        "honesty"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make you feel safe being yourself",
+      "tags": [
+        "green-flag",
+        "comfort"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they tip well at restaurants",
+      "tags": [
+        "green-flag",
+        "character"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they send you memes that are actually funny",
+      "tags": [
+        "green-flag",
+        "humor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they don't play mind games with texting",
+      "tags": [
+        "green-flag",
+        "communication"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they take accountability for their mistakes",
+      "tags": [
+        "green-flag",
+        "maturity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they compliment you when you're not expecting it",
+      "tags": [
+        "green-flag",
+        "attention"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they have a healthy relationship with their family",
+      "tags": [
+        "green-flag",
+        "character"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they encourage you to spend time with your friends",
+      "tags": [
+        "green-flag",
+        "trust"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they surprise you with your favorite snack",
+      "tags": [
+        "green-flag",
+        "thoughtfulness"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they listen to understand, not just to respond",
+      "tags": [
+        "green-flag",
+        "communication"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they don't trash-talk their exes",
+      "tags": [
+        "green-flag",
+        "maturity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're comfortable with silence",
+      "tags": [
+        "green-flag",
+        "comfort"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they share the last bite of food",
+      "tags": [
+        "green-flag",
+        "generosity"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they check in on you when you've had a bad day",
+      "tags": [
+        "green-flag",
+        "care"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they hold doors and do small courteous things naturally",
+      "tags": [
+        "green-flag",
+        "manners"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they celebrate your wins like they're their own",
+      "tags": [
+        "green-flag",
+        "support"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they're patient with your quirks",
+      "tags": [
+        "green-flag",
+        "acceptance"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they don't keep score in the relationship",
+      "tags": [
+        "green-flag",
+        "maturity"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they admit when they don't know something",
+      "tags": [
+        "green-flag",
+        "humility"
+      ],
+      "tone": "neutral",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they can laugh at themselves",
+      "tags": [
+        "green-flag",
+        "humor"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they handle your friends' roasts with grace",
+      "tags": [
+        "green-flag",
+        "social"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they make your morning coffee without being asked",
+      "tags": [
+        "green-flag",
+        "thoughtfulness"
       ],
       "tone": "playful",
       "spice": 2,
@@ -119,860 +494,410 @@
       "needs_article": "none"
     },
     {
-      "text": "respects boundaries",
+      "text": "they post you on social media without needing to be asked",
       "tags": [
-        "green_flag",
-        "dating",
-        "healthy"
+        "green-flag",
+        "commitment"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "they stand up for you when you're not in the room",
+      "tags": [
+        "green-flag",
+        "loyalty"
       ],
       "tone": "neutral",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "perfect travel companion",
+      "text": "they've been to therapy and it shows",
       "tags": [
-        "green_flag",
-        "dating",
-        "adventure"
+        "green-flag",
+        "growth"
       ],
-      "tone": "playful",
-      "spice": 1,
+      "tone": "dry",
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "amazing cook",
+      "text": "they read your mood and know when to give you space",
       "tags": [
-        "green_flag",
-        "dating",
-        "skill"
+        "green-flag",
+        "emotional-intelligence"
       ],
       "tone": "neutral",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "an"
+      "needs_article": "none"
     },
     {
-      "text": "great sense of humor",
+      "text": "they bring you soup when you're sick without being dramatic",
       "tags": [
-        "green_flag",
-        "dating",
-        "personality"
+        "green-flag",
+        "care"
       ],
       "tone": "playful",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "generous tipper",
+      "text": "they remember the names of people you've mentioned once",
       "tags": [
-        "green_flag",
-        "dating",
-        "kind"
+        "green-flag",
+        "attention"
       ],
       "tone": "neutral",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "a"
+      "needs_article": "none"
     },
     {
-      "text": "always on time",
+      "text": "they don't weaponize things you told them in confidence",
       "tags": [
-        "green_flag",
-        "dating",
-        "reliable"
+        "green-flag",
+        "trust"
       ],
       "tone": "neutral",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "talented at [redacted]",
+      "text": "they clean up after themselves at your place",
       "tags": [
-        "green_flag",
-        "dating",
-        "spicy"
-      ],
-      "tone": "raunchy",
-      "spice": 3,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "great with kids",
-      "tags": [
-        "green_flag",
-        "dating",
-        "family"
+        "green-flag",
+        "respect"
       ],
       "tone": "neutral",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "trust fund baby",
+      "text": "they give you the bigger piece",
       "tags": [
-        "green_flag",
-        "dating",
-        "wealthy"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "impossibly good-looking",
-      "tags": [
-        "green_flag",
-        "dating",
-        "attractive"
+        "green-flag",
+        "generosity"
       ],
       "tone": "playful",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "thoughtful gift-giver",
+      "text": "they know your love language and actually speak it",
       "tags": [
-        "green_flag",
-        "dating",
-        "romantic"
+        "green-flag",
+        "emotional-intelligence"
       ],
       "tone": "neutral",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "a"
-    },
-    {
-      "text": "brings you coffee in bed",
-      "tags": [
-        "green_flag",
-        "dating",
-        "sweet"
-      ],
-      "tone": "playful",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "loves your family",
+      "text": "they text 'let me know when you get home safe'",
       "tags": [
-        "green_flag",
-        "dating",
-        "family"
+        "green-flag",
+        "care"
       ],
       "tone": "neutral",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "incredible style",
+      "text": "they don't flirt with other people in front of you",
       "tags": [
-        "green_flag",
-        "dating",
-        "fashionable"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 1,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "speaks multiple languages",
-      "tags": [
-        "green_flag",
-        "dating",
-        "skilled"
+        "green-flag",
+        "respect"
       ],
       "tone": "neutral",
-      "spice": 1,
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "marathon stamina",
+      "text": "they back down when an argument is going nowhere",
       "tags": [
-        "green_flag",
-        "dating",
-        "spicy"
+        "green-flag",
+        "maturity"
       ],
-      "tone": "raunchy",
-      "spice": 4,
+      "tone": "neutral",
+      "spice": 2,
       "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "remembers small details about you",
+      "text": "they bring their A-game to meet your parents",
       "tags": [
-        "dating",
-        "positive",
-        "attentive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "asks about your day genuinely",
-      "tags": [
-        "dating",
-        "positive",
-        "caring"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "respects your boundaries",
-      "tags": [
-        "dating",
-        "positive",
-        "respectful"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "communicates openly",
-      "tags": [
-        "dating",
-        "positive",
-        "honest"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "makes you feel safe",
-      "tags": [
-        "dating",
-        "positive",
-        "secure"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "supports your goals",
-      "tags": [
-        "dating",
-        "positive",
-        "supportive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "celebrates your wins",
-      "tags": [
-        "dating",
-        "positive",
-        "supportive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "introduces you to friends",
-      "tags": [
-        "dating",
-        "positive",
-        "inclusive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "posts you on social media",
-      "tags": [
-        "dating",
-        "positive",
-        "public"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "plans thoughtful dates",
-      "tags": [
-        "dating",
-        "positive",
+        "green-flag",
         "effort"
       ],
       "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "listens without interrupting",
+      "text": "they're still affectionate even when other people are around",
       "tags": [
-        "dating",
-        "positive",
-        "respectful"
+        "green-flag",
+        "confidence"
       ],
       "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "apologizes when wrong",
+      "text": "they defend you without needing to be asked",
       "tags": [
-        "dating",
-        "positive",
-        "mature"
+        "green-flag",
+        "loyalty"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "takes accountability",
+      "text": "they keep pictures of you on their phone",
       "tags": [
-        "dating",
-        "positive",
-        "mature"
+        "green-flag",
+        "sentimental"
       ],
       "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "validates your feelings",
+      "text": "they make effort with your friends even when they don't click immediately",
       "tags": [
-        "dating",
-        "positive",
-        "empathetic"
+        "green-flag",
+        "effort"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "makes you laugh",
+      "text": "they validate your feelings even if they don't fully understand them",
       "tags": [
-        "dating",
-        "positive",
-        "fun"
+        "green-flag",
+        "emotional-intelligence"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "shares their feelings",
+      "text": "they let you control the music without judgment",
       "tags": [
-        "dating",
-        "positive",
-        "vulnerable"
+        "green-flag",
+        "trust"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "is consistent with communication",
+      "text": "they ask about your family and remember details",
       "tags": [
-        "dating",
-        "positive",
-        "reliable"
+        "green-flag",
+        "attention"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "follows through on promises",
+      "text": "they acknowledge your contributions in front of others",
       "tags": [
-        "dating",
-        "positive",
-        "reliable"
+        "green-flag",
+        "respect"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "shows up when they say they will",
+      "text": "they don't compare you to anyone",
       "tags": [
-        "dating",
-        "positive",
-        "reliable"
+        "green-flag",
+        "acceptance"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "respects your time",
+      "text": "they remember your allergies and dietary restrictions",
       "tags": [
-        "dating",
-        "positive",
-        "respectful"
+        "green-flag",
+        "attention"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "doesn't play games",
+      "text": "they're happy when good things happen to you",
       "tags": [
-        "dating",
-        "positive",
-        "honest"
+        "green-flag",
+        "support"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "is emotionally available",
+      "text": "they compromise without keeping score",
       "tags": [
-        "dating",
-        "positive",
-        "mature"
+        "green-flag",
+        "maturity"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "wants to meet your friends",
+      "text": "they give you genuine compliments about things other than looks",
       "tags": [
-        "dating",
-        "positive",
-        "inclusive"
+        "green-flag",
+        "depth"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "includes you in their life",
+      "text": "they're comfortable being quiet together",
       "tags": [
-        "dating",
-        "positive",
-        "inclusive"
+        "green-flag",
+        "comfort"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "talks about the future",
+      "text": "they never make you feel stupid for not knowing something",
       "tags": [
-        "dating",
-        "positive",
-        "committed"
+        "green-flag",
+        "kindness"
       ],
-      "tone": "playful",
+      "tone": "neutral",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "makes you feel special",
+      "text": "they show the same affection in private and in public",
       "tags": [
-        "dating",
-        "positive",
-        "romantic"
+        "green-flag",
+        "consistency"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "gives genuine compliments",
+      "text": "they respect your alone time without taking it personally",
       "tags": [
-        "dating",
-        "positive",
-        "affirming"
+        "green-flag",
+        "boundaries"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "shows physical affection",
+      "text": "they handle stress without taking it out on you",
       "tags": [
-        "dating",
-        "positive",
-        "affectionate"
+        "green-flag",
+        "emotional-regulation"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "respects your independence",
+      "text": "they tell their friends good things about you",
       "tags": [
-        "dating",
-        "positive",
-        "respectful"
+        "green-flag",
+        "loyalty"
       ],
       "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "encourages your hobbies",
+      "text": "they make you feel chosen, not settled for",
       "tags": [
-        "dating",
-        "positive",
-        "supportive"
+        "green-flag",
+        "effort"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "is proud of you",
-      "tags": [
-        "dating",
-        "positive",
-        "supportive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "defends you when you're not there",
-      "tags": [
-        "dating",
-        "positive",
-        "loyal"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "is kind to service workers",
-      "tags": [
-        "dating",
-        "positive",
-        "kind"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "tips well",
-      "tags": [
-        "dating",
-        "positive",
-        "generous"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "is good with animals",
-      "tags": [
-        "dating",
-        "positive",
-        "kind"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "is good with kids",
-      "tags": [
-        "dating",
-        "positive",
-        "nurturing"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "has a good relationship with family",
-      "tags": [
-        "dating",
-        "positive",
-        "family"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "has healthy friendships",
-      "tags": [
-        "dating",
-        "positive",
-        "social"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "takes care of themselves",
-      "tags": [
-        "dating",
-        "positive",
-        "healthy"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "has good hygiene",
-      "tags": [
-        "dating",
-        "positive",
-        "hygiene"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "dresses well",
-      "tags": [
-        "dating",
-        "positive",
-        "style"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "smells good",
-      "tags": [
-        "dating",
-        "positive",
-        "hygiene"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "has their own interests",
-      "tags": [
-        "dating",
-        "positive",
-        "independent"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "is passionate about something",
-      "tags": [
-        "dating",
-        "positive",
-        "driven"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "has goals and ambitions",
-      "tags": [
-        "dating",
-        "positive",
-        "driven"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "is financially responsible",
-      "tags": [
-        "dating",
-        "positive",
-        "mature"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "splits the bill fairly",
-      "tags": [
-        "dating",
-        "positive",
-        "fair"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "offers to pay sometimes",
-      "tags": [
-        "dating",
-        "positive",
-        "generous"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "plans surprises",
-      "tags": [
-        "dating",
-        "positive",
-        "thoughtful"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "remembers important dates",
-      "tags": [
-        "dating",
-        "positive",
-        "attentive"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "tone": "neutral",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     }

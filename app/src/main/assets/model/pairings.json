@@ -1,13 +1,54 @@
 {
-  "version": 1,
+  "version": 2,
   "pairs": [
     {
-      "slot_type": "perks_plus",
+      "slot_type": "sketchy_action",
       "compatibility": {
-        "gross_problem": 0.35,
-        "red_flag_issue": 0.45,
-        "sexual_innuendo": 0.25,
-        "bodily_functions": 0.3
+        "social_reason": 0.55,
+        "audience_type": 0.25,
+        "chaotic_plan": 0.35,
+        "evidence_reason": 0.4
+      }
+    },
+    {
+      "slot_type": "social_reason",
+      "compatibility": {
+        "sketchy_action": 0.55,
+        "chaotic_plan": 0.35,
+        "would_you_rather_costs": 0.5,
+        "bodily_functions": 0.25,
+        "selfish_behaviors": 0.45,
+        "audience_type": 0.2,
+        "vices_and_indulgences": 0.4
+      }
+    },
+    {
+      "slot_type": "chaotic_plan",
+      "compatibility": {
+        "audience_type": 0.42,
+        "sketchy_action": 0.35,
+        "social_reason": 0.35,
+        "evidence_reason": 0.3,
+        "selfish_behaviors": 0.3
+      }
+    },
+    {
+      "slot_type": "audience_type",
+      "compatibility": {
+        "sketchy_action": 0.25,
+        "chaotic_plan": 0.42,
+        "social_reason": 0.2,
+        "reply_tone": 0.15
+      }
+    },
+    {
+      "slot_type": "would_you_rather_costs",
+      "compatibility": {
+        "social_reason": 0.5,
+        "bodily_functions": 0.4,
+        "selfish_behaviors": 0.35,
+        "gross_problem": 0.45,
+        "vices_and_indulgences": 0.35
       }
     },
     {
@@ -16,17 +57,21 @@
         "perks_plus": 0.35,
         "red_flag_issue": 0.15,
         "sexual_innuendo": 0.2,
-        "bodily_functions": 0.4
+        "bodily_functions": 0.4,
+        "would_you_rather_costs": 0.45,
+        "product_item": 0.4
       }
     },
     {
-      "slot_type": "sexual_innuendo",
+      "slot_type": "selfish_behaviors",
       "compatibility": {
-        "perks_plus": 0.25,
-        "gross_problem": 0.2,
-        "red_flag_issue": 0.35,
-        "bodily_functions": 0.15,
-        "taboo_topics": 0.3
+        "social_reason": 0.45,
+        "would_you_rather_costs": 0.35,
+        "red_flag_issue": 0.5,
+        "red_flag_traits": 0.45,
+        "bodily_functions": 0.2,
+        "vices_and_indulgences": 0.4,
+        "awkward_contexts": 0.3
       }
     },
     {
@@ -35,15 +80,23 @@
         "perks_plus": 0.3,
         "gross_problem": 0.4,
         "sexual_innuendo": 0.15,
-        "red_flag_issue": 0.25
+        "red_flag_issue": 0.25,
+        "would_you_rather_costs": 0.4,
+        "social_reason": 0.25,
+        "awkward_contexts": 0.35
       }
     },
     {
-      "slot_type": "taboo_topics",
+      "slot_type": "perks_plus",
       "compatibility": {
-        "sexual_innuendo": 0.3,
-        "red_flag_issue": 0.4,
-        "gross_problem": 0.2
+        "gross_problem": 0.35,
+        "red_flag_issue": 0.45,
+        "sexual_innuendo": 0.25,
+        "bodily_functions": 0.3,
+        "red_flag_traits": 0.5,
+        "dating_green_flags": 0.55,
+        "product_item": 0.2,
+        "meme_item": 0.15
       }
     },
     {
@@ -53,28 +106,119 @@
         "gross_problem": 0.15,
         "sexual_innuendo": 0.35,
         "bodily_functions": 0.25,
-        "taboo_topics": 0.4
+        "taboo_topics": 0.4,
+        "red_flag_traits": 0.55,
+        "selfish_behaviors": 0.5
       }
     },
     {
-      "slot_type": "sketchy_action",
+      "slot_type": "red_flag_traits",
       "compatibility": {
-        "social_reason": 0.55,
-        "audience_type": 0.25
+        "perks_plus": 0.5,
+        "sexual_innuendo": 0.25,
+        "red_flag_issue": 0.55,
+        "dating_green_flags": 0.45,
+        "selfish_behaviors": 0.45,
+        "awkward_contexts": 0.3,
+        "vices_and_indulgences": 0.35
       }
     },
     {
-      "slot_type": "chaotic_plan",
+      "slot_type": "dating_green_flags",
       "compatibility": {
-        "audience_type": 0.42
+        "red_flag_traits": 0.45,
+        "perks_plus": 0.55,
+        "awkward_contexts": 0.2,
+        "selfish_behaviors": 0.15,
+        "sexual_innuendo": 0.2,
+        "taboo_topics": 0.15,
+        "vices_and_indulgences": 0.2
       }
     },
     {
-      "slot_type": "meme_item",
+      "slot_type": "sexual_innuendo",
       "compatibility": {
-        "meme_item": -0.1,
-        "product_item": 0.25,
-        "categories": 0.15
+        "perks_plus": 0.25,
+        "gross_problem": 0.2,
+        "red_flag_issue": 0.35,
+        "bodily_functions": 0.15,
+        "taboo_topics": 0.3,
+        "red_flag_traits": 0.25,
+        "dating_green_flags": 0.2,
+        "vices_and_indulgences": 0.3,
+        "awkward_contexts": 0.25
+      }
+    },
+    {
+      "slot_type": "taboo_topics",
+      "compatibility": {
+        "sexual_innuendo": 0.3,
+        "red_flag_issue": 0.4,
+        "gross_problem": 0.2,
+        "vices_and_indulgences": 0.35,
+        "dating_green_flags": 0.15,
+        "social_reason": 0.25,
+        "awkward_contexts": 0.3
+      }
+    },
+    {
+      "slot_type": "vices_and_indulgences",
+      "compatibility": {
+        "social_reason": 0.4,
+        "selfish_behaviors": 0.4,
+        "sexual_innuendo": 0.3,
+        "taboo_topics": 0.35,
+        "would_you_rather_costs": 0.35,
+        "red_flag_traits": 0.35,
+        "dating_green_flags": 0.2,
+        "bodily_functions": 0.25
+      }
+    },
+    {
+      "slot_type": "evidence_reason",
+      "compatibility": {
+        "chaotic_plan": 0.45,
+        "selfish_behaviors": 0.4,
+        "sketchy_action": 0.5,
+        "guilty_behavior": 0.55,
+        "receipts": 0.5
+      }
+    },
+    {
+      "slot_type": "internet_slang",
+      "compatibility": {
+        "meme_references": 0.5,
+        "social_reason": 0.2
+      }
+    },
+    {
+      "slot_type": "meme_references",
+      "compatibility": {
+        "internet_slang": 0.5,
+        "meme_item": 0.35
+      }
+    },
+    {
+      "slot_type": "text_messages",
+      "compatibility": {
+        "text_senders": 0.55,
+        "reply_tone": 0.4
+      }
+    },
+    {
+      "slot_type": "text_senders",
+      "compatibility": {
+        "text_messages": 0.55,
+        "reply_tone": 0.35
+      }
+    },
+    {
+      "slot_type": "reply_tone",
+      "compatibility": {
+        "text_messages": 0.4,
+        "text_senders": 0.35,
+        "audience_type": 0.15,
+        "reply_tone": -0.2
       }
     },
     {
@@ -85,16 +229,9 @@
       }
     },
     {
-      "slot_type": "product_item",
+      "slot_type": "taboo_forbidden",
       "compatibility": {
-        "gross_problem": 0.4,
-        "product_item": -0.15
-      }
-    },
-    {
-      "slot_type": "reply_tone",
-      "compatibility": {
-        "reply_tone": -0.2
+        "secret_word": 0.1
       }
     },
     {
@@ -111,35 +248,146 @@
       }
     },
     {
-      "slot_type": "social_reason",
+      "slot_type": "meme_item",
       "compatibility": {
-        "would_you_rather_costs": 0.5,
-        "bodily_functions": 0.25,
-        "selfish_behaviors": 0.45,
-        "chaotic_plan": 0.35
+        "meme_item": -0.1,
+        "product_item": 0.25,
+        "categories": 0.15,
+        "meme_references": 0.35,
+        "perks_plus": 0.15
       }
     },
     {
-      "slot_type": "would_you_rather_costs",
+      "slot_type": "product_item",
       "compatibility": {
-        "social_reason": 0.5,
-        "bodily_functions": 0.4,
-        "selfish_behaviors": 0.35
+        "gross_problem": 0.4,
+        "product_item": -0.15,
+        "meme_item": 0.25,
+        "perks_plus": 0.2
       }
     },
     {
-      "slot_type": "red_flag_traits",
+      "slot_type": "life_stat",
       "compatibility": {
-        "perks_plus": 0.5,
-        "sexual_innuendo": 0.25
+        "phone_stat": 0.35,
+        "physical_challenge": 0.15,
+        "guilty_behavior": 0.3
       }
     },
     {
-      "slot_type": "evidence_reason",
+      "slot_type": "phone_stat",
       "compatibility": {
-        "chaotic_plan": 0.45,
-        "selfish_behaviors": 0.4,
-        "sketchy_action": 0.5
+        "life_stat": 0.35,
+        "guilty_behavior": 0.25,
+        "physical_challenge": 0.1
+      }
+    },
+    {
+      "slot_type": "guilty_behavior",
+      "compatibility": {
+        "evidence_reason": 0.55,
+        "receipts": 0.5,
+        "life_stat": 0.3,
+        "phone_stat": 0.25,
+        "sketchy_action": 0.4
+      }
+    },
+    {
+      "slot_type": "physical_challenge",
+      "compatibility": {
+        "life_stat": 0.15,
+        "phone_stat": 0.1,
+        "survival_scenario": 0.3
+      }
+    },
+    {
+      "slot_type": "personality_trait",
+      "compatibility": {
+        "skill_trait": 0.45,
+        "social_context": 0.3,
+        "survival_scenario": 0.25
+      }
+    },
+    {
+      "slot_type": "skill_trait",
+      "compatibility": {
+        "personality_trait": 0.45,
+        "social_context": 0.3,
+        "survival_scenario": 0.25,
+        "physical_challenge": 0.2
+      }
+    },
+    {
+      "slot_type": "social_context",
+      "compatibility": {
+        "personality_trait": 0.3,
+        "skill_trait": 0.3,
+        "survival_scenario": 0.2,
+        "awkward_contexts": 0.5
+      }
+    },
+    {
+      "slot_type": "survival_scenario",
+      "compatibility": {
+        "personality_trait": 0.25,
+        "skill_trait": 0.25,
+        "social_context": 0.2,
+        "physical_challenge": 0.3
+      }
+    },
+    {
+      "slot_type": "random_item",
+      "compatibility": {
+        "abstract_concept": 0.15,
+        "celebrity": 0.1,
+        "random_item": -0.1
+      }
+    },
+    {
+      "slot_type": "abstract_concept",
+      "compatibility": {
+        "random_item": 0.15,
+        "celebrity": 0.2
+      }
+    },
+    {
+      "slot_type": "celebrity",
+      "compatibility": {
+        "random_item": 0.1,
+        "abstract_concept": 0.2
+      }
+    },
+    {
+      "slot_type": "awkward_contexts",
+      "compatibility": {
+        "dating_green_flags": 0.2,
+        "red_flag_traits": 0.3,
+        "selfish_behaviors": 0.3,
+        "sexual_innuendo": 0.25,
+        "taboo_topics": 0.3,
+        "vices_and_indulgences": 0.25,
+        "social_context": 0.5,
+        "bodily_functions": 0.35
+      }
+    },
+    {
+      "slot_type": "relationship_fails",
+      "compatibility": {
+        "red_flag_traits": 0.45,
+        "red_flag_issue": 0.4,
+        "dating_green_flags": 0.2,
+        "receipts": 0.45,
+        "evidence_reason": 0.4,
+        "guilty_behavior": 0.4
+      }
+    },
+    {
+      "slot_type": "receipts",
+      "compatibility": {
+        "evidence_reason": 0.5,
+        "guilty_behavior": 0.5,
+        "relationship_fails": 0.45,
+        "sketchy_action": 0.35
       }
     }
   ]

@@ -2,224 +2,334 @@
   "slot_type": "mandatory_tones",
   "entries": [
     {
-      "text": "The Seductive Whisper",
-      "tags": ["performance", "voice"],
-      "tone": "raunchy",
-      "spice": 3,
+      "text": "sarcastic",
+      "tags": [
+        "tone"
+      ],
+      "tone": "dry",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Breathless, trying to take them home"
+      "needs_article": "none"
     },
     {
-      "text": "The Raging Karen",
-      "tags": ["performance", "voice"],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Demanding a manager, everything is unacceptable"
-    },
-    {
-      "text": "The 1920s News Anchor",
-      "tags": ["performance", "voice"],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Fast-talking, high-pitched, formal"
-    },
-    {
-      "text": "The Malfunctioning Robot",
-      "tags": ["performance", "voice"],
+      "text": "overly enthusiastic",
+      "tags": [
+        "tone"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Monotone with glitches and beeps"
+      "needs_article": "none"
     },
     {
-      "text": "The Noir Detective",
-      "tags": ["performance", "voice"],
+      "text": "passive-aggressive",
+      "tags": [
+        "tone"
+      ],
       "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Gritty internal monologue, cynical"
+      "needs_article": "none"
     },
     {
-      "text": "The Weeping Soap Star",
-      "tags": ["performance", "voice"],
-      "tone": "cringe",
+      "text": "flirty",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Hysterical sobbing, tragic"
+      "needs_article": "none"
     },
     {
-      "text": "The Aggressive Drill Sergeant",
-      "tags": ["performance", "voice"],
+      "text": "dramatic",
+      "tags": [
+        "tone"
+      ],
       "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Screaming, calling them maggots"
-    },
-    {
-      "text": "The Stoned Philosopher",
-      "tags": ["performance", "voice"],
-      "tone": "playful",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Slow, mind-blown, whoa dude"
-    },
-    {
-      "text": "The Paralyzingly Shy",
-      "tags": ["performance", "voice"],
-      "tone": "cringe",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Stuttering, terrified, whispering"
+      "needs_article": "none"
     },
     {
-      "text": "The Used Car Salesman",
-      "tags": ["performance", "voice"],
+      "text": "deadpan",
+      "tags": [
+        "tone"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "motivational speaker",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "valley girl",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like a sports commentator",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like a disappointed parent",
+      "tags": [
+        "tone"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like you're in a horror movie",
+      "tags": [
+        "tone"
+      ],
+      "tone": "wild",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like a nature documentary narrator",
+      "tags": [
+        "tone"
+      ],
       "tone": "witty",
-      "spice": 2,
-      "locality": 2,
+      "spice": 1,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Sleazy, fast, high-pressure"
+      "needs_article": "none"
     },
     {
-      "text": "The Shakespearean Actor",
-      "tags": ["performance", "voice"],
+      "text": "like a kindergarten teacher",
+      "tags": [
+        "tone"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Over-enunciated, dramatic projection"
+      "needs_article": "none"
     },
     {
-      "text": "The Conspiracy Theorist",
-      "tags": ["performance", "voice"],
+      "text": "like Gordon Ramsay",
+      "tags": [
+        "tone"
+      ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Paranoid, whispering, they are listening"
+      "needs_article": "none"
     },
     {
-      "text": "The Valley Girl",
-      "tags": ["performance", "voice"],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Vocal fry, constant up-speak"
-    },
-    {
-      "text": "The Medieval Peasant",
-      "tags": ["performance", "voice"],
-      "tone": "playful",
+      "text": "like a news anchor breaking bad news",
+      "tags": [
+        "tone"
+      ],
+      "tone": "dry",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Downtrodden, scared of plague"
+      "needs_article": "none"
     },
     {
-      "text": "The Bond Villain",
-      "tags": ["performance", "voice"],
+      "text": "like you're confessing a crime",
+      "tags": [
+        "tone"
+      ],
       "tone": "dry",
       "spice": 2,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Calm, slow, expecting them to die"
+      "needs_article": "none"
     },
     {
-      "text": "The Manic Squirrel",
-      "tags": ["performance", "voice"],
-      "tone": "wild",
-      "spice": 2,
+      "text": "like a robot gaining consciousness",
+      "tags": [
+        "tone"
+      ],
+      "tone": "witty",
+      "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "2x speed, twitchy, wide-eyed"
+      "needs_article": "none"
     },
     {
-      "text": "The Dying Breath",
-      "tags": ["performance", "voice"],
-      "tone": "cringe",
+      "text": "like you're trying to seduce someone badly",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
       "spice": 3,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Gasping, 5 seconds to live"
+      "needs_article": "none"
     },
     {
-      "text": "The Condescending IT Guy",
-      "tags": ["performance", "voice"],
+      "text": "like you're giving a eulogy",
+      "tags": [
+        "tone"
+      ],
       "tone": "dry",
       "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Sighing loudly, smarter than you"
-    },
-    {
-      "text": "The Possessed",
-      "tags": ["performance", "voice"],
-      "tone": "wild",
-      "spice": 3,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Guttural growls, speaking in tongues"
+      "needs_article": "none"
     },
     {
-      "text": "The Confused Time Traveler",
-      "tags": ["performance", "voice"],
+      "text": "like an auctioneer",
+      "tags": [
+        "tone"
+      ],
       "tone": "playful",
       "spice": 1,
       "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "From 1850, confused by technology"
+      "needs_article": "none"
     },
     {
-      "text": "The Golf Commentator",
-      "tags": ["performance", "voice"],
-      "tone": "dry",
+      "text": "like a TED Talk speaker",
+      "tags": [
+        "tone"
+      ],
+      "tone": "witty",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Hushed whisper, respectful, boring"
+      "needs_article": "none"
     },
     {
-      "text": "The Frantic 911 Caller",
-      "tags": ["performance", "voice"],
+      "text": "like a reality TV confessional",
+      "tags": [
+        "tone"
+      ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
-      "needs_article": "none",
-      "instruction": "Emergency panic, everything is urgent"
+      "needs_article": "none"
+    },
+    {
+      "text": "like you're narrating a true crime podcast",
+      "tags": [
+        "tone"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like a LinkedIn influencer",
+      "tags": [
+        "tone"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like a telenovela villain",
+      "tags": [
+        "tone"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like you just got caught doing something sketchy",
+      "tags": [
+        "tone"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "whispering like you're sharing a secret",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like a pirate",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like Morgan Freeman",
+      "tags": [
+        "tone"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "like you're live-tweeting the situation",
+      "tags": [
+        "tone"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
     }
   ]
 }

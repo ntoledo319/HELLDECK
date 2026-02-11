@@ -16,8 +16,12 @@ class GoldBank(assetManager: AssetManager) {
     private val json = Json { ignoreUnknownKeys = true }
     private val cardsByGame: Map<String, List<GoldCard>> = load(assetManager)
 
+    // Anti-repetition: track recently drawn card IDs per game
+    private val recentDraws = mutableMapOf<String, MutableList<String>>()
+    private val maxRecentPerGame = 50
+
     private fun load(assetManager: AssetManager): Map<String, List<GoldCard>> {
-        val candidates = listOf("gold/gold_cards.json", "gold_cards.json")
+        val candidates = listOf("gold/gold_cards_v2.json")
         candidates.forEach { path ->
             val text = runCatching { assetManager.open(path).bufferedReader().use { it.readText() } }.getOrNull()
             if (text != null) {
@@ -64,10 +68,33 @@ class GoldBank(assetManager: AssetManager) {
     }
 
     fun draw(game: String, random: Random, maxSpice: Int = 5): GoldCard? {
-        val list = cardsByGame[game] ?: cardsByGame[game.uppercase(Locale.US)].orEmpty()
-        val filtered = list.filter { it.spice <= maxSpice }
+        val gameKey = game.uppercase(Locale.US)
+        val list = cardsByGame[game] ?: cardsByGame[gameKey].orEmpty()
+        val recent = recentDraws[gameKey].orEmpty().toSet()
+        val filtered = list.filter { it.spice <= maxSpice && it.id !in recent }
+            .ifEmpty { list.filter { it.spice <= maxSpice } } // fallback if all drawn
         if (filtered.isEmpty()) return null
-        return filtered[random.nextInt(filtered.size)]
+
+        // Quality-weighted selection: higher spice-match cards get a slight boost
+        val weights = filtered.map { card ->
+            val spiceBonus = if (card.spice >= maxSpice - 1) 1.3 else 1.0
+            val randomFactor = 0.7 + random.nextDouble() * 0.3
+            spiceBonus * randomFactor
+        }
+        val totalWeight = weights.sum()
+        var roll = random.nextDouble() * totalWeight
+        var chosen = filtered.last()
+        for (i in filtered.indices) {
+            roll -= weights[i]
+            if (roll <= 0) { chosen = filtered[i]; break }
+        }
+
+        // Track this draw for anti-repetition
+        val drawList = recentDraws.getOrPut(gameKey) { mutableListOf() }
+        drawList.add(chosen.id)
+        if (drawList.size > maxRecentPerGame) drawList.removeAt(0)
+
+        return chosen
     }
 
     fun toFilledCard(card: GoldCard): FilledCard {

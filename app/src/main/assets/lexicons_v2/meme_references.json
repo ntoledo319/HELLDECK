@@ -2,977 +2,902 @@
   "slot_type": "meme_references",
   "entries": [
     {
-      "text": "the friend who always says 'let him cook'",
+      "text": "this is fine (house on fire)",
       "tags": [
         "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified sad boy hours",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the vibe check failed",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "no thoughts, head empty energy",
-      "tags": [
-        "meme",
-        "modern",
-        "dumb"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'I'm baby' defense",
-      "tags": [
-        "meme",
-        "modern",
-        "excuse"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "weaponized incompetence",
-      "tags": [
-        "meme",
-        "modern",
-        "toxic"
-      ],
-      "tone": "dark",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "this is fine energy",
-      "tags": [
-        "meme",
-        "modern",
         "denial"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the multiverse of madness we ordered",
+      "text": "the 'distracted boyfriend' situation",
       "tags": [
         "meme",
-        "modern",
-        "chaos"
+        "classic"
       ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "big sad energy",
+      "text": "'we have food at home' energy",
       "tags": [
         "meme",
-        "modern",
-        "depression"
+        "frugal"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "crying Michael Jordan face",
+      "tags": [
+        "meme",
+        "sports"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'how it started vs how it's going'",
+      "tags": [
+        "meme",
+        "comparison"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the SpongeBob mocking text",
+      "tags": [
+        "meme",
+        "sarcasm"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the audacity of this bitch",
+      "text": "'I'm in danger' Ralph Wiggum",
       "tags": [
         "meme",
-        "modern",
-        "shocked"
+        "simpsons"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "surprised Pikachu face",
+      "tags": [
+        "meme",
+        "shock"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "that one Drake meme (yes/no)",
+      "tags": [
+        "meme",
+        "preference"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'tell me without telling me'",
+      "tags": [
+        "meme",
+        "challenge"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'it's the ___ for me'",
+      "tags": [
+        "meme",
+        "critique"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'say less'",
+      "tags": [
+        "meme",
+        "agreement"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Leonardo DiCaprio pointing at the TV",
+      "tags": [
+        "meme",
+        "recognition"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Will Smith slap energy",
+      "tags": [
+        "meme",
+        "confrontation"
       ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "emotional damage",
+      "text": "'and I took that personally' Jordan",
       "tags": [
         "meme",
-        "modern",
-        "hurt"
+        "petty"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Oprah 'you get a car' energy",
+      "tags": [
+        "meme",
+        "generosity"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the villain origin story",
+      "text": "the 'let me in' Eric Andre meme",
       "tags": [
         "meme",
-        "modern",
-        "backstory"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "goblin mode activated",
-      "tags": [
-        "meme",
-        "modern",
-        "chaotic"
+        "desperation"
       ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the group chat investigation",
+      "text": "'I didn't hear no bell' energy",
       "tags": [
         "meme",
-        "modern",
-        "social"
+        "persistence"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'is this a pigeon?' confusion",
+      "tags": [
+        "meme",
+        "clueless"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the math ain't mathing",
+      "text": "galaxy brain moment",
       "tags": [
         "meme",
-        "modern",
+        "genius"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the office 'it's the same picture' meme",
+      "tags": [
+        "meme",
+        "comparison"
+      ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "coffin dance energy",
+      "tags": [
+        "meme",
+        "dark-humor"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'first time?' James Franco meme",
+      "tags": [
+        "meme",
+        "experience"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'you guys are getting paid?' meme",
+      "tags": [
+        "meme",
+        "jealousy"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'call an ambulance but not for me' energy",
+      "tags": [
+        "meme",
+        "reversal"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "stonks meme energy",
+      "tags": [
+        "meme",
+        "finance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'I'm something of a ___ myself' Osborn",
+      "tags": [
+        "meme",
+        "identity"
+      ],
+      "tone": "witty",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'we don't do that here' Black Panther",
+      "tags": [
+        "meme",
+        "boundary"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "chef's kiss perfection",
+      "tags": [
+        "meme",
+        "approval"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'visible confusion' Anakin",
+      "tags": [
+        "meme",
         "confused"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "respectfully, no",
+      "text": "'why can't you just be normal?' screaming meme",
       "tags": [
         "meme",
-        "modern",
-        "rejection"
+        "frustration"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Squidward looking out the window energy",
+      "tags": [
+        "meme",
+        "jealousy"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'so you have chosen death' Saruman",
+      "tags": [
+        "meme",
+        "threat"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'I'll allow it' judge meme",
+      "tags": [
+        "meme",
+        "permission"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'ah shit here we go again' CJ",
+      "tags": [
+        "meme",
+        "resignation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Patrick 'three take it or leave it' energy",
+      "tags": [
+        "meme",
+        "negotiation"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Mr. Incredible 'it's showtime' becoming uncanny",
+      "tags": [
+        "meme",
+        "horror"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Kermit sipping tea (but that's none of my business)",
+      "tags": [
+        "meme",
+        "shade"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "side-eye Chloe energy",
+      "tags": [
+        "meme",
+        "judgment"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'EMOTIONAL DAMAGE' meme",
+      "tags": [
+        "meme",
+        "roast"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Pedro Pascal crying/laughing simultaneously",
+      "tags": [
+        "meme",
+        "mood-swing"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'I was today years old when...'",
+      "tags": [
+        "meme",
+        "discovery"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'Guess I'll die' shrug meme",
+      "tags": [
+        "meme",
+        "resignation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'understandable, have a great day'",
+      "tags": [
+        "meme",
+        "acceptance"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'not you doing ___' TikTok energy",
+      "tags": [
+        "meme",
+        "callout"
+      ],
+      "tone": "playful",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'POV: you're ___'",
+      "tags": [
+        "meme",
+        "perspective"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "that one 'oh no' TikTok sound",
+      "tags": [
+        "meme",
+        "disaster"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'trade offer' meme",
+      "tags": [
+        "meme",
+        "negotiation"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'objection, hearsay' Depp trial",
+      "tags": [
+        "meme",
+        "legal"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the Barbie 'I'm just Ken' energy",
+      "tags": [
+        "meme",
+        "identity"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "Fyre Festival energy",
+      "tags": [
+        "meme",
+        "disaster"
+      ],
+      "tone": "wild",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'it cost $0 to not do that'",
+      "tags": [
+        "meme",
+        "criticism"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the woman yelling at cat meme",
+      "tags": [
+        "meme",
+        "argument"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'ok boomer' energy",
+      "tags": [
+        "meme",
+        "dismissal"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the ick has been acquired",
+      "text": "'I see this as an absolute win' Hulk",
       "tags": [
         "meme",
-        "modern",
-        "dating"
+        "optimism"
       ],
       "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified lover boy behavior",
-      "tags": [
-        "meme",
-        "modern",
-        "simp"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the clownery of it all",
-      "tags": [
-        "meme",
-        "modern",
-        "foolish"
-      ],
-      "tone": "witty",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "not the main character moment",
+      "text": "the John Travolta confused meme",
       "tags": [
         "meme",
-        "modern",
+        "lost"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'always has been' astronaut meme",
+      "tags": [
+        "meme",
+        "revelation"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'we're all gonna die' acceptance meme",
+      "tags": [
+        "meme",
+        "nihilism"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'if those kids could read' meme",
+      "tags": [
+        "meme",
+        "insult"
+      ],
+      "tone": "dry",
+      "spice": 2,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'same energy' comparison meme",
+      "tags": [
+        "meme",
+        "comparison"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'how do you do, fellow kids?' energy",
+      "tags": [
+        "meme",
         "cringe"
       ],
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'shut up and take my money' Fry",
+      "tags": [
+        "meme",
+        "enthusiasm"
+      ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the villain arc begins",
+      "text": "the 'you had one job' energy",
       "tags": [
         "meme",
-        "modern",
-        "transformation"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "that's enough internet for today",
-      "tags": [
-        "meme",
-        "modern",
-        "shocked"
+        "failure"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the situation is situating",
+      "text": "'this meeting could have been an email'",
       "tags": [
         "meme",
-        "modern",
-        "chaos"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "weaponized white woman tears",
-      "tags": [
-        "meme",
-        "modern",
-        "manipulation"
-      ],
-      "tone": "dark",
-      "spice": 3,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the beige flag collection",
-      "tags": [
-        "meme",
-        "modern",
-        "dating"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'hear me out' cake defender",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'no thoughts head empty' moment",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'it's giving' narrator",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living in their flop era",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'delulu is the solulu' believer",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "caught in their villain arc",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'Roman Empire' question asker",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "orange peel theory tester",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "witty",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'no cap fr fr' user",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'bussin' reviewer",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'sheesh' reactor",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living their 'slay' era",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'period pooh' emphasizer",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "caught in 4K constantly",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'ratio' threat maker",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'L + ratio' dealer",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'touch grass' recommender",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "dry",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "chronically online behavior",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
+        "work"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the 'main character' syndrome haver",
+      "text": "the 'they don't know I'm ___' at a party meme",
       "tags": [
         "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified NPC behavior",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
+        "insecurity"
       ],
       "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the 'side quest' accepter",
+      "text": "'say sike right now'",
       "tags": [
         "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living in their 'goblin mode' era",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
+        "disbelief"
       ],
       "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the 'hot girl walk' enthusiast",
+      "text": "the 'it's Wednesday my dudes' energy",
       "tags": [
         "meme",
-        "modern",
-        "reference"
+        "midweek"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "certified 'girl dinner' defender",
+      "text": "'I'm in this photo and I don't like it'",
       "tags": [
         "meme",
-        "modern",
-        "reference"
+        "callout"
       ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'boy math' exposer",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "witty",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "certified 'girl math' practitioner",
+      "text": "'but wait, there's more!' infomercial energy",
       "tags": [
         "meme",
-        "modern",
-        "reference"
+        "escalation"
       ],
       "tone": "playful",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the 'gaslight gatekeep girlboss' motto haver",
+      "text": "the 'X gonna give it to ya' intensity",
       "tags": [
         "meme",
-        "modern",
-        "reference"
+        "hype"
       ],
-      "tone": "witty",
+      "tone": "wild",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "living their 'sigma grindset'",
+      "text": "'mom can we have X?' / 'we have X at home' energy",
       "tags": [
         "meme",
-        "modern",
-        "reference"
+        "disappointment"
       ],
       "tone": "dry",
       "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "the 'alpha male' podcaster",
+      "text": "the 'I don't need sleep, I need answers' meme",
       "tags": [
         "meme",
-        "modern",
-        "reference"
+        "obsession"
       ],
-      "tone": "cringe",
+      "tone": "dry",
       "spice": 2,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     },
     {
-      "text": "certified 'beta male' energy",
+      "text": "'that's it, that's the tweet'",
       "tags": [
         "meme",
-        "modern",
-        "reference"
+        "finality"
       ],
-      "tone": "cringe",
+      "tone": "dry",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "the 'he a little confused but he got the spirit' meme",
+      "tags": [
+        "meme",
+        "effort"
+      ],
+      "tone": "playful",
+      "spice": 1,
+      "locality": 1,
+      "pluralizable": false,
+      "needs_article": "none"
+    },
+    {
+      "text": "'and for my next trick, I'll make ____ disappear'",
+      "tags": [
+        "meme",
+        "magic"
+      ],
+      "tone": "playful",
       "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'pick me' behavior exhibitor",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "cringe",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living in their 'golden retriever' era",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'black cat' energy",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'malewife' material",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'himbo' vibes",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'bimbo' energy haver",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living their 'theater kid' fantasy",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'band kid' behavior",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'horse girl' coded one",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living their 'clean girl' aesthetic",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'mob wife' era",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'rat girl summer' participant",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living their 'villain era'",
-      "tags": [
-        "meme",
-        "modern",
-        "mood"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'healing era' believer",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'aura points' collector",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'W rizz' haver",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "living with 'L rizz'",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "wild",
-      "spice": 2,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'understood the assignment' achiever",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "certified 'ate and left no crumbs' performer",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
-      "pluralizable": false,
-      "needs_article": "none"
-    },
-    {
-      "text": "the 'rent free' occupier",
-      "tags": [
-        "meme",
-        "modern",
-        "reference"
-      ],
-      "tone": "playful",
-      "spice": 1,
-      "locality": 2,
+      "locality": 1,
       "pluralizable": false,
       "needs_article": "none"
     }
