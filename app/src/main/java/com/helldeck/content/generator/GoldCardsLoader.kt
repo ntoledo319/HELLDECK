@@ -36,8 +36,20 @@ object GoldCardsLoader {
     fun load(context: Context): Map<String, List<GoldCard>> {
         if (goldCards != null) return goldCards!!
 
-        val json = context.assets.open("gold/gold_cards_v2.json").bufferedReader().use { it.readText() }
-        val cardsArray = JSONArray(json)
+        val json = try {
+            context.assets.open("gold/gold_cards_v2.json").bufferedReader().use { it.readText() }
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to read gold cards asset", e)
+            goldCards = emptyMap()
+            return emptyMap()
+        }
+        val cardsArray = try {
+            JSONArray(json)
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to parse gold cards JSON", e)
+            goldCards = emptyMap()
+            return emptyMap()
+        }
 
         val grouped = mutableMapOf<String, MutableList<GoldCard>>()
 

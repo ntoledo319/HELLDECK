@@ -1,8 +1,13 @@
 package com.helldeck.ui.scenes
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.*
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -10,9 +15,13 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.helldeck.ui.HelldeckHeights
+import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.data.toEntity
@@ -142,26 +151,28 @@ fun PlayersScene(vm: HelldeckVm) {
                             )
                         }
                         
-                        items(activePlayers, key = { it.id }) { player ->
-                            PlayerCard(
-                                player = player,
-                                onEdit = {
-                                    editingPlayer = player
-                                    showAddDialog = true
-                                },
-                                onDelete = { showDeleteConfirm = player },
-                                onToggleAFK = {
-                                    scope.launch {
-                                        repo.db.players().update(
-                                            player.copy(afk = if (player.afk == 0) 1 else 0).toEntity()
-                                        )
-                                        vm.reloadPlayers()
-                                    }
-                                },
-                            )
+                        itemsIndexed(activePlayers, key = { _, p -> p.id }) { index, player ->
+                            SpringAnimatedItem(index = index) {
+                                PlayerCard(
+                                    player = player,
+                                    onEdit = {
+                                        editingPlayer = player
+                                        showAddDialog = true
+                                    },
+                                    onDelete = { showDeleteConfirm = player },
+                                    onToggleAFK = {
+                                        scope.launch {
+                                            repo.db.players().update(
+                                                player.copy(afk = if (player.afk == 0) 1 else 0).toEntity()
+                                            )
+                                            vm.reloadPlayers()
+                                        }
+                                    },
+                                )
+                            }
                         }
                     }
-                    
+
                     // AFK players section
                     val afkPlayers = players.filter { it.afk > 0 }
                     if (afkPlayers.isNotEmpty()) {
@@ -172,28 +183,46 @@ fun PlayersScene(vm: HelldeckVm) {
                                 subtitle = "${afkPlayers.size} not participating",
                             )
                         }
-                        
-                        items(afkPlayers, key = { it.id }) { player ->
-                            PlayerCard(
-                                player = player,
-                                onEdit = {
-                                    editingPlayer = player
-                                    showAddDialog = true
-                                },
-                                onDelete = { showDeleteConfirm = player },
-                                onToggleAFK = {
-                                    scope.launch {
-                                        repo.db.players().update(
-                                            player.copy(afk = if (player.afk == 0) 1 else 0).toEntity()
-                                        )
-                                        vm.reloadPlayers()
-                                    }
-                                },
-                                isAFK = true,
+
+                        itemsIndexed(afkPlayers, key = { _, p -> p.id }) { index, player ->
+                            SpringAnimatedItem(index = index) {
+                                PlayerCard(
+                                    player = player,
+                                    onEdit = {
+                                        editingPlayer = player
+                                        showAddDialog = true
+                                    },
+                                    onDelete = { showDeleteConfirm = player },
+                                    onToggleAFK = {
+                                        scope.launch {
+                                            repo.db.players().update(
+                                                player.copy(afk = if (player.afk == 0) 1 else 0).toEntity()
+                                            )
+                                            vm.reloadPlayers()
+                                        }
+                                    },
+                                    isAFK = true,
+                                )
+                            }
+                        }
+                    }
+
+                    // Start Game CTA when enough players
+                    if (activePlayers.size >= 2) {
+                        item {
+                            Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
+                            GlowButton(
+                                text = "START GAME",
+                                onClick = { vm.goBack() },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(HelldeckHeights.Button.dp + 12.dp),
+                                accentColor = HelldeckColors.colorSecondary,
+                                icon = "\uD83C\uDFAE",
                             )
                         }
                     }
-                    
+
                     // Bottom spacing for FAB
                     item {
                         Spacer(modifier = Modifier.height(80.dp))
@@ -250,7 +279,8 @@ fun PlayersScene(vm: HelldeckVm) {
                 Text("Remove ${player.avatar}? This cannot be undone.")
             },
             confirmButton = {
-                Button(
+                GlowButton(
+                    text = "Delete",
                     onClick = {
                         scope.launch {
                             repo.db.players().delete(player.toEntity())
@@ -259,12 +289,9 @@ fun PlayersScene(vm: HelldeckVm) {
                             showDeleteConfirm = null
                         }
                     },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = HelldeckColors.Red,
-                    ),
-                ) {
-                    Text("Delete")
-                }
+                    accentColor = HelldeckColors.Red,
+                    icon = "\uD83D\uDDD1\uFE0F",
+                )
             },
             dismissButton = {
                 OutlineButton(
@@ -338,6 +365,41 @@ fun PlayersScene(vm: HelldeckVm) {
                 }
             },
         )
+    }
+}
+
+@Composable
+private fun SpringAnimatedItem(
+    index: Int,
+    content: @Composable () -> Unit,
+) {
+    val reducedMotion = LocalReducedMotion.current
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+
+    val scale by animateFloatAsState(
+        targetValue = if (visible) 1f else 0.8f,
+        animationSpec = if (reducedMotion) tween(0) else spring(
+            dampingRatio = 0.6f,
+            stiffness = Spring.StiffnessMedium,
+        ),
+        label = "item_spring_$index",
+    )
+    val alpha by animateFloatAsState(
+        targetValue = if (visible) 1f else 0f,
+        animationSpec = if (reducedMotion) tween(0) else tween(
+            durationMillis = 200,
+            delayMillis = (index * 40).coerceAtMost(200),
+        ),
+        label = "item_alpha_$index",
+    )
+
+    Box(
+        modifier = Modifier
+            .scale(scale)
+            .alpha(alpha),
+    ) {
+        content()
     }
 }
 

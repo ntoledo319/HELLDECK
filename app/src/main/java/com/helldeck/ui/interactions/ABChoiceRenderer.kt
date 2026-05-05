@@ -1,29 +1,27 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
-import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -32,7 +30,8 @@ import com.helldeck.ui.state.RoundState
  * Used for binary decision games like Poison Pitch.
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
- * - Split screen debate feel
+ * - Two big glowing NeonCards side by side
+ * - Selected card glows bright, rejected card dims
  * - Spring physics on selection
  * - Neon glow with accent colors
  * - 60dp+ touch targets
@@ -46,29 +45,31 @@ fun ABChoiceRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var selected by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.ExtraLarge.dp),
+            .padding(HelldeckSpacing.ExtraLarge.dp)
+            .semantics { contentDescription = "Choose between two options" },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Large.dp),
     ) {
         // Stakes label
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Medium),
-            color = HelldeckColors.colorAccentWarm.copy(alpha = 0.15f),
-            border = BorderStroke(1.dp, HelldeckColors.colorAccentWarm.copy(alpha = 0.4f)),
+        NeonCard(
+            accentColor = HelldeckColors.colorAccentWarm,
+            elevation = 4.dp,
         ) {
             Text(
-                text = "⚔️ PICK YOUR SIDE",
+                text = "PICK YOUR SIDE",
                 style = MaterialTheme.typography.labelLarge.copy(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
+                    fontSize = 18.sp,
                 ),
                 color = HelldeckColors.colorAccentWarm,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
             )
         }
 
@@ -78,38 +79,58 @@ fun ABChoiceRenderer(
             else -> "A" to "B"
         }
 
-        // VS indicator
+        // VS indicator with pulse
+        val infiniteTransition = rememberInfiniteTransition(label = "vs_pulse")
+        val vsPulse by infiniteTransition.animateFloat(
+            initialValue = 0.9f,
+            targetValue = 1.1f,
+            animationSpec = if (reducedMotion) {
+                infiniteRepeatable(animation = tween(HelldeckAnimations.Instant), repeatMode = RepeatMode.Restart)
+            } else {
+                infiniteRepeatable(
+                    animation = tween(800, easing = EaseInOutCubic),
+                    repeatMode = RepeatMode.Reverse,
+                )
+            },
+            label = "vs_pulse",
+        )
+
         Text(
             text = "VS",
             style = MaterialTheme.typography.headlineLarge.copy(
                 fontWeight = FontWeight.Black,
-                fontSize = 24.sp,
+                fontSize = 28.sp,
             ),
-            color = HelldeckColors.colorMuted,
+            color = HelldeckColors.colorAccentWarm,
+            modifier = Modifier.scale(if (reducedMotion) 1f else vsPulse),
         )
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         ) {
-            ABChoiceButton(
+            ABChoiceCard(
                 label = optA,
                 isSelected = selected == "A",
-                accentColor = HelldeckColors.colorPrimary, // Magenta for A
+                isRejected = selected != null && selected != "A",
+                accentColor = HelldeckColors.colorPrimary,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     selected = "A"
                     onEvent(RoundEvent.PickAB("A"))
                 },
                 modifier = Modifier.weight(1f),
             )
 
-            ABChoiceButton(
+            ABChoiceCard(
                 label = optB,
                 isSelected = selected == "B",
-                accentColor = HelldeckColors.colorAccentCool, // Cyan for B
+                isRejected = selected != null && selected != "B",
+                accentColor = HelldeckColors.colorAccentCool,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     selected = "B"
                     onEvent(RoundEvent.PickAB("B"))
                 },
@@ -120,57 +141,44 @@ fun ABChoiceRenderer(
 }
 
 /**
- * Individual A/B choice button with HELLDECK styling.
+ * Individual A/B choice card using NeonCard.
+ * Selected card glows bright, rejected card dims out.
  *
- * @ai_prompt Spring physics, glow on selection, split-screen debate vibe
+ * @ai_prompt Spring physics, glow on selection, dim on rejection
  */
 @Composable
-private fun ABChoiceButton(
+private fun ABChoiceCard(
     label: String,
     isSelected: Boolean,
-    accentColor: androidx.compose.ui.graphics.Color,
+    isRejected: Boolean,
+    accentColor: Color,
     reducedMotion: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
     // Spring physics for selection
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.93f
-            isSelected -> 1.05f
-            isPressed -> 0.95f
+            isSelected -> 1.06f
+            isRejected -> 0.94f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
             tween(HelldeckAnimations.Instant)
         } else {
             spring(
-                dampingRatio = 0.6f,
+                dampingRatio = 0.55f,
                 stiffness = Spring.StiffnessHigh,
             )
         },
-        label = "ab_button_scale",
+        label = "ab_card_scale",
     )
 
-    // Glow intensity
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.7f else if (isPressed) 0.3f else 0.15f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
-    )
-
-    // Background color
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) {
-            accentColor.copy(alpha = 0.25f)
-        } else {
-            HelldeckColors.surfacePrimary
-        },
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
+    // Dim rejected card
+    val cardAlpha by animateFloatAsState(
+        targetValue = if (isRejected) 0.4f else 1f,
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Normal),
+        label = "card_alpha",
     )
 
     // Pulsing glow for selected state
@@ -189,43 +197,42 @@ private fun ABChoiceButton(
         label = "selected_pulse",
     )
 
-    Button(
-        onClick = onClick,
+    val effectiveElevation = when {
+        isSelected -> 16.dp * selectedPulse
+        isRejected -> 2.dp
+        else -> 6.dp
+    }
+
+    NeonCard(
         modifier = modifier
-            .height(100.dp) // Taller for dramatic effect
+            .height(120.dp)
             .scale(scale)
-            .shadow(
-                elevation = if (isSelected) (12.dp * selectedPulse) else if (isPressed) 6.dp else 4.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Large),
-                spotColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse else glowAlpha),
-                ambientColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse * 0.5f else glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Large),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        border = BorderStroke(
-            width = if (isSelected) 3.dp else 2.dp,
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    accentColor.copy(alpha = if (isSelected) 1f else 0.5f),
-                    accentColor.copy(alpha = if (isSelected) 0.7f else 0.3f),
-                ),
-            ),
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Large.dp),
+            .alpha(cardAlpha)
+            .semantics {
+                contentDescription = "$label${if (isSelected) ", selected" else if (isRejected) ", rejected" else ""}"
+            },
+        accentColor = if (isRejected) HelldeckColors.colorMuted else accentColor,
+        elevation = effectiveElevation,
+        onClick = onClick,
     ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.headlineMedium.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = if (isSelected) 24.sp else 22.sp,
-            ),
-            color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
-            textAlign = TextAlign.Center,
-            maxLines = 2,
-        )
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            Text(
+                text = label,
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = if (isSelected) 24.sp else 22.sp,
+                ),
+                color = when {
+                    isSelected -> accentColor
+                    isRejected -> HelldeckColors.colorMuted
+                    else -> HelldeckColors.colorOnDark
+                },
+                textAlign = TextAlign.Center,
+                maxLines = 3,
+            )
+        }
     }
 }

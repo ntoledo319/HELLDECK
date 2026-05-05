@@ -1,9 +1,6 @@
 package com.helldeck.ui.interactions
 
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -11,7 +8,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -22,6 +22,8 @@ import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.GlowButton
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -29,12 +31,12 @@ import com.helldeck.ui.state.RoundState
  * Renders TABOO_GUESS interaction for Taboo Timer game.
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
- * - Forbidden words display with danger styling
+ * - Timer visually dramatic (pulsing red as time runs out)
+ * - Forbidden words in glowing red NeonCards
  * - Urgent guess input
- * - Timer-driven pressure feel
- * - Clear visual hierarchy
+ * - Uses NeonCard for header, GlowButton for submit
  *
- * @ai_prompt Taboo word guessing with forbidden words display, HELLDECK neon styling
+ * @ai_prompt Taboo word guessing with dramatic urgency, HELLDECK neon styling
  */
 @Composable
 fun TabooGuessRenderer(
@@ -43,13 +45,14 @@ fun TabooGuessRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var guess by remember { mutableStateOf("") }
 
     // Pulsing effect for urgency
     val infiniteTransition = rememberInfiniteTransition(label = "taboo_pulse")
     val urgencyPulse by infiniteTransition.animateFloat(
         initialValue = 1f,
-        targetValue = if (reducedMotion) 1f else 1.02f,
+        targetValue = if (reducedMotion) 1f else 1.03f,
         animationSpec = if (reducedMotion) {
             infiniteRepeatable(animation = tween(HelldeckAnimations.Instant), repeatMode = RepeatMode.Restart)
         } else {
@@ -61,33 +64,48 @@ fun TabooGuessRenderer(
         label = "urgency_pulse",
     )
 
+    // Timer danger color pulsing
+    val timerColorPulse by infiniteTransition.animateFloat(
+        initialValue = 0.6f,
+        targetValue = 1f,
+        animationSpec = if (reducedMotion) {
+            infiniteRepeatable(animation = tween(HelldeckAnimations.Instant), repeatMode = RepeatMode.Restart)
+        } else {
+            infiniteRepeatable(
+                animation = tween(800, easing = EaseInOutCubic),
+                repeatMode = RepeatMode.Reverse,
+            )
+        },
+        label = "timer_color_pulse",
+    )
+
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.Large.dp),
+            .padding(HelldeckSpacing.Large.dp)
+            .semantics { contentDescription = "Taboo word guessing game" },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Taboo header
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Medium),
-            color = HelldeckColors.colorAccentWarm.copy(alpha = 0.15f),
-            border = BorderStroke(2.dp, HelldeckColors.colorAccentWarm.copy(alpha = 0.6f)),
+        // Taboo header with urgency pulse
+        NeonCard(
+            accentColor = HelldeckColors.Error,
+            elevation = (8.dp * timerColorPulse),
             modifier = Modifier.scale(urgencyPulse),
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(text = "🤐", fontSize = 24.sp)
                 Text(
                     text = "GUESS THE WORD!",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Black,
-                        fontSize = 16.sp,
+                        fontSize = 20.sp,
                         letterSpacing = 2.sp,
                     ),
-                    color = HelldeckColors.colorAccentWarm,
+                    color = HelldeckColors.Error,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -99,6 +117,7 @@ fun TabooGuessRenderer(
             text = "Listen to the clues and guess!",
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Medium,
+                fontSize = 20.sp,
             ),
             color = HelldeckColors.colorMuted,
             textAlign = TextAlign.Center,
@@ -112,13 +131,15 @@ fun TabooGuessRenderer(
             onValueChange = { guess = it },
             label = {
                 Text(
-                    text = "🎯 Your guess...",
+                    text = "Your guess...",
                     color = HelldeckColors.colorMuted,
+                    style = MaterialTheme.typography.bodyLarge,
                 )
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(HelldeckHeights.Input.dp + 8.dp),
+                .height(HelldeckHeights.Input.dp + 8.dp)
+                .semantics { contentDescription = "Type your guess here" },
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = HelldeckColors.colorSecondary,
                 unfocusedBorderColor = HelldeckColors.colorMuted.copy(alpha = 0.5f),
@@ -140,67 +161,19 @@ fun TabooGuessRenderer(
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        // Submit button
-        TabooSubmitButton(
-            label = "🎉 SUBMIT GUESS",
-            isEnabled = guess.isNotBlank(),
-            reducedMotion = reducedMotion,
+        // Submit button - uses GlowButton
+        GlowButton(
+            text = "SUBMIT GUESS",
             onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                 onEvent(RoundEvent.SubmitTabooGuess(guess))
                 guess = ""
             },
-        )
-    }
-}
-
-@Composable
-private fun TabooSubmitButton(
-    label: String,
-    isEnabled: Boolean,
-    reducedMotion: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
-    val scale by animateFloatAsState(
-        targetValue = if (!isEnabled) 1f else if (isPressed) 0.95f else 1f,
-        animationSpec = if (reducedMotion) {
-            tween(HelldeckAnimations.Instant)
-        } else {
-            spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
-        },
-        label = "button_scale",
-    )
-
-    Button(
-        onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(HelldeckHeights.Button.dp)
-            .scale(scale)
-            .shadow(
-                elevation = if (isPressed) 4.dp else 12.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Pill),
-                spotColor = HelldeckColors.colorSecondary.copy(alpha = if (isEnabled) 0.5f else 0.1f),
-            ),
-        enabled = isEnabled,
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Pill),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = HelldeckColors.colorSecondary,
-            contentColor = HelldeckColors.background,
-            disabledContainerColor = HelldeckColors.colorMuted.copy(alpha = 0.3f),
-            disabledContentColor = HelldeckColors.colorMuted,
-        ),
-    ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.labelLarge.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-            ),
+            enabled = guess.isNotBlank(),
+            accentColor = HelldeckColors.colorSecondary,
+            modifier = Modifier
+                .fillMaxWidth()
+                .semantics { contentDescription = "Submit guess button" },
         )
     }
 }

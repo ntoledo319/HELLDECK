@@ -86,7 +86,7 @@
     "game": "RED_FLAG_RALLY",
     "family": "red_flag_date_builder",
     "weight": 0.95,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Would you date someone who's " },

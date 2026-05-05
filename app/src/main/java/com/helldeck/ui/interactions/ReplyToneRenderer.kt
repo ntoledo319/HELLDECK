@@ -1,29 +1,27 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -31,9 +29,9 @@ import com.helldeck.ui.state.RoundState
  * Renders REPLY_TONE interaction for Text Thread Trap game.
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
- * - Message bubble aesthetic
- * - Tone selection with emoji indicators
- * - Chat/texting vibe
+ * - Chat bubble style message display
+ * - Tone options as glowing NeonCard chips
+ * - Selected tone glows bright, others dim
  * - Spring physics on selection
  *
  * @ai_prompt Message bubble tone picker with texting vibe, HELLDECK neon styling
@@ -45,6 +43,7 @@ fun ReplyToneRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var selectedTone by remember { mutableStateOf<String?>(null) }
 
     val tones = when (val opts = roundState.options) {
@@ -67,34 +66,29 @@ fun ReplyToneRenderer(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.Large.dp),
+            .padding(HelldeckSpacing.Large.dp)
+            .semantics { contentDescription = "Pick a reply tone" },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Header with message bubble vibe
-        Surface(
-            shape = RoundedCornerShape(
-                topStart = HelldeckRadius.Large,
-                topEnd = HelldeckRadius.Large,
-                bottomStart = HelldeckRadius.Small,
-                bottomEnd = HelldeckRadius.Large,
-            ),
-            color = HelldeckColors.colorAccentCool.copy(alpha = 0.15f),
-            border = BorderStroke(2.dp, HelldeckColors.colorAccentCool.copy(alpha = 0.5f)),
+        // Header with chat bubble NeonCard
+        NeonCard(
+            accentColor = HelldeckColors.colorAccentCool,
+            elevation = 6.dp,
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 14.dp),
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
-                Text(text = "💬", fontSize = 24.sp)
                 Text(
                     text = "PICK YOUR VIBE",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Black,
-                        fontSize = 16.sp,
+                        fontSize = 20.sp,
                         letterSpacing = 1.sp,
                     ),
                     color = HelldeckColors.colorAccentCool,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -106,6 +100,7 @@ fun ReplyToneRenderer(
             text = "How should you reply?",
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Medium,
+                fontSize = 20.sp,
             ),
             color = HelldeckColors.colorMuted,
             textAlign = TextAlign.Center,
@@ -113,7 +108,7 @@ fun ReplyToneRenderer(
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        // Tone buttons in a 2x2 grid
+        // Tone buttons in a 2x2 grid using NeonCard
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
@@ -125,13 +120,15 @@ fun ReplyToneRenderer(
                 ) {
                     rowTones.forEach { tone ->
                         val (emoji, color) = toneData[tone] ?: Pair("📝", HelldeckColors.colorMuted)
-                        ToneButton(
+                        ToneChip(
                             tone = tone,
                             emoji = emoji,
                             isSelected = selectedTone == tone,
+                            isRejected = selectedTone != null && selectedTone != tone,
                             accentColor = color,
                             reducedMotion = reducedMotion,
                             onClick = {
+                                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                                 selectedTone = tone
                                 onEvent(RoundEvent.SelectOption(tone))
                             },
@@ -148,24 +145,26 @@ fun ReplyToneRenderer(
     }
 }
 
+/**
+ * Individual tone chip using NeonCard for consistent styling.
+ * Selected chip glows bright, others dim when a selection is made.
+ */
 @Composable
-private fun ToneButton(
+private fun ToneChip(
     tone: String,
     emoji: String,
     isSelected: Boolean,
+    isRejected: Boolean,
     accentColor: Color,
     reducedMotion: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
+    // Spring physics for selection
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.92f
-            isSelected -> 1.05f
-            isPressed -> 0.95f
+            isSelected -> 1.06f
+            isRejected -> 0.95f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
@@ -176,24 +175,10 @@ private fun ToneButton(
         label = "tone_scale",
     )
 
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.7f else if (isPressed) 0.3f else 0.15f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
-    )
-
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) accentColor.copy(alpha = 0.25f) else HelldeckColors.surfacePrimary,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
-    )
-
-    // Message bubble shape - rounded on all corners except bottom-left for "sent" feel
-    val bubbleShape = RoundedCornerShape(
-        topStart = HelldeckRadius.Large,
-        topEnd = HelldeckRadius.Large,
-        bottomStart = if (isSelected) HelldeckRadius.Small else HelldeckRadius.Medium,
-        bottomEnd = HelldeckRadius.Large,
+    val cardAlpha by animateFloatAsState(
+        targetValue = if (isRejected) 0.45f else 1f,
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Normal),
+        label = "card_alpha",
     )
 
     val infiniteTransition = rememberInfiniteTransition(label = "tone_pulse")
@@ -211,37 +196,28 @@ private fun ToneButton(
         label = "selected_pulse",
     )
 
-    Button(
-        onClick = onClick,
+    val effectiveElevation = when {
+        isSelected -> 12.dp * selectedPulse
+        isRejected -> 2.dp
+        else -> 4.dp
+    }
+
+    NeonCard(
         modifier = modifier
             .height(90.dp)
             .scale(scale)
-            .shadow(
-                elevation = if (isSelected) (10.dp * selectedPulse) else if (isPressed) 6.dp else 4.dp,
-                shape = bubbleShape,
-                spotColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse else glowAlpha),
-                ambientColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse * 0.5f else glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = bubbleShape,
-        colors = ButtonDefaults.buttonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        border = BorderStroke(
-            width = if (isSelected) 3.dp else 1.dp,
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    accentColor.copy(alpha = if (isSelected) 1f else 0.4f),
-                    accentColor.copy(alpha = if (isSelected) 0.6f else 0.2f),
-                ),
-            ),
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Medium.dp),
+            .alpha(cardAlpha)
+            .semantics {
+                contentDescription = "$tone tone${if (isSelected) ", selected" else ""}"
+            },
+        accentColor = if (isRejected) HelldeckColors.colorMuted else accentColor,
+        elevation = effectiveElevation,
+        onClick = onClick,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize(),
         ) {
             Text(
                 text = emoji,
@@ -255,8 +231,13 @@ private fun ToneButton(
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
                     letterSpacing = 1.sp,
+                    fontSize = 18.sp,
                 ),
-                color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
+                color = when {
+                    isSelected -> accentColor
+                    isRejected -> HelldeckColors.colorMuted
+                    else -> HelldeckColors.colorOnDark
+                },
                 textAlign = TextAlign.Center,
             )
         }

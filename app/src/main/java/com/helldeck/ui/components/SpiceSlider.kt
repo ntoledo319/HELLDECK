@@ -115,13 +115,14 @@ fun SpiceSlider(
             }
         }
 
-        // Description
+        // Description — larger and more visible so drunk players understand the setting
         Text(
             text = getSpiceDescription(spiceLevel),
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontSize = 12.sp,
-            modifier = Modifier.padding(top = 8.dp),
+            style = MaterialTheme.typography.bodyMedium,
+            color = getSpiceColor(spiceLevel).copy(alpha = 0.8f),
+            fontWeight = FontWeight.Medium,
+            fontSize = 15.sp,
+            modifier = Modifier.padding(top = 10.dp),
         )
     }
 }

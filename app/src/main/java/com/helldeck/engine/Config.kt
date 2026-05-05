@@ -141,8 +141,8 @@ data class HelldeckCfg(
 )
 
 data class GeneratorCfg(
-    val safe_mode_gold_only: Boolean = true,
-    val enable_v3_generator: Boolean = false,
+    val safe_mode_gold_only: Boolean = false,
+    val enable_v3_generator: Boolean = true,
     val locality_cap: Int = 3,
 )
 

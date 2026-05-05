@@ -68,14 +68,21 @@ class GameNightViewModel : ViewModel() {
     // ========== SESSION MANAGEMENT ==========
     var gameNightSessionId by mutableStateOf("session_${System.currentTimeMillis()}")
     private var didRollcall = false
-    private var askRollcallOnLaunch = true
-    private var sessionStartTimeMs = System.currentTimeMillis()
+    var sessionStartTimeMs = System.currentTimeMillis()
+        private set
+    var showSessionEndPrompt by mutableStateOf(false)
+        private set
 
     // ========== MILESTONE TRACKING ==========
     var pendingMilestone by mutableStateOf<com.helldeck.ui.components.Milestone?>(null)
-    private var consecutiveWins = 0
+    var consecutiveWins by mutableStateOf(0)
+        private set
     private val gamesPlayedThisSession = mutableSetOf<String>()
-    private var totalRoundsThisSession = 0
+    var totalRoundsThisSession = 0
+        private set
+    var roundNumber by mutableStateOf(0)
+        private set
+    var lastPointsAwarded by mutableStateOf<Int?>(null)
 
     // ========== FEEDBACK TRACKING ==========
     private var feedbackSessionId: Long = System.currentTimeMillis()
@@ -164,6 +171,18 @@ class GameNightViewModel : ViewModel() {
     var crewBrains by mutableStateOf<List<CrewBrain>>(emptyList())
     var activeCrewBrainId by mutableStateOf<String?>(null)
 
+    // ========== ERROR STATE ==========
+    /** User-visible error message. Observe from UI and clear after display. */
+    var errorMessage by mutableStateOf<String?>(null)
+
+    fun clearError() {
+        errorMessage = null
+    }
+
+    fun dismissSessionEndPrompt() {
+        showSessionEndPrompt = false
+    }
+
     // ========== CONTENT REPORTING ==========
     var showReportDialog by mutableStateOf(false)
     private var reportStore: ContentReportStore = ContentReportStore()
@@ -211,10 +230,10 @@ class GameNightViewModel : ViewModel() {
             val hasSeenOnboarding = com.helldeck.settings.SettingsStore.readHasSeenOnboarding()
             if (!hasSeenOnboarding) {
                 scene = Scene.ONBOARDING
-            } else if (askRollcallOnLaunch && !didRollcall && players.isNotEmpty()) {
-                // Determine if we should ask for rollcall on launch
-                askRollcallOnLaunch = true
-                scene = Scene.ROLLCALL
+            } else {
+                // Go to home — rollcall is available from the top bar icon
+                // but no longer blocks the critical path to starting a game
+                scene = Scene.HOME
             }
         } finally {
             isLoading = false
@@ -377,6 +396,8 @@ class GameNightViewModel : ViewModel() {
         sessionStartTimeMs = System.currentTimeMillis()
         totalRoundsThisSession = 0
         consecutiveWins = 0
+        roundNumber = 0
+        showSessionEndPrompt = false
         gamesPlayedThisSession.clear()
         com.helldeck.utils.Logger.i("New game night started: $gameNightSessionId")
 
@@ -387,6 +408,20 @@ class GameNightViewModel : ViewModel() {
                 metricsTracker.startSession(gameNightSessionId, playerIds)
             }
         }
+    }
+
+    /**
+     * Resets session state and navigates to ROLLCALL for a fresh game night
+     * with the same players. Called from end-game summary "Play Again".
+     */
+    fun playAgain() {
+        showEndGameSummary = false
+        activePlayers = activePlayers.map { it.copy(sessionPoints = 0) }
+        players = players.map { p ->
+            if (activePlayers.any { it.id == p.id }) p.copy(sessionPoints = 0) else p
+        }
+        startNewGameNight()
+        scene = Scene.ROLLCALL
     }
 
     fun markRollcallDone() {
@@ -401,15 +436,20 @@ class GameNightViewModel : ViewModel() {
                 initOnce()
             } catch (e: Exception) {
                 com.helldeck.utils.Logger.e("startRound: initialization failed", e)
+                errorMessage = "Failed to start game: ${e.message ?: "initialization error"}"
                 scene = Scene.HOME
                 return
             }
         }
 
         if (activePlayers.size < 2) {
+            errorMessage = "Need at least 2 active players to start a round."
             scene = Scene.PLAYERS
             return
         }
+
+        // Implicitly mark rollcall as done when starting a round
+        didRollcall = true
 
         scene = Scene.ROUND
         Config.spicyMode = _spiceLevel.value >= 3
@@ -418,26 +458,29 @@ class GameNightViewModel : ViewModel() {
         val nextGame = gameId ?: pickNextGame()
         val currentGameMeta = GameMetadata.getGameMetadata(nextGame)
 
+        // Defensive copy of active players to prevent race conditions
+        val playersSnapshot = activePlayers.toList()
+
         // Pick starter if not already picked
         if (!starterPicked) {
-            turnIdx = if (activePlayers.isNotEmpty()) Random.nextInt(activePlayers.size) else 0
+            turnIdx = if (playersSnapshot.isNotEmpty()) Random.nextInt(playersSnapshot.size) else 0
             starterPicked = true
         }
 
         // Generate card - use seat numbers instead of player names for anonymity
-        val playersList = activePlayers.mapIndexed { idx, _ -> "Seat ${idx + 1}" }
+        val playersList = playersSnapshot.mapIndexed { idx, _ -> "Seat ${idx + 1}" }
         val targetPlayerId = if (currentGameMeta?.interaction == Interaction.TARGET_PICK) {
-            activePlayers.randomOrNull()?.id
+            playersSnapshot.randomOrNull()?.id
         } else {
             null
         }
 
         // Poison Pitch: Randomly assign two players to defend Option A and Option B
-        if (nextGame == GameIds.POISON_PITCH && activePlayers.size >= 2) {
-            val debaters = activePlayers.shuffled().take(2)
+        if (nextGame == GameIds.POISON_PITCH && playersSnapshot.size >= 2) {
+            val debaters = playersSnapshot.shuffled().take(2)
             poisonPitchDefenderA = debaters[0].id
             poisonPitchDefenderB = debaters[1].id
-            com.helldeck.utils.Logger.d("Poison Pitch debaters assigned: A=Seat ${activePlayers.indexOf(debaters[0]) + 1}, B=Seat ${activePlayers.indexOf(debaters[1]) + 1}")
+            com.helldeck.utils.Logger.d("Poison Pitch debaters assigned: A=Seat ${playersSnapshot.indexOf(debaters[0]) + 1}, B=Seat ${playersSnapshot.indexOf(debaters[1]) + 1}")
         }
 
         val sessionId = gameNightSessionId
@@ -470,14 +513,14 @@ class GameNightViewModel : ViewModel() {
                 options = gameResult.options,
                 timerSec = gameResult.timer,
                 interactionType = gameResult.interactionType,
-                activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
-                judgePlayerIndex = if (gameMeta?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
-                    (turnIdx + 1) % activePlayers.size
+                activePlayerIndex = turnIdx.coerceAtMost(playersSnapshot.size - 1).coerceAtLeast(0),
+                judgePlayerIndex = if (gameMeta?.interaction == Interaction.JUDGE_PICK && playersSnapshot.isNotEmpty()) {
+                    (turnIdx + 1) % playersSnapshot.size.coerceAtLeast(1)
                 } else {
                     null
                 },
                 targetPlayerIndex = targetPlayerId?.let { id ->
-                    activePlayers.indexOfFirst { it.id == id }.takeIf { it >= 0 }
+                    playersSnapshot.indexOfFirst { it.id == id }.takeIf { it >= 0 }
                 },
                 phase = com.helldeck.ui.state.RoundPhase.INTRO,
                 sessionId = sessionId,
@@ -518,10 +561,12 @@ class GameNightViewModel : ViewModel() {
             }
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("startRound: engine.next failed", e)
+            errorMessage = "Failed to generate card: ${e.message ?: "unknown error"}. Try again."
             scene = Scene.HOME
             return
         }
         t0 = System.currentTimeMillis()
+        roundNumber++
 
         // Reset voting state
         preChoice = null
@@ -531,18 +576,29 @@ class GameNightViewModel : ViewModel() {
 
     private fun pickNextGame(): String {
         val cfg = Config.current.mechanics
+        val playerCount = activePlayers.size.coerceAtLeast(2)
 
-        return if (cfg.comeback_last_place_picks_next && players.size >= 3) {
+        // Comeback mechanic: last place gets easier voting games
+        if (cfg.comeback_last_place_picks_next && players.size >= 3) {
             val lastPlaceIds = getLastPlaceIds()
-            if (lastPlaceIds.isNotEmpty()) {
-                // Comeback games - easy voting games for last place
-                listOf(GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.REALITY_CHECK).random()
-            } else {
-                GameMetadata.getAllGameIds().random()
+            if (lastPlaceIds.isNotEmpty() && activePlayer()?.id in lastPlaceIds) {
+                return listOf(GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.REALITY_CHECK).random()
             }
-        } else {
-            GameMetadata.getAllGameIds().random()
         }
+
+        // Smart rotation: rotate categories, avoid repeating same game
+        val currentGameId = roundState?.gameId
+        if (currentGameId != null) {
+            val suggestions = GameMetadata.suggestGameProgression(currentGameId, playerCount)
+            val unplayed = suggestions.filter { it.id !in gamesPlayedThisSession }
+            if (unplayed.isNotEmpty()) return unplayed.random().id
+            if (suggestions.isNotEmpty()) return suggestions.random().id
+        }
+
+        // Fallback: prefer unplayed games, then random
+        val allIds = GameMetadata.getAllGameIds()
+        val unplayed = allIds.filter { it !in gamesPlayedThisSession }
+        return if (unplayed.isNotEmpty()) unplayed.random() else allIds.random()
     }
 
     private fun getLastPlaceIds(): List<String> {
@@ -552,11 +608,12 @@ class GameNightViewModel : ViewModel() {
     }
 
     fun endRoundAdvanceTurn() {
+        // Reset all game-specific state BEFORE scene-visible turn advance,
+        // so any recomposition during turn change sees clean state.
+        resetGameSpecificState()
+
         val poolSize = activePlayers.size.coerceAtLeast(1)
         turnIdx = (turnIdx + 1) % poolSize
-        
-        // Reset all game-specific state
-        resetGameSpecificState()
     }
     
     /**
@@ -650,7 +707,8 @@ class GameNightViewModel : ViewModel() {
     }
 
     fun activePlayer(): Player? {
-        return if (activePlayers.isEmpty()) null else activePlayers[turnIdx % activePlayers.size]
+        val snapshot = activePlayers
+        return if (snapshot.isEmpty()) null else snapshot[turnIdx % snapshot.size.coerceAtLeast(1)]
     }
 
     // ========== EVENT HANDLING ==========
@@ -794,8 +852,8 @@ class GameNightViewModel : ViewModel() {
             }
         }
 
-        roundState = roundState?.copy(phase = RoundPhase.FEEDBACK)
-        scene = Scene.FEEDBACK
+        lastPointsAwarded = points
+        roundState = roundState?.copy(phase = RoundPhase.REVEAL)
     }
 
     private fun resolveRoastConsensus() {
@@ -1177,8 +1235,11 @@ class GameNightViewModel : ViewModel() {
     fun goToFeedbackNoPoints() {
         judgeWin = false
         points = 0
+        lastPointsAwarded = 0
         scene = Scene.FEEDBACK
     }
+
+    fun clearLastPoints() { lastPointsAwarded = null }
 
     fun commitDirectWin(pts: Int = Config.current.scoring.win) {
         awardActive(pts)
@@ -1542,6 +1603,11 @@ class GameNightViewModel : ViewModel() {
         totalRoundsThisSession++
         roundState?.gameId?.let { gamesPlayedThisSession.add(it) }
 
+        // Suggest wrapping up at natural breakpoints
+        if (totalRoundsThisSession > 0 && totalRoundsThisSession % 20 == 0) {
+            showSessionEndPrompt = true
+        }
+
         // Update win streak
         if (judgeWin && points > 0) {
             consecutiveWins++
@@ -1555,6 +1621,10 @@ class GameNightViewModel : ViewModel() {
             isPerfectScore = lol > 0 && meh == 0 && trash == 0,
         )
 
+        // Capture values BEFORE reset so they can be persisted
+        val didWin = judgeWin
+        val earnedPoints = points
+
         // Reset feedback state
         lol = 0
         meh = 0
@@ -1562,6 +1632,7 @@ class GameNightViewModel : ViewModel() {
         tags.clear()
         judgeWin = false
         points = 0
+        lastPointsAwarded = null
         feedbackSnapshot = null
         canUndoFeedback = false
         quickFireTriggered = false
@@ -1571,8 +1642,8 @@ class GameNightViewModel : ViewModel() {
             activePlayer()?.id?.let { pid ->
                 try {
                     repo.db.players().incGamesPlayed(pid)
-                    if (judgeWin) repo.db.players().addWins(pid, 1)
-                    if (points != 0) repo.db.players().addTotalPoints(pid, points)
+                    if (didWin) repo.db.players().addWins(pid, 1)
+                    if (earnedPoints != 0) repo.db.players().addTotalPoints(pid, earnedPoints)
                 } catch (e: Exception) {
                     com.helldeck.utils.Logger.e("Failed to persist player stats", e)
                 }
@@ -1581,6 +1652,14 @@ class GameNightViewModel : ViewModel() {
         }
 
         endRoundAdvanceTurn()
+
+        // Safety: if players dropped below 2 after reload, end the game gracefully
+        if (activePlayers.size < 2) {
+            errorMessage = "Not enough active players to continue. Returning to lobby."
+            scene = Scene.PLAYERS
+            return
+        }
+
         startRound()
     }
 
@@ -1655,14 +1734,15 @@ class GameNightViewModel : ViewModel() {
     /**
      * Checks for milestone achievements and queues celebration
      */
-    private fun checkMilestones(isFirstWin: Boolean, isPerfectScore: Boolean) {
+    private suspend fun checkMilestones(isFirstWin: Boolean, isPerfectScore: Boolean) {
         try {
             val sessionDuration = System.currentTimeMillis() - sessionStartTimeMs
             val favoritesCount = if (isInitialized) {
-                viewModelScope.launch {
+                try {
                     repo.db.favorites().getFavoriteCount()
+                } catch (e: Exception) {
+                    0
                 }
-                0 // TODO: Get actual count
             } else {
                 0
             }
@@ -1744,7 +1824,7 @@ class GameNightViewModel : ViewModel() {
                 interactionType = replayGameMeta?.interactionType ?: InteractionType.JUDGE_PICK,
                 activePlayerIndex = turnIdx.coerceAtMost(activePlayers.size - 1).coerceAtLeast(0),
                 judgePlayerIndex = if (replayGameMeta?.interaction == Interaction.JUDGE_PICK && activePlayers.isNotEmpty()) {
-                    (turnIdx + 1) % activePlayers.size
+                    (turnIdx + 1) % activePlayers.size.coerceAtLeast(1)
                 } else {
                     null
                 },

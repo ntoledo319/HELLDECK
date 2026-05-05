@@ -21,9 +21,10 @@ class HumorScorer(
         val overallScore: Double,
     ) {
         companion object {
-            private const val ABSURDITY_WEIGHT = 0.20
-            private const val SHOCK_WEIGHT = 0.15
-            private const val RELATABLE_WEIGHT = 0.20
+            // Rebalanced: party games need SHOCK + ABSURDITY + SURPRISE over safe relatability
+            private const val ABSURDITY_WEIGHT = 0.25
+            private const val SHOCK_WEIGHT = 0.20
+            private const val RELATABLE_WEIGHT = 0.10
             private const val CRINGE_WEIGHT = 0.10
             private const val BENIGN_VIOLATION_WEIGHT = 0.15
             private const val SURPRISE_WEIGHT = 0.10

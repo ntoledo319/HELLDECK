@@ -3,11 +3,12 @@ package com.helldeck.ui
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.*
-import androidx.compose.animation.core.EaseInOutSine
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,8 +19,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.helldeck.data.toEntity
 import com.helldeck.engine.*
@@ -72,6 +80,16 @@ fun HelldeckAppUI(
 ) {
     var error by remember { mutableStateOf<HelldeckError?>(null) }
     val coroutineScope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // Show ViewModel error messages as snackbar
+    val vmError = vm.errorMessage
+    LaunchedEffect(vmError) {
+        if (vmError != null) {
+            snackbarHostState.showSnackbar(vmError)
+            vm.clearError()
+        }
+    }
 
     LaunchedEffect(Unit) {
         com.helldeck.utils.Logger.i("HelldeckAppUI: Initializing ViewModel")
@@ -101,7 +119,8 @@ fun HelldeckAppUI(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background,
     ) {
-        LoadingWithErrorBoundary(
+        Box(modifier = Modifier.fillMaxSize()) {
+            LoadingWithErrorBoundary(
             isLoading = vm.isLoading,
             error = error,
             onRetry = {
@@ -133,29 +152,54 @@ fun HelldeckAppUI(
                     opacity = 0.03f,
                 )
 
-                // Scene transitions with smooth animations
+                // Scene transitions — card-slap with neon discharge
                 com.helldeck.utils.Logger.i("HelldeckAppUI: Current scene: ${vm.scene}")
                 val reducedMotion = LocalReducedMotion.current
+
+                // Neon flash on scene change: electric discharge between scenes
+                val flashAlpha = remember { Animatable(0f) }
+                LaunchedEffect(vm.scene) {
+                    if (!reducedMotion) {
+                        flashAlpha.snapTo(0.07f)
+                        flashAlpha.animateTo(
+                            0f,
+                            animationSpec = tween(100, easing = LinearEasing),
+                        )
+                    }
+                }
+
                 AnimatedContent(
                     targetState = vm.scene,
                     transitionSpec = {
-                        // Hell’s Living Room: fast, directional, consistent.
+                        // Card-slap: scene drops in hard from above with a scale pop.
+                        // Outgoing scene punches down and out. No gentle fades here.
                         if (reducedMotion) {
                             fadeIn(animationSpec = tween(HelldeckAnimations.Instant)) togetherWith
                                 fadeOut(animationSpec = tween(HelldeckAnimations.Instant))
                         } else {
                             (
-                                fadeIn(animationSpec = tween(HelldeckAnimations.Fast)) +
-                                    slideInHorizontally(
-                                        animationSpec = tween(HelldeckAnimations.Normal, easing = EaseInOutSine),
-                                        initialOffsetX = { it / 8 },
+                                fadeIn(animationSpec = tween(HelldeckAnimations.Fast, easing = LinearEasing)) +
+                                    scaleIn(
+                                        animationSpec = spring(
+                                            dampingRatio = 0.7f,
+                                            stiffness = Spring.StiffnessHigh,
+                                        ),
+                                        initialScale = 1.06f,
+                                    ) +
+                                    slideInVertically(
+                                        animationSpec = tween(HelldeckAnimations.Fast, easing = EaseOutCubic),
+                                        initialOffsetY = { -it / 5 },
                                     )
                                 ) togetherWith
                                 (
-                                    fadeOut(animationSpec = tween(HelldeckAnimations.Fast)) +
-                                        slideOutHorizontally(
-                                            animationSpec = tween(HelldeckAnimations.Normal, easing = EaseInOutSine),
-                                            targetOffsetX = { -it / 8 },
+                                    fadeOut(animationSpec = tween(HelldeckAnimations.Fast / 2, easing = LinearEasing)) +
+                                        scaleOut(
+                                            animationSpec = tween(HelldeckAnimations.Fast, easing = EaseInCubic),
+                                            targetScale = 0.92f,
+                                        ) +
+                                        slideOutVertically(
+                                            animationSpec = tween(HelldeckAnimations.Fast, easing = EaseInCubic),
+                                            targetOffsetY = { it / 6 },
                                         )
                                     )
                         }
@@ -201,6 +245,15 @@ fun HelldeckAppUI(
                     }
                 }
 
+                // Neon flash overlay — renders on top of scene content
+                if (flashAlpha.value > 0f) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(HelldeckColors.colorPrimary.copy(alpha = flashAlpha.value)),
+                    )
+                }
+
                 // Celebration dialog overlay (shows on top of any scene)
                 vm.pendingMilestone?.let { milestone ->
                     com.helldeck.ui.components.CelebrationDialog(
@@ -208,8 +261,83 @@ fun HelldeckAppUI(
                         onDismiss = { vm.clearPendingMilestone() },
                     )
                 }
+
+                // Session end prompt overlay — dramatic intermission
+                if (vm.showSessionEndPrompt) {
+                    Dialog(
+                        onDismissRequest = { vm.dismissSessionEndPrompt() },
+                        properties = DialogProperties(
+                            dismissOnBackPress = true,
+                            dismissOnClickOutside = true,
+                        ),
+                    ) {
+                        com.helldeck.ui.components.NeonCard(
+                            modifier = Modifier.fillMaxWidth(),
+                            accentColor = HelldeckColors.colorPrimary,
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Large.dp),
+                            ) {
+                                // Round count badge
+                                Text(
+                                    text = "${vm.totalRoundsThisSession}",
+                                    style = MaterialTheme.typography.displayLarge,
+                                    fontWeight = FontWeight.Black,
+                                    color = HelldeckColors.colorPrimary,
+                                    textAlign = TextAlign.Center,
+                                )
+
+                                Text(
+                                    text = "ROUNDS SURVIVED",
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = HelldeckColors.colorSecondary,
+                                    letterSpacing = 3.sp,
+                                    textAlign = TextAlign.Center,
+                                )
+
+                                Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+
+                                Text(
+                                    text = "You're still standing. Check the damage or get back in the pit.",
+                                    style = MaterialTheme.typography.bodyLarge,
+                                    color = HelldeckColors.colorMuted,
+                                    textAlign = TextAlign.Center,
+                                )
+
+                                Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+
+                                // Primary: keep playing
+                                com.helldeck.ui.components.GlowButton(
+                                    text = "KEEP PLAYING",
+                                    onClick = { vm.dismissSessionEndPrompt() },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    accentColor = HelldeckColors.colorSecondary,
+                                )
+
+                                // Secondary: see scores
+                                com.helldeck.ui.components.OutlineButton(
+                                    text = "SEE THE DAMAGE",
+                                    onClick = {
+                                        vm.dismissSessionEndPrompt()
+                                        vm.scene = Scene.STATS
+                                    },
+                                    modifier = Modifier.fillMaxWidth(),
+                                    accentColor = HelldeckColors.colorPrimary,
+                                )
+                            }
+                        }
+                    }
+                }
             },
         )
+            SnackbarHost(
+                hostState = snackbarHostState,
+                modifier = Modifier.align(androidx.compose.ui.Alignment.BottomCenter),
+            )
+        }
     }
 }
 

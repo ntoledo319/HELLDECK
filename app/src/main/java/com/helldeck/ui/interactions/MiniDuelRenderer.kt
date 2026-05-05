@@ -1,20 +1,20 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -24,6 +24,7 @@ import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -31,9 +32,9 @@ import com.helldeck.ui.state.RoundState
  * Challenge types for Title Fight
  */
 private enum class ChallengeType(val emoji: String, val displayName: String, val instruction: String) {
-    BRAIN("🧠", "BRAIN", "Take turns naming items • Pause 3+ sec or repeat = LOSE"),
-    BODY("💪", "BODY", "Race to complete the task • Second place = LOSE"),
-    SOUL("👁️", "SOUL", "Endurance test • First to break = LOSE")
+    BRAIN("🧠", "BRAIN", "Take turns naming items. Pause 3+ sec or repeat = LOSE"),
+    BODY("💪", "BODY", "Race to complete the task. Second place = LOSE"),
+    SOUL("👁️", "SOUL", "Endurance test. First to break = LOSE")
 }
 
 /**
@@ -41,10 +42,10 @@ private enum class ChallengeType(val emoji: String, val displayName: String, val
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
  * - Epic VS screen with dramatic head-to-head feel
+ * - NeonCards for fighter buttons with glow selection
  * - Red vs Blue fighter colors
  * - Spring physics with victory animations
  * - Champion crown effect on selection
- * - Contextual instructions based on challenge type
  *
  * @ai_prompt Epic VS battle screen, fighting game vibe, HELLDECK neon styling
  */
@@ -55,8 +56,9 @@ fun MiniDuelRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var selectedWinner by remember { mutableStateOf<Int?>(null) }
-    
+
     // Detect challenge type from card text
     val cardText = roundState.filledCard.text
     val challengeType = when {
@@ -85,64 +87,65 @@ fun MiniDuelRenderer(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.Large.dp),
+            .padding(HelldeckSpacing.Large.dp)
+            .semantics { contentDescription = "Title Fight duel, pick the winner" },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Epic header
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Medium),
-            color = HelldeckColors.colorAccentWarm.copy(alpha = 0.15f),
-            border = BorderStroke(2.dp, HelldeckColors.colorAccentWarm.copy(alpha = 0.5f)),
+        // Epic header - NeonCard
+        NeonCard(
+            accentColor = HelldeckColors.colorAccentWarm,
+            elevation = 6.dp,
         ) {
             Text(
-                text = "⚔️ TITLE FIGHT ⚔️",
+                text = "TITLE FIGHT",
                 style = MaterialTheme.typography.labelLarge.copy(
                     fontWeight = FontWeight.Black,
-                    fontSize = 16.sp,
+                    fontSize = 20.sp,
                     letterSpacing = 2.sp,
                 ),
                 color = HelldeckColors.colorAccentWarm,
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
             )
         }
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
-        
+
         // Contextual instructions based on challenge type
         if (challengeType != null) {
-            Surface(
-                shape = RoundedCornerShape(HelldeckRadius.Small),
-                color = HelldeckColors.colorAccentCool.copy(alpha = 0.1f),
-                border = BorderStroke(1.dp, HelldeckColors.colorAccentCool.copy(alpha = 0.3f)),
+            NeonCard(
+                accentColor = HelldeckColors.colorAccentCool,
+                elevation = 4.dp,
             ) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(HelldeckSpacing.Medium.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = challengeType.emoji,
                         style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(end = 8.dp),
+                        modifier = Modifier.padding(end = HelldeckSpacing.Small.dp),
                     )
                     Text(
                         text = "${challengeType.displayName}: ",
                         style = MaterialTheme.typography.labelMedium.copy(
                             fontWeight = FontWeight.Bold,
+                            fontSize = 18.sp,
                         ),
                         color = HelldeckColors.colorAccentCool,
                     )
                     Text(
                         text = challengeType.instruction,
-                        style = MaterialTheme.typography.labelMedium,
+                        style = MaterialTheme.typography.labelMedium.copy(
+                            fontSize = 18.sp,
+                        ),
                         color = HelldeckColors.colorOnDark.copy(alpha = 0.9f),
                     )
                 }
             }
         }
-        
+
         Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
         Row(
@@ -151,44 +154,56 @@ fun MiniDuelRenderer(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             // Player 1 (Red corner)
-            DuelFighterButton(
+            DuelFighterCard(
                 label = "PLAYER 1",
                 emoji = "🔴",
                 cornerLabel = "RED",
                 isSelected = selectedWinner == 0,
+                isRejected = selectedWinner != null && selectedWinner != 0,
                 accentColor = HelldeckColors.colorPrimary,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     selectedWinner = 0
                     onEvent(RoundEvent.DuelWinner(0))
                 },
                 modifier = Modifier.weight(1f),
             )
 
-            // VS indicator
+            // VS indicator - huge glowing magenta
             Box(
                 contentAlignment = Alignment.Center,
-                modifier = Modifier.scale(if (reducedMotion) 1f else vsPulse),
+                modifier = Modifier
+                    .scale(if (reducedMotion) 1f else vsPulse)
+                    .shadow(
+                        elevation = 24.dp,
+                        shape = RoundedCornerShape(HelldeckRadius.Pill),
+                        spotColor = HelldeckColors.colorPrimary.copy(alpha = 0.8f),
+                        ambientColor = HelldeckColors.colorPrimary.copy(alpha = 0.4f),
+                    ),
             ) {
                 Text(
                     text = "VS",
-                    style = MaterialTheme.typography.displayMedium.copy(
+                    style = MaterialTheme.typography.displayLarge.copy(
                         fontWeight = FontWeight.Black,
-                        fontSize = 28.sp,
+                        fontSize = 42.sp,
+                        letterSpacing = 4.sp,
                     ),
-                    color = HelldeckColors.colorAccentWarm,
+                    color = HelldeckColors.colorPrimary,
                 )
             }
 
             // Player 2 (Blue corner)
-            DuelFighterButton(
+            DuelFighterCard(
                 label = "PLAYER 2",
                 emoji = "🔵",
                 cornerLabel = "BLUE",
                 isSelected = selectedWinner == 1,
+                isRejected = selectedWinner != null && selectedWinner != 1,
                 accentColor = HelldeckColors.colorAccentCool,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     selectedWinner = 1
                     onEvent(RoundEvent.DuelWinner(1))
                 },
@@ -201,18 +216,19 @@ fun MiniDuelRenderer(
         // Winner declaration
         if (selectedWinner != null) {
             val winnerColor = if (selectedWinner == 0) HelldeckColors.colorPrimary else HelldeckColors.colorAccentCool
-            Surface(
-                shape = RoundedCornerShape(HelldeckRadius.Medium),
-                color = winnerColor.copy(alpha = 0.2f),
-                border = BorderStroke(2.dp, winnerColor),
+            NeonCard(
+                accentColor = winnerColor,
+                elevation = 8.dp,
             ) {
                 Text(
-                    text = "👑 WINNER: PLAYER ${selectedWinner!! + 1}",
+                    text = "WINNER: PLAYER ${selectedWinner!! + 1}",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Bold,
+                        fontSize = 20.sp,
                     ),
                     color = winnerColor,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }
@@ -220,27 +236,25 @@ fun MiniDuelRenderer(
 }
 
 /**
- * Individual fighter button with VS battle styling.
+ * Individual fighter card using NeonCard with VS battle styling.
+ * Selected fighter gets crown, rejected dims.
  */
 @Composable
-private fun DuelFighterButton(
+private fun DuelFighterCard(
     label: String,
     emoji: String,
     cornerLabel: String,
     isSelected: Boolean,
+    isRejected: Boolean,
     accentColor: Color,
     reducedMotion: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.92f
-            isSelected -> 1.08f
-            isPressed -> 0.95f
+            isSelected -> 1.1f
+            isRejected -> 0.9f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
@@ -251,16 +265,10 @@ private fun DuelFighterButton(
         label = "fighter_scale",
     )
 
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.8f else if (isPressed) 0.4f else 0.2f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
-    )
-
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) accentColor.copy(alpha = 0.3f) else HelldeckColors.surfacePrimary,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
+    val cardAlpha by animateFloatAsState(
+        targetValue = if (isRejected) 0.35f else 1f,
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Normal),
+        label = "card_alpha",
     )
 
     val infiniteTransition = rememberInfiniteTransition(label = "fighter_pulse")
@@ -278,48 +286,55 @@ private fun DuelFighterButton(
         label = "selected_pulse",
     )
 
-    Button(
-        onClick = onClick,
+    val effectiveElevation = when {
+        isSelected -> 20.dp * selectedPulse
+        isRejected -> 2.dp
+        else -> 6.dp
+    }
+
+    NeonCard(
         modifier = modifier
-            .height(130.dp)
+            .heightIn(min = 56.dp)
+            .height(150.dp)
             .scale(scale)
-            .shadow(
-                elevation = if (isSelected) (16.dp * selectedPulse) else if (isPressed) 8.dp else 4.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Large),
-                spotColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse else glowAlpha),
-                ambientColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse * 0.5f else glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Large),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        border = BorderStroke(
-            width = if (isSelected) 4.dp else 2.dp,
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    accentColor.copy(alpha = if (isSelected) 1f else 0.5f),
-                    accentColor.copy(alpha = if (isSelected) 0.6f else 0.3f),
-                ),
-            ),
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Medium.dp),
+            .alpha(cardAlpha)
+            .then(
+                if (isSelected) {
+                    Modifier.shadow(
+                        elevation = 24.dp * selectedPulse,
+                        shape = RoundedCornerShape(HelldeckRadius.Large),
+                        spotColor = accentColor.copy(alpha = 0.9f),
+                        ambientColor = accentColor.copy(alpha = 0.5f),
+                    )
+                } else {
+                    Modifier
+                },
+            )
+            .semantics {
+                contentDescription = "$cornerLabel corner $label${if (isSelected) ", winner" else ""}"
+            },
+        accentColor = if (isRejected) HelldeckColors.colorMuted else accentColor,
+        elevation = effectiveElevation,
+        onClick = onClick,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize(),
         ) {
             // Crown for winner
             if (isSelected) {
-                Text(text = "👑", fontSize = 20.sp)
-                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "👑",
+                    fontSize = 24.sp,
+                )
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Tiny.dp))
             }
-            
+
             Text(
                 text = emoji,
                 style = MaterialTheme.typography.displayMedium.copy(
-                    fontSize = if (isSelected) 36.sp else 32.sp,
+                    fontSize = if (isSelected) 38.sp else 32.sp,
                 ),
             )
             Spacer(modifier = Modifier.height(HelldeckSpacing.Tiny.dp))
@@ -328,15 +343,25 @@ private fun DuelFighterButton(
                 style = MaterialTheme.typography.labelSmall.copy(
                     fontWeight = FontWeight.Bold,
                     letterSpacing = 1.sp,
+                    fontSize = 14.sp,
                 ),
-                color = accentColor,
+                color = when {
+                    isSelected -> accentColor
+                    isRejected -> HelldeckColors.colorMuted
+                    else -> accentColor
+                },
             )
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelMedium.copy(
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                    fontSize = 18.sp,
                 ),
-                color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
+                color = when {
+                    isSelected -> accentColor
+                    isRejected -> HelldeckColors.colorMuted
+                    else -> HelldeckColors.colorOnDark
+                },
                 textAlign = TextAlign.Center,
             )
         }

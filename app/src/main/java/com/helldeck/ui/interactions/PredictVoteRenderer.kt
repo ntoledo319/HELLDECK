@@ -1,20 +1,20 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -24,6 +24,7 @@ import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -32,7 +33,8 @@ import com.helldeck.ui.state.RoundState
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
  * - Crystal ball / fortune teller vibe
- * - Betting/prediction feel with risk indicator
+ * - Prediction NeonCards with neon gradient glow
+ * - Selected prediction glows, other dims
  * - Mystical purple accent
  *
  * @ai_prompt Fortune teller prediction betting interface, HELLDECK neon styling
@@ -44,6 +46,7 @@ fun PredictVoteRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var prediction by remember { mutableStateOf<String?>(null) }
 
     // Mystical pulse effect
@@ -65,30 +68,29 @@ fun PredictVoteRenderer(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.ExtraLarge.dp),
+            .padding(HelldeckSpacing.ExtraLarge.dp)
+            .semantics { contentDescription = "Predict what the majority will choose" },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Large.dp),
     ) {
-        // Fortune teller header
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Large),
-            color = HelldeckColors.colorPrimary.copy(alpha = 0.1f * mysticalPulse),
-            border = BorderStroke(2.dp, HelldeckColors.colorPrimary.copy(alpha = 0.5f * mysticalPulse)),
+        // Fortune teller header - NeonCard with mystical pulse
+        NeonCard(
+            accentColor = HelldeckColors.colorPrimary,
+            elevation = (10.dp * mysticalPulse),
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+                modifier = Modifier.fillMaxWidth(),
             ) {
-                Text(text = "🔮", fontSize = 40.sp)
-                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "PREDICT THE MOB",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Black,
-                        fontSize = 16.sp,
+                        fontSize = 20.sp,
                         letterSpacing = 2.sp,
                     ),
                     color = HelldeckColors.colorPrimary,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -97,6 +99,7 @@ fun PredictVoteRenderer(
             text = "What will the majority choose?",
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Medium,
+                fontSize = 20.sp,
             ),
             color = HelldeckColors.colorMuted,
             textAlign = TextAlign.Center,
@@ -112,24 +115,28 @@ fun PredictVoteRenderer(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         ) {
-            PredictButton(
+            PredictCard(
                 label = optA,
                 isSelected = prediction == "A",
+                isRejected = prediction != null && prediction != "A",
                 accentColor = HelldeckColors.colorSecondary,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     prediction = "A"
                     onEvent(RoundEvent.PreChoice("A"))
                 },
                 modifier = Modifier.weight(1f),
             )
 
-            PredictButton(
+            PredictCard(
                 label = optB,
                 isSelected = prediction == "B",
+                isRejected = prediction != null && prediction != "B",
                 accentColor = HelldeckColors.colorAccentCool,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     prediction = "B"
                     onEvent(RoundEvent.PreChoice("B"))
                 },
@@ -139,41 +146,43 @@ fun PredictVoteRenderer(
 
         // Prediction confirmation
         if (prediction != null) {
-            Surface(
-                shape = RoundedCornerShape(HelldeckRadius.Medium),
-                color = HelldeckColors.colorPrimary.copy(alpha = 0.15f),
-                border = BorderStroke(1.dp, HelldeckColors.colorPrimary.copy(alpha = 0.4f)),
+            NeonCard(
+                accentColor = HelldeckColors.colorPrimary,
+                elevation = 4.dp,
             ) {
                 Text(
-                    text = "🎲 Bet placed!",
-                    style = MaterialTheme.typography.labelMedium.copy(
+                    text = "Bet placed!",
+                    style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
                     ),
                     color = HelldeckColors.colorPrimary,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
         }
     }
 }
 
+/**
+ * Individual prediction card using NeonCard.
+ * Selected prediction glows, rejected dims.
+ */
 @Composable
-private fun PredictButton(
+private fun PredictCard(
     label: String,
     isSelected: Boolean,
+    isRejected: Boolean,
     accentColor: Color,
     reducedMotion: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.93f
-            isSelected -> 1.05f
-            isPressed -> 0.95f
+            isSelected -> 1.06f
+            isRejected -> 0.94f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
@@ -184,16 +193,10 @@ private fun PredictButton(
         label = "predict_scale",
     )
 
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.7f else if (isPressed) 0.3f else 0.15f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
-    )
-
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) accentColor.copy(alpha = 0.25f) else HelldeckColors.surfacePrimary,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
+    val cardAlpha by animateFloatAsState(
+        targetValue = if (isRejected) 0.4f else 1f,
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Normal),
+        label = "card_alpha",
     )
 
     val infiniteTransition = rememberInfiniteTransition(label = "predict_pulse")
@@ -211,43 +214,68 @@ private fun PredictButton(
         label = "selected_pulse",
     )
 
-    Button(
-        onClick = onClick,
+    val effectiveElevation = when {
+        isSelected -> 14.dp * selectedPulse
+        isRejected -> 2.dp
+        else -> 6.dp
+    }
+
+    NeonCard(
         modifier = modifier
-            .height(100.dp)
+            .heightIn(min = 56.dp)
+            .height(110.dp)
             .scale(scale)
-            .shadow(
-                elevation = if (isSelected) (12.dp * selectedPulse) else if (isPressed) 6.dp else 4.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Large),
-                spotColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse else glowAlpha),
-                ambientColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse * 0.5f else glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Large),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        border = BorderStroke(
-            width = if (isSelected) 3.dp else 2.dp,
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    accentColor.copy(alpha = if (isSelected) 1f else 0.5f),
-                    accentColor.copy(alpha = if (isSelected) 0.7f else 0.3f),
-                ),
-            ),
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Large.dp),
+            .alpha(cardAlpha)
+            .then(
+                if (isSelected) {
+                    Modifier.shadow(
+                        elevation = 20.dp * selectedPulse,
+                        shape = RoundedCornerShape(HelldeckRadius.Large),
+                        spotColor = accentColor.copy(alpha = 0.8f),
+                        ambientColor = accentColor.copy(alpha = 0.4f),
+                    )
+                } else {
+                    Modifier
+                },
+            )
+            .semantics {
+                contentDescription = "$label prediction${if (isSelected) ", selected" else ""}"
+            },
+        accentColor = if (isRejected) HelldeckColors.colorMuted else accentColor,
+        elevation = effectiveElevation,
+        onClick = onClick,
     ) {
-        Text(
-            text = label,
-            style = MaterialTheme.typography.headlineMedium.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = if (isSelected) 24.sp else 22.sp,
-            ),
-            color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
-            textAlign = TextAlign.Center,
-            maxLines = 2,
-        )
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            // Neon gradient indicator for selected
+            if (isSelected) {
+                Text(
+                    text = "LOCKED IN",
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 2.sp,
+                    ),
+                    color = accentColor,
+                )
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Tiny.dp))
+            }
+            Text(
+                text = label,
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = if (isSelected) 24.sp else 22.sp,
+                ),
+                color = when {
+                    isSelected -> accentColor
+                    isRejected -> HelldeckColors.colorMuted
+                    else -> HelldeckColors.colorOnDark
+                },
+                textAlign = TextAlign.Center,
+                maxLines = 2,
+            )
+        }
     }
 }

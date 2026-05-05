@@ -9,7 +9,7 @@ object GameMetadata {
         GameIds.ROAST_CONS to GameInfo(
             id = GameIds.ROAST_CONS,
             title = "Roast Consensus",
-            description = "A roast card appears. Everyone secretly picks one victim. 20 seconds to lock in. All votes drop simultaneously. Whoever got the most votes takes the heat.",
+            description = "A roast prompt appears. Everyone secretly votes on who fits. Most votes takes the heat.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 20,
@@ -25,7 +25,7 @@ object GameMetadata {
         GameIds.CONFESS_CAP to GameInfo(
             id = GameIds.CONFESS_CAP,
             title = "Confession or Cap",
-            description = "Someone receives a potentially embarrassing prompt. They answer TRUE or FALSE. Everyone else votes on whether they believe them. The truth is revealed.",
+            description = "Read the confession. Is it real or made up? Vote TRUE or FALSE — then the truth drops.",
             category = GameCategory.MAIN,
             difficulty = GameDifficulty.EASY,
             timerSec = 15,
@@ -41,7 +41,7 @@ object GameMetadata {
         GameIds.POISON_PITCH to GameInfo(
             id = GameIds.POISON_PITCH,
             title = "Poison Pitch",
-            description = "A 'Would You Rather' card with two horrifying options. One person defends Option A, another defends Option B. Each has 30 seconds to argue. The group votes for the most convincing pitch.",
+            description = "Two nightmare options. Two players defend them. Group votes for the best argument.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 30,
@@ -57,7 +57,7 @@ object GameMetadata {
         GameIds.FILLIN to GameInfo(
             id = GameIds.FILLIN,
             title = "Fill-In Finisher",
-            description = "The Judge draws a card with two blanks. They fill in the first blank verbally. All other players have 60 seconds to write their answer for the second blank. The Judge picks their favorite.",
+            description = "Fill-in-the-blank prompt. Everyone writes their funniest answer. The Judge picks the winner.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 60,
@@ -73,7 +73,7 @@ object GameMetadata {
         GameIds.RED_FLAG to GameInfo(
             id = GameIds.RED_FLAG,
             title = "Red Flag Rally",
-            description = "A dating card with a Perk and a Red Flag. Someone defends this person and argues why they're still dateable. 45 seconds to make the case. Everyone votes SMASH or PASS.",
+            description = "Amazing perk. Terrible red flag. Would you date them? Vote SMASH or PASS.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 45,
@@ -89,7 +89,7 @@ object GameMetadata {
         GameIds.HOTSEAT_IMP to GameInfo(
             id = GameIds.HOTSEAT_IMP,
             title = "Hot Seat Imposter",
-            description = "Someone is the Target. Another is secretly chosen to impersonate them. The group asks 3-5 personal questions. The Imposter answers as if they were the Target. The group votes: REAL or FAKE.",
+            description = "One person answers personal questions. But is it them or the Imposter? Group votes: REAL or FAKE.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 15,
@@ -105,7 +105,7 @@ object GameMetadata {
         GameIds.TEXT_TRAP to GameInfo(
             id = GameIds.TEXT_TRAP,
             title = "Text Thread Trap",
-            description = "A card displays an awkward or high-stakes received text message. A Mandatory Tone is generated (1-22). The person must verbally improvise the text reply while acting out that specific Tone. The group votes on whether they survived.",
+            description = "Awkward text appears. You must reply out loud in a random tone (Seductive, Karen, Drill Sergeant...). Group judges your performance.",
             category = GameCategory.MAIN,
             difficulty = GameDifficulty.EASY,
             timerSec = 15,
@@ -121,7 +121,7 @@ object GameMetadata {
         GameIds.TABOO to GameInfo(
             id = GameIds.TABOO,
             title = "Taboo Timer",
-            description = "The Clue-Giver draws a card with a target word and 3-5 forbidden words. 60 seconds on the timer. Describe the target word without using any forbidden words. Guessers shout out answers.",
+            description = "Describe the word WITHOUT saying the forbidden words. Your team shouts guesses. 60 seconds. Go!",
             category = GameCategory.WORD,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 60,
@@ -137,7 +137,7 @@ object GameMetadata {
         GameIds.UNIFYING_THEORY to GameInfo(
             id = GameIds.UNIFYING_THEORY,
             title = "The Unifying Theory",
-            description = "A card reveals three completely unrelated items. The person must explain exactly why these three things are The Same. Find the single thread that connects all three. The group votes if your theory holds water.",
+            description = "Three random things appear. Explain how they're secretly connected. Group votes if your theory holds up.",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 30,
@@ -153,7 +153,7 @@ object GameMetadata {
         GameIds.TITLE_FIGHT to GameInfo(
             id = GameIds.TITLE_FIGHT,
             title = "Title Fight",
-            description = "Point at someone and yell FIGHT! The card shows a challenge. Battle it out — first to mess up loses. Three types: 🧠 Category (take turns naming things), 💪 Speed (race to do something), 👁️ Guts (outlast each other).",
+            description = "Point at someone and yell FIGHT! A debate topic appears. Argue your side — the group picks the winner.",
             category = GameCategory.DUEL,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 15,
@@ -169,7 +169,7 @@ object GameMetadata {
         GameIds.ALIBI to GameInfo(
             id = GameIds.ALIBI,
             title = "Alibi Drop",
-            description = "Draw a card that accuses you of a crime. The card lists 3 Mandatory Words. You have 30 seconds to explain yourself. You must weave all three words into your story naturally. The group acts as the Jury.",
+            description = "You're accused of a crime. 3 secret words appear on screen. Tell your alibi story and sneak all 3 words in. The group votes: Innocent or Guilty?",
             category = GameCategory.CREATIVE,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 30,
@@ -185,7 +185,7 @@ object GameMetadata {
         GameIds.REALITY_CHECK to GameInfo(
             id = GameIds.REALITY_CHECK,
             title = "Reality Check",
-            description = "A brutal game of self-awareness. The Subject draws a card with a specific trait. They secretly write down a rating from 1 to 10. The group discusses and agrees on a single rating. Both numbers are revealed simultaneously.",
+            description = "Rate yourself 1-10 on a trait. The group rates you too. Both numbers revealed at once. How delusional are you?",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.MEDIUM,
             timerSec = 20,
@@ -201,7 +201,7 @@ object GameMetadata {
         GameIds.SCATTER to GameInfo(
             id = GameIds.SCATTER,
             title = "Scatterblast",
-            description = "A high-speed category elimination game. The phone acts as a bomb with a hidden timer. A card reveals a Category + Letter. Everyone takes turns shouting valid answers. If the bomb explodes on your turn, you lose.",
+            description = "Hot potato with words! Category + Letter appears. Take turns shouting answers. Hesitate or repeat? BOOM — you're out.",
             category = GameCategory.WORD,
             difficulty = GameDifficulty.EASY,
             timerSec = 10,
@@ -217,7 +217,7 @@ object GameMetadata {
         GameIds.OVER_UNDER to GameInfo(
             id = GameIds.OVER_UNDER,
             title = "Over / Under",
-            description = "A social betting game. Someone is the Subject. A card asks for a number about them. The group sets a Betting Line. Everyone votes OVER or UNDER. The Subject immediately reveals the exact number.",
+            description = "A number question about someone. Set a betting line. Vote OVER or UNDER. They reveal the truth.",
             category = GameCategory.VOTING,
             difficulty = GameDifficulty.EASY,
             timerSec = 20,
