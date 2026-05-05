@@ -1,0 +1,5 @@
+appId: com.example.helldeck # Update with your actual App ID from AndroidManifest.xml
+---
+- launchApp
+- assertVisible: ".*" # Asserts that something is visible on the screen
+- takeScreenshot: launch_screen

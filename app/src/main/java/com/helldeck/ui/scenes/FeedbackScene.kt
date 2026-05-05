@@ -1,7 +1,15 @@
 package com.helldeck.ui.scenes
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -11,12 +19,14 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.helldeck.AppCtx
-import com.helldeck.content.data.ContentRepository
 import com.helldeck.engine.Config
 import com.helldeck.engine.GameFeedback
 import com.helldeck.engine.GameMetadata
@@ -25,9 +35,13 @@ import com.helldeck.ui.CardFace
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
+import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.HelldeckVm
+import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.GlowButton
+import com.helldeck.ui.components.InfoBanner
+import com.helldeck.ui.components.OutlineButton
 import com.helldeck.ui.components.ReportContentDialog
-import com.helldeck.ui.theme.HelldeckSpacing
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
@@ -38,13 +52,14 @@ fun FeedbackScene(vm: HelldeckVm) {
     val hapticsEnabled = Config.hapticsEnabled
     val roundState = vm.roundState
 
-    // Auto-advance countdown (8 seconds for more discussion time)
-    var secondsRemaining by remember { mutableStateOf(8) }
+    // Auto-advance countdown (5 seconds for faster pacing)
+    var secondsRemaining by remember { mutableStateOf(5) }
     var isAutoAdvancing by remember { mutableStateOf(true) }
     var hasAdvanced by remember { mutableStateOf(false) }
     var isPaused by remember { mutableStateOf(false) }
+    var showMoreOptions by remember { mutableStateOf(false) }
 
-    // Advance guard — ensures only one caller advances per card
+    // Advance guard
     val advanceLock = remember { java.util.concurrent.atomic.AtomicBoolean(false) }
     val tryAdvance: () -> Boolean = { advanceLock.compareAndSet(false, true).also { if (it) hasAdvanced = true } }
 
@@ -54,7 +69,7 @@ fun FeedbackScene(vm: HelldeckVm) {
     LaunchedEffect(roundState?.filledCard?.id) {
         GameFeedback.triggerFeedback(context, HapticEvent.ROUND_END, useHaptics = hapticsEnabled)
         isFavorited = vm.isCurrentCardFavorited()
-        hasAdvanced = false // Reset guard on new card
+        hasAdvanced = false
         advanceLock.set(false)
     }
 
@@ -68,7 +83,7 @@ fun FeedbackScene(vm: HelldeckVm) {
                 }
             }
             if (secondsRemaining == 0 && !hasAdvanced && !isPaused) {
-                if (tryAdvance()) { vm.commitFeedbackAndNext() }
+                if (tryAdvance()) { scope.launch { vm.commitFeedbackAndNext() } }
             }
         }
     }
@@ -80,10 +95,13 @@ fun FeedbackScene(vm: HelldeckVm) {
                     Text(
                         "FEEDBACK",
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = androidx.compose.ui.text.font.FontWeight.Black,
+                        fontWeight = FontWeight.Black,
+                        color = HelldeckColors.colorPrimary,
                     )
                 },
-                navigationIcon = { TextButton(onClick = { vm.goBack() }) { Text("Back") } },
+                navigationIcon = {
+                    TextButton(onClick = { vm.goBack() }) { Text("Back") }
+                },
                 actions = {
                     // Share card as image
                     IconButton(
@@ -100,11 +118,14 @@ fun FeedbackScene(vm: HelldeckVm) {
                                 )
                             }
                         },
+                        modifier = Modifier.semantics {
+                            contentDescription = "Share card as image"
+                        },
                     ) {
                         Icon(
                             Icons.Filled.Share,
                             contentDescription = "Share card",
-                            tint = MaterialTheme.colorScheme.onSurface,
+                            tint = HelldeckColors.colorOnDark,
                         )
                     }
 
@@ -120,11 +141,14 @@ fun FeedbackScene(vm: HelldeckVm) {
                                 )
                             }
                         },
+                        modifier = Modifier.semantics {
+                            contentDescription = if (isFavorited) "Remove from favorites" else "Add to favorites"
+                        },
                     ) {
                         Icon(
                             if (isFavorited) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                             contentDescription = if (isFavorited) "Remove from favorites" else "Add to favorites",
-                            tint = if (isFavorited) HelldeckColors.Lol else MaterialTheme.colorScheme.onSurface,
+                            tint = if (isFavorited) HelldeckColors.Lol else HelldeckColors.colorOnDark,
                         )
                     }
 
@@ -148,10 +172,11 @@ fun FeedbackScene(vm: HelldeckVm) {
                     .weight(1f)
                     .padding(HelldeckSpacing.Medium.dp),
             )
-            
+
             // Explain AI learning
-            com.helldeck.ui.components.InfoBanner(
-                message = "💡 The AI learns: Loved cards = more like this. Trash cards = avoid similar content.",
+            InfoBanner(
+                message = "The AI learns: Loved cards = more like this. Trash cards = avoid similar content.",
+                icon = "\uD83D\uDCA1",
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = HelldeckSpacing.Medium.dp),
@@ -159,6 +184,7 @@ fun FeedbackScene(vm: HelldeckVm) {
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
+            // Rating buttons - massive, colorful, satisfying
             RatingRail(
                 onLol = {
                     vm.feedbackLol()
@@ -180,123 +206,151 @@ fun FeedbackScene(vm: HelldeckVm) {
                     .padding(horizontal = HelldeckSpacing.Large.dp),
             )
 
-            // Undo button (appears after rating)
+            // Undo button
             if (vm.canUndoFeedback) {
-                OutlinedButton(
+                OutlineButton(
+                    text = "\u21B6 UNDO",
                     onClick = {
                         vm.undoLastRating()
                         GameFeedback.triggerFeedback(context, HapticEvent.VOTE_CONFIRM, useHaptics = hapticsEnabled)
                     },
-                    modifier = Modifier.padding(top = 8.dp),
-                    shape = RoundedCornerShape(HelldeckRadius.Medium),
-                    border = BorderStroke(1.dp, HelldeckColors.colorMuted),
-                ) {
-                    Text(
-                        text = "↶ UNDO",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = HelldeckColors.colorOnDark,
-                    )
-                }
+                    modifier = Modifier.padding(top = HelldeckSpacing.Small.dp),
+                    accentColor = HelldeckColors.colorMuted,
+                )
             }
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
 
             TextButton(
                 onClick = { vm.openReportDialog() },
-                modifier = Modifier.align(Alignment.End),
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(horizontal = HelldeckSpacing.Large.dp)
+                    .semantics {
+                        contentDescription = "Report offensive content"
+                    },
             ) {
                 Text(
-                    text = "🚩 Report Offensive Content",
+                    text = "\uD83D\uDEA9 Report Offensive Content",
                     style = MaterialTheme.typography.labelSmall,
-                    color = HelldeckColors.LightGray.copy(alpha = 0.7f),
+                    color = HelldeckColors.colorMuted.copy(alpha = 0.7f),
                 )
             }
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
 
-            // Replay button (if available)
-            if (vm.canReplay()) {
-                OutlinedButton(
-                    onClick = { scope.launch { vm.replayLastCard() } },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(HelldeckHeights.Button.dp)
-                        .padding(horizontal = HelldeckSpacing.Large.dp),
-                    colors = ButtonDefaults.outlinedButtonColors(
-                        contentColor = HelldeckColors.colorPrimary,
-                    ),
-                ) {
-                    Text(text = "🔄 REPLAY THIS CARD", style = MaterialTheme.typography.labelMedium)
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-            }
-
-            // Auto-advance controls with pause
-            Row(
+            // Primary action: Next button (full width, prominent)
+            GlowButton(
+                text = when {
+                    hasAdvanced -> "Next"
+                    secondsRemaining > 0 && !isPaused -> "Next ($secondsRemaining)"
+                    isPaused -> "Continue"
+                    else -> "Next"
+                },
+                onClick = {
+                    if (tryAdvance()) { scope.launch { vm.commitFeedbackAndNext() } }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = HelldeckSpacing.Large.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-            ) {
-                // End Game button
-                com.helldeck.ui.components.OutlineButton(
-                    text = "🏁",
-                    onClick = {
-                        if (tryAdvance()) { vm.showEndGameSummary() }
-                    },
-                    modifier = Modifier.weight(0.5f),
-                    enabled = !hasAdvanced,
-                )
-
-                // Pause/Resume button
-                com.helldeck.ui.components.OutlineButton(
-                    text = if (isPaused) "▶️" else "⏸️",
-                    onClick = { isPaused = !isPaused },
-                    modifier = Modifier.weight(0.5f),
-                    enabled = !hasAdvanced && secondsRemaining > 0,
-                )
-                
-                // Skip button (marks card as skipped for feedback tracking)
-                com.helldeck.ui.components.OutlineButton(
-                    text = "Skip",
-                    onClick = {
-                        if (tryAdvance()) { vm.skipCurrentCard() }
-                    },
-                    modifier = Modifier.weight(0.8f),
-                    enabled = !hasAdvanced,
-                )
-
-                // Next/Continue button
-                com.helldeck.ui.components.GlowButton(
-                    text = when {
-                        hasAdvanced -> "Next"
-                        secondsRemaining > 0 && !isPaused -> "Next ($secondsRemaining)"
-                        isPaused -> "Continue"
-                        else -> "Next"
-                    },
-                    onClick = {
-                        if (tryAdvance()) { scope.launch { vm.commitFeedbackAndNext() } }
-                    },
-                    modifier = Modifier.weight(1.5f),
-                    enabled = !hasAdvanced,
-                    accentColor = HelldeckColors.colorSecondary,
-                )
-            }
+                enabled = !hasAdvanced,
+                accentColor = HelldeckColors.colorSecondary,
+            )
 
             // Status hint
-            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = when {
-                    isPaused -> "⏸️ Paused - Take your time to discuss"
-                    secondsRemaining > 0 -> "⏱️ Auto-advancing in ${secondsRemaining}s (tap ⏸️ to pause)"
-                    else -> "⏱️ Moving on..."
+                    isPaused -> "\u23F8\uFE0F Paused - Take your time to discuss"
+                    secondsRemaining > 0 -> "\u23F1\uFE0F Auto-advancing in ${secondsRemaining}s"
+                    else -> "\u23F1\uFE0F Moving on..."
                 },
                 style = MaterialTheme.typography.bodySmall,
                 color = HelldeckColors.colorMuted,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = HelldeckSpacing.Tiny.dp),
             )
+
+            // "More options" toggle
+            TextButton(
+                onClick = { showMoreOptions = !showMoreOptions },
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .semantics {
+                        contentDescription = if (showMoreOptions) "Hide more options" else "Show more options"
+                    },
+            ) {
+                Text(
+                    text = if (showMoreOptions) "Less \u25B4" else "More \u25BE",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = HelldeckColors.colorMuted,
+                )
+            }
+
+            // Expandable secondary actions
+            AnimatedVisibility(
+                visible = showMoreOptions,
+                enter = expandVertically(),
+                exit = shrinkVertically(),
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = HelldeckSpacing.Large.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+                ) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+                    ) {
+                        // End Game
+                        OutlineButton(
+                            text = "\uD83C\uDFC1 End Game",
+                            onClick = {
+                                if (tryAdvance()) { vm.showEndGameSummary() }
+                            },
+                            modifier = Modifier.weight(1f),
+                            enabled = !hasAdvanced,
+                        )
+
+                        // Pause/Resume
+                        OutlineButton(
+                            text = if (isPaused) "\u25B6\uFE0F Resume" else "\u23F8\uFE0F Pause",
+                            onClick = { isPaused = !isPaused },
+                            modifier = Modifier.weight(1f),
+                            enabled = !hasAdvanced && secondsRemaining > 0,
+                        )
+                    }
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+                    ) {
+                        // Skip
+                        OutlineButton(
+                            text = "Skip",
+                            onClick = {
+                                if (tryAdvance()) { vm.skipCurrentCard() }
+                            },
+                            modifier = Modifier.weight(1f),
+                            enabled = !hasAdvanced,
+                        )
+
+                        // Replay
+                        if (vm.canReplay()) {
+                            OutlineButton(
+                                text = "\uD83D\uDD04 Replay",
+                                onClick = { scope.launch { vm.replayLastCard() } },
+                                modifier = Modifier.weight(1f),
+                                accentColor = HelldeckColors.colorAccentCool,
+                            )
+                        }
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
         }
     }
 
@@ -325,27 +379,33 @@ private fun RatingRail(
 ) {
     Row(
         modifier = modifier,
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         RatingButton(
-            emoji = "😂",
+            emoji = "\uD83D\uDE02",
             label = "LOL",
-            color = HelldeckColors.Lol,
+            glowColor = HelldeckColors.colorSecondary,
+            containerColor = HelldeckColors.colorSecondary.copy(alpha = 0.2f),
+            labelColor = HelldeckColors.colorSecondary,
             onClick = onLol,
             modifier = Modifier.weight(1f),
         )
         RatingButton(
-            emoji = "😐",
+            emoji = "\uD83D\uDE10",
             label = "MEH",
-            color = HelldeckColors.Meh,
+            glowColor = HelldeckColors.colorAccentWarm,
+            containerColor = HelldeckColors.colorAccentWarm.copy(alpha = 0.2f),
+            labelColor = HelldeckColors.colorAccentWarm,
             onClick = onMeh,
             modifier = Modifier.weight(1f),
         )
         RatingButton(
-            emoji = "🚮",
+            emoji = "\uD83D\uDEAE",
             label = "TRASH",
-            color = HelldeckColors.Trash,
+            glowColor = HelldeckColors.Error,
+            containerColor = HelldeckColors.Error.copy(alpha = 0.2f),
+            labelColor = HelldeckColors.Error,
             onClick = onTrash,
             modifier = Modifier.weight(1f),
         )
@@ -356,19 +416,65 @@ private fun RatingRail(
 private fun RatingButton(
     emoji: String,
     label: String,
-    color: androidx.compose.ui.graphics.Color,
+    glowColor: androidx.compose.ui.graphics.Color,
+    containerColor: androidx.compose.ui.graphics.Color,
+    labelColor: androidx.compose.ui.graphics.Color,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val reducedMotion = LocalReducedMotion.current
+    val interactionSource = remember { MutableInteractionSource() }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
+    val scale by animateFloatAsState(
+        targetValue = if (isPressed) 0.90f else 1f,
+        animationSpec = if (reducedMotion) {
+            spring(stiffness = Spring.StiffnessHigh)
+        } else {
+            spring(dampingRatio = 0.5f, stiffness = Spring.StiffnessHigh)
+        },
+        label = "rating_scale",
+    )
+
     Button(
         onClick = onClick,
-        modifier = modifier.height(84.dp),
-        shape = RoundedCornerShape(HelldeckRadius.Medium),
-        colors = ButtonDefaults.buttonColors(containerColor = color),
+        modifier = modifier
+            .height(100.dp)
+            .scale(scale)
+            .shadow(
+                elevation = if (isPressed) 4.dp else 12.dp,
+                shape = RoundedCornerShape(HelldeckRadius.Large),
+                spotColor = glowColor.copy(alpha = 0.6f),
+                ambientColor = glowColor.copy(alpha = 0.4f),
+            )
+            .semantics {
+                contentDescription = "Rate card as $label"
+            },
+        shape = RoundedCornerShape(HelldeckRadius.Large),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = containerColor,
+            contentColor = labelColor,
+        ),
+        border = BorderStroke(
+            width = 2.dp,
+            color = glowColor.copy(alpha = 0.5f),
+        ),
+        interactionSource = interactionSource,
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(text = emoji, style = MaterialTheme.typography.headlineLarge)
-            Text(text = label, style = MaterialTheme.typography.labelLarge, color = HelldeckColors.Black)
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Tiny.dp),
+        ) {
+            Text(
+                text = emoji,
+                style = MaterialTheme.typography.displayMedium,
+            )
+            Text(
+                text = label,
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.Black,
+                color = labelColor,
+            )
         }
     }
 }

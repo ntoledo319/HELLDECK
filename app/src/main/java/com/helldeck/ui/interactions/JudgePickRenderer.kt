@@ -1,30 +1,30 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.GlowButton
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -33,8 +33,9 @@ import com.helldeck.ui.state.RoundState
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
  * - Judge spotlight feel with dramatic crown/gavel imagery
- * - Option selection with clear visual feedback
- * - Authority/power vibe for the judge role
+ * - Cards fan out, selected card rises with glow
+ * - Spotlight effect on judge's choice
+ * - Uses NeonCard for option cards, GlowButton for verdict
  *
  * @ai_prompt Judge selection with spotlight/authority vibe, HELLDECK neon styling
  */
@@ -45,6 +46,7 @@ fun JudgePickRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var selectedOption by remember { mutableStateOf<Int?>(null) }
 
     // Get options from round state
@@ -72,32 +74,28 @@ fun JudgePickRenderer(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.ExtraLarge.dp),
+            .padding(HelldeckSpacing.ExtraLarge.dp)
+            .semantics { contentDescription = "Judge picks the winning answer" },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Judge header with spotlight effect
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Large),
-            color = HelldeckColors.Lol.copy(alpha = 0.15f * spotlightPulse),
-            border = BorderStroke(2.dp, HelldeckColors.Lol.copy(alpha = 0.6f * spotlightPulse)),
+        NeonCard(
+            accentColor = HelldeckColors.Lol,
+            elevation = (8.dp * spotlightPulse),
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(horizontal = 24.dp, vertical = 16.dp),
+                modifier = Modifier.fillMaxWidth(),
             ) {
-                Text(
-                    text = "👨‍⚖️",
-                    fontSize = 48.sp,
-                )
-                Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "THE JUDGE DECIDES",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Black,
-                        fontSize = 18.sp,
+                        fontSize = 20.sp,
                         letterSpacing = 2.sp,
                     ),
                     color = HelldeckColors.Lol,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -109,6 +107,7 @@ fun JudgePickRenderer(
             text = "Pick the winning answer:",
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Medium,
+                fontSize = 20.sp,
             ),
             color = HelldeckColors.colorMuted,
             textAlign = TextAlign.Center,
@@ -116,19 +115,25 @@ fun JudgePickRenderer(
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
 
-        // Option buttons
+        // Option cards - fan out with NeonCard
         Column(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         ) {
             options.forEachIndexed { index, option ->
-                JudgeOptionButton(
+                val isSelected = selectedOption == index
+                val isRejected = selectedOption != null && selectedOption != index
+                val optionAccent = if (index == 0) HelldeckColors.colorPrimary else HelldeckColors.colorAccentCool
+
+                JudgeOptionCard(
                     label = option,
                     optionNumber = index + 1,
-                    isSelected = selectedOption == index,
-                    accentColor = if (index == 0) HelldeckColors.colorPrimary else HelldeckColors.colorAccentCool,
+                    isSelected = isSelected,
+                    isRejected = isRejected,
+                    accentColor = optionAccent,
                     reducedMotion = reducedMotion,
                     onClick = {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         selectedOption = index
                         onEvent(RoundEvent.SelectOption(option))
                     },
@@ -138,34 +143,39 @@ fun JudgePickRenderer(
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        // Continue button (only shown when selection made)
+        // Continue button (only shown when selection made) - uses GlowButton
         if (selectedOption != null) {
-            JudgeContinueButton(
-                reducedMotion = reducedMotion,
-                onClick = { onEvent(RoundEvent.AdvancePhase) },
+            GlowButton(
+                text = "DELIVER VERDICT",
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                    onEvent(RoundEvent.AdvancePhase)
+                },
+                accentColor = HelldeckColors.colorSecondary,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .semantics { contentDescription = "Deliver verdict button" },
             )
         }
     }
 }
 
 @Composable
-private fun JudgeOptionButton(
+private fun JudgeOptionCard(
     label: String,
     optionNumber: Int,
     isSelected: Boolean,
+    isRejected: Boolean,
     accentColor: Color,
     reducedMotion: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
+    // Spring physics: selected card rises up, rejected dims
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.93f
-            isSelected -> 1.03f
-            isPressed -> 0.97f
+            isSelected -> 1.04f
+            isRejected -> 0.96f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
@@ -176,50 +186,35 @@ private fun JudgeOptionButton(
         label = "option_scale",
     )
 
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.7f else if (isPressed) 0.3f else 0.15f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
+    val cardAlpha by animateFloatAsState(
+        targetValue = if (isRejected) 0.4f else 1f,
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Normal),
+        label = "card_alpha",
     )
 
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) accentColor.copy(alpha = 0.25f) else HelldeckColors.surfacePrimary,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
-    )
+    val effectiveElevation = when {
+        isSelected -> 16.dp
+        isRejected -> 2.dp
+        else -> 6.dp
+    }
 
-    Button(
-        onClick = onClick,
+    NeonCard(
         modifier = modifier
             .fillMaxWidth()
             .height(80.dp)
             .scale(scale)
-            .shadow(
-                elevation = if (isSelected) 12.dp else if (isPressed) 6.dp else 4.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Medium),
-                spotColor = accentColor.copy(alpha = glowAlpha),
-                ambientColor = accentColor.copy(alpha = glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Medium),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        border = BorderStroke(
-            width = if (isSelected) 3.dp else 2.dp,
-            brush = Brush.horizontalGradient(
-                colors = listOf(
-                    accentColor.copy(alpha = if (isSelected) 1f else 0.5f),
-                    accentColor.copy(alpha = if (isSelected) 0.7f else 0.3f),
-                ),
-            ),
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Large.dp),
+            .alpha(cardAlpha)
+            .semantics {
+                contentDescription = "Option $optionNumber: $label${if (isSelected) ", selected as winner" else ""}"
+            },
+        accentColor = if (isRejected) HelldeckColors.colorMuted else accentColor,
+        elevation = effectiveElevation,
+        onClick = onClick,
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+            modifier = Modifier.fillMaxWidth(),
         ) {
             // Option number badge
             Surface(
@@ -230,9 +225,10 @@ private fun JudgeOptionButton(
                     text = "#$optionNumber",
                     style = MaterialTheme.typography.labelMedium.copy(
                         fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
                     ),
                     color = if (isSelected) HelldeckColors.background else accentColor,
-                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                    modifier = Modifier.padding(horizontal = HelldeckSpacing.Small.dp, vertical = HelldeckSpacing.Tiny.dp),
                 )
             }
 
@@ -241,63 +237,24 @@ private fun JudgeOptionButton(
                 text = label,
                 style = MaterialTheme.typography.bodyLarge.copy(
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
+                    fontSize = 20.sp,
                 ),
-                color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
+                color = when {
+                    isSelected -> accentColor
+                    isRejected -> HelldeckColors.colorMuted
+                    else -> HelldeckColors.colorOnDark
+                },
                 maxLines = 2,
                 modifier = Modifier.weight(1f),
             )
 
-            // Winner indicator
+            // Winner trophy
             if (isSelected) {
-                Text(text = "🏆", fontSize = 24.sp)
+                Text(
+                    text = "🏆",
+                    fontSize = 28.sp,
+                )
             }
         }
-    }
-}
-
-@Composable
-private fun JudgeContinueButton(
-    reducedMotion: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
-    val scale by animateFloatAsState(
-        targetValue = if (isPressed) 0.95f else 1f,
-        animationSpec = if (reducedMotion) {
-            tween(HelldeckAnimations.Instant)
-        } else {
-            spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
-        },
-        label = "continue_scale",
-    )
-
-    Button(
-        onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(HelldeckHeights.Button.dp)
-            .scale(scale)
-            .shadow(
-                elevation = if (isPressed) 4.dp else 8.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Pill),
-                spotColor = HelldeckColors.colorSecondary.copy(alpha = 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Pill),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = HelldeckColors.colorSecondary,
-            contentColor = HelldeckColors.background,
-        ),
-    ) {
-        Text(
-            text = "⚖️ DELIVER VERDICT",
-            style = MaterialTheme.typography.labelLarge.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-            ),
-        )
     }
 }

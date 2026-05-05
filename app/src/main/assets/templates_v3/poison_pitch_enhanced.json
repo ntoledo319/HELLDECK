@@ -56,7 +56,7 @@
     "game": "POISON_PITCH",
     "family": "pitch_absurd",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Pick your nightmare: " },
@@ -82,7 +82,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 1.0,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Would you rather endure " },
@@ -134,7 +134,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Accept " },
@@ -161,7 +161,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.95,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Would you rather admit " },
@@ -195,7 +195,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Suffer " },
@@ -213,7 +213,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Would you rather reveal " },
@@ -230,7 +230,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Pick one: pay " },
@@ -247,7 +247,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Would you rather endure " },
@@ -265,7 +265,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Would you rather confess " },
@@ -283,7 +283,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Pick one: live with " },
@@ -301,7 +301,7 @@
     "game": "POISON_PITCH",
     "family": "wdyr_balanced_dilemmas",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Would you rather suffer " },

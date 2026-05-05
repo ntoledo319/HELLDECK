@@ -4,7 +4,7 @@
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
     "weight": 1.0,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "slot", "name": "sender", "slot_type": "text_senders" },
@@ -20,7 +20,7 @@
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "New message from " },
@@ -37,7 +37,7 @@
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "slot", "name": "sender", "slot_type": "text_senders" },
@@ -53,7 +53,7 @@
     "game": "TEXT_THREAD_TRAP",
     "family": "texttrap_core",
     "weight": 0.8,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "🔔 " },

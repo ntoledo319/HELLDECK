@@ -11,19 +11,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -40,6 +33,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helldeck.AppCtx
@@ -51,9 +46,13 @@ import com.helldeck.settings.SettingsStore
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.HelldeckVm
+import com.helldeck.ui.components.GlowButton
+import com.helldeck.ui.components.InfoBanner
+import com.helldeck.ui.components.NeonCard
+import com.helldeck.ui.components.OutlineButton
+import com.helldeck.ui.components.SectionHeader
 import com.helldeck.ui.hdFieldColors
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -76,15 +75,12 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
     var expandedSafety by remember { mutableStateOf(true) }
 
     LaunchedEffect(Unit) {
-        // Load all persisted settings from DataStore
         try {
             val (savedGoldOnly, savedV3) = SettingsStore.readFlags()
-            // Enforce single mode: V3 on, gold-only off
             if (savedGoldOnly != false) scope.launch { SettingsStore.writeSafeGoldOnly(false) }
             if (savedV3 != true) scope.launch { SettingsStore.writeEnableV3(true) }
             Config.setSafeModeGoldOnly(false)
             Config.setEnableV3Generator(true)
-            // Always-on learning
             learningEnabled = true
             Config.setLearningEnabled(true)
 
@@ -103,7 +99,6 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
             Config.setNoFlash(noFlash)
 
             heat = Config.roomHeatThreshold().toFloat()
-            // Simplified settings: no explicit performance toggle
             Config.setAttemptCap(null)
         } catch (e: Exception) {
             Log.w("SettingsScene", "Failed to load settings: ${e.message}")
@@ -113,8 +108,26 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("⚙️ Settings") },
-                actions = { TextButton(onClick = onClose) { Text("Close") } },
+                title = {
+                    Column {
+                        Text(
+                            "\u2699\uFE0F Settings",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            "Customize your experience",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = HelldeckColors.colorMuted,
+                        )
+                    }
+                },
+                actions = {
+                    TextButton(
+                        onClick = onClose,
+                        modifier = Modifier.semantics { contentDescription = "Close settings" },
+                    ) { Text("Close") }
+                },
             )
         },
     ) { padding ->
@@ -123,35 +136,34 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                 .padding(padding)
                 .padding(HelldeckSpacing.Medium.dp)
                 .fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
+            verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
         ) {
-            // Safety & Filters (party-proof)
+            // Safety & Filters
             item {
                 SettingsSection(
-                    title = "🛟 Safety & Filters",
+                    title = "\uD83D\uDEDF Safety & Filters",
                     isExpanded = expandedSafety,
                     onToggle = { expandedSafety = !expandedSafety },
                 ) {
-                    // Content filter: simple 3-step chaos slider (Soft / Mixed / Spicy).
-                    com.helldeck.ui.components.SectionHeader(
+                    SectionHeader(
                         title = "Chaos Level",
                         subtitle = "Controls how spicy the content gets",
                     )
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
 
                     val chaosLabel = when {
-                        heat < 0.62f -> "😊 Soft"
-                        heat < 0.72f -> "🌶️ Mixed"
-                        else -> "🔥 Spicy"
+                        heat < 0.62f -> "\uD83D\uDE0A Soft"
+                        heat < 0.72f -> "\uD83C\uDF36\uFE0F Mixed"
+                        else -> "\uD83D\uDD25 Spicy"
                     }
                     Text(
                         text = chaosLabel,
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
                         color = when {
-                            heat < 0.62f -> HelldeckColors.Green
-                            heat < 0.72f -> HelldeckColors.Yellow
-                            else -> HelldeckColors.Red
+                            heat < 0.62f -> HelldeckColors.colorSecondary
+                            heat < 0.72f -> HelldeckColors.Lol
+                            else -> HelldeckColors.Error
                         },
                     )
                     Text(
@@ -160,13 +172,12 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             heat < 0.72f -> "Mix of tame and edgy content"
                             else -> "Adult humor, not for the easily offended"
                         },
-                        style = MaterialTheme.typography.bodySmall,
+                        style = MaterialTheme.typography.bodyMedium,
                         color = HelldeckColors.colorMuted,
                     )
                     Slider(
                         value = heat.coerceIn(0.55f, 0.78f),
                         onValueChange = { v ->
-                            // Snap to 3 stable positions.
                             val snapped = when {
                                 v < 0.62f -> 0.58f
                                 v < 0.72f -> 0.67f
@@ -181,13 +192,16 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         valueRange = 0.55f..0.78f,
                         steps = 2,
                         colors = SliderDefaults.colors(
-                            thumbColor = HelldeckColors.Yellow,
-                            activeTrackColor = HelldeckColors.Yellow,
-                            inactiveTrackColor = HelldeckColors.LightGray.copy(alpha = 0.3f),
+                            thumbColor = HelldeckColors.colorPrimary,
+                            activeTrackColor = HelldeckColors.colorPrimary,
+                            inactiveTrackColor = HelldeckColors.colorMuted.copy(alpha = 0.3f),
                         ),
+                        modifier = Modifier.semantics {
+                            contentDescription = "Chaos level slider"
+                        },
                     )
 
-                    Spacer(modifier = Modifier.height(12.dp))
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
 
                     SettingRow(
                         label = "High contrast",
@@ -227,36 +241,39 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
             // Players Section
             item {
                 var showAddPlayerDialog by remember { mutableStateOf(false) }
-                
+
                 SettingsSection(
-                    title = "👥 Players",
+                    title = "\uD83D\uDC65 Players",
                     isExpanded = expandedPlayers,
                     onToggle = { expandedPlayers = !expandedPlayers },
                 ) {
-                    com.helldeck.ui.components.InfoBanner(
+                    InfoBanner(
                         message = "Manage your player roster. Players persist across sessions.",
-                        icon = "ℹ️",
+                        icon = "\u2139\uFE0F",
                         modifier = Modifier.fillMaxWidth(),
                     )
-                    
-                    Spacer(modifier = Modifier.height(8.dp))
-                    
-                    com.helldeck.ui.components.GlowButton(
+
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+
+                    GlowButton(
                         text = "Add Player",
                         onClick = { showAddPlayerDialog = true },
-                        modifier = Modifier.fillMaxWidth(),
-                        icon = "➕",
-                        accentColor = HelldeckColors.Green,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .semantics { contentDescription = "Add a new player" },
+                        icon = "\u2795",
+                        accentColor = HelldeckColors.colorSecondary,
                     )
 
                     if (vm.players.isNotEmpty()) {
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
                         Text(
                             "Active Players",
                             style = MaterialTheme.typography.titleSmall,
-                            color = HelldeckColors.Yellow,
+                            fontWeight = FontWeight.Bold,
+                            color = HelldeckColors.colorPrimary,
                         )
-                        Spacer(modifier = Modifier.height(4.dp))
+                        Spacer(modifier = Modifier.height(HelldeckSpacing.Tiny.dp))
                     }
 
                     vm.players.forEach { p ->
@@ -272,15 +289,17 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(8.dp))
-                    
-                    com.helldeck.ui.components.OutlineButton(
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+
+                    OutlineButton(
                         text = "Manage All Players",
                         onClick = { vm.goPlayers() },
-                        modifier = Modifier.fillMaxWidth(),
-                        icon = "📝",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .semantics { contentDescription = "Manage all players" },
+                        icon = "\uD83D\uDCDD",
                     )
-                    
+
                     if (showAddPlayerDialog) {
                         com.helldeck.ui.components.AddPlayerDialog(
                             existingPlayers = vm.players,
@@ -304,10 +323,10 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                 }
             }
 
-            // Game Section (simplified)
+            // Game Section
             item {
                 SettingsSection(
-                    title = "🎮 Game",
+                    title = "\uD83C\uDFAE Game",
                     isExpanded = expandedGame,
                     onToggle = { expandedGame = !expandedGame },
                 ) {
@@ -315,7 +334,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                         label = "On-device AI (Auto)",
                         description = "Paraphrases cards using the bundled model when available.",
                         isChecked = com.helldeck.content.engine.ContentEngineProvider.isAIEnhancementAvailable(),
-                        onCheckedChange = { /* no-op: AI is automatic by default */ },
+                        onCheckedChange = { },
                         enabled = false,
                     )
 
@@ -328,9 +347,10 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             scope.launch { SettingsStore.writeRollcallOnLaunch(it) }
                         },
                     )
-                    
-                    com.helldeck.ui.components.InfoBanner(
-                        message = "💡 Tip: Enable this to quickly set who's playing each session",
+
+                    InfoBanner(
+                        message = "Tip: Enable this to quickly set who's playing each session",
+                        icon = "\uD83D\uDCA1",
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
@@ -339,7 +359,7 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
             // Device Section
             item {
                 SettingsSection(
-                    title = "📱 Device",
+                    title = "\uD83D\uDCF1 Device",
                     isExpanded = expandedDevice,
                     onToggle = { expandedDevice = !expandedDevice },
                 ) {
@@ -362,18 +382,17 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                             soundEnabled = it
                             scope.launch {
                                 SettingsStore.writeSoundEnabled(it)
-                                // Update SoundManager
                                 com.helldeck.audio.SoundManager.get(context).enabled = it
                             }
                         },
                     )
 
-                    Spacer(modifier = Modifier.height(12.dp))
-                    OutlinedButton(
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
+                    OutlineButton(
+                        text = "\uD83D\uDD04 Reset to Defaults",
                         onClick = {
                             scope.launch {
                                 SettingsStore.resetToDefaults()
-                                // Reload settings after reset
                                 learningEnabled = SettingsStore.readLearningEnabled()
                                 hapticsEnabled = SettingsStore.readHapticsEnabled()
                                 soundEnabled = SettingsStore.readSoundEnabled()
@@ -381,7 +400,6 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                                 reducedMotion = SettingsStore.readReducedMotion()
                                 highContrast = SettingsStore.readHighContrast()
                                 noFlash = SettingsStore.readNoFlash()
-                                // Enforce single-mode defaults after reset
                                 Config.setSafeModeGoldOnly(false)
                                 Config.setEnableV3Generator(true)
                                 scope.launch {
@@ -396,19 +414,17 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
                                 com.helldeck.content.engine.ContentEngineProvider.reset()
                             }
                         },
-                        modifier = Modifier.fillMaxWidth(),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = HelldeckColors.Red,
-                        ),
-                    ) {
-                        Text("🔄 Reset to Defaults")
-                    }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .semantics { contentDescription = "Reset all settings to defaults" },
+                        accentColor = HelldeckColors.Error,
+                    )
                 }
             }
 
             // Support Section (Tip Jar)
             item {
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
                 com.helldeck.ui.components.TipJarSection(
                     modifier = Modifier.fillMaxWidth(),
                 )
@@ -418,19 +434,17 @@ fun SettingsScene(onClose: () -> Unit, vm: HelldeckVm) {
             item {
                 val isPremiumUnlocked = com.helldeck.billing.PurchaseManager.isPremiumUnlocked.collectAsState()
                 if (!isPremiumUnlocked.value && !com.helldeck.billing.PurchaseManager.isUnlockAllMode()) {
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
                     com.helldeck.ui.components.PromoCodeEntry(
                         modifier = Modifier.fillMaxWidth(),
-                        onRedeemed = {
-                            // Promo code redeemed - premium is now unlocked
-                        },
+                        onRedeemed = { },
                     )
                 }
             }
 
             // Bottom spacing
             item {
-                Spacer(modifier = Modifier.height(24.dp))
+                Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
             }
         }
     }
@@ -443,37 +457,35 @@ private fun SettingsSection(
     onToggle: () -> Unit,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    ElevatedCard(
+    NeonCard(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.elevatedCardColors(
-            containerColor = if (isExpanded) HelldeckColors.DarkGray else HelldeckColors.MediumGray,
-        ),
-        elevation = CardDefaults.elevatedCardElevation(
-            defaultElevation = if (isExpanded) 4.dp else 2.dp,
-        ),
+        accentColor = if (isExpanded) HelldeckColors.colorPrimary else HelldeckColors.colorMuted,
     ) {
-        Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
+        Column {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable(onClick = onToggle),
+                    .clickable(onClick = onToggle)
+                    .semantics {
+                        contentDescription = "$title section. ${if (isExpanded) "Expanded" else "Collapsed"}. Tap to toggle."
+                    },
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                    color = HelldeckColors.Yellow,
+                    color = HelldeckColors.colorPrimary,
                 )
                 Text(
-                    text = if (isExpanded) "▼" else "▶",
+                    text = if (isExpanded) "\u25BC" else "\u25B6",
                     style = MaterialTheme.typography.titleMedium,
-                    color = HelldeckColors.Yellow,
+                    color = HelldeckColors.colorPrimary,
                 )
             }
 
             if (isExpanded) {
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
                 content()
             }
         }
@@ -491,21 +503,25 @@ private fun SettingRow(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp),
+            .padding(vertical = HelldeckSpacing.Tiny.dp)
+            .semantics {
+                contentDescription = "$label. ${description ?: ""}. Currently ${if (isChecked) "enabled" else "disabled"}"
+            },
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = label,
-                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium),
-                color = HelldeckColors.White,
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.SemiBold,
+                color = HelldeckColors.colorOnDark,
             )
             description?.let {
                 Text(
                     text = it,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = HelldeckColors.LightGray,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = HelldeckColors.colorMuted,
                 )
             }
         }
@@ -514,10 +530,10 @@ private fun SettingRow(
             onCheckedChange = onCheckedChange,
             enabled = enabled,
             colors = SwitchDefaults.colors(
-                checkedThumbColor = HelldeckColors.Yellow,
-                checkedTrackColor = HelldeckColors.Yellow.copy(alpha = 0.5f),
-                uncheckedThumbColor = HelldeckColors.LightGray,
-                uncheckedTrackColor = HelldeckColors.MediumGray,
+                checkedThumbColor = HelldeckColors.colorPrimary,
+                checkedTrackColor = HelldeckColors.colorPrimary.copy(alpha = 0.5f),
+                uncheckedThumbColor = HelldeckColors.colorMuted,
+                uncheckedTrackColor = HelldeckColors.surfaceElevated,
             ),
         )
     }

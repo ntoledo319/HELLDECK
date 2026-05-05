@@ -4,7 +4,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 1.0,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "I got kicked out of _____ for _____" }
@@ -18,7 +18,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 1.0,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "The worst part about _____ is _____" }
@@ -32,7 +32,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 1.0,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Nothing ruins a first date faster than _____ followed by _____" }
@@ -46,7 +46,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 1.0,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "My therapist said _____ but I heard _____" }
@@ -60,7 +60,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 1.0,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "I thought _____ was a good idea until _____" }
@@ -74,7 +74,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "The ick that ruins a 10/10 is when they _____ and then _____" }
@@ -88,7 +88,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 0.9,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Scientists discovered that _____ is actually caused by _____" }
@@ -102,7 +102,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 0.9,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Breaking news: _____ has been cancelled due to _____" }
@@ -116,7 +116,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 0.8,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "My villain origin story started with _____ and ended with _____" }
@@ -130,7 +130,7 @@
     "game": "FILL_IN_FINISHER",
     "family": "fillin_core",
     "weight": 0.8,
-    "spice_max": 2,
+    "spice_max": 4,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "I didn't believe in _____ until I saw _____" }

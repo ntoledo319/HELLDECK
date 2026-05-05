@@ -1,24 +1,19 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,9 +21,9 @@ import androidx.compose.ui.unit.sp
 import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckHeights
-import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -37,10 +32,11 @@ import com.helldeck.ui.state.RoundState
  * Used for consensus voting games like Roast Consensus.
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
- * - Pass the Drunk Person Test™ (3 drinks in, still comprehensible)
- * - Spring physics on selection
- * - Glow effects with accent colors
+ * - Pass the Drunk Person Test (3 drinks in, still comprehensible)
+ * - Spring physics on selection with satisfying bounce
+ * - Neon glow borders when selected, avatar pulse
  * - 60dp+ touch targets
+ * - Uses NeonCard from design system
  *
  * @ai_prompt Player voting with neon glow, spring animations, HELLDECK styling
  */
@@ -51,28 +47,30 @@ fun VotePlayerRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var selectedIndex by remember { mutableStateOf<Int?>(null) }
 
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.Large.dp),
+            .padding(HelldeckSpacing.Large.dp)
+            .semantics { contentDescription = "Vote for a player" },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         // Stakes label - what's at risk
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Medium),
-            color = HelldeckColors.colorPrimary.copy(alpha = 0.15f),
-            border = BorderStroke(1.dp, HelldeckColors.colorPrimary.copy(alpha = 0.4f)),
+        NeonCard(
+            accentColor = HelldeckColors.colorPrimary,
+            elevation = 4.dp,
         ) {
             Text(
-                text = "🎯 VOTE FOR ONE",
+                text = "VOTE FOR ONE",
                 style = MaterialTheme.typography.labelLarge.copy(
                     fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
+                    fontSize = 18.sp,
                 ),
                 color = HelldeckColors.colorPrimary,
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
             )
         }
 
@@ -97,6 +95,7 @@ fun VotePlayerRenderer(
                     isSelected = selectedIndex == index,
                     reducedMotion = reducedMotion,
                     onClick = {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         selectedIndex = index
                         onEvent(RoundEvent.VotePlayer(index))
                     },
@@ -107,9 +106,9 @@ fun VotePlayerRenderer(
 }
 
 /**
- * Individual player vote card with HELLDECK styling.
+ * Individual player vote card with HELLDECK NeonCard styling.
  *
- * @ai_prompt Spring physics, glow on selection, 60dp+ touch target
+ * @ai_prompt Spring physics, glow on selection, 60dp+ touch target, NeonCard wrapping
  */
 @Composable
 private fun PlayerVoteCard(
@@ -120,59 +119,41 @@ private fun PlayerVoteCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
-    val accentColor = HelldeckColors.colorSecondary // Lime for selection
+    val accentColor = if (isSelected) HelldeckColors.colorSecondary else HelldeckColors.colorMuted
 
     // Spring physics for selection
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.93f
-            isSelected -> 1.05f
-            isPressed -> 0.95f
+            isSelected -> 1.06f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
             tween(HelldeckAnimations.Instant)
         } else {
             spring(
-                dampingRatio = 0.6f,
+                dampingRatio = 0.5f,
                 stiffness = Spring.StiffnessHigh,
             )
         },
         label = "vote_card_scale",
     )
 
-    // Glow intensity
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.7f else if (isPressed) 0.3f else 0.1f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
-    )
-
-    // Background color animation
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) {
-            accentColor.copy(alpha = 0.2f)
-        } else if (isPressed) {
-            HelldeckColors.surfaceElevated
-        } else {
-            HelldeckColors.surfacePrimary
-        },
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
-    )
-
-    // Border color animation
-    val borderColor by animateColorAsState(
-        targetValue = if (isSelected) accentColor else HelldeckColors.colorMuted.copy(alpha = 0.5f),
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "border_color",
-    )
-
-    // Pulsing glow for selected state
+    // Pulsing glow for selected avatar
     val infiniteTransition = rememberInfiniteTransition(label = "selection_pulse")
+    val avatarPulse by infiniteTransition.animateFloat(
+        initialValue = 1f,
+        targetValue = if (isSelected && !reducedMotion) 1.15f else 1f,
+        animationSpec = if (reducedMotion) {
+            infiniteRepeatable(animation = tween(HelldeckAnimations.Instant), repeatMode = RepeatMode.Restart)
+        } else {
+            infiniteRepeatable(
+                animation = tween(900, easing = EaseInOutSine),
+                repeatMode = RepeatMode.Reverse,
+            )
+        },
+        label = "avatar_pulse",
+    )
+
     val selectedPulse by infiniteTransition.animateFloat(
         initialValue = 0.8f,
         targetValue = 1f,
@@ -187,47 +168,30 @@ private fun PlayerVoteCard(
         label = "selected_pulse",
     )
 
-    OutlinedButton(
-        onClick = onClick,
+    NeonCard(
         modifier = modifier
             .fillMaxWidth()
-            .height(HelldeckHeights.RecommendedTapTarget.dp + 20.dp) // 80dp for comfortable voting
+            .height(HelldeckHeights.RecommendedTapTarget.dp + 20.dp)
             .scale(scale)
-            .shadow(
-                elevation = if (isSelected) (8.dp * selectedPulse) else if (isPressed) 4.dp else 2.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Medium),
-                spotColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse else glowAlpha),
-                ambientColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse * 0.5f else glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Medium),
-        border = BorderStroke(
-            width = if (isSelected) 3.dp else 1.dp,
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    borderColor.copy(alpha = if (isSelected) 1f else 0.6f),
-                    borderColor.copy(alpha = if (isSelected) 0.8f else 0.4f),
-                    borderColor.copy(alpha = if (isSelected) 1f else 0.6f),
-                ),
-            ),
-        ),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Medium.dp),
+            .semantics {
+                contentDescription = "$playerName${if (isSelected) ", selected" else ""}"
+            },
+        accentColor = accentColor,
+        elevation = if (isSelected) (12.dp * selectedPulse) else 4.dp,
+        onClick = onClick,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            // Player avatar emoji
+            // Player avatar emoji with pulse
             Text(
                 text = playerAvatar,
                 style = MaterialTheme.typography.displaySmall.copy(
-                    fontSize = if (isSelected) 32.sp else 28.sp,
+                    fontSize = if (isSelected) 34.sp else 28.sp,
                 ),
+                modifier = Modifier.scale(avatarPulse),
             )
 
             Spacer(modifier = Modifier.height(HelldeckSpacing.Tiny.dp))
@@ -237,12 +201,25 @@ private fun PlayerVoteCard(
                 text = playerName,
                 style = MaterialTheme.typography.labelLarge.copy(
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                    fontSize = if (isSelected) 16.sp else 14.sp,
+                    fontSize = 18.sp,
                 ),
-                color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
+                color = if (isSelected) HelldeckColors.colorSecondary else HelldeckColors.colorOnDark,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
             )
+
+            // Confirmation indicator
+            if (isSelected) {
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Tiny.dp))
+                Text(
+                    text = "LOCKED IN",
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 1.sp,
+                    ),
+                    color = HelldeckColors.colorSecondary.copy(alpha = 0.8f),
+                )
+            }
         }
     }
 }

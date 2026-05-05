@@ -1,10 +1,6 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -16,7 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -27,6 +26,7 @@ import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -35,8 +35,9 @@ import com.helldeck.ui.state.RoundState
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
  * - Crosshair / target lock vibe
- * - Player spotlight feel
+ * - Player spotlight feel with NeonCard glow selection
  * - Red danger accent for targeting
+ * - 60dp+ touch targets
  *
  * @ai_prompt Target lock player selection with crosshair vibe, HELLDECK neon styling
  */
@@ -47,34 +48,35 @@ fun TargetSelectRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var selectedIndex by remember { mutableStateOf<Int?>(null) }
 
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.Large.dp),
+            .padding(HelldeckSpacing.Large.dp)
+            .semantics { contentDescription = "Select a target player" },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Target lock header
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Medium),
-            color = HelldeckColors.Error.copy(alpha = 0.15f),
-            border = BorderStroke(2.dp, HelldeckColors.Error.copy(alpha = 0.5f)),
+        // Target lock header - NeonCard
+        NeonCard(
+            accentColor = HelldeckColors.Error,
+            elevation = 6.dp,
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(text = "🎯", fontSize = 24.sp)
                 Text(
                     text = "SELECT TARGET",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Black,
-                        fontSize = 16.sp,
+                        fontSize = 20.sp,
                         letterSpacing = 2.sp,
                     ),
                     color = HelldeckColors.Error,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -99,6 +101,7 @@ fun TargetSelectRenderer(
                     isSelected = selectedIndex == index,
                     reducedMotion = reducedMotion,
                     onClick = {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         selectedIndex = index
                         onEvent(RoundEvent.SelectTarget(index))
                     },
@@ -108,6 +111,10 @@ fun TargetSelectRenderer(
     }
 }
 
+/**
+ * Individual target player card using NeonCard.
+ * Selected target glows red with crosshair indicator.
+ */
 @Composable
 private fun TargetPlayerCard(
     playerName: String,
@@ -117,50 +124,23 @@ private fun TargetPlayerCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
+    val accentColor = if (isSelected) HelldeckColors.Error else HelldeckColors.colorMuted
 
-    val accentColor = HelldeckColors.Error // Red for targeting
-
+    // Spring physics for selection
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.93f
-            isSelected -> 1.05f
-            isPressed -> 0.95f
+            isSelected -> 1.06f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
             tween(HelldeckAnimations.Instant)
         } else {
-            spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
+            spring(dampingRatio = 0.55f, stiffness = Spring.StiffnessHigh)
         },
         label = "target_card_scale",
     )
 
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.7f else if (isPressed) 0.3f else 0.1f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
-    )
-
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) {
-            accentColor.copy(alpha = 0.2f)
-        } else if (isPressed) {
-            HelldeckColors.surfaceElevated
-        } else {
-            HelldeckColors.surfacePrimary
-        },
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
-    )
-
-    val borderColor by animateColorAsState(
-        targetValue = if (isSelected) accentColor else HelldeckColors.colorMuted.copy(alpha = 0.5f),
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "border_color",
-    )
-
+    // Pulsing for selected target
     val infiniteTransition = rememberInfiniteTransition(label = "target_pulse")
     val selectedPulse by infiniteTransition.animateFloat(
         initialValue = 0.8f,
@@ -176,51 +156,53 @@ private fun TargetPlayerCard(
         label = "selected_pulse",
     )
 
-    OutlinedButton(
-        onClick = onClick,
+    NeonCard(
         modifier = modifier
             .fillMaxWidth()
+            .heightIn(min = 56.dp)
             .height(HelldeckHeights.RecommendedTapTarget.dp + 20.dp)
             .scale(scale)
-            .shadow(
-                elevation = if (isSelected) (8.dp * selectedPulse) else if (isPressed) 4.dp else 2.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Medium),
-                spotColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse else glowAlpha),
-                ambientColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse * 0.5f else glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Medium),
-        border = BorderStroke(
-            width = if (isSelected) 3.dp else 1.dp,
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    borderColor.copy(alpha = if (isSelected) 1f else 0.6f),
-                    borderColor.copy(alpha = if (isSelected) 0.8f else 0.4f),
-                    borderColor.copy(alpha = if (isSelected) 1f else 0.6f),
-                ),
-            ),
-        ),
-        colors = ButtonDefaults.outlinedButtonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Medium.dp),
+            .then(
+                if (isSelected) {
+                    Modifier.shadow(
+                        elevation = 20.dp * selectedPulse,
+                        shape = RoundedCornerShape(HelldeckRadius.Large),
+                        spotColor = HelldeckColors.Error.copy(alpha = 0.9f),
+                        ambientColor = HelldeckColors.Error.copy(alpha = 0.5f),
+                    )
+                } else {
+                    Modifier
+                },
+            )
+            .semantics {
+                contentDescription = "$playerName${if (isSelected) ", targeted" else ""}"
+            },
+        accentColor = accentColor,
+        elevation = if (isSelected) (14.dp * selectedPulse) else 4.dp,
+        onClick = onClick,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            // Target indicator for selected
+            // Crosshair indicator for selected
             if (isSelected) {
-                Text(text = "🎯", fontSize = 20.sp)
+                Text(
+                    text = "LOCKED",
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = 2.sp,
+                    ),
+                    color = HelldeckColors.Error,
+                )
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Tiny.dp))
             }
 
             Text(
                 text = playerEmoji,
                 style = MaterialTheme.typography.displaySmall.copy(
-                    fontSize = if (isSelected) 32.sp else 28.sp,
+                    fontSize = if (isSelected) 34.sp else 28.sp,
                 ),
             )
 
@@ -230,9 +212,9 @@ private fun TargetPlayerCard(
                 text = playerName,
                 style = MaterialTheme.typography.labelLarge.copy(
                     fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium,
-                    fontSize = if (isSelected) 16.sp else 14.sp,
+                    fontSize = 18.sp,
                 ),
-                color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
+                color = if (isSelected) HelldeckColors.Error else HelldeckColors.colorOnDark,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
             )

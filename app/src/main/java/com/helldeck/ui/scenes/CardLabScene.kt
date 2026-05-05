@@ -21,8 +21,12 @@ import com.helldeck.content.generator.CardLabBanlist
 import com.helldeck.engine.Config
 import com.helldeck.engine.GameMetadata
 import com.helldeck.ui.HelldeckColors
+import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.components.GlowButton
 import com.helldeck.ui.components.InfoBanner
+import com.helldeck.ui.components.NeonCard
+import com.helldeck.ui.components.OutlineButton
+import com.helldeck.ui.components.SectionHeader
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
@@ -101,7 +105,20 @@ fun CardLabScene(onClose: () -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("🧪 Card Lab", fontWeight = FontWeight.Bold) },
+                title = {
+                    Column {
+                        Text(
+                            "\uD83E\uDDEA Card Lab",
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            "Developer card generation tool",
+                            style = MaterialTheme.typography.labelSmall,
+                            color = HelldeckColors.colorMuted,
+                        )
+                    }
+                },
                 actions = {
                     IconButton(onClick = { showHelp = true }) {
                         Text("❓", fontSize = 20.sp)
@@ -112,8 +129,8 @@ fun CardLabScene(onClose: () -> Unit) {
         },
     ) { padding ->
         Column(
-            modifier = Modifier.padding(padding).padding(16.dp).fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier.padding(padding).padding(HelldeckSpacing.Large.dp).fillMaxSize(),
+            verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
         ) {
             // Controls
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -388,30 +405,35 @@ fun CardLabScene(onClose: () -> Unit) {
 
             // Display generation stats
             generationStats?.let { stats ->
-                HorizontalDivider(color = HelldeckColors.MediumGray.copy(alpha = 0.4f))
-                ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                    Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Text("📊 Generation Stats", style = MaterialTheme.typography.titleSmall)
+                HorizontalDivider(color = HelldeckColors.colorMuted.copy(alpha = 0.3f))
+                NeonCard(
+                    modifier = Modifier.fillMaxWidth(),
+                    accentColor = HelldeckColors.colorAccentCool,
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Tiny.dp)) {
+                        SectionHeader(title = "\uD83D\uDCCA Generation Stats")
                         Text(
-                            "Total: ${stats.total} | ✅ Pass: ${stats.passed} | ❌ Fail: ${stats.failed}",
+                            "Total: ${stats.total} | \u2705 Pass: ${stats.passed} | \u274C Fail: ${stats.failed}",
                             style = MaterialTheme.typography.bodyMedium,
+                            color = HelldeckColors.colorOnDark,
                         )
                         InfoBanner(
-                            message = "💡 Tip: Use filters to test specific generation patterns. Tap ? for detailed help.",
+                            message = "Tip: Use filters to test specific generation patterns. Tap ? for detailed help.",
+                            icon = "\uD83D\uDCA1",
                             modifier = Modifier.fillMaxWidth(),
                         )
                         val passRate = if (stats.total > 0) (stats.passed * 100.0 / stats.total) else 0.0
                         Text(
                             "Pass Rate: ${"%.1f".format(passRate)}%",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = if (passRate >= 95.0) HelldeckColors.Green else HelldeckColors.Red,
+                            color = if (passRate >= 95.0) HelldeckColors.colorSecondary else HelldeckColors.Error,
                         )
                     }
                 }
             }
 
-            HorizontalDivider(color = HelldeckColors.MediumGray.copy(alpha = 0.4f))
-            Text("Results (${outputs.size})", style = MaterialTheme.typography.titleSmall)
+            HorizontalDivider(color = HelldeckColors.colorMuted.copy(alpha = 0.3f))
+            SectionHeader(title = "Results (${outputs.size})")
 
             val q = query.trim().lowercase()
             val filtered = outputs.filter { item ->
@@ -448,10 +470,13 @@ fun CardLabScene(onClose: () -> Unit) {
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(sorted.indices.toList()) { idx ->
                     val item = sorted[idx]
-                    ElevatedCard(modifier = Modifier.fillMaxWidth()) {
-                        Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Text(item.text, style = MaterialTheme.typography.bodyLarge)
-                            Text(item.options, style = MaterialTheme.typography.labelMedium)
+                    NeonCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        accentColor = HelldeckColors.colorPrimary,
+                    ) {
+                        Column(verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Tiny.dp)) {
+                            Text(item.text, style = MaterialTheme.typography.bodyLarge, color = HelldeckColors.colorOnDark)
+                            Text(item.options, style = MaterialTheme.typography.labelMedium, color = HelldeckColors.colorMuted)
                             val isOpen = expanded.value.contains(idx)
                             TextButton(onClick = {
                                 expanded.value = if (isOpen) expanded.value - idx else expanded.value + idx
@@ -501,7 +526,7 @@ fun CardLabScene(onClose: () -> Unit) {
                                     Text(
                                         "Humor: ${"%.2f".format(item.humorScore)}",
                                         style = MaterialTheme.typography.bodySmall,
-                                        color = HelldeckColors.Yellow,
+                                        color = HelldeckColors.Lol,
                                     )
                                     val details = listOfNotNull(
                                         item.absurdity?.let { "absurd ${"%.2f".format(it)}" },
@@ -560,12 +585,12 @@ fun CardLabScene(onClose: () -> Unit) {
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
                 }
             }
         }
     }
-    
+
     // Help dialog
     if (showHelp) {
         AlertDialog(
@@ -627,16 +652,16 @@ private fun ToggleChip(label: String, selected: Boolean, onToggle: (Boolean) -> 
         label = { Text(label) },
         leadingIcon = if (selected) {
             {
-                Text("✓", color = HelldeckColors.Yellow, style = MaterialTheme.typography.bodyMedium)
+                Text("\u2713", color = HelldeckColors.colorSecondary, style = MaterialTheme.typography.bodyMedium)
             }
         } else {
             null
         },
         colors = FilterChipDefaults.filterChipColors(
-            containerColor = HelldeckColors.MediumGray,
-            selectedContainerColor = HelldeckColors.DarkGray,
-            selectedLabelColor = HelldeckColors.Yellow,
-            labelColor = Color.White,
+            containerColor = HelldeckColors.surfaceElevated,
+            selectedContainerColor = HelldeckColors.surfacePrimary,
+            selectedLabelColor = HelldeckColors.colorSecondary,
+            labelColor = HelldeckColors.colorOnDark,
         ),
     )
 }

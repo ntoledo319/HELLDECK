@@ -1,29 +1,27 @@
 package com.helldeck.ui.interactions
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -33,9 +31,10 @@ import com.helldeck.ui.state.RoundState
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
  * - Tinder-style dating app vibe
- * - Hot pink (SMASH) vs Cool blue (PASS)
- * - Dramatic card-swipe feel
- * - Spring physics on selection
+ * - Big glowing SMASH button (lime/green) and PASS button (red/magenta)
+ * - Satisfying press animation with spring physics
+ * - Card-tilt effect on selection
+ * - Uses GlowButton from design system for satisfying press
  *
  * @ai_prompt Tinder-style swipe vibe, hot/cold colors, HELLDECK neon styling
  */
@@ -46,9 +45,10 @@ fun SmashPassRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var selected by remember { mutableStateOf<String?>(null) }
 
-    // Floating heart animation for SMASH selection
+    // Floating heart animation for selection
     val infiniteTransition = rememberInfiniteTransition(label = "smash_pass_pulse")
     val floatOffset by infiniteTransition.animateFloat(
         initialValue = 0f,
@@ -67,32 +67,29 @@ fun SmashPassRenderer(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.ExtraLarge.dp),
+            .padding(HelldeckSpacing.ExtraLarge.dp)
+            .semantics { contentDescription = "Smash or Pass decision" },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Large.dp),
     ) {
         // Stakes label with dating vibe
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Pill),
-            color = HelldeckColors.colorPrimary.copy(alpha = 0.15f),
-            border = BorderStroke(1.dp, HelldeckColors.colorPrimary.copy(alpha = 0.4f)),
+        NeonCard(
+            accentColor = HelldeckColors.colorPrimary,
+            elevation = 4.dp,
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp),
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(
-                    text = "💘",
-                    fontSize = 18.sp,
-                )
                 Text(
                     text = "SWIPE YOUR FATE",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Bold,
-                        fontSize = 14.sp,
+                        fontSize = 18.sp,
                     ),
                     color = HelldeckColors.colorPrimary,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -103,30 +100,34 @@ fun SmashPassRenderer(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Large.dp),
         ) {
-            SmashPassButton(
+            SmashPassCard(
                 label = "SMASH",
                 emoji = "🔥",
                 isSelected = selected == "SMASH",
-                accentColor = HelldeckColors.colorPrimary, // Hot magenta-red
+                isRejected = selected != null && selected != "SMASH",
+                accentColor = HelldeckColors.colorSecondary, // Lime green for SMASH
                 rotation = if (selected == "SMASH" && !reducedMotion) -5f else 0f,
                 floatOffset = if (selected == "SMASH") floatOffset else 0f,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     selected = "SMASH"
                     onEvent(RoundEvent.PickAB("A"))
                 },
                 modifier = Modifier.weight(1f),
             )
 
-            SmashPassButton(
+            SmashPassCard(
                 label = "PASS",
                 emoji = "❄️",
                 isSelected = selected == "PASS",
-                accentColor = HelldeckColors.colorAccentCool, // Cool cyan
+                isRejected = selected != null && selected != "PASS",
+                accentColor = HelldeckColors.colorPrimary, // Magenta-red for PASS
                 rotation = if (selected == "PASS" && !reducedMotion) 5f else 0f,
                 floatOffset = if (selected == "PASS") floatOffset else 0f,
                 reducedMotion = reducedMotion,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                     selected = "PASS"
                     onEvent(RoundEvent.PickAB("B"))
                 },
@@ -137,15 +138,16 @@ fun SmashPassRenderer(
 }
 
 /**
- * Individual SMASH/PASS button with Tinder-style styling.
+ * Individual SMASH/PASS card with Tinder-style styling using NeonCard.
  *
- * @ai_prompt Spring physics, card-tilt effect, dating app vibe
+ * @ai_prompt Spring physics, card-tilt effect, dating app vibe, dim on rejection
  */
 @Composable
-private fun SmashPassButton(
+private fun SmashPassCard(
     label: String,
     emoji: String,
     isSelected: Boolean,
+    isRejected: Boolean,
     accentColor: androidx.compose.ui.graphics.Color,
     rotation: Float,
     floatOffset: Float,
@@ -153,15 +155,11 @@ private fun SmashPassButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
     // Spring physics for selection with card-tilt effect
     val scale by animateFloatAsState(
         targetValue = when {
-            isSelected && isPressed -> 0.9f
-            isSelected -> 1.1f
-            isPressed -> 0.95f
+            isSelected -> 1.12f
+            isRejected -> 0.9f
             else -> 1f
         },
         animationSpec = if (reducedMotion) {
@@ -186,22 +184,11 @@ private fun SmashPassButton(
         label = "card_rotation",
     )
 
-    // Glow intensity
-    val glowAlpha by animateFloatAsState(
-        targetValue = if (isSelected) 0.85f else if (isPressed) 0.4f else 0.2f,
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "glow_alpha",
-    )
-
-    // Background color
-    val backgroundColor by animateColorAsState(
-        targetValue = if (isSelected) {
-            accentColor.copy(alpha = 0.35f)
-        } else {
-            HelldeckColors.surfacePrimary
-        },
-        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Fast),
-        label = "background_color",
+    // Dim rejected card
+    val cardAlpha by animateFloatAsState(
+        targetValue = if (isRejected) 0.35f else 1f,
+        animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else HelldeckAnimations.Normal),
+        label = "card_alpha",
     )
 
     // Pulsing glow for selected state
@@ -220,44 +207,35 @@ private fun SmashPassButton(
         label = "selected_pulse",
     )
 
-    Button(
-        onClick = onClick,
+    val effectiveElevation = when {
+        isSelected -> 20.dp * selectedPulse
+        isRejected -> 2.dp
+        else -> 8.dp
+    }
+
+    NeonCard(
         modifier = modifier
-            .height(140.dp) // Tall card-like button
+            .height(160.dp)
             .offset(y = (-floatOffset).dp)
             .scale(scale)
             .rotate(animatedRotation)
-            .shadow(
-                elevation = if (isSelected) (20.dp * selectedPulse) else if (isPressed) 10.dp else 6.dp,
-                shape = RoundedCornerShape(HelldeckRadius.ExtraLarge),
-                spotColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse else glowAlpha),
-                ambientColor = accentColor.copy(alpha = if (isSelected) glowAlpha * selectedPulse * 0.5f else glowAlpha * 0.5f),
-            ),
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.ExtraLarge),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = backgroundColor,
-            contentColor = HelldeckColors.colorOnDark,
-        ),
-        border = BorderStroke(
-            width = if (isSelected) 4.dp else 2.dp,
-            brush = Brush.verticalGradient(
-                colors = listOf(
-                    accentColor.copy(alpha = if (isSelected) 1f else 0.5f),
-                    accentColor.copy(alpha = if (isSelected) 0.5f else 0.25f),
-                ),
-            ),
-        ),
-        contentPadding = PaddingValues(HelldeckSpacing.Large.dp),
+            .alpha(cardAlpha)
+            .semantics {
+                contentDescription = "$label${if (isSelected) ", selected" else if (isRejected) ", rejected" else ""}"
+            },
+        accentColor = if (isRejected) HelldeckColors.colorMuted else accentColor,
+        elevation = effectiveElevation,
+        onClick = onClick,
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
+            modifier = Modifier.fillMaxSize(),
         ) {
             Text(
                 text = emoji,
                 style = MaterialTheme.typography.displayLarge.copy(
-                    fontSize = if (isSelected) 48.sp else 40.sp,
+                    fontSize = if (isSelected) 52.sp else 42.sp,
                 ),
             )
             Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
@@ -265,9 +243,13 @@ private fun SmashPassButton(
                 text = label,
                 style = MaterialTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.Black,
-                    fontSize = if (isSelected) 24.sp else 22.sp,
+                    fontSize = if (isSelected) 26.sp else 22.sp,
                 ),
-                color = if (isSelected) accentColor else HelldeckColors.colorOnDark,
+                color = when {
+                    isSelected -> accentColor
+                    isRejected -> HelldeckColors.colorMuted
+                    else -> HelldeckColors.colorOnDark
+                },
                 textAlign = TextAlign.Center,
             )
         }

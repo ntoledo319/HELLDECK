@@ -1,17 +1,24 @@
 package com.helldeck.ui.scenes
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.helldeck.ui.HelldeckHeights
+import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.data.toEntity
@@ -112,13 +119,34 @@ fun RollcallScene(vm: HelldeckVm) {
                 .fillMaxSize()
                 .padding(padding),
         ) {
+            // Quick skip — start immediately with current active players
+            val activeCount = vm.players.filter { it.afk == 0 }.size
+            if (activeCount >= 2) {
+                GlowButton(
+                    text = "Everyone's Here — Start Playing ($activeCount)",
+                    icon = "\uD83D\uDE80",
+                    onClick = {
+                        scope.launch {
+                            SettingsStore.writeLastAttendance(present)
+                            vm.startRound()
+                        }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = HelldeckSpacing.Medium.dp)
+                        .padding(top = HelldeckSpacing.Small.dp),
+                    accentColor = HelldeckColors.colorSecondary,
+                )
+                Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
+            }
+
             // Instructions
             InfoBanner(
-                message = "Tap players to mark present/absent for this session",
+                message = "Or tap players below to adjust who's playing",
                 icon = "ℹ️",
                 modifier = Modifier.padding(HelldeckSpacing.Medium.dp),
             )
-            
+
             // Validation warnings
             if (countWarning != null) {
                 WarningBanner(
@@ -148,22 +176,24 @@ fun RollcallScene(vm: HelldeckVm) {
                     if (presentPlayers.isNotEmpty()) {
                         item {
                             SectionHeader(
-                                title = "✅ Present",
+                                title = "Present",
                                 subtitle = "${presentPlayers.size} playing",
                             )
                         }
-                        
-                        items(presentPlayers, key = { it.id }) { player ->
-                            RollcallPlayerCard(
-                                player = player,
-                                isPresent = true,
-                                onClick = {
-                                    present = present - player.id
-                                },
-                            )
+
+                        itemsIndexed(presentPlayers, key = { _, p -> p.id }) { index, player ->
+                            RollcallSpringItem(index = index) {
+                                RollcallPlayerCard(
+                                    player = player,
+                                    isPresent = true,
+                                    onClick = {
+                                        present = present - player.id
+                                    },
+                                )
+                            }
                         }
                     }
-                    
+
                     // Absent players
                     if (absentPlayers.isNotEmpty()) {
                         item {
@@ -171,19 +201,21 @@ fun RollcallScene(vm: HelldeckVm) {
                                 Spacer(modifier = Modifier.height(HelldeckSpacing.Medium.dp))
                             }
                             SectionHeader(
-                                title = "❌ Absent",
+                                title = "Absent",
                                 subtitle = "${absentPlayers.size} not playing",
                             )
                         }
-                        
-                        items(absentPlayers, key = { it.id }) { player ->
-                            RollcallPlayerCard(
-                                player = player,
-                                isPresent = false,
-                                onClick = {
-                                    present = present + player.id
-                                },
-                            )
+
+                        itemsIndexed(absentPlayers, key = { _, p -> p.id }) { index, player ->
+                            RollcallSpringItem(index = index) {
+                                RollcallPlayerCard(
+                                    player = player,
+                                    isPresent = false,
+                                    onClick = {
+                                        present = present + player.id
+                                    },
+                                )
+                            }
                         }
                     }
                 }
@@ -203,13 +235,14 @@ fun RollcallScene(vm: HelldeckVm) {
                         icon = "➕",
                     )
                     
-                    // Start session button
+                    // Massive Start session CTA
                     GlowButton(
                         text = if (presentPlayers.size >= 2) {
-                            "🎮 Start Session (${presentPlayers.size})"
+                            "Start Session (${presentPlayers.size})"
                         } else {
-                            "⚠️ Need at least 2 players"
+                            "Need at least 2 players"
                         },
+                        icon = if (presentPlayers.size >= 2) "\uD83C\uDFAE" else "\u26A0\uFE0F",
                         onClick = {
                             if (presentPlayers.size >= 2) {
                                 scope.launch {
@@ -222,7 +255,9 @@ fun RollcallScene(vm: HelldeckVm) {
                                 vm.goBack()
                             }
                         },
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(HelldeckHeights.Button.dp + 12.dp),
                         enabled = presentPlayers.size >= 2,
                         accentColor = if (presentPlayers.size >= 2) {
                             HelldeckColors.colorSecondary
@@ -263,12 +298,49 @@ fun RollcallScene(vm: HelldeckVm) {
 }
 
 @Composable
+private fun RollcallSpringItem(
+    index: Int,
+    content: @Composable () -> Unit,
+) {
+    val reducedMotion = LocalReducedMotion.current
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+
+    val scale by animateFloatAsState(
+        targetValue = if (visible) 1f else 0.85f,
+        animationSpec = if (reducedMotion) tween(0) else spring(
+            dampingRatio = 0.6f,
+            stiffness = Spring.StiffnessMedium,
+        ),
+        label = "rollcall_spring_$index",
+    )
+    val alpha by animateFloatAsState(
+        targetValue = if (visible) 1f else 0f,
+        animationSpec = if (reducedMotion) tween(0) else tween(
+            durationMillis = 200,
+            delayMillis = (index * 50).coerceAtMost(250),
+        ),
+        label = "rollcall_alpha_$index",
+    )
+
+    Box(
+        modifier = Modifier
+            .scale(scale)
+            .graphicsLayer { this.alpha = alpha },
+    ) {
+        content()
+    }
+}
+
+@Composable
 private fun RollcallPlayerCard(
     player: com.helldeck.content.model.Player,
     isPresent: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val reducedMotion = LocalReducedMotion.current
+
     NeonCard(
         modifier = modifier.fillMaxWidth(),
         accentColor = if (isPresent) {
@@ -284,18 +356,32 @@ private fun RollcallPlayerCard(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Large.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.weight(1f),
             ) {
-                Text(
-                    text = player.avatar,
-                    fontSize = 40.sp,
-                )
+                // Big avatar with glow when present
+                Box(
+                    modifier = if (!reducedMotion && isPresent) {
+                        Modifier.shadow(
+                            elevation = 8.dp,
+                            shape = RoundedCornerShape(HelldeckRadius.Large),
+                            spotColor = HelldeckColors.colorSecondary.copy(alpha = 0.5f),
+                            ambientColor = HelldeckColors.colorSecondary.copy(alpha = 0.3f),
+                        )
+                    } else {
+                        Modifier
+                    },
+                ) {
+                    Text(
+                        text = player.avatar,
+                        fontSize = 48.sp,
+                    )
+                }
                 Column {
                     Text(
                         text = "Seat", // Anonymized - no player names
-                        style = MaterialTheme.typography.titleLarge,
+                        style = MaterialTheme.typography.headlineMedium,
                         fontWeight = FontWeight.Bold,
                         color = if (isPresent) {
                             HelldeckColors.colorOnDark
@@ -305,12 +391,13 @@ private fun RollcallPlayerCard(
                     )
                     Text(
                         text = if (isPresent) "Playing" else "Sitting out",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = HelldeckColors.colorMuted,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Medium,
+                        color = if (isPresent) HelldeckColors.colorSecondary else HelldeckColors.colorMuted,
                     )
                 }
             }
-            
+
             // Status indicator
             Surface(
                 shape = RoundedCornerShape(HelldeckRadius.Pill),
@@ -321,9 +408,9 @@ private fun RollcallPlayerCard(
                 },
             ) {
                 Text(
-                    text = if (isPresent) "✅" else "❌",
-                    fontSize = 32.sp,
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                    text = if (isPresent) "\u2705" else "\u274C",
+                    fontSize = 36.sp,
+                    modifier = Modifier.padding(horizontal = HelldeckSpacing.Large.dp, vertical = HelldeckSpacing.Small.dp),
                 )
             }
         }

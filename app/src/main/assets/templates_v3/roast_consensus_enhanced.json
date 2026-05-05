@@ -26,7 +26,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 1.1,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to " },
@@ -48,7 +48,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_taboo",
     "weight": 1.1,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Call out whoever's guilty of " },
@@ -88,7 +88,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_taboo",
     "weight": 0.75,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to defend " },
@@ -148,7 +148,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "consensus_dark",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to have " },
@@ -189,7 +189,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 1.0,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to " },
@@ -210,7 +210,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 1.0,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Call out whoever would " },
@@ -227,7 +227,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.95,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to " },
@@ -245,7 +245,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Who would absolutely " },
@@ -262,7 +262,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to be guilty of " },
@@ -280,7 +280,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Who would totally " },
@@ -297,7 +297,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.8,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to " },
@@ -315,7 +315,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Name the player who would " },
@@ -333,7 +333,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.9,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Most likely to " },
@@ -351,7 +351,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Who would definitely " },
@@ -369,7 +369,7 @@
     "game": "ROAST_CONSENSUS",
     "family": "roast_core",
     "weight": 0.85,
-    "spice_max": 3,
+    "spice_max": 5,
     "locality_max": 2,
     "blueprint": [
       { "type": "text", "value": "Which player is guilty of " },

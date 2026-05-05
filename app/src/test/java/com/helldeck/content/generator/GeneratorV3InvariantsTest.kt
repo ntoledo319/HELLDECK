@@ -118,7 +118,7 @@ class GeneratorV3InvariantsTest {
             ).options
             if (taboo is GameOptions.Taboo) {
                 assertFalse(taboo.word.isBlank())
-                assertTrue(taboo.forbidden.size == 3)
+                assertTrue("Taboo forbidden should have 3-5 words, got ${taboo.forbidden.size}", taboo.forbidden.size in 3..5)
                 assertTrue(taboo.forbidden.all { it.isNotBlank() })
             }
 

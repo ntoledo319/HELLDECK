@@ -1,9 +1,6 @@
 package com.helldeck.ui.interactions
 
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -12,16 +9,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
+import com.helldeck.ui.components.GlowButton
+import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundState
 
@@ -29,9 +30,10 @@ import com.helldeck.ui.state.RoundState
  * Renders ODD_EXPLAIN interaction for Odd One Argues game.
  *
  * DESIGN PRINCIPLE (Hell's Living Room):
- * - Quirky/weird vibe with question mark styling
+ * - Quirky/weird vibe with mystery feel
+ * - NeonCard for header
  * - Text input for explanation
- * - Suspense and mystery feel
+ * - GlowButton for submit
  *
  * @ai_prompt Quirky mystery explanation input, HELLDECK neon styling
  */
@@ -42,34 +44,46 @@ fun OddExplainRenderer(
     modifier: Modifier = Modifier,
 ) {
     val reducedMotion = LocalReducedMotion.current
+    val haptic = LocalHapticFeedback.current
     var explanation by remember { mutableStateOf("") }
+
+    // Spring animation for submit readiness
+    val submitScale by animateFloatAsState(
+        targetValue = if (explanation.isNotBlank()) 1f else 0.95f,
+        animationSpec = if (reducedMotion) {
+            tween(0)
+        } else {
+            spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
+        },
+        label = "submit_scale",
+    )
 
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(HelldeckSpacing.Large.dp),
+            .padding(HelldeckSpacing.Large.dp)
+            .semantics { contentDescription = "Explain why this is the odd one out" },
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        // Mystery header
-        Surface(
-            shape = RoundedCornerShape(HelldeckRadius.Medium),
-            color = HelldeckColors.colorAccentWarm.copy(alpha = 0.15f),
-            border = BorderStroke(2.dp, HelldeckColors.colorAccentWarm.copy(alpha = 0.5f)),
+        // Mystery header using NeonCard
+        NeonCard(
+            accentColor = HelldeckColors.colorAccentWarm,
+            elevation = 8.dp,
         ) {
             Row(
-                modifier = Modifier.padding(horizontal = 20.dp, vertical = 12.dp),
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                Text(text = "🤔", fontSize = 28.sp)
                 Text(
                     text = "EXPLAIN YOURSELF",
                     style = MaterialTheme.typography.labelLarge.copy(
                         fontWeight = FontWeight.Black,
-                        fontSize = 16.sp,
+                        fontSize = 20.sp,
                         letterSpacing = 2.sp,
                     ),
                     color = HelldeckColors.colorAccentWarm,
+                    textAlign = TextAlign.Center,
                 )
             }
         }
@@ -80,6 +94,7 @@ fun OddExplainRenderer(
             text = "Why is this the odd one out?",
             style = MaterialTheme.typography.bodyLarge.copy(
                 fontWeight = FontWeight.Medium,
+                fontSize = 20.sp,
             ),
             color = HelldeckColors.colorMuted,
             textAlign = TextAlign.Center,
@@ -87,98 +102,78 @@ fun OddExplainRenderer(
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.Large.dp))
 
-        // Explanation input
-        OutlinedTextField(
-            value = explanation,
-            onValueChange = { explanation = it },
-            label = {
-                Text(
-                    text = "🧠 Your reasoning...",
-                    color = HelldeckColors.colorMuted,
-                )
+        // Explanation input wrapped in NeonCard for consistent styling
+        NeonCard(
+            accentColor = if (explanation.isNotBlank()) {
+                HelldeckColors.colorAccentWarm
+            } else {
+                HelldeckColors.colorMuted
             },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(140.dp),
-            colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = HelldeckColors.colorAccentWarm,
-                unfocusedBorderColor = HelldeckColors.colorMuted.copy(alpha = 0.5f),
-                focusedTextColor = HelldeckColors.colorOnDark,
-                unfocusedTextColor = HelldeckColors.colorOnDark,
-                cursorColor = HelldeckColors.colorAccentWarm,
-                focusedContainerColor = HelldeckColors.surfacePrimary,
-                unfocusedContainerColor = HelldeckColors.surfacePrimary.copy(alpha = 0.5f),
-                focusedLabelColor = HelldeckColors.colorAccentWarm,
-                unfocusedLabelColor = HelldeckColors.colorMuted,
-            ),
-            shape = RoundedCornerShape(HelldeckRadius.Medium),
-            textStyle = MaterialTheme.typography.bodyLarge.copy(
-                fontWeight = FontWeight.Medium,
-            ),
-            maxLines = 4,
-        )
+            elevation = if (explanation.isNotBlank()) 8.dp else 4.dp,
+        ) {
+            OutlinedTextField(
+                value = explanation,
+                onValueChange = { explanation = it },
+                label = {
+                    Text(
+                        text = "Your reasoning...",
+                        color = HelldeckColors.colorMuted,
+                        style = MaterialTheme.typography.bodyLarge,
+                    )
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = 56.dp)
+                    .height(140.dp)
+                    .semantics { contentDescription = "Type your explanation here" },
+                colors = OutlinedTextFieldDefaults.colors(
+                    focusedBorderColor = HelldeckColors.colorAccentWarm,
+                    unfocusedBorderColor = HelldeckColors.colorMuted.copy(alpha = 0.5f),
+                    focusedTextColor = HelldeckColors.colorOnDark,
+                    unfocusedTextColor = HelldeckColors.colorOnDark,
+                    cursorColor = HelldeckColors.colorAccentWarm,
+                    focusedContainerColor = HelldeckColors.surfacePrimary,
+                    unfocusedContainerColor = HelldeckColors.surfacePrimary.copy(alpha = 0.5f),
+                    focusedLabelColor = HelldeckColors.colorAccentWarm,
+                    unfocusedLabelColor = HelldeckColors.colorMuted,
+                ),
+                shape = RoundedCornerShape(HelldeckRadius.Medium),
+                textStyle = MaterialTheme.typography.bodyLarge.copy(
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 20.sp,
+                ),
+                maxLines = 4,
+            )
+        }
 
         Spacer(modifier = Modifier.height(HelldeckSpacing.ExtraLarge.dp))
 
-        // Submit button
-        OddExplainSubmitButton(
-            isEnabled = explanation.isNotBlank(),
-            reducedMotion = reducedMotion,
+        // Submit button using GlowButton with spring animation
+        GlowButton(
+            text = "SUBMIT THEORY",
             onClick = {
+                haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                 onEvent(RoundEvent.EnterText(explanation))
                 explanation = ""
             },
-        )
-    }
-}
-
-@Composable
-private fun OddExplainSubmitButton(
-    isEnabled: Boolean,
-    reducedMotion: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isPressed by interactionSource.collectIsPressedAsState()
-
-    val scale by animateFloatAsState(
-        targetValue = if (!isEnabled) 1f else if (isPressed) 0.95f else 1f,
-        animationSpec = if (reducedMotion) {
-            tween(HelldeckAnimations.Instant)
-        } else {
-            spring(dampingRatio = 0.6f, stiffness = Spring.StiffnessHigh)
-        },
-        label = "button_scale",
-    )
-
-    Button(
-        onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(HelldeckHeights.Button.dp)
-            .scale(scale)
-            .shadow(
-                elevation = if (isPressed) 4.dp else 10.dp,
-                shape = RoundedCornerShape(HelldeckRadius.Pill),
-                spotColor = HelldeckColors.colorAccentWarm.copy(alpha = if (isEnabled) 0.5f else 0.1f),
-            ),
-        enabled = isEnabled,
-        interactionSource = interactionSource,
-        shape = RoundedCornerShape(HelldeckRadius.Pill),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = HelldeckColors.colorAccentWarm,
-            contentColor = HelldeckColors.background,
-            disabledContainerColor = HelldeckColors.colorMuted.copy(alpha = 0.3f),
-            disabledContentColor = HelldeckColors.colorMuted,
-        ),
-    ) {
-        Text(
-            text = "💡 SUBMIT THEORY",
-            style = MaterialTheme.typography.labelLarge.copy(
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-            ),
+            enabled = explanation.isNotBlank(),
+            accentColor = HelldeckColors.colorAccentWarm,
+            modifier = Modifier
+                .fillMaxWidth()
+                .scale(submitScale)
+                .then(
+                    if (explanation.isNotBlank()) {
+                        Modifier.shadow(
+                            elevation = 16.dp,
+                            shape = RoundedCornerShape(HelldeckRadius.Pill),
+                            spotColor = HelldeckColors.colorAccentWarm.copy(alpha = 0.6f),
+                            ambientColor = HelldeckColors.colorAccentWarm.copy(alpha = 0.3f),
+                        )
+                    } else {
+                        Modifier
+                    },
+                )
+                .semantics { contentDescription = "Submit your explanation" },
         )
     }
 }
