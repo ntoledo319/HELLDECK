@@ -1,0 +1,49 @@
+workflows:
+  android-helldeck:
+    name: HELLDECK Build & Test
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      groups:
+        - signing_credentials # Define this group in Codemagic UI with KEYSTORE_PATH, KEYSTORE_PASSWORD, etc.
+      vars:
+        JAVA_VERSION: "17"
+      java: 17
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: 'main'
+          include: true
+
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > local.properties
+
+      - name: Run Lint & Static Analysis
+        script: |
+          ./gradlew ktlintCheck detekt --no-daemon
+
+      - name: Run Unit Tests
+        script: |
+          ./gradlew testProductionReleaseUnitTest --no-daemon
+
+      - name: Build Production Release APK
+        script: |
+          # Note: This will fail if signing environment variables are not set in Codemagic
+          ./gradlew assembleProductionRelease --no-daemon
+
+      - name: Build Production Release Bundle (AAB)
+        script: |
+          ./gradlew bundleProductionRelease --no-daemon
+
+    artifacts:
+      - app/build/outputs/apk/production/release/*.apk
+      - app/build/outputs/bundle/productionRelease/*.aab
+      - app/build/reports/**
+
+    publishing:
+      email:
+        recipients:
+          - toledonick98@gmail.com
