@@ -1,0 +1,14 @@
+name: HELLDECK
+status: active
+type: personal
+oauth:
+  needed: true
+  google_scopes: []
+  redirect_uris: []
+deployment:
+  platform: unknown
+  url: null
+github: ntoledo319/HELLDECK
+last_touched: 2026-02-11
+original_path: /Users/nicholastoledo/Development/active/HELLDECK
+notes: ""
