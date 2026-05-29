@@ -4,10 +4,12 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.*
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Edit
@@ -18,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.ui.HelldeckHeights
@@ -27,6 +30,7 @@ import com.helldeck.content.data.ContentRepository
 import com.helldeck.data.toEntity
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckVm
+import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.Scene
 import com.helldeck.ui.components.*
 import com.helldeck.ui.theme.HelldeckSpacing
@@ -276,7 +280,7 @@ fun PlayersScene(vm: HelldeckVm) {
             icon = { Text("🗑️", fontSize = 48.sp) },
             title = { Text("Delete Player?") },
             text = {
-                Text("Remove ${player.avatar}? This cannot be undone.")
+                Text("Remove ${player.name.ifBlank { player.avatar }} from this table? This cannot be undone.")
             },
             confirmButton = {
                 GlowButton(
@@ -412,41 +416,73 @@ private fun PlayerCard(
     modifier: Modifier = Modifier,
     isAFK: Boolean = false,
 ) {
+    val accentColor = if (isAFK) HelldeckColors.colorMuted else HelldeckColors.colorPrimary
+    val playerLabel = player.name.ifBlank { "Seat" }
+
     NeonCard(
         modifier = modifier.fillMaxWidth(),
-        accentColor = if (isAFK) HelldeckColors.colorMuted else HelldeckColors.colorPrimary,
+        accentColor = accentColor,
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            // Player info
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.weight(1f),
             ) {
-                Text(
-                    text = player.avatar,
-                    fontSize = 40.sp,
-                )
-                Column {
+                Surface(
+                    modifier = Modifier.size(58.dp),
+                    shape = CircleShape,
+                    color = accentColor.copy(alpha = if (isAFK) 0.08f else 0.16f),
+                    border = BorderStroke(1.dp, accentColor.copy(alpha = 0.55f)),
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Text(
+                            text = player.avatar,
+                            fontSize = 32.sp,
+                        )
+                    }
+                }
+
+                Column(
+                    modifier = Modifier.weight(1f),
+                    verticalArrangement = Arrangement.spacedBy(2.dp),
+                ) {
                     Text(
-                        text = "Seat", // Anonymized - no player names
+                        text = playerLabel,
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = if (isAFK) HelldeckColors.colorMuted else HelldeckColors.colorOnDark,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                     )
-                    Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(10.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Surface(
+                            shape = androidx.compose.foundation.shape.RoundedCornerShape(HelldeckRadius.Pill),
+                            color = accentColor.copy(alpha = 0.12f),
+                        ) {
+                            Text(
+                                text = if (isAFK) "AFK" else "ACTIVE",
+                                style = MaterialTheme.typography.labelSmall,
+                                fontWeight = FontWeight.Bold,
+                                color = accentColor,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp),
+                            )
+                        }
                         Text(
-                            text = "⭐ ${player.sessionPoints} pts",
+                            text = "${player.sessionPoints} pts",
                             style = MaterialTheme.typography.bodyMedium,
                             color = HelldeckColors.colorMuted,
                         )
                         if (player.gamesPlayed > 0) {
                             Text(
-                                text = "🎮 ${player.gamesPlayed} games",
+                                text = "${player.gamesPlayed} games",
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = HelldeckColors.colorMuted,
                             )
@@ -455,12 +491,13 @@ private fun PlayerCard(
                 }
             }
             
-            // Actions
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 IconButton(onClick = onToggleAFK) {
                     Text(
-                        text = if (isAFK) "✅" else "💤",
+                        text = if (isAFK) "✓" else "AFK",
                         fontSize = 20.sp,
+                        color = if (isAFK) HelldeckColors.colorSecondary else HelldeckColors.colorMuted,
+                        fontWeight = FontWeight.Bold,
                     )
                 }
                 IconButton(onClick = onEdit) {

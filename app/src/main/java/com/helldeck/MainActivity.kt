@@ -5,12 +5,17 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -18,6 +23,10 @@ import androidx.tracing.trace
 import com.helldeck.billing.PurchaseManager
 import com.helldeck.content.engine.ContentEngineProvider
 import com.helldeck.engine.Config
+import com.helldeck.ui.HelldeckColors
+import com.helldeck.ui.HelldeckHeights
+import com.helldeck.ui.HelldeckRadius
+import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.HelldeckAppUI
 import com.helldeck.ui.HelldeckTheme
 import com.helldeck.ui.OnboardingWrapper
@@ -250,13 +259,49 @@ class MainActivity : ComponentActivity() {
  */
 @Composable
 private fun LoadingScreen() {
-    androidx.compose.foundation.layout.Box(
-        contentAlignment = androidx.compose.ui.Alignment.Center,
-        modifier = androidx.compose.ui.Modifier.fillMaxSize(),
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                Brush.verticalGradient(
+                    listOf(
+                        HelldeckColors.background,
+                        HelldeckColors.surfacePrimary,
+                    ),
+                ),
+            )
+            .padding(HelldeckSpacing.Large.dp),
     ) {
-        androidx.compose.material3.CircularProgressIndicator(
-            color = androidx.compose.material3.MaterialTheme.colorScheme.primary,
-        )
+        Surface(
+            shape = RoundedCornerShape(HelldeckRadius.Large),
+            color = HelldeckColors.surfaceElevated.copy(alpha = 0.92f),
+            border = BorderStroke(1.dp, HelldeckColors.colorPrimary.copy(alpha = 0.38f)),
+        ) {
+            Column(
+                modifier = Modifier.padding(HelldeckSpacing.ExtraLarge.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+            ) {
+                Text(
+                    text = "HELLDECK",
+                    style = MaterialTheme.typography.headlineLarge,
+                    fontWeight = FontWeight.Black,
+                    color = HelldeckColors.colorOnDark,
+                    textAlign = TextAlign.Center,
+                )
+                CircularProgressIndicator(
+                    color = HelldeckColors.colorPrimary,
+                    trackColor = HelldeckColors.colorPrimary.copy(alpha = 0.16f),
+                )
+                Text(
+                    text = "Loading the next bad decision...",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = HelldeckColors.colorMuted,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
     }
 }
 
@@ -270,32 +315,59 @@ private fun LoadingScreen() {
  */
 @Composable
 private fun ErrorScreen(error: String, showRetry: Boolean = true, onRetry: (() -> Unit)? = null) {
-    androidx.compose.foundation.layout.Column(
-        modifier = androidx.compose.ui.Modifier
+    Column(
+        modifier = Modifier
             .fillMaxSize()
-            .padding(androidx.compose.foundation.layout.PaddingValues(16.dp)),
-        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+            .background(HelldeckColors.background)
+            .padding(PaddingValues(16.dp)),
+        horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        androidx.compose.material3.Text(
-            text = "⚠️ Error",
-            style = androidx.compose.material3.MaterialTheme.typography.headlineMedium,
-            color = androidx.compose.material3.MaterialTheme.colorScheme.error,
-        )
+        Surface(
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(HelldeckRadius.Large),
+            color = HelldeckColors.surfaceElevated,
+            border = BorderStroke(1.dp, HelldeckColors.Error.copy(alpha = 0.55f)),
+        ) {
+            Column(
+                modifier = Modifier.padding(HelldeckSpacing.ExtraLarge.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
+            ) {
+                Text(
+                    text = "Could not start HELLDECK",
+                    style = MaterialTheme.typography.headlineMedium,
+                    fontWeight = FontWeight.Black,
+                    color = HelldeckColors.Error,
+                    textAlign = TextAlign.Center,
+                )
 
-        androidx.compose.foundation.layout.Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
+                Text(
+                    text = error,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = HelldeckColors.colorMuted,
+                    textAlign = TextAlign.Center,
+                )
 
-        androidx.compose.material3.Text(
-            text = error,
-            style = androidx.compose.material3.MaterialTheme.typography.bodyMedium,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-        )
-
-        if (showRetry && onRetry != null) {
-            androidx.compose.foundation.layout.Spacer(modifier = androidx.compose.ui.Modifier.height(16.dp))
-
-            androidx.compose.material3.Button(onClick = onRetry) {
-                androidx.compose.material3.Text("Retry")
+                if (showRetry && onRetry != null) {
+                    Button(
+                        onClick = onRetry,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(HelldeckHeights.Button.dp),
+                        shape = RoundedCornerShape(HelldeckRadius.Pill),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = HelldeckColors.colorPrimary,
+                            contentColor = HelldeckColors.background,
+                        ),
+                    ) {
+                        Text(
+                            text = "Try Again",
+                            style = MaterialTheme.typography.labelLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                }
             }
         }
     }
