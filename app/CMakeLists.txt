@@ -7,6 +7,12 @@ set(CMAKE_CXX_STANDARD 17)
 # If llama.cpp is not present, this will fail - document this in README
 if(EXISTS ${CMAKE_SOURCE_DIR}/../third_party/llama.cpp)
     add_subdirectory(${CMAKE_SOURCE_DIR}/../third_party/llama.cpp ${CMAKE_BINARY_DIR}/llama_build)
+
+    if(ANDROID AND TARGET llama)
+        target_compile_options(llama PRIVATE
+            -include ${CMAKE_SOURCE_DIR}/src/main/cpp/llama_android_compat.h
+        )
+    endif()
     
     add_library(helldeck_llama SHARED
         src/main/cpp/llama_jni.cpp

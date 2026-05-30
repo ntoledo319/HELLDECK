@@ -50,6 +50,7 @@ testing-plan.md
 
 # Development artifacts
 backup_*
+!app/src/main/res/xml/backup_rules.xml
 phase*
 bulk_fix*
 comprehensive_final_fix*
