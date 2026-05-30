@@ -5,7 +5,6 @@ package com.helldeck.content.generator
  * Inspired by Cards Against Humanity, Bad Choices, and Bad People humor styles.
  */
 class HumorScorer(
-    private val lexiconRepository: LexiconRepositoryV2,
     private val pairings: Map<String, Map<String, Double>>,
 ) {
 

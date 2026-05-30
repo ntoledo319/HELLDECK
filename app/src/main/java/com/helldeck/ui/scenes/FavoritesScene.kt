@@ -117,21 +117,21 @@ fun FavoritesScene(
                         singleLine = true,
                     )
                 }
-                
+
                 // Filtered and sorted list
                 val filtered = favorites.filter {
-                    searchQuery.isBlank() || 
-                    it.cardText.contains(searchQuery, ignoreCase = true) ||
-                    it.gameName.contains(searchQuery, ignoreCase = true) ||
-                    it.playerName?.contains(searchQuery, ignoreCase = true) == true
+                    searchQuery.isBlank() ||
+                        it.cardText.contains(searchQuery, ignoreCase = true) ||
+                        it.gameName.contains(searchQuery, ignoreCase = true) ||
+                        it.playerName?.contains(searchQuery, ignoreCase = true) == true
                 }
-                
+
                 val sorted = when (sortMode) {
                     "Oldest" -> filtered.sortedBy { it.addedAtMs }
                     "Game" -> filtered.sortedBy { it.gameName }
                     else -> filtered.sortedByDescending { it.addedAtMs }
                 }
-                
+
                 if (filtered.isEmpty() && searchQuery.isNotBlank()) {
                     com.helldeck.ui.components.EmptyState(
                         icon = "🔍",
@@ -248,42 +248,6 @@ private fun FavoriteCardItem(
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
-        }
-    }
-}
-
-@Composable
-private fun EmptyFavoritesState(
-    onClose: () -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
-    ) {
-        Icon(
-            Icons.Default.Favorite,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.3f),
-            modifier = Modifier.size(80.dp),
-        )
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            text = "No favorites yet",
-            style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold,
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = "Tap the heart button on cards you love\nto save them here",
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-        )
-        Spacer(modifier = Modifier.height(24.dp))
-        Button(onClick = onClose) {
-            Text("Start Playing")
         }
     }
 }

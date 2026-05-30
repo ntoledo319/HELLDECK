@@ -7,10 +7,10 @@ import com.helldeck.ui.HelldeckColors
 
 /**
  * Reusable confirmation dialogs for destructive actions.
- * 
+ *
  * Ensures users don't accidentally delete data or perform
  * irreversible operations without explicit confirmation.
- * 
+ *
  * @ai_prompt Confirmation dialogs prevent accidental data loss
  */
 

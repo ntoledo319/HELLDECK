@@ -1,7 +1,6 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -16,7 +15,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.helldeck.content.model.GameOptions
 import com.helldeck.engine.Config
 import com.helldeck.engine.GameFeedback
@@ -27,7 +25,6 @@ import com.helldeck.engine.InteractionType
 import com.helldeck.ui.*
 import com.helldeck.ui.components.GameActionHintBanner
 import com.helldeck.ui.components.GlowButton
-import com.helldeck.ui.components.InfoBanner
 import com.helldeck.ui.components.NeonCard
 import com.helldeck.ui.components.OutlineButton
 import com.helldeck.ui.components.QuickReactionBar
@@ -83,10 +80,14 @@ fun RoundScene(vm: HelldeckVm) {
     LaunchedEffect(roundState.filledCard.id) { sceneVisible = true }
     val sceneScale by animateFloatAsState(
         targetValue = if (sceneVisible) 1f else 0.95f,
-        animationSpec = if (reducedMotion) tween(0) else spring(
-            dampingRatio = 0.7f,
-            stiffness = Spring.StiffnessMediumLow,
-        ),
+        animationSpec = if (reducedMotion) {
+            tween(0)
+        } else {
+            spring(
+                dampingRatio = 0.7f,
+                stiffness = Spring.StiffnessMediumLow,
+            )
+        },
         label = "scene_entrance",
     )
 

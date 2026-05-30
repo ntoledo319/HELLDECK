@@ -7,7 +7,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.helldeck.content.db.HelldeckDb
 import com.helldeck.content.db.TemplateStatDao
 import com.helldeck.data.Repository
-import com.helldeck.data.RoundMetricsEntity
 import com.helldeck.fixtures.TestDataFactory
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -18,7 +17,6 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -178,6 +176,8 @@ class DatabaseIntegrationTest {
         // Assert
         val allPlayers = repository.getAllPlayers().first()
         assertEquals("Should have 4 players total", 4, allPlayers.size)
+        assertTrue("Extra player 1 should be persisted", allPlayers.any { it.id == player1.id })
+        assertTrue("Extra player 2 should be persisted", allPlayers.any { it.id == player2.id })
 
         val sessionRounds = repository.getRoundsForSession(sessionId).first()
         assertEquals("Should have 2 rounds", 2, sessionRounds.size)

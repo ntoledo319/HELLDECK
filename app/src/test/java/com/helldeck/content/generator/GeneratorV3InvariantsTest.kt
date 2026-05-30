@@ -102,7 +102,10 @@ class GeneratorV3InvariantsTest {
 
                 // Allow a small cushion for extremely short prompts where a repeated article can trip the ratio
                 val threshold = if (words.size < 8) 0.5 else 0.35
-                assertTrue("Repetition ratio should be ≤ $threshold for $gameId (len=${words.size}, ratio=$ratio)", ratio <= threshold + 1e-6)
+                assertTrue(
+                    "Repetition ratio should be ≤ $threshold for $gameId (len=${words.size}, ratio=$ratio)",
+                    ratio <= threshold + 1e-6,
+                )
             }
         }
     }
@@ -118,7 +121,10 @@ class GeneratorV3InvariantsTest {
             ).options
             if (taboo is GameOptions.Taboo) {
                 assertFalse(taboo.word.isBlank())
-                assertTrue("Taboo forbidden should have 3-5 words, got ${taboo.forbidden.size}", taboo.forbidden.size in 3..5)
+                assertTrue(
+                    "Taboo forbidden should have 3-5 words, got ${taboo.forbidden.size}",
+                    taboo.forbidden.size in 3..5,
+                )
                 assertTrue(taboo.forbidden.all { it.isNotBlank() })
             }
 

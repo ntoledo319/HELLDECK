@@ -106,25 +106,28 @@ private fun ReportReasonOption(
     onClick: () -> Unit,
 ) {
     val (label, description) = when (reason) {
-        ContentReport.ReportReason.OFFENSIVE_LANGUAGE -> 
+        ContentReport.ReportReason.OFFENSIVE_LANGUAGE ->
             "Offensive Language" to "Contains profanity or insults"
-        ContentReport.ReportReason.HATE_SPEECH -> 
+        ContentReport.ReportReason.HATE_SPEECH ->
             "Hate Speech" to "Targets protected groups"
-        ContentReport.ReportReason.SEXUALLY_EXPLICIT -> 
+        ContentReport.ReportReason.SEXUALLY_EXPLICIT ->
             "Sexually Explicit" to "Inappropriate sexual content"
-        ContentReport.ReportReason.VIOLENCE -> 
+        ContentReport.ReportReason.VIOLENCE ->
             "Violence" to "Promotes or depicts violence"
-        ContentReport.ReportReason.HARASSMENT -> 
+        ContentReport.ReportReason.HARASSMENT ->
             "Harassment" to "Bullying or personal attacks"
-        ContentReport.ReportReason.OTHER -> 
+        ContentReport.ReportReason.OTHER ->
             "Other" to "Other offensive content"
     }
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
         onClick = onClick,
-        color = if (isSelected) HelldeckColors.colorPrimary.copy(alpha = 0.2f) 
-                else HelldeckColors.surfacePrimary,
+        color = if (isSelected) {
+            HelldeckColors.colorPrimary.copy(alpha = 0.2f)
+        } else {
+            HelldeckColors.surfacePrimary
+        },
         shape = MaterialTheme.shapes.small,
     ) {
         Row(

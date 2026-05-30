@@ -7,7 +7,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
@@ -25,7 +24,6 @@ import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.components.GlowButton
 import com.helldeck.ui.components.InfoBanner
 import com.helldeck.ui.components.NeonCard
-import com.helldeck.ui.components.OutlineButton
 import com.helldeck.ui.components.SectionHeader
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -333,7 +331,9 @@ fun CardLabScene(onClose: () -> Unit) {
 
                                             // Check if generation passed quality gates
                                             val hasPlaceholders = r.filledCard.text.contains('{') || r.filledCard.text.contains('}')
-                                            val wordCount = r.filledCard.text.split(Regex("\\s+")).filter { it.isNotBlank() }.size
+                                            val wordCount = r.filledCard.text.split(
+                                                Regex("\\s+"),
+                                            ).filter { it.isNotBlank() }.size
                                             val passed = !hasPlaceholders && wordCount in 5..32
 
                                             if (passed) passCount++ else failCount++
@@ -475,8 +475,16 @@ fun CardLabScene(onClose: () -> Unit) {
                         accentColor = HelldeckColors.colorPrimary,
                     ) {
                         Column(verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Tiny.dp)) {
-                            Text(item.text, style = MaterialTheme.typography.bodyLarge, color = HelldeckColors.colorOnDark)
-                            Text(item.options, style = MaterialTheme.typography.labelMedium, color = HelldeckColors.colorMuted)
+                            Text(
+                                item.text,
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = HelldeckColors.colorOnDark,
+                            )
+                            Text(
+                                item.options,
+                                style = MaterialTheme.typography.labelMedium,
+                                color = HelldeckColors.colorMuted,
+                            )
                             val isOpen = expanded.value.contains(idx)
                             TextButton(onClick = {
                                 expanded.value = if (isOpen) expanded.value - idx else expanded.value + idx
@@ -607,30 +615,49 @@ fun CardLabScene(onClose: () -> Unit) {
                             style = MaterialTheme.typography.bodyLarge,
                         )
                     }
-                    
+
                     item {
-                        Text("🎮 Game Selection", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                        Text("Choose which game to generate cards for. Use Prev/Next to cycle through games.", style = MaterialTheme.typography.bodySmall)
+                        Text(
+                            "🎮 Game Selection",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        Text(
+                            "Choose which game to generate cards for. Use Prev/Next to cycle through games.",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
                     }
-                    
+
                     item {
                         Text("🎲 Seeds", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                        Text("Seed numbers control randomness. Same seed = same cards. Enable Range to test multiple seeds.", style = MaterialTheme.typography.bodySmall)
+                        Text(
+                            "Seed numbers control randomness. Same seed = same cards. Enable Range to test multiple seeds.",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
                     }
-                    
+
                     item {
                         Text("🔍 Filters", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                        Text("Test specific generation patterns:\n• Low Pair: Cards with weak word relationships\n• A/B Equal: Cards with similar option lengths\n• Short/Long: Test text length extremes\n• High Repeat: Cards with repetitive words", style = MaterialTheme.typography.bodySmall)
+                        Text(
+                            "Test specific generation patterns:\n• Low Pair: Cards with weak word relationships\n• A/B Equal: Cards with similar option lengths\n• Short/Long: Test text length extremes\n• High Repeat: Cards with repetitive words",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
                     }
-                    
+
                     item {
                         Text("📊 Stats", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                        Text("Pass/Fail counts show quality gate success. Timing shows generation performance (p50/p95/p99).", style = MaterialTheme.typography.bodySmall)
+                        Text(
+                            "Pass/Fail counts show quality gate success. Timing shows generation performance (p50/p95/p99).",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
                     }
-                    
+
                     item {
                         Text("🚫 Banning", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
-                        Text("Ban problematic blueprints or lexicon items to prevent them from appearing in games.", style = MaterialTheme.typography.bodySmall)
+                        Text(
+                            "Ban problematic blueprints or lexicon items to prevent them from appearing in games.",
+                            style = MaterialTheme.typography.bodySmall,
+                        )
                     }
                 }
             },

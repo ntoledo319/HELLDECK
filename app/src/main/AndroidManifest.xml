@@ -56,6 +56,12 @@
             </intent-filter>
         </activity>
 
+        <!-- Host activity used by Robolectric Compose unit tests. It is not exported and has no launcher filter. -->
+        <activity
+            android:name="androidx.activity.ComponentActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+
         <!-- File Provider for export/import functionality -->
         <provider
             android:name="androidx.core.content.FileProvider"

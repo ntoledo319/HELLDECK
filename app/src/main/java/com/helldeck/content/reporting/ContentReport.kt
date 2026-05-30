@@ -22,7 +22,7 @@ data class ContentReport(
         SEXUALLY_EXPLICIT,
         VIOLENCE,
         HARASSMENT,
-        OTHER
+        OTHER,
     }
 }
 
@@ -40,23 +40,23 @@ data class ContentReportStore(
             reportedBlueprints
         }
         val updatedTexts = reportedCardTexts + report.cardText.lowercase()
-        
+
         return copy(
             reports = updatedReports,
             reportedBlueprints = updatedBlueprints,
             reportedCardTexts = updatedTexts,
         )
     }
-    
-    fun isCardReported(text: String): Boolean = 
+
+    fun isCardReported(text: String): Boolean =
         text.lowercase() in reportedCardTexts
-    
-    fun isBlueprintReported(blueprintId: String): Boolean = 
+
+    fun isBlueprintReported(blueprintId: String): Boolean =
         blueprintId in reportedBlueprints
-    
+
     fun getReportCount(): Int = reports.size
-    
-    fun getRecentReports(limit: Int = 10): List<ContentReport> = 
+
+    fun getRecentReports(limit: Int = 10): List<ContentReport> =
         reports.sortedByDescending { it.timestamp }.take(limit)
 
     companion object {

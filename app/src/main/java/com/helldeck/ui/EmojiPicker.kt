@@ -60,14 +60,16 @@ private val emojiCategories = buildList {
     if (recentEmojis.isNotEmpty()) {
         add(EmojiCategory("Recent", recentEmojis))
     }
-    addAll(listOf(
-        EmojiCategory("Faces", Faces),
-        EmojiCategory("Animals", Animals),
-        EmojiCategory("Food", Food),
-        EmojiCategory("Activities", Activities),
-        EmojiCategory("Objects", Objects),
-        EmojiCategory("Symbols", Symbols),
-    ))
+    addAll(
+        listOf(
+            EmojiCategory("Faces", Faces),
+            EmojiCategory("Animals", Animals),
+            EmojiCategory("Food", Food),
+            EmojiCategory("Activities", Activities),
+            EmojiCategory("Objects", Objects),
+            EmojiCategory("Symbols", Symbols),
+        ),
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

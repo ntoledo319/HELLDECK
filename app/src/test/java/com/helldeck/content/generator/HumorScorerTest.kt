@@ -1,16 +1,14 @@
 package com.helldeck.content.generator
 
 import com.helldeck.content.generator.HumorScorer.SlotData
-import io.mockk.mockk
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class HumorScorerTest {
     @Test
     fun `high spice taboo combo yields strong shock and benign violation`() {
-        val lexRepo: LexiconRepositoryV2 = mockk(relaxed = true)
         val pairings: Map<String, Map<String, Double>> = emptyMap()
-        val scorer = HumorScorer(lexRepo, pairings)
+        val scorer = HumorScorer(pairings)
 
         val blueprint = TemplateBlueprint(
             id = "t1",

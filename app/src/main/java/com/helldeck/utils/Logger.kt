@@ -494,15 +494,15 @@ object GameEventLogger {
     /**
      * Log game event
      */
-        fun logEvent(event: String, data: Map<String, Any> = emptyMap()) {
-            val eventData = mapOf(
-                "event" to event,
-                "timestamp" to System.currentTimeMillis(),
-                "session" to "current_session", // Would get from game engine
-            ) + data
+    fun logEvent(event: String, data: Map<String, Any> = emptyMap()) {
+        val eventData = mapOf(
+            "event" to event,
+            "timestamp" to System.currentTimeMillis(),
+            "session" to "current_session", // Would get from game engine
+        ) + data
 
-            Logger.i("Game Event: $eventData")
-        }
+        Logger.i("Game Event: $eventData")
+    }
 
     /**
      * Log player action

@@ -14,7 +14,6 @@ import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.components.GlowButton
 import com.helldeck.ui.components.InfoBanner
 import com.helldeck.ui.components.NeonCard
-import com.helldeck.ui.components.SectionHeader
 import com.helldeck.ui.vm.GameNightViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

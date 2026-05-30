@@ -4,10 +4,10 @@ import com.helldeck.engine.GameIds
 
 /**
  * COMEDY SCIENCE PROMPT SYSTEM v2
- * 
- * Based on research: Benign Violation Theory (McGraw & Warren), 
+ *
+ * Based on research: Benign Violation Theory (McGraw & Warren),
  * specificity principles, escalation mechanics, and party game design.
- * 
+ *
  * Core insight: Humor = VIOLATION (wrong) + BENIGN (harmless) simultaneously.
  * Something that's just wrong → offensive. Something that's just benign → boring.
  * The magic is holding both at once.
@@ -16,21 +16,21 @@ object ComedySciencePrompts {
 
     /**
      * The foundation: Benign Violation Theory
-     * 
+     *
      * VIOLATION TYPES:
      * - Social norms (strange behaviors, awkwardness)
      * - Cultural norms (unusual accents, odd traditions)
      * - Linguistic norms (puns, malapropisms)
      * - Logic norms (absurdities, non-sequiturs)
      * - Moral norms (disrespectful behavior, taboos)
-     * 
+     *
      * WHAT MAKES IT BENIGN:
      * - Psychological distance (happened long ago, to someone else, far away)
      * - Alternative norms (one meaning makes sense even if another doesn't)
      * - Weak commitment to the norm (we don't really care about this rule)
      * - Playful framing (it's just a game, we're all friends here)
      */
-    
+
     val COMEDY_SCIENCE_SYSTEM = """You are a comedy writer trained in humor psychology.
 
 THE SCIENCE: Humor = VIOLATION + BENIGN simultaneously.
@@ -64,15 +64,15 @@ STRUCTURE MATTERS:
     // ============================================
     // ROAST CONSENSUS - "Most likely to..."
     // ============================================
-    
+
     fun buildImprovedRoastPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(8).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         val spiceGuidance = when (spiceLevel) {
             1 -> "Keep it PG - wholesome embarrassment only (trip over feet, cry at movies)"
             2 -> "Light cringe - social awkwardness, mild delusion (wave at wrong person)"
@@ -80,7 +80,7 @@ STRUCTURE MATTERS:
             4 -> "Unhinged territory - absurd escalation, chaotic energy"
             else -> "Maximum chaos - bizarre specificity, reality-breaking scenarios"
         }
-        
+
         return """Generate a ROAST CONSENSUS card.
 
 THE PSYCHOLOGY: This game works because:
@@ -117,16 +117,17 @@ Generate ONE card. Be vivid and specific. Create a mental image."""
     // ============================================
     // POISON PITCH - "Would You Rather"
     // ============================================
-    
+
     fun buildImprovedPoisonPitchPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  A: \"${it.optionA}\" vs B: \"${it.optionB}\" (${it.quality_score}/10)"
         }
-        
+
         return """Generate a WOULD YOU RATHER dilemma.
+TARGET SPICE LEVEL: $spiceLevel/5.
 
 THE PSYCHOLOGY: Great dilemmas create COGNITIVE DISSONANCE.
 The player MUST choose, but BOTH options are equally bad/weird.
@@ -166,15 +167,15 @@ Generate ONE dilemma where both options make people say "oh god"."""
     // ============================================
     // RED FLAG RALLY - Dating Red Flags
     // ============================================
-    
+
     fun buildImprovedRedFlagPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         val spiceGuidance = when (spiceLevel) {
             1 -> "Quirky red flags - weird hobbies, odd habits that are endearing-weird"
             2 -> "Mild concerning - poor hygiene habits, questionable food choices"
@@ -182,7 +183,7 @@ Generate ONE dilemma where both options make people say "oh god"."""
             4 -> "Deal-breaker chaos - morally questionable, sexually bizarre"
             else -> "Maximum unhinged - would make a great story but terrible life choice"
         }
-        
+
         return """Generate a RED FLAG RALLY dating scenario.
 
 THE PSYCHOLOGY: This exploits COGNITIVE DISSONANCE.
@@ -198,7 +199,7 @@ BALANCE IS EVERYTHING:
 - Any green + crime = not funny (too real, loses benign quality)
 
 SPECIFICITY IN RED FLAGS:
-❌ BORING: "They're annoying" 
+❌ BORING: "They're annoying"
 ✅ FUNNY: "They chew with their mouth open and make eye contact while doing it"
 ❌ BORING: "They have weird hobbies"
 ✅ FUNNY: "They collect human teeth 'for art'"
@@ -223,16 +224,17 @@ Generate ONE scenario. The green flag must be genuinely tempting."""
     // ============================================
     // HOT SEAT IMPOSTER - Personal Questions
     // ============================================
-    
+
     fun buildImprovedHotSeatPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         return """Generate a HOT SEAT IMPOSTER question.
+TARGET SPICE LEVEL: $spiceLevel/5.
 
 THE PSYCHOLOGY: The game is about SOCIAL OBSERVATION.
 Questions must reveal WHO PAYS ATTENTION to their friends.
@@ -280,38 +282,42 @@ Generate ONE question that separates real friends from imposters."""
     // ============================================
     // SCATTERBLAST - Creative Categories
     // ============================================
-    
+
     fun buildImprovedScatterPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  Category: \"${it.category}\", Letter: ${it.letter} (${it.quality_score}/10)"
         }
-        
+
         val spiceCategories = when (spiceLevel) {
-            1 -> """
+            1 ->
+                """
 - "Things that would make a terrible hat"
 - "Reasons to call in sick that are obviously lies"
 - "Names for a pet goldfish"
 - "Things you'd find in a wizard's junk drawer"""
-            2 -> """
+            2 ->
+                """
 - "Excuses for being 3 hours late"
 - "Things you shouldn't say on a first date"
 - "Reasons your Uber driver might start praying"
 - "Things that are technically legal but feel illegal"""
-            3 -> """
+            3 ->
+                """
 - "Things you'd find in Florida Man's search history"
 - "Excuses that would NOT hold up in court"
 - "Things you shouldn't name your child"
 - "Warning signs your neighbor might be a cult leader"""
-            else -> """
+            else ->
+                """
 - "Things you should NOT put in your dating profile"
 - "Reasons someone might live in their car voluntarily"
 - "Things you'd confess on your deathbed"
 - "Signs your Tinder date might be a demon"""
         }
-        
+
         return """Generate a SCATTERBLAST category.
 
 THE PSYCHOLOGY: Great categories are CREATIVE CONSTRAINTS.
@@ -349,7 +355,7 @@ AVOID:
 ❌ Too narrow ("Brands of Bulgarian yogurt")
 ❌ Not funny premise ("Types of clouds")
 
-SPICE ${spiceLevel} CATEGORY IDEAS:
+SPICE $spiceLevel CATEGORY IDEAS:
 $spiceCategories
 
 EXAMPLES (match this quality):
@@ -365,42 +371,45 @@ FORMAT:
 Generate ONE absurdly specific category that makes people laugh just reading it."""
     }
 
-
     // ============================================
     // REALITY CHECK - Self-Rating Game
     // ============================================
-    
+
     fun buildImprovedRealityCheckPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         val spiceTraits = when (spiceLevel) {
-            1 -> """
+            1 ->
+                """
 - "Your sense of direction"
 - "How well you parallel park"
 - "Your cooking skills"
 - "How good you are at keeping secrets"""
-            2 -> """
+            2 ->
+                """
 - "Your ability to read a room"
 - "How interesting your stories are"
 - "Your dancing skills"
 - "How well you handle rejection"""
-            3 -> """
+            3 ->
+                """
 - "Your flirting game"
 - "How funny you actually are"
 - "Your driving skills"
 - "Your ability to handle your alcohol"""
-            else -> """
+            else ->
+                """
 - "How good you are in bed"
 - "How much your exes miss you"
 - "How intimidating you are"
 - "Your street fight survival odds"""
         }
-        
+
         return """Generate a REALITY CHECK rating question.
 
 THE PSYCHOLOGY: This game exploits the DUNNING-KRUGER EFFECT.
@@ -432,7 +441,7 @@ THE PHRASING MATTERS:
 ✅ BETTER: "How impressed people are by your cooking"
 ✅ BEST: "How often your cooking makes people pretend to have eaten already"
 
-CURRENT SPICE ${spiceLevel} TRAIT IDEAS:
+CURRENT SPICE $spiceLevel TRAIT IDEAS:
 $spiceTraits
 
 EXAMPLES (match this quality):
@@ -446,38 +455,42 @@ Generate ONE trait where the gap between self-rating and reality is comedically 
     // ============================================
     // OVER/UNDER - Numerical Predictions
     // ============================================
-    
+
     fun buildImprovedOverUnderPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         val spiceQuestions = when (spiceLevel) {
-            1 -> """
+            1 ->
+                """
 - "Unread emails in your inbox"
 - "Photos in your camera roll"
 - "Apps on your phone you've never opened"
 - "Hours of screen time yesterday"""
-            2 -> """
+            2 ->
+                """
 - "People you've dated"
 - "Times you've cried at a movie this year"
 - "Lies you've told today"
 - "Unread texts right now"""
-            3 -> """
+            3 ->
+                """
 - "People you've ghosted"
 - "Times you've pretended to be busy to avoid someone"
 - "Screenshots of conversations in your phone"
 - "Parking tickets you've ignored"""
-            else -> """
+            else ->
+                """
 - "People you've slept with"
 - "Times you've rage-quit a job"
 - "Drunk texts you regret"
 - "Times you've been escorted out of somewhere"""
         }
-        
+
         return """Generate an OVER/UNDER prediction question.
 
 THE PSYCHOLOGY: This game reveals HIDDEN TRUTHS through numbers.
@@ -522,7 +535,7 @@ THE NUMBER TELLS A STORY:
 ❌ BAD: "Number of fingers" (same for everyone)
 ❌ BAD: "Age" (not revealing in an interesting way)
 
-SPICE ${spiceLevel} EXAMPLES:
+SPICE $spiceLevel EXAMPLES:
 $spiceQuestions
 
 EXAMPLES (match this quality):
@@ -536,38 +549,42 @@ Generate ONE question where the number reveals character."""
     // ============================================
     // TEXT THREAD TRAP - Text Message Scenarios
     // ============================================
-    
+
     fun buildImprovedTextTrapPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         val spiceScenarios = when (spiceLevel) {
-            1 -> """
+            1 ->
+                """
 - "Mom: Can we talk when you get home?"
 - "Boss: Are you free to chat for a minute?"
 - "Friend: I had a dream about you last night..."
 - "Neighbor: Your package was delivered to my house again"""
-            2 -> """
+            2 ->
+                """
 - "Ex: I've been thinking about us..."
 - "Crush: So about last night..."
 - "Friend: I need to tell you something but promise not to be mad"
 - "Group Chat: [3 people typing...]"""
-            3 -> """
+            3 ->
+                """
 - "Your Ex's Best Friend: Can I ask you something private?"
 - "Blocked Number: I know you can see this"
 - "HR: Please come to my office when you arrive"
 - "Landlord: I need to enter your apartment today"""
-            else -> """
+            else ->
+                """
 - "The Person You're Cheating With: (Sent to wrong person)"
 - "Your Mom: I found something in your room"
 - "Ex: I'm pregnant and we need to talk"
 - "Unknown: I have the photos"""
         }
-        
+
         return """Generate a TEXT THREAD TRAP scenario.
 
 THE PSYCHOLOGY: This exploits SOCIAL ANXIETY and TONAL DISSONANCE.
@@ -614,7 +631,7 @@ Same text, different sender = different anxiety level
 - Ex = what fresh hell
 - Landlord = eviction?
 
-SPICE ${spiceLevel} SCENARIOS:
+SPICE $spiceLevel SCENARIOS:
 $spiceScenarios
 
 EXAMPLES (match this quality):
@@ -634,16 +651,17 @@ Generate ONE scenario that makes players sweat just reading it."""
     // ============================================
     // TABOO TIMER - Word Guessing
     // ============================================
-    
+
     fun buildImprovedTabooPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  Word: \"${it.word}\" | Forbidden: ${it.forbidden} (${it.quality_score}/10)"
         }
-        
+
         return """Generate a TABOO card.
+TARGET SPICE LEVEL: $spiceLevel/5.
 
 THE PSYCHOLOGY: Taboo works because of CONSTRAINT COMEDY.
 The forbidden words force CREATIVE CIRCUMLOCUTION.
@@ -703,16 +721,17 @@ Generate ONE card. The word should be common, the forbidden words should make yo
     // ============================================
     // ALIBI DROP - Hidden Word Challenge
     // ============================================
-    
+
     fun buildImprovedAlibiPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  Words: ${it.words} (${it.quality_score}/10)"
         }
-        
+
         return """Generate an ALIBI DROP challenge.
+TARGET SPICE LEVEL: $spiceLevel/5.
 
 THE PSYCHOLOGY: This game tests IMPROVISATION under CONSTRAINT.
 Players must weave random words into a coherent story.
@@ -765,20 +784,20 @@ FORMAT:
 Generate ONE set of 3 COMPLETELY UNRELATED specific words."""
     }
 
-
     // ============================================
     // FILL IN THE BLANK - Open-Ended Prompts
     // ============================================
-    
+
     fun buildImprovedFillInPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         return """Generate a FILL IN THE BLANK prompt.
+TARGET SPICE LEVEL: $spiceLevel/5.
 
 THE PSYCHOLOGY: This is SETUP-PUNCHLINE comedy.
 The Judge provides the SETUP (first blank).
@@ -837,15 +856,15 @@ Generate ONE prompt. The blank should be where the joke lands."""
     // ============================================
     // CONFESS/CAP - Truth or Lie Detection
     // ============================================
-    
+
     fun buildImprovedConfessPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         val spiceGuidance = when (spiceLevel) {
             1 -> "Mild embarrassment - awkward moments, minor rule-breaking"
             2 -> "Social cringe - embarrassing stories, white lies"
@@ -853,7 +872,7 @@ Generate ONE prompt. The blank should be where the joke lands."""
             4 -> "Wild territory - stories that make people say 'wait, really?'"
             else -> "Maximum chaos - stories that could be urban legends"
         }
-        
+
         return """Generate a CONFESS/CAP confession statement.
 
 THE PSYCHOLOGY: This game lives in the UNCANNY VALLEY of believability.
@@ -905,16 +924,17 @@ Generate ONE confession that makes people say "wait... really?"."""
     // ============================================
     // TITLE FIGHT - Absurd Matchups
     // ============================================
-    
+
     fun buildImprovedTitleFightPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         return """Generate a TITLE FIGHT matchup.
+TARGET SPICE LEVEL: $spiceLevel/5.
 
 THE PSYCHOLOGY: This is ABSURDIST DEBATE comedy.
 The matchups are ridiculous, but the ARGUMENTS are real.
@@ -964,16 +984,17 @@ Generate ONE absurd but debatable matchup."""
     // ============================================
     // UNIFYING THEORY - Find the Connection
     // ============================================
-    
+
     fun buildImprovedUnifyingTheoryPrompt(
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         val exampleText = examples.take(6).joinToString("\n") {
             "  \"${it.text}\" (${it.quality_score}/10)"
         }
-        
+
         return """Generate a UNIFYING THEORY trio.
+TARGET SPICE LEVEL: $spiceLevel/5.
 
 THE PSYCHOLOGY: This is PATTERN RECOGNITION comedy.
 Three unrelated things with an UNEXPECTED CONNECTION.
@@ -1025,7 +1046,7 @@ Generate ONE trio where the connection makes people go "OH!"."""
     // ============================================
     // INTEGRATION HELPER
     // ============================================
-    
+
     /**
      * Returns the appropriate prompt builder for a game ID.
      * Call this from LLMCardGeneratorV2 instead of the old buildXPrompt methods.
@@ -1033,7 +1054,7 @@ Generate ONE trio where the connection makes people go "OH!"."""
     fun getPromptForGame(
         gameId: String,
         examples: List<GoldCardsLoader.GoldCard>,
-        spiceLevel: Int
+        spiceLevel: Int,
     ): String {
         return when (gameId) {
             GameIds.ROAST_CONS -> buildImprovedRoastPrompt(examples, spiceLevel)

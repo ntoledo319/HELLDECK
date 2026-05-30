@@ -24,10 +24,10 @@ import kotlinx.coroutines.delay
 
 /**
  * Game Action Hints - "Idiot-proof" one-liner instructions per game.
- * 
+ *
  * Shows a prominent, verb-first instruction at the start of INPUT phase.
  * Auto-hides after 3 seconds. Smaller/dimmer on repeat plays of same game type.
- * 
+ *
  * Design: Answer "What do I physically DO?" in under 5 seconds.
  */
 
@@ -123,7 +123,7 @@ fun getActionHintForGame(gameId: String): ActionHint {
 
 /**
  * Animated action hint banner that appears during INPUT phase.
- * 
+ *
  * @param gameId The current game being played
  * @param isFirstTimePlayingGame Whether this is the user's first time playing this game type
  * @param autoHideDelayMs How long to show the hint before auto-hiding (0 = never auto-hide)

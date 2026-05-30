@@ -16,8 +16,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
-import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.ui.components.EmptyState
@@ -192,7 +190,9 @@ fun RolesScreen(
                                             DropdownMenuItem(
                                                 text = {
                                                     Row(
-                                                        horizontalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
+                                                        horizontalArrangement = Arrangement.spacedBy(
+                                                            HelldeckSpacing.Small.dp,
+                                                        ),
                                                         verticalAlignment = Alignment.CenterVertically,
                                                     ) {
                                                         Text(icon, style = MaterialTheme.typography.titleMedium)

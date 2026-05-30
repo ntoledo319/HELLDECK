@@ -131,7 +131,7 @@ object PromoCodeManager {
             .trim()
             .uppercase()
             .replace(Regex("\\s+"), "") // Remove all whitespace
-            .replace(Regex("-+"), "-")  // Collapse multiple dashes
+            .replace(Regex("-+"), "-") // Collapse multiple dashes
     }
 
     /**

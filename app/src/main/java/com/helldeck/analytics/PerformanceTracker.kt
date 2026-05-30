@@ -7,44 +7,44 @@ import java.util.concurrent.atomic.AtomicLong
 
 /**
  * Tracks performance metrics for card generation and game operations.
- * 
+ *
  * Provides detailed metrics on:
  * - LLM generation times and success rates
  * - Fallback usage patterns
  * - Memory allocation during generation
  * - UI rendering performance
- * 
+ *
  * @ai_prompt Use `perfTracker.startGeneration()` before card generation,
  * then `perfTracker.recordGeneration()` with the result to track metrics.
- * 
+ *
  * @context_boundary Metrics do not affect game logic - purely observability
  */
 object PerformanceTracker {
-    
+
     // Generation method tracking
     enum class GenerationMethod {
         LLM_V2,
         TEMPLATE_V3,
         GOLD_CARD,
-        FALLBACK
+        FALLBACK,
     }
-    
+
     // Metrics storage
     private val generationCounts = ConcurrentHashMap<GenerationMethod, AtomicLong>()
     private val generationTimes = ConcurrentHashMap<GenerationMethod, MutableList<Long>>()
     private val gameGenerationCounts = ConcurrentHashMap<String, AtomicLong>()
     private val failureReasons = ConcurrentHashMap<String, AtomicLong>()
-    
+
     // Active operation tracking
     private val activeGenerations = ConcurrentHashMap<String, Long>()
-    
+
     init {
         GenerationMethod.values().forEach { method ->
             generationCounts[method] = AtomicLong(0)
             generationTimes[method] = mutableListOf()
         }
     }
-    
+
     /**
      * Start tracking a generation operation.
      * Returns an operation ID for later recording.
@@ -54,10 +54,10 @@ object PerformanceTracker {
         activeGenerations[opId] = SystemClock.elapsedRealtimeNanos()
         return opId
     }
-    
+
     /**
      * Record a completed generation operation.
-     * 
+     *
      * @param opId Operation ID from startGeneration()
      * @param method Which generation method was used
      * @param gameId The game that was generated for
@@ -69,12 +69,12 @@ object PerformanceTracker {
         method: GenerationMethod,
         gameId: String,
         success: Boolean = true,
-        failureReason: String? = null
+        failureReason: String? = null,
     ) {
         val startTime = activeGenerations.remove(opId) ?: return
         val durationNs = SystemClock.elapsedRealtimeNanos() - startTime
         val durationMs = durationNs / 1_000_000
-        
+
         // Record method-specific metrics
         generationCounts[method]?.incrementAndGet()
         synchronized(generationTimes[method] ?: mutableListOf<Long>()) {
@@ -84,32 +84,32 @@ object PerformanceTracker {
                 generationTimes[method]?.removeAt(0)
             }
         }
-        
+
         // Record per-game metrics
         gameGenerationCounts.computeIfAbsent(gameId) { AtomicLong(0) }.incrementAndGet()
-        
+
         // Record failure reasons
         if (!success && failureReason != null) {
             failureReasons.computeIfAbsent(failureReason) { AtomicLong(0) }.incrementAndGet()
         }
-        
+
         // Log slow generations (>5s)
         if (durationMs > 5000) {
             Logger.w("Slow generation detected: ${durationMs}ms using $method for $gameId")
         }
     }
-    
+
     /**
      * Get success rate for a specific generation method.
      */
     fun getSuccessRate(method: GenerationMethod): Double {
         val count = generationCounts[method]?.get() ?: 0
         if (count == 0L) return 0.0
-        
+
         val total = generationCounts.values.sumOf { it.get() }
         return count.toDouble() / total.toDouble()
     }
-    
+
     /**
      * Get average generation time for a method.
      */
@@ -128,12 +128,12 @@ object PerformanceTracker {
             generationTimes[method]?.toList() ?: emptyList()
         }
         if (times.isEmpty()) return 0L
-        
+
         val sorted = times.sorted()
         val index = (sorted.size * 0.95).toInt().coerceAtMost(sorted.size - 1)
         return sorted[index]
     }
-    
+
     /**
      * Get metrics summary for debugging/dashboard.
      */
@@ -143,25 +143,25 @@ object PerformanceTracker {
                 "count" to (generationCounts[GenerationMethod.LLM_V2]?.get() ?: 0),
                 "avg_ms" to getAverageTime(GenerationMethod.LLM_V2),
                 "p95_ms" to getP95Time(GenerationMethod.LLM_V2),
-                "success_rate" to getSuccessRate(GenerationMethod.LLM_V2)
+                "success_rate" to getSuccessRate(GenerationMethod.LLM_V2),
             ),
             "template_v3" to mapOf(
                 "count" to (generationCounts[GenerationMethod.TEMPLATE_V3]?.get() ?: 0),
                 "avg_ms" to getAverageTime(GenerationMethod.TEMPLATE_V3),
                 "p95_ms" to getP95Time(GenerationMethod.TEMPLATE_V3),
-                "success_rate" to getSuccessRate(GenerationMethod.TEMPLATE_V3)
+                "success_rate" to getSuccessRate(GenerationMethod.TEMPLATE_V3),
             ),
             "gold_cards" to mapOf(
                 "count" to (generationCounts[GenerationMethod.GOLD_CARD]?.get() ?: 0),
                 "avg_ms" to getAverageTime(GenerationMethod.GOLD_CARD),
                 "p95_ms" to getP95Time(GenerationMethod.GOLD_CARD),
-                "success_rate" to getSuccessRate(GenerationMethod.GOLD_CARD)
+                "success_rate" to getSuccessRate(GenerationMethod.GOLD_CARD),
             ),
             "fallback" to mapOf(
                 "count" to (generationCounts[GenerationMethod.FALLBACK]?.get() ?: 0),
                 "avg_ms" to getAverageTime(GenerationMethod.FALLBACK),
                 "p95_ms" to getP95Time(GenerationMethod.FALLBACK),
-                "success_rate" to getSuccessRate(GenerationMethod.FALLBACK)
+                "success_rate" to getSuccessRate(GenerationMethod.FALLBACK),
             ),
             "active_operations" to activeGenerations.size,
             "top_failures" to failureReasons.entries
@@ -169,10 +169,10 @@ object PerformanceTracker {
                 .take(5)
                 .associate { it.key to it.value.get() },
             "per_game" to gameGenerationCounts.entries
-                .associate { it.key to it.value.get() }
+                .associate { it.key to it.value.get() },
         )
     }
-    
+
     /**
      * Reset all metrics (useful for testing or new session).
      */
@@ -183,7 +183,7 @@ object PerformanceTracker {
         failureReasons.clear()
         activeGenerations.clear()
     }
-    
+
     /**
      * Log current metrics to console for debugging.
      */

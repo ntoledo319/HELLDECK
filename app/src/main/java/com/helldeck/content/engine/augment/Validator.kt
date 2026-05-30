@@ -12,6 +12,7 @@ class Validator(
 
     fun accepts(s: String, maxWords: Int, spice: Int): Boolean {
         if (s.split(Regex("\\s+")).size > maxWords) return false
+        if (spice > maxSpice) return false
         if (spice <= 1 && containsProfanity(s)) return false
         return true
     }

@@ -48,19 +48,23 @@ class GoldBank(assetManager: AssetManager) {
                 val cardsArray = gameObj.optJSONArray("cards") ?: return@forEach
 
                 for (i in 0 until cardsArray.length()) {
-                    val cardObj = cardsArray.optJSONObject(i) ?: continue
-                    val textValue = cardObj.optString("text").takeIf { it.isNotBlank() } ?: continue
-                    val normalizedGame = gameKey.uppercase(Locale.US)
-                    val card = GoldCard(
-                        id = cardObj.optString("id").ifBlank { "${normalizedGame.lowercase(Locale.US)}_${i + 1}" },
-                        game = normalizedGame,
-                        family = cardObj.optString("family").ifBlank { "gold_${normalizedGame.lowercase(Locale.US)}" },
-                        text = textValue.trim(),
-                        spice = cardObj.optInt("spice", 1),
-                        locality = cardObj.optInt("locality", 1),
-                        options = null,
-                    )
-                    byGame.getOrPut(normalizedGame) { mutableListOf() }.add(card)
+                    val cardObj = cardsArray.optJSONObject(i)
+                    val textValue = cardObj?.optString("text")?.takeIf { it.isNotBlank() }
+                    if (cardObj != null && textValue != null) {
+                        val normalizedGame = gameKey.uppercase(Locale.US)
+                        val card = GoldCard(
+                            id = cardObj.optString("id").ifBlank { "${normalizedGame.lowercase(Locale.US)}_${i + 1}" },
+                            game = normalizedGame,
+                            family = cardObj.optString(
+                                "family",
+                            ).ifBlank { "gold_${normalizedGame.lowercase(Locale.US)}" },
+                            text = textValue.trim(),
+                            spice = cardObj.optInt("spice", 1),
+                            locality = cardObj.optInt("locality", 1),
+                            options = null,
+                        )
+                        byGame.getOrPut(normalizedGame) { mutableListOf() }.add(card)
+                    }
                 }
             }
             byGame
@@ -86,7 +90,10 @@ class GoldBank(assetManager: AssetManager) {
         var chosen = filtered.last()
         for (i in filtered.indices) {
             roll -= weights[i]
-            if (roll <= 0) { chosen = filtered[i]; break }
+            if (roll <= 0) {
+                chosen = filtered[i]
+                break
+            }
         }
 
         // Track this draw for anti-repetition
@@ -129,11 +136,13 @@ class GoldBank(assetManager: AssetManager) {
             GameIds.POISON_PITCH,
             GameIds.RED_FLAG,
             GameIds.OVER_UNDER,
-            GameIds.TEXT_TRAP -> GameOptions.AB("Option A", "Option B")
+            GameIds.TEXT_TRAP,
+            -> GameOptions.AB("Option A", "Option B")
             GameIds.FILLIN -> GameOptions.Challenge("Fill in the blanks")
             GameIds.HOTSEAT_IMP,
             GameIds.UNIFYING_THEORY,
-            GameIds.TITLE_FIGHT -> GameOptions.Challenge("Freestyle challenge")
+            GameIds.TITLE_FIGHT,
+            -> GameOptions.Challenge("Freestyle challenge")
             GameIds.REALITY_CHECK -> GameOptions.SeatSelect(listOf(1, 2, 3), null)
             GameIds.TABOO -> GameOptions.Taboo("Secret word", listOf("forbidden 1", "forbidden 2", "forbidden 3"))
             GameIds.SCATTER -> GameOptions.Scatter("Category", "A")

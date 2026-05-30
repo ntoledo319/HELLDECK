@@ -80,8 +80,12 @@ object CardQualityInspector {
 
         // Reject cards leaking meta-instructions into card text
         val instructionPatterns = listOf(
-            "pick the perfect", "choose your reply", "choose the mood",
-            "what vibe should", "pick the reply", "choose your energy",
+            "pick the perfect",
+            "choose your reply",
+            "choose the mood",
+            "what vibe should",
+            "pick the reply",
+            "choose your energy",
         )
         val lowerForInstruction = text.lowercase()
         if (instructionPatterns.any { lowerForInstruction.contains(it) }) {

@@ -103,7 +103,10 @@ fun GameRulesScene(
                                 Spacer(modifier = Modifier.height(8.dp))
 
                                 Text(
-                                    text = "🎲 Interaction: ${game.interaction.name.replace("_", " ").replaceFirstChar { it.uppercase() }}",
+                                    text = "🎲 Interaction: ${game.interaction.name.replace(
+                                        "_",
+                                        " ",
+                                    ).replaceFirstChar { it.uppercase() }}",
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.Medium,
                                     color = MaterialTheme.colorScheme.primary,

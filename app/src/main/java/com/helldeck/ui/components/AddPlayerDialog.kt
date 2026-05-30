@@ -15,22 +15,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.helldeck.content.model.Player
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.hdFieldColors
-import com.helldeck.ui.theme.HelldeckSpacing
 import com.helldeck.utils.ValidationUtils
 
 /**
  * Centralized player creation/editing dialog.
  * Replaces duplicated player creation logic in PlayersScene, RollcallScene, and SettingsScene.
- * 
+ *
  * Features:
  * - Name validation with duplicate checking
  * - Emoji selection with quick picks and full picker
  * - Duplicate emoji warning
  * - Edit mode for existing players
  * - Consistent HELLDECK neon styling
- * 
+ *
  * @ai_prompt Use AddPlayerDialog for all player creation/editing
  * @context_boundary Single source of truth for player creation UX
  */
@@ -54,7 +52,7 @@ fun AddPlayerDialog(
     var showFullEmojiPicker by remember { mutableStateOf(false) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
     var showEmojiWarning by remember { mutableStateOf(false) }
-    
+
     // Validate on emoji change
     LaunchedEffect(emoji) {
         showEmojiWarning = ValidationUtils.isEmojiDuplicate(
@@ -63,7 +61,7 @@ fun AddPlayerDialog(
             excludePlayerId = editingPlayer?.id,
         )
     }
-    
+
     AlertDialog(
         onDismissRequest = onDismiss,
         modifier = modifier,
@@ -90,7 +88,7 @@ fun AddPlayerDialog(
                         fontWeight = FontWeight.Bold,
                         color = HelldeckColors.colorPrimary,
                     )
-                    
+
                     // Quick pick emojis
                     LazyVerticalGrid(
                         columns = GridCells.Fixed(6),
@@ -100,40 +98,40 @@ fun AddPlayerDialog(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
-                    items(QUICK_PICK_EMOJIS) { quickEmoji ->
-                        val isSelected = quickEmoji == emoji
-                        Surface(
-                            modifier = Modifier
-                                .aspectRatio(1f)
-                                .clickable { emoji = quickEmoji },
-                            shape = RoundedCornerShape(12.dp),
-                            color = if (isSelected) {
-                                HelldeckColors.colorPrimary.copy(alpha = 0.2f)
-                            } else {
-                                HelldeckColors.surfaceElevated
-                            },
-                            border = if (isSelected) {
-                                androidx.compose.foundation.BorderStroke(
-                                    3.dp,
-                                    HelldeckColors.colorPrimary,
-                                )
-                            } else {
-                                null
-                            },
-                        ) {
-                            Box(
-                                contentAlignment = Alignment.Center,
-                                modifier = Modifier.fillMaxSize().padding(4.dp),
+                        items(QUICK_PICK_EMOJIS) { quickEmoji ->
+                            val isSelected = quickEmoji == emoji
+                            Surface(
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .clickable { emoji = quickEmoji },
+                                shape = RoundedCornerShape(12.dp),
+                                color = if (isSelected) {
+                                    HelldeckColors.colorPrimary.copy(alpha = 0.2f)
+                                } else {
+                                    HelldeckColors.surfaceElevated
+                                },
+                                border = if (isSelected) {
+                                    androidx.compose.foundation.BorderStroke(
+                                        3.dp,
+                                        HelldeckColors.colorPrimary,
+                                    )
+                                } else {
+                                    null
+                                },
                             ) {
-                                Text(
-                                    text = quickEmoji,
-                                    fontSize = 28.sp,
-                                )
+                                Box(
+                                    contentAlignment = Alignment.Center,
+                                    modifier = Modifier.fillMaxSize().padding(4.dp),
+                                ) {
+                                    Text(
+                                        text = quickEmoji,
+                                        fontSize = 28.sp,
+                                    )
+                                }
                             }
                         }
                     }
-                    }
-                    
+
                     // More emojis button
                     OutlineButton(
                         text = "More Emojis...",
@@ -141,7 +139,7 @@ fun AddPlayerDialog(
                         modifier = Modifier.fillMaxWidth(),
                         icon = "🔍",
                     )
-                    
+
                     // Emoji duplicate warning
                     if (showEmojiWarning) {
                         WarningBanner(
@@ -151,7 +149,7 @@ fun AddPlayerDialog(
                         )
                     }
                 }
-                
+
                 // Name input section
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
@@ -160,10 +158,10 @@ fun AddPlayerDialog(
                         fontWeight = FontWeight.Bold,
                         color = HelldeckColors.colorPrimary,
                     )
-                    
+
                     OutlinedTextField(
                         value = name,
-                        onValueChange = { 
+                        onValueChange = {
                             name = it
                             errorMessage = null
                         },
@@ -183,7 +181,7 @@ fun AddPlayerDialog(
                         },
                     )
                 }
-                
+
                 // Preview section
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
@@ -191,7 +189,7 @@ fun AddPlayerDialog(
                         style = MaterialTheme.typography.labelMedium,
                         color = HelldeckColors.colorMuted,
                     )
-                    
+
                     NeonCard(
                         modifier = Modifier.fillMaxWidth(),
                         accentColor = HelldeckColors.colorSecondary,
@@ -229,28 +227,28 @@ fun AddPlayerDialog(
                     onClick = onDismiss,
                     modifier = Modifier.weight(1f),
                 )
-                
+
                 GlowButton(
                     text = if (editingPlayer != null) "Save" else "Add",
                     onClick = {
-                    // Validate
-                    val nameValidation = ValidationUtils.validatePlayerName(
-                        name = name,
-                        existingPlayers = existingPlayers,
-                        excludePlayerId = editingPlayer?.id,
-                    )
-                    
-                    if (!nameValidation.isValid) {
-                        errorMessage = nameValidation.errorMessage
-                        return@GlowButton
-                    }
-                    
-                    val emojiValidation = ValidationUtils.validatePlayerEmoji(emoji)
-                    if (!emojiValidation.isValid) {
-                        errorMessage = emojiValidation.errorMessage
-                        return@GlowButton
-                    }
-                    
+                        // Validate
+                        val nameValidation = ValidationUtils.validatePlayerName(
+                            name = name,
+                            existingPlayers = existingPlayers,
+                            excludePlayerId = editingPlayer?.id,
+                        )
+
+                        if (!nameValidation.isValid) {
+                            errorMessage = nameValidation.errorMessage
+                            return@GlowButton
+                        }
+
+                        val emojiValidation = ValidationUtils.validatePlayerEmoji(emoji)
+                        if (!emojiValidation.isValid) {
+                            errorMessage = emojiValidation.errorMessage
+                            return@GlowButton
+                        }
+
                         // Success
                         onPlayerCreated(name.trim(), emoji.trim())
                         onDismiss()
@@ -261,7 +259,7 @@ fun AddPlayerDialog(
             }
         },
     )
-    
+
     // Full emoji picker
     if (showFullEmojiPicker) {
         com.helldeck.ui.EmojiPicker(
@@ -287,14 +285,14 @@ fun QuickAddPlayerButton(
     icon: String = "➕",
 ) {
     var showDialog by remember { mutableStateOf(false) }
-    
+
     GlowButton(
         text = label,
         onClick = { showDialog = true },
         modifier = modifier,
         icon = icon,
     )
-    
+
     if (showDialog) {
         AddPlayerDialog(
             existingPlayers = existingPlayers,

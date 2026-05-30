@@ -441,7 +441,6 @@ object AssetValidator {
             val json = Json { ignoreUnknownKeys = true }
             json.parseToJsonElement(content)
 
-
             // Count gold cards (approximate)
             val cardCount = content.count { it == '{' } - 1
             if (cardCount < 20) {

@@ -30,7 +30,7 @@ object SettingsStore {
     private val KEY_REDUCED_MOTION = booleanPreferencesKey("reduced_motion")
     private val KEY_HIGH_CONTRAST = booleanPreferencesKey("high_contrast")
     private val KEY_NO_FLASH = booleanPreferencesKey("no_flash")
-    
+
     // Session memory
     private val KEY_LAST_ATTENDANCE = stringPreferencesKey("last_attendance")
     private val KEY_RECENT_EMOJIS = stringPreferencesKey("recent_emojis")
@@ -179,7 +179,7 @@ object SettingsStore {
             prefs[KEY_NO_FLASH] = true
         }
     }
-    
+
     // Session Memory
     suspend fun readLastAttendance(): List<String> {
         val prefs = AppCtx.ctx.helldeckDataStore.data.first()
@@ -190,13 +190,13 @@ object SettingsStore {
             serialized.split(",")
         }
     }
-    
+
     suspend fun writeLastAttendance(playerIds: List<String>) {
-        AppCtx.ctx.helldeckDataStore.edit { 
+        AppCtx.ctx.helldeckDataStore.edit {
             it[KEY_LAST_ATTENDANCE] = playerIds.joinToString(",")
         }
     }
-    
+
     suspend fun readRecentEmojis(): List<String> {
         val prefs = AppCtx.ctx.helldeckDataStore.data.first()
         val serialized = prefs[KEY_RECENT_EMOJIS] ?: ""
@@ -206,9 +206,9 @@ object SettingsStore {
             serialized.split(",")
         }
     }
-    
+
     suspend fun writeRecentEmojis(emojis: List<String>) {
-        AppCtx.ctx.helldeckDataStore.edit { 
+        AppCtx.ctx.helldeckDataStore.edit {
             it[KEY_RECENT_EMOJIS] = emojis.joinToString(",")
         }
     }

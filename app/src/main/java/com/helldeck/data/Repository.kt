@@ -5,24 +5,23 @@ import com.helldeck.content.db.HelldeckDb
 import com.helldeck.engine.Feedback
 import com.helldeck.engine.SessionSummary
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import java.util.UUID
 
 /**
  * Repository class providing high-level database operations for game sessions.
- * 
+ *
  * This class wraps the Room database DAOs to provide a simpler API for
  * managing game sessions, rounds, and players.
  */
 class Repository private constructor(private val db: HelldeckDb) {
-    
+
     // Map to track Long sessionId -> String sessionId conversions for tests
     private val sessionIdMap = mutableMapOf<Long, String>()
-    
+
     companion object {
         @Volatile
         private var INSTANCE: Repository? = null
-        
+
         fun get(context: Context): Repository {
             return INSTANCE ?: synchronized(this) {
                 val instance = Repository(HelldeckDb.get(context))
@@ -31,10 +30,10 @@ class Repository private constructor(private val db: HelldeckDb) {
             }
         }
     }
-    
+
     /**
      * Creates a new game session with the given players.
-     * 
+     *
      * @param playerNames List of player names for the session
      * @return Session ID as a Long (converted from String UUID)
      */
@@ -47,7 +46,7 @@ class Repository private constructor(private val db: HelldeckDb) {
             participatingPlayers = playerNames.joinToString(","),
         )
         db.sessionMetrics().upsert(session)
-        
+
         // Create player entities for each player name
         playerNames.forEach { name ->
             val player = PlayerEntity(
@@ -58,16 +57,16 @@ class Repository private constructor(private val db: HelldeckDb) {
             )
             db.players().upsert(player)
         }
-        
+
         // Use a simple counter-based Long ID and map it
         val longId = System.currentTimeMillis()
         sessionIdMap[longId] = sessionId
         return longId
     }
-    
+
     /**
      * Records a round in the database.
-     * 
+     *
      * @param sessionId Session ID (Long, will be converted to String)
      * @param templateId Template ID used for this round
      * @param game Game type
@@ -86,7 +85,7 @@ class Repository private constructor(private val db: HelldeckDb) {
     ): Long {
         // Convert Long sessionId to String using the map
         val sessionIdStr = sessionIdMap[sessionId] ?: sessionId.toString()
-        
+
         val roundId = UUID.randomUUID().toString()
         val round = RoundMetricsEntity(
             roundId = roundId,
@@ -104,28 +103,28 @@ class Repository private constructor(private val db: HelldeckDb) {
             durationMs = feedback.latencyMs.toLong(),
         )
         db.roundMetrics().upsert(round)
-        
+
         // Update session metrics
         db.sessionMetrics().incrementRounds(sessionIdStr)
         db.sessionMetrics().addLolCount(sessionIdStr, feedback.lol)
         db.sessionMetrics().addMehCount(sessionIdStr, feedback.meh)
         db.sessionMetrics().addTrashCount(sessionIdStr, feedback.trash)
-        
+
         return roundId.hashCode().toLong()
     }
-    
+
     /**
      * Gets a session by ID.
-     * 
+     *
      * @param sessionId Session ID (Long)
      * @return SessionSummary or null if not found
      */
     suspend fun getSessionById(sessionId: Long): SessionSummary? {
         val sessionIdStr = sessionIdMap[sessionId] ?: sessionId.toString()
         val session = db.sessionMetrics().getSession(sessionIdStr) ?: return null
-        
+
         val playerNames = session.participatingPlayers.split(",").filter { it.isNotEmpty() }
-        
+
         return SessionSummary(
             sessionId = sessionId,
             startTime = session.startedAtMs,
@@ -138,10 +137,10 @@ class Repository private constructor(private val db: HelldeckDb) {
             highlights = emptyList(),
         )
     }
-    
+
     /**
      * Gets all rounds for a session.
-     * 
+     *
      * @param sessionId Session ID (Long)
      * @return Flow of RoundMetricsEntity list
      */
@@ -149,19 +148,19 @@ class Repository private constructor(private val db: HelldeckDb) {
         val sessionIdStr = sessionIdMap[sessionId] ?: sessionId.toString()
         return db.roundMetrics().getRoundsForSession(sessionIdStr)
     }
-    
+
     /**
      * Gets all players.
-     * 
+     *
      * @return Flow of PlayerEntity list
      */
     fun getAllPlayers(): Flow<List<PlayerEntity>> {
         return db.players().getAllPlayers()
     }
-    
+
     /**
      * Adds a new player.
-     * 
+     *
      * @param name Player name
      * @param avatar Player avatar emoji
      * @return Created PlayerEntity
@@ -176,10 +175,10 @@ class Repository private constructor(private val db: HelldeckDb) {
         db.players().upsert(player)
         return player
     }
-    
+
     /**
      * Updates a player's score.
-     * 
+     *
      * @param playerId Player ID
      * @param points Points to add (can be negative)
      */
@@ -188,4 +187,3 @@ class Repository private constructor(private val db: HelldeckDb) {
         db.players().addTotalPoints(playerId, points)
     }
 }
-

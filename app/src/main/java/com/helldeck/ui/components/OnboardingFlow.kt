@@ -20,27 +20,25 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.helldeck.content.model.Player
 import com.helldeck.engine.GameMetadata
 import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.ui.theme.HelldeckSpacing
-import com.helldeck.content.model.Player
 import com.helldeck.utils.ValidationUtils
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
  * Redesigned onboarding for first-time users.
- * 
+ *
  * Design Philosophy:
  * - Get users playing in <20 seconds
  * - 3 streamlined steps (Welcome → Gesture → Setup)
@@ -48,10 +46,10 @@ import kotlinx.coroutines.launch
  * - Proper Scaffold architecture with safe insets
  * - Progressive disclosure (advanced features taught contextually)
  * - Clear visual hierarchy with spacing tokens
- * 
+ *
  * Flow: Welcome (5s) → Core Gesture (10s) → Quick Setup (5-15s)
  * Total: 3 steps, ~20 seconds
- * 
+ *
  * @ai_prompt Redesigned onboarding using HELLDECK design system
  */
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterial3Api::class)
@@ -115,14 +113,18 @@ fun OnboardingFlow(
                     0 -> WelcomeStepV2(
                         reducedMotion = reducedMotion,
                         onNext = {
-                            haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                            haptic.performHapticFeedback(
+                                androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
+                            )
                             currentStep = 1
                         },
                     )
                     1 -> GestureDemoV2(
                         reducedMotion = reducedMotion,
                         onComplete = {
-                            haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                            haptic.performHapticFeedback(
+                                androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
+                            )
                             currentStep = 2
                         },
                     )
@@ -131,7 +133,9 @@ fun OnboardingFlow(
                         players = onboardingPlayers,
                         onPlayersChanged = { onboardingPlayers = it },
                         onComplete = {
-                            haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                            haptic.performHapticFeedback(
+                                androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress,
+                            )
                             onComplete(onboardingPlayers)
                         },
                     )
@@ -161,7 +165,7 @@ private fun OnboardingTopBar(
     onSkip: () -> Unit,
 ) {
     val reducedMotion = LocalReducedMotion.current
-    
+
     // Animated progress
     val animatedProgress by animateFloatAsState(
         targetValue = (currentStep + 1).toFloat() / totalSteps,
@@ -175,7 +179,7 @@ private fun OnboardingTopBar(
         },
         label = "progress_animation",
     )
-    
+
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = HelldeckColors.background.copy(alpha = 0.95f),
@@ -223,7 +227,7 @@ private fun OnboardingTopBar(
             // Skip button with hover effect
             val interactionSource = remember { MutableInteractionSource() }
             val isPressed by interactionSource.collectIsPressedAsState()
-            
+
             val skipScale by animateFloatAsState(
                 targetValue = if (isPressed) 0.92f else 1f,
                 animationSpec = if (reducedMotion) {
@@ -233,7 +237,7 @@ private fun OnboardingTopBar(
                 },
                 label = "skip_scale",
             )
-            
+
             TextButton(
                 onClick = onSkip,
                 interactionSource = interactionSource,
@@ -329,7 +333,7 @@ private fun WelcomeStepV2(
 ) {
     var showContent by remember { mutableStateOf(false) }
     var showFeatures by remember { mutableStateOf(false) }
-    
+
     val scale by animateFloatAsState(
         targetValue = if (showContent) 1f else 0.8f,
         animationSpec = if (reducedMotion) {
@@ -486,7 +490,7 @@ private fun GestureDemoV2(
             }
         }
     }
-    
+
     // Success animation before advancing
     LaunchedEffect(showSuccess) {
         if (showSuccess) {
@@ -612,7 +616,7 @@ private fun GestureDemoV2(
                                 ),
                                 label = "success_scale",
                             )
-                            
+
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Small.dp),
@@ -664,7 +668,6 @@ private fun GestureDemoV2(
     }
 }
 
-
 /**
  * Step 3: Quick setup - add players or skip
  */
@@ -679,7 +682,7 @@ private fun QuickSetupV2(
     var showContent by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     val warning = ValidationUtils.getPlayerCountWarning(players.size)
-    
+
     LaunchedEffect(Unit) {
         delay(100)
         showContent = true

@@ -6,29 +6,20 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.content.db.HelldeckDb
-import com.helldeck.content.engine.ContextualSelector
-import com.helldeck.content.engine.GameEngine
 import com.helldeck.content.engine.TemplateEngine
 import com.helldeck.content.util.SeededRng
 import com.helldeck.data.Repository
-import com.helldeck.fixtures.TestDataFactory
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
-import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
-import kotlin.random.Random
 
 /**
  * End-to-end tests for complete game flows
- * 
+ *
  * NOTE: This test uses an older GameEngine API that may not match current implementation.
  * Some tests may need updates to work with the current GameEngine interface.
  */
@@ -41,7 +32,6 @@ class CompleteGameFlowTest {
     private lateinit var repository: Repository
     private lateinit var contentRepo: ContentRepository
     private lateinit var templateEngine: TemplateEngine
-    private lateinit var gameEngine: GameEngine
 
     @Before
     fun setup() {
@@ -53,11 +43,10 @@ class CompleteGameFlowTest {
         repository = Repository.get(context)
         contentRepo = ContentRepository(context)
         contentRepo.initialize()
-        
+
         val rng = SeededRng(42)
         templateEngine = TemplateEngine(contentRepo, rng)
-        
-        val selector = ContextualSelector(contentRepo, Random(42))
+
         // GameEngine constructor doesn't match - this test needs API update
         // gameEngine = GameEngine(contentRepo, rng, selector, null, "", null)
     }
@@ -70,7 +59,7 @@ class CompleteGameFlowTest {
     @Test
     @Ignore("Uses outdated GameEngine API - needs complete rewrite")
     fun `complete game session from start to finish`() = runBlocking {
-        // TODO: Rewrite to use current GameEngine API
+        // Pending rewrite to use current GameEngine API.
         /*
         // Arrange - Set up game
         val playerNames = listOf("Alice", "Bob", "Charlie")
@@ -129,7 +118,7 @@ class CompleteGameFlowTest {
         assertNotNull("Stats should not be null", stats)
         assertTrue("Should have totalRounds stat", stats.containsKey("totalRounds"))
         assertEquals("Total rounds should be 5", 5, stats["totalRounds"])
-        */
+         */
         // Placeholder to prevent compilation errors
         assertTrue("Test disabled - needs API update", true)
     }
@@ -179,7 +168,7 @@ class CompleteGameFlowTest {
         // Verify variety in game types
         val uniqueGames = rounds.map { it.game }.distinct()
         assertEquals("Should have 2 unique game types", 2, uniqueGames.size)
-        */
+         */
         assertTrue("Test disabled - needs API update", true)
     }
 
@@ -235,7 +224,7 @@ class CompleteGameFlowTest {
             "Late rounds should favor high-performing templates more than early rounds",
             lateFavoriteCount >= earlyFavoriteCount,
         )
-        */
+         */
         assertTrue("Test disabled - needs API update", true)
     }
 
@@ -281,7 +270,7 @@ class CompleteGameFlowTest {
         // Assert - Game should continue normally after error
         val rounds = repository.getRoundsForSession(gameEngine.currentSessionId!!).first()
         assertEquals("Should have 2 successful rounds", 2, rounds.size)
-        */
+         */
         assertTrue("Test disabled - needs API update", true)
     }
 
@@ -338,7 +327,7 @@ class CompleteGameFlowTest {
             "Average time per round should be <100ms (actual: ${avgTimePerRound}ms)",
             avgTimePerRound < 100,
         )
-        */
+         */
         assertTrue("Test disabled - needs API update", true)
     }
 }

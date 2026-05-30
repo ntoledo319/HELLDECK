@@ -22,7 +22,6 @@ import androidx.compose.ui.window.DialogProperties
 import com.helldeck.billing.PurchaseManager
 import com.helldeck.engine.GameMetadata
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.gameIconFor

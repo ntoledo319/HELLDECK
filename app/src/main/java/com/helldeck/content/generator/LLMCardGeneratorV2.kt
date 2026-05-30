@@ -130,7 +130,7 @@ NEVER USE:
         val user = ComedySciencePrompts.getPromptForGame(
             gameId = request.gameId,
             examples = goldExamples,
-            spiceLevel = request.spiceMax
+            spiceLevel = request.spiceMax,
         )
 
         return Prompt(system, user)
@@ -178,13 +178,13 @@ NEVER USE:
     private fun validateQuality(result: GenerationResult): Boolean {
         val text = result.filledCard.text
         val gameId = result.filledCard.game
-        
+
         // Basic quality score check
         if (result.qualityScore < 0.65) {
             Logger.d("Quality score too low: ${result.qualityScore}")
             return false
         }
-        
+
         // Extract game-specific options for validation
         val optionA: String?
         val optionB: String?
@@ -192,7 +192,7 @@ NEVER USE:
         val forbidden: List<String>?
         val words: List<String>?
         val tones: List<String>?
-        
+
         when (val opts = result.options) {
             is GameOptions.AB -> {
                 optionA = opts.optionA
@@ -243,7 +243,7 @@ NEVER USE:
                 tones = null
             }
         }
-        
+
         // Use ComedyScienceValidator for comprehensive validation
         val validation = ComedyScienceValidator.validate(
             text = text,
@@ -253,17 +253,19 @@ NEVER USE:
             category = category,
             forbidden = forbidden,
             words = words,
-            tones = tones
+            tones = tones,
         )
-        
+
         if (!validation.isValid) {
             Logger.d("ComedyScience rejected: ${validation.failureReasons.joinToString(", ")}")
             return false
         }
-        
+
         // Log successful validation with scores
-        Logger.d("ComedyScience passed: specificity=${validation.specificityScore}, visual=${validation.visualImageryScore}, total=${validation.totalScore}")
-        
+        Logger.d(
+            "ComedyScience passed: specificity=${validation.specificityScore}, visual=${validation.visualImageryScore}, total=${validation.totalScore}",
+        )
+
         return true
     }
 
@@ -445,7 +447,7 @@ NEVER USE:
 
         return templateFallback.generate(templateRequest, rng)?.let {
             val score = ComedyScienceValidator.scoreCard(
-                it.filledCard.text, request.gameId
+                it.filledCard.text, request.gameId,
             ) / 10.0
             GenerationResult(
                 filledCard = it.filledCard,
