@@ -22,12 +22,11 @@ class CardGeneratorV3(
 ) {
     // Performance optimization: reuse regex objects and pre-compute lowercase lists
     private val whitespaceRegex = Regex("\\s+")
-    private val bannedTokensLower = artifacts.bannedTokens.map { it.lowercase() }
     private val bannedPhrasesLower = artifacts.bannedPhrases.map { it.lowercase() }
     private val bannedTokenPatterns = artifacts.bannedTokens.map { token ->
         Regex("\\b" + Regex.escape(token) + "\\b", RegexOption.IGNORE_CASE)
     }
-    private val humorScorer = HumorScorer(lexiconRepository, artifacts.pairings)
+    private val humorScorer = HumorScorer(artifacts.pairings)
 
     // Anti-repetition tracking: store recently generated card texts per session+game
     private data class SessionGameKey(val sessionId: String, val gameId: String)
@@ -158,12 +157,16 @@ class CardGeneratorV3(
             optionA = blueprint.option_provider?.let { provider ->
                 if (provider.type == BlueprintOptionProvider.OptionProviderType.AB) {
                     provider.options.getOrNull(0)?.fromSlot?.let { slots[it]?.displayText }
-                } else null
+                } else {
+                    null
+                }
             },
             optionB = blueprint.option_provider?.let { provider ->
                 if (provider.type == BlueprintOptionProvider.OptionProviderType.AB) {
                     provider.options.getOrNull(1)?.fromSlot?.let { slots[it]?.displayText }
-                } else null
+                } else {
+                    null
+                }
             },
         )
         if (!comedyValidation.isValid) {

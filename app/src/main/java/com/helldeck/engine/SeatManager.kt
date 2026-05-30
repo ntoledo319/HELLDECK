@@ -36,11 +36,11 @@ object SeatManager {
      */
     fun setupSeats(seatCount: Int) {
         require(seatCount in 2..25) { "Seat count must be between 2 and 25" }
-        
+
         _participants.value = SessionParticipant.createSeats(seatCount)
         initializeTurnOrder()
         reorganizeTeams()
-        
+
         Logger.d("Set up $seatCount seats for session")
     }
 
@@ -50,14 +50,14 @@ object SeatManager {
     fun addSeat(): SessionParticipant {
         val currentParticipants = _participants.value.toMutableList()
         val nextSeatNumber = (currentParticipants.maxOfOrNull { it.seatNumber } ?: 0) + 1
-        
+
         val newParticipant = SessionParticipant(seatNumber = nextSeatNumber)
         currentParticipants.add(newParticipant)
         _participants.value = currentParticipants
-        
+
         turnOrder.add(nextSeatNumber)
         reorganizeTeams()
-        
+
         Logger.d("Added seat $nextSeatNumber, Total seats: ${currentParticipants.size}")
         return newParticipant
     }
@@ -74,7 +74,7 @@ object SeatManager {
             seatVotes.remove(seatNumber)
             turnOrder.remove(seatNumber)
             reorganizeTeams()
-            
+
             Logger.d("Removed seat $seatNumber, Total seats: ${currentParticipants.size}")
         }
     }
@@ -339,10 +339,10 @@ object SeatManager {
                 sessionPoints = currentParticipants[participantIndex].sessionPoints + points,
             )
             _participants.value = currentParticipants
-            
+
             // Update team points
             reorganizeTeams()
-            
+
             Logger.d("Added $points points to seat $seatNumber")
         }
     }

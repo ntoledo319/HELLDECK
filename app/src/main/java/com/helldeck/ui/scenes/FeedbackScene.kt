@@ -1,11 +1,11 @@
 package com.helldeck.ui.scenes
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
@@ -33,7 +33,6 @@ import com.helldeck.engine.GameMetadata
 import com.helldeck.engine.HapticEvent
 import com.helldeck.ui.CardFace
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 import com.helldeck.ui.HelldeckVm

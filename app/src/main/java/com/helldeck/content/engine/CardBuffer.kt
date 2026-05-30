@@ -101,7 +101,7 @@ class CardBuffer(
             // Fallback: generate immediately if buffer empty
             currentRequest?.let { request ->
                 engine.next(request)
-            } ?: throw IllegalStateException("CardBuffer: No request set, cannot generate card")
+            } ?: error("CardBuffer: No request set, cannot generate card")
         }
     }
 

@@ -22,8 +22,8 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.focused
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -90,7 +90,7 @@ fun GiantButton(
         contentPadding = PaddingValues(horizontal = 24.dp, vertical = 20.dp),
         border = androidx.compose.foundation.BorderStroke(
             width = 2.dp,
-            color = if (enabled) MaterialTheme.colorScheme.primary.copy(alpha = 0.3f) else Color.Transparent
+            color = if (enabled) MaterialTheme.colorScheme.primary.copy(alpha = 0.3f) else Color.Transparent,
         ),
     ) {
         if (loading) {

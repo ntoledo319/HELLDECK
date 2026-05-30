@@ -78,7 +78,7 @@ object PurchaseManager : PurchasesUpdatedListener {
         DISCONNECTED,
         CONNECTING,
         CONNECTED,
-        ERROR
+        ERROR,
     }
 
     /**

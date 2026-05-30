@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 /**
  * Onboarding state management for HELLDECK.
  * Manages user onboarding completion status and flow control.
- * 
+ *
  * @ai_prompt Use OnboardingManager to check/mark onboarding status
  * @context_boundary Onboarding state is stored in SettingsStore via DataStore
  */
@@ -29,7 +29,7 @@ class OnboardingManager {
 /**
  * Wrapper that shows onboarding flow for first-time users.
  * Uses the streamlined 3-step onboarding from components.OnboardingFlow.
- * 
+ *
  * Design: Welcome → Core Gesture Demo → Ready to Play (~30 seconds total)
  */
 @Composable

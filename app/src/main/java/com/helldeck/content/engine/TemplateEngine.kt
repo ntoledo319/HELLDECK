@@ -131,9 +131,7 @@ class TemplateEngine(
         val wordsList = text.trim().split(Regex("\\s+")).filter { it.isNotBlank() }
         val maxWords = template.max_words ?: 100
         val wc = wordsList.size
-        if (wc > maxWords) {
-            throw IllegalArgumentException("Template ${template.id} exceeds max_words ($wc > $maxWords)")
-        }
+        require(wc <= maxWords) { "Template ${template.id} exceeds max_words ($wc > $maxWords)" }
 
         return FilledCard(
             id = template.id,

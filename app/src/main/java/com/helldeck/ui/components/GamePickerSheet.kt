@@ -87,8 +87,8 @@ fun GamePickerSheet(
                 UpgradePromptBanner(
                     onUpgradeClick = {
                         // Show upgrade modal for first locked game
-                        val firstLockedGame = GameMetadata.getAllGameIds().firstOrNull { 
-                            !PurchaseManager.isGameUnlocked(it) 
+                        val firstLockedGame = GameMetadata.getAllGameIds().firstOrNull {
+                            !PurchaseManager.isGameUnlocked(it)
                         }
                         firstLockedGame?.let { showUpgradeFor = it }
                     },
@@ -118,13 +118,13 @@ fun GamePickerSheet(
                         },
                         onInfoClick = {
                             showRulesFor = gameId
-                        }
+                        },
                     )
                 }
             }
         }
     }
-    
+
     // Rules preview dialog
     showRulesFor?.let { gameId ->
         GameRulesDialog(
@@ -139,7 +139,7 @@ fun GamePickerSheet(
                 } else {
                     showUpgradeFor = gameId
                 }
-            }
+            },
         )
     }
 
@@ -174,10 +174,11 @@ private fun GameCard(
             .height(180.dp),
         shape = RoundedCornerShape(HelldeckRadius.Large),
         colors = CardDefaults.cardColors(
-            containerColor = if (isLocked) 
+            containerColor = if (isLocked) {
                 HelldeckColors.surfaceElevated.copy(alpha = 0.8f)
-            else 
-                MaterialTheme.colorScheme.surfaceVariant,
+            } else {
+                MaterialTheme.colorScheme.surfaceVariant
+            },
         ),
         border = if (isLocked) {
             BorderStroke(
@@ -189,7 +190,9 @@ private fun GameCard(
                     ),
                 ),
             )
-        } else null,
+        } else {
+            null
+        },
         elevation = CardDefaults.cardElevation(
             defaultElevation = if (isLocked) 4.dp else 2.dp,
             pressedElevation = 6.dp,
@@ -254,14 +257,15 @@ private fun GameCard(
                     lineHeight = 13.sp,
                     maxLines = 3,
                     overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
-                    color = if (isLocked) 
-                        HelldeckColors.colorMuted.copy(alpha = 0.7f) 
-                    else 
-                        MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.fillMaxWidth()
+                    color = if (isLocked) {
+                        HelldeckColors.colorMuted.copy(alpha = 0.7f)
+                    } else {
+                        MaterialTheme.colorScheme.onSurfaceVariant
+                    },
+                    modifier = Modifier.fillMaxWidth(),
                 )
             }
-            
+
             // Premium badge - top left for locked games
             if (isLocked) {
                 Surface(
@@ -281,19 +285,19 @@ private fun GameCard(
                     )
                 }
             }
-            
+
             // Info button overlay - top right
             IconButton(
                 onClick = onInfoClick,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .size(32.dp)
+                    .size(32.dp),
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Info,
                     contentDescription = "View rules",
                     tint = if (isLocked) HelldeckColors.colorMuted else MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(18.dp)
+                    modifier = Modifier.size(18.dp),
                 )
             }
         }
@@ -305,11 +309,11 @@ private fun GameCard(
 private fun GameRulesDialog(
     gameId: String,
     onDismiss: () -> Unit,
-    onStartGame: () -> Unit
+    onStartGame: () -> Unit,
 ) {
     val metadata = GameMetadata.getGameMetadata(gameId)
     val detailedRules = DetailedGameRules.getRulesForGame(gameId)
-    
+
     Dialog(onDismissRequest = onDismiss) {
         Card(
             modifier = Modifier
@@ -317,11 +321,11 @@ private fun GameRulesDialog(
                 .fillMaxHeight(0.85f),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surface
-            )
+                containerColor = MaterialTheme.colorScheme.surface,
+            ),
         ) {
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             ) {
                 // Header
                 Row(
@@ -329,36 +333,36 @@ private fun GameRulesDialog(
                         .fillMaxWidth()
                         .padding(20.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = metadata?.title ?: "Rules",
                         style = MaterialTheme.typography.headlineSmall,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                     IconButton(onClick = onDismiss) {
                         Icon(Icons.Rounded.Close, contentDescription = "Close")
                     }
                 }
-                
+
                 // Scrollable content
                 Column(
                     modifier = Modifier
                         .weight(1f)
                         .verticalScroll(rememberScrollState())
                         .padding(horizontal = 20.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     metadata?.let {
                         Text(
                             text = it.description,
                             style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
-                        
+
                         Spacer(modifier = Modifier.height(4.dp))
                     }
-                    
+
                     if (detailedRules != null) {
                         RulesPreviewSection("📖 How to Play", detailedRules.howToPlay)
                         RulesPreviewSection("⚙️ Mechanics", detailedRules.mechanics)
@@ -368,29 +372,29 @@ private fun GameRulesDialog(
                         Text(
                             text = "Tap 'Start Game' to see rules during gameplay!",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
-                    
+
                     Spacer(modifier = Modifier.height(12.dp))
                 }
-                
+
                 // Action buttons
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(20.dp),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     OutlinedButton(
                         onClick = onDismiss,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     ) {
                         Text("Back")
                     }
                     Button(
                         onClick = onStartGame,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
                     ) {
                         Text("Start Game")
                     }
@@ -404,27 +408,27 @@ private fun GameRulesDialog(
 private fun RulesPreviewSection(title: String, items: List<String>) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(6.dp)
+        verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
         Text(
             text = title,
             style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
         items.take(3).forEach { item ->
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
             ) {
                 Text(
                     text = "•",
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.primary
+                    color = MaterialTheme.colorScheme.primary,
                 )
                 Text(
                     text = item,
                     style = MaterialTheme.typography.bodyMedium,
-                    lineHeight = MaterialTheme.typography.bodyMedium.lineHeight * 1.3f
+                    lineHeight = MaterialTheme.typography.bodyMedium.lineHeight * 1.3f,
                 )
             }
         }
@@ -434,7 +438,7 @@ private fun RulesPreviewSection(title: String, items: List<String>) {
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontStyle = androidx.compose.ui.text.font.FontStyle.Italic,
-                modifier = Modifier.padding(start = 12.dp)
+                modifier = Modifier.padding(start = 12.dp),
             )
         }
     }

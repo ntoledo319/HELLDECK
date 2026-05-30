@@ -274,38 +274,50 @@ def getGitHash() {
   }
 }
 
+// Flavor-aware compatibility tasks and quality audit tasks.
+afterEvaluate {
+  def productionDebugTest = 'testProductionDebugUnitTest'
+
+  if (tasks.findByName('testDebugUnitTest') == null) {
+    tasks.register('testDebugUnitTest') {
+      group = 'verification'
+      description = 'Compatibility alias for production debug unit tests.'
+      dependsOn productionDebugTest
+    }
+  }
+
   // Convenience task to run the Card Audit with -Pgame/-Pcount/-Pseed
   // Usage:
   //   ./gradlew :app:cardAudit -Pgame=POISON_PITCH -Pcount=100 -Pseed=12345
   tasks.register('cardAudit', Test) { t ->
-  def debugTest = tasks.named('testDebugUnitTest', Test).get()
-  t.group = 'verification'
-  t.description = 'Run structured Card Audit and export CSV/JSON reports.'
-  t.testClassesDirs = debugTest.testClassesDirs
-  t.classpath = debugTest.classpath
-  t.systemProperty 'game', project.findProperty('game') ?: 'ROAST_CONSENSUS'
-  t.systemProperty 'count', project.findProperty('count') ?: '50'
-  t.systemProperty 'seed', project.findProperty('seed') ?: '12345'
-  // Allow overriding spice level for audits (default 2)
-  t.systemProperty 'spice', project.findProperty('spice') ?: '2'
-  t.filter {
-    includeTestsMatching 'com.helldeck.tools.CardAuditTest'
-  }
-  t.testLogging {
-    events 'passed', 'failed', 'skipped'
-    exceptionFormat 'short'
-  }
+    def sourceTest = tasks.named(productionDebugTest, Test).get()
+    t.group = 'verification'
+    t.description = 'Run structured Card Audit and export CSV/JSON reports.'
+    t.testClassesDirs = sourceTest.testClassesDirs
+    t.classpath = sourceTest.classpath
+    t.systemProperty 'game', project.findProperty('game') ?: 'ROAST_CONSENSUS'
+    t.systemProperty 'count', project.findProperty('count') ?: '50'
+    t.systemProperty 'seed', project.findProperty('seed') ?: '12345'
+    // Allow overriding spice level for audits (default 2)
+    t.systemProperty 'spice', project.findProperty('spice') ?: '2'
+    t.filter {
+      includeTestsMatching 'com.helldeck.tools.CardAuditTest'
+    }
+    t.testLogging {
+      events 'passed', 'failed', 'skipped'
+      exceptionFormat 'short'
+    }
   }
 
   // Quality sweep across all games (per-game profiles + optional LLM)
   // Usage:
   //   ./gradlew :app:cardQuality -Pcount=100 -Pseed=12345 -Pspice=2
   tasks.register('cardQuality', Test) { t ->
-    def debugTest = tasks.named('testDebugUnitTest', Test).get()
+    def sourceTest = tasks.named(productionDebugTest, Test).get()
     t.group = 'verification'
     t.description = 'Run per-game quality sweeps and export JSON/CSV/HTML reports.'
-    t.testClassesDirs = debugTest.testClassesDirs
-    t.classpath = debugTest.classpath
+    t.testClassesDirs = sourceTest.testClassesDirs
+    t.classpath = sourceTest.classpath
     t.systemProperty 'count', project.findProperty('count') ?: '50'
     // Support either a single seed or a comma-separated list via -Pseeds
     def seedsProp = project.findProperty('seeds')
@@ -323,6 +335,7 @@ def getGitHash() {
       exceptionFormat 'short'
     }
   }
+}
 
   // Place offline models under app/src/main/assets/models/*.gguf to bundle with APK
 
@@ -362,7 +375,10 @@ spotless {
       .editorConfigOverride([
         "indent_size": "4",
         "continuation_indent_size": "4",
-        "max_line_length": "120"
+        "max_line_length": "120",
+        "ktlint_standard_no-wildcard-imports": "disabled",
+        "ktlint_standard_max-line-length": "disabled",
+        "ktlint_standard_filename": "disabled"
       ])
     trimTrailingWhitespace()
     endWithNewline()

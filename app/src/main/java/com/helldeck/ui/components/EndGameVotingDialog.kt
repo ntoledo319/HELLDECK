@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.helldeck.content.model.Player
-import com.helldeck.ui.HelldeckAnimations
 import com.helldeck.ui.HelldeckColors
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing

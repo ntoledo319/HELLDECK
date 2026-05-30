@@ -39,9 +39,9 @@ fun FullRulesBrowserScene(vm: HelldeckVm) {
                     TextButton(onClick = { vm.goHome() }) {
                         Text("Home")
                     }
-                }
+                },
             )
-        }
+        },
     ) { padding ->
         LazyColumn(
             modifier = Modifier
@@ -49,14 +49,14 @@ fun FullRulesBrowserScene(vm: HelldeckVm) {
                 .padding(padding)
                 .padding(horizontal = HelldeckSpacing.Medium.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(vertical = HelldeckSpacing.Medium.dp)
+            contentPadding = PaddingValues(vertical = HelldeckSpacing.Medium.dp),
         ) {
             item {
                 Text(
                     text = "Browse all 14 HELLDECK games",
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 8.dp),
                 )
             }
 
@@ -66,7 +66,7 @@ fun FullRulesBrowserScene(vm: HelldeckVm) {
                     onClick = {
                         vm.selectedGameId = gameId
                         vm.navigateTo(Scene.GAME_RULES)
-                    }
+                    },
                 )
             }
 
@@ -80,7 +80,7 @@ fun FullRulesBrowserScene(vm: HelldeckVm) {
 @Composable
 private fun GameRulesBrowserCard(
     gameId: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val metadata = GameMetadata.getGameMetadata(gameId)
     val gameEmoji = gameIconFor(gameId)
@@ -91,53 +91,53 @@ private fun GameRulesBrowserCard(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
+            containerColor = MaterialTheme.colorScheme.surfaceVariant,
         ),
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 2.dp,
-            pressedElevation = 4.dp
-        )
+            pressedElevation = 4.dp,
+        ),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(HelldeckSpacing.Medium.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             ) {
                 // Game emoji
                 Text(
                     text = gameEmoji,
-                    style = MaterialTheme.typography.headlineMedium
+                    style = MaterialTheme.typography.headlineMedium,
                 )
 
                 // Game info
                 Column(
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
                     Text(
                         text = metadata?.title ?: gameId,
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                     metadata?.let {
                         Row(
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
                         ) {
                             Text(
                                 text = "⏱️ ${it.timerSec}s",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                             Text(
                                 text = "👥 ${it.minPlayers}-${it.maxPlayers}",
                                 style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
                             )
                         }
                     }
@@ -147,7 +147,7 @@ private fun GameRulesBrowserCard(
             Icon(
                 imageVector = Icons.Rounded.ChevronRight,
                 contentDescription = "View full rules",
-                tint = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.primary,
             )
         }
     }

@@ -107,7 +107,10 @@ class GameFamilyIntegrationTest {
                     }
                     is GameOptions.Taboo -> {
                         assertTrue(options.word.isNotBlank())
-                        assertTrue("Taboo forbidden should have 3-5 words, got ${options.forbidden.size}", options.forbidden.size in 3..5)
+                        assertTrue(
+                            "Taboo forbidden should have 3-5 words, got ${options.forbidden.size}",
+                            options.forbidden.size in 3..5,
+                        )
                         assertTrue(options.forbidden.all { it.isNotBlank() })
                     }
                     is GameOptions.ReplyTone -> {

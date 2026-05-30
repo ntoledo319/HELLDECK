@@ -18,13 +18,13 @@ import com.helldeck.ui.theme.HelldeckSpacing
 
 /**
  * Team mode UI components for HELLDECK.
- * 
+ *
  * Features:
  * - Team warnings at 8+ players
  * - Automatic team formation suggestions
  * - Team display with voting efficiency info
  * - Team picker for manual assignments
- * 
+ *
  * @ai_prompt Team mode components surface hidden PlayerManager logic
  */
 
@@ -63,13 +63,13 @@ fun TeamModeSuggestion(
         playerCount <= 16 -> 2
         else -> (playerCount + 3) / 4 // ~4 players per team
     }
-    
+
     val votesPerRound = when {
         playerCount <= 10 -> playerCount // Individual
         playerCount <= 16 -> 2 // Team mode
         else -> teamCount
     }
-    
+
     AlertDialog(
         onDismissRequest = onDismiss,
         icon = { Text("👥", fontSize = 48.sp) },
@@ -80,9 +80,9 @@ fun TeamModeSuggestion(
                     "With $playerCount players, team mode speeds up voting:",
                     style = MaterialTheme.typography.bodyLarge,
                 )
-                
+
                 Spacer(modifier = Modifier.height(4.dp))
-                
+
                 NeonCard(accentColor = HelldeckColors.colorSecondary) {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Row(
@@ -108,7 +108,7 @@ fun TeamModeSuggestion(
                         }
                     }
                 }
-                
+
                 Text(
                     "Teams are randomly assigned and rotate each game.",
                     style = MaterialTheme.typography.bodySmall,
@@ -145,7 +145,7 @@ fun TeamDisplay(
     modifier: Modifier = Modifier,
 ) {
     if (teams.isEmpty()) return
-    
+
     Column(
         modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(HelldeckSpacing.Medium.dp),
@@ -154,7 +154,7 @@ fun TeamDisplay(
             title = "Teams",
             subtitle = "${teams.size} teams • 1 vote per team",
         )
-        
+
         teams.entries.forEachIndexed { index, (_, members) ->
             val teamName = "Team ${index + 1}"
             val teamColor = when (index % 4) {
@@ -163,7 +163,7 @@ fun TeamDisplay(
                 2 -> HelldeckColors.colorAccentWarm
                 else -> HelldeckColors.colorAccentCool
             }
-            
+
             NeonCard(
                 accentColor = teamColor,
                 modifier = Modifier.fillMaxWidth(),
@@ -186,7 +186,7 @@ fun TeamDisplay(
                             color = HelldeckColors.colorMuted,
                         )
                     }
-                    
+
                     // Team members
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -214,7 +214,7 @@ fun TeamDisplay(
                 }
             }
         }
-        
+
         InfoBanner(
             message = "💡 Teams vote together. Discuss and agree before the timer runs out!",
             modifier = Modifier.fillMaxWidth(),
@@ -244,10 +244,10 @@ fun TeamPickerDialog(
                 )
             } else {
                 currentTeams
-            }
+            },
         )
     }
-    
+
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text("Assign Teams") },
@@ -264,7 +264,7 @@ fun TeamPickerDialog(
                             fontWeight = FontWeight.Bold,
                         )
                     }
-                    
+
                     items(players.filter { it.id in memberIds }) { player ->
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -275,7 +275,7 @@ fun TeamPickerDialog(
                                 Text(player.avatar)
                                 Text(player.name)
                             }
-                            
+
                             OutlineButton(
                                 text = "Move",
                                 onClick = {
@@ -357,7 +357,7 @@ fun TeamModeToggle(
                     )
                 }
             }
-            
+
             Switch(
                 checked = isTeamMode,
                 onCheckedChange = onToggle,

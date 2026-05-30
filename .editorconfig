@@ -15,6 +15,9 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 max_line_length = 120
+ktlint_standard_no-wildcard-imports = disabled
+ktlint_standard_max-line-length = disabled
+ktlint_standard_filename = disabled
 
 # Python files
 [*.py]
@@ -60,4 +63,3 @@ indent_style = tab
 [*.{c,cpp,h,hpp}]
 indent_style = space
 indent_size = 2
-

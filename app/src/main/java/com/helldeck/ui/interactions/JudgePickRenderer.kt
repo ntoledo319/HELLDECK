@@ -228,7 +228,10 @@ private fun JudgeOptionCard(
                         fontSize = 18.sp,
                     ),
                     color = if (isSelected) HelldeckColors.background else accentColor,
-                    modifier = Modifier.padding(horizontal = HelldeckSpacing.Small.dp, vertical = HelldeckSpacing.Tiny.dp),
+                    modifier = Modifier.padding(
+                        horizontal = HelldeckSpacing.Small.dp,
+                        vertical = HelldeckSpacing.Tiny.dp,
+                    ),
                 )
             }
 

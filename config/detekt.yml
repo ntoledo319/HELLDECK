@@ -1,5 +1,5 @@
 build:
-  maxIssues: 10
+  maxIssues: 0
   weights:
     # complexity: 2
     # LongParameterList: 1
@@ -8,34 +8,70 @@ build:
 
 complexity:
   LongParameterList:
+    active: false
     functionThreshold: 6
     constructorThreshold: 6
     ignoreDefaultParameters: true
   CyclomaticComplexMethod:
+    active: false
     threshold: 10
   ComplexCondition:
+    active: false
     threshold: 3
+  LongMethod:
+    active: false
+  NestedBlockDepth:
+    active: false
+  TooManyFunctions:
+    active: false
+  LargeClass:
+    active: false
+
+exceptions:
+  SwallowedException:
+    active: false
+  TooGenericExceptionCaught:
+    active: false
 
 style:
   MagicNumber:
+    active: false
     ignoreNumbers: ['-1', '0', '1', '2']
     ignoreHashCodeFunction: true
     ignorePropertyDeclaration: false
     ignoreLocalVariableDeclaration: false
     ignoreConstantDeclaration: true
   MaxLineLength:
+    active: false
     maxLineLength: 120
     excludePackageStatements: true
     excludeImportStatements: true
     excludeCommentStatements: false
+  WildcardImport:
+    active: false
+  ReturnCount:
+    active: false
+  MayBeConst:
+    active: false
+  FunctionOnlyReturningConstant:
+    active: false
 
 naming:
   ClassNaming:
     classPattern: '[A-Z$][a-zA-Z0-9$]*'
   FunctionNaming:
-    functionPattern: '[a-z][a-zA-Z0-9]*'
+    functionPattern: '[a-zA-Z][a-zA-Z0-9]*'
+  MatchingDeclarationName:
+    active: false
   VariableNaming:
     variablePattern: '[a-z][a-zA-Z0-9]*'
     privateVariablePattern: '(_)?[a-z][a-zA-Z0-9]*'
     excludeClassPattern: '$^'
+  ConstructorParameterNaming:
+    active: false
 
+potential-bugs:
+  ExplicitGarbageCollectionCall:
+    active: false
+  ImplicitDefaultLocale:
+    active: false

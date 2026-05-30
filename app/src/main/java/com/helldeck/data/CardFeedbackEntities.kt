@@ -50,53 +50,54 @@ data class CardScoreEntity(
 
 @Dao
 interface CardFeedbackDao {
-    
+
     // ========== IMPRESSIONS ==========
-    
+
     @Insert
     suspend fun insertImpression(impression: CardImpressionEntity): Long
-    
+
     @Query("UPDATE card_impressions SET wasSkipped = 1 WHERE id = :impressionId")
     suspend fun markSkipped(impressionId: Long)
-    
+
     @Query("UPDATE card_impressions SET roundCompleted = 1 WHERE id = :impressionId")
     suspend fun markRoundCompleted(impressionId: Long)
-    
+
     @Query("UPDATE card_impressions SET quickFire = 1 WHERE id = :impressionId")
     suspend fun markQuickFire(impressionId: Long)
-    
+
     @Query("UPDATE card_impressions SET wasMvp = 1 WHERE sessionId = :sessionId AND cardId = :cardId")
     suspend fun markMvp(sessionId: Long, cardId: String)
-    
+
     @Query("UPDATE card_impressions SET wasDud = 1 WHERE sessionId = :sessionId AND cardId = :cardId")
     suspend fun markDud(sessionId: Long, cardId: String)
-    
+
     @Query("SELECT * FROM card_impressions WHERE sessionId = :sessionId ORDER BY timestamp ASC")
     suspend fun getSessionCards(sessionId: Long): List<CardImpressionEntity>
-    
+
     @Query("SELECT DISTINCT cardId FROM card_impressions WHERE sessionId = :sessionId")
     suspend fun getSessionCardIds(sessionId: Long): List<String>
-    
+
     // ========== SCORES ==========
-    
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertScore(score: CardScoreEntity)
-    
+
     @Query("SELECT * FROM card_scores WHERE cardId = :cardId LIMIT 1")
     suspend fun getCardScore(cardId: String): CardScoreEntity?
-    
+
     @Query("SELECT * FROM card_scores WHERE gameId = :gameId ORDER BY computedScore DESC")
     suspend fun getScoresByGame(gameId: String): List<CardScoreEntity>
-    
+
     @Query("SELECT * FROM card_scores WHERE computedScore < :threshold")
     suspend fun getLowScoringCards(threshold: Float = 0.3f): List<CardScoreEntity>
-    
+
     @Query("SELECT * FROM card_scores WHERE dudFlags >= :minFlags")
     suspend fun getFlaggedCards(minFlags: Int = 3): List<CardScoreEntity>
-    
+
     // ========== AGGREGATION ==========
-    
-    @Query("""
+
+    @Query(
+        """
         SELECT cardId, gameId,
             COUNT(*) as impressions,
             SUM(CASE WHEN wasSkipped = 1 THEN 1 ELSE 0 END) as skips,
@@ -107,9 +108,10 @@ interface CardFeedbackDao {
         FROM card_impressions
         WHERE cardId = :cardId
         GROUP BY cardId
-    """)
+    """,
+    )
     suspend fun getAggregatedStats(cardId: String): CardAggregateStats?
-    
+
     @Query("SELECT DISTINCT cardId FROM card_impressions")
     suspend fun getAllTrackedCardIds(): List<String>
 }
@@ -132,26 +134,26 @@ data class CardAggregateStats(
  * Utility object for computing card quality scores.
  */
 object CardScoreCalculator {
-    
+
     /**
      * Compute quality score from aggregate stats.
      * Returns 0.0-1.0 score.
      */
     fun compute(stats: CardAggregateStats): Float {
         if (stats.impressions == 0) return 0.5f
-        
+
         val raw = (
             (stats.mvpVotes * 1.0f) +
-            (stats.quickFires * 0.2f) +
-            (stats.completions * 0.1f) +
-            (stats.impressions * 0.05f) -
-            (stats.skips * 0.3f) -
-            (stats.dudFlags * 1.0f)
-        ) / stats.impressions
-        
+                (stats.quickFires * 0.2f) +
+                (stats.completions * 0.1f) +
+                (stats.impressions * 0.05f) -
+                (stats.skips * 0.3f) -
+                (stats.dudFlags * 1.0f)
+            ) / stats.impressions
+
         return raw.coerceIn(0.0f, 1.0f)
     }
-    
+
     /**
      * Create a CardScoreEntity from aggregate stats.
      */

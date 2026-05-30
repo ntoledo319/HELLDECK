@@ -3,6 +3,7 @@
 package com.helldeck.qa
 
 import android.content.Context
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.core.app.ApplicationProvider
@@ -11,14 +12,10 @@ import com.helldeck.content.data.ContentRepository
 import com.helldeck.content.engine.GameEngine
 import com.helldeck.content.model.Player
 import com.helldeck.engine.GameIds
-import com.helldeck.engine.GameMetadata
 import com.helldeck.ui.HelldeckAppUI
 import com.helldeck.ui.HelldeckVm
-import androidx.compose.material3.ExperimentalMaterial3Api
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
@@ -69,7 +66,7 @@ class ComprehensiveQATest {
             GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
             GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
             GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
+            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
         )
         val players = listOf(
             Player(id = "p1", name = "Player 1", avatar = "😀", sessionPoints = 0),
@@ -108,7 +105,7 @@ class ComprehensiveQATest {
             GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
             GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
             GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
+            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
         )
         val players = (1..16).map { i ->
             Player(id = "p$i", name = "Player $i", avatar = "👤", sessionPoints = 0)
@@ -149,7 +146,7 @@ class ComprehensiveQATest {
             GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
             GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
             GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
+            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
         ).first()
 
         edgeCases.forEach { playerCount ->
@@ -193,12 +190,12 @@ class ComprehensiveQATest {
                     val result = gameEngine.next(
                         GameEngine.Request(
                             gameId = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
-        ).first(),
+                                GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
+                                GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
+                                GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
+                                GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
+                                GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
+                            ).first(),
                             sessionId = "test_session",
                             spiceMax = spiceLevel,
                             players = players.map { it.name },
@@ -250,12 +247,12 @@ class ComprehensiveQATest {
                 gameEngine.next(
                     GameEngine.Request(
                         gameId = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
-        ).random(),
+                            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
+                            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
+                            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
+                            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
+                            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
+                        ).random(),
                         sessionId = "memory_test_session",
                         spiceMax = 2,
                         players = listOf("Player 1", "Player 2", "Player 3"),
@@ -323,7 +320,7 @@ class ComprehensiveQATest {
 
         // Test that all interactive elements have content descriptions
         // Note: Compose test API usage needs update - disabled for now
-        // TODO: Fix Compose test API usage when updating to newer Compose testing APIs
+        // Pending fix for Compose test API usage when updating to newer Compose testing APIs.
         // composeTestRule.onAllNodes(hasClickAction()).forEach { node ->
         //     try {
         //         node.assertContentDescriptionExists()
@@ -344,7 +341,7 @@ class ComprehensiveQATest {
             GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
             GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
             GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
+            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
         )
         val players = listOf(
             Player(id = "p1", name = "Player 1", avatar = "😀", sessionPoints = 0),
@@ -397,12 +394,12 @@ class ComprehensiveQATest {
                 gameEngine.next(
                     GameEngine.Request(
                         gameId = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
-        ).random(),
+                            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
+                            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
+                            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
+                            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
+                            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
+                        ).random(),
                         sessionId = "concurrent_test_$i",
                         spiceMax = 1,
                         players = listOf("Player 1", "Player 2"),
@@ -438,12 +435,12 @@ class ComprehensiveQATest {
                 val result = gameEngine.next(
                     GameEngine.Request(
                         gameId = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER
-        ).random(),
+                            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
+                            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
+                            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
+                            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
+                            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
+                        ).random(),
                         sessionId = "variety_test",
                         spiceMax = 1,
                         players = players.map { it.name },

@@ -1,3 +1,6 @@
 [submodule "third_party/llama.cpp"]
 	path = third_party/llama.cpp
 	url = https://github.com/ggerganov/llama.cpp.git
+[submodule "Heimdall"]
+	path = Heimdall
+	url = https://github.com/Benjamin-Dobell/Heimdall.git

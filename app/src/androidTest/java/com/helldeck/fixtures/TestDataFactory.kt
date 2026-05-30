@@ -1,17 +1,17 @@
 package com.helldeck.fixtures
 
 import com.helldeck.content.db.TemplateStatEntity
-import com.helldeck.engine.Feedback
 import com.helldeck.data.PlayerEntity
+import com.helldeck.engine.Feedback
 import java.util.UUID
 
 /**
  * Test data factory for creating test entities and data structures.
- * 
+ *
  * Provides helper methods to create test data for integration and unit tests.
  */
 object TestDataFactory {
-    
+
     /**
      * Creates a template stat entity for testing.
      */
@@ -26,7 +26,7 @@ object TestDataFactory {
             rewardSum = rewardSum,
         )
     }
-    
+
     /**
      * Creates a template entity list for testing.
      * Note: This creates TemplateStatEntity objects, not actual template entities.
@@ -41,7 +41,7 @@ object TestDataFactory {
             )
         }
     }
-    
+
     /**
      * Creates a single template entity for testing.
      */
@@ -49,13 +49,14 @@ object TestDataFactory {
         id: String = "test_template_${UUID.randomUUID()}",
         game: String = "ROAST_CONSENSUS",
     ): TemplateStatEntity {
+        require(game.isNotBlank()) { "Game must not be blank" }
         return createTemplateStatEntity(
             templateId = id,
             visits = 0,
             rewardSum = 0.0,
         )
     }
-    
+
     /**
      * Creates a feedback object for testing.
      */
@@ -76,7 +77,7 @@ object TestDataFactory {
             comments = comments,
         )
     }
-    
+
     /**
      * Creates a player entity for testing.
      */
@@ -105,4 +106,3 @@ object TestDataFactory {
         )
     }
 }
-

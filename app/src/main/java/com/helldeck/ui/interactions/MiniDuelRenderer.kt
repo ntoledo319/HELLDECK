@@ -34,7 +34,7 @@ import com.helldeck.ui.state.RoundState
 private enum class ChallengeType(val emoji: String, val displayName: String, val instruction: String) {
     BRAIN("🧠", "BRAIN", "Take turns naming items. Pause 3+ sec or repeat = LOSE"),
     BODY("💪", "BODY", "Race to complete the task. Second place = LOSE"),
-    SOUL("👁️", "SOUL", "Endurance test. First to break = LOSE")
+    SOUL("👁️", "SOUL", "Endurance test. First to break = LOSE"),
 }
 
 /**

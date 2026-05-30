@@ -11,11 +11,11 @@ import org.json.JSONArray
 object GoldCardsLoader {
 
     // Feedback-based quality thresholds
-    const val AUTO_EXCLUDE_THRESHOLD = 0.15f  // Cards below this score are never shown
-    const val LOW_PRIORITY_THRESHOLD = 0.35f  // Cards below this are shown less often
+    const val AUTO_EXCLUDE_THRESHOLD = 0.15f // Cards below this score are never shown
+    const val LOW_PRIORITY_THRESHOLD = 0.35f // Cards below this are shown less often
 
     data class GoldCard(
-        val id: String = "",  // Unique identifier for feedback tracking
+        val id: String = "", // Unique identifier for feedback tracking
         val text: String,
         val quality_score: Int,
         val spice: Int,
@@ -154,9 +154,9 @@ object GoldCardsLoader {
                 // Feedback multiplier: cards with good feedback get boosted
                 val feedbackScore = cardScores?.get(card.id) ?: 0.5f
                 val feedbackMultiplier = when {
-                    feedbackScore >= 0.7f -> 1.5f  // High performers get 50% boost
-                    feedbackScore >= LOW_PRIORITY_THRESHOLD -> 1.0f  // Normal
-                    else -> 0.5f  // Low performers get 50% penalty
+                    feedbackScore >= 0.7f -> 1.5f // High performers get 50% boost
+                    feedbackScore >= LOW_PRIORITY_THRESHOLD -> 1.0f // Normal
+                    else -> 0.5f // Low performers get 50% penalty
                 }
 
                 // Random factor for variety (0.7 to 1.0)

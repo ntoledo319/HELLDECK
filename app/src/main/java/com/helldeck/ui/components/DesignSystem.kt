@@ -25,17 +25,17 @@ import com.helldeck.ui.theme.HelldeckSpacing
 
 /**
  * HELLDECK Design System Components
- * 
+ *
  * Unified neon-soaked aesthetic with consistent styling, animations, and interactions.
  * All components follow the "Hell's Living Room" design philosophy.
- * 
+ *
  * Design Principles:
  * - Neon glow effects on interactive elements
  * - Smooth spring-based animations
  * - High contrast with dark backgrounds
  * - Gradient accents for hierarchy
  * - Generous tap targets (min 48dp)
- * 
+ *
  * @ai_prompt Use these components for consistent HELLDECK styling
  * @context_boundary Single source of truth for design patterns
  */
@@ -55,7 +55,7 @@ fun NeonCard(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val reducedMotion = LocalReducedMotion.current
-    
+
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.98f else 1f,
         animationSpec = if (reducedMotion) {
@@ -65,7 +65,7 @@ fun NeonCard(
         },
         label = "neon_card_scale",
     )
-    
+
     val cardModifier = modifier
         .scale(scale)
         .shadow(
@@ -74,7 +74,7 @@ fun NeonCard(
             spotColor = accentColor.copy(alpha = 0.5f),
             ambientColor = accentColor.copy(alpha = 0.3f),
         )
-    
+
     if (onClick != null) {
         Card(
             modifier = cardModifier,
@@ -159,7 +159,7 @@ fun GlowButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val reducedMotion = LocalReducedMotion.current
-    
+
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.95f else 1f,
         animationSpec = if (reducedMotion) {
@@ -169,7 +169,7 @@ fun GlowButton(
         },
         label = "glow_button_scale",
     )
-    
+
     Button(
         onClick = onClick,
         modifier = modifier
@@ -225,7 +225,7 @@ fun OutlineButton(
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
     val reducedMotion = LocalReducedMotion.current
-    
+
     val scale by animateFloatAsState(
         targetValue = if (isPressed) 0.97f else 1f,
         animationSpec = if (reducedMotion) {
@@ -235,7 +235,7 @@ fun OutlineButton(
         },
         label = "outline_button_scale",
     )
-    
+
     OutlinedButton(
         onClick = onClick,
         modifier = modifier
@@ -290,7 +290,7 @@ fun EmptyState(
             fontSize = 80.sp,
             modifier = Modifier.padding(bottom = 24.dp),
         )
-        
+
         Text(
             text = title,
             style = MaterialTheme.typography.headlineMedium,
@@ -298,9 +298,9 @@ fun EmptyState(
             color = HelldeckColors.colorOnDark,
             textAlign = TextAlign.Center,
         )
-        
+
         Spacer(modifier = Modifier.height(12.dp))
-        
+
         Text(
             text = message,
             style = MaterialTheme.typography.bodyLarge,
@@ -308,10 +308,10 @@ fun EmptyState(
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = 32.dp),
         )
-        
+
         if (actionLabel != null && onActionClick != null) {
             Spacer(modifier = Modifier.height(32.dp))
-            
+
             GlowButton(
                 text = actionLabel,
                 onClick = onActionClick,
@@ -405,7 +405,7 @@ fun SectionHeader(
                 )
             }
         }
-        
+
         action?.invoke()
     }
 }
@@ -465,7 +465,7 @@ fun LoadingIndicator(
             color = HelldeckColors.colorPrimary,
             strokeWidth = 4.dp,
         )
-        
+
         message?.let {
             Spacer(modifier = Modifier.height(24.dp))
             Text(

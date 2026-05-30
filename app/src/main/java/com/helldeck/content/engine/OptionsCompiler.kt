@@ -67,7 +67,8 @@ class OptionsCompiler(
             GameIds.TABOO -> GameOptions.Taboo("Secret word", listOf("Forbidden 1", "Forbidden 2", "Forbidden 3"))
             GameIds.UNIFYING_THEORY,
             GameIds.TITLE_FIGHT,
-            GameIds.HOTSEAT_IMP -> GameOptions.Challenge("Freestyle")
+            GameIds.HOTSEAT_IMP,
+            -> GameOptions.Challenge("Freestyle")
             GameIds.REALITY_CHECK -> GameOptions.SeatSelect((1..seatCount).toList(), null)
             GameIds.ALIBI -> GameOptions.HiddenWords(listOf("alibi one", "alibi two", "alibi three"))
             GameIds.SCATTER -> GameOptions.Scatter("Category", "A")
@@ -121,17 +122,6 @@ class OptionsCompiler(
         return GameOptions.AB(optionA, optionB)
     }
 
-    private fun extractSlotValues(card: FilledCard): List<String> {
-        val seq = card.metadata["slot_sequence"] as? List<*> ?: return emptyList()
-        return seq.mapNotNull { item ->
-            when (item) {
-                is Pair<*, *> -> item.second as? String
-                is Map<*, *> -> item.values.firstOrNull() as? String
-                else -> null
-            }
-        }.filterNot { it.isBlank() }
-    }
-
     private fun findSlotValue(seq: List<*>?, slotName: String): String? {
         return seq?.mapNotNull { item ->
             when (item) {
@@ -140,15 +130,5 @@ class OptionsCompiler(
                 else -> null
             }
         }?.lastOrNull()
-    }
-
-    private fun findSlotValues(seq: List<*>?, slotName: String): List<String> {
-        return seq?.mapNotNull { item ->
-            when (item) {
-                is Pair<*, *> -> if (item.first == slotName) item.second as? String else null
-                is Map<*, *> -> if (item.keys.firstOrNull() == slotName) item.values.firstOrNull() as? String else null
-                else -> null
-            }
-        } ?: emptyList()
     }
 }

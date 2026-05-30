@@ -104,9 +104,7 @@ object CrewBrainStore {
 
     suspend fun createBrain(name: String, emoji: String): CrewBrain {
         val (brains, active) = ensureInitialized()
-        if (brains.size >= MAX_BRAINS) {
-            throw IllegalStateException("Maximum of $MAX_BRAINS crew brains reached")
-        }
+        check(brains.size < MAX_BRAINS) { "Maximum of $MAX_BRAINS crew brains reached" }
         val trimmed = name.trim().ifBlank { "Crew ${brains.size + 1}" }
         val brain = CrewBrain(
             id = UUID.randomUUID().toString(),

@@ -28,13 +28,13 @@ import kotlinx.coroutines.delay
 
 /**
  * Quick Reaction Bar for REVEAL phase - Opt-in feedback system.
- * 
+ *
  * Design Philosophy:
  * - Feedback is opt-in, not mandatory
  * - Any tap = feedback logged (🔥 = LOL, ⭐ = save, 👎 = TRASH)
  * - No tap = auto-advance after delay (implicit MEH)
  * - Maintains party flow while still training AI
- * 
+ *
  * Reactions:
  * - 🔥 Fire: "This was great!" → LOL feedback
  * - ⭐ Star: "Save this one!" → LOL + add to favorites
@@ -53,7 +53,7 @@ enum class QuickReaction(
 
 /**
  * Floating reaction bar that appears during REVEAL phase.
- * 
+ *
  * @param onReaction Callback when user taps a reaction
  * @param onAutoAdvance Callback when auto-advance timer expires (no reaction)
  * @param autoAdvanceDelayMs Delay before auto-advancing (0 = disabled)
@@ -263,6 +263,12 @@ private fun AutoAdvanceIndicator(
                     ),
             )
         }
+        Text(
+            text = "${secondsRemaining}s",
+            style = MaterialTheme.typography.labelSmall,
+            color = HelldeckColors.colorMuted,
+            modifier = Modifier.padding(top = 4.dp),
+        )
     }
 }
 

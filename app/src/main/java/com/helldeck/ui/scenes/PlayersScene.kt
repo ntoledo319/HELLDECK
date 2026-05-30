@@ -1,13 +1,9 @@
 package com.helldeck.ui.scenes
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.*
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -17,21 +13,20 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.helldeck.ui.HelldeckHeights
-import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
 import com.helldeck.data.toEntity
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckVm
+import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
-import com.helldeck.ui.Scene
+import com.helldeck.ui.HelldeckVm
+import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.ui.components.*
 import com.helldeck.ui.theme.HelldeckSpacing
 import com.helldeck.utils.ValidationUtils
@@ -39,7 +34,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Enhanced PlayersScene with HELLDECK neon design, validation, and improved UX.
- * 
+ *
  * Improvements:
  * - Centralized player creation using AddPlayerDialog
  * - Full validation with duplicate checking
@@ -49,7 +44,7 @@ import kotlinx.coroutines.launch
  * - Bulk operations (AFK all, clear all)
  * - Edit player functionality
  * - Better visual hierarchy
- * 
+ *
  * @ai_prompt Fully redesigned PlayersScene with consistent HELLDECK aesthetic
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,19 +53,19 @@ fun PlayersScene(vm: HelldeckVm) {
     val scope = rememberCoroutineScope()
     val repo = remember { ContentRepository(AppCtx.ctx) }
     val snackbarHostState = remember { SnackbarHostState() }
-    
+
     var showAddDialog by remember { mutableStateOf(false) }
     var editingPlayer by remember { mutableStateOf<com.helldeck.content.model.Player?>(null) }
     var showDeleteConfirm by remember { mutableStateOf<com.helldeck.content.model.Player?>(null) }
     var showBulkMenu by remember { mutableStateOf(false) }
-    
+
     val players = vm.players
     val activePlayers = players.filter { it.afk == 0 }
-    
+
     // Player count validation
     val countValidation = ValidationUtils.validatePlayerCount(activePlayers.size)
     val countWarning = ValidationUtils.getPlayerCountWarning(activePlayers.size)
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -129,7 +124,7 @@ fun PlayersScene(vm: HelldeckVm) {
                     modifier = Modifier.padding(HelldeckSpacing.Medium.dp),
                 )
             }
-            
+
             if (players.isEmpty()) {
                 // Empty state
                 EmptyState(
@@ -154,7 +149,7 @@ fun PlayersScene(vm: HelldeckVm) {
                                 subtitle = "${activePlayers.size} ready to play",
                             )
                         }
-                        
+
                         itemsIndexed(activePlayers, key = { _, p -> p.id }) { index, player ->
                             SpringAnimatedItem(index = index) {
                                 PlayerCard(
@@ -167,7 +162,7 @@ fun PlayersScene(vm: HelldeckVm) {
                                     onToggleAFK = {
                                         scope.launch {
                                             repo.db.players().update(
-                                                player.copy(afk = if (player.afk == 0) 1 else 0).toEntity()
+                                                player.copy(afk = if (player.afk == 0) 1 else 0).toEntity(),
                                             )
                                             vm.reloadPlayers()
                                         }
@@ -200,7 +195,7 @@ fun PlayersScene(vm: HelldeckVm) {
                                     onToggleAFK = {
                                         scope.launch {
                                             repo.db.players().update(
-                                                player.copy(afk = if (player.afk == 0) 1 else 0).toEntity()
+                                                player.copy(afk = if (player.afk == 0) 1 else 0).toEntity(),
                                             )
                                             vm.reloadPlayers()
                                         }
@@ -235,7 +230,7 @@ fun PlayersScene(vm: HelldeckVm) {
             }
         }
     }
-    
+
     // Add/Edit player dialog
     if (showAddDialog) {
         AddPlayerDialog(
@@ -250,9 +245,9 @@ fun PlayersScene(vm: HelldeckVm) {
                     if (editingPlayer != null) {
                         // Edit existing
                         repo.db.players().update(
-                            editingPlayer!!.copy(name = name, avatar = emoji).toEntity()
+                            editingPlayer!!.copy(name = name, avatar = emoji).toEntity(),
                         )
-                        snackbarHostState.showSnackbar("Updated ${name}")
+                        snackbarHostState.showSnackbar("Updated $name")
                     } else {
                         // Create new
                         val id = ValidationUtils.generateUniquePlayerId(players)
@@ -262,9 +257,9 @@ fun PlayersScene(vm: HelldeckVm) {
                                 name = name,
                                 avatar = emoji,
                                 sessionPoints = 0,
-                            )
+                            ),
                         )
-                        snackbarHostState.showSnackbar("Added ${name}")
+                        snackbarHostState.showSnackbar("Added $name")
                     }
                     vm.reloadPlayers()
                     editingPlayer = null
@@ -272,7 +267,7 @@ fun PlayersScene(vm: HelldeckVm) {
             },
         )
     }
-    
+
     // Delete confirmation
     showDeleteConfirm?.let { player ->
         AlertDialog(
@@ -305,7 +300,7 @@ fun PlayersScene(vm: HelldeckVm) {
             },
         )
     }
-    
+
     // Bulk actions menu
     if (showBulkMenu) {
         AlertDialog(
@@ -328,7 +323,7 @@ fun PlayersScene(vm: HelldeckVm) {
                         modifier = Modifier.fillMaxWidth(),
                         icon = "💤",
                     )
-                    
+
                     OutlineButton(
                         text = "Mark All Active",
                         onClick = {
@@ -344,7 +339,7 @@ fun PlayersScene(vm: HelldeckVm) {
                         modifier = Modifier.fillMaxWidth(),
                         icon = "✅",
                     )
-                    
+
                     OutlineButton(
                         text = "Delete All Players",
                         onClick = {
@@ -383,18 +378,26 @@ private fun SpringAnimatedItem(
 
     val scale by animateFloatAsState(
         targetValue = if (visible) 1f else 0.8f,
-        animationSpec = if (reducedMotion) tween(0) else spring(
-            dampingRatio = 0.6f,
-            stiffness = Spring.StiffnessMedium,
-        ),
+        animationSpec = if (reducedMotion) {
+            tween(0)
+        } else {
+            spring(
+                dampingRatio = 0.6f,
+                stiffness = Spring.StiffnessMedium,
+            )
+        },
         label = "item_spring_$index",
     )
     val alpha by animateFloatAsState(
         targetValue = if (visible) 1f else 0f,
-        animationSpec = if (reducedMotion) tween(0) else tween(
-            durationMillis = 200,
-            delayMillis = (index * 40).coerceAtMost(200),
-        ),
+        animationSpec = if (reducedMotion) {
+            tween(0)
+        } else {
+            tween(
+                durationMillis = 200,
+                delayMillis = (index * 40).coerceAtMost(200),
+            )
+        },
         label = "item_alpha_$index",
     )
 
@@ -490,7 +493,7 @@ private fun PlayerCard(
                     }
                 }
             }
-            
+
             Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                 IconButton(onClick = onToggleAFK) {
                     Text(

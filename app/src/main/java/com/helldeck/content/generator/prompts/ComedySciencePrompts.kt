@@ -2,12 +2,12 @@ package com.helldeck.content.generator.prompts
 
 /**
  * Comedy-Science-Backed Prompt System for HELLDECK
- * 
+ *
  * Based on:
  * - Benign Violation Theory (McGraw & Warren, 2010)
  * - Specificity principles from comedy writing research
  * - Escalation and heightening techniques
- * 
+ *
  * Core principle: Humor = VIOLATION + BENIGN (simultaneously)
  * - Violation: Something wrong, unexpected, threatening expectations
  * - Benign: But safe, harmless, or has an alternative interpretation
@@ -28,7 +28,7 @@ Humor occurs when something is WRONG/UNEXPECTED but also SAFE/HARMLESS.
 
 HOW TO HIT THE SWEET SPOT:
 1. PSYCHOLOGICAL DISTANCE - Make it absurd enough to feel unreal
-2. ALTERNATIVE NORMS - Provide a "wait, that could be OK" reading  
+2. ALTERNATIVE NORMS - Provide a "wait, that could be OK" reading
 3. PLAYFUL FRAMING - The game context makes it safe
 
 SPECIFICITY KILLS GENERIC:
@@ -44,7 +44,7 @@ Bad: "get in a fight" (no image, no location, no specificity)
 ESCALATION - Don't flatline, build:
 Good: "...and now Goofy has a restraining order against you"
 Bad: "...and got kicked out" (no twist, no escalation)
-""".trimIndent()
+    """.trimIndent()
 
     /**
      * System prompt that teaches the LLM comedy science
@@ -79,11 +79,11 @@ HARD RULES:
 5. Be CRUEL to behaviors, NEVER to people
 
 QUALITY = SPECIFICITY × VISUAL IMAGERY × BENIGN VIOLATION
-""".trimIndent()
+        """.trimIndent()
     }
 
     // ==================== ROAST CONSENSUS ====================
-    
+
     fun buildRoastPrompt(examples: String): String = """
 GAME: ROAST CONSENSUS
 Players vote on "Who's most likely to..." - the BEST roasts target relatable human failures with vivid specificity.
@@ -100,7 +100,7 @@ BENIGN VIOLATION APPLIED:
 - RELATABILITY: We've all been close to this behavior
 
 BAD → GOOD TRANSFORMATIONS:
-❌ "Most likely to be late" 
+❌ "Most likely to be late"
 ✅ "Most likely to show up 40 minutes late with Starbucks for only themselves and blame it on Mercury retrograde"
 WHY: Specific time (40 min), specific detail (Starbucks for self), escalating absurdity (Mercury)
 
@@ -123,10 +123,10 @@ FORMAT:
 {"text": "Most likely to [your card]"}
 
 Generate ONE unique roast that passes all specificity checks:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== POISON PITCH (Would You Rather) ====================
-    
+
     fun buildPoisonPitchPrompt(examples: String): String = """
 GAME: POISON PITCH (Would You Rather)
 Create GENUINE DILEMMAS where both options are equally terrible/appealing.
@@ -165,10 +165,10 @@ FORMAT:
 {"text": "Would you rather...", "optionA": "[first option]", "optionB": "[second option]"}
 
 Generate ONE genuine dilemma that takes 5+ seconds to answer:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== RED FLAG RALLY ====================
-    
+
     fun buildRedFlagPrompt(examples: String): String = """
 GAME: RED FLAG RALLY
 Create dating profiles with ATTRACTIVE QUALITY + HORRIFYING RED FLAG
@@ -207,10 +207,10 @@ FORMAT:
 {"text": "They're [perk], but [red flag]", "optionA": "SMASH", "optionB": "PASS"}
 
 Generate ONE red flag that creates genuine cognitive dissonance:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== HOT SEAT IMPOSTER ====================
-    
+
     fun buildHotSeatPrompt(examples: String): String = """
 GAME: HOT SEAT IMPOSTER
 Questions where everyone answers AS the target person. The imposter must fake knowing them.
@@ -254,10 +254,10 @@ FORMAT:
 {"text": "[Question everyone answers as the target]"}
 
 Generate ONE question that EXPOSES imposters by requiring specific personal knowledge:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== TEXT THREAD TRAP ====================
-    
+
     fun buildTextTrapPrompt(examples: String): String = """
 GAME: TEXT THREAD TRAP
 Incoming text message + 4 tones to reply in. Players read their reply, others guess the tone.
@@ -299,10 +299,10 @@ FORMAT:
 {"text": "[Person] texts: '[message]'", "tones": ["Tone1", "Tone2", "Tone3", "Tone4"]}
 
 Generate ONE high-stakes text with 4 contrasting tones:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== SCATTERBLAST ====================
-    
+
     fun buildScatterPrompt(examples: String): String = """
 GAME: SCATTERBLAST (Scattergories)
 Name things in a CREATIVE category starting with a letter.
@@ -350,10 +350,10 @@ FORMAT:
 {"category": "[creative category]", "letter": "[A-Z]", "text": "Name 3"}
 
 Generate ONE creative category that rewards absurdity:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== REALITY CHECK ====================
-    
+
     fun buildRealityCheckPrompt(examples: String): String = """
 GAME: REALITY CHECK
 Target rates themselves on a trait. Group then rates them. Comedy = THE GAP.
@@ -397,10 +397,10 @@ FORMAT:
 {"text": "Rate yourself on: [trait/ability in specific context]"}
 
 Generate ONE trait where self-perception and reality likely diverge:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== OVER/UNDER ====================
-    
+
     fun buildOverUnderPrompt(examples: String): String = """
 GAME: OVER/UNDER
 Guess a NUMBER about someone. Reveal. Comedy = how far off everyone was.
@@ -444,10 +444,10 @@ FORMAT:
 {"text": "Number of [personal metric]"}
 
 Generate ONE over/under that reveals something surprising:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== FILL IN THE BLANK ====================
-    
+
     fun buildFillInPrompt(examples: String): String = """
 GAME: FILL IN THE BLANK
 Prompts with blanks that players complete. Judge picks the winner.
@@ -491,10 +491,10 @@ FORMAT:
 {"text": "[Prompt with _____ for blank]"}
 
 Generate ONE prompt that invites creative chaos:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== TABOO TIMER ====================
-    
+
     fun buildTabooPrompt(examples: String): String = """
 GAME: TABOO TIMER
 Describe a word WITHOUT using the forbidden words.
@@ -533,10 +533,10 @@ FORMAT:
 {"word": "[word to describe]", "forbidden": ["word1", "word2", "word3"]}
 
 Generate ONE Taboo card with a common word and challenging forbidden list:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== ALIBI DROP ====================
-    
+
     fun buildAlibiPrompt(examples: String): String = """
 GAME: ALIBI DROP
 Player must tell a story sneaking in 3 random words. Others guess the words.
@@ -578,10 +578,10 @@ FORMAT:
 {"words": ["word1", "word2", "word3"], "text": "Sneak these words into your excuse:"}
 
 Generate ONE set of 3 unrelated, specific words:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== UNIFYING THEORY ====================
-    
+
     fun buildUnifyingTheoryPrompt(examples: String): String = """
 GAME: UNIFYING THEORY
 Three random items. Players must find what they have in common.
@@ -620,10 +620,10 @@ FORMAT:
 {"text": "Item1, Item2, Item3"}
 
 Generate ONE trio with hidden connection potential:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== CONFESS OR CONTEST ====================
-    
+
     fun buildConfessPrompt(examples: String): String = """
 GAME: CONFESS OR CONTEST
 Players read a confession. Group votes: TRUTH or LIE?
@@ -658,10 +658,10 @@ FORMAT:
 {"text": "I once [confession]"}
 
 Generate ONE confession that splits the room on truth vs lie:
-""".trimIndent()
+    """.trimIndent()
 
     // ==================== TITLE FIGHT ====================
-    
+
     fun buildTitleFightPrompt(examples: String): String = """
 GAME: TITLE FIGHT
 Absurd matchups. Who would win and why?
@@ -700,6 +700,5 @@ FORMAT:
 {"text": "Who would win: [Option A] vs [Option B]?"}
 
 Generate ONE absurd but debatable matchup:
-""".trimIndent()
-
+    """.trimIndent()
 }

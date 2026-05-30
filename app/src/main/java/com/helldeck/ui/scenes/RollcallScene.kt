@@ -3,7 +3,6 @@ package com.helldeck.ui.scenes
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -13,19 +12,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.helldeck.ui.HelldeckHeights
-import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.AppCtx
 import com.helldeck.content.data.ContentRepository
-import com.helldeck.data.toEntity
 import com.helldeck.settings.SettingsStore
 import com.helldeck.ui.HelldeckColors
+import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckVm
+import com.helldeck.ui.LocalReducedMotion
 import com.helldeck.ui.Scene
 import com.helldeck.ui.components.*
 import com.helldeck.ui.theme.HelldeckSpacing
@@ -34,7 +31,7 @@ import kotlinx.coroutines.launch
 
 /**
  * Enhanced RollcallScene with design consistency and session memory.
- * 
+ *
  * Improvements:
  * - Remembers last attendance across sessions
  * - Uses centralized AddPlayerDialog
@@ -43,7 +40,7 @@ import kotlinx.coroutines.launch
  * - Better instructions and validation
  * - Bulk select/deselect options
  * - Quick add player without leaving scene
- * 
+ *
  * @ai_prompt Redesigned RollcallScene with HELLDECK aesthetic and UX improvements
  */
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,22 +49,22 @@ fun RollcallScene(vm: HelldeckVm) {
     val scope = rememberCoroutineScope()
     val repo = remember { ContentRepository(AppCtx.ctx) }
     val snackbarHostState = remember { SnackbarHostState() }
-    
+
     var present by remember { mutableStateOf<List<String>>(emptyList()) }
-    
+
     LaunchedEffect(Unit) {
         present = SettingsStore.readLastAttendance()
     }
-    
+
     var showAddDialog by remember { mutableStateOf(false) }
-    
+
     val players = vm.players
     val presentPlayers = players.filter { it.id in present }
     val absentPlayers = players.filter { it.id !in present }
-    
+
     // Validation
     val countWarning = ValidationUtils.getPlayerCountWarning(presentPlayers.size)
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -155,7 +152,7 @@ fun RollcallScene(vm: HelldeckVm) {
                 )
                 Spacer(modifier = Modifier.height(HelldeckSpacing.Small.dp))
             }
-            
+
             if (players.isEmpty()) {
                 // Empty state
                 EmptyState(
@@ -219,7 +216,7 @@ fun RollcallScene(vm: HelldeckVm) {
                         }
                     }
                 }
-                
+
                 // Bottom actions
                 Column(
                     modifier = Modifier
@@ -234,7 +231,7 @@ fun RollcallScene(vm: HelldeckVm) {
                         modifier = Modifier.fillMaxWidth(),
                         icon = "➕",
                     )
-                    
+
                     // Massive Start session CTA
                     GlowButton(
                         text = if (presentPlayers.size >= 2) {
@@ -249,7 +246,7 @@ fun RollcallScene(vm: HelldeckVm) {
                                     SettingsStore.writeLastAttendance(present)
                                     vm.reloadPlayers()
                                     snackbarHostState.showSnackbar(
-                                        "Session started with ${presentPlayers.size} players!"
+                                        "Session started with ${presentPlayers.size} players!",
                                     )
                                 }
                                 vm.goBack()
@@ -269,7 +266,7 @@ fun RollcallScene(vm: HelldeckVm) {
             }
         }
     }
-    
+
     // Add player dialog
     if (showAddDialog) {
         AddPlayerDialog(
@@ -285,12 +282,12 @@ fun RollcallScene(vm: HelldeckVm) {
                             avatar = emoji,
                             sessionPoints = 0,
                             afk = 0,
-                        )
+                        ),
                     )
                     vm.reloadPlayers()
                     // Automatically mark new player as present
                     present = present + id
-                    snackbarHostState.showSnackbar("Added ${name} to session")
+                    snackbarHostState.showSnackbar("Added $name to session")
                 }
             },
         )
@@ -308,18 +305,26 @@ private fun RollcallSpringItem(
 
     val scale by animateFloatAsState(
         targetValue = if (visible) 1f else 0.85f,
-        animationSpec = if (reducedMotion) tween(0) else spring(
-            dampingRatio = 0.6f,
-            stiffness = Spring.StiffnessMedium,
-        ),
+        animationSpec = if (reducedMotion) {
+            tween(0)
+        } else {
+            spring(
+                dampingRatio = 0.6f,
+                stiffness = Spring.StiffnessMedium,
+            )
+        },
         label = "rollcall_spring_$index",
     )
     val alpha by animateFloatAsState(
         targetValue = if (visible) 1f else 0f,
-        animationSpec = if (reducedMotion) tween(0) else tween(
-            durationMillis = 200,
-            delayMillis = (index * 50).coerceAtMost(250),
-        ),
+        animationSpec = if (reducedMotion) {
+            tween(0)
+        } else {
+            tween(
+                durationMillis = 200,
+                delayMillis = (index * 50).coerceAtMost(250),
+            )
+        },
         label = "rollcall_alpha_$index",
     )
 
@@ -410,7 +415,10 @@ private fun RollcallPlayerCard(
                 Text(
                     text = if (isPresent) "\u2705" else "\u274C",
                     fontSize = 36.sp,
-                    modifier = Modifier.padding(horizontal = HelldeckSpacing.Large.dp, vertical = HelldeckSpacing.Small.dp),
+                    modifier = Modifier.padding(
+                        horizontal = HelldeckSpacing.Large.dp,
+                        vertical = HelldeckSpacing.Small.dp,
+                    ),
                 )
             }
         }

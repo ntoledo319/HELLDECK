@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.first
  * @deprecated This file is deprecated as part of the user removal refactor.
  * Player tracking has been replaced with anonymous seat-based sessions.
  * Use [com.helldeck.content.model.SessionParticipant] and [com.helldeck.engine.SeatManager] instead.
- * 
+ *
  * This file is retained for database migration compatibility only.
  * DO NOT add new functionality here.
- * 
+ *
  * @see com.helldeck.content.model.SessionParticipant
  * @see com.helldeck.engine.SeatManager
  */

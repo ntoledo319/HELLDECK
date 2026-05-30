@@ -27,8 +27,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.PaintingStyle
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -133,7 +131,7 @@ private fun AutoResizeText(
             var min = minFontSize.value
             var max = maxFontSize.value
             var optimal = maxFontSize.value
-            
+
             // Use binary search with max 10 iterations to find optimal size
             repeat(10) {
                 val mid = (min + max) / 2f
@@ -149,7 +147,7 @@ private fun AutoResizeText(
             optimal.sp
         }
     }
-    
+
     var finalSize by remember(text) { mutableStateOf(fontSize) }
     var ready by remember(text) { mutableStateOf(false) }
 
@@ -175,7 +173,7 @@ private fun AutoResizeText(
 
 /**
  * Main card face for displaying game content with enhanced visual design
- * 
+ *
  * DESIGN PRINCIPLE (HDRealRules.md):
  * - "Low Cognitive Load. High Social Stakes. Maximum Chaos."
  * - Instant readability at arm's length in dim room
@@ -764,7 +762,7 @@ fun GameTimer(
         targetValue = when {
             isCritical -> HelldeckColors.TimerCritical
             isWarning -> HelldeckColors.TimerWarning
-            else -> HelldeckColors.TimerNormal  // Cyan per HELLDECK design system
+            else -> HelldeckColors.TimerNormal // Cyan per HELLDECK design system
         },
         animationSpec = tween(if (reducedMotion) HelldeckAnimations.Instant else 500),
         label = "timer_color",
@@ -1514,7 +1512,7 @@ fun PlayerScoreCard(
                 // Seat info (anonymized)
                 Column {
                     Text(
-                        text = "Seat ${position}", // Anonymized - no player names
+                        text = "Seat $position", // Anonymized - no player names
                         style = MaterialTheme.typography.bodyLarge.copy(
                             fontWeight = FontWeight.Bold,
                         ),

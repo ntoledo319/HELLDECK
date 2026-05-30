@@ -28,7 +28,6 @@ import com.helldeck.ui.HelldeckVm
 @Composable
 fun PlayerProfileScene(vm: HelldeckVm, onClose: () -> Unit) {
     val ctx = LocalContext.current
-    val scope = rememberCoroutineScope()
     val repo = remember { ContentRepository(AppCtx.ctx) }
     val playerId = vm.selectedPlayerId
     var profile by remember { mutableStateOf<com.helldeck.data.PlayerProfile?>(null) }

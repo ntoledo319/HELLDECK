@@ -6,10 +6,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.Rule
 import androidx.compose.material.icons.rounded.EmojiEvents
 import androidx.compose.material.icons.rounded.Lightbulb
 import androidx.compose.material.icons.rounded.Psychology
-import androidx.compose.material.icons.automirrored.rounded.Rule
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.helldeck.engine.*
@@ -30,7 +29,7 @@ fun GameRulesScene(vm: HelldeckVm, onClose: () -> Unit) {
     val gid = vm.selectedGameId
     val game = if (gid != null) com.helldeck.engine.GameRegistry.getGameById(gid) else null
     val detailedRules = if (gid != null) DetailedGameRules.getRulesForGame(gid) else null
-    
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -61,31 +60,31 @@ fun GameRulesScene(vm: HelldeckVm, onClose: () -> Unit) {
                 ElevatedCard(
                     modifier = Modifier.fillMaxWidth(),
                     colors = CardDefaults.elevatedCardColors(
-                        containerColor = MaterialTheme.colorScheme.primaryContainer
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
                     ),
                 ) {
                     Column(modifier = Modifier.padding(HelldeckSpacing.Large.dp)) {
                         Text(
                             text = game.title,
                             style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Black
+                            fontWeight = FontWeight.Black,
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text(
                             text = game.description,
                             style = MaterialTheme.typography.bodyLarge,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
                         Spacer(modifier = Modifier.height(12.dp))
                         Row(
                             horizontalArrangement = Arrangement.spacedBy(16.dp),
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         ) {
                             InfoChip(
-                                label = "⏱️ ${com.helldeck.engine.Config.getTimerForInteraction(game.interaction) / 1000}s"
+                                label = "⏱️ ${com.helldeck.engine.Config.getTimerForInteraction(game.interaction) / 1000}s",
                             )
                             InfoChip(
-                                label = "👥 ${game.minPlayers}–${game.maxPlayers}"
+                                label = "👥 ${game.minPlayers}–${game.maxPlayers}",
                             )
                         }
                     }
@@ -96,53 +95,53 @@ fun GameRulesScene(vm: HelldeckVm, onClose: () -> Unit) {
                         title = "📖 How to Play",
                         icon = Icons.AutoMirrored.Rounded.Rule,
                         items = detailedRules.howToPlay,
-                        color = HelldeckColors.Yellow
+                        color = HelldeckColors.Yellow,
                     )
-                    
+
                     RulesSection(
                         title = "⚙️ The Mechanics",
                         icon = Icons.Rounded.Psychology,
                         items = detailedRules.mechanics,
-                        color = HelldeckColors.Blue
+                        color = HelldeckColors.Blue,
                     )
-                    
+
                     RulesSection(
                         title = "🏆 Scoring",
                         icon = Icons.Rounded.EmojiEvents,
                         items = detailedRules.scoring,
-                        color = HelldeckColors.Green
+                        color = HelldeckColors.Green,
                     )
-                    
+
                     RulesSection(
                         title = "🎭 The Vibe",
                         icon = Icons.Rounded.Star,
                         items = detailedRules.theVibe,
-                        color = HelldeckColors.Orange
+                        color = HelldeckColors.Orange,
                     )
-                    
+
                     RulesSection(
                         title = "💡 Pro Tips",
                         icon = Icons.Rounded.Lightbulb,
                         items = detailedRules.tips,
-                        color = HelldeckColors.Purple
+                        color = HelldeckColors.Purple,
                     )
                 } else {
                     ElevatedCard(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.elevatedCardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceVariant
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant,
                         ),
                     ) {
                         Column(modifier = Modifier.padding(HelldeckSpacing.Medium.dp)) {
                             Text(
                                 text = "Quick Rules",
                                 style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
                                 text = gameHowToDetailed(game),
-                                style = MaterialTheme.typography.bodyMedium
+                                style = MaterialTheme.typography.bodyMedium,
                             )
                         }
                     }
@@ -153,7 +152,7 @@ fun GameRulesScene(vm: HelldeckVm, onClose: () -> Unit) {
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(containerColor = HelldeckColors.Green),
                 ) { Text("Back to Game") }
-                
+
                 Spacer(modifier = Modifier.height(24.dp))
             }
         }
@@ -165,12 +164,12 @@ private fun RulesSection(
     title: String,
     icon: androidx.compose.ui.graphics.vector.ImageVector,
     items: List<String>,
-    color: Color
+    color: Color,
 ) {
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.elevatedCardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = MaterialTheme.colorScheme.surface,
         ),
     ) {
         Column(
@@ -180,32 +179,32 @@ private fun RulesSection(
                     brush = Brush.verticalGradient(
                         colors = listOf(
                             color.copy(alpha = 0.1f),
-                            Color.Transparent
-                        )
-                    )
+                            Color.Transparent,
+                        ),
+                    ),
                 )
-                .padding(HelldeckSpacing.Large.dp)
+                .padding(HelldeckSpacing.Large.dp),
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
                     tint = color,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(24.dp),
                 )
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.Bold,
-                    color = color
+                    color = color,
                 )
             }
-            
+
             Spacer(modifier = Modifier.height(12.dp))
-            
+
             items.forEachIndexed { index, item ->
                 if (index > 0) {
                     Spacer(modifier = Modifier.height(8.dp))
@@ -220,18 +219,18 @@ private fun RulesSection(
 private fun RuleItem(text: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
             text = "•",
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(top = 2.dp)
+            modifier = Modifier.padding(top = 2.dp),
         )
         Text(
             text = text,
             style = MaterialTheme.typography.bodyLarge,
-            lineHeight = MaterialTheme.typography.bodyLarge.lineHeight * 1.4f
+            lineHeight = MaterialTheme.typography.bodyLarge.lineHeight * 1.4f,
         )
     }
 }
@@ -241,13 +240,13 @@ private fun InfoChip(label: String) {
     Surface(
         shape = RoundedCornerShape(16.dp),
         color = MaterialTheme.colorScheme.surface,
-        tonalElevation = 2.dp
+        tonalElevation = 2.dp,
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.labelLarge,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
         )
     }
 }

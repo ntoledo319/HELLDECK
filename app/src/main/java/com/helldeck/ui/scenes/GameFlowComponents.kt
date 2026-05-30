@@ -760,7 +760,10 @@ private fun ForbiddenWords(words: List<String>) {
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.Bold,
                     color = HelldeckColors.colorOnDark,
-                    modifier = Modifier.padding(horizontal = HelldeckSpacing.Medium.dp, vertical = HelldeckSpacing.Small.dp),
+                    modifier = Modifier.padding(
+                        horizontal = HelldeckSpacing.Medium.dp,
+                        vertical = HelldeckSpacing.Small.dp,
+                    ),
                 )
             }
         }

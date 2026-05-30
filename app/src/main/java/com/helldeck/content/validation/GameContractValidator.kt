@@ -149,7 +149,8 @@ object GameContractValidator {
                     }
                     is GameOptions.SeatVote,
                     is GameOptions.Challenge,
-                    GameOptions.None -> {
+                    GameOptions.None,
+                    -> {
                         // These are all acceptable for target selection / self-rating games
                     }
                     else -> {

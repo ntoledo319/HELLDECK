@@ -11,13 +11,13 @@ import com.helldeck.ui.HelldeckColors
 
 /**
  * Accessibility enhancement components for HELLDECK.
- * 
+ *
  * Features:
  * - Screen reader hints and labels
  * - High contrast mode support
  * - Semantic descriptions
  * - Accessible touch targets
- * 
+ *
  * @ai_prompt Accessibility components ensure inclusive design
  */
 
@@ -68,7 +68,7 @@ fun ScreenReaderAnnouncement(
             .semantics {
                 liveRegion = politeness
                 contentDescription = message
-            }
+            },
     )
 }
 
@@ -95,7 +95,7 @@ fun AccessibleCard(
             role = Role.Button
         }
     }
-    
+
     if (onClick != null) {
         Card(
             onClick = onClick,
@@ -233,7 +233,7 @@ fun AccessibleListItem(
                 role = Role.Button
             }
         }
-    
+
     val content: @Composable () -> Unit = {
         Row(
             modifier = Modifier
@@ -258,7 +258,7 @@ fun AccessibleListItem(
             trailing?.invoke()
         }
     }
-    
+
     if (onClick != null) {
         Surface(
             onClick = onClick,
@@ -347,7 +347,7 @@ fun StatusAnnouncement(
             .semantics {
                 liveRegion = if (isImportant) LiveRegionMode.Assertive else LiveRegionMode.Polite
                 contentDescription = status
-            }
+            },
     )
 }
 
@@ -371,7 +371,7 @@ fun Modifier.highContrastBorder(enabled: Boolean): Modifier {
         this.then(
             Modifier.semantics {
                 // Border will be added via theme
-            }
+            },
         )
     } else {
         this

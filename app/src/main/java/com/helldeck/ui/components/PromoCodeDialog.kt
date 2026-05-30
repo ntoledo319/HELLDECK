@@ -26,7 +26,6 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.helldeck.billing.PromoCodeManager
 import com.helldeck.ui.HelldeckColors
-import com.helldeck.ui.HelldeckHeights
 import com.helldeck.ui.HelldeckRadius
 import com.helldeck.ui.HelldeckSpacing
 
@@ -253,11 +252,11 @@ private fun InputContent(
             .fillMaxWidth()
             .focusRequester(focusRequester),
         label = { Text("Promo Code") },
-        placeholder = { 
+        placeholder = {
             Text(
                 "PARTYMODE",
                 color = HelldeckColors.colorMuted.copy(alpha = 0.5f),
-            ) 
+            )
         },
         singleLine = true,
         isError = errorMessage != null,
