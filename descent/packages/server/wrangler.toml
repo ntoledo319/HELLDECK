@@ -1,0 +1,21 @@
+name = "helldeck-descent"
+main = "src/worker.ts"
+compatibility_date = "2026-06-01"
+
+# Beta runs on <name>.<account>.workers.dev (free). Custom domain at launch (task D-801).
+
+[[durable_objects.bindings]]
+name = "ROOM"
+class_name = "RoomDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RoomDO"]
+
+[assets]
+directory = "../client/dist"
+binding = "ASSETS"
+
+[vars]
+ENV = "dev"
+# UNLOCK_SECRET is set via `wrangler secret put UNLOCK_SECRET` (task D-412)

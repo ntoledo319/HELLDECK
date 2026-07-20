@@ -1,0 +1,726 @@
+{
+ "perGame": [
+  {
+   "game": "HELLDECK: The Descent \u2014 ROAST deck (Roast Consensus)",
+   "verdict": "fix-then-ship",
+   "funny": 7,
+   "fit": 8,
+   "addiction": 7,
+   "one_liner": "A near-perfectly-shaped roast-consensus deck whose table-aware trait cards are genuinely elite, dragged off a 9 by an all-dating climax that names the same two people, a mid-deck wall of gross-confession binaries that produce no argument, and a handful of absurdist images that point at nobody.",
+   "summary": "Every one of the 154 cards is correctly shaped as a person-vote (\"Who would\u2026/Who has\u2026\"), and the differentiation is the deck's real strength: the majority map onto a tracked archetype a group can instantly pin 2-3 candidates to. The table-aware register \u2014 rank the room (105), private nickname for everyone here (106), running ledger of debts (061), itemized review after one drink (112), the story that's improved 40% (032) \u2014 is the platonic ideal of this mechanic: it doesn't just get a plurality, it detonates an argument. That's the win condition, hit repeatedly.\n\nThree deck-level problems, flagged by multiple lenses, keep it from an 8+ and are worth fixing before ship:\n\n1) THE CLIMAX IS A ROMANCE MONOTONE (all three lenses). The E4/E5 tier (~113-154, the ~42 most-exposed cards of a night) collapses almost entirely into exes/hookups, recycling ~5-6 jokes (HR-metaphor, closure-ex, texting-the-ex, fake-name, interchangeable-partners). When the deck should peak in VARIETY of accusation it narrows to one topic, so the same 1-2 \"romantic\" people get named all finish \u2014 typecasting, which is the enemy of \"one more round.\" Cap romance at ~40% of the deep tiers and interleave the cheap one, the petty-accountant, the snitch, the grudge-holder, the menace.\n\n2) THE GROSS BLOCK IS CONFESSION, NOT CONSENSUS (fit + addiction). 082-096 is a ~15-card stretch of \"Who HAS [specific gross fact]\" \u2014 single-person binaries where at most one person did it, so there's no plurality and no argument; the room shrugs or unanimously names the gross one. Reframe to dispositional \"Who WOULD\" (multiple qualify) or move to a Confession pool; keep only the 2 that actually fingerprint a person (083 lied-to-ER, 087 threw-up-and-stayed).\n\n3) ABSURDIST IMAGES THAT NAME NOBODY (fit + laugh). A weird sentence isn't a roast card \u2014 if no one at the table embodies it, the vote is random. Cut/retarget the dead-target cluster.\n\nLight dupes dilute the pool (taxidermy 003/091, morning-after 131/132, fake-identity 118/119, closure 137/150, same-name 142/146). Net: the fixes are surgical \u2014 cut/reframe ~15-18 cards, thin the romance cluster to its sharpest instances, rebalance archetypes across depth tiers. Nothing blocks shipping; the average card already points at someone in the room, which is rarer than it looks. Clears CONTEXTUAL easily, standouts hit DISTINCTIVE, near-zero WHOLESOME leakage.",
+   "keepers": [
+    "roast_v3_105",
+    "roast_v3_061",
+    "roast_v3_111",
+    "roast_v3_032",
+    "roast_v3_148",
+    "roast_v3_033"
+   ],
+   "top_fixes": [
+    {
+     "id": "roast_v3_113",
+     "issue": "HIGHEST LEVERAGE: the E4/E5 climax (~113-154, the ~42 most-exposed cards) collapses into almost all dating/exes/hookups, so the biggest moments of the night keep naming the same 1-2 'romantic' people and the consensus loop goes stale \u2014 typecasting kills replay by night 2.",
+     "action": "Rebalance the deep tiers to <=40% romance. Interleave high-exposure NON-romance archetypes (crime/betrayal/table-aware/gross-menace: the cheap one, the petty-accountant, the snitch, the grudge-holder) so each deep round names a DIFFERENT person."
+    },
+    {
+     "id": "roast_v3_143",
+     "issue": "Romance cluster runs the same 5-6 jokes into the ground: HR-metaphor (010/054/124/125/126/143), closure-ex (122/137/150), texting-the-ex (123/133/147), fake-name (118/119), interchangeable-partners (142/146/148). By the sixth repeat the table has clocked the formula and stops choke-laughing.",
+     "action": "Keep the single sharpest per beat, cut the rest. HR: keep 124 (exit interview) + 112 (itemized review), cut 125/143/126/054. Interchangeable: keep 148 (grocery item), cut 142/146. Fake-name: keep 119, cut 118. Closure: keep one of 137/150, cut the other + 122."
+    },
+    {
+     "id": "roast_v3_082",
+     "issue": "The gross block 082-096 is ~15 'Who HAS [specific gross fact]' single-person BINARIES \u2014 at most one person did it, so there's no plurality and no argument. That's a Confession card, not a Consensus card; it starves the exact dopamine (2-3 candidates fighting) and forms a monotone 'who's-the-gross-one' dead stretch mid-night.",
+     "action": "Move the binary-fact cards to a Confession pool OR reframe to dispositional 'Who WOULD' so multiple people qualify and the room can argue. Keep only the 2 that fingerprint a real friend (083 lied-to-ER-nurse, 087 threw-up-and-stayed); break the block up rather than shipping it in sequence."
+    },
+    {
+     "id": "roast_v3_026",
+     "issue": "Absurdist-image cluster that names nobody: dinner-table mannequin (026), 3am zoo break-in (016), toddler small-claims-and-loses (039), fake-limp-for-a-semester (058), re-chewed week-old gum (059). The humor lives in the juxtaposition, not in any person the group tracks \u2014 in a voting game they flatline (random plurality, no argument).",
+     "action": "Cut 026/016/039/058/059. A funny sentence that produces no target is a dud by this mechanic's own rules."
+    },
+    {
+     "id": "roast_v3_035",
+     "issue": "Two more absurdist near-misses: CPR-on-a-napper (035) and plead-the-Fifth-about-a-crockpot (013) are jokes about a situation, not accusations about a person's trait, so consensus has nothing to converge on.",
+     "action": "Retarget to a real archetype the room points at: 035 -> the panicky over-reactor ('Who would call 911 because someone's being too quiet?'); 013 -> the defensive-cagey one ('Who gets suspiciously cagey when asked a completely normal question?'). Cut if they won't sharpen."
+    },
+    {
+     "id": "roast_v3_091",
+     "issue": "Near-duplicate target: 091 (taxidermy after a breakup) and 003 (taxidermy the still-living cat) summon the identical 'morbid weirdo' read and name the same person twice with no new argument.",
+     "action": "Cut 091; keep the sharper 003. If you want a second post-breakup card, re-angle 091 to a distinct archetype (the vengeful-organizer or the immediate-rebounder)."
+    },
+    {
+     "id": "roast_v3_044",
+     "issue": "Too universal for consensus: 'sell their soul for something under fifty dollars' fits literally everyone, so votes scatter, no plurality forms, and the round produces no named target and no fight.",
+     "action": "Anchor the betrayal to differentiable in-room stakes: 'Who would sell one of us out for a free entree?' or 'Who would testify against this room for gas money?' Otherwise cut."
+    },
+    {
+     "id": "roast_v3_104",
+     "issue": "Too abstract: 'joined this friend group for the amenities' \u2014 'amenities' is vague, so the room isn't sure what the accusation even is and can't converge on a candidate.",
+     "action": "Name the amenity: 'Who joined this group for one person's lake house?' or '...for the free rides home?'"
+    },
+    {
+     "id": "roast_v3_054",
+     "issue": "'Put this friendship on a performance improvement plan' is bloodless corporate-workshop humor \u2014 the exact team-building register the project taste-law bans. Clever, not choke-laugh, and the itemized-review card (112) already does the 'HR friend' bit with teeth.",
+     "action": "Cut 054."
+    },
+    {
+     "id": "roast_v3_105",
+     "issue": "OPPORTUNITY (not a defect): the table-aware register ('which of US in this room\u2026') is the purest expression of the mechanic \u2014 it makes the room the crime scene and guarantees an argument \u2014 but it's only ~13% of the deck.",
+     "action": "Roughly double the table-aware share, especially in the warm-up and the climax, as you backfill the cards cut above. This is where the pointing needs to be sharpest."
+    },
+    {
+     "id": "roast_v3_002",
+     "issue": "Chaos floor never drops below C3 \u2014 the whole set is C3-C5 with no gentle on-ramp, so if Roast fires early in a night it opens already-hot with no rung below the crime cards.",
+     "action": "Add a handful of C2 low-stakes-but-still-pointed openers (petty-domestic 'who' with obvious candidates) so night-start has an easing-in rung."
+    }
+   ]
+  },
+  {
+   "game": "fillin",
+   "verdict": "fix-then-ship",
+   "funny": 7,
+   "fit": 9,
+   "addiction": 7,
+   "one_liner": "A shape-disciplined, genuinely filthy fill-in deck whose best cards hand the Reader a whole scene to perform out loud \u2014 held back from a clean ship by one dominant \"official-record-euphemizes-my-crime\" template that eats the mid-game and a chaos ceiling too flat to give the peak.",
+   "top_fixes": [
+    {
+     "id": "fillin_v3_092..096,129,130,131,139,143,145,148,150,157",
+     "issue": "TEMPLATE FATIGUE (all three lenses converge here \u2014 the #1 set-level problem). ~20 cards are one skeleton: a bureaucratic/legal/medical record obliquely euphemizes my crime, blank = the real dark thing (court documents / trial transcript / itemized deposit / under oath / greatest weakness / newsletter / next 'I can explain' text). Register tags vary, structure is identical; by hour 2 the table predicts the shape before the blank lands. This is what makes 163 cards feel like ~90.",
+     "action": "Cut the family to its 6 sharpest where the euphemism does real work (keep 130 trial-transcript, 138 exterminator line-item, 092 'greatest weakness'/courts, 157 newsletter, 129 ER chart, 093 'the misunderstanding'). Drop 094/095/143/145/148/150 and the near-twins. 'Itemized only as ___' is a different joke than the seventh 'the courts called it ___.'"
+    },
+    {
+     "id": "",
+     "issue": "FLAT CHAOS CEILING starves the peak. Only ~10 cards hit C5 (001,002,004,005,006,030,031,032,033,083) and they're the best in the deck; everything else lives in a comfortable C4 midrange, so the night never feels like it's getting WORSE and there's no 'saving the worst for depth' pull.",
+     "action": "Spend every slot reclaimed from the template cull on 8-10 NEW C5 menace/gross setups that are PERFORMANCE-FRAMED \u2014 a scene and a voice, not a first-person admission (template: 001 baby monitor, 006 tarp/lime/bungee, 032 'has to stay fresh'). This one move does triple duty: kills mid-game fatigue, raises the ceiling, fixes read-aloud energy exactly where the game should detonate."
+    },
+    {
+     "id": "fillin_v3_007",
+     "issue": "Only genuinely BROKEN card, flagged by all three. 'rhymes with ___' names no target word to rhyme against, so it collapses into a plain blank while confusing the read AND shrinking the answer space \u2014 the opposite of what fill-in wants. Rewards cleverness over the laugh and half the room disengages.",
+     "action": "Drop the rhyme, make it a straight quote finisher: 'The one text my ex could screenshot and end me with: \"___.\"' If you want a real rhyme game, build a dedicated mechanic \u2014 not a mad-lib."
+    },
+    {
+     "id": "fillin_v3_082",
+     "issue": "Flattest card in the deck (Fit + Laugh). 'It started as a bit. Three weeks later: ___' has zero image and zero constraint \u2014 the blank could be anything, so nobody writes the SPECIFIC line that wins and answers scatter with no shared comic vector. Textbook swap-into-any-party-game dud.",
+     "action": "Add a concrete escalation anchor so lines aim at one beat: 'It started as a bit. Three weeks later there's a ___ in the group chat and a lawyer involved,' or cut."
+    },
+    {
+     "id": "fillin_v3_052,021,093,160,078,114",
+     "issue": "STRUCTURAL TWINS surface close together in a live game and the second reads as 'didn't we just do this.' 052 (museum audio guide, weaker single-noun twin of 051) / 021 (aliens-return {NAME}, weaker twin of 003's kidnappers-pay-fifty-bucks) / 093 (family-vs-court, twin of 092) / 160 (heist, flatter twin of 159's 'stop for ___') / 078 (wedding objection with no name, twin of table-aware 079) / 114 ('for love', redundant with 112/113).",
+     "action": "Cut the weaker twin of each pair \u2014 keep 051, 003, 092, 159, 079, 112. Loses zero distinct jokes and tightens the whole deck."
+    },
+    {
+     "id": "fillin_v3_111,114,117,121,147,048,149",
+     "issue": "FRAMELESS-CONFESSION DEAD STRETCH (Addiction + Laugh). A cluster of first-person E4/E5 blanks \u2014 'one more night of ___', 'the part where ___', 'my type clinically is ___', 'what I do when alone is ___', 'believe ___', 'not to ask me about ___' \u2014 give NO vivid frame and no tone baked in. Fill-in's dopamine is the Reader performing your answer in a stupid voice; these are flat statements with nothing to perform, and back-to-back they blur into one grey stretch right where the game should detonate.",
+     "action": "Give each a performance frame or a concrete accuser/scene (the 019 noise-complaint-quote / 138 exterminator model). e.g. 'what I do when alone' -> 'The smart-home camera flagged me ___ again.' Anchor 048 to a deed not a belief: 'I'd pass a polygraph about ___ purely because I've decided it doesn't count.' Cut 149 outright."
+    },
+    {
+     "id": "fillin_v3_109",
+     "issue": "Try-hard noir cosplay (Laugh). 'Everyone in this town is guilty of something, I said, lighting a match \u2014 me? ___.' All the energy is in the stage directions; the blank gets no pressure. The AI-improv-generator smell.",
+     "action": "Kill the theater, keep the noir, pressure the blank: 'The one crime in this town they never pinned on me: ___.'"
+    },
+    {
+     "id": "fillin_v3_040",
+     "issue": "Clunky to perform aloud (Laugh). '{NAME} would last four days in prison before trading a cellmate for ___' \u2014 the Reader has to untangle 'trading a cellmate for' mid-sentence and the arbitrary 'four days' adds nothing.",
+     "action": "Clean read: '{NAME}'s first day in prison, they'd trade their entire commissary for ___.'"
+    },
+    {
+     "id": "",
+     "issue": "SEQUENCING RISK (Addiction). The raw E1->E5 / C-tier material for a warm-up->detonation arc exists, but if the runtime draws flat-random a night can open on an E5 sex-confession and close on an E1 absurd, killing the arc and making every card feel mid.",
+     "action": "Confirm the engine sorts/gates draws by Exposure and reserves C5 for depth. If it draws flat-random, the deck's latent escalation never reaches the table \u2014 this is an engine check, not a card edit, but it decides whether the fixes above land."
+    },
+    {
+     "id": "fillin_v3_095",
+     "issue": "Tired meme frame (Laugh). 'What happens in Cabo stays in Cabo \u2014 except ___' earns a recognition nod, not a choke-laugh (and it's also a member of the court-record family above).",
+     "action": "Fold into the template cull, or freshen the container: 'The one thing from Cabo that followed me home and now has a court date: ___.'"
+    }
+   ],
+   "keepers": [
+    "fillin_v3_002",
+    "fillin_v3_001",
+    "fillin_v3_005",
+    "fillin_v3_003",
+    "fillin_v3_138",
+    "fillin_v3_096"
+   ],
+   "summary": "Consensus fix-then-ship across all three lenses. Fit is the standout (9): this is an unusually shape-disciplined mad-lib deck \u2014 nearly every card lands the blank in true finisher or reaction-tag position ('which is fine', 'and the class pedaled harder', 'labeled ceremonial') where a trailing clause makes ANY submission land, and the {NAME} cards turn rounds into on-brand roast pile-ons. Funny and addiction both sit at 7, dragged down by the SAME two structural problems, not by weak jokes: (1) ~20 cards collapse into one 'official record euphemizes my crime' skeleton (court/chart/transcript/newsletter/under-oath) that makes 163 cards feel like ~90 by hour two, and (2) the chaos ceiling is flat \u2014 only ~10 true C5 cards, and they're the best in the deck (baby monitor, tarp/lime/bungee, 'has to stay fresh'), so the intended peak is starved while the E5 sex/shame tier under-delivers because most are frameless first-person confessions with no scene for the Reader to perform. The single highest-leverage move is one action that does triple duty: cull the court-record template family to its 6 sharpest and spend every reclaimed slot on new performance-framed C5 detonation setups. That kills the mid-game fatigue, raises the ceiling, and fixes read-aloud energy exactly where the game should peak. Then fix the one broken card (007's dead rhyme conceit), cut the weaker structural twins (052/021/093/160/078/114), anchor the frameless confessions to a voice or accuser, and confirm the runtime gates draws by Exposure so the latent warm-up->detonation arc actually reaches the table. The bones \u2014 register range, on-brand darkness, {NAME} recognition engine, healthy corpus, textbook list-priming (002's shovel-and-ice) \u2014 are already strong. Ship after the cull."
+  },
+  {
+   "game": "overunder",
+   "verdict": "fix-then-ship",
+   "funny": 7,
+   "fit": 6,
+   "addiction": 6,
+   "one_liner": "An elite, genuinely unhinged \"your phone narcs on you\" voice bolted to a mechanic that only fires on about 60% of its cards, because the other 40% have no receipt to reveal.",
+   "keepers": [
+    "overunder_v3_152",
+    "overunder_v3_111",
+    "overunder_v3_126",
+    "overunder_v3_157",
+    "overunder_v3_112",
+    "overunder_v3_035"
+   ],
+   "top_fixes": [
+    {
+     "id": "overunder_v3_011",
+     "issue": "THE systemic failure all three lenses converge on: ~50-60 cards (roughly 40% of the deck) resolve to 'honest count / self-report, all time' with NO phone to open (011, 018-021, 026-029, 058-060, 062-068, 087-090, 116-118, 132...). The receipt IS the game \u2014 the gap between the guessed line and the real number on the screen \u2014 so a bet the subject just declares has zero tension, no incrimination, nothing to screenshot, and dies after one telling.",
+     "action": "For each, either repoint at a real phone/physical receipt in a BOUNDED window ('this week / right now'), or cut. This one move restores the mechanic, the shareable-screenshot moment, and the weekly-refresh replay engine at once. The deck already contains the template for its own repair: nearly every weak self-report card has a strong sibling pointing the same joke at a real receipt."
+    },
+    {
+     "id": "overunder_v3_137",
+     "issue": "The unconvertible cluster: numbers that live ONLY inside the subject's head (097 eulogies, 134 comebacks, 137-140 rehearsed speeches/apologies, 143 re-litigating) or are HYPOTHETICALS invented at the table (133, 108, 141, 150, 151). Unlookable in principle, not just unverifiable \u2014 and the whole E4-E5 finale collapses into ~15 monotone flavors of ex-pining.",
+     "action": "Cut the cluster. Keep ONLY 133 and 157 as an explicitly separate 'gut-check' finale card type (bet a line, subject commits a number OUT LOUD, no lookup) so the receipt promise stays honest on every other card. Broaden the finale's range with the lookable nukes instead (152, 154, 155, 156)."
+    },
+    {
+     "id": "overunder_v3_015",
+     "issue": "Physical-stunt glut: ~25 non-incriminating feats of strength/endurance (planks, held breath, cartwheels, sit-ups, staredowns, chubby-bunny grapes, on-command burps) that expose NOTHING about the person and are interchangeable with any icebreaker deck \u2014 a failed specificity test. Plank appears 3x (015/129/131), staredown 2x (013/014), pushups 3x.",
+     "action": "Keep 3-4 as palate-cleansers only \u2014 128 (pushups now), 085 (breath-hold, correctly structured as bet-then-measure-live), 131 (friend-on-back for genuine chaos) \u2014 and cut the rest. Every stunt cut makes room for a receipt card that actually detonates."
+    },
+    {
+     "id": "overunder_v3_010",
+     "issue": "Actively WHOLESOME or dated duds that violate the one word this project must never be: 010 (petting strangers' dogs \u2014 sweet, not incriminating), 001 (spiders carried outside 'playing tiny god' \u2014 try-hard whimsy), 029 (clapping when the plane lands \u2014 a 2019 meme corpse), 017 & 092 (jar-opening 'freakish grip' flex \u2014 being the strong friend is a COMPLIMENT).",
+     "action": "Cut outright. None produce a choke-laugh and several are adjacent to the banned register."
+    },
+    {
+     "id": "overunder_v3_122",
+     "issue": "Delivery/food-spend template fatigue: 5-6 near-identical 'dollars, delivery order history' cards (093, 122, 123, 124, 126, 127). By the third one the room predicts both the prompt AND the app it opens.",
+     "action": "Keep the 3 sharpest gap-cards (126 fees-only-not-one-bite, 127 robe-clad liquor, 124 midnight-in-bed), cut the dupes (122 burrito-four-blocks, 123 food-up-the-stairs \u2014 same joke), and vary the receipt SOURCE so consecutive money cards don't all open the same app."
+    },
+    {
+     "id": "overunder_v3_003",
+     "issue": "Named receipts that don't actually surface a number, so the round stalls at the reveal: 003 (Battery settings show a graph, not a low-power-event count), 080 (no snooze tally exists anywhere), 009 (today's song-restarts aren't surfaced \u2014 play count is all-time/per-song), 148 (unblock history isn't stored), 006 (summing every badge on the home screen is slow, disputable, and drifts).",
+     "action": "Repoint each at a number the phone genuinely displays: 003 \u2192 Screen Time or battery %; 080 \u2192 fold into 073 (alarms currently set); 009 \u2192 all-time #1-song play count (both apps show it); 148 \u2192 contacts CURRENTLY on the blocked list; 006 \u2192 count of icons showing a badge (a countable set, not a running sum)."
+    },
+    {
+     "id": "overunder_v3_027",
+     "issue": "Self-reports that a receipt actually CAN resolve, wasted as guesses: 027 (longest sleep IS stored in the Health app), 135 (exes' numbers recallable from memory only lands if recitation is the receipt).",
+     "action": "Swap the receipt line \u2014 027 \u2192 Health app longest sleep session (bounded to this week/month so it's findable); 135 \u2192 'they must recite each number out loud to prove it counts.' Both convert cleanly to real live resolutions."
+    },
+    {
+     "id": "overunder_v3_063",
+     "issue": "One-sided lines with no spread: 063 (wild mushrooms declared safe and eaten \u2192 0 for essentially everyone). No arguable over/under exists when the honest answer is fixed for the whole table.",
+     "action": "Cut, or reframe to a genuinely common behavior with real distribution across the room."
+    },
+    {
+     "id": "overunder_v3_026",
+     "issue": "Escalation and replay are lumpy: E2 is ~half the deck (a long flat plateau of domestic-filth and stunts where the night stalls), the true detonation tier E5 is only ~8 cards, and static 'all time' counts give the same answer every session so they're one-and-done per person.",
+     "action": "Thin E2 by ~30%, promote the money-shame receipts (the deck's best stretch) up the curve, expand a genuinely nastier E5, and bias the whole timebox mix toward 'right now / this week' so numbers re-roll every session."
+    },
+    {
+     "id": "overunder_v3_101",
+     "issue": "The top escalation tier (C5) too often leans on gross-out rather than real stakes: 049, 058, 100, 101, 102 are disgusting, not high-stakes, and don't risk anything about the person.",
+     "action": "Trim, and reserve C5 for cards that risk something real \u2014 money shame, contacts, secrets \u2014 not just something revolting."
+    }
+   ],
+   "summary": "Three lenses, one score (6), one unanimous diagnosis: the writing is DISTINCTIVE and fully passes the taste law ('protected wetland,' 'smells like a decision,' 'gravity files an incident report' \u2014 this is the deck's greatest asset), and a ~50-60 card spine of exact phone/bank/map receipts is best-in-class for the mechanic (Screen Time pickups, delivery fees with no food, hours parked in one bar per the map, hearts saved in Contacts, one-bar-one-night bleed). But roughly 40% of the deck resolves to 'honest count, all time' with no screen to open \u2014 and the receipt IS the entire game: the jolt of the phone ratting you out with a number you couldn't guess but can verify in 30 seconds. A bet the subject just declares has no tension, no incrimination, nothing to screenshot, and dies after one telling. Worse, a sub-set is unlookable in principle (rehearsed speeches in your head, hypotheticals invented at the table) and the finale collapses into 15 flavors of ex-pining. The fix is subtraction, exactly as the taste law demands: repoint every convertible self-report at a real bounded-window receipt, cut the internal/hypothetical cluster (keeping 133 & 157 as an explicit gut-check card type), cut the ~25-card physical-stunt glut down to 3-4 palate-cleansers, and kill the handful of wholesome/dated duds. The gold is already in here \u2014 it's just diluted. Do this and it's an 8+."
+  },
+  {
+   "game": "HELLDECK: The Descent \u2014 CONFESSION deck (Confession or Cap)",
+   "verdict": "fix-then-ship",
+   "funny": 8,
+   "fit": 8,
+   "addiction": 7,
+   "one_liner": "A genuinely funny, unmistakably unhinged confession deck whose deadpan reframe-buttons (\"for errands,\" \"I did not hurry\") make almost every deed sellable as truth OR lie \u2014 dragged from a 9 to an 8 only by a pocket of vague-withhold blanks and a romance-betrayal monoculture that both telegraph themselves by night two.",
+   "keepers": [
+    "confession_v3_001",
+    "confession_v3_104",
+    "confession_v3_083",
+    "confession_v3_012",
+    "confession_v3_125",
+    "confession_v3_144"
+   ],
+   "top_fixes": [
+    {
+     "id": "confession_v3_002, confession_v3_010, confession_v3_075, confession_v3_065, confession_v3_081, confession_v3_107, confession_v3_124, confession_v3_064, confession_v3_139, confession_v3_056",
+     "issue": "THE #1 FIX (all three lenses agree). Vague-withhold cards gesture at a secret instead of naming a deed \u2014 'something my hometown calls a mystery' (002), 'a lie everyone still believes' (010), 'what happened at their festival' (075), 'more embarrassing than they suspected' (065). Structurally fatal here: the jury has nothing concrete to vote believe/cap on, so the round becomes make-up-a-story, and nobody laughs at a blank.",
+     "action": "Name the deed and keep the euphemistic button. e.g. 010 -> 'I once told this whole group [X] happened, and it did not.' Every one is fixable by simply saying the thing. (Resolving the 010 split: addiction listed it a standout, but two lenses flag it as unvoteable \u2014 the mechanic needs a concrete claim, so 010 gets fixed, not kept.)"
+    },
+    {
+     "id": "romance cluster (033/043/056/042/135/136/142 + ~38 others)",
+     "issue": "THE MONOCULTURE (addiction lead, corroborated by laugh's bureaucracy note). ~45 of 146 cards \u2014 nearly a third \u2014 are romance/breakup/hookup/infidelity, and every deepest-exposure E5 card is sexual/relationship. By night two the jury pattern-matches 'another cheating one' before the read ends, and the detonation tier is the same gear louder, not a new gear.",
+     "action": "Cut the romance third down to ~a sixth. Reinvest the ~20 reclaimed slots into the deck's two real addiction engines: table-aware 'someone in this room' implication cards and universal ownable-sin coin-flips (the 001/104/125 kind). This one move fixes variety AND de-monotones the E5 peak."
+    },
+    {
+     "id": "confession_v3_025, confession_v3_072, confession_v3_118, confession_v3_142, confession_v3_035, confession_v3_016, confession_v3_018",
+     "issue": "THE SIGNATURE TAG BECOMES A TELL. ~15 cards close on the same editorial self-justification cadence \u2014 'I maintain it was the right call,' 'reasons I still consider valid,' 'I still think I was right.' Funny twice; by night two the jury hears it coming. Worse for the mechanic: the tag pre-scripts the confessor's attitude, stealing the bluff-performance space the player is supposed to fill. (Note the nuance: the deadpan REFRAME-button \u2014 'shovel and tarp, for errands' \u2014 is the deck's gold and stays; it's the literal self-justification EDITORIAL that's overused.)",
+     "action": "Strip the attitude tag from ~2/3 of these. Leave the deed neutral so the player has to sell the attitude live \u2014 that IS the game."
+    },
+    {
+     "id": "confession_v3_029, confession_v3_030, confession_v3_031, confession_v3_134, confession_v3_138",
+     "issue": "BUREAUCRATIC-BREAKUP CLUSTER (laugh + addiction). Five near-identical 'breakup-as-corporate-process' cards \u2014 itemized invoice, HR exit interview, written custody terms, signed chore contract, numbered rebuttal. The runner is sharp once, thin by the fifth; drawn in one night it reads as one joke reprinted.",
+     "action": "Keep the two sharpest (029 itemized invoice, 030 HR exit interview); cut or repurpose the rest so the register has variety."
+    },
+    {
+     "id": "confession_v3_020",
+     "issue": "BODY-DISPOSAL TRIPLET (laugh + mechanic). 'Buried something in a public park at night' is the third murder-prep card after 001 (shovel/tarp) and 008 (rug drag), and the vaguest \u2014 the table is ahead of it by the third variation.",
+     "action": "Retire 020 as the weakest of the three (keep 001, the platonic standout), or twist it off the corpse rails toward a concrete non-body object so it stops echoing."
+    },
+    {
+     "id": "confession_v3_009",
+     "issue": "DEMONSTRABLE DARE breaks the vote (mechanic). A rehearsed impression is instantly performable, so the jury short-circuits the believe/cap vote into a live 'do it then' dare the mechanic can't score, and a true claim gets called on the spot.",
+     "action": "Swap to a deed that can't be demonstrated in the room, e.g. 'I keep a folder of screenshots of one person here's worst-ever texts.'"
+    },
+    {
+     "id": "confession_v3_073, confession_v3_105",
+     "issue": "COIN-FLIP FAILURES (addiction; the task itself flags this shape). 'Knowingly ate roadkill as a delicacy' (073) and 'real fight at a Renaissance faire' (105) are too character-specific \u2014 the jury votes 'is that YOUR kind of thing,' not 'did it happen,' so both lean auto-cap and the believe side dies.",
+     "action": "Cut or universalize to a deed anyone at the table could plausibly own."
+    },
+    {
+     "id": "confession_v3_106",
+     "issue": "SKEWS AUTO-FALSE (mechanic). CPR on a sleeping adult would wake them instantly, so the room can't buy 'true' \u2014 the confess option is dead and the round leans auto-cap.",
+     "action": "Soften to a believable near-miss: 'I once started CPR on someone before realizing they were just asleep.'"
+    },
+    {
+     "id": "confession_v3_082",
+     "issue": "CHECKABLE SHARED HISTORY collapses ambiguity (mechanic). Whether the confessor ever housesat for someone present is often known to the room; if not, it's auto-cap regardless of the sell, capping the liar's skill ceiling the mechanic rewards. The private-observation table-aware cards (081/083/084/089/090/097) are strictly better fits.",
+     "action": "Move to an unverifiable private version: 'Something a friend lent me died on my watch and the replacement was never noticed.'"
+    },
+    {
+     "id": "confession_v3_005 / confession_v3_137; confession_v3_135 / confession_v3_136 / confession_v3_142; confession_v3_095",
+     "issue": "NEAR-DUPES + LOW-STAKES DUD (all lenses on dedup). 005 and 137 are the same ghostwriting reveal reskinned; 135/136/142 are the same 'maintained a fake ___ through a relationship'; 095 (ate labeled food) is too low-stakes to force a real vote.",
+     "action": "Keep one of each dupe pair; either raise 095's betrayal ('...then watched a roommate get accused and said nothing') or cut it."
+    },
+    {
+     "id": "on-ramp / opening tier",
+     "issue": "NO TRUE SOFTBALL (addiction). Lowest chaos in the deck is C3; there's no genuinely silly, low-stakes tier to break the ice before the knives, so the petty-domestic C3s (129/130/131) carry the whole warm-up alone.",
+     "action": "Add a small C2 silly tier so the first round eases the table in before escalation \u2014 and use it as landing space for some reclaimed romance slots."
+    }
+   ],
+   "summary": "Unanimous fix-then-ship across all three lenses (mechanic 8, laugh 8, addiction 7). The engine is right for Confession or Cap: a concrete, specific deed that snaps shut on a euphemistic reframe-button ('shovel and tarp, for errands'; 'I did not hurry'), which reads equally as a real confession or a bald-faced lie AND hands the confessor the defense they need to sell either \u2014 the ambiguity that IS the game. The line-level craft is high and unmistakably UNHINGED, never WHOLESOME; this is not AI-slop. It ships strong after surgical, cheap edits \u2014 no rework. Two structural drags keep it from a 9: (1) a pocket of vague-withhold blanks (002/010/075/065 etc.) that outsource the deed to the player and give the jury nothing to vote on \u2014 the single highest-leverage fix, and free (just name the deed); (2) a romance-betrayal monoculture (~1/3 of cards, and the entire E5 peak) plus a repeated self-justification tag (~15 cards) that both telegraph themselves by night two. Cutting the romance third to a sixth and pouring those slots into the two proven addiction engines \u2014 table-aware 'someone in this room' implication and universal ownable-sin coin-flips \u2014 fixes variety, sharpens the bluff to a true 50/50, and de-monotones the detonation tier all at once, taking this from a strong-for-two-nights deck to still-surprising-on-night-four. Keepers (001 shovel-for-errands, 104 pinned-the-fart, 083 let-someone-here-take-the-blame, 012 funeral makeout, 125 eleven-year hit-and-run, 144 broke-the-toilet-said-nothing) prove the ceiling is very high."
+  },
+  {
+   "game": "scatter",
+   "verdict": "fix-then-ship",
+   "funny": 6,
+   "fit": 8,
+   "addiction": 6,
+   "one_liner": "A genuinely great panic engine with a menace-and-confession spine, diluted by a same-y confessional middle, a few wholesome-adjacent soft cards, and a handful of phrase-on-hard-letter rounds that collapse to one obvious shout.",
+   "keepers": [
+    "scatter_v3_050",
+    "scatter_v3_011",
+    "scatter_v3_074",
+    "scatter_v3_001",
+    "scatter_v3_044",
+    "scatter_v3_072"
+   ],
+   "top_fixes": [
+    {
+     "id": "DECK-STRUCTURE",
+     "issue": "The addictive 'someone here' table-aware cards (the screenshot engine) are ALL banked at E4/E5, so the dopamine peak fires once at the very end \u2014 the opposite of 'one more round.' Meanwhile E3 (015-048) is a flat 34-card plateau of the same deadpan-confession register.",
+     "action": "Thread the table-aware cards through the E3 middle as 'oh shit it got personal' spikes and add 6-8 more so the peak recurs every few rounds instead of once. Single highest-leverage change for replayability."
+    },
+    {
+     "id": "scatter_v3_067",
+     "issue": "Triple-flagged: (W) 'panic-buy when sad' collapses to 'wine' then the letter dies, it's wholesome BuzzFeed-relatable filler, AND W is a thin letter. Broken round + no laugh.",
+     "action": "Cut. If a sad-spending card must exist, re-frame with a spike and a fat letter: 'Stuff you drunk-bought at 3am and regret' on (S/C)."
+    },
+    {
+     "id": "scatter_v3_016",
+     "issue": "Triple-flagged: (T) 'Lies you tell your doctor' \u2014 the real doctor-lies (floss, exercise, two drinks) barely clear 4 on T, and the card is soft/relatable, not roast-heat.",
+     "action": "Point it at the real lie and re-letter to (S): 'Lies you tell your doctor about your drinking' \u2014 sober, still hungover, saw a specialist. Denser and darker."
+    },
+    {
+     "id": "scatter_v3_041",
+     "issue": "Two lenses: (L) 'tossed from a funeral' is borderline-4 ('laughing' then L thins to late/loud/lewd), and it's the THIRD funeral card (006, 032, 041).",
+     "action": "Re-letter L\u2192(S): screaming, sobbing, showed up drunk, said the wrong name, stealing flowers \u2014 denser and clears the floor."
+    },
+    {
+     "id": "scatter_v3_038",
+     "issue": "Two lenses: (W) 'voicemails you regret' \u2014 voicemails naturally open 'hey / it's me,' not W; only ~3 phrasey W-openers exist, so the letter starves the round.",
+     "action": "Re-letter W\u2192(I): 'It's me...', 'I can't believe...', 'I know it's late...', 'I miss you' \u2014 natural, dense, still panic-inducing."
+    },
+    {
+     "id": "scatter_v3_043",
+     "issue": "(W) 'Excuses for skipping your kid's recital' \u2014 excuses almost never start with W; 'work' is the lone shout and the bench empties, so the room blanks because no answers EXIST (the wrong kind of blank).",
+     "action": "Re-letter W\u2192(F): flat tire, forgot, family emergency, feeling sick, funeral \u2014 keeps the exact joke, fixes the density."
+    },
+    {
+     "id": "scatter_v3_079",
+     "issue": "Two lenses: (G) 'hangover cures someone here swears by' is wholesome wellness-tip energy AND thin on G (Gatorade, greasy food, ginger \u2014 done). Low heat plus broken-adjacent.",
+     "action": "Cut. A hangover card only belongs here as a confession, not a remedy list."
+    },
+    {
+     "id": "scatter_v3_071",
+     "issue": "Two lenses: (T) 'dishes someone here always burns' is exactly the never-feel (cooking-night wholesome), and T is thin (toast, turkey).",
+     "action": "Cut, or raise the shame and re-letter: 'Things someone here has actually set on fire' \u2014 spike + wider answer space."
+    },
+    {
+     "id": "DECK-LETTERS",
+     "issue": "Letter monotony: ~14 (S), ~11 (B), ~10 (C), ~8 (T). Each S card works alone, but drawing several a night makes the reveal same-y and lets players pre-stock a mental S-list, killing the blank-under-panic magic.",
+     "action": "Re-letter 5-6 of the S cards onto under-used dense letters (P, G, R, D). E.g. 040 'what's under your bed' works equally on (B): boxes, blankets, batteries, body."
+    },
+    {
+     "id": "scatter_v3_004",
+     "issue": "Generic party-prompt tail + duplicate: 004 'excuses texted your boss (F)' and 005 'lies you told to leave early (S)' are the literal base-template prompt (swap the game name, still works) AND mine the same excuse-to-authority beat.",
+     "action": "Cut one. Point the survivor somewhere with a POV: 'Excuses you texted your boss at 4:59 on a Friday.'"
+    },
+    {
+     "id": "scatter_v3_018",
+     "issue": "Two lenses: 018 (M) 'blocked then unblocked' and 032 (M) 'un-invite from your funeral' force a recalled NAME as the answer \u2014 no punchline lives in the shout, and M-for-people is thin. 032 is also a third funeral.",
+     "action": "Reframe both so the ANSWER carries the laugh, not a name: 'Reasons you blocked then unblocked your ex (S)' \u2014 screenshots, spiraling, sex; 'Things you want SAID at your funeral (S).'"
+    },
+    {
+     "id": "DECK-TEMPLATE",
+     "issue": "Template fatigue: ~50 of 81 cards are the same first-person 'confess-a-crime/regret' shape, so the panic dulls into a pre-loaded reflex; the middle reads as one 34-card category with the noun swapped.",
+     "action": "Convert ~12 E3 confessionals into the two flavors that DON'T blur \u2014 world-absurd (like 001/002/060) and table-aware 'someone here' (like 072/074). Aim roughly a third each, not 60% confession."
+    }
+   ],
+   "summary": "All three council members independently landed on fix-then-ship, and their flags converge, which makes the priorities unambiguous. The spine is genuinely strong: menace/confession POV cards (011 crimes for a nap, 009 parole-officer gifts, 044 Waffle House ban, 031 apartment noises) and the table-aware 'someone here' cards (072, 074, 075) are DISTINCTIVE-tier and mechanically deep \u2014 noun categories on fat letters produce real benches and real panic. Fit scores highest (8) because answer-density mostly works; funny (6) and addiction (6) are held down by three shared problems. First, a broken-playability cluster where phrase-type categories sit on hard letters (067/016/041/038/043) and collapse to one obvious shout \u2014 these are actual dead rounds, each fixable with a one-letter swap that keeps the joke. Second, a soft tail that reads WHOLESOME for this UNHINGED deck (066, 067, 079, 071) plus generic swap-the-name party prompts (004/005, 018/032 name-dumps) and over-mining (three funerals, a 3am cluster, six 'lies you tell X' cards). Third, the structural drag addiction caught: the deck over-indexes on one confessional template across four letters (S/C/B/T), and banks its entire screenshot peak \u2014 the table-aware cards \u2014 at the very end. Highest-leverage move is structural: thread the table-aware cards through the flat E3 middle and add 6-8 more so the peak recurs instead of firing once. Do the ~12 cuts/re-letters and this is a clean ship at 8."
+  },
+  {
+   "game": "poison",
+   "verdict": "fix-then-ship",
+   "funny": 6,
+   "fit": 6,
+   "addiction": 6,
+   "one_liner": "A clinic in cursed either/or dilemmas that quietly stops being a pitch game and becomes a confession round by the back third \u2014 half a great deck stapled to a milder, saggier one.",
+   "keepers": [
+    "poison_v3_021",
+    "poison_v3_010",
+    "poison_v3_034",
+    "poison_v3_057",
+    "poison_v3_082",
+    "poison_v3_005"
+   ],
+   "top_fixes": [
+    {
+     "id": "poison_v3_083",
+     "issue": "STRUCTURAL, highest leverage \u2014 the entire E4/E5 tier (083-102, plus single-holder cards 068/071/080/092/093) stops running on POISON PITCH. There is no two-sided sell the room scores for meanness; it's one player choosing self-expose vs get-exposed, i.e. the Confession mechanic wearing a Poison jacket. Confirmed by two lenses. The signature hook (watch a friend PERFORM cruelty, room votes who sold it harder) switches off at exactly the peak-stakes tier.",
+     "action": "Re-cast the survivors as true two-sided cursed dilemmas both players can argue (081 'sell your worst trait as a virtue' is the model to clone), and migrate the pure reveals to the Confession deck. The escalation must stay a PITCH game all the way to detonation."
+    },
+    {
+     "id": "poison_v3_048",
+     "issue": "DEAD STRETCH \u2014 cards 048-067 are ~20 consecutive 'you're the friend who does petty thing A vs petty thing B' cards. Same shape, thinnest pitch potential in the deck, lowest screenshot yield, and dropped mid-escalation it resets tension and kills the one-more-round pull. Flagged by all three lenses.",
+     "action": "Cut from 20 to ~8 sharpest (keep 050, 054, 055, 056, 057, 063) and interleave so the archetype shape never runs more than 2-3 in a row. Cut the beige ones: 048, 049, 053, 059, 060, 061, 062, 064, 065, 066."
+    },
+    {
+     "id": "poison_v3_007",
+     "issue": "TASTE VIOLATION \u2014 a repeated tic pairs a funny-absurd A side with a melancholy-existential B side (007, 008, 009, 011, 018, 022): memory loss, friends drifting away, quiet self-loathing. 'Wistful' is the polar opposite of UNHINGED, the one word that MUST describe this project. These are mood-killers and un-pitchable: you cannot sell 'a happy memory quietly deletes itself each year' as the meaner/funnier option.",
+     "action": "Kill every melancholy B-side. Replace with a curse that is loud, public, and humiliating \u2014 something friends scream-witness and heckle, not something you privately mourn."
+    },
+    {
+     "id": "poison_v3_045",
+     "issue": "SAME-ARGUMENT BREAKS \u2014 cards where pitching A and pitching B is the identical argument, which the deck's own test declares broken: 045 (clocks run slow / clocks run fast \u2014 two dials of one gimmick), 048 (the show bore / the gym bore \u2014 one 'one-note insufferable person'), 049 (restaurant reviews / dreams \u2014 both 'you overshare boring content'), 061 (laugh before your joke / over-explain after \u2014 both 'you kill your own jokes'), 069 (the lie you tell most / the thought you never say \u2014 same reveal type), 075 (borrowed-and-kept / money owed \u2014 both 'a debt you dodge').",
+     "action": "Make the two sides opposed in KIND, not two flavors of one sin (e.g. the one who won't shut up vs the one who never speaks). If it can't be split, cut it."
+    },
+    {
+     "id": "poison_v3_084",
+     "issue": "SEMANTIC REDUNDANCY \u2014 084, 087, 090, 092, 100, 102 all orbit the same beat: 'learn what friends secretly said/keep about you behind your back.' Six cards asking one question read as one prompt re-asked five times, which is what makes a group feel the deck is exhausted before it is.",
+     "action": "Keep the two strongest, cut or re-angle the rest to genuinely distinct exposures (secrets vs debts vs judgments differ \u2014 don't let them collapse back to 'what they said about me')."
+    },
+    {
+     "id": "poison_v3_082",
+     "issue": "TEMPLATE / PHRASING FATIGUE \u2014 roughly 20 back-half cards start side B with the literal word 'Or', and 082's 'Then...' fuses A and B into one sequential action for one player rather than two opposite sides. The phrasing being stamped from one mold makes the machine visible \u2014 the exact content-farm tell the taste law bans.",
+     "action": "Vary side-B construction; make BOTH sides an action a player sells, not 'do it / or it's done to you.' Split 082 into a give-vs-receive (you learn who'd drop you || they learn you'd drop them) so two genuinely opposed sides exist."
+    },
+    {
+     "id": "poison_v3_001",
+     "issue": "MILD-CURSE / GENERIC WHIMSY \u2014 a run of front-half cards are privately quirky, not publicly mortifying, and fail the specificity test (could sit unchanged in any 'cursed genie' game): 001 (warm-bath-temperature meals), 019 (mildly acidic spit / faintly flammable sweat \u2014 the hedges 'mildly'/'faintly' defuse it), 044 (magnetic bones / radio teeth), 038 (mind-read the stuck song / see if it rains), 036 (shadow acts out thoughts / reflection mouths meaning), 060 (order for the table / read the menu aloud).",
+     "action": "Delete the qualifiers and ground each in a friend-group moment that makes YOU the loud problem at the table. Comedy lives in the overcommit, not the 'faintly.'"
+    },
+    {
+     "id": "poison_v3_012",
+     "issue": "GROSS-FLUID SUB-TEMPLATE CREEP \u2014 012, 013, 019, 040, 044 are all 'weird bodily emission A vs emission B'; the physics-body ones (019, 044) blur into 'your body does an uncanny thing.' A fourth template quietly stacking up.",
+     "action": "Cap the gross/body pairs at ~4 of the most distinct. Keep 013 (ranch sweat / snot rocket) and 012 (gray sludge / blue sweat); trim the physics-body ones."
+    }
+   ],
+   "summary": "All three lenses land on fix-then-ship, and they agree on the shape of the problem: this is two decks stapled together at a flat seam. The core (001-067) is a genuine clinic in the POISON PITCH mechanic \u2014 021 (immortal raisin vs attend every funeral), 010 (burps out the back / farts out the mouth), 013, 025, 046 are distinct, symmetric, both-sides-cursed dilemmas that force divergent pitches, and the table-aware roast cards (034 Notes-app, 057 baby-old-man, 055 club-bathroom, 082 who'd-drop-you) are the real chaos engine. Two structural failures drag it down. First, the E4/E5 back third (068-102) quietly stops being a pitch game and becomes a Confession round \u2014 a single player choosing self-expose vs get-exposed, with the room scoring the reveal instead of the sell \u2014 confirmed independently by the mechanic and addiction lenses, and it happens at exactly the peak-stakes tier where the signature hook should be strongest. Second, cards 048-067 are a ~20-card annoying-friend block flagged by all three lenses: same shape, thinnest pitch, lowest screenshot yield, and dropped mid-escalation it resets tension and kills the one-more-round pull. Layered on top: a taste violation (six melancholy A-vs-sad-B cards that read wistful, the opposite of UNHINGED), a handful of same-argument breaks the deck's own test rejects (045, 048, 049, 061, 069, 075), a redundancy cluster all asking 'what do they secretly say about me,' and phrasing fatigue (~20 back-half B-sides literally starting with 'Or'). Cut the sag block by 60%, convert the back-tier reveals into true two-sided pitches or ship them to Confession, kill the melancholy and same-argument cards, and the strong escalation ladder underneath becomes a genuinely mean, funny, addictive deck. The engine is already there \u2014 it just switches games halfway up."
+  },
+  {
+   "game": "HELLDECK: The Descent \u2014 REDFLAG (Red Flag Rally)",
+   "verdict": "fix-then-ship",
+   "funny": 6,
+   "fit": 7,
+   "addiction": 6,
+   "one_liner": "A deck with a killer top tier of cold-euphemism menace and genuinely divisive control-freak flags, undercut by a roommate-not-date opener, groan-gross filler, and an E4/E5 finale that runs the same 'partner keeps a scorecard on you' joke into the ground right when the night should peak.",
+   "keepers": [
+    "redflag_v3_088",
+    "redflag_v3_057",
+    "redflag_v3_005",
+    "redflag_v3_011",
+    "redflag_v3_074",
+    "redflag_v3_069"
+   ],
+   "top_fixes": [
+    {
+     "id": "redflag_v3_069",
+     "issue": "THE #1 LIABILITY (2 lenses): the E4/E5 'detonation' band (~25-30 cards) collapses into ONE mechanism \u2014 the partner quantifies/ranks/logs/adjudicates YOU (binders, rubrics, tiers, verdicts, marbles, red pen, 'the estate/applicant/control group'). By the 4th scorecard the room pattern-matches instead of gasping, and it goes samey exactly when the night should be biggest. The deck's funniest joke is also its fastest staleness vector.",
+     "action": "Cut ~8-10 of the most interchangeable ranking cards (078 marbles, 079 exes-by-number, 080 poll-the-friends, 084 red-pen journal, 089 outfit-rubric, 091 tiers/demotions, 092 lists-your-flaws, 094 fridge-list, 090 friends-bet, 070 waiter-nickname). Keep 4-5 on DISTINCT axes (069 binder-with-verdicts, 088 control-group, 087 highlight-reel) and rebuild the rest to detonate on different registers."
+    },
+    {
+     "id": "redflag_v3_013",
+     "issue": "ROOMMATE-NOT-DATE cluster (2 lenses): a big early band is framed as 'would you LIVE with them' \u2014 rent spreadsheets, house-rule binders, guest rooms, communal drawers, condiment fridges. Nobody votes PASS on a DATE over an oat-milk spreadsheet, so there's no SMASH/PASS tension; reads like a ported bad-roommate deck.",
+     "action": "Cut or re-point to relationship scale: 013 (oat-milk-by-the-ounce), 015 (house-rules binder), 006 (condiment fridge + glove), 027 (scraps on doorknob), 049 (communal underwear drawer), 029 (double-dip). Any survivor must scale to control/devotion, not chore-chart pettiness."
+    },
+    {
+     "id": "redflag_v3_016",
+     "issue": "DUPLICATE PAIRS (all 3 lenses): 002/016 (named sourdough starter given a seat \u2014 Gerald vs Susan), 028/030 (jar of their own teeth), 011/039 (permanently locked forbidden room). Same beat twice is the fastest 'we've seen this' fatigue.",
+     "action": "Kill one of each pair \u2014 keep 002, 030, 011; delete 016, 028, 039 (011's deadbolt-on-the-OUTSIDE is far sharper than 039's generic 'the room')."
+    },
+    {
+     "id": "redflag_v3_001",
+     "issue": "MATCHED-ENERGY WHIMSY (2 lenses): the flag flows straight out of the perk, so there's no GAP and the room auto-SMASHes \u2014 001 (butcher -> named knives with 'moods'), 053 (sommelier -> reheats coffee 'like a Bordeaux'), 054 (conductor -> conducts the dishwasher), 046 (surgeon -> suture knots on the rolls), 064 (climber -> chalks hands for the fork). Charming, not alarming.",
+     "action": "Cut, or pair each perk with an OFF-axis menace flag so perk and flag pull in opposite directions and the defender actually has to work."
+    },
+    {
+     "id": "redflag_v3_032",
+     "issue": "MILD-QUIRK AUTO-SMASH (2 lenses): low-voltage tics with no PASS reason \u2014 017 (narrates own chewing), 032 (eats hard-boiled eggs while you talk), 042 (won't sit in a warmed chair). The defense is trivial ('so what, they eat weird') and the round is dead on arrival.",
+     "action": "Cut. A pet-peeve tic can't carry a SMASH/PASS argument against a strong perk."
+    },
+    {
+     "id": "redflag_v3_029",
+     "issue": "GROSS-OUT GROAN FILLER (2 lenses): mostly ick not laugh, and swappable into any party game (specificity-test failure) \u2014 029 (double-dipping 'efficient'), 050 (toenail-compost jar), 052 (roadkill bones in the pasta pot), 049 (communal underwear). Obvious PASS = no defensible gap = kills the 'defend the smash' hook.",
+     "action": "Cut the obvious-PASS gross-outs; keep only gross flags with real tension against a food/intimacy perk (e.g. 031 smoothie + counter toenails, if given a devotion/control angle)."
+    },
+    {
+     "id": "redflag_v3_010",
+     "issue": "CLICHE SERIAL-KILLER (2 lenses): the 'your date is a murderer' note runs ~6 times (004/005/007/010/011/039/055). 010 (padlocked chest freezer + lives alone) is the single most clich\u00e9d serial-killer flag in existence \u2014 pure AI-default, zero surprise, so no debate.",
+     "action": "Cut 010; thin the cluster to its 2-3 strongest deadpan variants \u2014 keep 005 (first to find the bodies) and 011 (deadbolt on the outside)."
+    },
+    {
+     "id": "redflag_v3_009",
+     "issue": "ESCALATION DEFLATES AT THE SUMMIT: E1 opens too dark (009 go-bag/vanish, 010 freezer, 011 deadbolt are full menace in the warm-up), while the E5 finale's clinical emotional-bureaucracy is LESS visceral than mid-deck E2 (034 counts your breaths, 062 marks your water level). The night's climax is a smirk-and-nod, not a scream-laugh.",
+     "action": "Demote 009/010/011 out of the E1 opener into E3-E4; promote 2-3 gut-punch E2 stalker cards into E5 so the deck detonates at the top instead of going soft."
+    },
+    {
+     "id": "redflag_v3_022",
+     "issue": "WRITER CRUTCHES: 'keeps a jar of X' appears ~8 times (021/028/030/047/050/066/076/081) \u2014 the container itself becomes the tell \u2014 and invented names repeat (Gerald in 002 sourdough AND 022 deer skeleton; Susan in 016).",
+     "action": "Cap jars at ~4 and re-home the rest into different objects/behaviors; give every named object a unique name."
+    },
+    {
+     "issue": "MISSING REGISTER (add, post-cut): for a game whose identity is UNHINGED/2am-roast, the deck is oddly chaste \u2014 zero flags touch sex/kink/intimacy, and almost none split the room on VALUES, where defending the SMASH exposes the DEFENDER, not just the fictional date. That's the roast payload the project's identity demands.",
+     "action": "After the subtractive pass, add a small register of intimacy/values-splitting flags so the SMASH vote reveals something about the person defending it. Keep elimination-first \u2014 this is the only 'addition' worth making."
+    }
+   ],
+   "summary": "Unanimous fix-then-ship. All three lenses agree the deck's ceiling is genuinely distinctive \u2014 the gold shares one DNA: a wholesome/appealing perk collides with a specific, off-axis, coldly-euphemistic or eerily-mysterious flag, leaving a real GAP the defender can actually argue (088 'the control group', 057 'won't say what happened at eleven', 005 'first to find the bodies', 011 deadbolt-on-the-outside, 074 hurricanes-named-after-exes). Those are the cards that justify the SMASH/PASS mechanic. The fix path is almost entirely subtractive, exactly as the taste law wants. Highest leverage by far: the E4/E5 finale runs ONE joke \u2014 the partner ranks/logs/adjudicates you \u2014 ~25-30 times and blurs within a single night, right at the peak; thin it to 4-5 cards on distinct axes and rebuild the rest. Then cut the roommate-framed opener (wrong game), the groan-gross filler and mild-quirk tics (no PASS reason, auto-SMASH), the matched-energy whimsy (flag flows from the perk, no gap), the clich\u00e9d chest-freezer, and resolve the three duplicate pairs (002/016, 028/030, 011/039). Also fix the arc so E1 stops opening at full menace and E5 actually detonates. Do the cuts and the same 96-card body becomes a tight ~50-card deck that's mostly gold. Funny 6, fit 7, addiction 6 \u2014 the writers can clearly hit the target; the deck needs a ruthless cut pass plus one small intimacy/values-splitting register, not a rewrite."
+  },
+  {
+   "game": "ALIBI",
+   "verdict": "fix-then-ship",
+   "funny": 6,
+   "fit": 8,
+   "addiction": 6,
+   "one_liner": "A deck with a genuinely vicious, room-pointing accusation spine that a friend group will keep dealing, undercut by word-lineups that go unsmuggle-ably obscure and lock into learnable category templates exactly where the mechanic should tighten.",
+   "top_fixes": [
+    {
+     "id": "alibi_v3_070",
+     "issue": "All-lens agreement: the late E4 music block (063-072) puts near-unknowable words in PLANT slots \u2014 theorbo, sarangi, shehnai, ophicleide, doumbek, quena, zurna, sarod, crumhorn, nadaswaram. You cannot smuggle a word you can't pronounce or define into a 30s lie; the smuggle becomes a neon flare, and the jury can't reason about categories it doesn't recognize. 070 is worst (all three plants unknowable), then 065, 072, 067, 064, 069, 063.",
+     "action": "Keep at most ONE exotic plant per card; swap the rest to sayable instruments (pompano->tuna, shehnai->flute, theorbo->cello, doumbek->drum, quena->flute, zurna->oboe, sarod->banjo). Push the obscure names into DECOYS \u2014 decoys only need to confuse, never be spoken."
+    },
+    {
+     "id": "alibi_v3_029",
+     "issue": "Mechanic + Addiction: four rigid category-triplet templates each run 15-26 cards straight (009-028 instrument+finance+animal; 029-054 herb+profession+tool; 055-075 animal+world-instrument+landform; 076-088 cheese+dance+fabric). The jury learns to slot-anchor the three domains by mid-first-night, so the deduction goes slack and the read barely needs the alibi. This staleness-caps half the table every round \u2014 the biggest 'one more round' killer.",
+     "action": "Break the fixed formulas: vary semantic categories card-to-card and mix template shapes \u2014 some single-category, some tri, some pairs \u2014 so the jury can never pattern-match which slot holds which domain."
+    },
+    {
+     "id": "alibi_v3_014",
+     "issue": "Mechanic + Addiction: in the tri-category cards the 5 decoys are same-category as the plants (2 instrument decoys, 2 finance decoys, etc.) plus a dead furniture+food singleton pair (chandelier/marmalade, larder/gnocchi). This degrades 'which 3 of 8 were forced' into three independent 1-of-2 slot guesses, and the unmatched furniture/food slots are dead \u2014 no informed jury ever picks them.",
+     "action": "Seed cross-category decoys so a plant can't be located by its slot, and spend the two spare decoys as a 3rd instrument / 3rd animal rather than an unmatched furniture+food pair, keeping every lineup slot a live candidate."
+    },
+    {
+     "id": "alibi_v3_082",
+     "issue": "Laugh + Addiction: E5 has the deck's best accusations (leverage folder, life-insurance beneficiary, goodbye-forever notes) saddled with its deadest word sets \u2014 homogeneous cheese/dance/fabric/gem taxonomies (provolone/roquefort/camembert) that are boring to shoehorn and reduce the jury to a memory test. The mechanic's biggest laughs come from words that CLANG (walrus, alimony, ferret, ocarina).",
+     "action": "Repoint E5 plant/decoy sets toward concrete absurd nouns \u2014 animals, weird-but-sayable instruments, bureaucratic finance terms \u2014 the way 014 (trombone/mortgage/seagull) does. Keep the killer accusations, swap the words."
+    },
+    {
+     "id": "alibi_v3_001",
+     "issue": "Laugh + Addiction: the E1 on-ramp opens on the deck's weakest, most generic cards \u2014 001/002/004/007 are all farm-animal-in-weird-place (goat/goat/cow/goldfish + object), interchangeable AI-improv random-noun soup that fails the specificity test. First impressions matter and this is one joke told four times.",
+     "action": "Give the animal a POV or point it at a player ('the goat's lanyard has YOUR name on it'), and add a petty, human, non-livestock opener so the on-ramp shows range before the great mid/late accusations land."
+    },
+    {
+     "id": "alibi_v3_052",
+     "issue": "Laugh + Addiction: ~18-20 mid-deck cards (E3 belly) run the same funeral/coffin/eulogy/embalm/morgue frame \u2014 'death ritual + absurd object.' Funny alone, but as a block the surprise flattens by the third one in a night and it becomes the clearest AI-generator tell in the set. 052 (embalming a stuffed olive) is where it runs out.",
+     "action": "Cap funeral cards at ~6 of the best (keep 009 RSVP-the-deceased, 022 taco-casket, 078 catering-spreadsheet); replace the rest with the deck's distinctive lane \u2014 petty domestic betrayal and table-aware paranoia."
+    },
+    {
+     "id": "alibi_v3_026",
+     "issue": "Laugh: the staccato 'The X. The Y. Start talking.' cadence repeats across 025/026/048/053/083 until it's a recognizable tic \u2014 the fifth one gets a nod, not a laugh.",
+     "action": "Keep the two sharpest (053 shovel/tarp/lasagna is the best) and rewrite the others as full deranged sentences so the device stays rare and lands."
+    },
+    {
+     "id": "alibi_v3_008",
+     "issue": "Laugh: a few individual accusations have no comedic engine or are decoration-driven. 008 (every clock 47 min fast) is quirky-not-funny and borderline wholesome with nothing to lie over; 051 leans on 'steaming' to fake menace; 031 is overwritten (three flourishes fighting).",
+     "action": "Rewrite to implicate the table or a person and trim the effort-tells \u2014 008: 'every clock set to the minute my ex left'; 051: kill the adjective, let the host's still-legible name do the work."
+    }
+   ],
+   "keepers": [
+    "alibi_v3_055",
+    "alibi_v3_059",
+    "alibi_v3_068",
+    "alibi_v3_082",
+    "alibi_v3_037",
+    "alibi_v3_006"
+   ],
+   "summary": "Two decks stapled together. The accusation half is the real thing and the reason to keep dealing: E4/E5 point at real people in the room (ex is your emergency contact/landlord/dentist; the second wallet you switch to when the check hits; the secret group vote on who gets cut; the folder marked 'leverage') \u2014 situational, affectionately vicious, DISTINCTIVE, and endlessly replayable because the dread is about the actual table. That layer alone is an 8, which is why mechanic-fit rated the deck highly: the accusations beg to be lied about and confusability is genuinely engineered (same-family lineups, doubled domains) rather than odd-one-out. But ALIBI is a two-sided game and the JURY plays the word-lineup every round, and the lineups are where it sags. Two convergent breaks: (1) the late E4 music block buries unsmuggle-able words (theorbo, sarangi, ophicleide, doumbek) in PLANT slots \u2014 the difficulty curve is inverted, going lexically obscure exactly when escalation should be SOCIAL; and (2) four rigid category-triplet templates each run 15-26 cards, so the jury learns to slot-anchor and the deduction goes slack, while same-category decoys collapse the real 3-of-8 read into three 1-of-2 guesses. Softer drags: a generic farm-animal-in-weird-place opening, a funeral/death crutch that becomes a formula by mid-deck, a repeated staccato tic, and E5's best premises paired with its deadest cheese/dance/fabric word sets. None of this touches the accusations \u2014 the single highest-leverage pass is to regenerate the word-lineups around sayable, clangy, cross-domain nouns with varied template shapes, push all obscurity into decoy-only slots, and cap/vary the funeral and farm-animal blocks. Do that and it jumps two points and buys a third and fourth night. Fix-then-ship."
+  },
+  {
+   "game": "TITLEFIGHT",
+   "verdict": "fix-then-ship",
+   "funny": 6,
+   "fit": 6,
+   "addiction": 5,
+   "one_liner": "A genuinely fun roast-to-their-face physical spike whose top half is choke-laugh gold, but it barely delivers the \"physical\" it promises, half the roster reskins one crowd-vote template, and 10 fixed duels go stale the same night they fire twice.",
+   "keepers": [
+    "tf_010",
+    "tf_009",
+    "tf_006",
+    "tf_003",
+    "tf_004"
+   ],
+   "top_fixes": [
+    {
+     "id": "DECK",
+     "issue": "10 fixed duels is fatal for a palate-cleanser that fires 2-3x/night \u2014 one session burns a third of the pool and Night 2 is nearly all reruns. Two lenses call variety a hard NO. Effective variety is even thinner (~5-6) because 3 duds get skipped and the 3 best get over-picked and burn out.",
+     "action": "Expand the pool to ~24 duels. This is the single highest-leverage change; hold every new one to the tf_006/009/010 register (a performance aimed AT the table, never a kid's-birthday game)."
+    },
+    {
+     "id": "DECK",
+     "issue": "Two framings of the same core defect flagged by all three: the mechanic sells a PHYSICAL spike but 8-9 of 10 are talk/perform, and those 8 collapse into one identical loop \u2014 perform a 10s bit, the room votes who committed harder. By the 4th performance duel the crowd-roar is muscle memory and nobody's body left their seat.",
+     "action": "Cap crowd-judged performance at ~half the deck; put the variety in HOW you win. Add genuinely physical, visible, objective duels: wall-sit-off, balance-on-one-foot-while-insulting, last-to-flinch, dance-battle-no-music, mirror-copy-off, forced-escalation ('whoever quits loses')."
+    },
+    {
+     "id": "DECK",
+     "issue": "The mechanic literally hands out 'the belt' every fight and then throws it away \u2014 every duel is a disconnected one-off, so nothing compounds across the night. A duel game's real one-more-round engine is a running rivalry, and it's absent.",
+     "action": "Add a persistent champion meta: the belt-holder DEFENDS next TITLEFIGHT, the loser can call one grudge rematch, and forfeits (tf_002's 'silent next round') stack. Converts disposable one-offs into an escalating session-long rivalry."
+    },
+    {
+     "id": "tf_008",
+     "issue": "'Trash talk about your opponent's TECHNIQUE' references a technique/contest that doesn't exist \u2014 the target is undefined, so fighters freeze with nothing concrete to attack. Flagged by two lenses. Cheap, clear fix.",
+     "action": "Anchor the bark to a real roastable target: texting style, driving, dating history \u2014 'all bark, zero facts, maximum confidence.' Vague becomes vicious."
+    },
+    {
+     "id": "tf_005",
+     "issue": "Fake-cry-off is funny but broken two ways: 'first believable sob wins' may never resolve (crying on command is hard \u2014 two constipated faces, no winner) AND it crowns the boring outcome; the comedy is in how catastrophically BAD people are at it.",
+     "action": "Reward the disaster and time-box it: '15s each, ugliest/wettest/most PATHETIC theatrical breakdown wins, first to crack into a laugh forfeits.' Guarantees resolution and aims at the choke-laugh."
+    },
+    {
+     "id": "tf_002",
+     "issue": "Thumb war is the deck's weakest card by consensus \u2014 playground filler that's silent, low-visibility, and SELF-adjudicating (whoever pins wins), so it bypasses the crowd-vote entirely and drops energy on a 'spike.' (Note: its clean objective win-condition is the right SHAPE; the execution is the problem.)",
+     "action": "Keep the objective format but make the mouths the show: both live-commentate their own hand like a PPV title fight, first to run out of breathless commentary loses \u2014 or swap for a visible physical duel. Don't ship the silent version."
+    },
+    {
+     "id": "tf_001",
+     "issue": "Staring contest resolves cleanly but is the most GENERIC card in the deck (drops into any party game unchanged) and clusters with tf_005/tf_006 as a third 'first to break your face loses' shape. Two lenses flag it.",
+     "action": "Differentiate: keep eye contact while the crowd actively tries to crack you (heckle/whisper-compliment in a threatening voice) \u2014 adds words, menace, and the crowd into a dead silent bit, and de-clusters it from 005/006."
+    },
+    {
+     "id": "tf_007",
+     "issue": "Air-instrument solo is a charades-night staple \u2014 about a fake guitar, not about these friends. Fun for 8 seconds, forgotten instantly; reads as the first physical-party-game trope an AI reaches for. Two lenses flag it (one calls it a solid secondary \u2014 minority view).",
+     "action": "Point the performance AT the table: 'most insufferable air-set imaginable while screaming your opponent's name like your worst ex' \u2014 or swap for an impersonation-strut. Mine the friend group, not a Stratocaster."
+    },
+    {
+     "id": "tf_004",
+     "issue": "Keeper, but not truly head-to-head: each fighter reenacts THEIR OWN embarrassing fall, so it's two unrelated solo bits of different personal content judged on vague 'commitment,' and it dies if a player has no memorable fall. (Two lenses love it; fit judge caught the structural flaw \u2014 the flaw is real and cheap to fix.)",
+     "action": "Make it comparable: both reenact the SAME prompt ('slow-mo walk into a glass door'), or flip to reenacting the OTHER fighter's most embarrassing moment \u2014 now it's head-to-head, roast-native, and needs no one's own material."
+    }
+   ],
+   "summary": "Unanimous fix-then-ship. The ceiling is proven and high: tf_010 (meanest impression to each other's face), tf_009 (seduce the table), tf_006 (villain monologue), tf_003 (hype-man walkout) and tf_004 (embarrassing-fall reenactment) are DISTINCTIVE, roast-native, crowd-votable, table-personal \u2014 they could only exist in this game. That's the deck's spine; keep it. Three problems drag the score to 5-6. (1) STALENESS: 10 fixed duels is too thin for a spike that fires multiple times a night; effective variety is really ~5-6 because ~3 duds get skipped and the best get over-picked. All three lenses want the pool grown to ~24. (2) TEMPLATE + NO PHYSICALITY (same defect, two framings): the mechanic promises a PHYSICAL palate-cleanser but 8-9 of 10 are talk/perform, and those 8 collapse into one 'perform a bit, crowd votes' loop that goes limp by the fourth draw \u2014 the fix is to cap crowd-judged performance at ~half and add genuinely physical, visible, objective duels. (3) NO BELT META: the mechanic hands out a belt every fight and forgets it \u2014 add a champion-defends/grudge-rematch layer so rivalries compound across the night. Card-level, four fixes matter most: anchor tf_008's trash talk to a concrete target, reward the most PATHETIC (not 'believable') fake-cry in tf_005 and time-box it, make tf_002's thumb war visible/loud instead of silent-self-adjudicating, and differentiate tf_001 from the staring/cry/villain 'break-your-face' cluster. tf_004 stays a keeper but should be made head-to-head. Fix the four flagged cards, add the belt meta, grow the roster to ~24 in the tf_006/009/010 register, and this goes from a fun-but-repetitive interlude to a spike people actively want to trigger."
+  }
+ ],
+ "global": {
+  "overall": "fix-first",
+  "will_all_enjoy": "Not yet \u2014 and the reason is structural, not taste. Two verified engine facts decide this. (1) The consent system (packages/engine/src/consent.ts) is genuinely well-designed \u2014 per-player exposure ceilings, second-lowest rule at N>=5, min-of-all at N<=4, filtering never surfaced, plus the volunteer \"WHO WANTS BLOOD?\" valve on spotlight games. It correctly protects the shy friend from being exposed. But every one of the nine chairs independently flagged that their deck's SAG BLOCK is its mid tier: roast's gross-confession wall (082-096), poison's 20-card annoying-friend block (048-067), scatter's flat 34-card E3 plateau, overunder's E2 half-deck of stunts and domestic filth, alibi's funeral belly, fillin's court-record family, redflag's roommate-not-date opener. So a room with one cautious player gets capped to E3 and plays ONLY the material the council already condemned. The mixed friend group \u2014 the exact case the owner is asking about \u2014 is the group that gets the worst version of the game. (2) The exposure-consent architecture protects the tier of content but not the FREQUENCY of being named. Roast is vote-emergent, repeatable up to 2x/night, and eligible as opener, bargain slot, AND finale; spotlightCount fairness (deal.ts) does not touch ballot-elected victims. Combine that with the cross-deck romance monoculture and the same one or two \"romantic\" people get named at the climax of every single game all night. That is the person who does NOT have fun, and no ceiling catches it. The gross-out register is a smaller but real risk: overunder and fillin both lean C5 on revulsion rather than stakes, which splits a mixed table along a line the ceiling system does not model.",
+  "addictive_verdict": "Partially \u2014 the pull is real but it fires in the wrong place. What CREATES it is proven and repeatable: table-aware \"someone in this room\" cards (roast 105/061, scatter 072/074, confession 083, alibi's E4/E5 accusations, poison 082) make the room itself the crime scene and detonate an argument rather than settling a vote. That is the screenshot moment and the \"run it back\" engine. What KILLS it, unanimously across nine independent councils, is that every deck saves its worst-designed tier for its peak. Roast's E4/E5 collapses into all-dating. Fillin's E5 is frameless first-person confessions with nothing for the Reader to perform. Overunder's finale is fifteen flavors of ex-pining with no receipt to open. Confession's entire E5 is sexual. Poison stops being a pitch game at E4 and becomes Confession in a jacket. Redflag runs the partner-scorecard joke ~25-30 times at the summit. Alibi pairs its best accusations with its deadest cheese/dance word lists. Scatter banks all its table-aware spikes at the very end so the dopamine fires once. Titlefight burns a third of its 10-duel pool in one session and throws away the belt it hands out every fight. The mechanical consequence: night one is fun, night two the table pattern-matches the shape before the card finishes reading, and there is no night four. Average addiction score is 6.2/10, and not one deck cleared 7. A little addictive is achievable from here \u2014 the ingredients exist and are identified \u2014 but the current build peaks into fatigue rather than escalation.",
+  "ranked_games": [
+   {
+    "game": "CONFESSION (Confession or Cap)",
+    "funny": 8,
+    "fit": 8,
+    "addiction": 7
+   },
+   {
+    "game": "FILLIN",
+    "funny": 7,
+    "fit": 9,
+    "addiction": 7
+   },
+   {
+    "game": "ROAST (Roast Consensus)",
+    "funny": 7,
+    "fit": 8,
+    "addiction": 7
+   },
+   {
+    "game": "SCATTER",
+    "funny": 6,
+    "fit": 8,
+    "addiction": 6
+   },
+   {
+    "game": "ALIBI",
+    "funny": 6,
+    "fit": 8,
+    "addiction": 6
+   },
+   {
+    "game": "OVERUNDER",
+    "funny": 7,
+    "fit": 6,
+    "addiction": 6
+   },
+   {
+    "game": "REDFLAG (Red Flag Rally)",
+    "funny": 6,
+    "fit": 7,
+    "addiction": 6
+   },
+   {
+    "game": "POISON",
+    "funny": 6,
+    "fit": 6,
+    "addiction": 6
+   },
+   {
+    "game": "TITLEFIGHT",
+    "funny": 6,
+    "fit": 6,
+    "addiction": 5
+   }
+  ],
+  "strongest": [
+   "CONFESSION (23/30) \u2014 the only deck to score 8 on funny. The deadpan reframe-button ('shovel and tarp, for errands'; 'I did not hurry') is the single best writing device in the whole corpus: it makes one sentence readable as both a true confession and a bald-faced lie, and hands the bluffer their own defense. That is the mechanic and the joke being the same object. Cruel irony: the arc grammar means most groups never see it.",
+   "FILLIN (23/30, and the only 9 anywhere \u2014 fit) \u2014 the most shape-disciplined deck in the box. Nearly every blank lands in true finisher or reaction-tag position ('which is fine', 'and the class pedaled harder', 'labeled ceremonial'), so a trailing clause makes ANY submission land. That is craft, not luck, and it means weak players still get laughs \u2014 which matters enormously for a mixed group.",
+   "ROAST (22/30) \u2014 the highest-ceiling table-aware register in the project: rank the room, a private nickname for everyone here, the running ledger of debts, the itemized review after one drink. These do not merely produce a plurality, they detonate an argument. This is the platonic form of the whole game's thesis and it should be studied and cloned into every other deck.",
+   "The consent architecture itself (packages/engine/src/consent.ts + the D-134 volunteer valve) \u2014 invisible filtering, no ceiling value ever on the wire, second-lowest rule so one shy player caps cards ABOUT them rather than the whole night. Most party games in this register have nothing like it. It is a genuine competitive moat and it is already built."
+  ],
+  "weakest": [
+   "TITLEFIGHT (17/30, the only sub-6 addiction score) \u2014 and it is the most dangerous weak deck because it is FORCED into every depth>=7 night at slot mid+2 by arc.ts. Groups cannot route around it. Ten fixed duels for a spike that fires 2-3x/night means night two is nearly all reruns, effective variety is really ~5-6 once duds get skipped and favourites get over-picked, 8-9 of 10 duels are talk-not-physical despite the mechanic promising a PHYSICAL palate cleanser, and the belt it awards every fight is immediately discarded instead of compounding into a rivalry.",
+   "POISON (18/30) \u2014 switches games halfway up its own escalation ladder. The E4/E5 tier (083-102) stops being a two-sided cursed pitch and becomes a single player choosing self-expose vs get-exposed, i.e. Confession wearing a Poison jacket, at exactly the peak-stakes tier where the signature hook should be strongest. Plus a ~20-card annoying-friend dead block mid-deck and six melancholy A-vs-sad-B cards that read WISTFUL \u2014 the polar opposite of the one word that must describe this project.",
+   "REDFLAG (19/30) \u2014 a killer top tier buried under the wrong game. A large early band is framed as 'would you LIVE with them' (rent spreadsheets, condiment fridges, house-rule binders); nobody votes PASS on a DATE over oat milk, so the SMASH/PASS tension is dead on arrival. Then the E4/E5 finale runs ONE joke \u2014 the partner ranks/logs/adjudicates you \u2014 some 25-30 times. Also notably chaste for a deck whose identity is UNHINGED: zero flags touch intimacy or split the room on values.",
+   "OVERUNDER (19/30) \u2014 the widest gap between writing quality and mechanical function in the project. The voice is DISTINCTIVE ('protected wetland', 'gravity files an incident report') and ~50-60 cards of real phone/bank/map receipts are best-in-class. But roughly 40% of the deck resolves to 'honest count, all time' with no screen to open \u2014 and the receipt IS the game. A bet the subject just declares has no tension, nothing to screenshot, and dies after one telling. A ~25-card physical-stunt glut expose nothing about the person and would fit unchanged in any icebreaker deck."
+  ],
+  "top_cross_game_actions": [
+   {
+    "action": "FIX THE ARC GRAMMAR SO SPOTLIGHT GAMES REACH DEPTH 5 AND 7 (packages/engine/src/arc.ts). Verified: at depth 5 the forced placements \u2014 simultaneous opener at slot 0, scatter at mid(2), bargain at bargainSlotFor(5)=3, all-players-score finale at 4 \u2014 consume every slot at idx>=3, and the spotlight gate blocks idx<3. Depth 7 is identical: scatter at 3, titlefight at 5, bargain at 4, finale at 6. Result: CONFESSION, POISON, REDFLAG and ALIBI can only ever be dealt in a Full Damnation.",
+    "why": "This is the single highest-leverage item in the entire review and no deck-level chair could see it. Confession is the best-scoring deck in the box (8/8/7) and the default 'Standard Descent' never deals it. Most groups' first and possibly only night is drawn from just four decks with sanctioned repeats. Every card fix below is worth less than making the good decks actually reachable. Loosen the spotlight gate to idx>=2, or make the bargain/finale slots spotlight-eligible, or drop the forced titlefight at depth 7 \u2014 then re-run the 1000-seed property tests."
+   },
+   {
+    "action": "BREAK THE CROSS-DECK ROMANCE MONOCULTURE AT E4/E5. Cap romance/exes/hookups at roughly one third of every deck's deep tiers and backfill with non-romance archetypes (the cheap one, the petty accountant, the snitch, the grudge-holder, the menace, table-aware implication). Roast E4/E5 is almost all dating; confession's entire E5 is sexual; overunder's finale is ~15 flavors of ex-pining; fillin's E5 is sex/shame confessions; redflag's summit is partner-scorecards.",
+    "why": "Five of nine chairs found this independently INSIDE their own deck without knowing it was universal. Across a full night it compounds catastrophically: every game's biggest moment lands on the same topic, so the same one or two 'romantic' people get named at every climax. That is typecasting, it is the fastest way to make one specific friend stop wanting to play, and the consent ceilings do not catch it because it is a frequency problem, not an exposure-tier problem."
+   },
+   {
+    "action": "REBUILD THE MIDDLES (E2/E3), NOT THE PEAKS \u2014 this is the 'everyone has fun' fix. Every deck's identified sag block sits in its mid tier: roast 082-096, poison 048-067, scatter's 34-card E3 plateau, overunder's E2 (half the deck), alibi's funeral belly, fillin's court-record family, redflag's roommate band. Thread table-aware 'someone in this room' spikes through these middles rather than banking them at the end.",
+    "why": "consent.ts caps a mixed room at the second-lowest ceiling (min-of-all at N<=4), which means any group with one cautious friend plays almost entirely in E2/E3 \u2014 exactly the material nine councils just condemned. Right now the game's quality is inversely correlated with how mixed the group is. Fixing the middles also fixes 'the night sags before it peaks' for every group, so this single pass serves both questions the owner asked."
+   },
+   {
+    "action": "GIVE EVERY DECK A REAL C2/E1 ON-RAMP. Roast's chaos floor never drops below C3, confession's floor is C3, redflag OPENS at full menace (go-bag/vanish, padlocked chest freezer, deadbolt on the outside sitting in E1). Add a small low-stakes-but-still-pointed opening rung to each deck and demote the misplaced menace cards out of E1.",
+    "why": "Three chairs flagged this separately. The first two circles are when a mixed group decides whether this is their kind of game or something they need to survive. Opening hot is how you lose the two most cautious people at the table in the first ten minutes \u2014 and once they disengage, the rest of the night's consensus votes have fewer live candidates and the whole engine degrades."
+   },
+   {
+    "action": "GLOBAL TEMPLATE-FATIGUE CULL: cut roughly 10-15% of every deck, specifically its dominant repeated skeleton. Fillin's ~20 'official record euphemizes my crime' cards, redflag's ~25-30 scorecard cards, poison's ~20 annoying-friend block, alibi's four rigid category-triplet templates (each running 15-26 cards straight), scatter's ~50-of-81 first-person confessional shape, overunder's ~25 physical stunts, confession's ~15 self-justification tags. Target ~120-150 cards deleted corpus-wide.",
+    "why": "987 cards is the headline number; effective variety is far lower and every chair said so in different words. Template repetition is what makes a table say 'this again' on night two, and it is the specific tell the project's own taste law bans as content-farm output. Elimination before addition is already the house rule \u2014 the corpus is big enough to cut hard without falling below coverage."
+   },
+   {
+    "action": "TITLEFIGHT: grow the roster from 10 to ~24 duels in the tf_006/009/010 register, cap crowd-judged performance at ~half the pool, add genuinely physical objective duels (wall-sit-off, last-to-flinch, balance-while-insulting), and add a persistent belt meta \u2014 champion defends next TITLEFIGHT, loser may call one grudge rematch, forfeits stack.",
+    "why": "Ordinarily a 17/30 deck would just get cut. But arc.ts FORCES titlefight into slot mid+2 of every depth>=7 night, so it is guaranteed to hit every standard descent and groups cannot route around it. It is also the only deck with a compounding-rivalry mechanic sitting unused \u2014 the belt is handed out every fight and immediately forgotten. That meta is the cheapest 'one more round' engine available anywhere in this project."
+   },
+   {
+    "action": "ADD A TYPECAST GOVERNOR FOR VOTE-EMERGENT VICTIMS. deal.ts weights spotlight assignment by spotlightCount so no one hogs the mic, but Roast's victim emerges from ballots and is untouched by that counter \u2014 while roast is repeatable up to 2x/night and eligible as opener, bargain slot AND finale. Track how often each player has been the consensus target and soft-steer card selection toward archetypes with different obvious candidates once someone crosses a threshold.",
+    "why": "The fairness system currently protects against a loudmouth taking every spotlight, but not against a quiet person being ELECTED the answer eight times in one night. That is the actual harm case in a mixed friend group, it is invisible to the exposure ceilings, and it is the mechanism by which one friend quietly stops accepting invitations."
+   },
+   {
+    "action": "RUN THE D-128/D-138 PLAYTEST GATE BEFORE ANY MORE CONTENT WORK \u2014 and run it at depth 5 and depth 7 specifically, not the depth-9 config the engine tests use. Validate the arc fix and the romance rebalance live before writing another card.",
+    "why": "The autonomous roadmap is exhausted and everything remaining is owner-gated. Nine councils just produced a large, convergent, opinionated fix list built entirely from reading cards \u2014 none of it has met a real table. The depth-9 test config is precisely why the spotlight-gating problem survived to this point: the integration test runs at 9 so confession gets exercised, which masks the fact that no normal group will ever reach it."
+   }
+  ],
+  "bottom_line": "Fix-first \u2014 and I want to be clear that this is a stronger verdict than any individual council gave, because the cross-game view is worse than the sum of its parts. All nine chairs said fix-then-ship, which read alone sounds like a light polish pass. It is not. Three findings only visible from up here change the call. First, the arc grammar means the best-scoring deck in the box (Confession, 8/8/7) literally cannot be dealt in a Quick Dip or a Standard Descent \u2014 verified in arc.ts, where forced placements consume every slot the spotlight gate permits \u2014 so most groups will never play the best thing you built. Second, the romance/ex monoculture that five chairs each found inside their own deck is actually systemic: every deck's climax lands on the same topic, so across a full night the same one or two people get named at every peak, and the consent ceilings cannot catch it because it is a frequency problem, not an exposure-tier problem. Third, and most damaging to the owner's actual question, the consent system routes mixed rooms into E2/E3 \u2014 which is exactly where every single deck's council-condemned sag block lives. The game is currently at its worst for precisely the mixed friend group it is designed for. Against that: the foundation is genuinely strong and none of this is a rewrite. The mechanics are sound, the consent architecture is a real moat, the taste is UNHINGED and not slop, the corpus is large enough that most fixes are subtraction, and the ceiling cards (roast's rank-the-room, confession's shovel-for-errands, fillin's baby monitor, alibi's leverage folder) prove the writers can hit DISTINCTIVE on demand. But an average addiction score of 6.2 with no deck above 7, and every deck peaking into its own worst-designed tier, is not a launch-ready party game \u2014 it is a strong two-night game that will not survive to night four. Do the arc fix, the romance rebalance, the mid-tier rebuild, and the template cull, then take it to a real table at depth 5 and 7 before you write another card."
+ }
+}

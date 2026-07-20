@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#0B0A0C" />
+    <title>HELLDECK</title>
+    <style>
+      /* Design tokens — DESCENT_BUILD_SPEC.md 6.2. One accent per screen. No polite easing. */
+      :root {
+        --pit: #0b0a0c;
+        --blood: #8e1b1b;
+        --ember: #e2571b;
+        --bone: #e8e2d6;
+        --ash: #4a4544;
+      }
+      * { margin: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      html, body { height: 100%; background: var(--pit); color: var(--bone); }
+      body { font-family: system-ui, -apple-system, sans-serif; overscroll-behavior: none; }
+      #app { height: 100%; display: flex; flex-direction: column; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
