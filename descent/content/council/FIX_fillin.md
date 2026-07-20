@@ -1,0 +1,64 @@
+# COUNCIL VERDICT — FILLIN
+scores: funny 7/10 | mechanic-fit 9/10 | addictiveness 7/10 -> fix-then-ship
+
+## THE DECK IN ONE SENTENCE
+A shape-disciplined, genuinely filthy fill-in deck whose best cards hand the Reader a whole scene to perform out loud — held back from a clean ship by one dominant "official-record-euphemizes-my-crime" template that eats the mid-game and a chaos ceiling too flat to give the peak.
+
+## FULL SUMMARY
+Consensus fix-then-ship across all three lenses. Fit is the standout (9): this is an unusually shape-disciplined mad-lib deck — nearly every card lands the blank in true finisher or reaction-tag position ('which is fine', 'and the class pedaled harder', 'labeled ceremonial') where a trailing clause makes ANY submission land, and the {NAME} cards turn rounds into on-brand roast pile-ons. Funny and addiction both sit at 7, dragged down by the SAME two structural problems, not by weak jokes: (1) ~20 cards collapse into one 'official record euphemizes my crime' skeleton (court/chart/transcript/newsletter/under-oath) that makes 163 cards feel like ~90 by hour two, and (2) the chaos ceiling is flat — only ~10 true C5 cards, and they're the best in the deck (baby monitor, tarp/lime/bungee, 'has to stay fresh'), so the intended peak is starved while the E5 sex/shame tier under-delivers because most are frameless first-person confessions with no scene for the Reader to perform. The single highest-leverage move is one action that does triple duty: cull the court-record template family to its 6 sharpest and spend every reclaimed slot on new performance-framed C5 detonation setups. That kills the mid-game fatigue, raises the ceiling, and fixes read-aloud energy exactly where the game should peak. Then fix the one broken card (007's dead rhyme conceit), cut the weaker structural twins (052/021/093/160/078/114), anchor the frameless confessions to a voice or accuser, and confirm the runtime gates draws by Exposure so the latent warm-up->detonation arc actually reaches the table. The bones — register range, on-brand darkness, {NAME} recognition engine, healthy corpus, textbook list-priming (002's shovel-and-ice) — are already strong. Ship after the cull.
+
+## KEEPERS (exemplars — do NOT cut, clone their energy)
+fillin_v3_002, fillin_v3_001, fillin_v3_005, fillin_v3_003, fillin_v3_138, fillin_v3_096
+
+## THE FIX LIST (implement ALL of these)
+[1] TARGET: fillin_v3_092..096,129,130,131,139,143,145,148,150,157
+    PROBLEM: TEMPLATE FATIGUE (all three lenses converge here — the #1 set-level problem). ~20 cards are one skeleton: a bureaucratic/legal/medical record obliquely euphemizes my crime, blank = the real dark thing (court documents / trial transcript / itemized deposit / under oath / greatest weakness / newsletter / next 'I can explain' text). Register tags vary, structure is identical; by hour 2 the table predicts the shape before the blank lands. This is what makes 163 cards feel like ~90.
+    REQUIRED ACTION: Cut the family to its 6 sharpest where the euphemism does real work (keep 130 trial-transcript, 138 exterminator line-item, 092 'greatest weakness'/courts, 157 newsletter, 129 ER chart, 093 'the misunderstanding'). Drop 094/095/143/145/148/150 and the near-twins. 'Itemized only as ___' is a different joke than the seventh 'the courts called it ___.'
+
+[2] TARGET: (deck-level)
+    PROBLEM: FLAT CHAOS CEILING starves the peak. Only ~10 cards hit C5 (001,002,004,005,006,030,031,032,033,083) and they're the best in the deck; everything else lives in a comfortable C4 midrange, so the night never feels like it's getting WORSE and there's no 'saving the worst for depth' pull.
+    REQUIRED ACTION: Spend every slot reclaimed from the template cull on 8-10 NEW C5 menace/gross setups that are PERFORMANCE-FRAMED — a scene and a voice, not a first-person admission (template: 001 baby monitor, 006 tarp/lime/bungee, 032 'has to stay fresh'). This one move does triple duty: kills mid-game fatigue, raises the ceiling, fixes read-aloud energy exactly where the game should detonate.
+
+[3] TARGET: fillin_v3_007
+    PROBLEM: Only genuinely BROKEN card, flagged by all three. 'rhymes with ___' names no target word to rhyme against, so it collapses into a plain blank while confusing the read AND shrinking the answer space — the opposite of what fill-in wants. Rewards cleverness over the laugh and half the room disengages.
+    REQUIRED ACTION: Drop the rhyme, make it a straight quote finisher: 'The one text my ex could screenshot and end me with: "___."' If you want a real rhyme game, build a dedicated mechanic — not a mad-lib.
+
+[4] TARGET: fillin_v3_082
+    PROBLEM: Flattest card in the deck (Fit + Laugh). 'It started as a bit. Three weeks later: ___' has zero image and zero constraint — the blank could be anything, so nobody writes the SPECIFIC line that wins and answers scatter with no shared comic vector. Textbook swap-into-any-party-game dud.
+    REQUIRED ACTION: Add a concrete escalation anchor so lines aim at one beat: 'It started as a bit. Three weeks later there's a ___ in the group chat and a lawyer involved,' or cut.
+
+[5] TARGET: fillin_v3_052,021,093,160,078,114
+    PROBLEM: STRUCTURAL TWINS surface close together in a live game and the second reads as 'didn't we just do this.' 052 (museum audio guide, weaker single-noun twin of 051) / 021 (aliens-return {NAME}, weaker twin of 003's kidnappers-pay-fifty-bucks) / 093 (family-vs-court, twin of 092) / 160 (heist, flatter twin of 159's 'stop for ___') / 078 (wedding objection with no name, twin of table-aware 079) / 114 ('for love', redundant with 112/113).
+    REQUIRED ACTION: Cut the weaker twin of each pair — keep 051, 003, 092, 159, 079, 112. Loses zero distinct jokes and tightens the whole deck.
+
+[6] TARGET: fillin_v3_111,114,117,121,147,048,149
+    PROBLEM: FRAMELESS-CONFESSION DEAD STRETCH (Addiction + Laugh). A cluster of first-person E4/E5 blanks — 'one more night of ___', 'the part where ___', 'my type clinically is ___', 'what I do when alone is ___', 'believe ___', 'not to ask me about ___' — give NO vivid frame and no tone baked in. Fill-in's dopamine is the Reader performing your answer in a stupid voice; these are flat statements with nothing to perform, and back-to-back they blur into one grey stretch right where the game should detonate.
+    REQUIRED ACTION: Give each a performance frame or a concrete accuser/scene (the 019 noise-complaint-quote / 138 exterminator model). e.g. 'what I do when alone' -> 'The smart-home camera flagged me ___ again.' Anchor 048 to a deed not a belief: 'I'd pass a polygraph about ___ purely because I've decided it doesn't count.' Cut 149 outright.
+
+[7] TARGET: fillin_v3_109
+    PROBLEM: Try-hard noir cosplay (Laugh). 'Everyone in this town is guilty of something, I said, lighting a match — me? ___.' All the energy is in the stage directions; the blank gets no pressure. The AI-improv-generator smell.
+    REQUIRED ACTION: Kill the theater, keep the noir, pressure the blank: 'The one crime in this town they never pinned on me: ___.'
+
+[8] TARGET: fillin_v3_040
+    PROBLEM: Clunky to perform aloud (Laugh). '{NAME} would last four days in prison before trading a cellmate for ___' — the Reader has to untangle 'trading a cellmate for' mid-sentence and the arbitrary 'four days' adds nothing.
+    REQUIRED ACTION: Clean read: '{NAME}'s first day in prison, they'd trade their entire commissary for ___.'
+
+[9] TARGET: (deck-level)
+    PROBLEM: SEQUENCING RISK (Addiction). The raw E1->E5 / C-tier material for a warm-up->detonation arc exists, but if the runtime draws flat-random a night can open on an E5 sex-confession and close on an E1 absurd, killing the arc and making every card feel mid.
+    REQUIRED ACTION: Confirm the engine sorts/gates draws by Exposure and reserves C5 for depth. If it draws flat-random, the deck's latent escalation never reaches the table — this is an engine check, not a card edit, but it decides whether the fixes above land.
+
+[10] TARGET: fillin_v3_095
+    PROBLEM: Tired meme frame (Laugh). 'What happens in Cabo stays in Cabo — except ___' earns a recognition nod, not a choke-laugh (and it's also a member of the court-record family above).
+    REQUIRED ACTION: Fold into the template cull, or freshen the container: 'The one thing from Cabo that followed me home and now has a court date: ___.'
+
+## CROSS-GAME DIRECTIVES (apply to this deck too)
+- FIX THE ARC GRAMMAR SO SPOTLIGHT GAMES REACH DEPTH 5 AND 7 (packages/engine/src/arc.ts). Verified: at depth 5 the forced placements — simultaneous opener at slot 0, scatter at mid(2), bargain at bargainSlotFor(5)=3, all-players-score finale at 4 — consume every slot at idx>=3, and the spotlight gate blocks idx<3. Depth 7 is identical: scatter at 3, titlefight at 5, bargain at 4, finale at 6. Result: CONFESSION, POISON, REDFLAG and ALIBI can only ever be dealt in a Full Damnation.
+  WHY: This is the single highest-leverage item in the entire review and no deck-level chair could see it. Confession is the best-scoring deck in the box (8/8/7) and the default 'Standard Descent' never deals it. Most groups' first and possibly only night is drawn from just four decks with sanctioned repeats. Every card fix below is worth less than making the good decks actually reachable. Loosen the spotlight gate to idx>=2, or make the bargain/finale slots spotlight-eligible, or drop the forced titlefight at depth 7 — then re-run the 1000-seed property tests.
+- BREAK THE CROSS-DECK ROMANCE MONOCULTURE AT E4/E5. Cap romance/exes/hookups at roughly one third of every deck's deep tiers and backfill with non-romance archetypes (the cheap one, the petty accountant, the snitch, the grudge-holder, the menace, table-aware implication). Roast E4/E5 is almost all dating; confession's entire E5 is sexual; overunder's finale is ~15 flavors of ex-pining; fillin's E5 is sex/shame confessions; redflag's summit is partner-scorecards.
+  WHY: Five of nine chairs found this independently INSIDE their own deck without knowing it was universal. Across a full night it compounds catastrophically: every game's biggest moment lands on the same topic, so the same one or two 'romantic' people get named at every climax. That is typecasting, it is the fastest way to make one specific friend stop wanting to play, and the consent ceilings do not catch it because it is a frequency problem, not an exposure-tier problem.
+- REBUILD THE MIDDLES (E2/E3), NOT THE PEAKS — this is the 'everyone has fun' fix. Every deck's identified sag block sits in its mid tier: roast 082-096, poison 048-067, scatter's 34-card E3 plateau, overunder's E2 (half the deck), alibi's funeral belly, fillin's court-record family, redflag's roommate band. Thread table-aware 'someone in this room' spikes through these middles rather than banking them at the end.
+  WHY: consent.ts caps a mixed room at the second-lowest ceiling (min-of-all at N<=4), which means any group with one cautious friend plays almost entirely in E2/E3 — exactly the material nine councils just condemned. Right now the game's quality is inversely correlated with how mixed the group is. Fixing the middles also fixes 'the night sags before it peaks' for every group, so this single pass serves both questions the owner asked.
+- GIVE EVERY DECK A REAL C2/E1 ON-RAMP. Roast's chaos floor never drops below C3, confession's floor is C3, redflag OPENS at full menace (go-bag/vanish, padlocked chest freezer, deadbolt on the outside sitting in E1). Add a small low-stakes-but-still-pointed opening rung to each deck and demote the misplaced menace cards out of E1.
+  WHY: Three chairs flagged this separately. The first two circles are when a mixed group decides whether this is their kind of game or something they need to survive. Opening hot is how you lose the two most cautious people at the table in the first ten minutes — and once they disengage, the rest of the night's consensus votes have fewer live candidates and the whole engine degrades.
+- GLOBAL TEMPLATE-FATIGUE CULL: cut roughly 10-15% of every deck, specifically its dominant repeated skeleton. Fillin's ~20 'official record euphemizes my crime' cards, redflag's ~25-30 scorecard cards, poison's ~20 annoying-friend block, alibi's four rigid category-triplet templates (each running 15-26 cards straight), scatter's ~50-of-81 first-person confessional shape, overunder's ~25 physical stunts, confession's ~15 self-justification tags. Target ~120-150 cards deleted corpus-wide.
+  WHY: 987 cards is the headline number; effective variety is far lower and every chair said so in different words. Template repetition is what makes a table say 'this again' on night two, and it is the specific tell the project's own taste law bans as content-farm output. Elimination before addition is already the house rule — the corpus is big enough to cut hard without falling below coverage.

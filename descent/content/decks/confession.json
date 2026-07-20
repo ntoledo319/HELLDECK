@@ -1,0 +1,2174 @@
+{
+ "deck": "confession",
+ "schema": 3,
+ "updated": "2026-07-20",
+ "cards": [
+  {
+   "id": "confession_v3_001",
+   "deck": "confession",
+   "text": "I once drove around for eight months with a shovel and a tarp in the trunk, for errands.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "trunk-kit",
+   "anchor": "eight months, shovel and tarp",
+   "open_slots": [
+    "what errands",
+    "why it started"
+   ]
+  },
+  {
+   "id": "confession_v3_002",
+   "deck": "confession",
+   "text": "I once put a mannequin on my hometown's water tower, and the paper still calls it unexplained.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "local-mystery",
+   "anchor": "the mannequin on the tower",
+   "open_slots": [
+    "how you got up there",
+    "who almost caught you"
+   ]
+  },
+  {
+   "id": "confession_v3_003",
+   "deck": "confession",
+   "text": "I once paid a tradesman in cash to never mention what he found in my house.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "observational",
+   "skeleton": "tradesman-hush-money",
+   "anchor": "cash payment",
+   "open_slots": [
+    "what he found",
+    "which tradesman"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_004",
+   "deck": "confession",
+   "text": "I once caused a breakup and then let both halves cry to me about it, separately, for months.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "arsonist-firefighter",
+   "anchor": "months of separate cry sessions",
+   "open_slots": [
+    "how you caused it",
+    "what you told each half"
+   ]
+  },
+  {
+   "id": "confession_v3_005",
+   "deck": "confession",
+   "text": "I once ghostwrote the fight texts for both sides of the same couple's argument.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "double-agent-texts",
+   "anchor": "both sides' fight texts",
+   "open_slots": [
+    "which couple",
+    "how the argument ended"
+   ]
+  },
+  {
+   "id": "confession_v3_006",
+   "deck": "confession",
+   "text": "I once accepted an award meant for someone with my exact name and gave brief remarks.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "mistaken-identity-award",
+   "anchor": "exact-name award",
+   "open_slots": [
+    "what the remarks said",
+    "when they found out"
+   ],
+   "voice": "parody-speech"
+  },
+  {
+   "id": "confession_v3_007",
+   "deck": "confession",
+   "text": "I once told a lie in a eulogy and was thanked afterward for that exact part.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "eulogy-lie",
+   "anchor": "the eulogy",
+   "open_slots": [
+    "the lie",
+    "who thanked you"
+   ],
+   "voice": "parody-speech"
+  },
+  {
+   "id": "confession_v3_008",
+   "deck": "confession",
+   "text": "I once timed how long it takes to drag a rolled-up rug from my bedroom to my car.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "disposal-rehearsal",
+   "anchor": "rolled-up rug, timed run",
+   "open_slots": [
+    "why you timed it",
+    "the time you got"
+   ]
+  },
+  {
+   "id": "confession_v3_009",
+   "deck": "confession",
+   "text": "I keep a folder of screenshots of one person in this room's worst-ever messages, sorted by year.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "screenshot-dossier",
+   "anchor": "the sorted folder",
+   "open_slots": [
+    "whose messages",
+    "what you are saving them for"
+   ]
+  },
+  {
+   "id": "confession_v3_010",
+   "deck": "confession",
+   "text": "I once told this whole group I was hospitalized that week. I was in a hotel, alone, and fine.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "standing-room-lie",
+   "anchor": "the hospital week",
+   "open_slots": [
+    "why you needed the week",
+    "who still checks in about it"
+   ]
+  },
+  {
+   "id": "confession_v3_011",
+   "deck": "confession",
+   "text": "I once joined the search party for a neighbor's missing cat knowing exactly what I had done.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "search-party-guilt",
+   "anchor": "neighbor's search party",
+   "open_slots": [
+    "what you had done",
+    "how long you searched"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_012",
+   "deck": "confession",
+   "text": "I once made out with someone at a funeral reception, and we agreed the grief made it not count.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "deadpan",
+   "skeleton": "grief-hookup",
+   "anchor": "funeral reception",
+   "open_slots": [
+    "whose funeral",
+    "how the pact was worded"
+   ]
+  },
+  {
+   "id": "confession_v3_014",
+   "deck": "confession",
+   "text": "I once invented a pet to get out of things, and the lie grew until the pet had to die.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "observational",
+   "skeleton": "fictional-pet-lifecycle",
+   "anchor": "the invented pet",
+   "open_slots": [
+    "what the pet excused",
+    "how you killed it off"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_015",
+   "deck": "confession",
+   "text": "I once said something coming out of anesthesia that the nurse refused to repeat back to me.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "anesthesia-blurt",
+   "anchor": "nurse refused to repeat it",
+   "open_slots": [
+    "the procedure",
+    "your best guess at what you said"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_016",
+   "deck": "confession",
+   "text": "I once sent an anonymous note that ended a couple's nine-year relationship.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "deadpan",
+   "skeleton": "anonymous-note-saboteur",
+   "anchor": "the anonymous note",
+   "open_slots": [
+    "what it said",
+    "whether they suspect you"
+   ]
+  },
+  {
+   "id": "confession_v3_017",
+   "deck": "confession",
+   "text": "I once reported a coworker for the exact thing I had done the week before.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "frame-job",
+   "anchor": "the exact same offense",
+   "open_slots": [
+    "the offense",
+    "what happened to them"
+   ]
+  },
+  {
+   "id": "confession_v3_018",
+   "deck": "confession",
+   "text": "I once realized mid-hookup that I personally knew their partner, and I did not stop.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "hookup-knew-partner",
+   "anchor": "mid-hookup recognition",
+   "open_slots": [
+    "how you knew the partner",
+    "what you said afterward"
+   ]
+  },
+  {
+   "id": "confession_v3_019",
+   "deck": "confession",
+   "text": "I once got dismissed from jury duty using a performance I had rehearsed the night before.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "jury-duty-performance",
+   "anchor": "rehearsed the night before",
+   "open_slots": [
+    "the performance",
+    "what the judge asked"
+   ],
+   "voice": "parody-theatrical"
+  },
+  {
+   "id": "confession_v3_021",
+   "deck": "confession",
+   "text": "I once faked a talent to impress a room and have since been booked to perform it three separate times.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "sustained-performance-fraud",
+   "anchor": "booked three times",
+   "open_slots": [
+    "the talent",
+    "how you survive each booking"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_022",
+   "deck": "confession",
+   "text": "I once invented a fake tradition as a joke, and someone in this room has now observed it, sincerely, for years.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "invented-tradition-adopted",
+   "anchor": "years of sincere observance",
+   "open_slots": [
+    "the tradition",
+    "who observes it"
+   ]
+  },
+  {
+   "id": "confession_v3_023",
+   "deck": "confession",
+   "text": "I once started laughing at a funeral, had to be walked out, and have never told anyone what set me off.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "funeral-laughter",
+   "anchor": "walked out of a funeral",
+   "open_slots": [
+    "what set you off",
+    "whose funeral"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_024",
+   "deck": "confession",
+   "text": "I once found something in a date's bathroom that should have ended everything, and I chose to call it quirky.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "reframed-dealbreaker",
+   "anchor": "the bathroom find",
+   "open_slots": [
+    "what it was",
+    "how long you kept dating"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_025",
+   "deck": "confession",
+   "text": "I once secretly recorded an entire family dinner, start to finish, and I still have the file.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "covert-recording",
+   "anchor": "the full dinner recording",
+   "open_slots": [
+    "why you recorded it",
+    "what is on it"
+   ]
+  },
+  {
+   "id": "confession_v3_026",
+   "deck": "confession",
+   "text": "I once sat in a parked car outside a building for three hours, waiting for someone who deserved it.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "parody",
+   "skeleton": "stakeout",
+   "anchor": "three hours parked",
+   "open_slots": [
+    "who deserved it",
+    "what you planned to do"
+   ],
+   "voice": "parody-noir"
+  },
+  {
+   "id": "confession_v3_027",
+   "deck": "confession",
+   "text": "I once worked food service and adjusted a rude customer's order in a way the health department would want to know about.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "order-tampering",
+   "anchor": "the adjusted order",
+   "open_slots": [
+    "the adjustment",
+    "what they did to earn it"
+   ],
+   "voice": "gross-out"
+  },
+  {
+   "id": "confession_v3_028",
+   "deck": "confession",
+   "text": "I once testified in small-claims court, and my version of events was, legally speaking, a creative work.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "creative-testimony",
+   "anchor": "small-claims testimony",
+   "open_slots": [
+    "the case",
+    "the creative parts"
+   ],
+   "voice": "parody-legalese"
+  },
+  {
+   "id": "confession_v3_029",
+   "deck": "confession",
+   "text": "I once ended a friendship with an itemized invoice, late fees included.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "friendship-invoice",
+   "anchor": "itemized invoice, late fees",
+   "open_slots": [
+    "the line items",
+    "whether they paid"
+   ],
+   "voice": "parody-corporate"
+  },
+  {
+   "id": "confession_v3_030",
+   "deck": "confession",
+   "text": "I once conducted an entire breakup in HR language and treated their questions as an exit interview.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "hr-breakup",
+   "anchor": "exit-interview framing",
+   "open_slots": [
+    "the HR phrases used",
+    "their reaction"
+   ],
+   "voice": "parody-corporate"
+  },
+  {
+   "id": "confession_v3_032",
+   "deck": "confession",
+   "text": "I once drafted a sincere apology letter, thought better of it, and mailed a very different kind of letter instead.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "letter-swap",
+   "anchor": "the mailed letter",
+   "open_slots": [
+    "what the second letter said",
+    "their reply"
+   ]
+  },
+  {
+   "id": "confession_v3_034",
+   "deck": "confession",
+   "text": "I once ended a relationship by moving all my stuff out while they were at work.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "ghost-moveout",
+   "anchor": "moved out during work hours",
+   "open_slots": [
+    "how you planned it",
+    "what you left behind"
+   ]
+  },
+  {
+   "id": "confession_v3_036",
+   "deck": "confession",
+   "text": "I once gave a tearful public toast in honor of someone I was actively feuding with.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "hostile-toast",
+   "anchor": "tearful public toast",
+   "open_slots": [
+    "the feud",
+    "why you performed it"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_037",
+   "deck": "confession",
+   "text": "I once let a stranger believe I worked somewhere and stayed in the role long enough to make a real decision.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "impersonated-staff",
+   "anchor": "one real decision",
+   "open_slots": [
+    "where you worked",
+    "the decision you made"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_041",
+   "deck": "confession",
+   "text": "I once ran a fake-profile loyalty test on a partner, and I've never told anyone how it ended.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "loyalty-test",
+   "anchor": "the fake profile",
+   "open_slots": [
+    "how it ended",
+    "what the profile said"
+   ],
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "confession_v3_044",
+   "deck": "confession",
+   "text": "I once scheduled two first dates at the same place on the same night, back to back, purely for efficiency.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "double-booked-dates",
+   "anchor": "same place, back to back",
+   "open_slots": [
+    "the schedule math",
+    "whether they overlapped"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_047",
+   "deck": "confession",
+   "text": "I once tried to sneak out of a hookup's place before sunrise and set off their house alarm.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "exit-alarm",
+   "anchor": "house alarm at dawn",
+   "open_slots": [
+    "what you did when it blared",
+    "whether they woke"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_048",
+   "deck": "confession",
+   "text": "I once exited a hotel at 7am through a business conference in last night's outfit, and I did not hurry.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "walk-of-shame",
+   "anchor": "7am conference lobby",
+   "open_slots": [
+    "the outfit",
+    "the walk itself"
+   ]
+  },
+  {
+   "id": "confession_v3_051",
+   "deck": "confession",
+   "text": "I once lied to an ER nurse about how I got injured, because the truth involved a person I was not supposed to be with.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "er-intake-cover-story",
+   "anchor": "the ER intake lie",
+   "open_slots": [
+    "the forbidden person",
+    "the story you gave"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_052",
+   "deck": "confession",
+   "text": "I once slept with a former teacher of mine, years later, and called it closure.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "authority-closure",
+   "anchor": "years later",
+   "open_slots": [
+    "what they taught",
+    "the closure logic"
+   ]
+  },
+  {
+   "id": "confession_v3_054",
+   "deck": "confession",
+   "text": "I once told everyone I was traveling for work and spent four days in a hotel twenty minutes from home.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "fake-trip-solitude",
+   "anchor": "hotel twenty minutes away",
+   "open_slots": [
+    "what you did for four days",
+    "the trip story you kept up"
+   ]
+  },
+  {
+   "id": "confession_v3_055",
+   "deck": "confession",
+   "text": "I once dated someone mostly because a person I can't stand loved them first.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "spite-dating",
+   "anchor": "they loved them first",
+   "open_slots": [
+    "who you can't stand",
+    "how long it ran"
+   ]
+  },
+  {
+   "id": "confession_v3_056",
+   "deck": "confession",
+   "text": "I fought a departing roommate for custody of a $30 rice cooker, purely because losing it would gut them.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "custody-spite",
+   "anchor": "the $30 rice cooker",
+   "open_slots": [
+    "the custody argument",
+    "whether you use it"
+   ]
+  },
+  {
+   "id": "confession_v3_057",
+   "deck": "confession",
+   "text": "I once went through the medicine cabinet at a house party and did not leave it the way I found it.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "cabinet-snoop",
+   "anchor": "the medicine cabinet",
+   "open_slots": [
+    "what you did in there",
+    "whose party"
+   ],
+   "voice": "gross-out"
+  },
+  {
+   "id": "confession_v3_058",
+   "deck": "confession",
+   "text": "I once started a rumor about myself at work to bury a worse truth.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "self-rumor",
+   "anchor": "self-planted rumor",
+   "open_slots": [
+    "the rumor",
+    "the buried truth"
+   ]
+  },
+  {
+   "id": "confession_v3_059",
+   "deck": "confession",
+   "text": "I once got paid to be a stranger's job reference and answered the call in character.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "fake-reference",
+   "anchor": "the paid reference call",
+   "open_slots": [
+    "the character",
+    "the questions asked"
+   ],
+   "voice": "parody-corporate"
+  },
+  {
+   "id": "confession_v3_060",
+   "deck": "confession",
+   "text": "I once gave a mall cop a detailed false statement to protect someone I'd met an hour earlier.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "false-statement-authority",
+   "anchor": "met an hour earlier",
+   "open_slots": [
+    "what they had done",
+    "the statement details"
+   ],
+   "voice": "parody-legalese"
+  },
+  {
+   "id": "confession_v3_061",
+   "deck": "confession",
+   "text": "I once called out sick with a story so elaborate that my return required props.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "elaborate-sick-excuse",
+   "anchor": "the return props",
+   "open_slots": [
+    "the story",
+    "the props"
+   ],
+   "voice": "parody-theatrical"
+  },
+  {
+   "id": "confession_v3_062",
+   "deck": "confession",
+   "text": "I once called in a noise complaint on a party I was still at.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "self-snitch",
+   "anchor": "complaint from inside",
+   "open_slots": [
+    "why you did it",
+    "what happened when they came"
+   ]
+  },
+  {
+   "id": "confession_v3_063",
+   "deck": "confession",
+   "text": "I once faked a fainting spell to escape a conversation and committed all the way through the paramedics arriving.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "fake-medical-commit",
+   "anchor": "paramedics arrived",
+   "open_slots": [
+    "the conversation you escaped",
+    "what you told them"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_064",
+   "deck": "confession",
+   "text": "I once clipped a power pole with a rented truck, then stood in the news footage as a concerned neighbor.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "caused-news-story",
+   "anchor": "the news footage",
+   "open_slots": [
+    "what you said on camera",
+    "who paid for the pole"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_065",
+   "deck": "confession",
+   "text": "Police once knocked about screaming at my place. It was me, alone, losing an argument with a wasp.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "police-knock-explain",
+   "anchor": "the wasp",
+   "open_slots": [
+    "what you told the officers",
+    "who won"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_066",
+   "deck": "confession",
+   "text": "I once faked being hypnotized on stage and have let the story be retold wrong for years.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "fake-hypnosis",
+   "anchor": "faked it on stage",
+   "open_slots": [
+    "what you did up there",
+    "how the story gets retold"
+   ],
+   "voice": "parody-theatrical"
+  },
+  {
+   "id": "confession_v3_067",
+   "deck": "confession",
+   "text": "I once recognized someone I'd partied with in a true-crime documentary, and my first emotion was not the correct one.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "true-crime-proximity",
+   "anchor": "the documentary",
+   "open_slots": [
+    "the first emotion",
+    "the night you partied together"
+   ],
+   "voice": "parody-true-crime"
+  },
+  {
+   "id": "confession_v3_068",
+   "deck": "confession",
+   "text": "I once maintained a months-long feud with a child, and described it to other adults as a personality clash.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "euphemism",
+   "skeleton": "feud-with-child",
+   "anchor": "months-long, a child",
+   "open_slots": [
+    "how it started",
+    "who was winning"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_069",
+   "deck": "confession",
+   "text": "I once got a formal talking-to from a referee at a children's sporting event where I knew none of the children.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "observational",
+   "skeleton": "spectator-warned-kids-game",
+   "anchor": "knew none of the children",
+   "open_slots": [
+    "why you were there",
+    "what you yelled"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_070",
+   "deck": "confession",
+   "text": "I once held a complete funeral for a pet that was not mine, without the owner's knowledge.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "observational",
+   "skeleton": "unauthorized-pet-funeral",
+   "anchor": "full secret funeral",
+   "open_slots": [
+    "whose pet",
+    "the service details"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_071",
+   "deck": "confession",
+   "text": "I once kept a wild animal in my home for days, and it had a name and a feeding schedule before anyone intervened.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "observational",
+   "skeleton": "wild-animal-houseguest",
+   "anchor": "name and feeding schedule",
+   "open_slots": [
+    "the animal",
+    "who intervened"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_072",
+   "deck": "confession",
+   "text": "I have performed mouth-to-mouth on an animal that was not mine and was not a mammal.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "observational",
+   "skeleton": "animal-cpr",
+   "anchor": "not mine, not a mammal",
+   "open_slots": [
+    "the animal",
+    "the outcome"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_073",
+   "deck": "confession",
+   "text": "I once ate something at a friend's family dinner that I later learned had been found, not bought.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "euphemism",
+   "skeleton": "found-not-bought",
+   "anchor": "found, not bought",
+   "open_slots": [
+    "the dish",
+    "when they told you"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_074",
+   "deck": "confession",
+   "text": "I once performed a full candle-lit ritual from a book to curse a specific person, and I tracked the results.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "diy-curse-ritual",
+   "anchor": "tracked the results",
+   "open_slots": [
+    "the target",
+    "the results"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_075",
+   "deck": "confession",
+   "text": "I once knocked a small town's festival parade float into a ditch, and I cannot go back there.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "town-festival-exile",
+   "anchor": "the float in the ditch",
+   "open_slots": [
+    "how you hit it",
+    "what the town decided happened"
+   ]
+  },
+  {
+   "id": "confession_v3_076",
+   "deck": "confession",
+   "text": "I once put real money on the outcome of an amateur event, using inside information I was not supposed to have.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "amateur-event-inside-bet",
+   "anchor": "inside information",
+   "open_slots": [
+    "the event",
+    "how you had the info"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_077",
+   "deck": "confession",
+   "text": "I once faked an illness to get out of something enormous, then had to maintain symptoms for weeks.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "sustained-fake-illness",
+   "anchor": "weeks of symptoms",
+   "open_slots": [
+    "the enormous thing",
+    "the symptom routine"
+   ],
+   "voice": "worlds-beyond"
+  },
+  {
+   "id": "confession_v3_079",
+   "deck": "confession",
+   "text": "I once told one specific relative that Thanksgiving was canceled so they wouldn't come, and I wasn't even the host.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "selective-disinvite",
+   "anchor": "canceled Thanksgiving, not the host",
+   "open_slots": [
+    "which relative",
+    "how it unraveled"
+   ]
+  },
+  {
+   "id": "confession_v3_080",
+   "deck": "confession",
+   "text": "I once heard a stranger's darkest secret because they mistook me for someone else, and I never corrected them.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "mistaken-identity",
+   "anchor": "the mistaken identity",
+   "open_slots": [
+    "the secret",
+    "who they thought you were"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_081",
+   "deck": "confession",
+   "text": "I watched someone in this room pocket a lighter at a gas station, and they still don't know I saw.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "unwitnessed-witness",
+   "anchor": "the pocketed lighter",
+   "open_slots": [
+    "why you never told",
+    "whether they still have it"
+   ]
+  },
+  {
+   "id": "confession_v3_082",
+   "deck": "confession",
+   "text": "A friend's plant died under my care and I replaced it with an identical one. That was two years ago.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "silent-plant-swap",
+   "anchor": "two years of silence",
+   "open_slots": [
+    "where you sourced the replacement",
+    "how close they came to noticing"
+   ]
+  },
+  {
+   "id": "confession_v3_083",
+   "deck": "confession",
+   "text": "I once let someone in this room take the blame for a thing I did, and it is now far too late to confess.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "let-friend-take-blame",
+   "anchor": "too late to confess",
+   "open_slots": [
+    "the thing you did",
+    "what they suffered"
+   ]
+  },
+  {
+   "id": "confession_v3_084",
+   "deck": "confession",
+   "text": "I once lied to the parents of someone in this room to cover for them, and the lie has outlived the thing it covered.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "lied-to-friends-parent",
+   "anchor": "the outliving lie",
+   "open_slots": [
+    "the cover story",
+    "why it still stands"
+   ]
+  },
+  {
+   "id": "confession_v3_085",
+   "deck": "confession",
+   "text": "I once watched someone in this room walk directly toward a glass door and made the choice not to say anything.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "withheld-collision-warning",
+   "anchor": "the glass door",
+   "open_slots": [
+    "why you stayed silent",
+    "the impact"
+   ]
+  },
+  {
+   "id": "confession_v3_086",
+   "deck": "confession",
+   "text": "I once planted a fake rumor in this friend group purely to measure how fast it would come back to me.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "rumor-trace-experiment",
+   "anchor": "the timed experiment",
+   "open_slots": [
+    "the rumor",
+    "how fast it returned"
+   ]
+  },
+  {
+   "id": "confession_v3_087",
+   "deck": "confession",
+   "text": "I once told a stranger a long story about someone in this room, and mid-story learned the stranger knew them.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "gossip-small-world",
+   "anchor": "mid-story realization",
+   "open_slots": [
+    "the story you told",
+    "how you backpedaled"
+   ]
+  },
+  {
+   "id": "confession_v3_088",
+   "deck": "confession",
+   "text": "I once had permission to be in exactly one room of a house belonging to someone here, and I toured several.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "overstepped-house-access",
+   "anchor": "one permitted room",
+   "open_slots": [
+    "which rooms you toured",
+    "what you found"
+   ]
+  },
+  {
+   "id": "confession_v3_089",
+   "deck": "confession",
+   "text": "I once slept in my car outside the home of someone in this room instead of knocking, and they've never known.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "car-sleep-no-knock",
+   "anchor": "car outside their home",
+   "open_slots": [
+    "why you didn't knock",
+    "which night"
+   ]
+  },
+  {
+   "id": "confession_v3_090",
+   "deck": "confession",
+   "text": "I once recorded a voice memo of someone in this room without them knowing, and I've replayed it more than ten times.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "secret-voice-memo",
+   "anchor": "ten-plus replays",
+   "open_slots": [
+    "what is on it",
+    "why you replay it"
+   ]
+  },
+  {
+   "id": "confession_v3_091",
+   "deck": "confession",
+   "text": "I once snooped a bathroom cabinet at the home of someone in this room and brought the whole shelf down into the sink.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "snoop-cabinet-crash",
+   "anchor": "shelf into the sink",
+   "open_slots": [
+    "what you were looking for",
+    "how you explained the noise"
+   ]
+  },
+  {
+   "id": "confession_v3_092",
+   "deck": "confession",
+   "text": "I keep a mental ranking of everyone in this room by who I'd call from jail, and one night it nearly got used.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "jail-call-ranking",
+   "anchor": "the near-use night",
+   "open_slots": [
+    "the ranking order",
+    "what happened that night"
+   ]
+  },
+  {
+   "id": "confession_v3_093",
+   "deck": "confession",
+   "text": "I once gave the full name of someone in this room as my own to an authority figure.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "alias-friends-name",
+   "anchor": "their full name, on record",
+   "open_slots": [
+    "which authority",
+    "what it is now attached to"
+   ]
+  },
+  {
+   "id": "confession_v3_094",
+   "deck": "confession",
+   "text": "I once retold a story someone in this room told me in confidence, on a date, as if it happened to me.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "stolen-story-as-own",
+   "anchor": "told on a date",
+   "open_slots": [
+    "whose story",
+    "whether it worked"
+   ]
+  },
+  {
+   "id": "confession_v3_095",
+   "deck": "confession",
+   "text": "I once ate the clearly-labeled food of someone in this room and then helped them look for it.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "room-food-theft",
+   "anchor": "helped them search",
+   "open_slots": [
+    "whose food",
+    "how long the search ran"
+   ]
+  },
+  {
+   "id": "confession_v3_096",
+   "deck": "confession",
+   "text": "I once snuck out of a party someone in this room threw, then invented a full emergency from the sidewalk outside.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "party-exit-fake-emergency",
+   "anchor": "sidewalk emergency call",
+   "open_slots": [
+    "the invented emergency",
+    "whose party"
+   ]
+  },
+  {
+   "id": "confession_v3_097",
+   "deck": "confession",
+   "text": "Someone in this room spent over a year saved in my phone under a fake name, and the reason still holds.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "contact-fake-name",
+   "anchor": "a year under a fake name",
+   "open_slots": [
+    "the fake name",
+    "the reason"
+   ]
+  },
+  {
+   "id": "confession_v3_098",
+   "deck": "confession",
+   "text": "I once broke something I borrowed from someone in this room and returned a replacement without a word.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "secret-replacement",
+   "anchor": "silent replacement",
+   "open_slots": [
+    "what broke",
+    "the swap logistics"
+   ]
+  },
+  {
+   "id": "confession_v3_099",
+   "deck": "confession",
+   "text": "I once overheard two people in this room talking about me and stayed hidden until they finished.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "hidden-listener",
+   "anchor": "stayed hidden to the end",
+   "open_slots": [
+    "what they said",
+    "where you hid"
+   ]
+  },
+  {
+   "id": "confession_v3_100",
+   "deck": "confession",
+   "text": "I once threw up somewhere so public that I joined the crowd speculating about who did it.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "vomit-deniability",
+   "anchor": "joined the speculation",
+   "open_slots": [
+    "where it happened",
+    "the theories you offered"
+   ],
+   "voice": "gross-out"
+  },
+  {
+   "id": "confession_v3_101",
+   "deck": "confession",
+   "text": "I once clogged a toilet at a house party, and what I did next took twenty minutes.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "toilet-crisis",
+   "anchor": "twenty minutes",
+   "open_slots": [
+    "what you did",
+    "whose bathroom"
+   ],
+   "voice": "gross-out"
+  },
+  {
+   "id": "confession_v3_102",
+   "deck": "confession",
+   "text": "I once let my roommates hunt a mystery smell for two weeks while knowing exactly what and where it was.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "smell-coverup",
+   "anchor": "two-week hunt",
+   "open_slots": [
+    "what it was",
+    "why you stayed silent"
+   ],
+   "voice": "gross-out"
+  },
+  {
+   "id": "confession_v3_103",
+   "deck": "confession",
+   "text": "I once dropped my retainer in a public restroom and made a decision I stand by.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "retainer-recovery",
+   "anchor": "public restroom floor",
+   "open_slots": [
+    "the decision",
+    "which restroom"
+   ],
+   "voice": "gross-out"
+  },
+  {
+   "id": "confession_v3_104",
+   "deck": "confession",
+   "text": "I once farted in a silent group setting and successfully pinned it on a specific innocent person.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "fart-framejob",
+   "anchor": "the pinned innocent",
+   "open_slots": [
+    "the setting",
+    "how you sold it"
+   ],
+   "voice": "gross-out"
+  },
+  {
+   "id": "confession_v3_105",
+   "deck": "confession",
+   "text": "I once threw a real punch at a company holiday party and stayed for the rest of the party.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "physical",
+   "skeleton": "party-brawl",
+   "anchor": "stayed for the rest of it",
+   "open_slots": [
+    "who you hit",
+    "what happened Monday"
+   ]
+  },
+  {
+   "id": "confession_v3_106",
+   "deck": "confession",
+   "text": "I once started CPR on someone before realizing they were just asleep.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "physical",
+   "skeleton": "medical-overreaction",
+   "anchor": "they were just asleep",
+   "open_slots": [
+    "how far you got",
+    "who else saw"
+   ]
+  },
+  {
+   "id": "confession_v3_107",
+   "deck": "confession",
+   "text": "I threw my back out re-enacting a wrestling move alone in my kitchen. The chiropractor heard 'hiking.'",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "injury-cover-story",
+   "anchor": "the wrestling move",
+   "open_slots": [
+    "the move",
+    "how long you kept the hiking story"
+   ],
+   "voice": "body"
+  },
+  {
+   "id": "confession_v3_108",
+   "deck": "confession",
+   "text": "I once swallowed something that was not food, as an adult, and quietly monitored the situation for days.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "swallowed-object",
+   "anchor": "days of quiet monitoring",
+   "open_slots": [
+    "the object",
+    "how it resolved"
+   ],
+   "voice": "body"
+  },
+  {
+   "id": "confession_v3_109",
+   "deck": "confession",
+   "text": "I once broke into my own house and later heard the police read a neighbor's description of me.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "self-burglary",
+   "anchor": "the neighbor's description",
+   "open_slots": [
+    "what it said",
+    "why you broke in"
+   ]
+  },
+  {
+   "id": "confession_v3_110",
+   "deck": "confession",
+   "text": "I once caught a bat in my apartment with my bare hands because calling someone felt like losing.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "animal-capture",
+   "anchor": "bare hands",
+   "open_slots": [
+    "the technique",
+    "what you did with it"
+   ]
+  },
+  {
+   "id": "confession_v3_111",
+   "deck": "confession",
+   "text": "I once tested whether I could fully fit inside my own checked suitcase, and not just the one time.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "body-fit-test",
+   "anchor": "more than once",
+   "open_slots": [
+    "why you tested",
+    "whether you zipped it"
+   ]
+  },
+  {
+   "id": "confession_v3_112",
+   "deck": "confession",
+   "text": "I once fought a goose over food, lost, and had to be walked away by a stranger.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "animal-altercation",
+   "anchor": "walked away by a stranger",
+   "open_slots": [
+    "the food",
+    "how you lost"
+   ]
+  },
+  {
+   "id": "confession_v3_113",
+   "deck": "confession",
+   "text": "I once sat through a stranger's funeral because I picked the wrong room, and I signed the guest book on the way out.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "wrong-funeral",
+   "anchor": "the guest book",
+   "open_slots": [
+    "when you realized",
+    "what name you signed"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_114",
+   "deck": "confession",
+   "text": "I once let a raccoon keep living in my car for a whole weekend because I was too scared to evict it.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "animal-squatter",
+   "anchor": "a whole weekend",
+   "open_slots": [
+    "how it got in",
+    "the eventual eviction"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_115",
+   "deck": "confession",
+   "text": "I once spent over a hundred dollars losing a war against one specific squirrel.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "animal-feud",
+   "anchor": "over a hundred dollars",
+   "open_slots": [
+    "the purchases",
+    "who is winning now"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_116",
+   "deck": "confession",
+   "text": "I once was asked to deliver the eulogy at a pet funeral for an animal I'd met twice.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "pet-eulogy",
+   "anchor": "met the animal twice",
+   "open_slots": [
+    "the animal",
+    "what you said"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_117",
+   "deck": "confession",
+   "text": "I once lost real money betting on a children's soccer game.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "youth-sports-bet",
+   "anchor": "children's soccer",
+   "open_slots": [
+    "how much",
+    "who took the bet"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_118",
+   "deck": "confession",
+   "text": "I once got escorted off a mini-golf course as a sober adult, in front of two birthday parties.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "venue-ejection",
+   "anchor": "sober, two birthday parties",
+   "open_slots": [
+    "what you did",
+    "who called it in"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_119",
+   "deck": "confession",
+   "text": "I once had to take a court-ordered class and got kicked out of that too.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "venue-ejection",
+   "anchor": "court-ordered class",
+   "open_slots": [
+    "the class",
+    "what got you ejected"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_120",
+   "deck": "confession",
+   "text": "I once accidentally stole something and smuggled it back onto the shelf a week later instead of just explaining.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "absurdist",
+   "skeleton": "reverse-shoplift",
+   "anchor": "the return smuggle",
+   "open_slots": [
+    "the item",
+    "the smuggle plan"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_121",
+   "deck": "confession",
+   "text": "I once climbed into a public dumpster in formal wear to dig out something I'd thrown away an hour earlier.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "dumpster-retrieval",
+   "anchor": "formal wear, one hour",
+   "open_slots": [
+    "what you threw away",
+    "whether you found it"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_122",
+   "deck": "confession",
+   "text": "I once accidentally ruined a stranger's restaurant proposal, and they did not get engaged that night.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "proposal-ruin",
+   "anchor": "the failed proposal",
+   "open_slots": [
+    "what you did",
+    "the couple's reaction"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_123",
+   "deck": "confession",
+   "text": "I once hid inside a clothing rack to avoid someone I know, and they stood there saying my name.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "adult-hiding",
+   "anchor": "they said your name",
+   "open_slots": [
+    "who it was",
+    "how you got out"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_124",
+   "deck": "confession",
+   "text": "I once fought my own cousin at a graduation dinner and now book that restaurant under a fake name.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "alias-ban-evasion",
+   "anchor": "the graduation dinner",
+   "open_slots": [
+    "what started it",
+    "the alias"
+   ]
+  },
+  {
+   "id": "confession_v3_125",
+   "deck": "confession",
+   "text": "I once let my family believe our car dent was a hit-and-run for eleven years.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "ancient-lie",
+   "anchor": "eleven years",
+   "open_slots": [
+    "the real story",
+    "who almost found out"
+   ]
+  },
+  {
+   "id": "confession_v3_126",
+   "deck": "confession",
+   "text": "I once let someone I grew up with serve a summer-long grounding for something I did.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "childhood-frame",
+   "anchor": "summer-long grounding",
+   "open_slots": [
+    "what you did",
+    "whether they know now"
+   ]
+  },
+  {
+   "id": "confession_v3_127",
+   "deck": "confession",
+   "text": "I once received a formal HOA complaint about what I was doing in my own yard at 3am.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "formal-complaint",
+   "anchor": "3am, formal complaint",
+   "open_slots": [
+    "what you were doing",
+    "the complaint wording"
+   ]
+  },
+  {
+   "id": "confession_v3_128",
+   "deck": "confession",
+   "text": "I once let a door-to-door knife salesman do the entire demo because I was lonely, and I own the knives.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "lonely-purchase",
+   "anchor": "I own the knives",
+   "open_slots": [
+    "the demo",
+    "the total spent"
+   ]
+  },
+  {
+   "id": "confession_v3_129",
+   "deck": "confession",
+   "text": "I once ended a three-month roommate standoff over a single unwashed pan by throwing the pan away.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "chore-war",
+   "anchor": "three months, one pan",
+   "open_slots": [
+    "whose pan",
+    "the aftermath"
+   ]
+  },
+  {
+   "id": "confession_v3_130",
+   "deck": "confession",
+   "text": "I once rigged the apartment chore chart and ran the scam undetected for an entire lease.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "chore-war",
+   "anchor": "a full lease undetected",
+   "open_slots": [
+    "the rig",
+    "how it stayed hidden"
+   ]
+  },
+  {
+   "id": "confession_v3_131",
+   "deck": "confession",
+   "text": "I once taped a hand warmer to the thermostat in January and let the whole house believe the furnace was dying.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "thermostat-fraud",
+   "anchor": "hand warmer, January",
+   "open_slots": [
+    "why you did it",
+    "how long it ran"
+   ]
+  },
+  {
+   "id": "confession_v3_132",
+   "deck": "confession",
+   "text": "I once held a neighbor's misdelivered package hostage for a week over how they park.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "object-hostage",
+   "anchor": "a week-long hostage",
+   "open_slots": [
+    "the parking crime",
+    "what was in the package"
+   ]
+  },
+  {
+   "id": "confession_v3_133",
+   "deck": "confession",
+   "text": "I once hid a roommate's blender for six weeks over an argument, and watched them buy a new one rather than ask me.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "object-hostage",
+   "anchor": "six weeks, new blender bought",
+   "open_slots": [
+    "the argument",
+    "where you hid it"
+   ]
+  },
+  {
+   "id": "confession_v3_135",
+   "deck": "confession",
+   "text": "I once kept up a pointless lie for an entire friendship because the window to confess closed in week one.",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "ancient-lie",
+   "anchor": "the week-one window",
+   "open_slots": [
+    "the pointless lie",
+    "the near misses"
+   ],
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "confession_v3_139",
+   "deck": "confession",
+   "text": "I once RSVP'd yes to a wedding, booked the travel, and spent that weekend at a water park instead.",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "wedding-noshow-hidden-reason",
+   "anchor": "the water park weekend",
+   "open_slots": [
+    "the excuse you gave",
+    "whether they ever found out"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_140",
+   "deck": "confession",
+   "text": "I once helped plan a wedding I was privately certain should never happen.",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "abetted-doomed-wedding",
+   "anchor": "helped plan it anyway",
+   "open_slots": [
+    "your role",
+    "why you were certain"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_144",
+   "deck": "confession",
+   "text": "I once broke the toilet at a partner's parents' house on the first visit and chose to say absolutely nothing.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "inlaws-plumbing",
+   "anchor": "first visit",
+   "open_slots": [
+    "how it broke",
+    "who found it"
+   ],
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "confession_v3_145",
+   "deck": "confession",
+   "text": "I once let a friend plan our shared lease for months while I had a signed job offer in another city.",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "hidden-exit",
+   "anchor": "signed offer, another city",
+   "open_slots": [
+    "the plans they made",
+    "the reveal"
+   ]
+  },
+  {
+   "id": "confession_v3_146",
+   "deck": "confession",
+   "text": "I once won an argument by citing a study I'd invented on the spot, and then they asked me to send it to them.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "invented-authority",
+   "anchor": "they asked for the study",
+   "open_slots": [
+    "the claim",
+    "what you sent them"
+   ],
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "confession_v3_147",
+   "deck": "confession",
+   "text": "I have let this friend group celebrate my birthday with a food I quietly hate, three years running.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "silent-birthday-hate",
+   "anchor": "three years running",
+   "open_slots": [
+    "the food",
+    "why you never said"
+   ]
+  },
+  {
+   "id": "confession_v3_148",
+   "deck": "confession",
+   "text": "I once wore an outfit to a big event and returned it the next morning with the tags re-attached.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "wardrobe-return-scam",
+   "anchor": "the re-attached tags",
+   "open_slots": [
+    "the event",
+    "how you re-attached them"
+   ]
+  },
+  {
+   "id": "confession_v3_149",
+   "deck": "confession",
+   "text": "I once applauded at the wrong moment in a theater, then applauded harder to sell it as intentional.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "absurdist",
+   "skeleton": "committed-to-the-bit",
+   "anchor": "applauding harder",
+   "open_slots": [
+    "the wrong moment",
+    "who joined in"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_150",
+   "deck": "confession",
+   "text": "I have a second grocery loyalty account because the first one knows too much about me.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "burner-loyalty-card",
+   "anchor": "the second account",
+   "open_slots": [
+    "what the first one knows",
+    "the name on it"
+   ]
+  },
+  {
+   "id": "confession_v3_151",
+   "deck": "confession",
+   "text": "I once let a barista call me the wrong name for two years rather than correct her one time.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "uncorrected-name",
+   "anchor": "two years, wrong name",
+   "open_slots": [
+    "the name",
+    "how it started"
+   ]
+  },
+  {
+   "id": "confession_v3_152",
+   "deck": "confession",
+   "text": "I once pretended not to see a coworker waving at me across a parking lot, twice, in one week.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "deliberate-non-recognition",
+   "anchor": "twice in one week",
+   "open_slots": [
+    "which coworker",
+    "what you did with your face"
+   ]
+  },
+  {
+   "id": "confession_v3_153",
+   "deck": "confession",
+   "text": "I have described someone in this room to my family as a coworker for four years. They are not.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "friend-recategorized",
+   "anchor": "four years as a coworker",
+   "open_slots": [
+    "who",
+    "why the demotion"
+   ]
+  },
+  {
+   "id": "confession_v3_154",
+   "deck": "confession",
+   "text": "I once voted against someone in this room in a group decision, then helped them work out who did.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "vote-then-investigate",
+   "anchor": "helped them investigate",
+   "open_slots": [
+    "the decision",
+    "who you steered them toward"
+   ]
+  },
+  {
+   "id": "confession_v3_155",
+   "deck": "confession",
+   "text": "I once cost someone in this room real money and let them believe it was a bank error.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "bank-error-cover",
+   "anchor": "the bank error",
+   "open_slots": [
+    "how much",
+    "how you kept it up"
+   ]
+  },
+  {
+   "id": "confession_v3_156",
+   "deck": "confession",
+   "text": "I once skipped something that mattered to someone in this room, and the emergency I cited was a nap.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "fake-emergency-nap",
+   "anchor": "the emergency was a nap",
+   "open_slots": [
+    "what you missed",
+    "the emergency you described"
+   ]
+  },
+  {
+   "id": "confession_v3_157",
+   "deck": "confession",
+   "text": "I once found a wallet with cash and ID in it and returned exactly one of those two things.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "partial-return",
+   "anchor": "exactly one of the two",
+   "open_slots": [
+    "the amount",
+    "how you handed it over"
+   ]
+  },
+  {
+   "id": "confession_v3_158",
+   "deck": "confession",
+   "text": "I keep a saved draft of a message to someone in this room that would end it, and I still edit it.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "unsent-nuke-draft",
+   "anchor": "still editing it",
+   "open_slots": [
+    "the opening line",
+    "what would make you send it"
+   ]
+  },
+  {
+   "id": "confession_v3_159",
+   "deck": "confession",
+   "text": "I once borrowed a car from someone in this room to move a piece of furniture that was not mine.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "table-aware",
+   "skeleton": "borrowed-car-crime",
+   "anchor": "the furniture",
+   "open_slots": [
+    "whose furniture",
+    "where it is now"
+   ]
+  },
+  {
+   "id": "confession_v3_160",
+   "deck": "confession",
+   "text": "There is one person in this room I would name immediately under real pressure, and I made peace with it.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "table-aware",
+   "skeleton": "designated-sacrifice",
+   "anchor": "made peace with it",
+   "open_slots": [
+    "when you decided",
+    "what would make you name them"
+   ]
+  },
+  {
+   "id": "confession_v3_161",
+   "deck": "confession",
+   "text": "I once took credit at work for something that got a quieter person moved to another team.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "credit-theft-fallout",
+   "anchor": "the quieter person",
+   "open_slots": [
+    "what you took credit for",
+    "where they went"
+   ]
+  },
+  {
+   "id": "confession_v3_162",
+   "deck": "confession",
+   "text": "I once returned a broken appliance to a store using someone else's receipt, in their name.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "receipt-fraud",
+   "anchor": "someone else's name",
+   "open_slots": [
+    "whose receipt",
+    "what you said at the counter"
+   ]
+  },
+  {
+   "id": "confession_v3_163",
+   "deck": "confession",
+   "text": "I once cancelled a plan by inventing a death, and now I have to keep track of who I killed off.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "invented-death-excuse",
+   "anchor": "the running list",
+   "open_slots": [
+    "the first one",
+    "how many there are now"
+   ],
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "confession_v3_164",
+   "deck": "confession",
+   "text": "I once took cash from a relative's dresser for two years and let a home aide be suspected.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "family-theft-frame",
+   "anchor": "the home aide",
+   "open_slots": [
+    "how much, total",
+    "what happened to them"
+   ]
+  },
+  {
+   "id": "confession_v3_165",
+   "deck": "confession",
+   "text": "I once let a friend go to court over something I did, and I sat in the gallery for the whole hearing.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "gallery-silence",
+   "anchor": "the whole hearing",
+   "open_slots": [
+    "what you did",
+    "the verdict"
+   ]
+  },
+  {
+   "id": "confession_v3_166",
+   "deck": "confession",
+   "text": "I once emptied a joint account I shared with a sibling and let the bank take the blame for a month.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "sibling-account-raid",
+   "anchor": "a month of bank blame",
+   "open_slots": [
+    "what you spent it on",
+    "how it surfaced"
+   ]
+  },
+  {
+   "id": "confession_v3_167",
+   "deck": "confession",
+   "text": "I once wrote a reference letter that quietly ended someone's shot at a job I had also applied for.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "euphemism",
+   "skeleton": "poisoned-reference",
+   "anchor": "the quiet sentence",
+   "open_slots": [
+    "the sentence that did it",
+    "whether you got the job"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_168",
+   "deck": "confession",
+   "text": "I once let my parents pay for something for two years that I had already been reimbursed for.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "double-dipped-reimbursement",
+   "anchor": "two years of double-dipping",
+   "open_slots": [
+    "the expense",
+    "what you did with the money"
+   ]
+  },
+  {
+   "id": "confession_v3_169",
+   "deck": "confession",
+   "text": "I once read a dying relative's will early, and I adjusted my behavior for the rest of that year.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "euphemism",
+   "skeleton": "will-preview",
+   "anchor": "the adjustment",
+   "open_slots": [
+    "what it said",
+    "what you adjusted"
+   ],
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "confession_v3_170",
+   "deck": "confession",
+   "text": "I once let a friend pay off a debt that had already been forgiven, and I kept the difference.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "forgiven-debt-skim",
+   "anchor": "the kept difference",
+   "open_slots": [
+    "the amount",
+    "whether they know"
+   ]
+  },
+  {
+   "id": "confession_v3_171",
+   "deck": "confession",
+   "text": "I once attributed a sentence to a mutual friend that they never said, and it followed them for years.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "invented-quote",
+   "anchor": "the sentence",
+   "open_slots": [
+    "the sentence",
+    "what it cost them"
+   ]
+  },
+  {
+   "id": "confession_v3_172",
+   "deck": "confession",
+   "text": "I once let a friend take a job I knew was about to be cut, because I wanted the one they left.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "job-swap-setup",
+   "anchor": "the job about to be cut",
+   "open_slots": [
+    "how you knew",
+    "how long they lasted"
+   ]
+  },
+  {
+   "id": "confession_v3_173",
+   "deck": "confession",
+   "text": "I once gave a grieving family a comforting detail about their person's last day. I was not there.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "invented-last-day",
+   "anchor": "I was not there",
+   "open_slots": [
+    "the detail you gave",
+    "who else has repeated it"
+   ]
+  }
+ ]
+}

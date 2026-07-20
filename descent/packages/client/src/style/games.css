@@ -1,0 +1,472 @@
+/* M2 game screens (Fill-In 5.2 / Over/Under 5.3 / Confession 5.4) — same design law
+   as style.css (6.2): pit-black, blood for danger, ember for action, bone for words.
+   One accent per screen. Sharp corners. Reveals snap; holds breathe; nothing bounces. */
+
+/* ===== FILL-IN: the writer's field ===== */
+.writebox {
+  width: 100%;
+  padding: 14px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.25;
+  background: var(--char);
+  color: var(--bone);
+  border: 1px solid var(--ash);
+  border-radius: 0;
+  resize: none;
+}
+.writebox:focus { outline: none; border-color: var(--ember); }
+.writebox::placeholder { color: var(--ash); text-transform: none; }
+.chars-left {
+  align-self: flex-end;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ash);
+}
+.chars-left.low { color: var(--ember); }
+
+/* the panic shelf: cowardice is red for a reason */
+.panic-btn {
+  border: 1px solid var(--blood);
+  color: var(--blood);
+  padding: 12px;
+  font-size: 15px;
+  letter-spacing: 0.24em;
+}
+.panic-btn:active { background: var(--blood); color: var(--bone); }
+.panic-shelf { display: flex; flex-direction: column; gap: 8px; border-left: 3px solid var(--blood); padding-left: 10px; }
+.panic-label { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.18em; color: var(--blood); }
+.panic-option {
+  padding: 13px 14px;
+  border: 1px solid var(--ash);
+  color: var(--bone);
+  font-size: 16px;
+  text-align: left;
+  text-transform: none;
+  font-weight: 800;
+}
+.panic-option:active { border-color: var(--blood); background: rgba(142, 27, 27, 0.15); }
+
+/* teleprompter: the line is the whole screen */
+.tele { gap: 10px; }
+.tele-setup { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--ash); letter-spacing: 0.04em; }
+.tele-line {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(30px, 9vw, 54px);
+  line-height: 1.05;
+  color: var(--bone);
+  overflow-wrap: anywhere;
+  margin: auto 0;
+}
+.tele-actions { display: flex; gap: 10px; align-items: stretch; }
+.tele-next { flex: 1; }
+.burn-line {
+  border: 1px solid var(--blood);
+  color: var(--blood);
+  padding: 0 16px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+.burn-line:active { background: var(--blood); color: var(--bone); }
+.tele-note { font-size: 12px; color: var(--ash); }
+.tone-chip {
+  align-self: flex-start;
+  border: 1px solid var(--ember);
+  color: var(--ember);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  padding: 5px 10px;
+}
+.derange-tag {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  color: var(--ember);
+}
+
+/* audience during a read: a command, not content */
+.listen { justify-content: center; text-align: center; gap: 14px; }
+.listen-count {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(40px, 12vw, 72px);
+  line-height: 1;
+  color: var(--bone);
+}
+.listen .tone-chip { align-self: center; }
+
+/* memory-aid ballot */
+.ballot { display: flex; flex-direction: column; gap: 8px; }
+.ballot-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 13px 14px;
+  border: 1px solid var(--ash);
+  color: var(--bone);
+  font-size: 16px;
+  font-weight: 800;
+  text-align: left;
+  text-transform: none;
+}
+.ballot-row.own { opacity: 0.35; }
+.ballot-row.picked { border-color: var(--ember); background: rgba(226, 87, 27, 0.12); color: var(--ember); }
+.ballot.locked .ballot-row:not(.picked) { opacity: 0.4; }
+.ballot-tag { font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; color: var(--ash); flex: none; }
+
+/* face-off: two slabs, no third option */
+.faceoff { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; align-content: stretch; }
+.faceoff-slab {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 12px;
+  border: 1px solid var(--ash);
+  color: var(--bone);
+  text-align: left;
+}
+.faceoff-slab.picked { border-color: var(--ember); background: rgba(226, 87, 27, 0.12); }
+.faceoff.locked .faceoff-slab:not(.picked) { opacity: 0.4; }
+.faceoff-label { font-family: var(--display); font-weight: 900; font-size: 20px; letter-spacing: 0.12em; color: var(--ember); }
+.faceoff-text { font-size: 15px; font-weight: 800; text-transform: none; }
+
+/* fill-in reveal */
+.win-line {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(24px, 7vw, 38px);
+  line-height: 1.15;
+  color: var(--bone);
+  overflow-wrap: anywhere;
+}
+.panic-flag {
+  align-self: center;
+  border: 1px solid var(--blood);
+  color: var(--blood);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  padding: 6px 12px;
+}
+.runner-up { font-size: 13px; color: var(--ash); max-width: 44ch; margin: 0 auto; }
+
+/* ===== OVER/UNDER ===== */
+.stat-about {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.24em;
+  color: var(--ember);
+}
+.receipt-hint {
+  border-left: 3px solid var(--ember);
+  background: var(--char);
+  color: var(--bone);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  padding: 10px 12px;
+}
+.dial-face {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(64px, 22vw, 120px);
+  line-height: 1;
+  color: var(--bone);
+  text-align: center;
+  margin: auto 0;
+}
+.dial-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.dial-step {
+  padding: 18px 0;
+  border: 1px solid var(--ember);
+  color: var(--ember);
+  font-size: 22px;
+}
+.dial-step:active { background: var(--ember); color: var(--pit); }
+.line-strip {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: var(--bone);
+  text-align: center;
+}
+.line-strip b { color: var(--ember); font-size: 26px; }
+
+.bet-slabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; align-content: stretch; }
+.bet-slab {
+  border: 1px solid var(--ash);
+  color: var(--bone);
+  font-size: clamp(26px, 8vw, 40px);
+  letter-spacing: 0.08em;
+  min-height: 120px;
+}
+.bet-slab.picked { border-color: var(--ember); background: rgba(226, 87, 27, 0.14); color: var(--ember); }
+.bet-slabs.locked .bet-slab:not(.picked) { opacity: 0.35; }
+
+/* the witness stand: number pad */
+.pad-read {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(44px, 15vw, 76px);
+  line-height: 1;
+  color: var(--bone);
+  text-align: center;
+  min-height: 1em;
+}
+.pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pad-key {
+  padding: 16px 0;
+  border: 1px solid var(--ash);
+  color: var(--bone);
+  font-size: 24px;
+}
+.pad-key:active { border-color: var(--ember); color: var(--ember); }
+.pad-fn { color: var(--ash); font-size: 16px; }
+.fifth-btn {
+  border: 2px solid var(--blood);
+  color: var(--blood);
+  padding: 14px;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+}
+.fifth-btn:active { background: var(--blood); color: var(--bone); }
+
+/* the pit vote (4.7): mercy is quiet, hunger is loud */
+.pit-row { display: flex; gap: 10px; width: 100%; }
+.pit-drag {
+  flex: 1;
+  border: 1px solid var(--bone);
+  color: var(--bone);
+  padding: 16px 10px;
+  font-size: 15px;
+}
+.pit-drag:active { background: var(--bone); color: var(--pit); }
+.pit-feed {
+  flex: 1;
+  background: var(--blood);
+  color: var(--bone);
+  padding: 16px 10px;
+  font-size: 15px;
+}
+.pit-feed:active { background: var(--ember); }
+.host-tools { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 8px; }
+.host-tools .btn-ghost { width: 100%; }
+.relay-box { display: flex; flex-direction: column; gap: 10px; text-align: left; }
+
+/* number vs line slam */
+.vs-slam { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.vs-cell { display: flex; flex-direction: column; gap: 4px; padding: 12px; background: var(--char); }
+.vs-label { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.24em; color: var(--ash); }
+.vs-num { font-family: var(--display); font-weight: 900; font-size: clamp(40px, 12vw, 64px); line-height: 1; color: var(--bone); }
+.vs-num.hot { color: var(--ember); }
+.subject-banner {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+}
+.unverified-tag {
+  align-self: center;
+  border: 1px dashed var(--ash);
+  color: var(--ash);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  padding: 6px 12px;
+}
+.you-chip {
+  align-self: center;
+  background: var(--char);
+  border-left: 3px solid var(--ember);
+  color: var(--bone);
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  padding: 8px 12px;
+}
+
+/* ===== CONFESSION ===== */
+.sin-cards { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.sin-card {
+  flex: 1;
+  padding: 16px 14px;
+  border: 1px solid var(--ash);
+  color: var(--bone);
+  font-size: 17px;
+  font-weight: 800;
+  text-align: left;
+  text-transform: none;
+}
+.sin-card.picked { border-color: var(--ember); background: rgba(226, 87, 27, 0.12); color: var(--ember); }
+.sin-cards.locked .sin-card:not(.picked) { opacity: 0.35; }
+
+/* hold-to-lock: weight you can feel. Fill duration mirrors LOCK_HOLD_MS (games/logic.ts). */
+.lock-slabs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex: 1; align-content: stretch; }
+.hold-slab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 140px;
+  border: 1px solid var(--ash);
+  color: var(--bone);
+  overflow: hidden;
+}
+.hold-fill {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 0%;
+  background: rgba(226, 87, 27, 0.22);
+  transition: height 0.65s linear; /* = LOCK_HOLD_MS */
+  pointer-events: none;
+}
+.hold-slab.holding { border-color: var(--ember); }
+.hold-slab.holding .hold-fill { height: 100%; }
+.hold-label { font-family: var(--display); font-weight: 900; font-size: clamp(28px, 9vw, 44px); letter-spacing: 0.08em; z-index: 1; }
+.hold-sub { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: 0.14em; color: var(--ash); text-transform: none; z-index: 1; }
+
+.rest-btn { margin-top: auto; }
+.watch-tag {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  color: var(--blood);
+}
+
+/* the stamp: slammed, not eased */
+.stamp {
+  align-self: center;
+  border: 5px solid;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(56px, 18vw, 100px);
+  line-height: 1;
+  letter-spacing: 0.1em;
+  padding: 10px 26px 8px 32px;
+  transform: rotate(-6deg);
+}
+.stamp-true { color: var(--bone); border-color: var(--bone); }
+.stamp-false { color: var(--blood); border-color: var(--blood); }
+
+.jury-spread { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.jury-cell { display: flex; flex-direction: column; gap: 4px; padding: 12px; background: var(--char); }
+
+/* ============================================================================
+   M3 GAMES — the five deeper-circle screens (D-131..133). Every class below is
+   a game's SIGNATURE visual, justified in its screen file's header. Nothing here
+   is decoration: color is meaning (ember = the fire / your own call, blood = the
+   wound / the damning plant), and each block exists because a reused class would
+   read as the wrong game. All on the hellfire palette; no gradients, no new keyframes.
+   ============================================================================ */
+
+/* SCATTERBLAST (5.5) — the lit constraint letter, a bomb glowing on the table. */
+.bomb-letter {
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: clamp(160px, 52vw, 360px);
+  line-height: 0.78;
+  text-align: center;
+  color: var(--bone);
+  margin: auto 0;
+  text-shadow:
+    0 0 20px rgba(226, 87, 27, 0.95),
+    0 0 70px rgba(226, 87, 27, 0.55),
+    0 0 130px rgba(142, 27, 27, 0.6);
+  animation: ember-breathe 2.6s ease-in-out infinite;
+}
+
+/* POISON PITCH (5.6) — two people shoved into opposite corners; blood says they bleed. */
+.duel { display: flex; flex-direction: column; gap: 8px; }
+.duel-vs {
+  align-self: center;
+  font-family: var(--display);
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 0.3em;
+  color: var(--blood);
+}
+
+/* RED FLAG RALLY (5.7) — the tale of the tape: perk pulls to the fire, flag is the wound. */
+.fight-card { display: flex; flex-direction: column; gap: 2px; }
+.fc-side { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 18px 16px; background: var(--char); min-height: 88px; }
+.fc-perk { border-left: 3px solid var(--ember); }
+.fc-flag { border-left: 3px solid var(--blood); }
+.fc-tag { font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: 0.24em; }
+.fc-perk .fc-tag { color: var(--ember); }
+.fc-flag .fc-tag { color: var(--blood); }
+.fc-line { font-family: var(--display); font-weight: 900; font-size: clamp(19px, 5.4vw, 28px); line-height: 1.12; color: var(--bone); text-transform: none; overflow-wrap: anywhere; }
+.fc-pivot { align-self: center; position: relative; z-index: 1; margin: -6px 0; padding: 4px 14px 4px 18px; background: var(--blood); color: var(--bone); font-family: var(--display); font-weight: 900; font-size: 14px; letter-spacing: 0.3em; transform: rotate(-2deg); }
+.fight-card.compact { gap: 2px; }
+.fight-card.compact .fc-side { min-height: 0; padding: 11px 14px; }
+.fight-card.compact .fc-line { font-size: 15px; line-height: 1.2; }
+.stamp-smash { color: var(--ember); border-color: var(--ember); } /* SMASH survives in ember; PASS reuses .stamp-false (blood) */
+
+/* ALIBI DROP (5.8) — the contraband strip (words you can't refuse to say) + the flip grid. */
+.contraband { display: flex; flex-direction: column; gap: 8px; border: 1px solid var(--ember); border-left-width: 4px; background: rgba(226, 87, 27, 0.06); padding: 12px 14px; }
+.contraband-label { font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: 0.18em; color: var(--ember); }
+.contraband-words { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.contraband-word { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 6.5vw, 34px); line-height: 1; color: var(--bone); overflow-wrap: anywhere; }
+.lineup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.lineup-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; min-height: 74px; padding: 10px 8px; border: 1px solid var(--ash); text-align: center; }
+.lineup-cell.down { color: var(--ash); }
+.lineup-cell.plant { border-color: var(--blood); background: rgba(142, 27, 27, 0.32); }
+.lineup-cell.decoy { opacity: 0.4; }
+.lineup-cell.mine { box-shadow: inset 0 0 0 2px var(--ember); }
+.lineup-word { font-family: var(--display); font-weight: 900; font-size: clamp(16px, 4.5vw, 22px); line-height: 1; color: var(--bone); overflow-wrap: anywhere; }
+.lineup-word.decoy { text-decoration: line-through; color: var(--ash); }
+.lineup-tag { font-family: var(--display); font-weight: 800; font-size: 10px; letter-spacing: 0.16em; }
+.lineup-tag.plant { color: var(--blood); }
+.lineup-tag.decoy { color: var(--ash); }
+
+/* TITLE FIGHT (5.9) — the tale of the tape. Two fires: fighterA blood, fighterB ember. */
+.corners { display: grid; grid-template-columns: 1fr auto 1fr; align-items: stretch; gap: 8px; }
+.corner {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; padding: 18px 10px; min-height: 128px; border: 1px solid var(--ash); text-align: center;
+}
+.corner-a { border-top: 4px solid var(--blood); }
+.corner-b { border-top: 4px solid var(--ember); }
+.corner-kicker { font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: 0.2em; color: var(--ash); }
+.corner-a .corner-kicker { color: var(--blood); }
+.corner-b .corner-kicker { color: var(--ember); }
+.corner-name { font-family: var(--display); font-weight: 900; font-size: clamp(22px, 7vw, 38px); line-height: 0.95; color: var(--bone); text-transform: uppercase; overflow-wrap: anywhere; }
+.corner.you { background: var(--char); }
+.corner-a.picked { border-color: var(--blood); background: rgba(142, 27, 27, 0.16); }
+.corner-b.picked { border-color: var(--ember); background: rgba(226, 87, 27, 0.14); }
+.corners.locked .corner:not(.picked) { opacity: 0.4; }
+.vs-bolt { align-self: center; font-family: var(--display); font-weight: 900; font-size: clamp(20px, 6vw, 30px); letter-spacing: 0.04em; color: var(--ash); }
+
+/* D-134 "WHO WANTS BLOOD?" — the volunteer claim that rides the spotlight game's CIRCLE_INTRO.
+   A dare, not a trap: tapping only raises your odds of the spike. Blood, because that's what it is. */
+.blood-claim { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 18px; }
+.blood-claim .stat-about { color: var(--ash); }
+
+/* D-135 THE STAGE — the host phone face-up mid-table (N>=5) + lift-to-sin flip (web fallback).
+   Public-only faces when flat; a sticky bar to lay it back down when lifted to sin. */
+.stage-face { justify-content: center; align-items: center; text-align: center; gap: 18px; }
+.stage-tag { font-family: var(--display); font-weight: 800; font-size: 13px; letter-spacing: 0.28em; color: var(--blood); }
+.stage-ring { margin: 2px 0; }
+.stage-lifted { position: relative; min-height: 100%; }
+.lay-flat {
+  position: sticky; top: 0; z-index: 50; width: 100%; padding: 12px 10px; border: 0;
+  border-bottom: 2px solid var(--ember); background: var(--char); color: var(--ember);
+  font-family: var(--display); font-weight: 900; font-size: 13px; letter-spacing: 0.2em;
+}
+.lay-flat:active { background: var(--ember); color: var(--pit); }

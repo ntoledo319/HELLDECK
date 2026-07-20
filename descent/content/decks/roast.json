@@ -1,0 +1,1485 @@
+{
+ "deck": "roast",
+ "schema": 3,
+ "updated": "2026-07-20",
+ "cards": [
+  {
+   "id": "roast_v3_001",
+   "deck": "roast",
+   "text": "Who has already decided which of us they'd eat first?",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "cannibal-shortlist"
+  },
+  {
+   "id": "roast_v3_002",
+   "deck": "roast",
+   "text": "Who would keep a tarp and a shovel in the trunk and call it 'beach stuff'?",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "trunk-kit-euphemism",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_003",
+   "deck": "roast",
+   "text": "Who would get their still-living cat taxidermied 'just to be ready'?",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "euphemism",
+   "skeleton": "preemptive-taxidermy",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_004",
+   "deck": "roast",
+   "text": "Who would help bury the body, then bring it up in every argument for the rest of your life?",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "favor-scorekeeping",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_005",
+   "deck": "roast",
+   "text": "Who would answer 'where were you last night' with 'be more specific'?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "alibi-deflection"
+  },
+  {
+   "id": "roast_v3_006",
+   "deck": "roast",
+   "text": "Who would the neighbors describe as 'quiet, kept to themselves' in the documentary?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "doc-neighbor-quote",
+   "voice": "parody-true-crime"
+  },
+  {
+   "id": "roast_v3_155",
+   "deck": "roast",
+   "text": "Who would microwave fish in a shared kitchen and hold eye contact while it heats?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "microwaved-fish-standoff"
+  },
+  {
+   "id": "roast_v3_007",
+   "deck": "roast",
+   "text": "Who would commit insurance fraud for someone in this room, no questions asked?",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "no-questions-accomplice",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_008",
+   "deck": "roast",
+   "text": "Who has a defense already prepared for the day this room finds out?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "prepared-defense"
+  },
+  {
+   "id": "roast_v3_009",
+   "deck": "roast",
+   "text": "Who would sleep with their sworn enemy and file it under 'diplomacy'?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "enemy-hookup-euphemism",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_010",
+   "deck": "roast",
+   "text": "Who would invoice an ex after the breakup — itemized, with depreciation?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "breakup-invoice",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_011",
+   "deck": "roast",
+   "text": "Who would let this room take the blame for something they did, then organize the fundraiser?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "fall-guy-fundraiser"
+  },
+  {
+   "id": "roast_v3_082",
+   "deck": "roast",
+   "text": "Who would throw up somewhere unforgivable and take the location to their grave?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "vomit-location-secret",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_012",
+   "deck": "roast",
+   "text": "Who has used someone in this room as an alibi without telling them?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "unauthorized-alibi"
+  },
+  {
+   "id": "roast_v3_013",
+   "deck": "roast",
+   "text": "Who gets suspiciously cagey when asked a completely normal question?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "cagey-under-normal-question"
+  },
+  {
+   "id": "roast_v3_014",
+   "deck": "roast",
+   "text": "Who would start a rumor about themselves just to find the leak in this room?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "self-rumor-sting"
+  },
+  {
+   "id": "roast_v3_015",
+   "deck": "roast",
+   "text": "Who would give a toast at {NAME}'s wedding and use it to settle old scores?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "weaponized-toast"
+  },
+  {
+   "id": "roast_v3_017",
+   "deck": "roast",
+   "text": "Who would wave off the lifeboat because the cruise was non-refundable?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "nonrefundable-lifeboat",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_018",
+   "deck": "roast",
+   "text": "Who would run two relationships in two cities on color-coded calendars alone?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "double-life-logistics",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_019",
+   "deck": "roast",
+   "text": "Who would swing at someone twice their size on behalf of this room and lose fast?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "outmatched-defender"
+  },
+  {
+   "id": "roast_v3_020",
+   "deck": "roast",
+   "text": "Who would get named in every one of our depositions as 'the one who suggested it'?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "deposition-instigator",
+   "voice": "parody-legalese"
+  },
+  {
+   "id": "roast_v3_021",
+   "deck": "roast",
+   "text": "Who would tell one of us exactly what another one of us said, within the hour?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "same-hour-leak"
+  },
+  {
+   "id": "roast_v3_022",
+   "deck": "roast",
+   "text": "Who would get stung by one wasp and come back an hour later with equipment?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "wasp-revenge-equipment",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_156",
+   "deck": "roast",
+   "text": "Who would take the last slice and then ask if anybody wanted it?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "last-slice-after-the-fact"
+  },
+  {
+   "id": "roast_v3_084",
+   "deck": "roast",
+   "text": "Who would pee in a bottle rather than lose their place in traffic?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "driver-bottle",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_023",
+   "deck": "roast",
+   "text": "Who would rehearse an apology to this room in the mirror and still not mean it?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "rehearsed-apology"
+  },
+  {
+   "id": "roast_v3_024",
+   "deck": "roast",
+   "text": "Who would give this room's names to a landlord, a boss, or a cop, whichever asked first?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "names-to-whoever-asks"
+  },
+  {
+   "id": "roast_v3_025",
+   "deck": "roast",
+   "text": "Who would confess something enormous to this room, then say 'anyway' and move on?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "confession-then-anyway"
+  },
+  {
+   "id": "roast_v3_027",
+   "deck": "roast",
+   "text": "Who would give the eulogy at your funeral and make it mostly about themselves?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "eulogy-hijack"
+  },
+  {
+   "id": "roast_v3_028",
+   "deck": "roast",
+   "text": "Who would manage the group vacation fund and skim 'a handling fee'?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "group-fund-skim",
+   "voice": "parody-corporate"
+  },
+  {
+   "id": "roast_v3_029",
+   "deck": "roast",
+   "text": "Who would spend one night in holding and come out with three friends and a business plan?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "jail-networking",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_030",
+   "deck": "roast",
+   "text": "Who would pull their own tooth rather than book the appointment?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "diy-dentistry",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_162",
+   "deck": "roast",
+   "text": "Which of us would take the longest to notice if one of us stopped showing up?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "unnoticed-absence"
+  },
+  {
+   "id": "roast_v3_031",
+   "deck": "roast",
+   "text": "Who has brought a better dish to an enemy's potluck, as warfare?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "potluck-warfare",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_032",
+   "deck": "roast",
+   "text": "Who has a story everyone in this room knows has improved 40 percent since it happened?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "story-inflation"
+  },
+  {
+   "id": "roast_v3_033",
+   "deck": "roast",
+   "text": "Who would get exiled from this group on a Friday and be back Sunday with snacks?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "unbannable-return"
+  },
+  {
+   "id": "roast_v3_085",
+   "deck": "roast",
+   "text": "Who would use a sock as toilet paper and never bring it up again?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "improvised-hygiene",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_034",
+   "deck": "roast",
+   "text": "Who would defend their favorite restaurant through a hepatitis outbreak?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "loyal-through-outbreak",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_035",
+   "deck": "roast",
+   "text": "Who would call 911 because someone in this room got too quiet?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "panic-911-overreactor"
+  },
+  {
+   "id": "roast_v3_036",
+   "deck": "roast",
+   "text": "Who would case a buffet like a bank job?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "parody",
+   "skeleton": "buffet-heist",
+   "voice": "parody-noir"
+  },
+  {
+   "id": "roast_v3_157",
+   "deck": "roast",
+   "text": "Who would leave one sip in the carton and put it back in the fridge?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "one-sip-carton"
+  },
+  {
+   "id": "roast_v3_037",
+   "deck": "roast",
+   "text": "Who would double-dip at a wake?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "gross",
+   "skeleton": "wake-etiquette",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_038",
+   "deck": "roast",
+   "text": "Who would arm-wrestle a six-year-old and not let them win?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "adult-vs-child"
+  },
+  {
+   "id": "roast_v3_040",
+   "deck": "roast",
+   "text": "Who would test an electric fence with their bare hand, twice?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "touch-fence-twice",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_158",
+   "deck": "roast",
+   "text": "Who would hold the aux cord hostage for an entire six-hour drive?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "aux-hostage"
+  },
+  {
+   "id": "roast_v3_041",
+   "deck": "roast",
+   "text": "Who would label their leftovers with a threat instead of a name?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "threat-label-leftovers"
+  },
+  {
+   "id": "roast_v3_042",
+   "deck": "roast",
+   "text": "Who would leave notes around their own apartment signed 'The Management'?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "management-notes"
+  },
+  {
+   "id": "roast_v3_159",
+   "deck": "roast",
+   "text": "Who would reorganize somebody else's dishwasher while they are standing right there?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "dishwasher-correction"
+  },
+  {
+   "id": "roast_v3_086",
+   "deck": "roast",
+   "text": "Who would serve this room food that hit the floor and watch us eat it?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "floor-food-served",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_043",
+   "deck": "roast",
+   "text": "Who would run for HOA president on a pure revenge platform?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "hoa-revenge-run"
+  },
+  {
+   "id": "roast_v3_044",
+   "deck": "roast",
+   "text": "Who would sell one of us out for a free entree?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "sellout-for-entree"
+  },
+  {
+   "id": "roast_v3_045",
+   "deck": "roast",
+   "text": "Who would name the pig they were specifically told not to name?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "named-the-livestock",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_160",
+   "deck": "roast",
+   "text": "Who would borrow something of ours, break it, and hand it back like nothing happened?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "returned-broken"
+  },
+  {
+   "id": "roast_v3_046",
+   "deck": "roast",
+   "text": "Who would plan the group heist and assign themselves lookout, from the car?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "heist-role-lookout"
+  },
+  {
+   "id": "roast_v3_047",
+   "deck": "roast",
+   "text": "Who would leave one of us at a gas station and not notice for 40 miles?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "left-at-gas-station"
+  },
+  {
+   "id": "roast_v3_161",
+   "deck": "roast",
+   "text": "Who would announce they are leaving and still be here ninety minutes later?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "long-goodbye"
+  },
+  {
+   "id": "roast_v3_048",
+   "deck": "roast",
+   "text": "Who would pop a stranger's back pimple if asked politely?",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "pimple-stranger",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_049",
+   "deck": "roast",
+   "text": "Who would turn state's witness on this whole room before anyone even offered a deal?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "preemptive-snitch",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_050",
+   "deck": "roast",
+   "text": "Who would hold a press conference to announce they're 'stepping back' from this friend group?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "friendgroup-press-conference",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_051",
+   "deck": "roast",
+   "text": "Who would file a noise complaint about a party they were still at?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "complaint-from-inside",
+   "voice": "parody-corporate"
+  },
+  {
+   "id": "roast_v3_088",
+   "deck": "roast",
+   "text": "Who would get a party shut down before 10pm and blame the neighbors?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "party-ender"
+  },
+  {
+   "id": "roast_v3_052",
+   "deck": "roast",
+   "text": "Who would give the tell-all documentary interview about this group with suspiciously good lighting?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "doc-tell-all",
+   "voice": "parody-true-crime"
+  },
+  {
+   "id": "roast_v3_053",
+   "deck": "roast",
+   "text": "Who would get subpoenaed by both sides of the friend-group divorce?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "parody",
+   "skeleton": "subpoena-both-sides",
+   "voice": "parody-legalese"
+  },
+  {
+   "id": "roast_v3_163",
+   "deck": "roast",
+   "text": "Which of us has a verdict on someone in this room they have never said out loud?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "unspoken-verdict"
+  },
+  {
+   "id": "roast_v3_055",
+   "deck": "roast",
+   "text": "Who would report a neighbor's barbecue to three separate government agencies?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "neighbor-snitch-escalation"
+  },
+  {
+   "id": "roast_v3_056",
+   "deck": "roast",
+   "text": "Who would move out over a thermostat war and call it 'irreconcilable differences'?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "thermostat-divorce"
+  },
+  {
+   "id": "roast_v3_057",
+   "deck": "roast",
+   "text": "Who would turn tonight's game into a shoving match over a rules dispute?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "gamenight-rules-fight",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_060",
+   "deck": "roast",
+   "text": "Who would be trusted to guard {NAME}'s drink and just drink it?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "drink-guardian-betrayal"
+  },
+  {
+   "id": "roast_v3_164",
+   "deck": "roast",
+   "text": "Which of us would this room least want holding a spare key?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "spare-key-vote"
+  },
+  {
+   "id": "roast_v3_061",
+   "deck": "roast",
+   "text": "Who has a running list of what everyone here owes them, with dates?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "grudge-ledger"
+  },
+  {
+   "id": "roast_v3_062",
+   "deck": "roast",
+   "text": "Who has vanished from a party and resurfaced with a completely new friend group?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "party-defector"
+  },
+  {
+   "id": "roast_v3_063",
+   "deck": "roast",
+   "text": "Who has taken hotel property well past the towels and called it 'included'?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "hotel-included",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_089",
+   "deck": "roast",
+   "text": "Who would need two people to carry them out and call it 'a big night'?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "carried-out"
+  },
+  {
+   "id": "roast_v3_064",
+   "deck": "roast",
+   "text": "Who has been escorted out of somewhere and still tells it as 'deciding to leave'?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "escorted-out-reframe",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_065",
+   "deck": "roast",
+   "text": "Who has held a grudge for years over what someone did to a shared appetizer?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "appetizer-grudge"
+  },
+  {
+   "id": "roast_v3_166",
+   "deck": "roast",
+   "text": "Who here has decided which of us they would drop first if things got expensive?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "drop-list-when-costly"
+  },
+  {
+   "id": "roast_v3_066",
+   "deck": "roast",
+   "text": "Who has bought new plates instead of washing the old ones — more than once?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "buy-not-wash"
+  },
+  {
+   "id": "roast_v3_067",
+   "deck": "roast",
+   "text": "Who would call an emergency meeting of this group about a problem they caused?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "emergency-meeting-self-caused"
+  },
+  {
+   "id": "roast_v3_068",
+   "deck": "roast",
+   "text": "Who would officiate a friend's wedding with an active bet against the marriage?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "officiant-with-a-bet"
+  },
+  {
+   "id": "roast_v3_069",
+   "deck": "roast",
+   "text": "Who would quote something said tonight back at you in a fight eight months from now?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "delayed-ammunition"
+  },
+  {
+   "id": "roast_v3_070",
+   "deck": "roast",
+   "text": "Who would keep your secret right up until it kills at a dinner party?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "secret-as-material"
+  },
+  {
+   "id": "roast_v3_071",
+   "deck": "roast",
+   "text": "Who has faked being asleep to hear what this group says about them?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "fake-sleep-eavesdrop"
+  },
+  {
+   "id": "roast_v3_072",
+   "deck": "roast",
+   "text": "Who would report everything said tonight to the friend who wasn't invited?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "tonight-leak",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_073",
+   "deck": "roast",
+   "text": "Who would cover {NAME}'s next breakup like a war correspondent?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "breakup-war-correspondent"
+  },
+  {
+   "id": "roast_v3_090",
+   "deck": "roast",
+   "text": "Who would wake up somewhere that needs a ferry to get home and not seem alarmed?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "woke-up-far"
+  },
+  {
+   "id": "roast_v3_074",
+   "deck": "roast",
+   "text": "Who has a scar with an official story and a real story?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "two-story-scar",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_075",
+   "deck": "roast",
+   "text": "Who would get pulled over for a taillight and confess to something else entirely?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "unprompted-confession-cop",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_076",
+   "deck": "roast",
+   "text": "Who would tap a parked car, look around, and decide it was 'already like that'?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "parking-lot-hit-and-reframe",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_077",
+   "deck": "roast",
+   "text": "Who has had to reconstruct their own night from bank charges?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "morning-after-forensics",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_078",
+   "deck": "roast",
+   "text": "Who has left a wedding with something that wasn't theirs?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "wedding-loot",
+   "voice": "reference-world"
+  },
+  {
+   "id": "roast_v3_079",
+   "deck": "roast",
+   "text": "Who has described a three-day bender as 'a reset'?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "bender-as-reset",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_080",
+   "deck": "roast",
+   "text": "Who has opened a credit card to pay off a credit card and called it 'consolidating'?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "debt-consolidating-euphemism",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_081",
+   "deck": "roast",
+   "text": "Who has read a roommate's diary and gotten personally offended by it?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "snoop-then-offended"
+  },
+  {
+   "id": "roast_v3_083",
+   "deck": "roast",
+   "text": "Who has lied to an ER nurse about how it happened?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "injury-coverup"
+  },
+  {
+   "id": "roast_v3_087",
+   "deck": "roast",
+   "text": "Who has thrown up on a person and stayed at the party?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "vomit-on-person",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_097",
+   "deck": "roast",
+   "text": "Who would the nature documentary describe as 'hunting outside its weight class' at last call?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "parody",
+   "skeleton": "nature-doc-mating",
+   "voice": "parody-nature-doc"
+  },
+  {
+   "id": "roast_v3_092",
+   "deck": "roast",
+   "text": "Who would break furniture in a way they'd have to reenact for the landlord?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "furniture-demonstration"
+  },
+  {
+   "id": "roast_v3_098",
+   "deck": "roast",
+   "text": "Who would tell a first date the five-year plan for the two of them?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "first-date-intensity"
+  },
+  {
+   "id": "roast_v3_099",
+   "deck": "roast",
+   "text": "Who has ended a Thanksgiving argument by bringing up something from 2009?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "family-grudge-archive"
+  },
+  {
+   "id": "roast_v3_100",
+   "deck": "roast",
+   "text": "Who has dodged the same relative at every family event for five years straight?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "family-avoidance-logistics"
+  },
+  {
+   "id": "roast_v3_101",
+   "deck": "roast",
+   "text": "Who has eaten a roommate's birthday cake before the birthday?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "pre-birthday-cake"
+  },
+  {
+   "id": "roast_v3_102",
+   "deck": "roast",
+   "text": "Who has watered down a shared bottle and let somebody else take the blame?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "blame-shift-liquor"
+  },
+  {
+   "id": "roast_v3_103",
+   "deck": "roast",
+   "text": "Who has kept a misdelivered package after meeting the neighbor it belonged to?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "package-keeper"
+  },
+  {
+   "id": "roast_v3_104",
+   "deck": "roast",
+   "text": "Who joined this group for the free rides home and has never once bought gas?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "joined-for-free-rides"
+  },
+  {
+   "id": "roast_v3_105",
+   "deck": "roast",
+   "text": "Who would rank everyone in this room out loud if someone asked just once?",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "willing-room-ranker",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_106",
+   "deck": "roast",
+   "text": "Who has a private nickname for every single person in this room?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "room-nicknames",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_107",
+   "deck": "roast",
+   "text": "Who has already decided whose wedding in this room they're skipping?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "wedding-skip-list",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_108",
+   "deck": "roast",
+   "text": "Who has been dining out for years on a story that actually belongs to someone in this room?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "room-story-poaching",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_093",
+   "deck": "roast",
+   "text": "Who would return something visibly used and hold eye contact the entire time?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "used-return"
+  },
+  {
+   "id": "roast_v3_109",
+   "deck": "roast",
+   "text": "Who has stolen someone's story and told it back to them at a party?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "story-theft",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_110",
+   "deck": "roast",
+   "text": "Who has slipped out of one party and texted 'home safe' from a second party?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "double-booked-exit",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_111",
+   "deck": "roast",
+   "text": "Who has been talked to about their tone at three different jobs?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "hr-repeat-offender",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_112",
+   "deck": "roast",
+   "text": "Who would deliver an itemized review of everyone here after one drink too many?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "overserved-itemized-review"
+  },
+  {
+   "id": "roast_v3_113",
+   "deck": "roast",
+   "text": "Who would dump someone at their birthday dinner and stay for the cake?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "birthday-dump-cake",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_167",
+   "deck": "roast",
+   "text": "Who would this room vote out first, and who has already counted the votes?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "vote-out-first"
+  },
+  {
+   "id": "roast_v3_114",
+   "deck": "roast",
+   "text": "Who would order the priciest thing, split the check evenly, and know what they did?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "split-check-arbitrage"
+  },
+  {
+   "id": "roast_v3_115",
+   "deck": "roast",
+   "text": "Who would celebrate privately the day someone in this room finally fails at something?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "private-schadenfreude"
+  },
+  {
+   "id": "roast_v3_116",
+   "deck": "roast",
+   "text": "Who would show up to their ex's art show in a disguise bought that afternoon?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "ex-event-disguise",
+   "voice": "parody-noir"
+  },
+  {
+   "id": "roast_v3_117",
+   "deck": "roast",
+   "text": "Who would background-check a first date with string and a corkboard?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "date-corkboard",
+   "voice": "parody-true-crime"
+  },
+  {
+   "id": "roast_v3_119",
+   "deck": "roast",
+   "text": "Who would give a fake name on a first date as a test run?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "fake-name-date",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_094",
+   "deck": "roast",
+   "text": "Who would get a tattoo and give it a different origin story depending on who asks?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "tattoo-story-variants"
+  },
+  {
+   "id": "roast_v3_120",
+   "deck": "roast",
+   "text": "Who would call their rebound 'a palate cleanser' — to their face?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "rebound-palate-cleanser",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_169",
+   "deck": "roast",
+   "text": "Who owes someone in this room money right now and is praying this card moves on fast?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "live-debt-callout"
+  },
+  {
+   "id": "roast_v3_121",
+   "deck": "roast",
+   "text": "Who would owe an apology tour to an entire family?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "family-apology-tour"
+  },
+  {
+   "id": "roast_v3_122",
+   "deck": "roast",
+   "text": "Who would go right back to the thing this room staged an intervention about?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "intervention-relapse"
+  },
+  {
+   "id": "roast_v3_123",
+   "deck": "roast",
+   "text": "Who would buy a separate phone number just for texting one ex?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "burner-for-ex",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_124",
+   "deck": "roast",
+   "text": "Who would request an exit interview after getting dumped?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "absurdist",
+   "skeleton": "breakup-exit-interview",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_127",
+   "deck": "roast",
+   "text": "Who would seed this room into a bracket of who they'd betray first?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "betrayal-bracket"
+  },
+  {
+   "id": "roast_v3_128",
+   "deck": "roast",
+   "text": "Who keeps a case file on someone in this room and would tell you it's 'just notes'?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "parody",
+   "skeleton": "case-file-on-a-friend",
+   "voice": "parody-noir"
+  },
+  {
+   "id": "roast_v3_171",
+   "deck": "roast",
+   "text": "Who has said something about a person in this room tonight they would deny under oath?",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "deniable-tonight-remark"
+  },
+  {
+   "id": "roast_v3_129",
+   "deck": "roast",
+   "text": "Who would give themselves bangs at 2am over someone who never learned their last name?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "breakup-haircut"
+  },
+  {
+   "id": "roast_v3_130",
+   "deck": "roast",
+   "text": "Who would start a fistfight over a parking spot and win the parking spot?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "parking-spot-brawl"
+  },
+  {
+   "id": "roast_v3_095",
+   "deck": "roast",
+   "text": "Who would call in sick with an illness they had to look up first?",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "fake-sick-research"
+  },
+  {
+   "id": "roast_v3_131",
+   "deck": "roast",
+   "text": "Who would call the walk of shame 'a victory lap'?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "shame-reframe"
+  },
+  {
+   "id": "roast_v3_132",
+   "deck": "roast",
+   "text": "Who would show up two hours late to their own party and act like we were early?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "late-to-own-party"
+  },
+  {
+   "id": "roast_v3_133",
+   "deck": "roast",
+   "text": "Who would call the money they owe this room 'a rounding error'?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "debt-rounding-error",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_134",
+   "deck": "roast",
+   "text": "Who would key a car and describe it afterward as 'a conversation'?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "menace",
+   "skeleton": "key-car-conversation"
+  },
+  {
+   "id": "roast_v3_172",
+   "deck": "roast",
+   "text": "Who would side with our worst enemy if the seating chart was better?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "defects-for-better-seat"
+  },
+  {
+   "id": "roast_v3_135",
+   "deck": "roast",
+   "text": "Who would get all of us thrown out of somewhere and be the last one still arguing?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "gets-us-ejected"
+  },
+  {
+   "id": "roast_v3_136",
+   "deck": "roast",
+   "text": "Who would look up what someone here paid for their place and bring it up at dinner?",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "price-lookup-needling"
+  },
+  {
+   "id": "roast_v3_137",
+   "deck": "roast",
+   "text": "Who would hook up with their ex for 'closure' on a quarterly schedule?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "absurdist",
+   "skeleton": "scheduled-relapse-euphemism",
+   "voice": "absurdist-escalation"
+  },
+  {
+   "id": "roast_v3_138",
+   "deck": "roast",
+   "text": "Who would stop mid-hookup to ask 'so what are we?'",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "mid-act-dtr",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_139",
+   "deck": "roast",
+   "text": "Who would say the wrong name mid-hookup and try to style it out?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "wrong-name-recovery"
+  },
+  {
+   "id": "roast_v3_140",
+   "deck": "roast",
+   "text": "Who would get walked in on and calmly say 'give us a minute'?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "walked-in-deadpan"
+  },
+  {
+   "id": "roast_v3_096",
+   "deck": "roast",
+   "text": "Who would pack one pair of underwear for a three-day trip and call it discipline?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "gross",
+   "skeleton": "hygiene-euphemism",
+   "voice": "gross-out"
+  },
+  {
+   "id": "roast_v3_168",
+   "deck": "roast",
+   "text": "Who would take a plea deal naming every person here before the coffee got cold?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "plea-deal-cold-coffee"
+  },
+  {
+   "id": "roast_v3_141",
+   "deck": "roast",
+   "text": "Who would end a friendship in this room and then debrief the rest of us about it?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "friendship-debrief"
+  },
+  {
+   "id": "roast_v3_144",
+   "deck": "roast",
+   "text": "Who has a folder of screenshots of this group and calls it 'documentation'?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "euphemism",
+   "skeleton": "screenshot-archive",
+   "voice": "euphemism-engine"
+  },
+  {
+   "id": "roast_v3_145",
+   "deck": "roast",
+   "text": "Who would date two people who share a lease and let them figure it out?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "observational",
+   "skeleton": "lease-love-triangle",
+   "voice": "relatable-observational"
+  },
+  {
+   "id": "roast_v3_147",
+   "deck": "roast",
+   "text": "Who would sleep through an emergency in this room and be annoyed we woke them?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "unwakeable-in-crisis"
+  },
+  {
+   "id": "roast_v3_148",
+   "deck": "roast",
+   "text": "Who would save someone in their phone under a grocery item?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "contact-alias"
+  },
+  {
+   "id": "roast_v3_170",
+   "deck": "roast",
+   "text": "Who would be the reason this group needs a lawyer, and would enjoy the meeting?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "reason-we-need-a-lawyer"
+  },
+  {
+   "id": "roast_v3_149",
+   "deck": "roast",
+   "text": "Who would describe a friendship they torched as 'we just drifted'?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "drift-euphemism"
+  },
+  {
+   "id": "roast_v3_151",
+   "deck": "roast",
+   "text": "Who would show up at someone's job over a personal grievance and stay calm throughout?",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "shows-up-at-your-job"
+  },
+  {
+   "id": "roast_v3_152",
+   "deck": "roast",
+   "text": "Who still has something of ours they were told to return three friendships ago?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "unreturned-property"
+  },
+  {
+   "id": "roast_v3_153",
+   "deck": "roast",
+   "text": "Who would keep a key to a place they are no longer welcome and use it exactly once?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "menace",
+   "skeleton": "retained-key"
+  },
+  {
+   "id": "roast_v3_154",
+   "deck": "roast",
+   "text": "Who would need the definition of cheating narrowed down twice before they could answer?",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "observational",
+   "skeleton": "cheating-definition-lawyer",
+   "voice": "relatable-observational"
+  }
+ ]
+}

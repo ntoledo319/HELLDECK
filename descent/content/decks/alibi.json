@@ -1,0 +1,2008 @@
+{
+ "schema": 3,
+ "deck": "alibi",
+ "cards": [
+  {
+   "id": "alibi_v3_001",
+   "deck": "alibi",
+   "text": "The goat in the third-floor supply closet is wearing a lanyard with your name on it.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "goat-wearing-your-lanyard",
+   "accusation": "The goat in the third-floor supply closet is wearing a lanyard with your name on it.",
+   "words": [
+    "forklift",
+    "paprika",
+    "gallbladder"
+   ],
+   "decoys": [
+    "tugboat",
+    "moped",
+    "oregano",
+    "kneecap",
+    "spleen"
+   ]
+  },
+  {
+   "id": "alibi_v3_002",
+   "deck": "alibi",
+   "text": "Explain why you got pulled over doing 22 in a 45 with the hazards on, eating ribs.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "pulled-over-eating-ribs",
+   "accusation": "Explain why you got pulled over doing 22 in a 45 with the hazards on, eating ribs.",
+   "words": [
+    "auctioneer",
+    "podiatrist",
+    "emu"
+   ],
+   "decoys": [
+    "chiropractor",
+    "realtor",
+    "actuary",
+    "rhea",
+    "cassowary"
+   ]
+  },
+  {
+   "id": "alibi_v3_003",
+   "deck": "alibi",
+   "text": "Your neighbor reports you buried a full piano in the yard at dawn.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "neighbor-complaint",
+   "accusation": "Your neighbor reports you buried a full piano in the yard at dawn.",
+   "words": [
+    "copper",
+    "zinc",
+    "cobalt"
+   ],
+   "decoys": [
+    "nickel",
+    "bronze",
+    "pewter",
+    "chrome",
+    "titanium"
+   ]
+  },
+  {
+   "id": "alibi_v3_004",
+   "deck": "alibi",
+   "text": "The HOA photo shows you power-washing a cow at midnight. The cow looks calm. You do not.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "hoa-photo-cow-calmer-than-you",
+   "accusation": "The HOA photo shows you power-washing a cow at midnight. The cow looks calm. You do not.",
+   "words": [
+    "escrow",
+    "deductible",
+    "wombat"
+   ],
+   "decoys": [
+    "notary",
+    "layaway",
+    "copay",
+    "tapir",
+    "gecko"
+   ]
+  },
+  {
+   "id": "alibi_v3_005",
+   "deck": "alibi",
+   "text": "Why were you operating the crane after signing out a mop?",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "tool-signout-mismatch",
+   "accusation": "Why were you operating the crane after signing out a mop?",
+   "words": [
+    "sommelier",
+    "brie",
+    "sextant"
+   ],
+   "decoys": [
+    "falconer",
+    "fondue",
+    "compass",
+    "cobbler",
+    "astrolabe"
+   ]
+  },
+  {
+   "id": "alibi_v3_006",
+   "deck": "alibi",
+   "text": "Explain the twelve traffic cones arranged in a ring around your bed.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "explain-number-placed",
+   "accusation": "Explain the twelve traffic cones arranged in a ring around your bed.",
+   "words": [
+    "corkscrew",
+    "thermostat",
+    "doorstop"
+   ],
+   "decoys": [
+    "coaster",
+    "hanger",
+    "umbrella",
+    "lightbulb",
+    "mousetrap"
+   ]
+  },
+  {
+   "id": "alibi_v3_007",
+   "deck": "alibi",
+   "text": "The host's blender has a goldfish in it and your name in marker on the lid. Explain.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "blender-fish-your-name-on-lid",
+   "accusation": "The host's blender has a goldfish in it and your name in marker on the lid. Explain.",
+   "words": [
+    "subpoena",
+    "accordion",
+    "hamster"
+   ],
+   "decoys": [
+    "lien",
+    "tariff",
+    "fiddle",
+    "newt",
+    "vole"
+   ]
+  },
+  {
+   "id": "alibi_v3_008",
+   "deck": "alibi",
+   "text": "Explain why every clock in this house is set to the exact minute my ex walked out.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "clocks-set-to-my-breakup",
+   "accusation": "Explain why every clock in this house is set to the exact minute my ex walked out.",
+   "words": [
+    "mesa",
+    "gooseberry",
+    "zamboni"
+   ],
+   "decoys": [
+    "fjord",
+    "dune",
+    "quince",
+    "rhubarb",
+    "gondola"
+   ]
+  },
+  {
+   "id": "alibi_v3_009",
+   "deck": "alibi",
+   "text": "What possessed you to RSVP the deceased to your own wedding?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "what-possessed-you-to",
+   "accusation": "What possessed you to RSVP the deceased to your own wedding?",
+   "words": [
+    "piano",
+    "dividend",
+    "moth"
+   ],
+   "decoys": [
+    "snare",
+    "timpani",
+    "bonus",
+    "alpaca",
+    "weevil"
+   ]
+  },
+  {
+   "id": "alibi_v3_010",
+   "deck": "alibi",
+   "text": "Explain the leaf blower you ran inside the host's living room at seven in the morning.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "leafblower-indoors-at-dawn",
+   "accusation": "Explain the leaf blower you ran inside the host's living room at seven in the morning.",
+   "words": [
+    "gazebo",
+    "perjury",
+    "haddock"
+   ],
+   "decoys": [
+    "pergola",
+    "carport",
+    "warrant",
+    "parole",
+    "cod"
+   ]
+  },
+  {
+   "id": "alibi_v3_011",
+   "deck": "alibi",
+   "text": "Why was the champagne fountain running with something distinctly not champagne?",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "euphemism",
+   "skeleton": "why-was-substance-wrong",
+   "accusation": "Why was the champagne fountain running with something distinctly not champagne?",
+   "words": [
+    "ladle",
+    "alimony",
+    "toad"
+   ],
+   "decoys": [
+    "colander",
+    "whisk",
+    "tureen",
+    "gratuity",
+    "bullfrog"
+   ]
+  },
+  {
+   "id": "alibi_v3_012",
+   "deck": "alibi",
+   "text": "Security taped you licking every doorknob in the courthouse lobby.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "surveillance-footage-action",
+   "accusation": "Security taped you licking every doorknob in the courthouse lobby.",
+   "words": [
+    "quartz",
+    "topaz",
+    "garnet"
+   ],
+   "decoys": [
+    "opal",
+    "jade",
+    "onyx",
+    "amber",
+    "pearl"
+   ]
+  },
+  {
+   "id": "alibi_v3_013",
+   "deck": "alibi",
+   "text": "Why was the bridal bouquet found in the men's room, reeking of gin?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "why-object-found-defiled",
+   "accusation": "Why was the bridal bouquet found in the men's room, reeking of gin?",
+   "words": [
+    "ferret",
+    "ukulele",
+    "ostrich"
+   ],
+   "decoys": [
+    "banjo",
+    "kazoo",
+    "pelican",
+    "mongoose",
+    "opossum"
+   ]
+  },
+  {
+   "id": "alibi_v3_014",
+   "deck": "alibi",
+   "text": "Why were you found in the host's bathtub cradling a full crockpot of meatballs?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "why-found-holding",
+   "accusation": "Why were you found in the host's bathtub cradling a full crockpot of meatballs?",
+   "words": [
+    "trombone",
+    "mortgage",
+    "seagull"
+   ],
+   "decoys": [
+    "xylophone",
+    "euphonium",
+    "pension",
+    "beaver",
+    "albatross"
+   ]
+  },
+  {
+   "id": "alibi_v3_015",
+   "deck": "alibi",
+   "text": "Everyone here got the same anonymous letter except you. Explain that.",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "menace",
+   "skeleton": "everyone-but-you",
+   "accusation": "Everyone here got the same anonymous letter except you. Explain that.",
+   "words": [
+    "gravy",
+    "relish",
+    "chutney"
+   ],
+   "decoys": [
+    "mustard",
+    "ketchup",
+    "hummus",
+    "aioli",
+    "salsa"
+   ]
+  },
+  {
+   "id": "alibi_v3_016",
+   "deck": "alibi",
+   "text": "The vandalized statue has your exact bite marks in the left shoulder.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "object-bears-your-trace",
+   "accusation": "The vandalized statue has your exact bite marks in the left shoulder.",
+   "words": [
+    "velvet",
+    "denim",
+    "tweed"
+   ],
+   "decoys": [
+    "linen",
+    "satin",
+    "corduroy",
+    "flannel",
+    "suede"
+   ]
+  },
+  {
+   "id": "alibi_v3_017",
+   "deck": "alibi",
+   "text": "Why do you have a key to a house none of us has visited?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "menace",
+   "skeleton": "why-you-have-key",
+   "accusation": "Why do you have a key to a house none of us has visited?",
+   "words": [
+    "kumquat",
+    "persimmon",
+    "lychee"
+   ],
+   "decoys": [
+    "apricot",
+    "guava",
+    "tangerine",
+    "clementine",
+    "plum"
+   ]
+  },
+  {
+   "id": "alibi_v3_018",
+   "deck": "alibi",
+   "text": "Why is your name scratched on the back of every mirror here?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "why-your-mark-on-object",
+   "accusation": "Why is your name scratched on the back of every mirror here?",
+   "words": [
+    "blizzard",
+    "drizzle",
+    "typhoon"
+   ],
+   "decoys": [
+    "hailstorm",
+    "gale",
+    "cyclone",
+    "sleet",
+    "squall"
+   ]
+  },
+  {
+   "id": "alibi_v3_019",
+   "deck": "alibi",
+   "text": "Who replaced everyone's sunscreen with mayonnaise on day one of the trip?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "who-swapped-x-for-y",
+   "accusation": "Who replaced everyone's sunscreen with mayonnaise on day one of the trip?",
+   "words": [
+    "clipboard",
+    "javelin",
+    "capybara"
+   ],
+   "decoys": [
+    "stapler",
+    "laminator",
+    "binder",
+    "croquet",
+    "armadillo"
+   ]
+  },
+  {
+   "id": "alibi_v3_020",
+   "deck": "alibi",
+   "text": "Walk us through the donuts you did in the host's driveway, in the host's car.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "donuts-in-hosts-car",
+   "accusation": "Walk us through the donuts you did in the host's driveway, in the host's car.",
+   "words": [
+    "gopher",
+    "verdict",
+    "sycamore"
+   ],
+   "decoys": [
+    "dormouse",
+    "jerboa",
+    "custody",
+    "magnolia",
+    "willow"
+   ]
+  },
+  {
+   "id": "alibi_v3_021",
+   "deck": "alibi",
+   "text": "Who moved the entire hardware aisle into the parking lot overnight?",
+   "exposure": 2,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "who-relocated-the-scene",
+   "accusation": "Who moved the entire hardware aisle into the parking lot overnight?",
+   "words": [
+    "sculptor",
+    "macaron",
+    "theremin"
+   ],
+   "decoys": [
+    "potter",
+    "eclair",
+    "calliope",
+    "welder",
+    "praline"
+   ]
+  },
+  {
+   "id": "alibi_v3_022",
+   "deck": "alibi",
+   "text": "Why does the casket smell like the tacos you swore you didn't bring?",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "why-does-it-smell-like",
+   "accusation": "Why does the casket smell like the tacos you swore you didn't bring?",
+   "words": [
+    "zither",
+    "gutter",
+    "marzipan"
+   ],
+   "decoys": [
+    "timbrel",
+    "downspout",
+    "banister",
+    "nougat",
+    "sorbet"
+   ]
+  },
+  {
+   "id": "alibi_v3_023",
+   "deck": "alibi",
+   "text": "Account for why you're wearing the flower girl's dress in the getaway car.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "account-for-why-wearing",
+   "accusation": "Account for why you're wearing the flower girl's dress in the getaway car.",
+   "words": [
+    "recorder",
+    "catfish",
+    "cummerbund"
+   ],
+   "decoys": [
+    "conga",
+    "castanet",
+    "carp",
+    "snapper",
+    "cravat"
+   ]
+  },
+  {
+   "id": "alibi_v3_024",
+   "deck": "alibi",
+   "text": "Name what turned the Airbnb hot tub brown forty minutes after you got in.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "name-what-caused",
+   "accusation": "Name what turned the Airbnb hot tub brown forty minutes after you got in.",
+   "words": [
+    "llama",
+    "ramekin",
+    "overdraft"
+   ],
+   "decoys": [
+    "vicuna",
+    "donkey",
+    "skillet",
+    "saucepan",
+    "arrears"
+   ]
+  },
+  {
+   "id": "alibi_v3_025",
+   "deck": "alibi",
+   "text": "The open bar. The missing groom. Your car keys still warm. Start talking.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "fragment-menace-triplet",
+   "accusation": "The open bar. The missing groom. Your car keys still warm. Start talking.",
+   "words": [
+    "saxophone",
+    "deposit",
+    "moose"
+   ],
+   "decoys": [
+    "trumpet",
+    "triangle",
+    "coupon",
+    "elk",
+    "lemur"
+   ]
+  },
+  {
+   "id": "alibi_v3_026",
+   "deck": "alibi",
+   "text": "Explain why the border guard recognized you by name and did not seem happy about it.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "border-guard-knows-your-name",
+   "accusation": "Explain why the border guard recognized you by name and did not seem happy about it.",
+   "words": [
+    "testimony",
+    "burlap",
+    "lemming"
+   ],
+   "decoys": [
+    "summons",
+    "docket",
+    "fleece",
+    "cashmere",
+    "gerbil"
+   ]
+  },
+  {
+   "id": "alibi_v3_027",
+   "deck": "alibi",
+   "text": "Whose idea was the trust fall off the host's second-floor balcony?",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "physical",
+   "skeleton": "whose-idea-was",
+   "accusation": "Whose idea was the trust fall off the host's second-floor balcony?",
+   "words": [
+    "quail",
+    "equity",
+    "trampoline"
+   ],
+   "decoys": [
+    "pheasant",
+    "turkey",
+    "annuity",
+    "premium",
+    "discus"
+   ]
+  },
+  {
+   "id": "alibi_v3_028",
+   "deck": "alibi",
+   "text": "Everyone in this room saw you leave the party with the host's ceiling fan.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "everyone-saw-you-leave-with",
+   "accusation": "Everyone in this room saw you leave the party with the host's ceiling fan.",
+   "words": [
+    "tuba",
+    "walrus",
+    "doormat"
+   ],
+   "decoys": [
+    "sousaphone",
+    "tambourine",
+    "hedgehog",
+    "porcupine",
+    "floorboard"
+   ]
+  },
+  {
+   "id": "alibi_v3_029",
+   "deck": "alibi",
+   "text": "Explain the drawer at the host's place that everyone now calls yours, including the host.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "annexed-the-hosts-drawer",
+   "accusation": "Explain the drawer at the host's place that everyone now calls yours, including the host.",
+   "words": [
+    "obsidian",
+    "dumpling",
+    "plumber"
+   ],
+   "decoys": [
+    "basalt",
+    "pumice",
+    "pierogi",
+    "grits",
+    "electrician"
+   ]
+  },
+  {
+   "id": "alibi_v3_030",
+   "deck": "alibi",
+   "text": "Account for the second guest list you keep, the one with names crossed off in pen.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "second-guest-list-crossed-off",
+   "accusation": "Account for the second guest list you keep, the one with names crossed off in pen.",
+   "words": [
+    "ferryman",
+    "tourniquet",
+    "poppy"
+   ],
+   "decoys": [
+    "gurney",
+    "scalpel",
+    "splint",
+    "dahlia",
+    "valet"
+   ]
+  },
+  {
+   "id": "alibi_v3_031",
+   "deck": "alibi",
+   "text": "Justify the running tally you keep of who has hugged you and for exactly how long.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "hug-duration-tally",
+   "accusation": "Justify the running tally you keep of who has hugged you and for exactly how long.",
+   "words": [
+    "marigold",
+    "harmonica",
+    "silo"
+   ],
+   "decoys": [
+    "primrose",
+    "aster",
+    "ocarina",
+    "turret",
+    "cupola"
+   ]
+  },
+  {
+   "id": "alibi_v3_032",
+   "deck": "alibi",
+   "text": "Explain why every fire extinguisher in the building now dispenses warm gravy.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "w1-extinguishers-dispense-gravy",
+   "accusation": "Explain why every fire extinguisher in the building now dispenses warm gravy.",
+   "words": [
+    "tarragon",
+    "hovercraft",
+    "roofer"
+   ],
+   "decoys": [
+    "fennel",
+    "sorrel",
+    "thyme",
+    "dinghy",
+    "rickshaw"
+   ]
+  },
+  {
+   "id": "alibi_v3_033",
+   "deck": "alibi",
+   "text": "Account for the shrine to a discount rotisserie chicken you built in the stairwell.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "w1-shrine-to-rotisserie",
+   "accusation": "Account for the shrine to a discount rotisserie chicken you built in the stairwell.",
+   "words": [
+    "hollyhock",
+    "spatula",
+    "gouda"
+   ],
+   "decoys": [
+    "begonia",
+    "lupine",
+    "grater",
+    "cheddar",
+    "halloumi"
+   ]
+  },
+  {
+   "id": "alibi_v3_034",
+   "deck": "alibi",
+   "text": "Justify showing up to the christening in full beekeeping armor, visibly dripping.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "physical",
+   "skeleton": "w1-beekeeping-armor-christening",
+   "accusation": "Justify showing up to the christening in full beekeeping armor, visibly dripping.",
+   "words": [
+    "lavender",
+    "apothecary",
+    "sickle"
+   ],
+   "decoys": [
+    "chamomile",
+    "borage",
+    "hatchet",
+    "rasp",
+    "magician"
+   ]
+  },
+  {
+   "id": "alibi_v3_035",
+   "deck": "alibi",
+   "text": "Explain the hole you drilled through the shared wall 'to hear the ocean better.'",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "w1-drilled-wall-hear-ocean",
+   "accusation": "Explain the hole you drilled through the shared wall 'to hear the ocean better.'",
+   "words": [
+    "juniper",
+    "cooper",
+    "crowbar"
+   ],
+   "decoys": [
+    "spruce",
+    "larch",
+    "cartwright",
+    "wrench",
+    "hacksaw"
+   ]
+  },
+  {
+   "id": "alibi_v3_036",
+   "deck": "alibi",
+   "text": "Account for the barrow of wet cement you parked in the elevator overnight.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w1-cement-in-elevator",
+   "accusation": "Account for the barrow of wet cement you parked in the elevator overnight.",
+   "words": [
+    "mason",
+    "pickaxe",
+    "hawthorn"
+   ],
+   "decoys": [
+    "pewterer",
+    "wedge",
+    "dogwood",
+    "hazel",
+    "chisel"
+   ]
+  },
+  {
+   "id": "alibi_v3_037",
+   "deck": "alibi",
+   "text": "Explain why the office ficus is now wearing your late uncle's dentures.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "w1-ficus-wearing-dentures",
+   "accusation": "Explain why the office ficus is now wearing your late uncle's dentures.",
+   "words": [
+    "geranium",
+    "undertaker",
+    "pliers"
+   ],
+   "decoys": [
+    "petunia",
+    "zinnia",
+    "gravedigger",
+    "ratchet",
+    "clamp"
+   ]
+  },
+  {
+   "id": "alibi_v3_038",
+   "deck": "alibi",
+   "text": "Justify the ritual circle of butter knives you arranged around the vending machine.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w1-butterknife-ritual-circle",
+   "accusation": "Justify the ritual circle of butter knives you arranged around the vending machine.",
+   "words": [
+    "thistle",
+    "corer",
+    "bouncer"
+   ],
+   "decoys": [
+    "clover",
+    "peeler",
+    "zester",
+    "mime",
+    "barista"
+   ]
+  },
+  {
+   "id": "alibi_v3_039",
+   "deck": "alibi",
+   "text": "Explain why you were composting an entire wedding cake behind the pharmacy.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "w1-composting-wedding-cake",
+   "accusation": "Explain why you were composting an entire wedding cake behind the pharmacy.",
+   "words": [
+    "rosemary",
+    "sifter",
+    "flamingo"
+   ],
+   "decoys": [
+    "sage",
+    "chervil",
+    "dredger",
+    "churn",
+    "toucan"
+   ]
+  },
+  {
+   "id": "alibi_v3_040",
+   "deck": "alibi",
+   "text": "Account for the goose you smuggled into the sauna 'to supervise.'",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "w1-goose-in-sauna",
+   "accusation": "Account for the goose you smuggled into the sauna 'to supervise.'",
+   "words": [
+    "goatherd",
+    "tulip",
+    "samovar"
+   ],
+   "decoys": [
+    "swineherd",
+    "crocus",
+    "daffodil",
+    "cruet",
+    "percolator"
+   ]
+  },
+  {
+   "id": "alibi_v3_041",
+   "deck": "alibi",
+   "text": "Explain the trail of your belongings leading from the host's bedroom to your parked car.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "belongings-trail-from-bedroom",
+   "accusation": "Explain the trail of your belongings leading from the host's bedroom to your parked car.",
+   "words": [
+    "emerald",
+    "meatloaf",
+    "cauldron"
+   ],
+   "decoys": [
+    "sapphire",
+    "turquoise",
+    "coleslaw",
+    "pestle",
+    "mortar"
+   ]
+  },
+  {
+   "id": "alibi_v3_042",
+   "deck": "alibi",
+   "text": "Justify re-shingling the neighbor's roof with communion wafers at 3am.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w1-reshingled-with-wafers",
+   "accusation": "Justify re-shingling the neighbor's roof with communion wafers at 3am.",
+   "words": [
+    "thatcher",
+    "wisteria",
+    "ladder"
+   ],
+   "decoys": [
+    "tinsmith",
+    "buckeye",
+    "linden",
+    "scaffold",
+    "trowel"
+   ]
+  },
+  {
+   "id": "alibi_v3_043",
+   "deck": "alibi",
+   "text": "Explain the industrial meat slicer you checked into the hotel as your 'plus one.'",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "w1-meatslicer-plus-one",
+   "accusation": "Explain the industrial meat slicer you checked into the hotel as your 'plus one.'",
+   "words": [
+    "butcher",
+    "carnation",
+    "tenderizer"
+   ],
+   "decoys": [
+    "fishmonger",
+    "snapdragon",
+    "grinder",
+    "verbena",
+    "paddle"
+   ]
+  },
+  {
+   "id": "alibi_v3_044",
+   "deck": "alibi",
+   "text": "Account for why you keep proposing to the same mannequin in the hardware store.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "parody",
+   "skeleton": "w1-proposing-to-mannequin",
+   "accusation": "Account for why you keep proposing to the same mannequin in the hardware store.",
+   "words": [
+    "locksmith",
+    "lilac",
+    "spanner"
+   ],
+   "decoys": [
+    "gunsmith",
+    "jasmine",
+    "gardenia",
+    "vise",
+    "socket"
+   ]
+  },
+  {
+   "id": "alibi_v3_045",
+   "deck": "alibi",
+   "text": "Explain the raw brisket you mailed to yourself, marked 'legal documents.'",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "w1-mailed-brisket-to-self",
+   "accusation": "Explain the raw brisket you mailed to yourself, marked 'legal documents.'",
+   "words": [
+    "typesetter",
+    "sumac",
+    "casserole"
+   ],
+   "decoys": [
+    "scrivener",
+    "mulberry",
+    "ginkgo",
+    "terrine",
+    "cocotte"
+   ]
+  },
+  {
+   "id": "alibi_v3_046",
+   "deck": "alibi",
+   "text": "Justify the twelve laminated copies of a photo of me you hid inside library books.",
+   "exposure": 3,
+   "chaos": 3,
+   "register": "menace",
+   "skeleton": "laminated-photos-in-library-books",
+   "accusation": "Justify the twelve laminated copies of a photo of me you hid inside library books.",
+   "words": [
+    "bookbinder",
+    "columbine",
+    "whetstone"
+   ],
+   "decoys": [
+    "scribe",
+    "delphinium",
+    "cornflower",
+    "scraper",
+    "burin"
+   ]
+  },
+  {
+   "id": "alibi_v3_047",
+   "deck": "alibi",
+   "text": "Explain why you were baptizing garden tools in the koi pond at the reception.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "w1-baptizing-tools-in-koi-pond",
+   "accusation": "Explain why you were baptizing garden tools in the koi pond at the reception.",
+   "words": [
+    "hoe",
+    "amaryllis",
+    "farrier"
+   ],
+   "decoys": [
+    "rake",
+    "narcissus",
+    "wheelwright",
+    "pansy",
+    "awl"
+   ]
+  },
+  {
+   "id": "alibi_v3_048",
+   "deck": "alibi",
+   "text": "Explain the harpoon you brought to a potluck and introduced to people by name.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "harpoon-introduced-at-potluck",
+   "accusation": "Explain the harpoon you brought to a potluck and introduced to people by name.",
+   "words": [
+    "brewer",
+    "muddler",
+    "pretzel"
+   ],
+   "decoys": [
+    "vintner",
+    "jigger",
+    "decanter",
+    "scone",
+    "tapioca"
+   ]
+  },
+  {
+   "id": "alibi_v3_049",
+   "deck": "alibi",
+   "text": "Explain why you buttered every doorframe on the third floor of the host's building.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "gross",
+   "skeleton": "buttered-every-doorframe",
+   "accusation": "Explain why you buttered every doorframe on the third floor of the host's building.",
+   "words": [
+    "buttercup",
+    "tinker",
+    "griddle"
+   ],
+   "decoys": [
+    "marjoram",
+    "savory",
+    "miller",
+    "wok",
+    "kettle"
+   ]
+  },
+  {
+   "id": "alibi_v3_050",
+   "deck": "alibi",
+   "text": "Justify rolling a full wheel of cheese down the host's driveway while cackling.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "physical",
+   "skeleton": "cheese-wheel-down-driveway",
+   "accusation": "Justify rolling a full wheel of cheese down the host's driveway while cackling.",
+   "words": [
+    "milkmaid",
+    "sequoia",
+    "crock"
+   ],
+   "decoys": [
+    "cellarer",
+    "poplar",
+    "redwood",
+    "urn",
+    "jug"
+   ]
+  },
+  {
+   "id": "alibi_v3_051",
+   "deck": "alibi",
+   "text": "Account for the bin of shredded love letters on the host's porch. Their name is still legible.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "shredded-letters-on-porch",
+   "accusation": "Account for the bin of shredded love letters on the host's porch. Their name is still legible.",
+   "words": [
+    "ragpicker",
+    "strainer",
+    "cranberry"
+   ],
+   "decoys": [
+    "mudlark",
+    "chinois",
+    "tamis",
+    "honeydew",
+    "nectarine"
+   ]
+  },
+  {
+   "id": "alibi_v3_052",
+   "deck": "alibi",
+   "text": "Explain the jar in the office fridge that has been labeled 'DO NOT ASK' since March.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "do-not-ask-jar",
+   "accusation": "Explain the jar in the office fridge that has been labeled 'DO NOT ASK' since March.",
+   "words": [
+    "alchemist",
+    "meringue",
+    "slug"
+   ],
+   "decoys": [
+    "currier",
+    "embalmer",
+    "tadpole",
+    "earwig",
+    "custard"
+   ]
+  },
+  {
+   "id": "alibi_v3_053",
+   "deck": "alibi",
+   "text": "The shovel. The tarp. The suspicious lasagna in your trunk. Begin.",
+   "exposure": 3,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w1-fragment-shovel-tarp-lasagna",
+   "accusation": "The shovel. The tarp. The suspicious lasagna in your trunk. Begin.",
+   "words": [
+    "chestnut",
+    "stockpot",
+    "lifeguard"
+   ],
+   "decoys": [
+    "birch",
+    "rowan",
+    "teapot",
+    "carafe",
+    "ditcher"
+   ]
+  },
+  {
+   "id": "alibi_v3_054",
+   "deck": "alibi",
+   "text": "Justify sobbing on the host's kitchen floor over a garbage disposal you jammed yourself.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "sobbing-over-jammed-disposal",
+   "accusation": "Justify sobbing on the host's kitchen floor over a garbage disposal you jammed yourself.",
+   "words": [
+    "boxwood",
+    "grindstone",
+    "dentist"
+   ],
+   "decoys": [
+    "catalpa",
+    "tamarind",
+    "strop",
+    "spurtle",
+    "hygienist"
+   ]
+  },
+  {
+   "id": "alibi_v3_055",
+   "deck": "alibi",
+   "text": "Explain why your ex is your emergency contact, your landlord, and your dentist.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "w2-ex-multi-role",
+   "accusation": "Explain why your ex is your emergency contact, your landlord, and your dentist.",
+   "words": [
+    "heron",
+    "trout",
+    "stoat"
+   ],
+   "decoys": [
+    "egret",
+    "perch",
+    "weasel",
+    "osprey",
+    "pike"
+   ]
+  },
+  {
+   "id": "alibi_v3_056",
+   "deck": "alibi",
+   "text": "Justify why every group trip photo has you badly cropped in from a different event.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "w2-cropped-into-trips",
+   "accusation": "Justify why every group trip photo has you badly cropped in from a different event.",
+   "words": [
+    "mandolin",
+    "oboe",
+    "marimba"
+   ],
+   "decoys": [
+    "lute",
+    "bassoon",
+    "vibraphone",
+    "sitar",
+    "flute"
+   ]
+  },
+  {
+   "id": "alibi_v3_057",
+   "deck": "alibi",
+   "text": "Defend why you RSVP 'maybe' to my things and 'absolutely' to anything the host hosts.",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "rsvp-maybe-to-me",
+   "accusation": "Defend why you RSVP 'maybe' to my things and 'absolutely' to anything the host hosts.",
+   "words": [
+    "mackerel",
+    "bagpipe",
+    "attic"
+   ],
+   "decoys": [
+    "herring",
+    "sardine",
+    "djembe",
+    "cajon",
+    "cellar"
+   ]
+  },
+  {
+   "id": "alibi_v3_058",
+   "deck": "alibi",
+   "text": "Explain why you've been forging my signature on the group's birthday cards for years.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "w2-forged-birthday-cards",
+   "accusation": "Explain why you've been forging my signature on the group's birthday cards for years.",
+   "words": [
+    "bison",
+    "dulcimer",
+    "canyon"
+   ],
+   "decoys": [
+    "yak",
+    "balalaika",
+    "ravine",
+    "gazelle",
+    "glen"
+   ]
+  },
+  {
+   "id": "alibi_v3_059",
+   "deck": "alibi",
+   "text": "Justify the second wallet you switch to the instant the check hits the table.",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "w2-check-dodge-wallet",
+   "accusation": "Justify the second wallet you switch to the instant the check hits the table.",
+   "words": [
+    "puffin",
+    "crag",
+    "cowbell"
+   ],
+   "decoys": [
+    "gannet",
+    "bittern",
+    "tor",
+    "bluff",
+    "woodblock"
+   ]
+  },
+  {
+   "id": "alibi_v3_060",
+   "deck": "alibi",
+   "text": "Account for why your wedding toast was ninety percent about your own ex.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "w2-toast-about-ex",
+   "accusation": "Account for why your wedding toast was ninety percent about your own ex.",
+   "words": [
+    "bream",
+    "jaguar",
+    "viola"
+   ],
+   "decoys": [
+    "roach",
+    "tench",
+    "ocelot",
+    "lyre",
+    "harpsichord"
+   ]
+  },
+  {
+   "id": "alibi_v3_061",
+   "deck": "alibi",
+   "text": "Defend the framed portrait of the host you gifted the host's own mother.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w2-portrait-to-hosts-mother",
+   "accusation": "Defend the framed portrait of the host you gifted the host's own mother.",
+   "words": [
+    "bugle",
+    "tabla",
+    "quarry"
+   ],
+   "decoys": [
+    "fife",
+    "shawm",
+    "tabor",
+    "esker",
+    "moraine"
+   ]
+  },
+  {
+   "id": "alibi_v3_062",
+   "deck": "alibi",
+   "text": "Explain why you've sobbed harder at each of my breakups than I ever did.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "w2-sobbed-at-breakups",
+   "accusation": "Explain why you've sobbed harder at each of my breakups than I ever did.",
+   "words": [
+    "caribou",
+    "ibis",
+    "tuna"
+   ],
+   "decoys": [
+    "reindeer",
+    "hoopoe",
+    "bonito",
+    "marlin",
+    "wapiti"
+   ]
+  },
+  {
+   "id": "alibi_v3_063",
+   "deck": "alibi",
+   "text": "Account for the eulogy you've clearly pre-written for someone in this room.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w2-prewritten-eulogy",
+   "accusation": "Account for the eulogy you've clearly pre-written for someone in this room.",
+   "words": [
+    "cormorant",
+    "vulture",
+    "serpent"
+   ],
+   "decoys": [
+    "fulmar",
+    "petrel",
+    "condor",
+    "flugelhorn",
+    "ophicleide"
+   ]
+  },
+  {
+   "id": "alibi_v3_064",
+   "deck": "alibi",
+   "text": "Defend why you introduce your partner to us as 'my current one.'",
+   "exposure": 4,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "w2-current-one-partner",
+   "accusation": "Defend why you introduce your partner to us as 'my current one.'",
+   "words": [
+    "pollock",
+    "kalimba",
+    "thimble"
+   ],
+   "decoys": [
+    "whiting",
+    "mbira",
+    "balafon",
+    "tambura",
+    "bobbin"
+   ]
+  },
+  {
+   "id": "alibi_v3_065",
+   "deck": "alibi",
+   "text": "Justify why you list the host as a personal reference to everyone you date.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w2-host-as-date-reference",
+   "accusation": "Justify why you list the host as a personal reference to everyone you date.",
+   "words": [
+    "halibut",
+    "clarinet",
+    "mailbag"
+   ],
+   "decoys": [
+    "turbot",
+    "flounder",
+    "sackbut",
+    "crumhorn",
+    "satchel"
+   ]
+  },
+  {
+   "id": "alibi_v3_066",
+   "deck": "alibi",
+   "text": "Account for the box of my old sweaters you've quietly kept since we broke up.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "w2-kept-ex-sweaters",
+   "accusation": "Account for the box of my old sweaters you've quietly kept since we broke up.",
+   "words": [
+    "chinchilla",
+    "whistle",
+    "wren"
+   ],
+   "decoys": [
+    "marmot",
+    "groundhog",
+    "dunnock",
+    "nuthatch",
+    "washtub"
+   ]
+  },
+  {
+   "id": "alibi_v3_067",
+   "deck": "alibi",
+   "text": "Explain why you always claim the seat where the host's grandmother's ashes sat.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "gross",
+   "skeleton": "w2-grandmothers-ash-seat",
+   "accusation": "Explain why you always claim the seat where the host's grandmother's ashes sat.",
+   "words": [
+    "magpie",
+    "jay",
+    "gauze"
+   ],
+   "decoys": [
+    "jackdaw",
+    "rook",
+    "syringe",
+    "quena",
+    "pandeiro"
+   ]
+  },
+  {
+   "id": "alibi_v3_068",
+   "deck": "alibi",
+   "text": "Justify the secret group vote you held on who gets removed from the friendship.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "table-aware",
+   "skeleton": "w2-secret-expulsion-vote",
+   "accusation": "Justify the secret group vote you held on who gets removed from the friendship.",
+   "words": [
+    "wildebeest",
+    "sturgeon",
+    "geyser"
+   ],
+   "decoys": [
+    "oryx",
+    "impala",
+    "tarpon",
+    "bonefish",
+    "sinkhole"
+   ]
+  },
+  {
+   "id": "alibi_v3_069",
+   "deck": "alibi",
+   "text": "Account for why you're the sole beneficiary on three of our life insurance policies.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w2-life-insurance-beneficiary",
+   "accusation": "Account for why you're the sole beneficiary on three of our life insurance policies.",
+   "words": [
+    "starling",
+    "foreclosure",
+    "cornet"
+   ],
+   "decoys": [
+    "siskin",
+    "redpoll",
+    "koto",
+    "zurna",
+    "indemnity"
+   ]
+  },
+  {
+   "id": "alibi_v3_070",
+   "deck": "alibi",
+   "text": "Explain why you keep introducing yourself to strangers as the host's work husband.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w2-host-work-husband",
+   "accusation": "Explain why you keep introducing yourself to strangers as the host's work husband.",
+   "words": [
+    "grouper",
+    "drum",
+    "hammock"
+   ],
+   "decoys": [
+    "croaker",
+    "cobia",
+    "nadaswaram",
+    "pungi",
+    "futon"
+   ]
+  },
+  {
+   "id": "alibi_v3_071",
+   "deck": "alibi",
+   "text": "Justify why you've already RSVP'd to my funeral, which I have not agreed to have.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w2-rsvp-my-funeral",
+   "accusation": "Justify why you've already RSVP'd to my funeral, which I have not agreed to have.",
+   "words": [
+    "pigeon",
+    "badlands",
+    "quokka"
+   ],
+   "decoys": [
+    "redshank",
+    "dunlin",
+    "karst",
+    "hoodoo",
+    "wallaby"
+   ]
+  },
+  {
+   "id": "alibi_v3_072",
+   "deck": "alibi",
+   "text": "Account for the fake accent you deploy exclusively in front of my parents.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "w2-accent-for-parents",
+   "accusation": "Account for the fake accent you deploy exclusively in front of my parents.",
+   "words": [
+    "walleye",
+    "cymbal",
+    "bunker"
+   ],
+   "decoys": [
+    "crappie",
+    "bluegill",
+    "darbuka",
+    "riq",
+    "dugout"
+   ]
+  },
+  {
+   "id": "alibi_v3_073",
+   "deck": "alibi",
+   "text": "Defend why you've kept the receipt from every single gift you've ever given us.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "petty-domestic",
+   "skeleton": "w2-gift-receipt-hoard",
+   "accusation": "Defend why you've kept the receipt from every single gift you've ever given us.",
+   "words": [
+    "meerkat",
+    "oasis",
+    "gong"
+   ],
+   "decoys": [
+    "civet",
+    "wadi",
+    "arroyo",
+    "pipa",
+    "guzheng"
+   ]
+  },
+  {
+   "id": "alibi_v3_074",
+   "deck": "alibi",
+   "text": "Explain why your best-man speech doubled as an itemized list of my crimes.",
+   "exposure": 4,
+   "chaos": 5,
+   "register": "table-aware",
+   "skeleton": "w2-best-man-crime-list",
+   "accusation": "Explain why your best-man speech doubled as an itemized list of my crimes.",
+   "words": [
+    "cuckoo",
+    "swordfish",
+    "washboard"
+   ],
+   "decoys": [
+    "nightjar",
+    "buzzard",
+    "wahoo",
+    "sailfish",
+    "shekere"
+   ]
+  },
+  {
+   "id": "alibi_v3_075",
+   "deck": "alibi",
+   "text": "Justify why you signed us up as a 'package deal' at the couples retreat.",
+   "exposure": 4,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w2-couples-retreat-package",
+   "accusation": "Justify why you signed us up as a 'package deal' at the couples retreat.",
+   "words": [
+    "manatee",
+    "harp",
+    "headland"
+   ],
+   "decoys": [
+    "dugong",
+    "narwhal",
+    "gemshorn",
+    "cornetto",
+    "promontory"
+   ]
+  },
+  {
+   "id": "alibi_v3_076",
+   "deck": "alibi",
+   "text": "Account for why all three of your exes turned up to the reunion in matching lanyards.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "w3-exes-matching-lanyards",
+   "accusation": "Account for why all three of your exes turned up to the reunion in matching lanyards.",
+   "words": [
+    "warthog",
+    "garnishment",
+    "posthorn"
+   ],
+   "decoys": [
+    "aardvark",
+    "anteater",
+    "probate",
+    "receivership",
+    "helicon"
+   ]
+  },
+  {
+   "id": "alibi_v3_077",
+   "deck": "alibi",
+   "text": "Explain why the host found your name carved into the underside of the good dining table.",
+   "exposure": 5,
+   "chaos": 3,
+   "register": "table-aware",
+   "skeleton": "w3-name-carved-under-table",
+   "accusation": "Explain why the host found your name carved into the underside of the good dining table.",
+   "words": [
+    "sloth",
+    "glockenspiel",
+    "panpipe"
+   ],
+   "decoys": [
+    "skunk",
+    "badger",
+    "shortfall",
+    "receivable",
+    "deficit"
+   ]
+  },
+  {
+   "id": "alibi_v3_078",
+   "deck": "alibi",
+   "text": "Defend the spreadsheet ranking each of our funerals by projected catering budget.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "deadpan",
+   "skeleton": "w3-funeral-catering-spreadsheet",
+   "accusation": "Defend the spreadsheet ranking each of our funerals by projected catering budget.",
+   "words": [
+    "wolverine",
+    "invoice",
+    "piccolo"
+   ],
+   "decoys": [
+    "otter",
+    "mink",
+    "remittance",
+    "disbursement",
+    "chimes"
+   ]
+  },
+  {
+   "id": "alibi_v3_079",
+   "deck": "alibi",
+   "text": "Explain the shrine to the host's ex you built inside the coat closet.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "w3-shrine-to-hosts-ex",
+   "accusation": "Explain the shrine to the host's ex you built inside the coat closet.",
+   "words": [
+    "pangolin",
+    "keytar",
+    "deposition"
+   ],
+   "decoys": [
+    "numbat",
+    "echidna",
+    "affidavit",
+    "deed",
+    "organ"
+   ]
+  },
+  {
+   "id": "alibi_v3_080",
+   "deck": "alibi",
+   "text": "Explain why every trip photo has you subtly shoving the exact same friend.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "w3-shoving-same-friend-photos",
+   "accusation": "Explain why every trip photo has you subtly shoving the exact same friend.",
+   "words": [
+    "stork",
+    "easement",
+    "bongo"
+   ],
+   "decoys": [
+    "crane",
+    "spoonbill",
+    "quitclaim",
+    "encumbrance",
+    "timbales"
+   ]
+  },
+  {
+   "id": "alibi_v3_081",
+   "deck": "alibi",
+   "text": "Justify why your trunk holds a shovel, three passports, and my missing hoodie.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w3-trunk-shovel-passports-hoodie",
+   "accusation": "Justify why your trunk holds a shovel, three passports, and my missing hoodie.",
+   "words": [
+    "iguana",
+    "repossession",
+    "concertina"
+   ],
+   "decoys": [
+    "chameleon",
+    "tortoise",
+    "escheat",
+    "garnishee",
+    "steelpan"
+   ]
+  },
+  {
+   "id": "alibi_v3_082",
+   "deck": "alibi",
+   "text": "Explain the folder marked 'leverage' with a photo of each of us tucked inside.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w3-folder-labeled-leverage",
+   "accusation": "Explain the folder marked 'leverage' with a photo of each of us tucked inside.",
+   "words": [
+    "hyena",
+    "subrogation",
+    "harmonium"
+   ],
+   "decoys": [
+    "jackal",
+    "dingo",
+    "coyote",
+    "lienholder",
+    "bandoneon"
+   ]
+  },
+  {
+   "id": "alibi_v3_083",
+   "deck": "alibi",
+   "text": "Defend the fact that your alibi for last summer is signed by a dead man.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "deadpan",
+   "skeleton": "w3-alibi-signed-dead-man",
+   "accusation": "Defend the fact that your alibi for last summer is signed by a dead man.",
+   "words": [
+    "ibex",
+    "collateral",
+    "mellophone"
+   ],
+   "decoys": [
+    "chamois",
+    "markhor",
+    "promissory",
+    "debenture",
+    "saxhorn"
+   ]
+  },
+  {
+   "id": "alibi_v3_084",
+   "deck": "alibi",
+   "text": "Justify inheriting the group's inside joke and quietly charging us royalties on it.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w3-charging-royalties-inside-joke",
+   "accusation": "Justify inheriting the group's inside joke and quietly charging us royalties on it.",
+   "words": [
+    "nutria",
+    "licensing",
+    "autoharp"
+   ],
+   "decoys": [
+    "muskrat",
+    "chipmunk",
+    "arbitrage",
+    "amortization",
+    "clavichord"
+   ]
+  },
+  {
+   "id": "alibi_v3_085",
+   "deck": "alibi",
+   "text": "Explain the anniversary you quietly celebrate that none of your partners know about.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "euphemism",
+   "skeleton": "w3-secret-anniversary",
+   "accusation": "Explain the anniversary you quietly celebrate that none of your partners know about.",
+   "words": [
+    "gibbon",
+    "dowry",
+    "celesta"
+   ],
+   "decoys": [
+    "macaque",
+    "tamarin",
+    "stipend",
+    "honorarium",
+    "spinet"
+   ]
+  },
+  {
+   "id": "alibi_v3_086",
+   "deck": "alibi",
+   "text": "Defend why the host's dog now answers only to your voice and no one else's.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "w3-dog-answers-only-you",
+   "accusation": "Defend why the host's dog now answers only to your voice and no one else's.",
+   "words": [
+    "lynx",
+    "appraisal",
+    "melodeon"
+   ],
+   "decoys": [
+    "caracal",
+    "serval",
+    "valuation",
+    "brokerage",
+    "squeezebox"
+   ]
+  },
+  {
+   "id": "alibi_v3_087",
+   "deck": "alibi",
+   "text": "Justify why three of us got the same 'goodbye forever' note in your handwriting.",
+   "exposure": 5,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "w3-goodbye-forever-notes",
+   "accusation": "Justify why three of us got the same 'goodbye forever' note in your handwriting.",
+   "words": [
+    "kestrel",
+    "embezzlement",
+    "alphorn"
+   ],
+   "decoys": [
+    "merlin",
+    "goshawk",
+    "defalcation",
+    "malfeasance",
+    "fluegel"
+   ]
+  },
+  {
+   "id": "alibi_v3_088",
+   "deck": "alibi",
+   "text": "Explain the drawer of spare keys, each one labeled with a different one of our names.",
+   "exposure": 5,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "w3-drawer-of-named-keys",
+   "accusation": "Explain the drawer of spare keys, each one labeled with a different one of our names.",
+   "words": [
+    "platypus",
+    "liquidation",
+    "kettledrum"
+   ],
+   "decoys": [
+    "wallaroo",
+    "bandicoot",
+    "insolvency",
+    "forfeiture",
+    "bodhran"
+   ]
+  },
+  {
+   "id": "alibi_v3_089",
+   "deck": "alibi",
+   "text": "Explain why the shared snack drawer is empty and your bag keeps making a crinkling sound.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "petty-domestic",
+   "skeleton": "snack-drawer-and-crinkling-bag",
+   "accusation": "Explain why the shared snack drawer is empty and your bag keeps making a crinkling sound.",
+   "words": [
+    "popsicle",
+    "thumbtack",
+    "raccoon"
+   ],
+   "decoys": [
+    "brownie",
+    "taco",
+    "paperclip",
+    "toner",
+    "ringtail"
+   ]
+  },
+  {
+   "id": "alibi_v3_090",
+   "deck": "alibi",
+   "text": "Account for the fact that you have used the host's shower and you do not live here.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "used-hosts-shower-uninvited",
+   "accusation": "Account for the fact that you have used the host's shower and you do not live here.",
+   "words": [
+    "loofah",
+    "mozzarella",
+    "penguin"
+   ],
+   "decoys": [
+    "squeegee",
+    "plunger",
+    "provolone",
+    "muenster",
+    "macaw"
+   ]
+  },
+  {
+   "id": "alibi_v3_091",
+   "deck": "alibi",
+   "text": "Explain the eleven half-drunk cans you left around this apartment, each a different drink.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "absurdist",
+   "skeleton": "eleven-abandoned-cans",
+   "accusation": "Explain the eleven half-drunk cans you left around this apartment, each a different drink.",
+   "words": [
+    "ottoman",
+    "spoons",
+    "koala"
+   ],
+   "decoys": [
+    "beanbag",
+    "recliner",
+    "wringer",
+    "kookaburra",
+    "kangaroo"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,240 @@
+# ⛔ NEXT AGENT — READ THIS FIRST, THEN `HELLDECK2_HANDOFF.md`
+
+Written 2026-07-20 by the previous agent (Opus 4.8), at the owner's request.
+Branch **`descent`**. Nothing has ever been pushed. Everything below is committed locally.
+
+---
+
+## 1. THE OWNER'S MANDATE FOR YOUR SESSION
+
+Verbatim intent, as given:
+
+> Get this app **fully functional**, with a **new GUI if one is needed**, where **all new visual
+> assets are generated using ONLY the OpenArt API**. By the end of your work it should be
+> **fully ready for testing — basically a finished product.**
+
+Read §4 before you generate a single asset. There are three hard conflicts in that directive that
+you must resolve with the owner or design around. Do not blindly generate 200 images.
+
+---
+
+## 2. WHERE THE APP ACTUALLY IS
+
+**HELLDECK "The Descent"** — a phones-only, no-TV party game. 3–12 friends, each on their own
+phone. Server-authoritative: one Cloudflare Durable Object per room runs a pure-TS engine; every
+phone (host included) is a thin renderer over WebSocket. Code lives in `descent/` (pnpm monorepo:
+`packages/{engine,server,client}` + `content/`).
+
+### DONE and verified ✅
+
+| layer | state |
+|---|---|
+| Engine (pure TS, deterministic) | **338 tests.** Adversarial bot-fuzz plus the core-owned, burnable spotlight state machine |
+| Server (Worker + RoomDO) | **33 tests.** Snapshotting, alarms, per-socket redaction, CLAIM, private spotlight replay |
+| Client (Preact, hand-rolled CSS) | **105 tests.** All 9 games + visible room errors + Stage-gated private card/role overlays |
+| Content | **1024 cards / 9 decks**, all funnel-clean, council-reviewed and remediated |
+| Consent + fairness | heat ceilings, volunteer valve, 20s fixed-timing spotlight burns/replacements, typecast governor |
+| Live runtime | **Verified locally 2026-07-20.** Five WebSocket bots completed a real depth-5 Wrangler/RoomDO night to JUDGMENT in 360.1s |
+
+**476 tests green. `pnpm -r build` clean.** All 9 games play end-to-end against the real corpus.
+
+### REAL REMAINING WORK — this is your actual work list
+
+1. **MONETIZATION IS 0%.** This is the biggest gap. The *enforcement* exists (engine blocks BEGIN
+   on `!entitled`; protocol returns `NO_ENTITLEMENT`) but **`packages/server/src/room-do.ts:73`
+   hardcodes every room to `entitled: true`**, and there is no Stripe path, no Play Billing, no
+   paywall UI, no free-night device token. `D-412`/`D-413` are a comment in `worker.ts`. The whole
+   business model is a $9.99 one-time host unlock paywalled at the SECOND night's BEGIN button —
+   **none of it exists.**
+2. **NEVER PLAYED BY A HUMAN.** The live bot night is real infrastructure evidence, not fun or
+   usability evidence. D-128/D-138 remain the most important product gate. See §5.
+3. **Operational lifecycle is incomplete.** There is no room TTL/expiry policy, no crew-memory
+   persistence, and the root GitHub Actions workflows still build the frozen Android product rather
+   than `descent/`.
+4. **One adjacent card-safety seam remains.** Spotlight burns now wait for a private server
+   acknowledgement and replay on reconnect; the older card-preview `BURN IT` still closes
+   optimistically and card previews are not reconstructed on reconnect. Fix that before calling the
+   consent system airtight.
+5. **No deploy, no Android shell, no domain, no store listing** (M4–M6).
+
+---
+
+## 3. THE GUI — READ BEFORE YOU REPLACE ANYTHING
+
+**There is already a complete, taste-passed design system.** It is not a placeholder:
+- `packages/client/src/style/style.css` + `games.css` — hellfire palette (`--pit`, `--blood`,
+  `--ember`, `--bone`, `--ash`, `--char`), a display font, **sharp corners everywhere**, reveals
+  that SNAP, holds that BREATHE.
+- All imagery today is **inline SVG** (`screens/bits.tsx`: `Devil`, `Flame`, `Crown`, `Ring`) —
+  **the app currently ships ZERO raster assets.**
+- Every screen was reviewed by an adversarial `taste-critic` agent and cleared. Two defects were
+  found and fixed; the rest was rated DISTINCTIVE.
+
+So: **"new GUI if needed" is a judgment call, not a mandate.** Evaluate honestly. Replacing a
+taste-passed system with generated imagery can *regress* quality. If you do rebuild, you must clear
+the same bar (§6).
+
+---
+
+## 4. ⚠️ THE OPENART-ONLY ASSET DIRECTIVE — THREE CONFLICTS TO RESOLVE FIRST
+
+The owner wants all new visual assets generated via the OpenArt API. Before you generate anything:
+
+**CONFLICT 1 — the project's own taste law bans generic AI imagery.**
+`CLAUDE.md`'s Anti-Pattern Registry explicitly BANS *"Hero sections with stock-photo-style AI
+imagery"* and *"Geometric abstract illustrations as hero backgrounds."* The owner's global rules
+add *"premium taste, no AI-slop"* and *"never say 'AI-powered' to customers."*
+→ These are not contradictory if you art-direct hard: use the API for a **deliberate, narrow,
+style-locked set** (devil/imp iconography, card backs, the descent depth art, grain/soot textures)
+driven by one written style spec — **not** decorative hero slop. Every asset must serve meaning
+(the taste law's rule 4: *"It signals X to the user because Y"*). Generic output = ban violation.
+
+**CONFLICT 2 — you almost certainly have no API key, and the budget is $0.**
+OpenArt API access needs an account and likely payment. The owner's standing rule is a **$0
+budget**. **You cannot purchase this.** Check for credentials first; if absent, STOP and ask the
+owner rather than silently substituting another tool (the directive says *only* OpenArt) or
+faking assets.
+
+**CONFLICT 3 — the performance budget.**
+This is a phones-only game played on **bar wifi**. Spec 6.3 works to a ~200KB asset budget; the
+client currently ships ~26KB CSS + ~182KB JS and **no images at all**. Raster art is a real
+regression risk on the exact network this game lives on. If you add imagery: WebP/AVIF, aggressive
+sizing, lazy-load anything not on the critical path, and **re-measure the bundle**. A gorgeous app
+that takes 8s to load in a loud bar has failed.
+
+**Recommendation:** get owner sign-off on (a) credentials, (b) a written style spec, and (c) an
+asset budget, before generating at volume.
+
+---
+
+## 5. WHAT "READY FOR TESTING / FINISHED" HONESTLY REQUIRES
+
+Be straight with the owner about this — do not claim "finished" without it.
+
+**You CAN do:**
+- Re-run the verified `wrangler dev` + live bot path and run a multi-phone LAN night.
+- Build entitlements end-to-end (D-412/413): device free-night token, paywall UI at the 2nd BEGIN,
+  Stripe checkout + verify + HMAC unlock token surviving a browser restart. Use Stripe **test
+  mode** — live keys are owner-gated.
+- GUI/asset pass per §3–4.
+- Fix anything the first real playtest surfaces.
+
+**You CANNOT do (owner-gated — say so plainly, never fake it):**
+- **Real playtests** (`D-128`, `D-138`) — needs actual humans in a room. **This is the true next
+  gate and it is not yours to close.**
+- Cloudflare **Workers Paid** + deploy (`D-802`), **domain** purchase (`D-801`), **Stripe live**
+  keys, **Play Console** release (`D-803`), Android shell signing.
+
+So the realistic definition of done for the next major session: **a live-runnable, monetization-complete,
+art-directed build that a real group could test tonight on a LAN or a beta deploy** — with the
+store/live-payment tail still owner-blocked.
+
+---
+
+## 6. HOW TO WORK IN THIS REPO (learned the hard way)
+
+**Build/test** (the `CI=true` and the flag are both required — no TTY here):
+```
+cd descent
+CI=true pnpm -r --config.verifyDepsBeforeRun=false build
+CI=true pnpm -r --config.verifyDepsBeforeRun=false test
+```
+⚠️ Run these **from `descent/`**, never the repo root — the root has a frozen legacy `webui`
+package whose test script runs a failing e2e suite.
+
+**Content funnel** — any card change must pass all three, and cross-deck dedup is authoritative:
+```
+cd descent/content
+python3 tools/lint_deck.py decks/*.json
+python3 tools/dedup_skeletons.py decks/*.json      # cross-deck; run over ALL decks
+python3 tools/deck_stats.py decks/*.json
+```
+If you change deck sizes, update the count assertion in `packages/server/test/content.test.ts`.
+
+**Taste gates** — this project runs adversarial review. Use the `taste-critic` / `taste-auditor`
+subagents on any new UI or copy. They have persistent memory under
+`descent/content/.claude/agent-memory/taste-auditor/` including a standing finding: *the
+"protagonist secretly ranks/files/scores the group" premise is a banned default*, and *hand-written
+batches drift WHOLESOME in the mild E2/E3 middle — audit that tier hardest.*
+
+**The card council** — a 37-agent review (3 lenses/game → chair → showrunner) is committed at
+`descent/content/council/`: `VERDICT.md`, `council-raw.json`, and `FIX_<deck>.md` per game. Its
+verdict was **fix-first**; that remediation is now DONE (see §7). `VERDICT.md` also records two of
+its claims that I **verified FALSE** — read those before acting on it.
+
+**Engine law:** `packages/engine` has NO `Date.now`/`Math.random`/IO — time is `event.at`,
+randomness is seeded `rng(seed)`. `packages/server/src/redact.ts` is the ONLY path to the wire;
+secrets go in `NEVER_SERIALIZE`. Breaking either will fail the fuzz suite.
+
+**Landmines:**
+- Subagents hit a session rate limit mid-flight once and died. They left the repo intact (git is
+  your rollback), but **check `git status` after any parallel agent round.**
+- Parallel deck agents racing on `dedup_skeletons.py decks/*.json` can read a half-written file —
+  have each dedup **only its own deck**, and run the cross-deck pass yourself at the end.
+- **`DESCENT_BUILD_SPEC.md` Part 12's checkboxes are ALL unchecked and badly stale** — including
+  D-101, which passes right now. It reads as "nothing done" when M0–M3 are complete. Trust
+  `HELLDECK2_HANDOFF.md` §3 instead. **Syncing Part 12 is a genuinely useful, unclaimed task.**
+
+---
+
+## 7. WHAT JUST LANDED (so you don't redo it)
+
+**2026-07-20 trust/safety + live-runtime pass:**
+
+- Wired the client-visible `CLAIM` button through the server protocol. Spoofed identity/time are
+  ignored; a real RoomDO test proves only the claimant sees their own volunteer flag.
+- Added a transient, dismissible, accessible in-room server-error banner. Rejected actions no
+  longer disappear silently after joining.
+- Closed the Stage leak: card previews and spotlight roles now mount inside `StageShell`; a flat
+  host phone shows only generic `PICK UP TO SIN`, and phase/sub/circle/payload/role changes revoke
+  lift synchronously.
+- Implemented the missing spotlight Brimstone valve across Over/Under, Confession, Red Flag,
+  Alibi, Poison, and Title Fight. Core runs a fixed T+10/T+20 private ceremony; burns get a private
+  acknowledgement; replacements get a full 10 seconds; public timing never changes; reconnect /
+  RESYNC reconstructs only the current viewer's role; final assignees alone affect fairness.
+- Verified strict build, **476/476 tests**, all 1,024 content cards, and a real five-client
+  `wrangler dev` night to JUDGMENT in **360.1s**. No deploy or external purchase was performed.
+
+**Earlier 2026-07-19/20 work:**
+
+Roughly: finished the M3 tail, then ran a card council and executed its remediation.
+
+- **D-136** all 5 remaining game screens → every one of the 9 games is human-playable.
+- **D-134** `spotlightCount` channel **and** the "WHO WANTS BLOOD?" volunteer valve.
+- **D-137** adversarial bot-fuzz.
+- **D-135** THE STAGE + lift-to-sin **web fallback** (manual flip; the accelerometer is M4).
+- **W-2 content** top-up, then the council remediation. Corpus **793 → 1024**.
+- **THE ARC BUG** (the council's #1 find, and the most important thing I fixed): the spotlight
+  gate `idx>=3` collided with the forced opener/scatter/titlefight/bargain/finale slots, so
+  **confession, poison, redflag and alibi — 432 cards — could only ever be dealt at depth 9**,
+  while the lobby defaults to depth 7. Gate → `idx>=2`. Depth 7 went **0% → ~99%**. If you touch
+  `arc.ts` placement, **re-measure per-depth reachability** with a temp probe calling `buildArc`
+  over ~300 seeds/depth. A gate that reads harmless can silently orphan half the content.
+- **Typecast governor**: roast's victims are elected by ballot, so spotlight fairness never saw
+  them; they now feed the same channel so other games lean away from a repeatedly-named player.
+
+Verified outcomes: overunder no-receipt cards **65 → 0**; corpus E4/E5 romance share **15%**
+(was ~89% in roast alone); confession's E5 **20/20 sexual → 8/20**; titlefight **10 → 32** duels.
+
+**Caveat I want you to inherit honestly:** those are *measured fixes to named defects*, not new
+scores. The council's "6.2/10 addictiveness, no deck above 7" came from reading the OLD decks.
+Nobody has re-scored the revised corpus. **Re-running the council against it would give a genuine
+before/after** — worth doing, and worth ~1.5M tokens.
+
+---
+
+## 8. SUGGESTED ORDER FOR YOUR SESSION
+
+1. `git log --oneline -15`, read `HELLDECK2_HANDOFF.md` §3, confirm `build` + `test` are green.
+2. If humans are available, run D-128 immediately. Otherwise close card-preview acknowledgement /
+   reconnect safety, add `descent/` CI, and define/test RoomDO expiry before expanding features.
+3. Build D-412/413 entitlements in Stripe test mode; keep live keys and purchases owner-gated.
+4. Resolve the §4 asset conflicts with the owner (credentials, style spec, budget) **before**
+   generating.
+5. GUI/asset pass only if real-phone/playtest evidence identifies a weakness; taste-gate and
+   re-measure the bundle.
+6. Update `HELLDECK2_HANDOFF.md`, keep `DESCENT_BUILD_SPEC.md` Part 12 honest, and write the next
+   `NEXT_AGENT.md`.
+
+**Do not push. Do not deploy. Do not buy anything.** Commit locally on `descent` and tell the
+owner exactly what is real, what is stubbed, and what still needs their hands.

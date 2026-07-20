@@ -1,0 +1,48 @@
+# CONTENT_BIBLE Law 6 vocabulary bans — one case-insensitive regex per line.
+# Brands/memes as punchlines and 2019-2024 Twitter vocabulary. Lines starting # are comments.
+onlyfans
+feet pic
+foot fetish
+mugshot
+linkedin
+spotify wrapped
+situationship
+talking stage
+main character energy
+\bnpc\b
+gives off .* energy
+toxic trait
+red flag(?!s? rally)
+love language
+gaslight
+manifesting
+mercury retrograde
+emotional support (?!animal$)
+\bfinsta\b
+\bnft\b
+crypto ?bro
+venmo request
+duck-sized
+horse-sized
+pineapple pizza
+hot ?dog.*sandwich
+batman.*superman
+gorilla.*toddler
+sleep-paralysis demon
+villain origin story
+intrusive thoughts
+\bthe ick\b
+body count
+girl dinner
+vibe check
+beige flag
+roman empire
+rizz
+doomscroll
+(?<!physical )therapist
+therapy-speak
+build-a-bear
+gas.station sushi
+florida man
+karen\b
+ok boomer

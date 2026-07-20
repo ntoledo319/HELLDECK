@@ -1,0 +1,294 @@
+{
+ "schema": 3,
+ "deck": "titlefight",
+ "cards": [
+  {
+   "id": "titlefight_v3_001",
+   "deck": "titlefight",
+   "text": "Dead-eye staring contest. First to blink, laugh, or beg is the coward this room always suspected.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "staring-contest"
+  },
+  {
+   "id": "titlefight_v3_002",
+   "deck": "titlefight",
+   "text": "Thumb war to the death. Loser stays silent the entire next round. Winner gets to gloat about it until sunrise.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "thumb-war"
+  },
+  {
+   "id": "titlefight_v3_003",
+   "deck": "titlefight",
+   "text": "Hype-man showdown: ten seconds each introducing your opponent like a walkout. Loudest, most unhinged intro wins.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "hype-man-off"
+  },
+  {
+   "id": "titlefight_v3_004",
+   "deck": "titlefight",
+   "text": "Slow-motion duel: act out your most embarrassing fall of the year, frame by frame. The room judges commitment.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "slow-mo-fall"
+  },
+  {
+   "id": "titlefight_v3_005",
+   "deck": "titlefight",
+   "text": "Fake-cry-off. Fifteen seconds to produce real grief. Dry at the bell loses; both dry, the room picks the sadder fraud.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "deadpan",
+   "skeleton": "fake-cry-off"
+  },
+  {
+   "id": "titlefight_v3_006",
+   "deck": "titlefight",
+   "text": "Villain monologue: explain out loud why this friend group had it coming. Best menace wins; first giggle loses.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "menace",
+   "skeleton": "villain-monologue"
+  },
+  {
+   "id": "titlefight_v3_007",
+   "deck": "titlefight",
+   "text": "Air-instrument solo. Pick your weapon, commit like your soul is the ante. The least committed loses it.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "absurdist",
+   "skeleton": "air-solo"
+  },
+  {
+   "id": "titlefight_v3_008",
+   "deck": "titlefight",
+   "text": "Ten seconds of trash talk about your opponent's taste in music. All bark, zero facts. Better mouth takes the belt.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "trash-talk-music"
+  },
+  {
+   "id": "titlefight_v3_009",
+   "deck": "titlefight",
+   "text": "Seduce this table. No music, no touching, no mercy. Whoever makes the room more uncomfortable takes the belt.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "physical",
+   "skeleton": "silent-seduction"
+  },
+  {
+   "id": "titlefight_v3_010",
+   "deck": "titlefight",
+   "text": "Worst-impression duel: your meanest impression of each other, to each other's face. The one that still lands wins.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "worst-impression"
+  },
+  {
+   "id": "titlefight_v3_011",
+   "deck": "titlefight",
+   "text": "Wall-sit-off. Backs to the wall, thighs level, hands off. First one to slide, stand, or whimper loses.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "wall-sit-off"
+  },
+  {
+   "id": "titlefight_v3_012",
+   "deck": "titlefight",
+   "text": "Plank on the floor while the room reads your worst decisions back to you. First knee down loses.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "plank-under-fire"
+  },
+  {
+   "id": "titlefight_v3_013",
+   "deck": "titlefight",
+   "text": "Stand on one foot, eyes shut, while the room insults your judgment. First foot to touch down loses.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "one-foot-under-insult"
+  },
+  {
+   "id": "titlefight_v3_014",
+   "deck": "titlefight",
+   "text": "Straight-face duel. The room may do anything but touch you. First to smile loses; two stone faces split the belt.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "straight-face-siege"
+  },
+  {
+   "id": "titlefight_v3_015",
+   "deck": "titlefight",
+   "text": "Arms straight out to the sides, palms up, no bending. The room narrates your failures. First elbow to drop loses.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "arms-out-hold"
+  },
+  {
+   "id": "titlefight_v3_016",
+   "deck": "titlefight",
+   "text": "Total silence while the room interrogates you both. First sound out of either of you loses the belt.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "silence-under-interrogation"
+  },
+  {
+   "id": "titlefight_v3_017",
+   "deck": "titlefight",
+   "text": "The room says nice things about you and means them. First to smile, deflect, or say thanks loses.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "sincerity-endurance"
+  },
+  {
+   "id": "titlefight_v3_018",
+   "deck": "titlefight",
+   "text": "Pull the worst face you own and hold it. No adjusting, no laughing. First face to relax loses.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "held-grimace"
+  },
+  {
+   "id": "titlefight_v3_019",
+   "deck": "titlefight",
+   "text": "Hold one note. Same pitch, no cheating a breath. Last voice still going takes the belt.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "sustained-note"
+  },
+  {
+   "id": "titlefight_v3_020",
+   "deck": "titlefight",
+   "text": "Full belly laugh at nothing, nonstop, straight at each other. First to go quiet or turn real loses.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "forced-laugh-endurance"
+  },
+  {
+   "id": "titlefight_v3_021",
+   "deck": "titlefight",
+   "text": "Fifteen seconds each narrating the other like wildlife on a nature program. Break them first and it is yours.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "wildlife-narration"
+  },
+  {
+   "id": "titlefight_v3_022",
+   "deck": "titlefight",
+   "text": "Argue over which of you this group would replace first. Neither of you may say the word 'I'. First slip loses.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "no-first-person-argument"
+  },
+  {
+   "id": "titlefight_v3_023",
+   "deck": "titlefight",
+   "text": "Say each other's full name back and forth, more disappointed every round. First one to laugh loses.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "deadpan",
+   "skeleton": "disappointed-full-name"
+  },
+  {
+   "id": "titlefight_v3_024",
+   "deck": "titlefight",
+   "text": "Both talk at once, both defending your own honor, neither allowed to stop. First to go quiet or crack loses.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "physical",
+   "skeleton": "simultaneous-defense"
+  },
+  {
+   "id": "titlefight_v3_025",
+   "deck": "titlefight",
+   "text": "Apologize to this room nonstop, no repeats, no fiction. First one to run out of sins loses.",
+   "exposure": 3,
+   "chaos": 4,
+   "register": "table-aware",
+   "skeleton": "apology-until-dry"
+  },
+  {
+   "id": "titlefight_v3_026",
+   "deck": "titlefight",
+   "text": "Freeze exactly as you are. The room may say anything, touch nothing. First twitch, scratch, or shift of weight loses.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "statue-siege"
+  },
+  {
+   "id": "titlefight_v3_027",
+   "deck": "titlefight",
+   "text": "One leads, one mirrors every move. Fifteen seconds, then swap. First to fall behind loses the belt.",
+   "exposure": 1,
+   "chaos": 3,
+   "register": "physical",
+   "skeleton": "mirror-duel"
+  },
+  {
+   "id": "titlefight_v3_028",
+   "deck": "titlefight",
+   "text": "Threaten each other. No volume, no profanity, no touching. The room crowns whichever calm was scarier.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "quiet-threat-off"
+  },
+  {
+   "id": "titlefight_v3_029",
+   "deck": "titlefight",
+   "text": "Flinch duel. Fake swings only, hands stay a foot apart, contact forfeits. First to flinch loses.",
+   "exposure": 1,
+   "chaos": 4,
+   "register": "physical",
+   "skeleton": "flinch-duel"
+  },
+  {
+   "id": "titlefight_v3_030",
+   "deck": "titlefight",
+   "text": "Deliver your opponent's eulogy while they sit there breathing. The room crowns whichever one hurt worse.",
+   "exposure": 2,
+   "chaos": 5,
+   "register": "menace",
+   "skeleton": "living-eulogy"
+  },
+  {
+   "id": "titlefight_v3_031",
+   "deck": "titlefight",
+   "text": "Sell your opponent to this room as a used item. You must disclose every known defect. Best pitch wins.",
+   "exposure": 2,
+   "chaos": 4,
+   "register": "parody",
+   "skeleton": "used-item-pitch"
+  },
+  {
+   "id": "titlefight_v3_032",
+   "deck": "titlefight",
+   "text": "Recruit this room into your cult, fifteen seconds each. Whoever gets more hands in the air takes the belt.",
+   "exposure": 1,
+   "chaos": 5,
+   "register": "absurdist",
+   "skeleton": "cult-recruitment-drive"
+  }
+ ]
+}

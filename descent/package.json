@@ -1,0 +1,13 @@
+{
+  "name": "helldeck-descent",
+  "private": true,
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "dev:server": "pnpm --filter @helldeck/server dev",
+    "dev:client": "pnpm --filter @helldeck/client dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0"
+  }
+}

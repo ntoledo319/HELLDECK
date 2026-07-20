@@ -1,5 +1,11 @@
 # HELLDECK 🎯
 
+> **ACTIVE PRODUCT (2026): HELLDECK — THE DESCENT lives in [`descent/`](descent/).** It is a
+> phones-only Preact + Cloudflare Durable Object party game with nine playable games and a
+> 1,024-card corpus. Start with [`NEXT_AGENT.md`](NEXT_AGENT.md) and
+> [`HELLDECK2_HANDOFF.md`](HELLDECK2_HANDOFF.md). The Android/on-device-AI material below documents
+> the frozen legacy product and is not the current build target.
+
 > The AI-powered party game that learns your crew's sense of humor
 
 **One Device. 14 Mini-Games. Infinite Chaos.**
