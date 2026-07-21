@@ -30,7 +30,7 @@
 //       0 0 130px rgba(142, 27, 27, 0.6);
 //     animation: ember-breathe 2.6s ease-in-out infinite; /* keyframe lives in style.css */
 //   }
-import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { asDeckView } from '../games/wire';
 import type { Net } from '../net/ws';
 import type { PlayerView, RoomView } from '../view';
@@ -131,13 +131,12 @@ function Boom({
   net: Net;
   deadline: number;
 }) {
-  const [picked, setPicked] = useState<string | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<string | null>(null);
   const chosen = picked ?? v.youTapped;
   const locked = chosen !== null;
   const tap = (id: string): void => {
     if (locked) return;
-    setPicked(id);
-    net.send({ t: 'INPUT', p: { tap: id } }); // engine parseTap reads exactly `tap`
+    if (net.send({ t: 'INPUT', p: { tap: id } })) setPicked(id); // engine parseTap reads exactly `tap`
   };
 
   return (
@@ -155,6 +154,7 @@ function Boom({
             key={p.id}
             class={'vote-cell' + (chosen === p.id ? ' picked' : '')}
             disabled={locked}
+            aria-pressed={chosen === p.id}
             onClick={() => tap(p.id)}
           >
             <Devil n={p.avatar} size={36} />
@@ -163,7 +163,7 @@ function Boom({
         ))}
       </div>
       {locked && (
-        <div class="locked-banner flash-in">
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
           {chosen === view.you ? 'YOU RATTED YOURSELF OUT' : `YOU FINGERED ${nameOf(view, chosen)}`}
         </div>
       )}

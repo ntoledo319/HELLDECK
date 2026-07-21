@@ -2,7 +2,15 @@
 // The engine-level byte-equality test lives in engine.test.ts; this file covers
 // the ceremony helper itself.
 import { describe, expect, it } from 'vitest';
-import { CEREMONY_MS, PREVIEW_MS, beginDeal, burnDeal, completeDeal, pickSpotlight } from '../src/deal.js';
+import {
+  CEREMONY_MS,
+  PREVIEW_MS,
+  beginDeal,
+  burnDeal,
+  cardPreviewPrivateFor,
+  completeDeal,
+  pickSpotlight,
+} from '../src/deal.js';
 import { rng } from '../src/rng.js';
 import { mkCard, mkPlayer } from './helpers.js';
 
@@ -12,13 +20,13 @@ const backup = mkCard('poison_v3_002');
 
 describe('beginDeal', () => {
   it('no subject: fixed 5.5s ritual, no preview SEND', () => {
-    const { deal, effects } = beginDeal({ primary, backup, subjectId: null }, 'deal:2', NOW);
+    const { deal, effects } = beginDeal({ primary, backup, subjectId: null }, 'deal:2', NOW, false);
     expect(deal.completesAt).toBe(NOW + CEREMONY_MS);
     expect(effects).toEqual([{ k: 'SCHEDULE', timerId: 'deal:2', atMs: NOW + CEREMONY_MS }]);
   });
 
   it('named subject: 10s ceremony and a PRIVATE preview to the subject ONLY', () => {
-    const { deal, effects } = beginDeal({ primary, backup, subjectId: 'P1' }, 'deal:2', NOW);
+    const { deal, effects } = beginDeal({ primary, backup, subjectId: 'P1' }, 'deal:2', NOW, true);
     expect(deal.completesAt).toBe(NOW + PREVIEW_MS);
     expect(deal.burnWindowEndsAt).toBe(NOW + PREVIEW_MS);
     expect(effects).toEqual([
@@ -27,15 +35,45 @@ describe('beginDeal', () => {
         k: 'SEND',
         to: 'P1',
         kind: 'preview',
-        payload: { card: primary, burnDeadline: NOW + PREVIEW_MS },
+        payload: {
+          status: 'assigned',
+          previewId: 'deal:2',
+          card: primary,
+          burnDeadline: NOW + PREVIEW_MS,
+          revealAt: NOW + PREVIEW_MS,
+          canBurn: true,
+        },
       },
     ]);
   });
 });
 
+describe('cardPreviewPrivateFor', () => {
+  const fresh = () => beginDeal({ primary, backup, subjectId: 'P1' }, 'deal:2', NOW, true).deal;
+
+  it('reconstructs the exact live assignment only for its subject', () => {
+    expect(cardPreviewPrivateFor(fresh(), 'P1', NOW + 4000, false)).toEqual({
+      status: 'assigned',
+      previewId: 'deal:2',
+      card: primary,
+      burnDeadline: NOW + PREVIEW_MS,
+      revealAt: NOW + PREVIEW_MS,
+      canBurn: false,
+    });
+    expect(cardPreviewPrivateFor(fresh(), 'P2', NOW + 4000, true)).toBeNull();
+  });
+
+  it('never reconstructs an expired, burned, or completed preview', () => {
+    const live = fresh();
+    expect(cardPreviewPrivateFor(live, 'P1', NOW + PREVIEW_MS + 1, true)).toBeNull();
+    expect(cardPreviewPrivateFor(burnDeal(live, 'P1', NOW + 1000).deal, 'P1', NOW + 2000, true)).toBeNull();
+    expect(cardPreviewPrivateFor(completeDeal(live).deal, 'P1', NOW + 2000, true)).toBeNull();
+  });
+});
+
 describe('burnDeal', () => {
   const fresh = (): ReturnType<typeof beginDeal> =>
-    beginDeal({ primary, backup, subjectId: 'P1' }, 'deal:2', NOW);
+    beginDeal({ primary, backup, subjectId: 'P1' }, 'deal:2', NOW, true);
 
   it('subject burn inside the window swaps to the backup and quarantines the vetoed card', () => {
     const { deal, burned } = burnDeal(fresh().deal, 'P1', NOW + 4000);
@@ -72,13 +110,15 @@ describe('burnDeal', () => {
 
 describe('completeDeal', () => {
   it('clean deal consumes only the dealt card (the backup returns to the pool)', () => {
-    const { deal, usedCardIds } = completeDeal(beginDeal({ primary, backup, subjectId: null }, 'deal:2', NOW).deal);
+    const begun = beginDeal({ primary, backup, subjectId: null }, 'deal:2', NOW, false);
+    const { deal, usedCardIds } = completeDeal(begun.deal);
     expect(deal.done).toBe(true);
     expect(usedCardIds).toEqual([primary.id]);
   });
 
   it('burned deal consumes the backup AND the vetoed card', () => {
-    const burnt = burnDeal(beginDeal({ primary, backup, subjectId: 'P1' }, 'deal:2', NOW).deal, 'P1', NOW + 1000).deal;
+    const begun = beginDeal({ primary, backup, subjectId: 'P1' }, 'deal:2', NOW, true);
+    const burnt = burnDeal(begun.deal, 'P1', NOW + 1000).deal;
     expect(completeDeal(burnt).usedCardIds).toEqual([backup.id, primary.id]);
   });
 });

@@ -18,6 +18,7 @@
 //     DESCEND can fire early (host anytime, anyone past the softcap).
 // step.done -> LADDER (5s) -> next circle or JUDGMENT. Epoch bumps on EVERY phase change.
 import type {
+  CardPreviewReleasedPayload,
   DealRequest,
   Effect,
   GameEvent,
@@ -280,8 +281,12 @@ function handleBegin(s: RoomState, e: Extract<GameEvent, { t: 'BEGIN' }>, seed: 
   if (act.length < 3) return noop(s);
   if (!act.every((p) => p.ceilingSet)) return noop(s);
   if (!act.every((p) => p.attested18)) return noop(s);
-  const arc = buildArc(s.config, s.players, seed);
-  const ns: RoomState = { ...s, arc, circleIdx: 0, devilsBargain: null, judgment: null };
+  // Stage mode follows the roster at the instant the night begins. A CONFIG frame
+  // can be minutes old while people are still joining, so its derived count must
+  // never strand a five-person table in phone mode (or a smaller table in Stage).
+  const config = { ...s.config, stageMode: act.length >= 5 };
+  const arc = buildArc(config, s.players, seed);
+  const ns: RoomState = { ...s, config, arc, circleIdx: 0, devilsBargain: null, judgment: null };
   return enterCircleIntro(ns, 0, e.at, [{ k: 'AUDIO', sting: 'descend' }]);
 }
 
@@ -549,9 +554,16 @@ function handleBurn(s: RoomState, e: Extract<GameEvent, { t: 'BURN' }>): ReduceR
   const { deal, burned } = burnDeal(s.deal, e.id, e.at);
   if (!burned) return noop(s);
   const ns = mapPlayer({ ...s, deal }, e.id, (q) => ({ ...q, brimstones: q.brimstones - 1 }));
-  // ZERO effects — burned and clean ceremonies are byte-identical on the wire, the
-  // schedule never moves, and nothing lands in telemetry attributably (4.5 / D-115).
-  return { state: ns, effects: [] };
+  const payload: CardPreviewReleasedPayload = {
+    status: 'released',
+    previewId: deal.timerId,
+  };
+  // PRIVATE acknowledgement only. The schedule never moves and no public state,
+  // audio, or telemetry can reveal that the subject used the safety valve.
+  return {
+    state: ns,
+    effects: [{ k: 'SEND', to: e.id, kind: 'preview', payload }],
+  };
 }
 
 // ===== descend =====
@@ -770,7 +782,8 @@ function startDeal(s: RoomState, req: DealRequest, now: number, acc: Effect[]): 
     ns = bumpPhase(ns, { k: 'DEAL', circle: ns.circleIdx });
     effects.push({ k: 'BROADCAST' });
   }
-  const { deal, effects: dealFx } = beginDeal(req, `deal:${ns.epoch}`, now);
+  const canBurn = req.subjectId !== null && (findPlayer(ns, req.subjectId)?.brimstones ?? 0) > 0;
+  const { deal, effects: dealFx } = beginDeal(req, `deal:${ns.epoch}`, now, canBurn);
   return { state: { ...ns, deal, spotlight: null }, effects: [...effects, ...dealFx, { k: 'BROADCAST' }] };
 }
 

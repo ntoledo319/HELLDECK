@@ -136,7 +136,10 @@ function apply(state: RoomState, rand: () => number, step: GameStep, acc: Effect
     }
     if ($deal) {
       // Core would run the 4.5 ceremony; here it completes instantly with the same writeback.
-      const begun = beginDeal($deal, 'deal:test', NOW);
+      const canBurn =
+        $deal.subjectId !== null &&
+        (state.players.find((p) => p.id === $deal.subjectId)?.brimstones ?? 0) > 0;
+      const begun = beginDeal($deal, 'deal:test', NOW, canBurn);
       const done = completeDeal(begun.deal);
       const nextState: RoomState = {
         ...state,
@@ -887,7 +890,14 @@ describe('confession through reduce() (core $deal/$phase integration)', () => {
     expect(chosenId).toBe(hand[0]);
 
     const fx = d.dispatch({ t: 'BURN', id: c, kind: 'card', at: T + 2_000 }); // inside the 10s window
-    expect(fx).toEqual([]); // burned and clean ceremonies are byte-identical on the wire (4.5)
+    expect(fx).toEqual([
+      {
+        k: 'SEND',
+        to: c,
+        kind: 'preview',
+        payload: { status: 'released', previewId: d.state.deal!.timerId },
+      },
+    ]); // PRIVATE acknowledgement only; public ceremony remains byte-identical (4.5)
 
     d.fireNext(); // ceremony completes on the ORIGINAL schedule
     expect(gs(d).sub).toBe('LOCK');

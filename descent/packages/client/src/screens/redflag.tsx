@@ -31,7 +31,7 @@
 //   .fight-card.compact .fc-side { min-height: 0; padding: 11px 14px; }
 //   .fight-card.compact .fc-line { font-size: 15px; line-height: 1.2; }
 //   .stamp-smash { color: var(--ember); border-color: var(--ember); } /* SMASH survives in ember; PASS reuses .stamp-false (blood) */
-import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { asDeckView } from '../games/wire';
 import type { Net } from '../net/ws';
 import type { PlayerView, RoomView } from '../view';
@@ -194,19 +194,21 @@ function Vote({
   net: Net;
   deadline: number;
 }) {
-  const [picked, setPicked] = useState<'smash' | 'pass' | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<'smash' | 'pass' | null>(null);
   const chosen = picked ?? v.youVoted;
   const locked = chosen !== null;
   const vote = (side: 'smash' | 'pass'): void => {
     if (locked) return;
-    setPicked(side);
-    net.send({ t: 'INPUT', p: { vote: side } }); // engine parseVote reads exactly `vote`
+    if (net.send({ t: 'INPUT', p: { vote: side } })) setPicked(side); // engine parseVote reads exactly `vote`
   };
 
   if (v.youAreDefender) {
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">VERDICT INCOMING</div>
+        <header class="vote-head">
+          <span class="vote-tally">VERDICT INCOMING</span>
+          <Ring deadline={deadline} now={() => net.serverNow()} />
+        </header>
         <h1 class="lights">
           {v.votedCount}/{v.eligible}
         </h1>
@@ -219,20 +221,32 @@ function Vote({
     <main class="screen vote">
       <header class="vote-head">
         <span class="vote-tally">
-          {v.votedCount}/{v.eligible} SWIPED
+          {v.votedCount}/{v.eligible} VOTES IN
         </span>
         <Ring deadline={deadline} now={() => net.serverNow()} />
       </header>
       <FightCard perk={v.perk} flag={v.flag} compact />
       <div class={locked ? 'bet-slabs locked' : 'bet-slabs'}>
-        <button class={'bet-slab' + (chosen === 'smash' ? ' picked' : '')} disabled={locked} onClick={() => vote('smash')}>
+        <button
+          type="button"
+          class={'bet-slab' + (chosen === 'smash' ? ' picked' : '')}
+          disabled={locked}
+          aria-pressed={chosen === 'smash'}
+          onClick={() => vote('smash')}
+        >
           SMASH
         </button>
-        <button class={'bet-slab' + (chosen === 'pass' ? ' picked' : '')} disabled={locked} onClick={() => vote('pass')}>
+        <button
+          type="button"
+          class={'bet-slab' + (chosen === 'pass' ? ' picked' : '')}
+          disabled={locked}
+          aria-pressed={chosen === 'pass'}
+          onClick={() => vote('pass')}
+        >
           PASS
         </button>
       </div>
-      {locked && <div class="locked-banner flash-in">LOCKED — YOU SWIPED {chosen === 'smash' ? 'SMASH' : 'PASS'}</div>}
+      {locked && <div class="locked-banner flash-in" role="status" aria-live="polite">LOCKED — YOU CHOSE {chosen === 'smash' ? 'SMASH' : 'PASS'}</div>}
       {me?.role === 'host' && (
         <button class="btn-ghost" onClick={() => net.send({ t: 'VOID' })}>
           KILL THE DATE (VOID)
@@ -291,7 +305,7 @@ export function RedflagReveal({
               </div>
             </div>
             {rv.youVoted !== null && (
-              <div class="you-chip">YOU SWIPED {rv.youVoted === 'smash' ? 'SMASH' : 'PASS'}</div>
+              <div class="you-chip">YOU CHOSE {rv.youVoted === 'smash' ? 'SMASH' : 'PASS'}</div>
             )}
           </>
         ))}

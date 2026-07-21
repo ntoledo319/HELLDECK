@@ -113,6 +113,16 @@ export function requestSpotlightBurn(
   return { ...state, burnPending: true };
 }
 
+/** A rejected request must never strand both private-decision actions in a disabled state. */
+export function rejectSpotlightBurn(state: SpotlightClientState | null): SpotlightClientState | null {
+  return state?.burnPending ? { ...state, burnPending: false } : state;
+}
+
+/** Reconnect replay is authoritative; retain only a local LET IT RIDE dismissal. */
+export function prepareSpotlightReconnect(state: SpotlightClientState | null): SpotlightClientState | null {
+  return state?.dismissed ? state : null;
+}
+
 export function dismissSpotlight(
   state: SpotlightClientState | null,
   ceremonyId: string,

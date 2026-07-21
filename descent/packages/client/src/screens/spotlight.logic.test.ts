@@ -3,7 +3,9 @@ import {
   dismissSpotlight,
   expireSpotlight,
   parseSpotlightMessage,
+  prepareSpotlightReconnect,
   receiveSpotlightMessage,
+  rejectSpotlightBurn,
   requestSpotlightBurn,
   spotlightBurnCopy,
   spotlightRoleTitle,
@@ -56,6 +58,19 @@ describe('spotlight acknowledgement state', () => {
     const pending = requestSpotlightBurn(live(), 'spotlight:c4:l0', 10_000);
     expect(pending).toMatchObject({ burnPending: true, dismissed: false });
     expect(requestSpotlightBurn(pending, 'spotlight:c4:l0', 10_001)).toBe(pending);
+  });
+
+  it('recovers both actions when the server rejects a pending burn', () => {
+    const pending = live({ burnPending: true });
+    expect(rejectSpotlightBurn(pending)).toMatchObject({ burnPending: false, dismissed: false });
+    expect(rejectSpotlightBurn(live())).toEqual(live());
+    expect(rejectSpotlightBurn(null)).toBeNull();
+  });
+
+  it('lets reconnect replay rebuild pending work without reopening a dismissed curtain', () => {
+    expect(prepareSpotlightReconnect(live({ burnPending: true }))).toBeNull();
+    expect(prepareSpotlightReconnect(live())).toBeNull();
+    expect(prepareSpotlightReconnect(live({ dismissed: true }))).toMatchObject({ dismissed: true });
   });
 
   it('will not request an invalid, unavailable, stale, or mismatched burn', () => {

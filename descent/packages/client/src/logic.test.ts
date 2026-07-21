@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   biggestMover,
   canDescend,
+  cleanCodeInput,
   cleanName,
   depthGate,
   DESCEND_SOFTCAP_MS,
@@ -37,6 +38,13 @@ describe('validCode (spec 4.1 alphabet: 20 consonants, no vowels/lookalikes)', (
     expect(validCode('HRLMM')).toBe(false);
     expect(validCode('hrlm')).toBe(false);
     expect(validCode('')).toBe(false);
+  });
+});
+
+describe('cleanCodeInput', () => {
+  it('uppercases, strips separators and forbidden characters, and caps at four', () => {
+    expect(cleanCodeInput(' h-r l_m! ')).toBe('HRLM');
+    expect(cleanCodeInput('he11bcdfz')).toBe('HBCD');
   });
 });
 

@@ -189,6 +189,18 @@ describe('BEGIN validation', () => {
     });
   });
 
+  it('derives Stage mode from the live roster when BEGIN is pressed', () => {
+    const grew = lobbyDriver(5, 5);
+    expect(grew.state.config?.stageMode).toBe(false); // deliberately stale fixture
+    grew.dispatch({ t: 'BEGIN', id: 'P0', at: 1000 });
+    expect(grew.state.config?.stageMode).toBe(true);
+
+    const shrank = lobbyDriver(4, 5);
+    shrank.state = { ...shrank.state, config: { ...shrank.state.config!, stageMode: true } };
+    shrank.dispatch({ t: 'BEGIN', id: 'P0', at: 1000 });
+    expect(shrank.state.config?.stageMode).toBe(false);
+  });
+
   it('rejects: non-host, <3 actives, unset ceiling, missing attestation, no config, unentitled', () => {
     const base = lobbyDriver(4, 5);
     const before = base.state;
@@ -458,13 +470,17 @@ describe('reveal hold (core-owned via $phase REVEAL)', () => {
 
 // ===== deal ceremony integration (D-115) =====
 describe('deal ceremony (core-run via $deal)', () => {
-  function runCeremony(burn: boolean): { d: Driver; timeline: string } {
+  function runCeremony(burn: boolean): { d: Driver; effects: unknown[]; publicTimeline: string } {
     const d = nightDriver('reality');
-    const collected: unknown[] = [];
+    const collected: Array<{ k: string }> = [];
     collected.push(...d.dispatch({ t: 'TIMER', timerId: 'intro:1', at: T }));
     if (burn) collected.push(...d.dispatch({ t: 'BURN', id: 'P1', kind: 'card', at: T + 5000 }));
     collected.push(...d.dispatch({ t: 'TIMER', timerId: 'deal:2', at: T + PREVIEW_MS }));
-    return { d, timeline: JSON.stringify(collected) };
+    return {
+      d,
+      effects: collected,
+      publicTimeline: JSON.stringify(collected.filter((effect) => effect.k !== 'SEND')),
+    };
   }
 
   it('subject pre-view goes ONLY to the subject, ceremony completes into the module', () => {
@@ -475,7 +491,14 @@ describe('deal ceremony (core-run via $deal)', () => {
         k: 'SEND',
         to: 'P1',
         kind: 'preview',
-        payload: { card: PRIMARY, burnDeadline: T + PREVIEW_MS },
+        payload: {
+          status: 'assigned',
+          previewId: 'deal:2',
+          card: PRIMARY,
+          burnDeadline: T + PREVIEW_MS,
+          revealAt: T + PREVIEW_MS,
+          canBurn: true,
+        },
       },
     ]);
     expect(d.state.deal?.done).toBe(true);
@@ -484,10 +507,17 @@ describe('deal ceremony (core-run via $deal)', () => {
     expect(d.state.phase).toEqual({ k: 'INPUT', circle: 0, sub: 'debate', deadline: T + PREVIEW_MS + 25_000 });
   });
 
-  it('BURNED vs CLEAN ceremonies are byte-identical on the wire (D-115)', () => {
+  it('BURNED vs CLEAN ceremonies have identical public effects and telemetry (D-115)', () => {
     const clean = runCeremony(false);
     const burned = runCeremony(true);
-    expect(burned.timeline).toBe(clean.timeline); // the burn contributed ZERO effects
+    expect(burned.publicTimeline).toBe(clean.publicTimeline);
+    expect(burned.d.state.telemetry).toEqual(clean.d.state.telemetry);
+    expect(burned.effects).toContainEqual({
+      k: 'SEND',
+      to: 'P1',
+      kind: 'preview',
+      payload: { status: 'released', previewId: 'deal:2' },
+    });
     expect(burned.d.state.deal?.card.id).toBe(BACKUP.id); // but the card silently swapped
     expect(burned.d.state.usedCardIds).toEqual([BACKUP.id, PRIMARY.id]); // veto quarantined
     expect(burned.d.state.players[1]?.brimstones).toBe(1); // own count decremented (invisible to others)
@@ -496,7 +526,7 @@ describe('deal ceremony (core-run via $deal)', () => {
   it('burns from non-subjects and brimstone-less subjects are inert', () => {
     const d = nightDriver('reality');
     d.dispatch({ t: 'TIMER', timerId: 'intro:1', at: T });
-    d.dispatch({ t: 'BURN', id: 'P2', kind: 'card', at: T + 3000 });
+    expect(d.dispatch({ t: 'BURN', id: 'P2', kind: 'card', at: T + 3000 })).toEqual([]);
     expect(d.state.deal?.card.id).toBe(PRIMARY.id);
 
     const broke = nightDriver('reality');
@@ -505,8 +535,21 @@ describe('deal ceremony (core-run via $deal)', () => {
       players: broke.state.players.map((p) => (p.id === 'P1' ? { ...p, brimstones: 0 } : p)),
     };
     broke.dispatch({ t: 'TIMER', timerId: 'intro:1', at: T });
-    broke.dispatch({ t: 'BURN', id: 'P1', kind: 'card', at: T + 3000 });
+    expect(broke.dispatch({ t: 'BURN', id: 'P1', kind: 'card', at: T + 3000 })).toEqual([]);
     expect(broke.state.deal?.card.id).toBe(PRIMARY.id);
+  });
+
+  it('expired and duplicate burns never receive a release acknowledgement', () => {
+    const late = nightDriver('reality');
+    late.dispatch({ t: 'TIMER', timerId: 'intro:1', at: T });
+    expect(
+      late.dispatch({ t: 'BURN', id: 'P1', kind: 'card', at: T + PREVIEW_MS + 1 }),
+    ).toEqual([]);
+
+    const duplicate = nightDriver('reality');
+    duplicate.dispatch({ t: 'TIMER', timerId: 'intro:1', at: T });
+    expect(duplicate.dispatch({ t: 'BURN', id: 'P1', kind: 'card', at: T + 1000 })).toHaveLength(1);
+    expect(duplicate.dispatch({ t: 'BURN', id: 'P1', kind: 'card', at: T + 2000 })).toEqual([]);
   });
 
   it('no code path fabricates content: an unburned backup returns to the pool untraced', () => {

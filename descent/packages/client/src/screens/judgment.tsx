@@ -27,8 +27,12 @@ export function Judgment({
   const supers = (jv?.superlatives ?? []).map((s) => ({ name: name(s.playerId), title: s.title }));
   const bargain = jv?.bargain ?? null;
   const [shareNote, setShareNote] = useState<string | null>(null);
+  const [sharing, setSharing] = useState(false);
 
   const doShare = async (): Promise<void> => {
+    if (sharing) return;
+    setSharing(true);
+    setShareNote(null);
     try {
       const res = await shareCard({
         winnerName: winnerNames.join(' & ') || '???',
@@ -40,9 +44,13 @@ export function Judgment({
         },
         url: `${location.origin}/`,
       });
-      setShareNote(res === 'shared' ? 'DAMAGE SPREAD.' : 'SAVED TO YOUR PHONE.');
+      setShareNote(
+        res === 'shared' ? 'DAMAGE SPREAD.' : res === 'downloaded' ? 'SAVED TO YOUR PHONE.' : 'SHARE CANCELED.',
+      );
     } catch {
       setShareNote('THE CARD ESCAPED. TRY AGAIN.');
+    } finally {
+      setSharing(false);
     }
   };
 
@@ -69,10 +77,14 @@ export function Judgment({
         )}
       </div>
       <div class="judgment-actions">
-        <button class="btn-blood big" onClick={() => void doShare()}>
-          SPREAD THE DAMAGE
+        <button class="btn-blood big" disabled={sharing} aria-busy={sharing} onClick={() => void doShare()}>
+          {sharing ? 'FORGING THE RECEIPT…' : 'SPREAD THE DAMAGE'}
         </button>
-        {shareNote && <div class="share-note">{shareNote}</div>}
+        {shareNote && (
+          <div class="share-note" role="status" aria-live="polite">
+            {shareNote}
+          </div>
+        )}
         {me?.role === 'host' && (
           <button class="btn-ghost" onClick={() => net.send({ t: 'DESCEND' })}>
             DESCEND AGAIN

@@ -1,6 +1,6 @@
-import { useRef } from 'preact/hooks';
+import { useEffect, useRef } from 'preact/hooks';
 import type { Net } from '../net/ws';
-import { Ring } from './bits';
+import { ModalOverlay, Ring } from './bits';
 import { spotlightBurnCopy, spotlightRoleTitle, type SpotlightAssigned } from './spotlight.logic';
 
 export function SpotlightOverlay({
@@ -13,22 +13,24 @@ export function SpotlightOverlay({
   assignment: SpotlightAssigned;
   burnPending: boolean;
   net: Net;
-  onBurn: (at: number) => void;
+  onBurn: (at: number) => boolean;
   onDismiss: () => void;
 }) {
   const burnSentRef = useRef(false);
+  useEffect(() => {
+    if (!burnPending) burnSentRef.current = false;
+  }, [burnPending]);
   const copy = spotlightBurnCopy(assignment.canBurn, burnPending);
   const requestBurn = (): void => {
     const now = net.serverNow();
     if (burnSentRef.current || burnPending || !assignment.canBurn || now >= assignment.burnDeadline) {
       return;
     }
-    burnSentRef.current = true;
-    onBurn(now);
+    if (onBurn(now)) burnSentRef.current = true;
   };
 
   return (
-    <div class="overlay preview" role="dialog" aria-modal="true" aria-labelledby="spotlight-role-title">
+    <ModalOverlay label="Private spotlight assignment" className="preview">
       <div class="preview-tag">THE PIT PICKED YOU</div>
       <p id="spotlight-role-title" class="preview-card">
         {spotlightRoleTitle(assignment.role)}
@@ -45,6 +47,6 @@ export function SpotlightOverlay({
       <p class="preview-note" role="status" aria-live="polite">
         {copy.note}
       </p>
-    </div>
+    </ModalOverlay>
   );
 }

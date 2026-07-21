@@ -5,6 +5,7 @@
 // reduce() as TIMER events — timers are events, not effects) and DO-internal timers
 // prefixed "do:" (clock ping batches, HEAT flush) that never touch the engine.
 import {
+  cardPreviewPrivateFor,
   initialRoom,
   reduce,
   spotlightPrivateFor,
@@ -102,7 +103,9 @@ export class RoomDO implements DurableObject {
     if (!this.state) return;
     const att: Attachment = { playerId: token, clockOffset: 0, clock: emptyClock(), fire: { start: 0, used: 0 } };
     ws.serializeAttachment(att);
-    this.sendTo(ws, { t: 'WELCOME', you: token, token, code: this.state.code });
+    // Seed client/server clock alignment before STATE or any absolute-deadline
+    // PRIVATE payload. The follow-up ping batch refines this one-way sample.
+    this.sendTo(ws, { t: 'WELCOME', you: token, token, code: this.state.code, sv: now });
     if (this.state.players.some((p) => p.id === token)) {
       // Silent reconnect: the engine marks the seat live again (D-111 completes the rule).
       await this.dispatch({ t: 'RECONNECT', id: token, at: now });
@@ -328,11 +331,14 @@ export class RoomDO implements DurableObject {
     const view = redactFor(this.state, playerId);
     this.sendTo(ws, { t: 'STATE', s: view, epoch: this.state.epoch });
     // SEND effects are intentionally ephemeral. Rebuild only the viewer's CURRENT
-    // assignment on an explicit reconnect/RESYNC so a dropped phone retains its
-    // safety window without broadcasting candidates, burns, or historical roles.
+    // assignment/preview on an explicit reconnect/RESYNC so a dropped phone retains
+    // its safety window without broadcasting candidates, burns, or private content.
     if (replayPrivate) {
       const assignment = spotlightPrivateFor(this.state.spotlight ?? null, playerId, now);
       if (assignment) this.sendTo(ws, { t: 'PRIVATE', k: 'spotlight', p: assignment });
+      const canBurn = (this.state.players.find((player) => player.id === playerId)?.brimstones ?? 0) > 0;
+      const preview = cardPreviewPrivateFor(this.state.deal, playerId, now, canBurn);
+      if (preview) this.sendTo(ws, { t: 'PRIVATE', k: 'preview', p: preview });
     }
   }
 

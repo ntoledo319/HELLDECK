@@ -257,7 +257,13 @@ describe('RoomDO handshake & redaction', () => {
   it('connect: WELCOME (with token) then full STATE (3.1 order)', async () => {
     const { room, ctx } = await makeRoom();
     const ws = await connect(room, ctx, 'tok1');
-    expect(ws.frames[0]).toMatchObject({ t: 'WELCOME', you: 'tok1', token: 'tok1', code: 'HELL' });
+    expect(ws.frames[0]).toMatchObject({
+      t: 'WELCOME',
+      you: 'tok1',
+      token: 'tok1',
+      code: 'HELL',
+      sv: expect.any(Number),
+    });
     expect(ws.frames[1]?.['t']).toBe('STATE');
   });
 
@@ -458,6 +464,115 @@ describe('RoomDO handshake & redaction', () => {
       expect(raw).not.toContain('declinedIds');
       assertNoSecrets(raw);
     }
+  });
+
+  it('card preview replay and burn acknowledgement stay correlated and socket-private', async () => {
+    const { room, ctx } = await makeRoom(); // HELL / N=5 / depth-5 warm opens on over/under
+    const socks: FakeWS[] = [];
+    for (let i = 0; i < 5; i++) {
+      const ws = await connect(room, ctx, `tok${i + 1}`);
+      await send(room, ws, { t: 'JOIN', name: `B${i}`, avatar: i });
+      await send(room, ws, { t: 'CEILING', v: 3 });
+      await send(room, ws, { t: 'ATTEST18' });
+      socks.push(ws);
+    }
+    await send(room, socks[0]!, { t: 'CONFIG', depth: 5, vibe: 'warm', stage: false });
+    await send(room, socks[0]!, { t: 'BEGIN' });
+
+    const timers = ctx.storage.data.get('timers') as Record<string, number>;
+    const intro = Object.entries(timers).find(([id]) => id.startsWith('intro:'));
+    expect(intro).toBeDefined();
+    for (const ws of socks) ws.clear();
+    vi.setSystemTime(intro![1]);
+    await room.alarm();
+
+    // Let the fixed spotlight ceremony settle cleanly. Its final callback starts
+    // over/under's named-card ceremony and privately assigns exactly one preview.
+    const spotlight = socks
+      .flatMap((ws) => ws.frames)
+      .find((frame) => frame['t'] === 'PRIVATE' && frame['k'] === 'spotlight');
+    const spotlightPayload = spotlight?.['p'] as Record<string, unknown> | undefined;
+    expect(spotlightPayload).toBeDefined();
+    for (const ws of socks) ws.clear();
+    vi.setSystemTime(Number(spotlightPayload!['burnDeadline']));
+    await room.alarm();
+    for (const ws of socks) ws.clear();
+    vi.setSystemTime(Number(spotlightPayload!['announceAt']));
+    await room.alarm();
+
+    const previewFrames = (ws: FakeWS): Array<Record<string, unknown>> =>
+      ws.frames.filter((frame) => frame['t'] === 'PRIVATE' && frame['k'] === 'preview');
+    const assigned = socks.flatMap((ws) => previewFrames(ws).map((frame) => ({ ws, frame })));
+    expect(assigned).toHaveLength(1);
+    let subject = assigned[0]!.ws;
+    const payload = assigned[0]!.frame['p'] as Record<string, unknown>;
+    expect(Object.keys(payload).sort()).toEqual([
+      'burnDeadline',
+      'canBurn',
+      'card',
+      'previewId',
+      'revealAt',
+      'status',
+    ]);
+    expect(payload).toMatchObject({
+      status: 'assigned',
+      previewId: expect.any(String),
+      card: expect.objectContaining({ id: expect.any(String), text: expect.any(String) }),
+      burnDeadline: expect.any(Number),
+      revealAt: expect.any(Number),
+      canBurn: true,
+    });
+    expect(payload['burnDeadline']).toBe(payload['revealAt']);
+    for (const ws of socks.filter((candidate) => candidate !== subject)) {
+      expect(previewFrames(ws)).toHaveLength(0);
+    }
+
+    // A dropped phone reseats with the same identity and gets the same live preview.
+    const subjectIndex = socks.indexOf(subject);
+    const subjectId = (subject.deserializeAttachment() as { playerId: string }).playerId;
+    ctx.sockets = ctx.sockets.filter((socket) => socket !== subject);
+    for (const ws of socks) ws.clear();
+    const reconnected = await connect(room, ctx, subjectId);
+    expect(reconnected.last('PRIVATE')).toEqual({ t: 'PRIVATE', k: 'preview', p: payload });
+    for (const ws of socks.filter((candidate) => candidate !== subject)) {
+      expect(previewFrames(ws)).toHaveLength(0);
+    }
+    socks[subjectIndex] = reconnected;
+    subject = reconnected;
+    // Consume the reconnect's immediate clock-sync tick before isolating RESYNC frames.
+    await room.alarm();
+
+    // RESYNC reconstructs the exact still-live assignment for the subject only.
+    for (const ws of socks) ws.clear();
+    await send(room, subject, { t: 'RESYNC' });
+    expect(subject.last('STATE')).toBeDefined();
+    expect(subject.last('PRIVATE')).toEqual({ t: 'PRIVATE', k: 'preview', p: payload });
+    for (const ws of socks.filter((candidate) => candidate !== subject)) {
+      expect(ws.frames).toEqual([]);
+    }
+
+    // A legal burn gets one correlated PRIVATE release. It does not move the fixed
+    // deadline or emit STATE, AT, AUDIO, HEAT, or any frame to another identity.
+    for (const ws of socks) ws.clear();
+    await send(room, subject, { t: 'BURN', kind: 'card' });
+    expect(subject.frames).toEqual([
+      {
+        t: 'PRIVATE',
+        k: 'preview',
+        p: { status: 'released', previewId: payload['previewId'] },
+      },
+    ]);
+    for (const ws of socks.filter((candidate) => candidate !== subject)) {
+      expect(ws.frames).toEqual([]);
+    }
+    const afterBurnTimers = ctx.storage.data.get('timers') as Record<string, number>;
+    expect(afterBurnTimers[String(payload['previewId'])]).toBe(payload['revealAt']);
+
+    // Once released, neither the burned card nor a historical acknowledgement is replayed.
+    subject.clear();
+    await send(room, subject, { t: 'RESYNC' });
+    expect(subject.last('STATE')).toBeDefined();
+    expect(previewFrames(subject)).toHaveLength(0);
   });
 });
 

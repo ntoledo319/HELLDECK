@@ -75,8 +75,14 @@ export class Net {
     this.ws?.close();
   }
 
-  send(msg: Record<string, unknown>): void {
-    if (this.ws?.readyState === WebSocket.OPEN) this.ws.send(JSON.stringify(msg));
+  send(msg: Record<string, unknown>): boolean {
+    if (this.ws?.readyState !== WebSocket.OPEN) return false;
+    try {
+      this.ws.send(JSON.stringify(msg));
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   /** Fire-tap: coalesced to at most one wire message per 500ms (spec 3.2). */
@@ -98,6 +104,14 @@ export class Net {
   handleMessage(m: { t: string; [k: string]: unknown }): void {
     switch (m.t) {
       case 'WELCOME':
+        // WELCOME is guaranteed to precede STATE/PRIVATE. Seed offset immediately
+        // so a freshly loaded phone cannot discard a live safety window because its
+        // wall clock is skewed; the 5-sample PING batch refines this estimate next.
+        if (typeof m['sv'] === 'number' && Number.isFinite(m['sv'])) {
+          const sample = m['sv'] - Date.now();
+          this.offsetSamples = [sample];
+          this.offset = sample;
+        }
         this.h.onWelcome(String(m['you'] ?? ''));
         break;
       case 'STATE': {

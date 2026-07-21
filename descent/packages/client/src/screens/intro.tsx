@@ -2,7 +2,7 @@
 // server owns the clock, we just render). Explainer copy lives client-side: it's UI chrome.
 // Spotlight games also host the 4.5 "WHO WANTS BLOOD?" claim here — tap to volunteer for the
 // spike; a claim only ever raises your odds of being picked, so it's a dare, not a trap.
-import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import type { Net } from '../net/ws';
 import { asView, type IntroView } from '../view';
 
@@ -61,12 +61,11 @@ export function CircleIntro({
   const title = meta?.title ?? 'THE NEXT CIRCLE';
   const blurb = meta?.blurb ?? '';
   const rungs = Math.max(arcLength, 1);
-  const [tapped, setTapped] = useState(false);
+  const [tapped, setTapped] = useConnectionOptimistic<boolean>(false);
   const claimed = iv?.youVolunteered || tapped;
   const claim = (): void => {
     if (claimed) return;
-    setTapped(true);
-    net.send({ t: 'CLAIM' });
+    if (net.send({ t: 'CLAIM' })) setTapped(true);
   };
   return (
     <main class="screen intro">
@@ -83,7 +82,7 @@ export function CircleIntro({
       {iv?.claimable && (
         <div class="blood-claim">
           {claimed ? (
-            <div class="locked-banner flash-in">HAND UP. THE DECK SEES YOU.</div>
+            <div class="locked-banner flash-in" role="status" aria-live="polite">HAND UP. THE DECK SEES YOU.</div>
           ) : (
             <button class="btn-blood big" onClick={claim}>
               WHO WANTS BLOOD?
