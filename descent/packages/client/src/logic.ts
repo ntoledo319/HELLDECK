@@ -9,6 +9,16 @@ export function cleanName(raw: string): string {
 }
 
 const CODE_RE = new RegExp(`^[${CODE_ALPHABET}]{4}$`);
+const CODE_SET = new Set(CODE_ALPHABET);
+
+/** Normalize typed/pasted room codes before they reach navigation or validation. */
+export function cleanCodeInput(raw: string): string {
+  return [...raw.toUpperCase()]
+    .filter((char) => CODE_SET.has(char))
+    .slice(0, 4)
+    .join('');
+}
+
 export function validCode(s: string): boolean {
   return CODE_RE.test(s);
 }

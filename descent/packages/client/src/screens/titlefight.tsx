@@ -32,7 +32,7 @@
 //   .corner-b.picked { border-color: var(--ember); background: rgba(226, 87, 27, 0.14); }
 //   .corners.locked .corner:not(.picked) { opacity: 0.4; }
 //   .vs-bolt { align-self: center; font-family: var(--display); font-weight: 900; font-size: clamp(20px, 6vw, 30px); letter-spacing: 0.04em; color: var(--ash); }
-import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { asDeckView } from '../games/wire';
 import type { Net } from '../net/ws';
 import type { PlayerView, RoomView } from '../view';
@@ -107,7 +107,8 @@ function Corners({
   const locked = chosen != null;
   const cell = (id: string, side: 'a' | 'b') => {
     const isYou = id === you;
-    const kicker = isYou ? "THAT'S YOU" : side === 'a' ? 'THIS CORNER' : 'THAT CORNER';
+    const corner = side === 'a' ? 'BLOOD CORNER' : 'EMBER CORNER';
+    const kicker = isYou ? `${corner} · YOU` : corner;
     const cls =
       `corner corner-${side}` + (isYou ? ' you' : '') + (chosen === id ? ' picked' : '');
     const inner = (
@@ -117,7 +118,14 @@ function Corners({
       </>
     );
     return onPick ? (
-      <button key={id} class={cls} disabled={locked} onClick={() => onPick(id)}>
+      <button
+        type="button"
+        key={id}
+        class={cls}
+        disabled={locked}
+        aria-pressed={chosen === id}
+        onClick={() => onPick(id)}
+      >
         {inner}
       </button>
     ) : (
@@ -226,13 +234,16 @@ function Vote({
   net: Net;
   deadline: number;
 }) {
-  const [picked, setPicked] = useState<string | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<string | null>(null);
   const chosen = picked ?? v.youVoted;
 
   if (v.youAreFighter) {
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">THE VERDICT</div>
+        <header class="vote-head">
+          <span class="vote-tally">THE VERDICT</span>
+          <Ring deadline={deadline} now={() => net.serverNow()} />
+        </header>
         <h1 class="lights">
           {v.votedCount}/{v.eligible}
         </h1>
@@ -243,8 +254,7 @@ function Vote({
 
   const pick = (id: string): void => {
     if (chosen != null) return;
-    setPicked(id);
-    net.send({ t: 'INPUT', p: { vote: id } });
+    if (net.send({ t: 'INPUT', p: { vote: id } })) setPicked(id);
   };
 
   return (
@@ -264,7 +274,7 @@ function Vote({
         </button>
       )}
       {chosen != null && (
-        <div class="locked-banner flash-in">POINTED — {nameOf(view, chosen)} TAKES YOUR VOTE</div>
+        <div class="locked-banner flash-in" role="status" aria-live="polite">POINTED — {nameOf(view, chosen)} TAKES YOUR VOTE</div>
       )}
     </main>
   );

@@ -141,7 +141,10 @@ function apply(state: RoomState, rand: () => number, step: GameStep, acc: Effect
     }
     if ($deal) {
       // Core would run the 4.5 ceremony; here it completes instantly with the same writeback.
-      const begun = beginDeal($deal, 'deal:test', NOW);
+      const canBurn =
+        $deal.subjectId !== null &&
+        (state.players.find((p) => p.id === $deal.subjectId)?.brimstones ?? 0) > 0;
+      const begun = beginDeal($deal, 'deal:test', NOW, canBurn);
       const done = completeDeal(begun.deal);
       const nextState: RoomState = {
         ...state,
@@ -1117,9 +1120,16 @@ describe('overunder through reduce() (core $deal/$phase/blocking integration)', 
     expect(gs(burned).card?.id).not.toBe(gs(clean).card?.id); // but the backup came out
     expect(burned.state.deal?.burnedId).toBe(gs(clean).card?.id ?? null);
     expect(burned.state.usedCardIds).toContain(gs(clean).card?.id); // vetoed card quarantined for the night
-    // the BURN itself emitted ZERO effects — burned and clean ceremonies are wire-identical
+    // The BURN emits only a correlated PRIVATE acknowledgement. Public effects stay identical.
     const burnLog = burned.log.find((l) => l.event.t === 'BURN');
-    expect(burnLog?.effects).toEqual([]);
+    expect(burnLog?.effects).toEqual([
+      {
+        k: 'SEND',
+        to: gs(burned).subjectId,
+        kind: 'preview',
+        payload: { status: 'released', previewId: burned.state.deal!.timerId },
+      },
+    ]);
     // and the ceremony completed on the SAME schedule (timing-identical law)
     expect(burned.state.deal?.completesAt).toBe(clean.state.deal?.completesAt);
     expect(burned.state.deal?.completesAt).toBe((burned.state.deal?.startedAt ?? T) + PREVIEW_MS);

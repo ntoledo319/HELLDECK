@@ -1,5 +1,5 @@
 // Roast Consensus input screens (spec 5.1 phase 2) + generic INPUT/WAITING_ON fallbacks.
-import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import type { Net } from '../net/ws';
 import { asView, type PlayerView, type RoastVoteView, type RoomView } from '../view';
 import { Devil, Ring } from './bits';
@@ -15,17 +15,17 @@ export function RoastVote({
   deadline: number | null;
 }) {
   const gv = asView<RoastVoteView>(view.gameView, 'VOTE');
-  const [picked, setPicked] = useState<string | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<string | null>(null);
   const locked = gv?.youVoted != null || picked !== null;
   const targets = view.players; // imps are citizens too: roastable, half-vote (4.8)
 
   const pick = (id: string): void => {
     if (locked || id === view.you) return;
-    setPicked(id);
-    net.send({ t: 'INPUT', p: { vote: id } });
+    if (net.send({ t: 'INPUT', p: { vote: id } })) setPicked(id);
   };
 
-  const pickedName = targets.find((t) => t.id === (picked ?? gv?.youVoted))?.name;
+  const selection = picked ?? gv?.youVoted ?? null;
+  const pickedName = targets.find((t) => t.id === selection)?.name;
 
   return (
     <main class="screen vote">
@@ -44,9 +44,10 @@ export function RoastVote({
           <button
             key={p.id}
             class={
-              'vote-cell' + (p.id === view.you ? ' self' : '') + (picked === p.id ? ' picked' : '')
+              'vote-cell' + (p.id === view.you ? ' self' : '') + (selection === p.id ? ' picked' : '')
             }
             disabled={locked || p.id === view.you}
+            aria-pressed={selection === p.id}
             onClick={() => pick(p.id)}
           >
             <Devil n={p.avatar} size={36} />
@@ -54,7 +55,11 @@ export function RoastVote({
           </button>
         ))}
       </div>
-      {locked && <div class="locked-banner flash-in">LOCKED IN{pickedName ? ` — ${pickedName} BURNS` : ''}</div>}
+      {locked && (
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
+          LOCKED IN{pickedName ? ` — ${pickedName} BURNS` : ''}
+        </div>
+      )}
     </main>
   );
 }

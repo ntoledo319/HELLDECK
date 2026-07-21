@@ -1,7 +1,8 @@
 // Lobby (spec 6.1): HUGE code + client-side QR, roster with connection dots, host depth/vibe
 // pickers gated by pool arithmetic, every player's private heat dial (value never rendered
 // after pick — SEALED), BEGIN THE DESCENT. The server is the enforcer; this is the mirror.
-import { useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { depthGate } from '../logic';
 import type { Net } from '../net/ws';
 import { qrEncode } from '../vendor/qr';
@@ -39,11 +40,19 @@ function QR({ text }: { text: string }) {
 }
 
 /** Private heat-ceiling flame dial. The picked value is discarded the moment it ships. */
-function HeatDial({ sealed, onSeal }: { sealed: boolean; onSeal: (v: 1 | 2 | 3 | 4 | 5) => void }) {
+function HeatDial({
+  sealed,
+  pending,
+  onSeal,
+}: {
+  sealed: boolean;
+  pending: boolean;
+  onSeal: (v: 1 | 2 | 3 | 4 | 5) => void;
+}) {
   const [dial, setDial] = useState(0);
   if (sealed) {
     return (
-      <div class="dial">
+      <div class="dial" role="status" aria-live="polite">
         <div class="dial-q">YOUR HEAT CEILING</div>
         <div class="sealed-stamp">SEALED</div>
         <div class="dial-note">Nobody sees your number. Not even a hint. Cards about you never run hotter.</div>
@@ -53,15 +62,29 @@ function HeatDial({ sealed, onSeal }: { sealed: boolean; onSeal: (v: 1 | 2 | 3 |
   return (
     <div class="dial">
       <div class="dial-q">HOW HOT CAN CARDS ABOUT YOU RUN?</div>
-      <div class="dial-flames">
+      <div class="dial-flames" role="group" aria-label="Heat ceiling from one to five">
         {[1, 2, 3, 4, 5].map((v) => (
-          <button key={v} class={dial >= v ? 'dial-flame lit' : 'dial-flame'} onClick={() => setDial(v)}>
+          <button
+            key={v}
+            type="button"
+            class={dial >= v ? 'dial-flame lit' : 'dial-flame'}
+            disabled={pending}
+            aria-label={`Set heat ceiling to ${v} of 5`}
+            aria-pressed={dial === v}
+            onClick={() => setDial(v)}
+          >
             <Flame lit={dial >= v} size={22} />
           </button>
         ))}
       </div>
-      <button class="btn-ghost" disabled={dial === 0} onClick={() => onSeal(dial as 1 | 2 | 3 | 4 | 5)}>
-        SEAL IT
+      <button
+        type="button"
+        class="btn-ghost"
+        disabled={dial === 0 || pending}
+        aria-busy={pending}
+        onClick={() => onSeal(dial as 1 | 2 | 3 | 4 | 5)}
+      >
+        {pending ? 'SEALING…' : 'SEAL IT'}
       </button>
       <div class="dial-note">Private. Silent. The deck obeys; the room never knows.</div>
     </div>
@@ -74,14 +97,19 @@ export function Lobby({ view, me, net }: { view: RoomView; me: PlayerView | null
   const gate = depthGate(sinners.length);
   const cfg = view.config;
 
-  const sealedKey = `hd:${view.code}:sealed`;
-  const [sealed, setSealed] = useState(
-    () => me?.sealed === true || localStorage.getItem(sealedKey) === '1',
-  );
+  const sealed = me?.sealed === true;
+  const [sealPending, setSealPending] = useConnectionOptimistic<boolean>(false);
+  useEffect(() => {
+    if (sealed) {
+      setSealPending(false);
+      return undefined;
+    }
+    if (!sealPending) return undefined;
+    const timeout = setTimeout(() => setSealPending(false), 3500);
+    return () => clearTimeout(timeout);
+  }, [sealed, sealPending]);
   const seal = (v: 1 | 2 | 3 | 4 | 5): void => {
-    net.send({ t: 'CEILING', v });
-    localStorage.setItem(sealedKey, '1'); // the FACT is stored; the value evaporates here
-    setSealed(true);
+    if (net.send({ t: 'CEILING', v })) setSealPending(true);
   };
 
   const setConfig = (depth: number, vibe: string): void => {
@@ -114,7 +142,11 @@ export function Lobby({ view, me, net }: { view: RoomView; me: PlayerView | null
       <div class="roster">
         {view.players.map((p) => (
           <div key={p.id} class={p.role === 'host' ? 'roster-row host-row' : 'roster-row'}>
-            <span class={p.connected ? 'conn-dot on' : 'conn-dot'} />
+            <span
+              class={p.connected ? 'conn-dot on' : 'conn-dot'}
+              role="img"
+              aria-label={p.connected ? 'Connected' : 'Disconnected'}
+            />
             <span style="color:var(--ember)">
               <Devil n={p.avatar} size={26} />
             </span>
@@ -122,14 +154,16 @@ export function Lobby({ view, me, net }: { view: RoomView; me: PlayerView | null
               {p.name}
               {p.id === view.you ? ' — YOU' : ''}
             </span>
-            {p.role === 'imp' && <span class="roster-tag">IMP</span>}
-            {p.role === 'host' && <span class="roster-tag">HOST</span>}
-            {p.sealed === true && <span class="roster-tag sealed-tag">SEALED</span>}
+            <span class="roster-tags">
+              {p.role === 'imp' && <span class="roster-tag">IMP</span>}
+              {p.role === 'host' && <span class="roster-tag">HOST</span>}
+              {p.sealed === true && <span class="roster-tag sealed-tag">SEALED</span>}
+            </span>
           </div>
         ))}
       </div>
 
-      <HeatDial sealed={sealed} onSeal={seal} />
+      <HeatDial sealed={sealed} pending={sealPending} onSeal={seal} />
 
       {isHost && (
         <>
@@ -140,6 +174,7 @@ export function Lobby({ view, me, net }: { view: RoomView; me: PlayerView | null
                 key={o.d}
                 class={cfg?.depth === o.d ? 'pick sel' : 'pick'}
                 disabled={o.d > gate.max}
+                aria-pressed={cfg?.depth === o.d}
                 onClick={() => setConfig(o.d, cfg?.vibe ?? 'warm')}
               >
                 <span>{o.name}</span>
@@ -155,6 +190,7 @@ export function Lobby({ view, me, net }: { view: RoomView; me: PlayerView | null
               <button
                 key={o.v}
                 class={cfg?.vibe === o.v ? 'pick sel' : 'pick'}
+                aria-pressed={cfg?.vibe === o.v}
                 onClick={() => setConfig(cfg?.depth ?? 7, o.v)}
               >
                 <span>{o.name}</span>
@@ -165,7 +201,11 @@ export function Lobby({ view, me, net }: { view: RoomView; me: PlayerView | null
       )}
 
       <div class="begin-block">
-        {beginHint && <div class="begin-hint">{beginHint}</div>}
+        {beginHint && (
+          <div class="begin-hint" role="status" aria-live="polite">
+            {beginHint}
+          </div>
+        )}
         {isHost && (
           <button class="btn-blood big" disabled={beginHint !== null} onClick={() => net.send({ t: 'BEGIN' })}>
             BEGIN THE DESCENT

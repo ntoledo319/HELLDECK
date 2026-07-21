@@ -29,6 +29,7 @@
 //     color: var(--blood);
 //   }
 import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { asDeckView } from '../games/wire';
 import type { Net } from '../net/ws';
 import type { PlayerView, RoomView } from '../view';
@@ -142,7 +143,7 @@ function Pitch({
         <p class="gate-note">
           Argue it like your rent's due on it. Nobody cares that you're right — they pay out for LOUD.
           <br />
-          Make it personal. Point at someone. The meanest true thing in the room wins the pot.
+          Make the case vivid. Work the room. The sharpest argument wins the pot.
           <br />
           Hate the hand you drew? SKIP-'EM once and pull a fresh poison — same fight, new venom.
         </p>
@@ -210,7 +211,10 @@ function Vote({
   if (youArePitcher !== null) {
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">THE JURY'S OUT</div>
+        <header class="vote-head">
+          <span class="vote-tally">THE JURY'S OUT</span>
+          <Ring deadline={deadline} now={() => net.serverNow()} />
+        </header>
         <h1 class="lights">
           {v.votedCount}/{v.eligible}
         </h1>
@@ -225,7 +229,10 @@ function Vote({
     if (me?.role === 'imp') {
       return (
         <main class="screen waiting">
-          <div class="waiting-label breathe">NOT YOUR CALL</div>
+          <header class="vote-head">
+            <span class="vote-tally">NOT YOUR CALL · ONE JUDGE</span>
+            <Ring deadline={deadline} now={() => net.serverNow()} />
+          </header>
           <h1 class="lights">ONE JUDGE</h1>
           <p class="game-blurb">Three left standing. The lone survivor scores the damage. You just watch it land.</p>
         </main>
@@ -255,11 +262,10 @@ function DamageJudge({
 }) {
   const [rA, setRA] = useState<number | null>(v.youRated?.A ?? null);
   const [rB, setRB] = useState<number | null>(v.youRated?.B ?? null);
-  const [dealt, setDealt] = useState<boolean>(v.youRated != null);
+  const [dealt, setDealt] = useConnectionOptimistic<boolean>(v.youRated != null);
   const commit = (): void => {
     if (rA === null || rB === null || dealt) return;
-    setDealt(true);
-    net.send({ t: 'INPUT', p: { rate: { A: rA, B: rB } } });
+    if (net.send({ t: 'INPUT', p: { rate: { A: rA, B: rB } } })) setDealt(true);
   };
   return (
     <main class="screen vote">
@@ -270,7 +276,7 @@ function DamageJudge({
       <Meter label={pitcherAName} option={v.optionA} value={rA} onSet={setRA} disabled={dealt} />
       <Meter label={pitcherBName} option={v.optionB} value={rB} onSet={setRB} disabled={dealt} />
       {dealt ? (
-        <div class="locked-banner flash-in">
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
           DAMAGE DEALT — {rA} vs {rB}
         </div>
       ) : (
@@ -302,12 +308,15 @@ function Meter({
       <div class="dial-q">
         {label} — “{option}”
       </div>
-      <div class="dial-flames">
+      <div class="dial-flames" role="group" aria-label={`${label} damage score`}>
         {[1, 2, 3, 4, 5].map((n) => (
           <button
             key={n}
+            type="button"
             class={n <= lit ? 'dial-flame lit' : 'dial-flame'}
             disabled={disabled}
+            aria-label={`Score ${label} ${n} of 5`}
+            aria-pressed={value === n}
             onClick={() => onSet(n)}
           >
             <Flame lit={n <= lit} size={20} />
@@ -333,13 +342,12 @@ function Ballot({
   pitcherAName: string;
   pitcherBName: string;
 }) {
-  const [picked, setPicked] = useState<Side | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<Side | null>(null);
   const chosen = picked ?? v.youVoted;
   const locked = chosen !== null;
   const vote = (side: Side): void => {
     if (locked) return;
-    setPicked(side);
-    net.send({ t: 'INPUT', p: { vote: side } });
+    if (net.send({ t: 'INPUT', p: { vote: side } })) setPicked(side);
   };
   const chosenName = chosen === 'A' ? pitcherAName : chosen === 'B' ? pitcherBName : null;
   return (
@@ -355,6 +363,7 @@ function Ballot({
         <button
           class={'faceoff-slab' + (chosen === 'A' ? ' picked' : '')}
           disabled={locked}
+          aria-pressed={chosen === 'A'}
           onClick={() => vote('A')}
         >
           <span class="faceoff-label">{pitcherAName}</span>
@@ -363,13 +372,14 @@ function Ballot({
         <button
           class={'faceoff-slab' + (chosen === 'B' ? ' picked' : '')}
           disabled={locked}
+          aria-pressed={chosen === 'B'}
           onClick={() => vote('B')}
         >
           <span class="faceoff-label">{pitcherBName}</span>
           <span class="faceoff-text">“{v.optionB}”</span>
         </button>
       </div>
-      {locked && <div class="locked-banner flash-in">CALLED IT — {chosenName} TOOK YOUR VOTE</div>}
+      {locked && <div class="locked-banner flash-in" role="status" aria-live="polite">CALLED IT — {chosenName} TOOK YOUR VOTE</div>}
     </main>
   );
 }

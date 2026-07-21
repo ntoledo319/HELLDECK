@@ -6,6 +6,7 @@
 // 30s in, the pit vote. REVEAL: number vs line slam. The truth number is rendered
 // ONLY from the REVEAL view — this file never has it earlier, by construction.
 import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { betResult, ouBanner, padPress, padValue, stepLine, DIAL_STEPS } from '../games/logic';
 import {
   asDeckView,
@@ -69,13 +70,12 @@ function Debate({
   net: Net;
   deadline: number;
 }) {
-  const [dial, setDial] = useState<number>(v.line ?? 0);
+  const [dial, setDial] = useConnectionOptimistic<number>(v.line ?? 0);
   const shown = v.youAreScribe ? dial : (v.line ?? null);
 
   const move = (delta: number): void => {
     const n = stepLine(dial, delta);
-    setDial(n);
-    net.send({ t: 'INPUT', p: overunderPayload.dial(n) });
+    if (net.send({ t: 'INPUT', p: overunderPayload.dial(n) })) setDial(n);
   };
 
   return (
@@ -92,12 +92,12 @@ function Debate({
         <>
           <div class="dial-steps">
             {DIAL_STEPS.map((s) => (
-              <button key={s} class="dial-step" onClick={() => move(s)}>
+              <button type="button" key={s} class="dial-step" aria-label={`Move line by ${s}`} onClick={() => move(s)}>
                 {s > 0 ? `+${s}` : s}
               </button>
             ))}
           </div>
-          <button class="btn-blood big" onClick={() => net.send({ t: 'INPUT', p: overunderPayload.lock(dial) })}>
+          <button type="button" class="btn-blood big" onClick={() => net.send({ t: 'INPUT', p: overunderPayload.lock(dial) })}>
             LOCK THE LINE
           </button>
           <p class="gate-note">You hold the pen. The room holds the argument. Lock what the table lands on.</p>
@@ -111,19 +111,21 @@ function Debate({
 
 /** BET (12s skippable): OVER/UNDER slabs; the subject gets marching orders instead. */
 function Bet({ v, view, net, deadline }: { v: OverUnderBetView; view: RoomView; net: Net; deadline: number }) {
-  const [picked, setPicked] = useState<'over' | 'under' | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<'over' | 'under' | null>(null);
   const chosen = picked ?? v.youBet;
   const locked = chosen !== null;
   const bet = (side: 'over' | 'under'): void => {
     if (locked) return;
-    setPicked(side);
-    net.send({ t: 'INPUT', p: overunderPayload.bet(side) });
+    if (net.send({ t: 'INPUT', p: overunderPayload.bet(side) })) setPicked(side);
   };
 
   if (v.youAreSubject) {
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">GO DIG</div>
+        <header class="vote-head">
+          <span class="vote-tally">GO DIG · THEY'RE BETTING</span>
+          <Ring deadline={deadline} now={() => net.serverNow()} />
+        </header>
         <h1 class="lights">{v.card.receiptSurface}</h1>
         <p class="game-blurb">
           The line sits at {v.line}. They're betting on you right now. Come back with the number — the real one.
@@ -145,14 +147,26 @@ function Bet({ v, view, net, deadline }: { v: OverUnderBetView; view: RoomView; 
         THE LINE: <b>{v.line}</b>
       </div>
       <div class={locked ? 'bet-slabs locked' : 'bet-slabs'}>
-        <button class={'bet-slab' + (chosen === 'over' ? ' picked' : '')} disabled={locked} onClick={() => bet('over')}>
+        <button
+          type="button"
+          class={'bet-slab' + (chosen === 'over' ? ' picked' : '')}
+          disabled={locked}
+          aria-pressed={chosen === 'over'}
+          onClick={() => bet('over')}
+        >
           OVER
         </button>
-        <button class={'bet-slab' + (chosen === 'under' ? ' picked' : '')} disabled={locked} onClick={() => bet('under')}>
+        <button
+          type="button"
+          class={'bet-slab' + (chosen === 'under' ? ' picked' : '')}
+          disabled={locked}
+          aria-pressed={chosen === 'under'}
+          onClick={() => bet('under')}
+        >
           UNDER
         </button>
       </div>
-      {locked && <div class="locked-banner flash-in">LOCKED — {chosen?.toUpperCase()} {v.line}</div>}
+      {locked && <div class="locked-banner flash-in" role="status" aria-live="polite">LOCKED — {chosen?.toUpperCase()} {v.line}</div>}
     </main>
   );
 }
@@ -162,10 +176,18 @@ function NumberPad({ value, onKey }: { value: string; onKey: (k: string) => void
   const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'clear', '0', 'back'];
   return (
     <>
-      <div class="pad-read">{value === '' ? '···' : value}</div>
-      <div class="pad">
+      <div class="pad-read" role="status" aria-live="polite" aria-label={value === '' ? 'No number entered' : `Number entered: ${value}`}>
+        <span aria-hidden="true">{value === '' ? '···' : value}</span>
+      </div>
+      <div class="pad" role="group" aria-label="Number pad">
         {keys.map((k) => (
-          <button key={k} class={/^[0-9]$/.test(k) ? 'pad-key' : 'pad-key pad-fn'} onClick={() => onKey(k)}>
+          <button
+            type="button"
+            key={k}
+            class={/^[0-9]$/.test(k) ? 'pad-key' : 'pad-key pad-fn'}
+            aria-label={k === 'back' ? 'Delete last digit' : k === 'clear' ? 'Clear number' : k}
+            onClick={() => onKey(k)}
+          >
             {k === 'back' ? '⌫' : k === 'clear' ? 'CLR' : k}
           </button>
         ))}
@@ -192,7 +214,7 @@ function Truth({
 }) {
   const [pad, setPad] = useState('');
   const [relayOpen, setRelayOpen] = useState(false);
-  const [pitPicked, setPitPicked] = useState<'drag' | 'pit' | null>(null);
+  const [pitPicked, setPitPicked] = useConnectionOptimistic<'drag' | 'pit' | null>(null);
   const isHost = me?.role === 'host';
   const subjectName = nameOf(view, v.subjectId);
 
@@ -226,8 +248,7 @@ function Truth({
   const pitChoice = pitPicked ?? v.youPitVoted;
   const votePit = (choice: 'drag' | 'pit'): void => {
     if (pitChoice !== null) return;
-    setPitPicked(choice);
-    net.send({ t: 'INPUT', p: overunderPayload.pit(choice) });
+    if (net.send({ t: 'INPUT', p: overunderPayload.pit(choice) })) setPitPicked(choice);
   };
 
   return (
@@ -239,16 +260,16 @@ function Truth({
       </p>
       {v.pitOpen && pitChoice === null && (
         <div class="pit-row flash-in">
-          <button class="pit-drag" onClick={() => votePit('drag')}>
+          <button type="button" class="pit-drag" aria-pressed={pitChoice === 'drag'} onClick={() => votePit('drag')}>
             DRAG THEM BACK
           </button>
-          <button class="pit-feed" onClick={() => votePit('pit')}>
+          <button type="button" class="pit-feed" aria-pressed={pitChoice === 'pit'} onClick={() => votePit('pit')}>
             FEED THEM TO THE PIT
           </button>
         </div>
       )}
       {pitChoice !== null && (
-        <div class="locked-banner flash-in">
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
           {pitChoice === 'pit' ? 'YOU FED THEM TO THE PIT' : 'MERCY, NOTED. DRAG THEM BACK.'}
         </div>
       )}
@@ -276,6 +297,9 @@ function Truth({
                 }}
               >
                 RELAY THE CLAIM
+              </button>
+              <button type="button" class="btn-ghost" onClick={() => setRelayOpen(false)}>
+                CLOSE RELAY
               </button>
             </div>
           )}

@@ -39,6 +39,7 @@
 //   .lineup-tag.plant { color: var(--blood); }
 //   .lineup-tag.decoy { color: var(--ash); }
 import { useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { asDeckView } from '../games/wire';
 import type { Net } from '../net/ws';
 import type { PlayerView, RoomView } from '../view';
@@ -193,7 +194,7 @@ function Hunt({
   deadline: number;
 }) {
   const [sel, setSel] = useState<string[]>(v.youPicked ?? []);
-  const [sent, setSent] = useState(v.youPicked !== null);
+  const [sent, setSent] = useConnectionOptimistic<boolean>(v.youPicked !== null);
   const locked = sent || v.youPicked !== null;
   const chosen = v.youPicked ?? sel;
 
@@ -201,7 +202,10 @@ function Hunt({
   if (view.you === v.accusedId) {
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">THE JURY DELIBERATES</div>
+        <header class="vote-head">
+          <span class="vote-tally">THE JURY DELIBERATES</span>
+          <Ring deadline={deadline} now={() => net.serverNow()} />
+        </header>
         <h1 class="lights">
           {v.pickedCount}/{v.eligible}
         </h1>
@@ -216,8 +220,7 @@ function Hunt({
   };
   const commit = (): void => {
     if (locked || sel.length !== 3) return;
-    setSent(true);
-    net.send({ t: 'INPUT', p: { picks: sel } }); // engine parsePicks reads exactly `picks` — three distinct
+    if (net.send({ t: 'INPUT', p: { picks: sel } })) setSent(true); // engine parsePicks reads exactly `picks` — three distinct
   };
 
   return (
@@ -236,6 +239,7 @@ function Hunt({
             key={w}
             class={'ballot-row' + (chosen.includes(w) ? ' picked' : '')}
             disabled={locked || (!chosen.includes(w) && chosen.length >= 3)}
+            aria-pressed={chosen.includes(w)}
             onClick={() => toggle(w)}
           >
             <span>{w}</span>
@@ -248,7 +252,7 @@ function Hunt({
           {sel.length === 3 ? 'NAME THEM' : `PICK ${3 - sel.length} MORE`}
         </button>
       ) : (
-        <div class="locked-banner flash-in">BALLOT CAST — THREE ACCUSATIONS, NO TAKEBACKS</div>
+        <div class="locked-banner flash-in" role="status" aria-live="polite">BALLOT CAST — THREE ACCUSATIONS, NO TAKEBACKS</div>
       )}
       {!locked && me?.role === 'host' && (
         <button class="btn-ghost" onClick={() => net.send({ t: 'VOID' })}>

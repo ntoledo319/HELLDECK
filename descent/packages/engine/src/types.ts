@@ -165,6 +165,29 @@ export interface DealState {
   done: boolean; // true once the card is public
 }
 
+/**
+ * Socket-private card preview protocol. The preview id is stable for the whole
+ * fixed ceremony, so clients can correlate a burn acknowledgement without
+ * inferring anything from public state or timing.
+ */
+export interface CardPreviewAssignedPayload {
+  status: 'assigned';
+  previewId: string;
+  card: Card;
+  burnDeadline: number;
+  revealAt: number;
+  canBurn: boolean;
+}
+
+export interface CardPreviewReleasedPayload {
+  status: 'released';
+  previewId: string;
+}
+
+export type CardPreviewPrivatePayload =
+  | CardPreviewAssignedPayload
+  | CardPreviewReleasedPayload;
+
 // ===== spotlight assignment ceremony (4.5 / D-134) =====
 // A spotlight is deliberately separate from a card deal. Games declare who may be
 // assigned and which role(s) they need; the core owns private delivery, burns, fixed
@@ -318,7 +341,9 @@ export type Effect =
   | { k: 'SCHEDULE'; timerId: string; atMs: number }
   | { k: 'CANCEL'; timerId: string }
   | { k: 'BROADCAST' } // DO re-serializes redacted state/patch per socket
-  | { k: 'SEND'; to: PlayerId; kind: 'role' | 'card' | 'words' | 'preview' | 'spotlight'; payload: unknown }
+  | { k: 'SEND'; to: PlayerId; kind: 'preview'; payload: CardPreviewPrivatePayload }
+  | { k: 'SEND'; to: PlayerId; kind: 'spotlight'; payload: SpotlightPrivatePayload }
+  | { k: 'SEND'; to: PlayerId; kind: 'role' | 'card' | 'words'; payload: unknown }
   | { k: 'SNAPSHOT' }
   | { k: 'AUDIO'; sting: string };
 

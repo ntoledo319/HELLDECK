@@ -106,7 +106,7 @@ function hairline(c: CanvasRenderingContext2D, y: number): void {
   c.fillRect(120, y, W - 240, 2);
 }
 
-export async function shareCard(d: ShareCardData): Promise<'shared' | 'downloaded'> {
+export async function shareCard(d: ShareCardData): Promise<'shared' | 'downloaded' | 'cancelled'> {
   const canvas = document.createElement('canvas');
   drawShareCard(canvas, d);
   const blob = await new Promise<Blob | null>((res) => canvas.toBlob(res, 'image/png'));
@@ -117,8 +117,10 @@ export async function shareCard(d: ShareCardData): Promise<'shared' | 'downloade
     try {
       await navigator.share({ files: [file], title: 'HELLDECK' });
       return 'shared';
-    } catch {
-      /* user dismissed the sheet — fall through to download */
+    } catch (error) {
+      // Cancelling a native share is a choice, not consent to an automatic download.
+      if (error instanceof DOMException && error.name === 'AbortError') return 'cancelled';
+      // A platform share failure still gets the explicit download fallback below.
     }
   }
   const a = document.createElement('a');

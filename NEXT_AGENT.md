@@ -1,7 +1,8 @@
 # ⛔ NEXT AGENT — READ THIS FIRST, THEN `HELLDECK2_HANDOFF.md`
 
-Written 2026-07-20 by the previous agent (Opus 4.8), at the owner's request.
-Branch **`descent`**. Nothing has ever been pushed. Everything below is committed locally.
+Originally written 2026-07-20 and updated after the UI/UX hardening pass.
+Active branch **`main`**. The Descent import and trust/safety baseline are published to
+`origin/main`; do not assume the older `descent`-only/no-push notes are still current.
 
 ---
 
@@ -29,14 +30,14 @@ phone (host included) is a thin renderer over WebSocket. Code lives in `descent/
 
 | layer | state |
 |---|---|
-| Engine (pure TS, deterministic) | **338 tests.** Adversarial bot-fuzz plus the core-owned, burnable spotlight state machine |
-| Server (Worker + RoomDO) | **33 tests.** Snapshotting, alarms, per-socket redaction, CLAIM, private spotlight replay |
-| Client (Preact, hand-rolled CSS) | **105 tests.** All 9 games + visible room errors + Stage-gated private card/role overlays |
+| Engine (pure TS, deterministic) | **342 tests.** Adversarial bot-fuzz plus core-owned, burnable spotlight and card-preview ceremonies |
+| Server (Worker + RoomDO) | **34 tests.** Snapshotting, alarms, per-socket redaction, CLAIM, private spotlight/card replay |
+| Client (Preact, hand-rolled CSS) | **123 tests.** All 9 games + acknowledgement-safe private UI + Stage privacy gating |
 | Content | **1024 cards / 9 decks**, all funnel-clean, council-reviewed and remediated |
 | Consent + fairness | heat ceilings, volunteer valve, 20s fixed-timing spotlight burns/replacements, typecast governor |
 | Live runtime | **Verified locally 2026-07-20.** Five WebSocket bots completed a real depth-5 Wrangler/RoomDO night to JUDGMENT in 360.1s |
 
-**476 tests green. `pnpm -r build` clean.** All 9 games play end-to-end against the real corpus.
+**499 tests green. `pnpm -r build` clean.** All 9 games play end-to-end against the real corpus.
 
 ### REAL REMAINING WORK — this is your actual work list
 
@@ -51,11 +52,7 @@ phone (host included) is a thin renderer over WebSocket. Code lives in `descent/
 3. **Operational lifecycle is incomplete.** There is no room TTL/expiry policy, no crew-memory
    persistence, and the root GitHub Actions workflows still build the frozen Android product rather
    than `descent/`.
-4. **One adjacent card-safety seam remains.** Spotlight burns now wait for a private server
-   acknowledgement and replay on reconnect; the older card-preview `BURN IT` still closes
-   optimistically and card previews are not reconstructed on reconnect. Fix that before calling the
-   consent system airtight.
-5. **No deploy, no Android shell, no domain, no store listing** (M4–M6).
+4. **No deploy, no Android shell, no domain, no store listing** (M4–M6).
 
 ---
 
@@ -63,8 +60,8 @@ phone (host included) is a thin renderer over WebSocket. Code lives in `descent/
 
 **There is already a complete, taste-passed design system.** It is not a placeholder:
 - `packages/client/src/style/style.css` + `games.css` — hellfire palette (`--pit`, `--blood`,
-  `--ember`, `--bone`, `--ash`, `--char`), a display font, **sharp corners everywhere**, reveals
-  that SNAP, holds that BREATHE.
+  `--ember`, `--bone`, `--ash`, `--char`), a self-hosted Barlow Condensed subset, **sharp corners
+  everywhere**, reveals that SNAP, holds that BREATHE, reduced-motion and mobile/safe-area rules.
 - All imagery today is **inline SVG** (`screens/bits.tsx`: `Devil`, `Flame`, `Crown`, `Ring`) —
   **the app currently ships ZERO raster assets.**
 - Every screen was reviewed by an adversarial `taste-critic` agent and cleared. Two defects were
@@ -179,6 +176,26 @@ secrets go in `NEVER_SERIALIZE`. Breaking either will fail the fuzz suite.
 
 ## 7. WHAT JUST LANDED (so you don't redo it)
 
+**2026-07-20 granular UI/UX + private-card hardening pass:**
+
+- Replaced the unchecked/optimistic card-preview cast with a strict assigned/released protocol,
+  correlated private burn acknowledgement, deadline state, and reconnect/RESYNC replay of only the
+  current viewer's still-live unburned preview. Public timing remains fixed and silent.
+- Hardened Stage: private decisions show a safe countdown while flat, lift permission is revoked on
+  every context or own-ballot acknowledgement, and roster size is re-derived at BEGIN so stale lobby
+  config cannot select the wrong Stage mode.
+- Added modal focus containment/background inertness, keyboard-safe hold controls, named avatar and
+  flame controls, persistent non-color selection rails, 48px targets, readable contrast tokens,
+  reduced-motion/forced-colors support, dynamic viewport and safe-area handling.
+- Added honest pending/error/cancel states for room creation, ceiling sealing, card/spotlight burns,
+  and share sheets; disconnected sends no longer paint false locked ballots. Invalid room recovery,
+  code normalization, passive-role timers, clearer corner/vote copy, and full ladder deltas also landed.
+- Self-hosted the licensed Barlow Condensed Latin subset. Production JS is **59.43 KB gzip**; fonts
+  plus JS/CSS remain below the binding 200 KB mobile asset budget. Visual smoke passed at 320×568,
+  390×844, and 844×390.
+- Verification: engine **342**, server **34**, client **123** = **499 tests**, strict recursive build,
+  and `git diff --check` green. Human/device playtests remain open; screenshots are not a substitute.
+
 **2026-07-20 trust/safety + live-runtime pass:**
 
 - Wired the client-visible `CLAIM` button through the server protocol. Spoofed identity/time are
@@ -226,8 +243,8 @@ before/after** — worth doing, and worth ~1.5M tokens.
 ## 8. SUGGESTED ORDER FOR YOUR SESSION
 
 1. `git log --oneline -15`, read `HELLDECK2_HANDOFF.md` §3, confirm `build` + `test` are green.
-2. If humans are available, run D-128 immediately. Otherwise close card-preview acknowledgement /
-   reconnect safety, add `descent/` CI, and define/test RoomDO expiry before expanding features.
+2. If humans are available, run D-128 immediately. Otherwise add `descent/` CI and define/test
+   RoomDO expiry before expanding features.
 3. Build D-412/413 entitlements in Stripe test mode; keep live keys and purchases owner-gated.
 4. Resolve the §4 asset conflicts with the owner (credentials, style spec, budget) **before**
    generating.
@@ -236,5 +253,6 @@ before/after** — worth doing, and worth ~1.5M tokens.
 6. Update `HELLDECK2_HANDOFF.md`, keep `DESCENT_BUILD_SPEC.md` Part 12 honest, and write the next
    `NEXT_AGENT.md`.
 
-**Do not push. Do not deploy. Do not buy anything.** Commit locally on `descent` and tell the
-owner exactly what is real, what is stubbed, and what still needs their hands.
+Publishing is no longer categorically forbidden: the owner explicitly authorized `main` for this
+pass. Still do not deploy, buy anything, or enable live payments without fresh owner authorization.
+Tell the owner exactly what is real, what is stubbed, and what still needs their hands.

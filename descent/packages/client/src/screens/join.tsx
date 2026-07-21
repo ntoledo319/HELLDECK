@@ -23,9 +23,18 @@ export function JoinScreen({
         <span class="wordmark">
           HELL<em>DECK</em>
         </span>
-        <span class="join-code">{code}</span>
+        <span class="join-room">
+          <span class="join-code">{code}</span>
+          <a class="join-change" href="/" aria-label="Change room code">
+            CHANGE
+          </a>
+        </span>
       </header>
-      {error && <div class="err-banner">{error}</div>}
+      {error && (
+        <div id="join-error" class="err-banner" role="alert">
+          {error}
+        </div>
+      )}
 
       <label class="field-label" for="join-name">
         WHO'S DESCENDING?
@@ -34,27 +43,45 @@ export function JoinScreen({
         id="join-name"
         class="name-input"
         maxLength={NAME_MAX}
-        autocomplete="off"
+        autocomplete="nickname"
+        autocapitalize="words"
         spellcheck={false}
+        enterKeyHint="next"
+        aria-invalid={error !== null}
+        aria-describedby={error ? 'join-error' : undefined}
         placeholder="YOUR NAME"
         value={name}
         onInput={(e) => setName((e.target as HTMLInputElement).value)}
       />
 
-      <div class="field-label">PICK YOUR DEVIL</div>
-      <div class="avatar-grid">
+      <div id="avatar-label" class="field-label">
+        PICK YOUR DEVIL
+      </div>
+      <div class="avatar-grid" role="group" aria-labelledby="avatar-label">
         {Array.from({ length: 16 }, (_, i) => (
-          <button key={i} class={avatar === i ? 'avatar sel' : 'avatar'} onClick={() => setAvatar(i)}>
+          <button
+            key={i}
+            type="button"
+            class={avatar === i ? 'avatar sel' : 'avatar'}
+            aria-label={`Devil ${i + 1}`}
+            aria-pressed={avatar === i}
+            onClick={() => setAvatar(i)}
+          >
             <Devil n={i} size={44} />
           </button>
         ))}
       </div>
 
-      <button class={attested ? 'attest done' : 'attest'} onClick={() => setAttested(!attested)}>
-        {attested ? '18+ — ATTESTED' : "I'M 18+ AND I CAN TAKE A JOKE"}
+      <button
+        type="button"
+        class={attested ? 'attest done' : 'attest'}
+        aria-pressed={attested}
+        onClick={() => setAttested(!attested)}
+      >
+        {attested ? '18+ — ATTESTED' : "I'M 18+ AND I'M CHOOSING TO PLAY"}
       </button>
 
-      <button class="btn-blood big" disabled={!ok} onClick={() => onJoin(cleanName(name), avatar)}>
+      <button type="button" class="btn-blood big" disabled={!ok} onClick={() => onJoin(cleanName(name), avatar)}>
         ENTER HELL
       </button>
     </main>

@@ -10,20 +10,36 @@ export function Ladder({ view }: { view: RoomView }) {
   return (
     <main class="screen ladder">
       <div class="ladder-label">DESCENT RANK</div>
-      <div class="ladder-rows">
-        {ranked.map((p, i) => (
-          <div key={p.id} class={p.id === mover ? 'ladder-row mover flash-in' : 'ladder-row'}>
-            <span class="ladder-rank">{i + 1}</span>
-            <span style="color:var(--ember)">
-              <Devil n={p.avatar} size={26} />
-            </span>
-            <span class="ladder-name">{p.name}</span>
-            {p.id === mover && lv?.deltas?.[p.id] !== undefined && (
-              <span class="ladder-delta">+{lv.deltas[p.id]}</span>
-            )}
-            <span class="ladder-score">{p.score}</span>
-          </div>
-        ))}
+      <div class="ladder-rows" role="list" aria-label="Current standings">
+        {ranked.map((p) => {
+          const place = ranked.findIndex((candidate) => candidate.score === p.score) + 1;
+          const delta = lv?.deltas?.[p.id] ?? 0;
+          return (
+            <div
+              key={p.id}
+              role="listitem"
+              class={p.id === mover ? 'ladder-row mover flash-in' : 'ladder-row'}
+            >
+              <span class="ladder-rank" aria-label={`Rank ${place}`}>
+                {place}
+              </span>
+              <span style="color:var(--ember)">
+                <Devil n={p.avatar} size={26} />
+              </span>
+              <span class="ladder-name">
+                {p.name}
+                {p.id === view.you && <span class="ladder-you"> YOU</span>}
+              </span>
+              <span
+                class={delta > 0 ? 'ladder-delta gained' : 'ladder-delta'}
+                aria-label={`${delta} points this circle`}
+              >
+                {delta > 0 ? `+${delta}` : '—'}
+              </span>
+              <span class="ladder-score">{p.score}</span>
+            </div>
+          );
+        })}
       </div>
     </main>
   );

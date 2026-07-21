@@ -7,6 +7,7 @@
 // LAW (5.4 acceptance): the truth renders ONLY from the REVEAL view; the hand renders
 // ONLY from the confessor's PICK view. This file has no other source for either.
 import { useEffect, useRef, useState } from 'preact/hooks';
+import { useConnectionOptimistic } from '../connection';
 import { confessionStamp, juryResult, LOCK_HOLD_MS } from '../games/logic';
 import {
   asDeckView,
@@ -54,17 +55,19 @@ export function ConfessionScreen({
 
 /** PICK: three sins on the confessor's phone; everyone else sees an anonymous choosing. */
 function Pick({ v, net, deadline }: { v: ConfessionPickView; net: Net; deadline: number }) {
-  const [picked, setPicked] = useState<number | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<number | null>(null);
   const pick = (i: number): void => {
     if (picked !== null) return;
-    setPicked(i);
-    net.send({ t: 'INPUT', p: confessionPayload.pick(i) });
+    if (net.send({ t: 'INPUT', p: confessionPayload.pick(i) })) setPicked(i);
   };
   if (!v.youAreConfessor || !v.hand) {
     // The room does not learn who is choosing — no name here, by redaction law.
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">SIN {v.loop + 1} OF {v.loops}</div>
+        <header class="vote-head">
+          <span class="vote-tally">SIN {v.loop + 1} OF {v.loops} · CHOOSING IN PRIVATE</span>
+          <Ring deadline={deadline} now={() => net.serverNow()} />
+        </header>
         <h1 class="lights">THE ACCUSED</h1>
         <p class="game-blurb">…is choosing their sin. Three on the table. You'll hear exactly one.</p>
       </main>
@@ -82,13 +85,14 @@ function Pick({ v, net, deadline }: { v: ConfessionPickView; net: Net; deadline:
             key={c.id}
             class={'sin-card' + (picked === i ? ' picked' : '')}
             disabled={picked !== null}
+            aria-pressed={picked === i}
             onClick={() => pick(i)}
           >
             {c.text}
           </button>
         ))}
       </div>
-      {picked !== null && <div class="locked-banner flash-in">CHOSEN. THE OTHER TWO NEVER EXISTED.</div>}
+      {picked !== null && <div class="locked-banner flash-in" role="status" aria-live="polite">CHOSEN. THE OTHER TWO NEVER EXISTED.</div>}
       <p class="gate-note">Timeout takes the first card. Choose like it matters.</p>
     </main>
   );
@@ -105,6 +109,7 @@ function HoldSlab({ label, sub, onCommit }: { label: string; sub: string; onComm
   };
   const start = (e: Event): void => {
     e.preventDefault();
+    if (tRef.current) return;
     setHolding(true);
     tRef.current = setTimeout(() => {
       tRef.current = null;
@@ -119,7 +124,14 @@ function HoldSlab({ label, sub, onCommit }: { label: string; sub: string; onComm
       onPointerUp={stop}
       onPointerLeave={stop}
       onPointerCancel={stop}
+      onClick={(event) => {
+        // Pointer clicks follow the hold gesture and must not double-commit.
+        // Keyboard and assistive activations synthesize detail=0 clicks.
+        if (event.detail === 0) onCommit();
+      }}
+      onBlur={stop}
       onContextMenu={(e) => e.preventDefault()}
+      aria-label={`Hold to lock ${label}. ${sub}`}
     >
       <i class="hold-fill" />
       <span class="hold-label">{label}</span>
@@ -134,14 +146,13 @@ function HoldSlab({ label, sub, onCommit }: { label: string; sub: string; onComm
  * The chosen sin is already public (the ceremony announced it) — the room reads along.
  */
 function Lock({ v, view, me, net }: { v: ConfessionLockView; view: RoomView; me: PlayerView | null; net: Net }) {
-  const [committed, setCommitted] = useState<boolean | null>(null);
-  const [pitPicked, setPitPicked] = useState<'drag' | 'pit' | null>(null);
+  const [committed, setCommitted] = useConnectionOptimistic<boolean | null>(null);
+  const [pitPicked, setPitPicked] = useConnectionOptimistic<'drag' | 'pit' | null>(null);
 
   if (v.youAreConfessor) {
     const commit = (truth: boolean): void => {
       if (committed !== null) return;
-      setCommitted(truth);
-      net.send({ t: 'INPUT', p: confessionPayload.lock(truth) });
+      if (net.send({ t: 'INPUT', p: confessionPayload.lock(truth) })) setCommitted(truth);
     };
     return (
       <main class="screen vote">
@@ -161,7 +172,7 @@ function Lock({ v, view, me, net }: { v: ConfessionLockView; view: RoomView; me:
             </button>
           </>
         ) : (
-          <div class="locked-banner flash-in">LOCKED. SEALED. NOW GO SELL IT.</div>
+          <div class="locked-banner flash-in" role="status" aria-live="polite">LOCKED. SEALED. NOW GO SELL IT.</div>
         )}
       </main>
     );
@@ -170,8 +181,7 @@ function Lock({ v, view, me, net }: { v: ConfessionLockView; view: RoomView; me:
   const pitChoice = pitPicked ?? v.youPitVoted;
   const votePit = (choice: 'drag' | 'pit'): void => {
     if (pitChoice !== null) return;
-    setPitPicked(choice);
-    net.send({ t: 'INPUT', p: confessionPayload.pit(choice) });
+    if (net.send({ t: 'INPUT', p: confessionPayload.pit(choice) })) setPitPicked(choice);
   };
   return (
     <main class="screen waiting">
@@ -181,16 +191,16 @@ function Lock({ v, view, me, net }: { v: ConfessionLockView; view: RoomView; me:
       <p class="game-blurb">…is locking it in. True or cap — the phone knows before you do.</p>
       {v.pitOpen && pitChoice === null && (
         <div class="pit-row flash-in">
-          <button class="pit-drag" onClick={() => votePit('drag')}>
+          <button type="button" class="pit-drag" onClick={() => votePit('drag')}>
             DRAG THEM BACK
           </button>
-          <button class="pit-feed" onClick={() => votePit('pit')}>
+          <button type="button" class="pit-feed" onClick={() => votePit('pit')}>
             FEED THEM TO THE PIT
           </button>
         </div>
       )}
       {pitChoice !== null && (
-        <div class="locked-banner flash-in">
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
           {pitChoice === 'pit' ? 'YOU FED THEM TO THE PIT' : 'MERCY, NOTED. DRAG THEM BACK.'}
         </div>
       )}
@@ -248,18 +258,20 @@ function Perform({
 
 /** JURY (12s skippable): BELIEVE / CAP. The confessor watches the room decide. */
 function Jury({ v, net, deadline }: { v: ConfessionJuryView; net: Net; deadline: number }) {
-  const [picked, setPicked] = useState<'believe' | 'cap' | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<'believe' | 'cap' | null>(null);
   const chosen = picked ?? v.youVoted;
   const locked = chosen !== null;
   const vote = (verdict: 'believe' | 'cap'): void => {
     if (locked) return;
-    setPicked(verdict);
-    net.send({ t: 'INPUT', p: confessionPayload.verdict(verdict) });
+    if (net.send({ t: 'INPUT', p: confessionPayload.verdict(verdict) })) setPicked(verdict);
   };
   if (v.youAreConfessor) {
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">HOLD STILL</div>
+        <header class="vote-head">
+          <span class="vote-tally">HOLD STILL · THEY'RE DECIDING</span>
+          <Ring deadline={deadline} now={() => net.serverNow()} />
+        </header>
         <h1 class="lights">
           {v.votedCount}/{v.eligible}
         </h1>
@@ -277,14 +289,26 @@ function Jury({ v, net, deadline }: { v: ConfessionJuryView; net: Net; deadline:
       </header>
       <h1 class="prompt">{v.card.text}</h1>
       <div class={locked ? 'bet-slabs locked' : 'bet-slabs'}>
-        <button class={'bet-slab' + (chosen === 'believe' ? ' picked' : '')} disabled={locked} onClick={() => vote('believe')}>
+        <button
+          type="button"
+          class={'bet-slab' + (chosen === 'believe' ? ' picked' : '')}
+          disabled={locked}
+          aria-pressed={chosen === 'believe'}
+          onClick={() => vote('believe')}
+        >
           BELIEVE
         </button>
-        <button class={'bet-slab' + (chosen === 'cap' ? ' picked' : '')} disabled={locked} onClick={() => vote('cap')}>
+        <button
+          type="button"
+          class={'bet-slab' + (chosen === 'cap' ? ' picked' : '')}
+          disabled={locked}
+          aria-pressed={chosen === 'cap'}
+          onClick={() => vote('cap')}
+        >
           CAP
         </button>
       </div>
-      {locked && <div class="locked-banner flash-in">VERDICT LOCKED — {chosen?.toUpperCase()}</div>}
+      {locked && <div class="locked-banner flash-in" role="status" aria-live="polite">VERDICT LOCKED — {chosen?.toUpperCase()}</div>}
     </main>
   );
 }

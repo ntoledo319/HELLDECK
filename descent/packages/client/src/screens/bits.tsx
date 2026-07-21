@@ -61,8 +61,9 @@ export function Ring({ deadline, now }: { deadline: number; now: () => number })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deadline]);
   const C = 2 * Math.PI * 26;
+  const timerLabel = `${secs} ${secs === 1 ? 'second' : 'seconds'} remaining`;
   return (
-    <svg class="ring" viewBox="0 0 64 64" aria-hidden="true">
+    <svg class="ring" viewBox="0 0 64 64" role="timer" aria-label={timerLabel}>
       <circle cx="32" cy="32" r="26" fill="none" stroke="var(--ash)" stroke-width="5" opacity="0.4" />
       <circle
         cx="32"
@@ -97,8 +98,8 @@ export function Countdown321({ at, now }: { at: number; now: () => number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [at]);
   return (
-    <div class="count321">
-      <span key={n} class="count-num">
+    <div class="count321" role="timer" aria-live="assertive" aria-label={n > 0 ? `Reveal in ${n}` : 'Revealing now'}>
+      <span key={n} class="count-num" aria-hidden="true">
         {n > 0 ? n : ''}
       </span>
     </div>
@@ -127,8 +128,8 @@ export function FireButton({ onFire, heat }: { onFire: () => void; heat: number 
   };
   const start = (e: Event): void => {
     e.preventDefault();
+    if (holdRef.current) return;
     burn();
-    stop();
     holdRef.current = setInterval(burn, 140); // cosmetic spam cadence; wire stays coalesced
   };
   useEffect(() => stop, []);
@@ -140,10 +141,18 @@ export function FireButton({ onFire, heat }: { onFire: () => void; heat: number 
       onPointerUp={stop}
       onPointerLeave={stop}
       onPointerCancel={stop}
+      onClick={(event) => {
+        // Pointer users already fired on pointerdown; keyboard/AT activation emits
+        // a click with detail=0 and needs an explicit single-fire path.
+        if (event.detail === 0) burn();
+      }}
+      onBlur={stop}
       onContextMenu={(e) => e.preventDefault()}
+      aria-label={`Send fire reaction${heat > 0 ? `; ${heat} room heat` : ''}`}
     >
       <Flame size={34} />
-      <span class="fire-label">{heat > 0 ? heat : 'FIRE'}</span>
+      <span class="fire-label">FIRE</span>
+      {heat > 0 && <span class="fire-count">{heat}</span>}
       {sparks.map((id) => (
         <i key={id} class="spark" style={`left:${((id * 37) % 60) + 20}%;animation-delay:${(id % 3) * 40}ms`} />
       ))}
@@ -151,16 +160,97 @@ export function FireButton({ onFire, heat }: { onFire: () => void; heat: number 
   );
 }
 
-export function Overlay({ title, sub, children }: { title: string; sub?: string; children?: ComponentChildren }) {
+function focusableElements(root: HTMLElement): HTMLElement[] {
+  return [...root.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')]
+    .filter((element) => !element.hasAttribute('inert'));
+}
+
+/** Full-screen private/action dialog with focus containment and inert background restoration. */
+export function ModalOverlay({
+  label,
+  className = '',
+  children,
+}: {
+  label: string;
+  className?: string;
+  children: ComponentChildren;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const modal = ref.current;
+    if (!modal) return undefined;
+    const previous = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const changed: Array<{ element: HTMLElement; inert: boolean; ariaHidden: string | null }> = [];
+    let branch: HTMLElement = modal;
+    while (branch.parentElement) {
+      const parent = branch.parentElement;
+      for (const sibling of parent.children) {
+        if (!(sibling instanceof HTMLElement) || sibling === branch || sibling.classList.contains('room-error')) continue;
+        changed.push({ element: sibling, inert: sibling.inert, ariaHidden: sibling.getAttribute('aria-hidden') });
+        sibling.inert = true;
+        sibling.setAttribute('aria-hidden', 'true');
+      }
+      if (parent.id === 'app') break;
+      branch = parent;
+    }
+    const frame = requestAnimationFrame(() => (focusableElements(modal)[0] ?? modal).focus());
+    return () => {
+      cancelAnimationFrame(frame);
+      for (const item of changed) {
+        item.element.inert = item.inert;
+        if (item.ariaHidden === null) item.element.removeAttribute('aria-hidden');
+        else item.element.setAttribute('aria-hidden', item.ariaHidden);
+      }
+      if (previous?.isConnected) previous.focus();
+    };
+  }, []);
+
   return (
-    <div class="overlay">
-      <div class="overlay-title breathe">{title}</div>
-      {sub && <div class="overlay-sub">{sub}</div>}
+    <div
+      ref={ref}
+      class={`overlay${className ? ` ${className}` : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-label={label}
+      tabIndex={-1}
+      onKeyDown={(event) => {
+        if (event.key !== 'Tab' || !ref.current) return;
+        const focusable = focusableElements(ref.current);
+        if (focusable.length === 0) {
+          event.preventDefault();
+          return;
+        }
+        const first = focusable[0]!;
+        const last = focusable[focusable.length - 1]!;
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }}
+    >
       {children}
     </div>
   );
 }
 
+export function Overlay({ title, sub, children }: { title: string; sub?: string; children?: ComponentChildren }) {
+  const contents = (
+    <>
+      <div class="overlay-title breathe">{title}</div>
+      {sub && <div class="overlay-sub">{sub}</div>}
+      {children}
+    </>
+  );
+  return <ModalOverlay label={title}>{contents}</ModalOverlay>;
+}
+
 export function Toast({ text }: { text: string }) {
-  return <div class="toast flash-in">{text}</div>;
+  return (
+    <div class="toast flash-in" role="status" aria-live="polite" aria-atomic="true">
+      {text}
+    </div>
+  );
 }

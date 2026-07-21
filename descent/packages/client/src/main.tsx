@@ -3,10 +3,21 @@
 import { render, type JSX } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { playSting, unlockAudio } from './audio';
-import { serverErrorMessage, validCode } from './logic';
+import { ConnectionGeneration } from './connection';
+import { cleanCodeInput, serverErrorMessage, validCode } from './logic';
 import { Net, type ConnStatus } from './net/ws';
 import { Overlay, Toast } from './screens/bits';
 import { DealScreen, PreviewOverlay } from './screens/deal';
+import {
+  dismissPreview,
+  expirePreview,
+  parsePreviewMessage,
+  preparePreviewReconnect,
+  receivePreviewMessage,
+  rejectPreviewBurn,
+  requestPreviewBurn,
+  type PreviewClientState,
+} from './screens/preview.logic';
 import { CircleIntro } from './screens/intro';
 import { JoinScreen } from './screens/join';
 import { Judgment } from './screens/judgment';
@@ -19,7 +30,9 @@ import {
   dismissSpotlight,
   expireSpotlight,
   parseSpotlightMessage,
+  prepareSpotlightReconnect,
   receiveSpotlightMessage,
+  rejectSpotlightBurn,
   requestSpotlightBurn,
   type SpotlightClientState,
 } from './screens/spotlight.logic';
@@ -45,53 +58,81 @@ function App() {
 function Landing() {
   const [code, setCode] = useState('');
   const [err, setErr] = useState<string | null>(null);
+  const [creating, setCreating] = useState(false);
   const go = (): void => {
-    const c = code.toUpperCase();
+    const c = cleanCodeInput(code);
     if (validCode(c)) location.href = `/${c}`;
     else setErr('NO SUCH PIT — codes are 4 letters, never vowels.');
   };
+  const create = async (): Promise<void> => {
+    if (creating) return;
+    setCreating(true);
+    setErr(null);
+    try {
+      const response = await fetch('/api/room', { method: 'POST' });
+      if (!response.ok) throw new Error(`room create failed: ${response.status}`);
+      const payload = (await response.json()) as { code?: unknown };
+      if (typeof payload.code !== 'string' || !validCode(payload.code)) throw new Error('invalid room code');
+      location.href = `/${payload.code}`;
+    } catch {
+      setCreating(false);
+      setErr('THE PIT IS UNREACHABLE — check your signal.');
+    }
+  };
   return (
-    <main class="screen" style="justify-content:center;gap:18px">
+    <main class="screen landing">
       <h1 class="wordmark landing-title">
         HELL<em>DECK</em>
       </h1>
-      {err && <div class="err-banner">{err}</div>}
+      {err && (
+        <div id="landing-error" class="err-banner" role="alert">
+          {err}
+        </div>
+      )}
       <button
+        type="button"
         class="btn-blood big"
-        onClick={() => {
-          void (async () => {
-            try {
-              const r = await fetch('/api/room', { method: 'POST' });
-              const j = (await r.json()) as { code: string };
-              location.href = `/${j.code}`;
-            } catch {
-              setErr('THE PIT IS UNREACHABLE — check your signal.');
-            }
-          })();
+        disabled={creating}
+        aria-busy={creating}
+        onClick={() => void create()}
+      >
+        {creating ? 'OPENING THE PIT…' : 'START A NIGHT'}
+      </button>
+      <label class="field-label landing-join-label" for="room-code">
+        JOIN A NIGHT
+      </label>
+      <form
+        class="code-row"
+        onSubmit={(event) => {
+          event.preventDefault();
+          go();
         }}
       >
-        START A NIGHT
-      </button>
-      <div class="code-row">
         <input
+          id="room-code"
           class="code-input"
           maxLength={4}
           placeholder="CODE"
           autocomplete="off"
+          autocapitalize="characters"
+          spellcheck={false}
+          inputMode="text"
+          enterKeyHint="go"
+          aria-invalid={err?.startsWith('NO SUCH PIT') === true}
+          aria-describedby={err ? 'landing-error landing-age' : 'landing-age'}
           value={code}
           onInput={(e) => {
             setErr(null);
-            setCode((e.target as HTMLInputElement).value.toUpperCase());
-          }}
-          onKeyDown={(e) => {
-            if ((e as KeyboardEvent).key === 'Enter') go();
+            setCode(cleanCodeInput((e.target as HTMLInputElement).value));
           }}
         />
-        <button class="btn-ghost" onClick={go}>
+        <button type="submit" class="btn-ghost" disabled={code.length !== 4}>
           JOIN
         </button>
-      </div>
-      <p class="landing-tag">18+. Play with people who can take it.</p>
+      </form>
+      <p id="landing-age" class="landing-tag">
+        18+. Bring people you trust.
+      </p>
     </main>
   );
 }
@@ -107,15 +148,25 @@ interface RoomError {
 }
 const profileKey = (code: string): string => `hd:${code}:profile`;
 
-function RoomErrorNotice({ error, onDismiss }: { error: RoomError; onDismiss: () => void }) {
+function RoomErrorNotice({
+  error,
+  dismissible,
+  onDismiss,
+}: {
+  error: RoomError;
+  dismissible: boolean;
+  onDismiss: () => void;
+}) {
   return (
     <div class="room-error flash-in">
       <span class="room-error-message" role="alert" aria-live="assertive" aria-atomic="true">
         {error.message}
       </span>
-      <button type="button" class="room-error-dismiss" onClick={onDismiss} aria-label="Dismiss error message">
-        DISMISS
-      </button>
+      {dismissible && (
+        <button type="button" class="room-error-dismiss" onClick={onDismiss} aria-label="Dismiss error message">
+          DISMISS
+        </button>
+      )}
     </div>
   );
 }
@@ -138,11 +189,12 @@ function Room({ code }: { code: string }) {
   const [epoch, setEpoch] = useState(0);
   const [conn, setConn] = useState<ConnStatus>('connecting');
   const [err, setErr] = useState<RoomError | null>(null);
-  const [priv, setPriv] = useState<{ id: number; k: string; p: unknown } | null>(null);
+  const [preview, setPreview] = useState<PreviewClientState | null>(null);
   const [spotlight, setSpotlight] = useState<SpotlightClientState | null>(null);
   const [heat, setHeat] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
   const [impAck, setImpAck] = useState(false);
+  const [connectionGeneration, setConnectionGeneration] = useState(0);
 
   const netRef = useRef<Net | null>(null);
   const viewRef = useRef<RoomView | null>(null);
@@ -162,7 +214,7 @@ function Room({ code }: { code: string }) {
         const rv = v as RoomView;
         if (rv.phase.k !== phaseKRef.current) {
           phaseKRef.current = rv.phase.k;
-          setPriv(null); // private payloads are phase-scoped
+          setPreview(null);
           setSpotlight(null);
           setHeat(0); // heat meter is per-reveal
         }
@@ -172,11 +224,20 @@ function Room({ code }: { code: string }) {
       },
       onPrivate: (k, p) => {
         const id = ++privateIdRef.current;
+        if (k === 'preview') {
+          const message = parsePreviewMessage(p);
+          if (message) {
+            const now = netRef.current?.serverNow() ?? Date.now();
+            setSpotlight(null);
+            setPreview((current) => receivePreviewMessage(current, message, id, now));
+          }
+          return;
+        }
         if (k === 'spotlight') {
           const message = parseSpotlightMessage(p);
           if (message) {
             const now = netRef.current?.serverNow() ?? Date.now();
-            setPriv(null); // a new assignment supersedes any phase-stale card secret
+            setPreview(null);
             setSpotlight((current) => receiveSpotlightMessage(current, message, id, now));
           }
           return;
@@ -184,7 +245,7 @@ function Room({ code }: { code: string }) {
         // Content-private payloads begin only after assignment settles. Clear the
         // role curtain immediately so it cannot mask the next full safety window.
         setSpotlight(null);
-        setPriv({ id, k, p });
+        setPreview(null);
       },
       onAudio: (sting) => {
         // Host phone honors AUDIO; everyone else ignores (spec 3.2).
@@ -201,6 +262,11 @@ function Room({ code }: { code: string }) {
       onStatus: (s) => {
         setConn(s);
         if (s === 'open') {
+          // A new socket makes replay authoritative. Connection-aware action locks
+          // reset, while ordinary draft state (answers/testimony) stays mounted.
+          setConnectionGeneration((generation) => generation + 1);
+          setPreview((current) => preparePreviewReconnect(current));
+          setSpotlight((current) => prepareSpotlightReconnect(current));
           closeFailsRef.current = 0;
           setErr(null); // a fresh connection must not revive a stale rejected action
           // (Re)seat: JOIN is idempotent server-side; token identifies us.
@@ -211,6 +277,8 @@ function Room({ code }: { code: string }) {
       },
       onWelcome: () => {},
       onError: (c, m) => {
+        setPreview((current) => rejectPreviewBurn(current));
+        setSpotlight((current) => rejectSpotlightBurn(current));
         setErr({ id: ++errorIdRef.current, message: serverErrorMessage(c, m) });
       },
     });
@@ -251,6 +319,22 @@ function Room({ code }: { code: string }) {
     return () => clearTimeout(timer);
   }, [spotlightCeremonyId, spotlightBurnDeadline]);
 
+  const previewId = preview?.assignment.previewId ?? null;
+  const previewBurnDeadline = preview?.assignment.burnDeadline ?? null;
+  useEffect(() => {
+    if (previewId === null || previewBurnDeadline === null) return undefined;
+    const expire = (): void => {
+      setPreview((current) => expirePreview(current, previewId));
+    };
+    const remaining = previewBurnDeadline - (netRef.current?.serverNow() ?? Date.now());
+    if (remaining <= 0) {
+      expire();
+      return undefined;
+    }
+    const timer = setTimeout(expire, remaining);
+    return () => clearTimeout(timer);
+  }, [previewId, previewBurnDeadline]);
+
   const me = view ? (view.players.find((p) => p.id === view.you) ?? null) : null;
 
   // Imp conversion toast (spec 4.8): "clawed their way up".
@@ -280,13 +364,28 @@ function Room({ code }: { code: string }) {
     );
   }
 
+  const changeRoom = (): void => {
+    netRef.current?.close();
+    localStorage.removeItem(profileKey(code));
+    localStorage.removeItem(`hd:${code}:token`);
+    localStorage.removeItem(`hd:${code}:sealed`);
+    location.href = '/';
+  };
+
   const net = netRef.current;
   if (!view || !net) {
+    const lost = closeFailsRef.current >= 3;
     return (
       <Overlay
-        title={closeFailsRef.current >= 3 ? 'NO SUCH PIT?' : 'OPENING THE PIT…'}
-        sub={closeFailsRef.current >= 3 ? 'The room may have burned down. Check the code.' : undefined}
-      />
+        title={lost ? 'NO SUCH PIT?' : 'OPENING THE PIT…'}
+        sub={lost ? 'The room may have burned down. Check the code or try another.' : undefined}
+      >
+        {lost && (
+          <button class="btn-ghost" onClick={changeRoom}>
+            TRY ANOTHER CODE
+          </button>
+        )}
+      </Overlay>
     );
   }
 
@@ -385,16 +484,42 @@ function Room({ code }: { code: string }) {
   }
 
   const privatePreview =
-    priv?.k === 'preview' && view.phase.k === 'DEAL'
+    preview && !preview.dismissed && view.phase.k === 'DEAL'
       ? {
-          id: priv.id,
-          content: <PreviewOverlay payload={priv.p} net={net} onClose={() => setPriv(null)} />,
+          id: preview.id,
+          expiresAt: preview.assignment.burnDeadline,
+          content: (
+            <PreviewOverlay
+              key={preview.assignment.previewId}
+              assignment={preview.assignment}
+              burnPending={preview.burnPending}
+              net={net}
+              onBurn={(at) => {
+                const id = preview.assignment.previewId;
+                if (
+                  !preview.assignment.canBurn ||
+                  preview.burnPending ||
+                  preview.assignment.burnDeadline <= at ||
+                  !net.send({ t: 'BURN', kind: 'card' })
+                ) {
+                  return false;
+                }
+                setPreview((current) => requestPreviewBurn(current, id, at));
+                return true;
+              }}
+              onDismiss={() => {
+                const id = preview.assignment.previewId;
+                setPreview((current) => dismissPreview(current, id));
+              }}
+            />
+          ),
         }
       : null;
   const privateSpotlight =
     spotlight && !spotlight.dismissed
       ? {
           id: spotlight.id,
+          expiresAt: spotlight.assignment.burnDeadline,
           content: (
             <SpotlightOverlay
               key={spotlight.assignment.ceremonyId}
@@ -403,8 +528,16 @@ function Room({ code }: { code: string }) {
               net={net}
               onBurn={(at) => {
                 const ceremonyId = spotlight.assignment.ceremonyId;
+                if (
+                  !spotlight.assignment.canBurn ||
+                  spotlight.burnPending ||
+                  spotlight.assignment.burnDeadline <= at ||
+                  !net.send({ t: 'BURN', kind: 'spotlight' })
+                ) {
+                  return false;
+                }
                 setSpotlight((current) => requestSpotlightBurn(current, ceremonyId, at));
-                net.send({ t: 'BURN', kind: 'spotlight' });
+                return true;
               }}
               onDismiss={() => {
                 const ceremonyId = spotlight.assignment.ceremonyId;
@@ -415,23 +548,49 @@ function Room({ code }: { code: string }) {
         }
       : null;
   const privateOverlay = privateSpotlight ?? privatePreview;
+  const activePrivateOverlay = conn === 'open' ? privateOverlay : null;
+  const impModalOpen = conn === 'open' && me?.role === 'imp' && !impAck;
 
   return (
     <>
       {/* At N>=5 the host phone is the face-up STAGE; StageShell shows public faces + a manual
           lift-to-sin flip for private ballots (D-135). A no-op wrapper otherwise. */}
-      <StageShell view={view} me={me} net={net} privateOverlay={privateOverlay}>
-        {screen}
-      </StageShell>
-      {me?.role === 'imp' && !impAck && (
+      <ConnectionGeneration.Provider value={connectionGeneration}>
+        <StageShell view={view} me={me} net={net} privateOverlay={activePrivateOverlay}>
+          {screen}
+        </StageShell>
+      </ConnectionGeneration.Provider>
+      {impModalOpen && (
         <Overlay title="YOU'RE AN IMP" sub="Feed on their sins. Your name is in the pool, your votes weigh half, and a seat opens at the next circle.">
           <button class="btn-ghost" onClick={() => setImpAck(true)}>
             UNDERSTOOD
           </button>
         </Overlay>
       )}
-      {conn === 'open' && err && <RoomErrorNotice key={err.id} error={err} onDismiss={() => setErr(null)} />}
-      {conn !== 'open' && <Overlay title="CRAWLING BACK…" sub="The pit remembers you. Hold on." />}
+      {conn === 'open' && err && (
+        <RoomErrorNotice
+          key={err.id}
+          error={err}
+          dismissible={activePrivateOverlay === null && !impModalOpen}
+          onDismiss={() => setErr(null)}
+        />
+      )}
+      {conn !== 'open' && (
+        <Overlay
+          title={closeFailsRef.current >= 3 ? 'STILL CRAWLING…' : 'CRAWLING BACK…'}
+          sub={
+            closeFailsRef.current >= 3
+              ? 'The signal is not coming back. You can keep waiting or change rooms.'
+              : 'The pit remembers you. Hold on.'
+          }
+        >
+          {closeFailsRef.current >= 3 && (
+            <button class="btn-ghost" onClick={changeRoom}>
+              CHANGE ROOM
+            </button>
+          )}
+        </Overlay>
+      )}
       {toast && <Toast text={toast} />}
     </>
   );

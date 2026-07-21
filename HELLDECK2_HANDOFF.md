@@ -2,8 +2,9 @@
 > It carries the owner's current mandate for your session (fully functional app, GUI pass with
 > **OpenArt-API-only** assets, ready-for-testing), the three conflicts in that directive you must
 > resolve **before** generating assets, and the real remaining work. **Correction 2026-07-20:**
-> local live runtime is now verified; monetization and human playtests are still absent. This file
-> is the deep historical context; `NEXT_AGENT.md` is the current brief.
+> local live runtime is verified; the card-preview safety seam and granular UI/UX hardening pass are
+> complete and published on `main`; monetization and human playtests are still absent. This file is
+> the deep historical context; `NEXT_AGENT.md` is the current brief.
 
 # ⛔ HELLDECK 2.0 — SESSION HANDOFF. READ THIS FIRST, IN FULL, BEFORE ANY ACTION.
 
@@ -77,17 +78,18 @@ local bot night reaches JUDGMENT. Do not treat it as a sketch—or as human-play
 ## 3. CURRENT STATE (factual)
 
 > **LATEST UPDATE — 2026-07-20 (Codex).** The older chronological notes below are retained as
-> history, but this paragraph is authoritative. Branch `descent` is at committed HEAD `52f0fee`
-> plus the current uncommitted trust/safety slice. CLAIM now reaches the engine; joined rooms show
-> server errors; Stage mode gates every private card/role overlay behind a context-bound lift; and
-> Over/Under, Confession, Red Flag, Alibi, Poison, and Title Fight now use a core-owned burnable
-> spotlight ceremony. It always schedules T+10 handoff and T+20 completion, privately acknowledges
-> burns, gives replacements a full ten seconds, replays only the current assignment on reconnect,
-> and counts final assignees only. Verification: strict build green; engine 338 + server 33 + client
-> 105 = **476 tests**; 1,024-card lint/dedup/stats funnel green; and five live WebSocket bots completed
-> a depth-5 night against real Wrangler/RoomDO alarms to JUDGMENT in 360.1s. Remaining product gates:
-> human D-128/D-138 playtests, card-preview burn acknowledgement/reconnect parity, `descent/` CI,
-> room TTL, crew memory, D-412/413 entitlements/paywall, Android shell, beta deploy/domain/live keys.
+> history, but this paragraph is authoritative. Active branch `main` is published. CLAIM and visible
+> server errors are wired; spotlight and card-preview burns both use correlated private
+> acknowledgements and reconstruct only the current viewer's live assignment on reconnect/RESYNC;
+> public schedules remain fixed. Stage gates every private face, exposes a safe decision timer while
+> flat, auto-flattens after own-ballot acknowledgement, and derives its mode from the live BEGIN
+> roster. The client has a self-hosted condensed font, readable contrast tokens, 48px/focus/keyboard
+> treatment, modal containment, reduced motion, mobile safe areas, truthful pending/error states,
+> and responsive visual smoke at 320×568, 390×844, and 844×390. Verification: strict recursive build
+> green; engine 342 + server 34 + client 123 = **499 tests**; production JS 59.43 KB gzip; the prior
+> 1,024-card funnel and five-bot live night remain green evidence. Remaining product gates: human
+> D-128/D-138/device playtests, `descent/` CI, room TTL, crew memory, D-412/413 entitlements/paywall,
+> Android shell, beta deploy/domain/live keys.
 
 > **SESSION UPDATE — 2026-07-19 (Opus 4.8).** HEAD is now `669c862` (after `b330686`).
 > **M2-INT is DONE** (commit `06bdb35`): the one known-failing test is fixed — it now drives a

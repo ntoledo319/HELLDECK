@@ -5,7 +5,8 @@
 // LAW (5.2 acceptance): answer text renders ONLY where view() put it — this file never
 // invents a place to show teleprompter/assignment/ballot texts the server didn't hand this socket.
 import { useState } from 'preact/hooks';
-import { answerReady, charsLeft, clampAnswer, performProgress } from '../games/logic';
+import { useConnectionOptimistic } from '../connection';
+import { ANSWER_MAX, answerReady, charsLeft, clampAnswer, performProgress } from '../games/logic';
 import {
   asDeckView,
   FILLIN_READ_TONES,
@@ -55,7 +56,10 @@ export function FillinScreen({
     const writers = w.setups.reduce((n, s) => n + s.writers, 0);
     return (
       <main class="screen waiting">
-        <div class="waiting-label breathe">PENS OUT</div>
+        <header class="vote-head">
+          <span class="vote-tally">PENS OUT · THEY'RE WRITING</span>
+          {deadline !== null && <Ring deadline={deadline} now={() => net.serverNow()} />}
+        </header>
         <h1 class="lights">
           {submitted}/{writers}
         </h1>
@@ -77,8 +81,8 @@ export function FillinScreen({
 /** Writer: setup + 140-char field + PANIC shelf (two curated fallbacks, half points). */
 function Write({ v, net, deadline }: { v: FillinWriteView; net: Net; deadline: number | null }) {
   const [text, setText] = useState('');
-  const [sent, setSent] = useState(false);
-  const [shelfTaken, setShelfTaken] = useState(false);
+  const [sent, setSent] = useConnectionOptimistic<boolean>(false);
+  const [shelfTaken, setShelfTaken] = useConnectionOptimistic<boolean>(false);
   const setup = v.you.setup !== null ? v.setups[v.you.setup] : undefined;
   if (!setup || v.you.setup === null) return null; // half-built loop: never invent a prompt
   const po = v.you.panicOptions;
@@ -89,12 +93,12 @@ function Write({ v, net, deadline }: { v: FillinWriteView; net: Net; deadline: n
   const submit = (): void => {
     const line = clampAnswer(text).trim();
     if (line.length === 0) return;
-    net.send({ t: 'INPUT', p: fillinPayload.answer(line) });
+    if (!net.send({ t: 'INPUT', p: fillinPayload.answer(line) })) return;
     setSent(true);
     setShelfTaken(false); // a real line beats the shelf
   };
   const grabShelf = (opt: 'A' | 'B'): void => {
-    net.send({ t: 'INPUT', p: fillinPayload.panicTake(opt) });
+    if (!net.send({ t: 'INPUT', p: fillinPayload.panicTake(opt) })) return;
     setShelfTaken(true);
     setSent(true);
   };
@@ -109,20 +113,28 @@ function Write({ v, net, deadline }: { v: FillinWriteView; net: Net; deadline: n
         {deadline !== null && <Ring deadline={deadline} now={() => net.serverNow()} />}
       </header>
       <h1 class="prompt">{setup.card.text}</h1>
+      <label class="field-label" for="fillin-answer">
+        YOUR FINISH
+      </label>
       <textarea
+        id="fillin-answer"
         class="writebox"
         rows={3}
-        maxLength={200 /* soft; clampAnswer is the law */}
+        maxLength={ANSWER_MAX}
         placeholder="finish it. make it hurt."
+        enterkeyhint="done"
+        aria-describedby="fillin-chars"
         value={text}
         onInput={(e) => setText(clampAnswer((e.target as HTMLTextAreaElement).value))}
       />
-      <div class={left <= 20 ? 'chars-left low' : 'chars-left'}>{left}</div>
+      <div id="fillin-chars" class={left <= 20 ? 'chars-left low' : 'chars-left'}>
+        {left} LEFT
+      </div>
       <button class="btn-blood big" disabled={!answerReady(text)} onClick={submit}>
         {submitted ? 'OVERWRITE IT' : 'COMMIT IT'}
       </button>
       {submitted && (
-        <div class="locked-banner flash-in">
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
           {onShelf ? 'SHELF LINE TAKEN — HALF CREDIT. COWARDICE HAS A PRICE.' : "IT'S IN. THE READER OWNS IT NOW."}
         </div>
       )}
@@ -158,12 +170,11 @@ function TonePick({
   net: Net;
   deadline: number | null;
 }) {
-  const [picked, setPicked] = useState<number | null>(v.you.yourTone);
+  const [picked, setPicked] = useConnectionOptimistic<number | null>(v.you.yourTone);
   const idx = v.setups.findIndex((s) => s.readerId === me);
   const setup = idx >= 0 ? v.setups[idx] : v.setups[0];
   const pick = (i: number): void => {
-    setPicked(i);
-    net.send({ t: 'INPUT', p: fillinPayload.tone(i) });
+    if (net.send({ t: 'INPUT', p: fillinPayload.tone(i) })) setPicked(i);
   };
   return (
     <main class="screen vote">
@@ -177,12 +188,21 @@ function TonePick({
       <div class="section-label">READ THEIR FILTH AS…</div>
       <div class="pick-row">
         {v.you.toneOptions.map((t, i) => (
-          <button key={t} class={picked === i ? 'pick sel' : 'pick'} onClick={() => pick(i)}>
+          <button
+            key={t}
+            class={picked === i ? 'pick sel' : 'pick'}
+            aria-pressed={picked === i}
+            onClick={() => pick(i)}
+          >
             {t.toUpperCase()}
           </button>
         ))}
       </div>
-      {picked !== null && <div class="locked-banner flash-in">TONE SET — CLEAR YOUR THROAT</div>}
+      {picked !== null && (
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
+          TONE SET — CLEAR YOUR THROAT
+        </div>
+      )}
     </main>
   );
 }
@@ -280,12 +300,11 @@ function ListenUp({ v, view, net, heat }: { v: FillinPerformView; view: RoomView
 
 /** Memory-aid ballot: full texts, randomized per phone server-side, own line dead. */
 function Ballot({ v, net, deadline }: { v: FillinVoteView; net: Net; deadline: number | null }) {
-  const [picked, setPicked] = useState<number | null>(null);
+  const [picked, setPicked] = useConnectionOptimistic<number | null>(null);
   const locked = v.youVoted !== null || picked !== null;
   const cast = (id: number, yours: boolean): void => {
     if (locked || yours) return;
-    setPicked(id);
-    net.send({ t: 'INPUT', p: fillinPayload.vote(id) });
+    if (net.send({ t: 'INPUT', p: fillinPayload.vote(id) })) setPicked(id);
   };
   const chosen = picked ?? v.youVoted;
 
@@ -305,6 +324,7 @@ function Ballot({ v, net, deadline }: { v: FillinVoteView; net: Net; deadline: n
               key={e.id}
               class={'faceoff-slab' + (chosen === e.id ? ' picked' : '')}
               disabled={locked || e.yours}
+              aria-pressed={chosen === e.id}
               onClick={() => cast(e.id, e.yours)}
             >
               <span class="faceoff-label">VOTE {i === 0 ? 'A' : 'B'}</span>
@@ -312,7 +332,11 @@ function Ballot({ v, net, deadline }: { v: FillinVoteView; net: Net; deadline: n
             </button>
           ))}
         </div>
-        {locked && <div class="locked-banner flash-in">LOCKED IN</div>}
+        {locked && (
+          <div class="locked-banner flash-in" role="status" aria-live="polite">
+            LOCKED IN
+          </div>
+        )}
       </main>
     );
   }
@@ -332,6 +356,7 @@ function Ballot({ v, net, deadline }: { v: FillinVoteView; net: Net; deadline: n
             key={e.id}
             class={'ballot-row' + (e.yours ? ' own' : '') + (chosen === e.id ? ' picked' : '')}
             disabled={locked || e.yours}
+            aria-pressed={chosen === e.id}
             onClick={() => cast(e.id, e.yours)}
           >
             <span class="ballot-text">{e.text}</span>
@@ -339,7 +364,11 @@ function Ballot({ v, net, deadline }: { v: FillinVoteView; net: Net; deadline: n
           </button>
         ))}
       </div>
-      {locked && <div class="locked-banner flash-in">LOCKED IN</div>}
+      {locked && (
+        <div class="locked-banner flash-in" role="status" aria-live="polite">
+          LOCKED IN
+        </div>
+      )}
     </main>
   );
 }

@@ -109,7 +109,10 @@ function apply(state: RoomState, rand: () => number, step: GameStep, acc: Effect
     const { $phase, $deal, ...rest } = gs as Record<string, unknown> & ModuleDirectives;
     if ($deal) {
       // Core would run the 4.5 ceremony; here it completes instantly with the same writeback.
-      const begun = beginDeal($deal, 'deal:test', NOW);
+      const canBurn =
+        $deal.subjectId !== null &&
+        (state.players.find((p) => p.id === $deal.subjectId)?.brimstones ?? 0) > 0;
+      const begun = beginDeal($deal, 'deal:test', NOW, canBurn);
       const done = completeDeal(begun.deal);
       const nextState: RoomState = {
         ...state,

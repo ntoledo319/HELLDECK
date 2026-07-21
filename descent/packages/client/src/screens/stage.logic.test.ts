@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { stageGate, stageLiftForContext, stagePrivacyKey } from './stage.logic';
+import { stageDecisionSignature, stageGate, stageLiftForContext, stagePrivacyKey } from './stage.logic';
 
 describe('stage privacy gate', () => {
   it('passes ordinary screens and every non-stage phone through', () => {
@@ -26,6 +26,13 @@ describe('stage privacy gate', () => {
     for (const key of changed) expect(stageGate(true, 'DEAL', 7, liftedFor, key)).toBe('flat');
   });
 
+  it('invalidates a lift synchronously when a fresh socket reconnects', () => {
+    const firstSocket = stagePrivacyKey('INPUT', 2, 'VOTE', null, true, '{}', 1);
+    const nextSocket = stagePrivacyKey('INPUT', 2, 'VOTE', null, true, '{}', 2);
+    expect(stageLiftForContext(firstSocket, firstSocket, nextSocket)).toBeNull();
+    expect(stageGate(true, 'INPUT', null, firstSocket, nextSocket)).toBe('flat');
+  });
+
   it('does not resurrect a lift when a later transition returns to an old key', () => {
     const oldKey = stagePrivacyKey('INPUT', 2, 'VOTE', null, true);
     const interveningKey = stagePrivacyKey('WAITING_ON', 2, 'VOTE', null, true);
@@ -38,5 +45,18 @@ describe('stage privacy gate', () => {
       expect(stageGate(true, phase, null, null, key)).toBe('flat');
       expect(stageGate(true, phase, null, key, key)).toBe('lifted');
     }
+  });
+
+  it('changes privacy context when this viewer receives a decision acknowledgement', () => {
+    expect(stageDecisionSignature({ deck: 'roast', sub: 'VOTE', youVoted: null })).not.toBe(
+      stageDecisionSignature({ deck: 'roast', sub: 'VOTE', youVoted: 'P2' }),
+    );
+    expect(stageDecisionSignature({ deck: 'fillin', sub: 'WRITE', you: { yourAnswer: null, yourTone: null } })).not.toBe(
+      stageDecisionSignature({ deck: 'fillin', sub: 'WRITE', you: { yourAnswer: 'hell yes', yourTone: null } }),
+    );
+    expect(stageDecisionSignature({ deck: 'poison', sub: 'VOTE', votedCount: 1 })).toBe('{}');
+    expect(stageDecisionSignature({ deck: 'confession', sub: 'LOCK', youPitVoted: null })).not.toBe(
+      stageDecisionSignature({ deck: 'confession', sub: 'LOCK', youPitVoted: 'drag' }),
+    );
   });
 });

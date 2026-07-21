@@ -1,8 +1,15 @@
 // Deal ceremony + burn absorption — DESCENT_BUILD_SPEC.md 4.5.
-// LAW: burned and clean deals are timing-identical. A burn changes ZERO wire effects,
-// ZERO schedules, ZERO animations. The backup is reserved BEFORE the ceremony starts
-// so the swap costs nothing observable. (Test asserts effect timelines byte-equal.)
-import type { DealRequest, DealState, Effect, Player, PlayerId } from './types.js';
+// LAW: burned and clean deals are timing-identical. A burn changes ZERO public wire
+// effects, schedules, or animations; only the subject gets a correlated PRIVATE ack.
+// The backup is reserved before the ceremony so the swap costs nothing publicly observable.
+import type {
+  CardPreviewAssignedPayload,
+  DealRequest,
+  DealState,
+  Effect,
+  Player,
+  PlayerId,
+} from './types.js';
 
 /** Fixed ritual length, no named subject ("THE DECK IS CHOOSING ITS VICTIM…"). */
 export const CEREMONY_MS = 5500;
@@ -18,6 +25,7 @@ export function beginDeal(
   req: DealRequest,
   timerId: string,
   now: number,
+  canBurn: boolean,
 ): { deal: DealState; effects: Effect[] } {
   const hasSubject = req.subjectId !== null;
   const completesAt = now + (hasSubject ? PREVIEW_MS : CEREMONY_MS);
@@ -34,11 +42,19 @@ export function beginDeal(
   };
   const effects: Effect[] = [{ k: 'SCHEDULE', timerId, atMs: completesAt }];
   if (hasSubject && req.subjectId) {
+    const payload: CardPreviewAssignedPayload = {
+      status: 'assigned',
+      previewId: deal.timerId,
+      card: req.primary,
+      burnDeadline: deal.burnWindowEndsAt,
+      revealAt: deal.completesAt,
+      canBurn,
+    };
     effects.push({
       k: 'SEND',
       to: req.subjectId,
       kind: 'preview',
-      payload: { card: req.primary, burnDeadline: deal.burnWindowEndsAt },
+      payload,
     });
   }
   return { deal, effects };
@@ -72,6 +88,35 @@ export function burnDeal(
 export function completeDeal(deal: DealState): { deal: DealState; usedCardIds: string[] } {
   const used = deal.burnedId ? [deal.card.id, deal.burnedId] : [deal.card.id];
   return { deal: { ...deal, done: true }, usedCardIds: used };
+}
+
+/**
+ * Rebuild the viewer's currently live card preview after reconnect/RESYNC.
+ * Burned, completed, expired, and other players' previews are never replayed.
+ */
+export function cardPreviewPrivateFor(
+  deal: DealState | null,
+  viewerId: PlayerId,
+  now: number,
+  canBurn: boolean,
+): CardPreviewAssignedPayload | null {
+  if (
+    !deal ||
+    deal.done ||
+    deal.burnedId !== null ||
+    deal.subjectId !== viewerId ||
+    now > deal.burnWindowEndsAt
+  ) {
+    return null;
+  }
+  return {
+    status: 'assigned',
+    previewId: deal.timerId,
+    card: deal.card,
+    burnDeadline: deal.burnWindowEndsAt,
+    revealAt: deal.completesAt,
+    canBurn,
+  };
 }
 
 /**

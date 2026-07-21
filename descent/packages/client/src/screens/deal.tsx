@@ -1,14 +1,16 @@
 // DEAL ceremony (spec 4.5): fixed-length ritual, identical for burned and clean deals.
 // The roulette is pure theater — the pick already happened server-side.
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import type { Net } from '../net/ws';
 import type { PlayerView } from '../view';
-import { Ring } from './bits';
+import { ModalOverlay, Ring } from './bits';
+import type { PreviewAssigned } from './preview.logic';
 
 export function DealScreen({ players }: { players: PlayerView[] }) {
   const names = players.filter((p) => p.role !== 'imp').map((p) => p.name);
   const [i, setI] = useState(0);
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const t = setInterval(() => setI((x) => x + 1), 110); // cosmetic shuffle, not a countdown
     return () => clearInterval(t);
   }, []);
@@ -25,35 +27,60 @@ export function DealScreen({ players }: { players: PlayerView[] }) {
  * BURN swaps to the backup with zero trace; LET IT RIDE just closes the curtain.
  */
 export function PreviewOverlay({
-  payload,
+  assignment,
+  burnPending,
   net,
-  onClose,
+  onBurn,
+  onDismiss,
 }: {
-  payload: unknown;
+  assignment: PreviewAssigned;
+  burnPending: boolean;
   net: Net;
-  onClose: () => void;
+  onBurn: (now: number) => boolean;
+  onDismiss: () => void;
 }) {
-  const p = payload as { card?: { text?: string }; burnDeadline?: number };
+  const burnSentRef = useRef(false);
+  useEffect(() => {
+    if (!burnPending) burnSentRef.current = false;
+  }, [burnPending]);
+  const requestBurn = (): void => {
+    const now = net.serverNow();
+    if (
+      burnSentRef.current ||
+      burnPending ||
+      !assignment.canBurn ||
+      now >= assignment.burnDeadline
+    ) {
+      return;
+    }
+    if (onBurn(now)) burnSentRef.current = true;
+  };
   return (
-    <div class="overlay preview">
+    <ModalOverlay label="Private card preview" className="preview">
       <div class="preview-tag">YOURS BEFORE THEIRS</div>
-      <p class="preview-card">{p.card?.text ?? ''}</p>
-      {typeof p.burnDeadline === 'number' && <Ring deadline={p.burnDeadline} now={() => net.serverNow()} />}
+      <p class="preview-card">{assignment.card.text}</p>
+      <Ring deadline={assignment.burnDeadline} now={() => net.serverNow()} />
       <div class="preview-actions">
         <button
+          type="button"
           class="btn-ghost"
-          onClick={() => {
-            net.send({ t: 'BURN', kind: 'card' });
-            onClose();
-          }}
+          disabled={!assignment.canBurn || burnPending}
+          aria-busy={burnPending}
+          onClick={requestBurn}
         >
-          BURN IT
+          {burnPending ? 'BURN PENDING…' : assignment.canBurn ? 'BURN IT' : 'BURN UNAVAILABLE'}
         </button>
-        <button class="btn-blood" onClick={onClose}>
+        <button type="button" class="btn-blood" disabled={burnPending} onClick={onDismiss}>
           LET IT RIDE
         </button>
       </div>
-      <p class="preview-note">Burning spends a brimstone. Nobody will ever know it happened.</p>
-    </div>
+      <p class="preview-note" role="status" aria-live="polite">
+        {burnPending
+          ? 'WAITING FOR THE PIT TO CONFIRM THE BURN…'
+          : assignment.canBurn
+            ? 'Burning spends a brimstone. Nobody will ever know it happened.'
+            : 'No burn is available. The room stays blind until the ceremony ends.'}
+      </p>
+    </ModalOverlay>
   );
 }

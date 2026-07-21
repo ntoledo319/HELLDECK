@@ -283,10 +283,10 @@ export function reduce(s: RoomState, e: GameEvent, seed: string): { state: RoomS
 
 **Server → Client:**
 ```jsonc
-{"t":"WELCOME","you":"<playerId>","token":"<playerToken>","code":"HELL"}
+{"t":"WELCOME","you":"<playerId>","token":"<playerToken>","code":"HELL","sv":1720900000123}
 {"t":"STATE","s":{...},"epoch":42}         // FULL redacted state (3.4); render source of truth
 {"t":"PATCH","epoch":43,"ops":[...]}       // RFC6902-lite: only replace/add on known paths
-{"t":"PRIVATE","k":"role"|"card"|"words"|"preview","p":{...}}  // secrets, per-socket only
+{"t":"PRIVATE","k":"role"|"card"|"words"|"preview"|"spotlight","p":{...}}  // secrets, per-socket only
 {"t":"PING","id":17,"sv":1720900000123}
 {"t":"AT","timerId":"input:c3","at":1720900012000}  // deadline in SERVER time; client maps via offset
 {"t":"AUDIO","sting":"boom"|"bell"|"burn"|"descend"|"judgment"}  // host phone honors, others ignore
@@ -296,6 +296,8 @@ export function reduce(s: RoomState, e: GameEvent, seed: string): { state: RoomS
 
 ## 3.3 Clock sync (the reveal-simultaneity mechanism)
 
+- `WELCOME.sv` seeds the client offset before the first `STATE`/`PRIVATE`, so a skewed phone cannot
+  discard a live private safety window; the ping batch below refines that first estimate.
 - On connect and every 60s: server sends 5 `PING`s 200ms apart; client `PONG`s with its clock.
 - Server computes per-client offset = median of 5 samples; stores on socket.
 - Every deadline is broadcast as **server time** (`AT`). Client renders countdowns from `serverTime - offset`.
@@ -369,11 +371,13 @@ NEVER surface any ceiling value, or whether filtering occurred, anywhere. (Test 
 ```
 On DEAL: pick card + backup card (both legal, both reserved).
   t=0     broadcast ceremony start ("THE DECK IS CHOOSING ITS VICTIM…", fixed 5.5s)
-  t=0     if card names a subject → PRIVATE preview to subject {card, burnDeadline: t+10s}
+  t=0     if card names a subject → PRIVATE preview to subject
+          {status:"assigned", previewId, card, burnDeadline:t+10s, revealAt:t+10s, canBurn}
           (preview windows only during heads-down phases; ceremony IS heads-down)
   t≤10s   subject may BURN → swap to backup, NO trace: same ceremony length, no animation delta,
-          subject-burn not decremented visibly, not in telemetry attributably
-  t=10s   (or on burn) broadcast card to all → next phase
+          subject-burn not decremented visibly, not in telemetry attributably; acknowledge only to
+          that socket with PRIVATE {status:"released", previewId}
+  t=10s   fixed deadline broadcasts the chosen card to all → next phase
 Spotlight assignment: core-owned, PRIVATE, and burn-independent; room sees only "DEALING…".
   t=0      choose one/two distinct primary assignees; PRIVATE role notice, burn deadline t+10s
   t=0      schedule BOTH fixed timers up front: handoff t+10s and completion t+20s
@@ -680,9 +684,13 @@ Rules: a task is checked ONLY when its acceptance criteria (AC) pass. Order with
 
 > **STATUS 2026-07-20 (see `NEXT_AGENT.md` for the concise live head).** M0–M3 software is
 > implemented: all nine games use the real 1,024-card corpus; the unregistered-game skip path is
-> retired; CLAIM is wired end-to-end; Stage private overlays are lift-gated; and all six burnable
-> performer games use the core-owned two-window spotlight ceremony above. Verification is green:
-> engine **338**, server **33**, client **105** = **476 tests**; strict build; all content gates; and
+> retired; CLAIM is wired end-to-end; Stage private overlays are lift-gated and auto-flatten after
+> the viewer's decision acknowledgement; all six burnable performer games use the core-owned
+> two-window spotlight ceremony above; and card-preview burns now have the same correlated private
+> acknowledgement/reconnect guarantees. The granular UI pass added the binding self-hosted condensed
+> font, accessible contrast/focus/touch/modal states, honest pending errors, reduced motion, safe-area
+> responsiveness, and small-phone/landscape smoke coverage. Verification is green: engine **342**,
+> server **34**, client **123** = **499 tests**; strict build; all content gates; and
 > a five-client depth-5 night against real `wrangler dev`/Durable Object/WebSockets reached JUDGMENT
 > in 360.1s. The tracker checkboxes below remain acceptance-criterion-specific: real-device skew,
 > human playtests, the 500-night CI target, payments, shell, and deploy are not implied complete.
