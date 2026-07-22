@@ -15,7 +15,7 @@ find_library(android-lib android)
 set(NATIVE_SOURCES app/src/main/cpp/llama_jni.cpp)
 
 # If llama.cpp is present, include it; else build a stub that still loads
-if(EXISTS ${CMAKE_SOURCE_DIR}/third_party/llama.cpp)
+if(EXISTS "${CMAKE_SOURCE_DIR}/third_party/llama.cpp/CMakeLists.txt")
     add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/llama.cpp ${CMAKE_BINARY_DIR}/llama_build)
     add_library(helldeck_llama SHARED ${NATIVE_SOURCES})
     target_include_directories(helldeck_llama PRIVATE app/src/main/cpp ${CMAKE_SOURCE_DIR}/third_party/llama.cpp)

@@ -254,13 +254,13 @@ Create lexicons in the appropriate category:
 
 ```bash
 # Run unit tests
-./gradlew test
+./gradlew :app:testProductionDebugUnitTest
 
 # Run integration tests
-./gradlew connectedAndroidTest
+./gradlew :app:connectedProductionDebugAndroidTest
 
 # Run specific test class
-./gradlew test --tests "*:YourTestClass"
+./gradlew :app:testProductionDebugUnitTest --tests "*:YourTestClass"
 ```
 
 ### Test Coverage

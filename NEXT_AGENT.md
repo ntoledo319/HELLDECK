@@ -7,6 +7,13 @@
 > state+timer persistence, crash-safe free-night claims, fail-safe dev unlock, and CI/release
 > guardrails landed with **540 tests green**. The remaining gates are human/device playtests, room
 > TTL/crew memory, and owner-controlled deploy/live-payment/store work—not another alarm chase.
+>
+> **Legacy Android CI follow-up:** GitHub's first post-completion run exposed flavor-ambiguous
+> Gradle tasks and a Compose manifest collision in the frozen root app. Those seams are repaired:
+> exact production variants, dual arm64/x86_64 debug builds, generated debug signing, fail-closed
+> release signing, CMake submodule detection, current JaCoCo, and a checked-in lint baseline that
+> makes new findings fatal. The local JDK 17 matrix passes 148 Android unit tests plus APK, lint,
+> Detekt, Ktlint, and Spotless gates. Play still requires owner-provisioned signing/service secrets.
 
 Originally written 2026-07-20 and updated after the UI/UX hardening pass.
 Active branch **`main`**. The Descent import and trust/safety baseline are published to

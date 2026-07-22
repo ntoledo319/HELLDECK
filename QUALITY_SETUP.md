@@ -72,7 +72,9 @@ make check
 Runs on every PR and push to main/develop:
 - `Kotlin Code Quality` - ktlintCheck, detekt, spotlessCheck
 - `Python Code Quality` - ruff format --check, ruff check
-- `Unit Tests` - testDebugUnitTest
+- `Unit Tests` - `:app:testProductionDebugUnitTest`
+- `Android Lint` - `:app:lintProductionDebug`; inherited findings live in
+  `app/lint-baseline.xml`, and any new unbaselined error fails CI
 
 ### Autofix Workflow (`.github/workflows/autofix.yml`)
 Runs on pull requests:
@@ -159,4 +161,3 @@ pre-commit install
 ## Support
 
 For issues or questions, see the main README.md "Quality Gates" section.
-

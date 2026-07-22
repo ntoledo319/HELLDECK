@@ -1,0 +1,2253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="6" by="lint 8.5.2" type="baseline" client="gradle" dependencies="false" name="AGP (8.5.2)" variant="all" version="8.5.2">
+
+    <issue
+        id="MissingPermission"
+        message="Missing permissions required by ActivityManager.killBackgroundProcesses: android.permission.KILL_BACKGROUND_PROCESSES"
+        errorLine1="                activityManager.killBackgroundProcesses(ctx.packageName)"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/MemoryOptimizer.kt"
+            line="139"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                                EnhancedStatRow(&quot;Avg 😂&quot;, String.format(&quot;%.2f&quot;, pr.avgLol), &quot;😂&quot;)"
+        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/PlayerProfileScene.kt"
+            line="162"
+            column="59"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                                EnhancedStatRow(&quot;Avg 🚮&quot;, String.format(&quot;%.2f&quot;, pr.avgTrash), &quot;🚮&quot;)"
+        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/PlayerProfileScene.kt"
+            line="163"
+            column="59"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                                EnhancedStatRow(&quot;Avg 😂&quot;, String.format(&quot;%.2f&quot;, pr.avgLol), &quot;😂&quot;)"
+        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/PlayerProfileScene.kt"
+            line="169"
+            column="59"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                                EnhancedStatRow(&quot;Avg 🚮&quot;, String.format(&quot;%.2f&quot;, pr.avgTrash), &quot;🚮&quot;)"
+        errorLine2="                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/PlayerProfileScene.kt"
+            line="170"
+            column="59"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                                value = String.format(&quot;%.1f&quot;, stats[&quot;averageScore&quot;] ?: 0.0),"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/StatsScene.kt"
+            line="220"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                                &quot;\u26A1 ${String.format(&quot;%.1f&quot;, avgPointsPerRound)} avg&quot;,"
+        errorLine2="                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/StatsScene.kt"
+            line="704"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                                &quot;\uD83D\uDE02 ${String.format(&quot;%.1f&quot;, profile.avgLol)} LOLs&quot;,"
+        errorLine2="                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/StatsScene.kt"
+            line="709"
+            column="49"/>
+    </issue>
+
+    <issue
+        id="DefaultLocale"
+        message="Implicitly using the default locale is a common source of bugs: Use `String.format(Locale, ...)` instead"
+        errorLine1="                text = String.format(&quot;%.1f&quot;, multiplier),"
+        errorLine2="                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/VisualIndicators.kt"
+            line="289"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="InlinedApi"
+        message="Field requires API level 23 (current min is 21): `android.app.ActivityManager#LOCK_TASK_MODE_NONE`"
+        errorLine1="                activityManager.lockTaskModeState != android.app.ActivityManager.LOCK_TASK_MODE_NONE"
+        errorLine2="                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="108"
+            column="54"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.Context#checkSelfPermission`"
+        errorLine1="            context.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/AppUtils.kt"
+            line="147"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.Map#getOrDefault`"
+        errorLine1="        val a = alpha.getOrDefault(templateId, 1.0)"
+        errorLine2="                      ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/content/engine/ContextualSelector.kt"
+            line="87"
+            column="23"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.Map#getOrDefault`"
+        errorLine1="        val b = beta.getOrDefault(templateId, 1.0)"
+        errorLine2="                     ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/content/engine/ContextualSelector.kt"
+            line="88"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.Map#getOrDefault`"
+        errorLine1="            val a = alpha.getOrDefault(t.id, 1.0)"
+        errorLine2="                          ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/content/engine/ContextualSelector.kt"
+            line="138"
+            column="27"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.Map#getOrDefault`"
+        errorLine1="            val b = beta.getOrDefault(t.id, 1.0)"
+        errorLine2="                         ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/content/engine/ContextualSelector.kt"
+            line="139"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.Context#getSystemService`"
+        errorLine1="        notificationManager = getSystemService(NotificationManager::class.java)"
+        errorLine2="                              ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/services/ExportImportService.kt"
+            line="34"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26, or core library desugaring (current min is 21): `java.time.LocalDateTime#now`"
+        errorLine1="                appendLine(&quot;Generated: ${java.time.LocalDateTime.now()}&quot;)"
+        errorLine2="                                                                 ~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/vm/GameNightViewModel.kt"
+            line="1505"
+            column="66"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.Context#getSystemService`"
+        errorLine1="            context.getSystemService(Vibrator::class.java)"
+        errorLine2="                    ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/HapticsTorch.kt"
+            line="31"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setStatusBarDisabled`"
+        errorLine1="                dpm.setStatusBarDisabled(adminComponent, true)"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/admin/HelldeckDeviceAdminReceiver.kt"
+            line="111"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setKeyguardDisabled`"
+        errorLine1="                dpm.setKeyguardDisabled(adminComponent, true)"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/admin/HelldeckDeviceAdminReceiver.kt"
+            line="112"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setStatusBarDisabled`"
+        errorLine1="                dpm.setStatusBarDisabled(adminComponent, false)"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/admin/HelldeckDeviceAdminReceiver.kt"
+            line="139"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setKeyguardDisabled`"
+        errorLine1="                dpm.setKeyguardDisabled(adminComponent, false)"
+        errorLine2="                    ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/admin/HelldeckDeviceAdminReceiver.kt"
+            line="140"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 26 (current min is 21): `android.app.admin.DevicePolicyManager#getLockTaskPackages`"
+        errorLine1="                &quot;lockTaskPackages&quot; to dpm.getLockTaskPackages(adminComponent).toList(),"
+        errorLine2="                                          ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/admin/HelldeckDeviceAdminReceiver.kt"
+            line="168"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.ActivityManager#getLockTaskModeState`"
+        errorLine1="                activityManager.lockTaskModeState != android.app.ActivityManager.LOCK_TASK_MODE_NONE"
+        errorLine2="                                ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="108"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setStatusBarDisabled`"
+        errorLine1="                    devicePolicyManager.setStatusBarDisabled(componentName, true)"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="237"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setKeyguardDisabled`"
+        errorLine1="                    devicePolicyManager.setKeyguardDisabled(componentName, true)"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="240"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setStatusBarDisabled`"
+        errorLine1="                    devicePolicyManager.setStatusBarDisabled(componentName, false)"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="262"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.app.admin.DevicePolicyManager#setKeyguardDisabled`"
+        errorLine1="                    devicePolicyManager.setKeyguardDisabled(componentName, false)"
+        errorLine2="                                        ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="265"
+            column="41"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.Context#getSystemService`"
+        errorLine1="            val devicePolicyManager = context.getSystemService(DevicePolicyManager::class.java)"
+        errorLine2="                                              ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="282"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.Context#getSystemService`"
+        errorLine1="            val devicePolicyManager = context.getSystemService(DevicePolicyManager::class.java)"
+        errorLine2="                                              ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="422"
+            column="47"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 23 (current min is 21): `android.content.Context#getSystemService`"
+        errorLine1="            val userManager = context.getSystemService(UserManager::class.java)"
+        errorLine2="                                      ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="423"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 25 (current min is 21): `android.os.UserManager#isDemoUser`"
+        errorLine1="                !userManager.isDemoUser"
+        errorLine2="                             ~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="427"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.concurrent.ConcurrentHashMap#getOrDefault`"
+        errorLine1="        allocations[component] = allocations.getOrDefault(component, 0L) + size"
+        errorLine2="                                             ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/MemoryOptimizer.kt"
+            line="512"
+            column="46"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.concurrent.ConcurrentHashMap#getOrDefault`"
+        errorLine1="        val newValue = allocations.getOrDefault(component, 0L) - size"
+        errorLine2="                                   ~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/MemoryOptimizer.kt"
+            line="516"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.concurrent.ConcurrentHashMap#computeIfAbsent`"
+        errorLine1="        gameGenerationCounts.computeIfAbsent(gameId) { AtomicLong(0) }.incrementAndGet()"
+        errorLine2="                             ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/analytics/PerformanceTracker.kt"
+            line="89"
+            column="30"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.concurrent.ConcurrentHashMap#computeIfAbsent`"
+        errorLine1="            failureReasons.computeIfAbsent(failureReason) { AtomicLong(0) }.incrementAndGet()"
+        errorLine2="                           ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/analytics/PerformanceTracker.kt"
+            line="93"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.Collection#removeIf`"
+        errorLine1="        val removed = currentPlayers.removeIf { it.id == playerId }"
+        errorLine2="                                     ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/PlayerManager.kt"
+            line="55"
+            column="38"/>
+    </issue>
+
+    <issue
+        id="NewApi"
+        message="Call requires API level 24, or core library desugaring (current min is 21): `java.util.Collection#removeIf`"
+        errorLine1="        val removed = currentParticipants.removeIf { it.seatNumber == seatNumber }"
+        errorLine2="                                          ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/SeatManager.kt"
+            line="70"
+            column="43"/>
+    </issue>
+
+    <issue
+        id="NotificationPermission"
+        message="When targeting Android 13 or higher, posting a permission requires holding the `POST_NOTIFICATIONS` permission"
+        errorLine1="        notificationManager.notify(NOTIFICATION_ID, notification)"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/services/ExportImportService.kt"
+            line="211"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="OldTargetApi"
+        message="Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the `android.os.Build.VERSION_CODES` javadoc for details."
+        errorLine1="    targetSdk 34"
+        errorLine2="    ~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="32"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedAttribute"
+        message="Attribute `usesCleartextTraffic` is only used in API level 23 and higher (current min is 21)"
+        errorLine1="        android:usesCleartextTraffic=&quot;false&quot;"
+        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="25"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ForegroundServicePermission"
+        message="foregroundServiceType:dataSync requires permission:[android.permission.FOREGROUND_SERVICE_DATA_SYNC]"
+        errorLine1="        &lt;service"
+        errorLine2="        ^">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="71"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ProtectedPermissions"
+        message="Permission is only granted to system apps"
+        errorLine1="    &lt;uses-permission android:name=&quot;android.permission.BIND_DEVICE_ADMIN&quot; />"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="9"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.jetbrains.kotlin.plugin.serialization than 1.9.25 is available: 2.3.21"
+        errorLine1="  id &apos;org.jetbrains.kotlin.plugin.serialization&apos; version &apos;1.9.25&apos;"
+        errorLine2="                                                         ~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="4"
+            column="58"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.google.devtools.ksp than 1.9.25-1.0.20 is available: 2.3.9"
+        errorLine1="  id &apos;com.google.devtools.ksp&apos; version &apos;1.9.25-1.0.20&apos;"
+        errorLine2="                                       ~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="5"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.19.0"
+        errorLine1="  implementation &apos;androidx.core:core-ktx:1.13.1&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="177"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1"
+        errorLine1="  implementation &apos;androidx.appcompat:appcompat:1.7.0&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="178"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.activity:activity-compose than 1.9.2 is available: 1.13.0"
+        errorLine1="  implementation &apos;androidx.activity:activity-compose:1.9.2&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="179"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of com.android.billingclient:billing-ktx than 6.0.1 is available: 9.1.0"
+        errorLine1="  implementation &quot;com.android.billingclient:billing-ktx:6.0.1&quot;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="182"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.compose:compose-bom than 2024.06.00 is available: 2026.06.01"
+        errorLine1="  implementation platform(&apos;androidx.compose:compose-bom:2024.06.00&apos;)"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="185"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.core:core-splashscreen than 1.0.1 is available: 1.2.0"
+        errorLine1="  implementation &quot;androidx.core:core-splashscreen:1.0.1&quot;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="196"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.navigation:navigation-compose than 2.7.7 is available: 2.9.8"
+        errorLine1="  implementation &apos;androidx.navigation:navigation-compose:2.7.7&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="199"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.4 is available: 2.11.0"
+        errorLine1="  implementation &apos;androidx.lifecycle:lifecycle-runtime-ktx:2.8.4&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="202"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.4 is available: 2.11.0"
+        errorLine1="  implementation &apos;androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="203"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-compose than 2.8.4 is available: 2.11.0"
+        errorLine1="  implementation &apos;androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="204"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-process than 2.8.4 is available: 2.11.0"
+        errorLine1="  implementation &apos;androidx.lifecycle:lifecycle-process:2.8.4&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="205"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.8.4"
+        errorLine1="  implementation &apos;androidx.room:room-runtime:2.6.1&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="208"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.8.4"
+        errorLine1="  implementation &apos;androidx.room:room-ktx:2.6.1&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="209"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.8.4"
+        errorLine1="  ksp &apos;androidx.room:room-compiler:2.6.1&apos;"
+        errorLine2="      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="210"
+            column="7"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.yaml:snakeyaml than 2.2 is available: 2.4"
+        errorLine1="  implementation &apos;org.yaml:snakeyaml:2.2&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="213"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.jetbrains.kotlinx:kotlinx-serialization-json than 1.6.0 is available: 1.11.0"
+        errorLine1="  implementation &apos;org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="215"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.datastore:datastore-preferences than 1.1.1 is available: 1.2.1"
+        errorLine1="  implementation &apos;androidx.datastore:datastore-preferences:1.1.1&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="218"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.tracing:tracing-ktx than 1.2.0 is available: 1.3.0"
+        errorLine1="  implementation &apos;androidx.tracing:tracing-ktx:1.2.0&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="219"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.profileinstaller:profileinstaller than 1.3.1 is available: 1.4.1"
+        errorLine1="  implementation &apos;androidx.profileinstaller:profileinstaller:1.3.1&apos;"
+        errorLine2="                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="220"
+            column="18"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0"
+        errorLine1="  testImplementation &apos;androidx.test.ext:junit:1.1.5&apos;"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="224"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test:core than 1.6.1 is available: 1.7.0"
+        errorLine1="  testImplementation &apos;androidx.test:core:1.6.1&apos;"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="225"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.mockito:mockito-core than 5.12.0 is available: 5.23.0"
+        errorLine1="  testImplementation &apos;org.mockito:mockito-core:5.12.0&apos;"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="227"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.jetbrains.kotlinx:kotlinx-coroutines-test than 1.7.3 is available: 1.11.0"
+        errorLine1="  testImplementation &apos;org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3&apos;"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="229"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of org.robolectric:robolectric than 4.10.3 is available: 4.16.1"
+        errorLine1="  testImplementation &apos;org.robolectric:robolectric:4.10.3&apos;"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="231"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.compose:compose-bom than 2024.06.00 is available: 2026.06.01"
+        errorLine1="  testImplementation platform(&apos;androidx.compose:compose-bom:2024.06.00&apos;)"
+        errorLine2="                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="234"
+            column="22"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.compose:compose-bom than 2024.06.00 is available: 2026.06.01"
+        errorLine1="  androidTestImplementation platform(&apos;androidx.compose:compose-bom:2024.06.00&apos;)"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="240"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0"
+        errorLine1="  androidTestImplementation &apos;androidx.test.ext:junit:1.1.5&apos;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="241"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test.espresso:espresso-core than 3.5.0 is available: 3.7.0"
+        errorLine1="  androidTestImplementation &apos;androidx.test.espresso:espresso-core:3.5.0&apos;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="242"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test:runner than 1.6.1 is available: 1.7.0"
+        errorLine1="  androidTestImplementation &apos;androidx.test:runner:1.6.1&apos;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="244"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="GradleDependency"
+        message="A newer version of androidx.test:rules than 1.6.1 is available: 1.7.0"
+        errorLine1="  androidTestImplementation &apos;androidx.test:rules:1.6.1&apos;"
+        errorLine2="                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="245"
+            column="29"/>
+    </issue>
+
+    <issue
+        id="LockedOrientationActivity"
+        message="Expecting `android:screenOrientation=&quot;unspecified&quot;` or `&quot;fullSensor&quot;` for this activity so the user can use the application in any orientation and provide a great experience on Chrome OS devices"
+        errorLine1="            android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="51"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/AccessibilityComponents.kt"
+            line="83"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/AccessibilityComponents.kt"
+            line="219"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/DurableUI.kt"
+            line="1303"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/DurableUI.kt"
+            line="1402"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/DurableUI.kt"
+            line="1436"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/ErrorBoundary.kt"
+            line="150"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/ErrorBoundary.kt"
+            line="396"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/Scenes.kt"
+            line="79"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/ScoreboardOverlay.kt"
+            line="33"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="        modifier: Modifier = Modifier,"
+        errorLine2="        ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/VisualIndicators.kt"
+            line="342"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/Widgets.kt"
+            line="187"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/Widgets.kt"
+            line="377"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="ModifierParameter"
+        message="Modifier parameter should be the first optional parameter"
+        errorLine1="    modifier: Modifier = Modifier,"
+        errorLine2="    ~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/Widgets.kt"
+            line="1292"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="DiscouragedApi"
+        message="Should not restrict activity to fixed orientation. This may not be suitable for different form factors, causing the app to be letterboxed."
+        errorLine1="            android:screenOrientation=&quot;portrait&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/AndroidManifest.xml"
+            line="51"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ChromeOsAbiSupport"
+        message="Missing x86_64 ABI support for ChromeOS"
+        errorLine1="        abiFilters &apos;arm64-v8a&apos;"
+        errorLine2="                   ~~~~~~~~~~~">
+        <location
+            file="build.gradle"
+            line="87"
+            column="20"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="83"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="93"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="106"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="231"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="256"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="            val isUserSupported = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+        errorLine2="                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="426"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/engine/Kiosk.kt"
+            line="471"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        message="Unnecessary; SDK_INT is always >= 21"
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/MemoryOptimizer.kt"
+            line="138"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `AnalyticsManager` which has field `context` pointing to `Context`); this is a memory leak"
+        errorLine1="        @Volatile"
+        errorLine2="        ^">
+        <location
+            file="src/main/java/com/helldeck/analytics/AnalyticsManager.kt"
+            line="28"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `ContentRepository` which has field `context` pointing to `Context`); this is a memory leak"
+        errorLine1="    private lateinit var contentRepository: ContentRepository"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/content/engine/ContentEngineProvider.kt"
+            line="40"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `LLMCardGeneratorV2` which has field `context` pointing to `Context`); this is a memory leak"
+        errorLine1="    private var llmCardGeneratorV2: LLMCardGeneratorV2? = null"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/content/engine/ContentEngineProvider.kt"
+            line="45"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `AppCtx` which has field `ctx` pointing to `Context`); this is a memory leak"
+        errorLine1="/**"
+        errorLine2="^">
+        <location
+            file="src/main/java/com/helldeck/HelldeckApp.kt"
+            line="91"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields; this is a memory leak"
+        errorLine1="    lateinit var ctx: Context"
+        errorLine2="    ^">
+        <location
+            file="src/main/java/com/helldeck/HelldeckApp.kt"
+            line="96"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `MemoryOptimizer` which has field `context` pointing to `Context`); this is a memory leak"
+        errorLine1="/**"
+        errorLine2="^">
+        <location
+            file="src/main/java/com/helldeck/utils/MemoryOptimizer.kt"
+            line="9"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields; this is a memory leak"
+        errorLine1="    private var context: Context? = null"
+        errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/MemoryOptimizer.kt"
+            line="15"
+            column="5"/>
+    </issue>
+
+    <issue
+        id="StaticFieldLeak"
+        message="Do not place Android context classes in static fields (static reference to `SoundManager` which has field `context` pointing to `Context`); this is a memory leak"
+        errorLine1="        @Volatile"
+        errorLine2="        ^">
+        <location
+            file="src/main/java/com/helldeck/audio/SoundManager.kt"
+            line="130"
+            column="9"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var localityCap by remember { mutableStateOf(Config.generatorLocalityCap()) }"
+        errorLine2="                                  ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/CardLabScene.kt"
+            line="82"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var spiceCap by remember { mutableStateOf(2) }"
+        errorLine2="                               ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/CardLabScene.kt"
+            line="83"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`"
+        errorLine1="    var generationProgress by remember { mutableStateOf(0f) }"
+        errorLine2="                                         ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/CardLabScene.kt"
+            line="90"
+            column="42"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var generationCount by remember { mutableStateOf(0) }"
+        errorLine2="                                      ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/screens/DebugHarnessScreen.kt"
+            line="18"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var tabIndex by remember { mutableStateOf(0) }"
+        errorLine2="                               ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/EmojiPicker.kt"
+            line="84"
+            column="32"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var secondsRemaining by remember { mutableStateOf(5) }"
+        errorLine2="                                       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/FeedbackScene.kt"
+            line="55"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`"
+        errorLine1="    var heatThreshold by mutableStateOf(Config.roomHeatThreshold().toFloat())"
+        errorLine2="                         ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/vm/GameNightViewModel.kt"
+            line="57"
+            column="26"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    private var turnIdx by mutableStateOf(0)"
+        errorLine2="                           ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/vm/GameNightViewModel.kt"
+            line="64"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var consecutiveWins by mutableStateOf(0)"
+        errorLine2="                           ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/vm/GameNightViewModel.kt"
+            line="77"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var roundNumber by mutableStateOf(0)"
+        errorLine2="                       ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/vm/GameNightViewModel.kt"
+            line="82"
+            column="24"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var tabooSuccessfulGuesses by mutableStateOf(0)"
+        errorLine2="                                  ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/vm/GameNightViewModel.kt"
+            line="106"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var tabooForbiddenWordCount by mutableStateOf(0)"
+        errorLine2="                                   ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/vm/GameNightViewModel.kt"
+            line="107"
+            column="36"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var currentStep by remember { mutableStateOf(0) }"
+        errorLine2="                                  ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/OnboardingFlow.kt"
+            line="62"
+            column="35"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`"
+        errorLine1="    var pulseScale by remember { mutableStateOf(1f) }"
+        errorLine2="                                 ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/OnboardingFlow.kt"
+            line="468"
+            column="34"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`"
+        errorLine1="    var pressProgress by remember { mutableStateOf(0f) }"
+        errorLine2="                                    ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/OnboardingFlow.kt"
+            line="470"
+            column="37"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableLongStateOf` instead of `mutableStateOf`"
+        errorLine1="    var timeRemainingMs by remember { mutableStateOf(autoAdvanceDelayMs) }"
+        errorLine2="                                      ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/components/QuickReactionBar.kt"
+            line="72"
+            column="39"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableFloatStateOf` instead of `mutableStateOf`"
+        errorLine1="    var heat by remember { mutableStateOf(Config.roomHeatThreshold().toFloat()) }"
+        errorLine2="                           ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/SettingsScene.kt"
+            line="64"
+            column="28"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var players by remember { mutableStateOf(0) }"
+        errorLine2="                              ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/StatsScene.kt"
+            line="80"
+            column="31"/>
+    </issue>
+
+    <issue
+        id="AutoboxingStateCreation"
+        message="Prefer `mutableIntStateOf` instead of `mutableStateOf`"
+        errorLine1="    var templates by remember { mutableStateOf(0) }"
+        errorLine2="                                ~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/ui/scenes/StatsScene.kt"
+            line="81"
+            column="33"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.card_background` appears to be unused"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/card_background.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.black` appears to be unused"
+        errorLine1="    &lt;color name=&quot;black&quot;>#FF000000&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="7"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.color.white` appears to be unused"
+        errorLine1="    &lt;color name=&quot;white&quot;>#FFFFFFFF&lt;/color>"
+        errorLine2="           ~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/colors.xml"
+            line="8"
+            column="12"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.app_name` appears to be unused"
+        errorLine1="    &lt;string name=&quot;app_name&quot;>HELLDECK&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="3"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.game_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;game_title&quot;>HELLDECK&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="7"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.game_subtitle` appears to be unused"
+        errorLine1="    &lt;string name=&quot;game_subtitle&quot;>Single phone. One card per round.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="8"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.start_round_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;start_round_button&quot;>Start Round&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="9"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.next_round_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;next_round_button&quot;>Next Round&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="10"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.players_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;players_button&quot;>Players&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="11"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.rules_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;rules_button&quot;>Rules&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="12"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.scoreboard_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;scoreboard_button&quot;>Scoreboard&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="13"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.export_brain_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;export_brain_button&quot;>Export Brain&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="14"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.import_brain_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;import_brain_button&quot;>Import Brain&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="15"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.add_player_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;add_player_title&quot;>Add Player&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="18"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.player_name_hint` appears to be unused"
+        errorLine1="    &lt;string name=&quot;player_name_hint&quot;>Name or emoji + name (e.g., 🦊 Pip)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="19"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.player_name_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;player_name_label&quot;>Player Name&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="20"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.afk_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;afk_button&quot;>AFK&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="21"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.back_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;back_button&quot;>Back&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="22"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.hide_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;hide_button&quot;>Hide&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="23"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.skip_vote_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;skip_vote_button&quot;>Skip&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="26"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.lock_vote_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;lock_vote_button&quot;>Lock &amp;amp; Next&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="27"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.finish_voting_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;finish_voting_button&quot;>Finish Voting&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="28"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.voter_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;voter_label&quot;>Voter: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="29"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.judge_label` appears to be unused"
+        errorLine1="    &lt;string name=&quot;judge_label&quot;>Judge: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="30"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.feedback_title` appears to be unused"
+        errorLine1="    &lt;string name=&quot;feedback_title&quot;>Rate that card&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="33"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.feedback_lol` appears to be unused"
+        errorLine1="    &lt;string name=&quot;feedback_lol&quot;>😂 BANGER&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="34"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.feedback_meh` appears to be unused"
+        errorLine1="    &lt;string name=&quot;feedback_meh&quot;>😐 MEH&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="35"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.feedback_trash` appears to be unused"
+        errorLine1="    &lt;string name=&quot;feedback_trash&quot;>🚮 TRASH&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="36"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.feedback_why` appears to be unused"
+        errorLine1="    &lt;string name=&quot;feedback_why&quot;>✍️ WHY&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="37"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.feedback_note_hint` appears to be unused"
+        errorLine1="    &lt;string name=&quot;feedback_note_hint&quot;>optional note…&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="38"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.feedback_save` appears to be unused"
+        errorLine1="    &lt;string name=&quot;feedback_save&quot;>Save&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="39"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.room_heat_bonus` appears to be unused"
+        errorLine1="    &lt;string name=&quot;room_heat_bonus&quot;>+1 heat bonus&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="42"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.trash_penalty` appears to be unused"
+        errorLine1="    &lt;string name=&quot;trash_penalty&quot;>−2 penalty&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="43"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.win_points` appears to be unused"
+        errorLine1="    &lt;string name=&quot;win_points&quot;>+2 points&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="44"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.correct_guess` appears to be unused"
+        errorLine1="    &lt;string name=&quot;correct_guess&quot;>+1 point&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="45"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_no_device` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_no_device&quot;>No device connected. Enable USB debugging.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="48"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_invalid_apk` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_invalid_apk&quot;>Please select a valid APK file&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="49"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_install_failed` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_install_failed&quot;>Installation failed. Check device connection.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="50"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_device_owner_failed` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_device_owner_failed&quot;>Device owner setup failed. Try on a freshly reset device.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="51"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_export_failed` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_export_failed&quot;>Export failed. Check storage permissions.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="52"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.error_import_failed` appears to be unused"
+        errorLine1="    &lt;string name=&quot;error_import_failed&quot;>Import failed. Check file format.&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="53"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.install_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;install_success&quot;>APK installed successfully&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="56"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.device_owner_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;device_owner_success&quot;>Device owner set successfully&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="57"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.reboot_message` appears to be unused"
+        errorLine1="    &lt;string name=&quot;reboot_message&quot;>Device rebooting into HELLDECK&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="58"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.export_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;export_success&quot;>Brainpack exported successfully&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="59"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.import_success` appears to be unused"
+        errorLine1="    &lt;string name=&quot;import_success&quot;>Brainpack imported successfully&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="60"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.player_count_tip` appears to be unused"
+        errorLine1="    &lt;string name=&quot;player_count_tip&quot;>3–10 players best. 11–16 = teams (1 vote per team).&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="63"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.control_tip` appears to be unused"
+        errorLine1="    &lt;string name=&quot;control_tip&quot;>Long-press to draw • two-finger = back&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="64"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.torch_tip` appears to be unused"
+        errorLine1="    &lt;string name=&quot;torch_tip&quot;>Torch blink means scoring lock&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="65"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.vibrate_tip` appears to be unused"
+        errorLine1="    &lt;string name=&quot;vibrate_tip&quot;>Vibration indicates phase change&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="66"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.content_description_card` appears to be unused"
+        errorLine1="    &lt;string name=&quot;content_description_card&quot;>Game card content&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="69"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.content_description_avatar` appears to be unused"
+        errorLine1="    &lt;string name=&quot;content_description_avatar&quot;>Player avatar&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="70"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.content_description_vote_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;content_description_vote_button&quot;>Vote button&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="71"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.content_description_feedback_button` appears to be unused"
+        errorLine1="    &lt;string name=&quot;content_description_feedback_button&quot;>Feedback button&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="72"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.notification_channel_game` appears to be unused"
+        errorLine1="    &lt;string name=&quot;notification_channel_game&quot;>Game Notifications&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="75"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.notification_channel_game_description` appears to be unused"
+        errorLine1="    &lt;string name=&quot;notification_channel_game_description&quot;>Notifications for game events&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="76"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pref_spicy_mode` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pref_spicy_mode&quot;>Spicy Mode (70% threshold)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="79"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pref_chill_mode` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pref_chill_mode&quot;>Chill Mode (60% threshold)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="80"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pref_learning_enabled` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pref_learning_enabled&quot;>Enable Learning&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="81"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pref_sound_enabled` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pref_sound_enabled&quot;>Enable Sound Effects&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="82"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.pref_haptics_enabled` appears to be unused"
+        errorLine1="    &lt;string name=&quot;pref_haptics_enabled&quot;>Enable Haptic Feedback&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="83"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.debug_build_timestamp` appears to be unused"
+        errorLine1="    &lt;string name=&quot;debug_build_timestamp&quot;>Build Time: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="86"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.debug_version_info` appears to be unused"
+        errorLine1="    &lt;string name=&quot;debug_version_info&quot; formatted=&quot;false&quot;>Version: %s (%d)&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="87"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.debug_database_path` appears to be unused"
+        errorLine1="    &lt;string name=&quot;debug_database_path&quot;>Database: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="88"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.string.debug_export_path` appears to be unused"
+        errorLine1="    &lt;string name=&quot;debug_export_path&quot;>Export Path: %s&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/res/values/strings.xml"
+            line="89"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        message="The resource `R.drawable.zone_background` appears to be unused"
+        errorLine1="&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;"
+        errorLine2="^">
+        <location
+            file="src/main/res/drawable/zone_background.xml"
+            line="2"
+            column="1"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icons should not fill every pixel of their square region; see the design guide for details">
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconLauncherShape"
+        message="Launcher icon used as round icon did not have a circular shape">
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-hdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-mdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-xhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-xxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="IconDuplicates"
+        message="The following unrelated icon files have identical contents: ic_launcher.png, ic_launcher_round.png">
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"/>
+        <location
+            file="src/main/res/mipmap-xxxhdpi/ic_launcher.png"/>
+    </issue>
+
+    <issue
+        id="ConstantLocale"
+        message="Assigning `Locale.getDefault()` to a final static field is suspicious; this code will not work correctly if the user changes locale while the app is running"
+        errorLine1="    private val dateFormat = SimpleDateFormat(&quot;yyyy-MM-dd HH:mm:ss.SSS&quot;, Locale.getDefault())"
+        errorLine2="                                                                         ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/Logger.kt"
+            line="25"
+            column="74"/>
+    </issue>
+
+    <issue
+        id="ConstantLocale"
+        message="Assigning `Locale.getDefault()` to a final static field is suspicious; this code will not work correctly if the user changes locale while the app is running"
+        errorLine1="    private val fileDateFormat = SimpleDateFormat(&quot;yyyy-MM-dd&quot;, Locale.getDefault())"
+        errorLine2="                                                                ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/java/com/helldeck/utils/Logger.kt"
+            line="26"
+            column="65"/>
+    </issue>
+
+</issues>

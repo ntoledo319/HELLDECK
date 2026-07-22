@@ -105,7 +105,7 @@ java -version
 ls $ANDROID_SDK_ROOT/ndk/
 
 # Test build
-./gradlew :app:assembleDebug
+./gradlew :app:assembleInternalDebug
 ```
 
 ### 4. Install Python Tools (Optional)
@@ -135,15 +135,15 @@ pre-commit install
 **Command Line:**
 ```bash
 # Build debug APK
-./gradlew :app:assembleDebug
+./gradlew :app:assembleInternalDebug
 
-# Output: app/build/outputs/apk/debug/app-debug.apk
+# Output: app/build/outputs/apk/internal/debug/app-internal-debug.apk
 
 # Install to device
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+adb install -r app/build/outputs/apk/internal/debug/app-internal-debug.apk
 
 # Build and install in one command
-./gradlew :app:installDebug
+./gradlew :app:installInternalDebug
 ```
 
 ### Release Builds
@@ -163,17 +163,23 @@ export KEY_PASSWORD=your_key_password
 
 **Build Release APK:**
 ```bash
-./gradlew :app:assembleRelease
+./gradlew :app:assembleProductionRelease
 
-# Output: app/build/outputs/apk/release/app-release.apk
+# Output: app/build/outputs/apk/production/release/app-production-release.apk
 ```
+
+Release builds fail closed unless `KEYSTORE_PATH`, `KEYSTORE_PASSWORD`, `KEY_ALIAS`, and
+`KEY_PASSWORD` point to valid signing material. CI decodes `KEYSTORE_BASE64` into the temporary
+keystore path before invoking this task.
 
 ### Build Variants
 
-| Variant | Minify | Debuggable | Proguard | Use Case |
-|---------|--------|------------|----------|----------|
-| **debug** | No | Yes | No | Development |
-| **release** | Yes | No | Yes | Production |
+| Variant | Unlocked | Minify | Debuggable | Use Case |
+|---------|----------|--------|------------|----------|
+| **internalDebug** | Yes | No | Yes | Local development |
+| **productionDebug** | No | No | Yes | CI and production-like testing |
+| **internalRelease** | Yes | Yes | No | Internal release testing |
+| **productionRelease** | No | Yes | No | Distribution |
 
 ### Native Builds
 
@@ -184,10 +190,10 @@ export KEY_PASSWORD=your_key_password
 rm -rf app/.cxx/
 
 # Force native rebuild
-./gradlew :app:assembleDebug -Pandroid.injected.invoked.from.ide=false
+./gradlew :app:assembleInternalDebug -Pandroid.injected.invoked.from.ide=false
 
 # Check native libraries
-unzip -l app/build/outputs/apk/debug/app-debug.apk | grep libhelldeck_llama.so
+unzip -l app/build/outputs/apk/internal/debug/app-internal-debug.apk | grep libhelldeck_llama.so
 ```
 
 **Build Flags:**
@@ -206,13 +212,10 @@ set(CMAKE_ANDROID_STL_TYPE c++_shared)
 **Run All Tests:**
 ```bash
 # Run all unit tests
-./gradlew test
+./gradlew :app:testProductionDebugUnitTest
 
 # Run specific test class
-./gradlew test --tests "com.helldeck.content.validation.SemanticValidatorTest"
-
-# Run with coverage
-./gradlew testDebugUnitTest jacocoTestReport
+./gradlew :app:testProductionDebugUnitTest --tests "com.helldeck.content.validation.SemanticValidatorTest"
 ```
 
 **In Android Studio:**
@@ -225,10 +228,10 @@ set(CMAKE_ANDROID_STL_TYPE c++_shared)
 **Run on Device:**
 ```bash
 # Run all instrumented tests
-./gradlew connectedAndroidTest
+./gradlew :app:connectedProductionDebugAndroidTest
 
 # Run specific test
-./gradlew connectedAndroidTest \
+./gradlew :app:connectedProductionDebugAndroidTest \
   -Pandroid.testInstrumentationRunnerArguments.class=com.helldeck.ui.scenes.RollcallSceneTest
 ```
 
@@ -272,13 +275,7 @@ python tools/card_audit_diff.py \
 
 ### Test Coverage
 
-**Generate Coverage Report:**
-```bash
-./gradlew testDebugUnitTest jacocoTestReport
-
-# View report
-open app/build/reports/jacoco/jacocoTestReport/html/index.html
-```
+JaCoCo instrumentation is enabled for unit tests. A dedicated coverage-report task is not currently configured.
 
 **Coverage Goals:**
 - Overall: 70%+
@@ -716,7 +713,7 @@ val isValid by remember {
 ```bash
 # Solution: Clear cache and rebuild
 ./gradlew clean
-./gradlew --refresh-dependencies :app:assembleDebug
+./gradlew --refresh-dependencies :app:assembleInternalDebug
 ```
 
 **Problem: "NDK not found"**

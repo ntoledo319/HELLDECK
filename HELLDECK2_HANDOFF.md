@@ -97,13 +97,15 @@ local bot night reaches JUDGMENT. Do not treat it as a sketch—or as human-play
 >   than minting an unrecorded night. Dev unlock requires exact `ENV=dev` + signing secret; Wrangler
 >   defaults production-safe; DO migrations are v1 RoomDO / v2 LedgerDO.
 > - Legacy workflows are path-scoped; Play/GitHub release actions are manual, main-only,
->   confirmation/environment-gated; Descent Dependabot and environment-secret ignores are present.
+>   confirmation/environment-gated; exact flavor tasks, dual-ABI debug builds, fail-closed signing,
+>   and baseline-enforced Android lint are now verified locally under JDK 17 (148 unit tests).
+>   Descent Dependabot and environment-secret ignores are present.
 > - **Verification:** engine **342** + server **67** + client **131** = **540 tests**, recursive strict
 >   build, production JS **61.15 KB gzip**, all 1,024 content gates, workflow YAML/actionlint, and
 >   `git diff --check` green. Frozen install and peer checks are clean; patched Vitest/Sharp remove
 >   every full and production dependency-audit finding. Still open: real human/device playtests,
 >   room TTL/crew memory, live
->   Stripe/Workers/domain/Play work, and Android signing—all honestly owner- or product-gated.
+>   Stripe/Workers/domain/Play work, and Android signing credentials—all honestly owner- or product-gated.
 
 > **PRIOR UPDATE — 2026-07-21 (Opus 4.8). MONETIZATION (D-412/413) IS LANDED in test mode — this
 > paragraph was authoritative over the 2026-07-20 one below.** The biggest gap ("monetization is

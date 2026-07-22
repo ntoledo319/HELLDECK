@@ -2,20 +2,20 @@
 
 This guide explains how HELLDECK ships on‑device LLMs by default and how to run full game quality checks.
 
-## LLM: Default & Automatic
+## LLM: Automatic When Assets Are Provisioned
 
-- Models are bundled in the APK under `app/src/main/assets/models/*.gguf` and copied to app storage on first run.
+- Models placed under `app/src/main/assets/models/*.gguf` are bundled in the APK and copied to app storage on first run. GGUF files are intentionally not committed, so clean CI builds use the fallback path unless release assets are provisioned separately.
 - The native bridge `libhelldeck_llama.so` is built with the app. If `third_party/llama.cpp` is present at build time, it links to the full runtime; otherwise a safe stub is shipped and the engine falls back.
 - Paraphrasing & classification are automatic when the model is ready. No settings toggle is required.
 
 ## Build Notes
 
 ```
-# Debug APK (bundles models & native lib)
-./gradlew :app:assembleDebug
+# Debug APK (bundles locally provisioned models and the native bridge)
+./gradlew :app:assembleProductionDebug
 
 # Release APK
-./gradlew :app:assembleRelease
+./gradlew :app:assembleProductionRelease
 ```
 
 - `.gguf` files are stored uncompressed for faster copy on first launch (`androidResources.noCompress 'gguf'`).

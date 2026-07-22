@@ -28,7 +28,7 @@ check: ## Verify formatting/lint without making changes (CI safe)
 
 test: ## Run unit and integration tests
 	@echo "🧪 Running tests..."
-	@./gradlew testDebugUnitTest
+	@./gradlew :app:testProductionDebugUnitTest
 	@echo "✅ Tests completed"
 
 ci: check test ## Run full CI pipeline (check + test)
@@ -60,4 +60,3 @@ check-python: ## Check Python formatting/lint without changes
 	@command -v ruff >/dev/null 2>&1 || pip install ruff
 	@ruff check loader/ tools/ --exclude third_party || echo "⚠️  Python checks failed"
 	@ruff format --check loader/ tools/ --exclude third_party || echo "⚠️  Python format check failed"
-

@@ -3,9 +3,8 @@ project(helldeck_llama)
 
 set(CMAKE_CXX_STANDARD 17)
 
-# Add llama.cpp as subdirectory (assumes it will be placed in third_party)
-# If llama.cpp is not present, this will fail - document this in README
-if(EXISTS ${CMAKE_SOURCE_DIR}/../third_party/llama.cpp)
+# Add llama.cpp when its submodule is initialized; otherwise build the fallback below.
+if(EXISTS "${CMAKE_SOURCE_DIR}/../third_party/llama.cpp/CMakeLists.txt")
     add_subdirectory(${CMAKE_SOURCE_DIR}/../third_party/llama.cpp ${CMAKE_BINARY_DIR}/llama_build)
 
     if(ANDROID AND TARGET llama)

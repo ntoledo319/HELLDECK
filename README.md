@@ -80,13 +80,13 @@ cd HELLDECK
 
 **Method 2: Command Line**
 ```bash
-# Debug build
-./gradlew :app:assembleDebug
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+# Internal debug build (all game content unlocked)
+./gradlew :app:assembleInternalDebug
+adb install -r app/build/outputs/apk/internal/debug/app-internal-debug.apk
 
-# Release build
-./gradlew :app:assembleRelease
-adb install -r app/build/outputs/apk/release/app-release.apk
+# Production-like debug build used by CI
+./gradlew :app:assembleProductionDebug
+adb install -r app/build/outputs/apk/production/debug/app-production-debug.apk
 ```
 
 **Method 3: Desktop Loader (GUI)**
@@ -177,10 +177,10 @@ make ci       # Full CI pipeline
 
 **Build & Test:**
 ```bash
-./gradlew :app:assembleDebug          # Build debug APK
-./gradlew :app:assembleRelease        # Build release APK
-./gradlew test                        # Run unit tests
-./gradlew connectedAndroidTest        # Run instrumented tests
+./gradlew :app:assembleInternalDebug                # Developer APK
+./gradlew :app:assembleProductionDebug              # CI/production-like APK
+./gradlew :app:testProductionDebugUnitTest           # Unit tests
+./gradlew :app:connectedProductionDebugAndroidTest   # Instrumented tests
 ```
 
 **Card Quality Tools:**
@@ -294,7 +294,7 @@ python tools/lexicon_lint.py
 ./gradlew clean
 
 # Sync Gradle and rebuild
-./gradlew --refresh-dependencies :app:assembleDebug
+./gradlew --refresh-dependencies :app:assembleInternalDebug
 
 # Check native dependencies
 cd third_party/llama.cpp && git submodule update --init

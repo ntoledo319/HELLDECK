@@ -608,10 +608,10 @@ Cards pass coherence gates if:
 ### 3. Validate Locally
 ```bash
 # Test compilation
-./gradlew :app:assembleDebug
+./gradlew :app:assembleProductionDebug
 
 # Run property tests
-./gradlew testDebugUnitTest --tests GeneratorV3InvariantsTest
+./gradlew :app:testProductionDebugUnitTest --tests com.helldeck.content.generator.GeneratorV3InvariantsTest
 
 # Generate audit report
 ./gradlew :app:cardAudit -Pgame=YOUR_GAME -Pcount=200
