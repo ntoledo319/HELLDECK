@@ -39,6 +39,20 @@ export function Crown({ size = 56 }: { size?: number }) {
   );
 }
 
+/** The pit's mark — a sealed downward star. An inline SVG so it can never emoji-fy or tofu on a
+ *  phone the way the ⛧ glyph would; it's the toll screen's brand centerpiece, so render is owned. */
+export function Sigil({ size = 72 }: { size?: number }) {
+  return (
+    <svg viewBox="0 0 32 32" width={size} height={size} class="sigil" aria-hidden="true">
+      <circle cx="16" cy="16" r="14.6" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.75" />
+      <path
+        d="M16 27 L13.4 19.6 L5.5 19.4 L11.8 14.6 L9.5 7.1 L16 11.6 L22.5 7.1 L20.2 14.6 L26.5 19.4 L18.6 19.6 Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 /**
  * Countdown ring driven by an AT deadline mapped through serverNow() — never a local
  * interval accumulating drift (spec 3.3). Redraws from the wall each frame.

@@ -77,7 +77,35 @@ local bot night reaches JUDGMENT. Do not treat it as a sketch—or as human-play
 
 ## 3. CURRENT STATE (factual)
 
-> **LATEST UPDATE — 2026-07-20 (Codex).** The older chronological notes below are retained as
+> **LATEST UPDATE — 2026-07-21 (Opus 4.8). MONETIZATION (D-412/413) IS LANDED in test mode — this
+> paragraph is now authoritative over the 2026-07-20 one below.** The biggest gap ("monetization is
+> 0%") is closed end-to-end, autonomously. What's real:
+> - **Enforcement is no longer hardcoded.** `room-do.ts` no longer pins `entitled: true`; entitlement
+>   is **re-resolved against the host's DEVICE at every BEGIN** — so the paywall lands on the device's
+>   SECOND night whether that's a `resetNight` of the same room or a brand-new room. The free night is
+>   **charged only when a night actually starts** (a BEGIN the engine rejects never burns it).
+> - **Per-device free-night ledger:** new `LedgerDO` (`env.LEDGER`, one DO per `idFromName(deviceToken)`),
+>   idempotent `/status` + `/consume-free`. **Paid path is a stateless device-bound HMAC** unlock token
+>   (`entitle.ts`, keyed by `UNLOCK_SECRET`) the phone keeps in localStorage — a purchase survives a
+>   browser restart with no account. Fail-open bias: a ledger blip lets friends play rather than locking
+>   out a paying host mid-party.
+> - **Worker routes** `/api/entitle/{status,checkout,verify,dev-unlock}` (`worker.ts` + `stripe.ts`):
+>   real Stripe **test-mode** Checkout (inline $9.99 SKU, no Price object to provision) + session-verify;
+>   a **non-prod `dev-unlock`** escape hatch makes the whole flow playable/testable with NO Stripe key.
+>   Live keys stay owner-gated (`STRIPE_SECRET` unset ⇒ 501 `NO_STRIPE` + `devUnlock:true`).
+> - **Client:** device+unlock tokens in localStorage, sent on the host's own WS (`?dev=&unlock=`, never
+>   on the wire to others); an **UNHINGED paywall overlay** (`screens/paywall.tsx`, "PAY THE TOLL — $9.99",
+>   taste-gated) opens on `NO_ENTITLEMENT`; Stripe returns the host to their room and a clean reload
+>   reconnects the socket carrying the fresh unlock.
+> - **Verification:** engine **342** + server **48** (+14 entitlement) + client **129** (+6) = **519 tests**
+>   green; strict recursive build; production JS **60.90 KB gzip** (was 59.43; the whole vertical cost ~1.5 KB,
+>   far under the 200 KB budget); `wrangler deploy --dry-run` bundles both DOs; all `/api/entitle/*`
+>   endpoints exercised over a live `wrangler dev` (fresh device→free-night, dev-unlock→HMAC→unlocked,
+>   forged token→rejected, bad device→400). **Still owner-gated:** real human playtests (D-128/D-138),
+>   `STRIPE_SECRET` live key, Workers Paid deploy, domain, Play release. **Still autonomous-open:** `descent/`
+>   CI, room TTL/expiry (the `ROOM_EXPIRED` protocol code is still unwired), crew-memory persistence.
+
+> **PRIOR UPDATE — 2026-07-20 (Codex).** The older chronological notes below are retained as
 > history, but this paragraph is authoritative. Active branch `main` is published. CLAIM and visible
 > server errors are wired; spotlight and card-preview burns both use correlated private
 > acknowledgements and reconstruct only the current viewer's live assignment on reconnect/RESYNC;

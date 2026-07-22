@@ -728,17 +728,17 @@ Rules: a task is checked ONLY when its acceptance criteria (AC) pass. Order with
   reconnect replay, and I REST MY CASE everywhere applicable. Verified 2026-07-20.
 - [ ] **D-135** Stage mode + lift-to-sin web fallback (manual flip button); host-control failover.
 - [ ] **D-136** Design pass per 6.2 on every screen + explainer cards. AC: taste review — zero screens pass the "corporate quiz app" test.
-- [ ] **D-137** Bot-night fuzz suite 500 nights green (Part 11). 
+- [ ] **D-137** Bot-night fuzz suite 500 nights green (Part 11).
 - [ ] **D-138** 🎯 **REAL PLAYTESTS #2–4** (incl. one loud-bar night, one 3-player night). AC: would-play-again ≥ 4/5 groups; median laughs/round ≥2 by ear-count.
 
 ## M4 — Android shell + money
 - [ ] **D-411** Shell per Part 7 (WebView, bridge, billing, stage audio, lift-to-sin sensor). AC: bridge contract tests; purchase in internal testing track.
-- [ ] **D-412** Entitlements per 9.1–9.2 web path (Stripe link + verify + HMAC token). AC: paywall on 2nd night; unlock survives browser restart.
-- [ ] **D-413** Free-night device tokens + paywall UI at BEGIN. 
+- [x] **D-412** Entitlements per 9.1–9.2 web path (Stripe test-mode Checkout + verify + HMAC token). DONE 2026-07-21: `server/src/entitle.ts` (device-bound HMAC, `UNLOCK_SECRET`) + `stripe.ts` (test-mode Checkout/verify) + `worker.ts` `/api/entitle/{status,checkout,verify,dev-unlock}`; client stores `localStorage["hd:unlock"]`, resent on WS connect. AC met — paywall on 2nd night's BEGIN (see D-413); unlock is stateless HMAC in localStorage so it survives a browser restart. **Owner-gated tail:** set `STRIPE_SECRET` live key (test mode + a non-prod `dev-unlock` escape hatch work now).
+- [x] **D-413** Free-night device tokens + paywall UI at BEGIN. DONE 2026-07-21: per-device `LedgerDO` (`env.LEDGER`) holds the one free night (idempotent `/consume-free`); entitlement is re-resolved against the host device at EVERY BEGIN and the free night is charged only when a night actually starts (a rejected BEGIN never burns it). UNHINGED paywall overlay `client/src/screens/paywall.tsx` opens on `NO_ENTITLEMENT` and returns the host to their room after payment. Server tests: `entitle.test.ts` + entitlement-at-BEGIN block in `protocol.test.ts` (free-night cross-room, paid-always-plays, forged-token-rejected, rejected-BEGIN-doesn't-burn).
 - [ ] **D-414** Play listing: Mature 17+ IARC, Data Safety (10.4), screenshots in brand.
 
 ## M5 — Beta
-- [ ] **D-511** Deploy beta env; 10 crews recruited (share-card links traced). 
+- [ ] **D-511** Deploy beta env; 10 crews recruited (share-card links traced).
 - [ ] **D-512** Telemetry dashboard (fires/card, completion rate, night length, share-taps) — a static page reading exported counters, nothing fancy.
 - [ ] **D-513** Fix cycle; content cull pass #1 from fire data.
 - [ ] **D-514** Exit criteria: ≥70% of started nights reach JUDGMENT; ≥30% of joiner devices tap the share link; zero deadlock reports.

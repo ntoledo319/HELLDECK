@@ -8,9 +8,14 @@ compatibility_date = "2026-06-01"
 name = "ROOM"
 class_name = "RoomDO"
 
+# One LedgerDO per host device (idFromName(deviceToken)) — the free-night ledger (D-412).
+[[durable_objects.bindings]]
+name = "LEDGER"
+class_name = "LedgerDO"
+
 [[migrations]]
 tag = "v1"
-new_sqlite_classes = ["RoomDO"]
+new_sqlite_classes = ["RoomDO", "LedgerDO"]
 
 [assets]
 directory = "../client/dist"
@@ -18,4 +23,6 @@ binding = "ASSETS"
 
 [vars]
 ENV = "dev"
-# UNLOCK_SECRET is set via `wrangler secret put UNLOCK_SECRET` (task D-412)
+# Secrets are set via `wrangler secret put <NAME>` (task D-412):
+#   UNLOCK_SECRET — HMAC key that signs the device-bound $9.99 unlock token (required in prod)
+#   STRIPE_SECRET — sk_test_… now, sk_live_… at launch (owner-gated). Absent => dev-unlock only.

@@ -1,5 +1,6 @@
 // Socket wrapper: reconnect (0.5s→8s backoff), epoch discipline, clock offset, RESYNC on visible.
 // Spec 3.1/3.3/3.5 + 6.3. Countdowns everywhere derive from serverNow() — never local intervals.
+import { deviceToken, unlockToken } from '../entitle';
 import { median } from '../logic';
 import { FireCoalescer } from './coalesce';
 
@@ -51,7 +52,12 @@ export class Net {
     this.closed = false;
     this.h.onStatus('connecting');
     const proto = location.protocol === 'https:' ? 'wss' : 'ws';
-    this.ws = new WebSocket(`${proto}://${location.host}/ws/${this.code}?token=${this.token}&v=1`);
+    // The host's device + unlock tokens ride this phone's OWN socket so the server can resolve
+    // entitlement at BEGIN (spec Part 11). Read fresh each connect so a just-purchased unlock is
+    // picked up on the next reconnect. Harmless for joiners — only the host's are ever consulted.
+    const unlock = unlockToken();
+    const params = `token=${this.token}&v=1&dev=${deviceToken()}${unlock ? `&unlock=${encodeURIComponent(unlock)}` : ''}`;
+    this.ws = new WebSocket(`${proto}://${location.host}/ws/${this.code}?${params}`);
     this.ws.onopen = () => {
       this.backoff = 500;
       this.h.onStatus('open');

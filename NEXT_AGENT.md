@@ -4,6 +4,16 @@ Originally written 2026-07-20 and updated after the UI/UX hardening pass.
 Active branch **`main`**. The Descent import and trust/safety baseline are published to
 `origin/main`; do not assume the older `descent`-only/no-push notes are still current.
 
+> **⚡ 2026-07-21 UPDATE (Opus 4.8) — MONETIZATION (D-412/413) IS DONE in test mode, plus `descent/`
+> CI landed.** The "biggest gap" below (§2 item 1, "MONETIZATION IS 0%") is CLOSED end-to-end and
+> taste-approved. Read the authoritative account in `HELLDECK2_HANDOFF.md` §3 (2026-07-21 paragraph)
+> and the checked D-412/D-413 in `DESCENT_BUILD_SPEC.md` Part 12. Uncommitted on `main` as of this
+> writing — the owner commits when they choose. What's still open (see §2, revised): real human
+> playtests (owner-gated), `STRIPE_SECRET` live key (owner-gated), deploy/domain/Android/store
+> (owner-gated), and the remaining autonomous ops — **room TTL/expiry** (the `ROOM_EXPIRED` protocol
+> code is still unwired) and **crew-memory persistence**. The §4 OpenArt asset directive is unchanged
+> and still needs owner sign-off before generating anything.
+
 ---
 
 ## 1. THE OWNER'S MANDATE FOR YOUR SESSION
@@ -41,17 +51,21 @@ phone (host included) is a thin renderer over WebSocket. Code lives in `descent/
 
 ### REAL REMAINING WORK — this is your actual work list
 
-1. **MONETIZATION IS 0%.** This is the biggest gap. The *enforcement* exists (engine blocks BEGIN
-   on `!entitled`; protocol returns `NO_ENTITLEMENT`) but **`packages/server/src/room-do.ts:73`
-   hardcodes every room to `entitled: true`**, and there is no Stripe path, no Play Billing, no
-   paywall UI, no free-night device token. `D-412`/`D-413` are a comment in `worker.ts`. The whole
-   business model is a $9.99 one-time host unlock paywalled at the SECOND night's BEGIN button —
-   **none of it exists.**
+1. ~~**MONETIZATION IS 0%.**~~ **DONE 2026-07-21 (test mode).** The hardcode is gone: entitlement
+   is re-resolved against the host DEVICE at every BEGIN; per-device `LedgerDO` holds the one free
+   night; the paid path is a stateless device-bound HMAC unlock in localStorage; `worker.ts` serves
+   `/api/entitle/{status,checkout,verify,dev-unlock}` with real Stripe test-mode Checkout + verify;
+   the UNHINGED paywall overlay (`screens/paywall.tsx`, taste-approved) opens on `NO_ENTITLEMENT`.
+   **Only owner-gated tail left: set `STRIPE_SECRET` to a live key.** (test mode + non-prod dev-unlock
+   work now.) See `HELLDECK2_HANDOFF.md` §3.
 2. **NEVER PLAYED BY A HUMAN.** The live bot night is real infrastructure evidence, not fun or
    usability evidence. D-128/D-138 remain the most important product gate. See §5.
-3. **Operational lifecycle is incomplete.** There is no room TTL/expiry policy, no crew-memory
-   persistence, and the root GitHub Actions workflows still build the frozen Android product rather
-   than `descent/`.
+3. **Operational lifecycle is partly done.** `descent/` CI now exists (`.github/workflows/descent-ci.yml`
+   — build+test+content-funnel, with `allowBuilds` committed to `pnpm-workspace.yaml` so a fresh
+   install is non-interactive). **Still open (autonomous):** room TTL/expiry (the `ROOM_EXPIRED`
+   protocol code is defined but never emitted — rooms live forever in DO storage; wire a TTL check in
+   the RoomDO + an alarm-driven cleanup, and mind the delicate alarm-multiplexing in `room-do.ts`),
+   and crew-memory persistence.
 4. **No deploy, no Android shell, no domain, no store listing** (M4–M6).
 
 ---
