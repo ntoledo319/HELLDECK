@@ -1,11 +1,14 @@
 package com.helldeck.data
 
 import android.content.Context
+import androidx.annotation.VisibleForTesting
+import androidx.room.withTransaction
 import com.helldeck.content.db.HelldeckDb
 import com.helldeck.engine.Feedback
 import com.helldeck.engine.SessionSummary
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Repository class providing high-level database operations for game sessions.
@@ -15,8 +18,8 @@ import java.util.UUID
  */
 class Repository private constructor(private val db: HelldeckDb) {
 
-    // Map to track Long sessionId -> String sessionId conversions for tests
-    private val sessionIdMap = mutableMapOf<Long, String>()
+    // Public APIs retain Long IDs while Room stores collision-resistant UUIDs.
+    private val sessionIdMap = ConcurrentHashMap<Long, String>()
 
     companion object {
         @Volatile
@@ -29,6 +32,9 @@ class Repository private constructor(private val db: HelldeckDb) {
                 instance
             }
         }
+
+        @VisibleForTesting
+        fun createForTesting(db: HelldeckDb): Repository = Repository(db)
     }
 
     /**
@@ -38,28 +44,29 @@ class Repository private constructor(private val db: HelldeckDb) {
      * @return Session ID as a Long (converted from String UUID)
      */
     suspend fun createGameSession(playerNames: List<String>): Long {
-        val sessionId = UUID.randomUUID().toString()
+        val sessionUuid = UUID.randomUUID()
+        val sessionId = sessionUuid.toString()
         val session = SessionMetricsEntity(
             sessionId = sessionId,
             startedAtMs = System.currentTimeMillis(),
             totalRounds = 0,
             participatingPlayers = playerNames.joinToString(","),
         )
-        db.sessionMetrics().upsert(session)
+        db.withTransaction {
+            db.sessionMetrics().upsert(session)
 
-        // Create player entities for each player name
-        playerNames.forEach { name ->
-            val player = PlayerEntity(
-                id = UUID.randomUUID().toString(),
-                name = name,
-                avatar = "😀",
-                sessionPoints = 0,
-            )
-            db.players().upsert(player)
+            playerNames.forEach { name ->
+                val player = PlayerEntity(
+                    id = UUID.randomUUID().toString(),
+                    name = name,
+                    avatar = "😀",
+                    sessionPoints = 0,
+                )
+                db.players().upsert(player)
+            }
         }
 
-        // Use a simple counter-based Long ID and map it
-        val longId = System.currentTimeMillis()
+        val longId = sessionUuid.toPositiveLong()
         sessionIdMap[longId] = sessionId
         return longId
     }
@@ -86,7 +93,8 @@ class Repository private constructor(private val db: HelldeckDb) {
         // Convert Long sessionId to String using the map
         val sessionIdStr = sessionIdMap[sessionId] ?: sessionId.toString()
 
-        val roundId = UUID.randomUUID().toString()
+        val roundUuid = UUID.randomUUID()
+        val roundId = roundUuid.toString()
         val round = RoundMetricsEntity(
             roundId = roundId,
             sessionId = sessionIdStr,
@@ -102,15 +110,15 @@ class Repository private constructor(private val db: HelldeckDb) {
             completedAtMs = System.currentTimeMillis(),
             durationMs = feedback.latencyMs.toLong(),
         )
-        db.roundMetrics().upsert(round)
+        db.withTransaction {
+            db.roundMetrics().upsert(round)
+            db.sessionMetrics().incrementRounds(sessionIdStr)
+            db.sessionMetrics().addLolCount(sessionIdStr, feedback.lol)
+            db.sessionMetrics().addMehCount(sessionIdStr, feedback.meh)
+            db.sessionMetrics().addTrashCount(sessionIdStr, feedback.trash)
+        }
 
-        // Update session metrics
-        db.sessionMetrics().incrementRounds(sessionIdStr)
-        db.sessionMetrics().addLolCount(sessionIdStr, feedback.lol)
-        db.sessionMetrics().addMehCount(sessionIdStr, feedback.meh)
-        db.sessionMetrics().addTrashCount(sessionIdStr, feedback.trash)
-
-        return roundId.hashCode().toLong()
+        return roundUuid.toPositiveLong()
     }
 
     /**
@@ -183,7 +191,14 @@ class Repository private constructor(private val db: HelldeckDb) {
      * @param points Points to add (can be negative)
      */
     suspend fun updatePlayerScore(playerId: String, points: Int) {
-        db.players().addPointsToPlayer(playerId, points)
-        db.players().addTotalPoints(playerId, points)
+        db.withTransaction {
+            db.players().addPointsToPlayer(playerId, points)
+            db.players().addTotalPoints(playerId, points)
+        }
     }
 }
+
+private fun UUID.toPositiveLong(): Long =
+    (mostSignificantBits xor leastSignificantBits)
+        .and(Long.MAX_VALUE)
+        .coerceAtLeast(1L)

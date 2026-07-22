@@ -39,7 +39,7 @@ class DatabaseIntegrationTest {
             HelldeckDb::class.java,
         ).build()
         templateDao = database.templateStatDao()
-        repository = Repository.get(context)
+        repository = Repository.createForTesting(database)
     }
 
     @After
@@ -48,7 +48,7 @@ class DatabaseIntegrationTest {
     }
 
     @Test
-    fun `complete round workflow persists data correctly`() = runBlocking {
+    fun completeRoundWorkflowPersistsDataCorrectly() = runBlocking {
         // Arrange
         val playerNames = listOf("Player 1", "Player 2", "Player 3")
         val sessionId = repository.createGameSession(playerNames)
@@ -88,7 +88,7 @@ class DatabaseIntegrationTest {
     }
 
     @Test
-    fun `multiple rounds persist correctly`() = runBlocking {
+    fun multipleRoundsPersistCorrectly() = runBlocking {
         // Arrange
         val sessionId = repository.createGameSession(listOf("Player 1", "Player 2"))
 
@@ -116,14 +116,16 @@ class DatabaseIntegrationTest {
         val rounds = repository.getRoundsForSession(sessionId).first()
         assertEquals("Should have 3 rounds", 3, rounds.size)
 
-        // Verify all rounds belong to the session
-        rounds.forEach { round ->
-            assertEquals("All rounds should belong to session", sessionId, round.sessionId)
-        }
+        assertEquals(
+            "All rounds should belong to one persisted session",
+            1,
+            rounds.map { it.sessionId }.distinct().size,
+        )
+        assertEquals("Session round count should be updated", 3, repository.getSessionById(sessionId)?.totalRounds)
     }
 
     @Test
-    fun `player score updates persist correctly`() = runBlocking {
+    fun playerScoreUpdatesPersistCorrectly() = runBlocking {
         // Arrange
         val player = repository.addPlayer("Test Player", "😀")
         val initialPoints = player.sessionPoints
@@ -144,11 +146,11 @@ class DatabaseIntegrationTest {
     }
 
     @Test
-    fun `concurrent operations maintain data integrity`() = runBlocking {
+    fun multipleOperationsMaintainDataIntegrity() = runBlocking {
         // Arrange
         val sessionId = repository.createGameSession(listOf("Player 1", "Player 2"))
 
-        // Act - Perform multiple operations concurrently
+        // Act - Perform multiple related operations in one session
         val player1 = repository.addPlayer("Extra Player 1", "🤖")
         val player2 = repository.addPlayer("Extra Player 2", "👻")
 
@@ -188,7 +190,7 @@ class DatabaseIntegrationTest {
     }
 
     @Test
-    fun `transaction rollback works correctly on error`() = runBlocking {
+    fun transactionRollbackWorksCorrectlyOnError() = runBlocking {
         // Arrange
         val sessionId = repository.createGameSession(listOf("Player 1"))
 
