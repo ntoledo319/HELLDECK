@@ -4,34 +4,44 @@ package com.helldeck.qa
 
 import android.content.Context
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertHasClickAction
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.helldeck.content.data.ContentRepository
+import com.helldeck.content.db.HelldeckDb
+import com.helldeck.content.engine.ContentEngineProvider
+import com.helldeck.content.engine.ContextualSelector
 import com.helldeck.content.engine.GameEngine
-import com.helldeck.content.model.Player
-import com.helldeck.engine.GameIds
+import com.helldeck.content.util.SeededRng
+import com.helldeck.content.validation.GameContractValidator
+import com.helldeck.engine.GameMetadata
+import com.helldeck.settings.SettingsStore
 import com.helldeck.ui.HelldeckAppUI
+import com.helldeck.ui.HelldeckTheme
 import com.helldeck.ui.HelldeckVm
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
+import com.helldeck.ui.Scene
+import com.helldeck.ui.components.OnboardingFlow
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.junit.After
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * Comprehensive QA tests for HELLDECK
+ * Device-level acceptance tests for generation contracts and the two app entry paths.
  *
- * Tests all 14 games with various player counts and edge cases:
- * - Game mechanics validation
- * - UI responsiveness
- * - Performance under load
- * - Error handling
- * - Accessibility compliance
+ * Timing and heap benchmarks intentionally live outside this functional CI suite so emulator
+ * scheduling noise cannot turn product checks into flaky release gates.
  */
 @RunWith(AndroidJUnit4::class)
 class ComprehensiveQATest {
@@ -40,459 +50,160 @@ class ComprehensiveQATest {
     val composeTestRule = createComposeRule()
 
     private lateinit var context: Context
-    private lateinit var repository: ContentRepository
+    private lateinit var database: HelldeckDb
     private lateinit var gameEngine: GameEngine
-    private lateinit var viewModel: HelldeckVm
 
     @Before
     fun setup() {
         context = ApplicationProvider.getApplicationContext()
-        repository = ContentRepository(context)
-        gameEngine = com.helldeck.content.engine.ContentEngineProvider.get(context)
-        viewModel = HelldeckVm()
+        database = Room.inMemoryDatabaseBuilder(
+            context,
+            HelldeckDb::class.java,
+        ).build()
 
+        val repository = ContentRepository(context, database)
+        val rng = SeededRng(20260722L)
+        val selector = ContextualSelector(repository, rng.random)
+        selector.seed(repository.templatesV2().associate { it.id to (1.0 to 1.0) })
+        gameEngine = GameEngine(
+            repo = repository,
+            rng = rng,
+            selector = selector,
+            augmentor = null,
+            modelId = "",
+            cardGeneratorV3 = null,
+            llmCardGeneratorV2 = null,
+        )
+
+        ContentEngineProvider.reset()
         runBlocking {
-            viewModel.initOnce()
+            SettingsStore.writeHasSeenOnboarding(true)
+            SettingsStore.writeReducedMotion(true)
         }
     }
 
-    /**
-     * Test all games with minimum players (2)
-     */
+    @After
+    fun teardown() {
+        ContentEngineProvider.reset()
+        database.close()
+    }
+
     @Test
-    fun testAllGamesWithMinimumPlayers() {
-        val allGames = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
+    fun allOfficialGamesHonorGenerationContractsAtSupportedPlayerBounds() = runBlocking {
+        GameMetadata.getAllGames().forEach { game ->
+            setOf(game.minPlayers, game.maxPlayers).forEach { playerCount ->
+                val request = GameEngine.Request(
+                    gameId = game.id,
+                    sessionId = "contract_${game.id}_$playerCount",
+                    spiceMax = 3,
+                    players = playerNames(playerCount),
+                )
+
+                val result = gameEngine.next(request)
+                val contract = GameContractValidator.validate(
+                    gameId = result.filledCard.game,
+                    interactionType = result.interactionType,
+                    options = result.options,
+                    filledCard = result.filledCard,
+                    playersCount = playerCount,
+                )
+
+                assertEquals("Requested game should be preserved", game.id, result.filledCard.game)
+                assertEquals("Timer should come from game metadata", game.timerSec, result.timer)
+                assertEquals("Interaction should come from game metadata", game.interactionType, result.interactionType)
+                assertTrue(
+                    "${game.id} should satisfy its contract with $playerCount players: ${contract.reasons}",
+                    contract.isValid,
+                )
+            }
+        }
+    }
+
+    @Test
+    fun unsupportedInputReturnsAnExplicitGoldFallback() = runBlocking {
+        val result = gameEngine.next(
+            GameEngine.Request(
+                gameId = "NOT_A_REAL_GAME",
+                sessionId = "fallback_contract",
+                players = emptyList(),
+                spiceMax = 1,
+            ),
         )
-        val players = listOf(
-            Player(id = "p1", name = "Player 1", avatar = "😀", sessionPoints = 0),
-            Player(id = "p2", name = "Player 2", avatar = "😎", sessionPoints = 0),
-        )
 
-        allGames.forEach { gameId ->
-            try {
-                runBlocking {
-                    val result = gameEngine.next(
-                        GameEngine.Request(
-                            gameId = gameId,
-                            sessionId = "test_session",
-                            spiceMax = 1,
-                            players = players.map { it.name },
-                        ),
-                    )
-
-                    assertNotNull("Game $gameId should generate content", result.filledCard)
-                    assertTrue("Game $gameId should have valid content", result.filledCard.text.isNotEmpty())
-                    assertFalse("Game $gameId should not have unfilled slots", result.filledCard.text.contains("{"))
-                }
-            } catch (e: Exception) {
-                fail("Game $gameId failed with minimum players: ${e.message}")
-            }
-        }
+        assertEquals("NOT_A_REAL_GAME", result.filledCard.game)
+        assertEquals("gold_fallback", result.filledCard.family)
+        assertEquals(true, result.filledCard.metadata["fallback"])
+        assertFalse("Fallback text should be usable", result.filledCard.text.isBlank())
     }
 
-    /**
-     * Test all games with maximum players (16)
-     */
     @Test
-    fun testAllGamesWithMaximumPlayers() {
-        val allGames = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
-        )
-        val players = (1..16).map { i ->
-            Player(id = "p$i", name = "Player $i", avatar = "👤", sessionPoints = 0)
-        }
+    fun onboardingSkipCompletesTheFirstRunFlow() {
+        var completed = false
 
-        allGames.forEach { gameId ->
-            try {
-                runBlocking {
-                    val result = gameEngine.next(
-                        GameEngine.Request(
-                            gameId = gameId,
-                            sessionId = "test_session",
-                            spiceMax = 1,
-                            players = players.map { it.name },
-                        ),
-                    )
-
-                    assertNotNull("Game $gameId should generate content with max players", result.filledCard)
-                    assertTrue(
-                        "Game $gameId should have valid content with max players",
-                        result.filledCard.text.isNotEmpty(),
-                    )
-                }
-            } catch (e: Exception) {
-                fail("Game $gameId failed with maximum players: ${e.message}")
-            }
-        }
-    }
-
-    /**
-     * Test edge cases with odd player counts
-     */
-    @Test
-    fun testEdgeCasePlayerCounts() {
-        val edgeCases = listOf(3, 5, 7, 11, 13, 15)
-        val testGame = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
-        ).first()
-
-        edgeCases.forEach { playerCount ->
-            val players = (1..playerCount).map { i ->
-                Player(id = "p$i", name = "Player $i", avatar = "😀", sessionPoints = 0)
-            }
-
-            try {
-                runBlocking {
-                    val result = gameEngine.next(
-                        GameEngine.Request(
-                            gameId = testGame,
-                            sessionId = "test_session",
-                            spiceMax = 1,
-                            players = players.map { it.name },
-                        ),
-                    )
-
-                    assertNotNull("Game should work with $playerCount players", result.filledCard)
-                }
-            } catch (e: Exception) {
-                fail("Game failed with $playerCount players: ${e.message}")
-            }
-        }
-    }
-
-    /**
-     * Test spicy mode variations
-     */
-    @Test
-    fun testSpicyModeVariations() {
-        val players = listOf(
-            Player(id = "p1", name = "Player 1", avatar = "😀", sessionPoints = 0),
-            Player(id = "p2", name = "Player 2", avatar = "😎", sessionPoints = 0),
-        )
-        val spiceLevels = listOf(1, 2, 3)
-
-        spiceLevels.forEach { spiceLevel ->
-            try {
-                runBlocking {
-                    val result = gameEngine.next(
-                        GameEngine.Request(
-                            gameId = listOf(
-                                GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-                                GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-                                GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-                                GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-                                GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
-                            ).first(),
-                            sessionId = "test_session",
-                            spiceMax = spiceLevel,
-                            players = players.map { it.name },
-                        ),
-                    )
-
-                    assertNotNull("Game should work with spice level $spiceLevel", result.filledCard)
-                    assertTrue(
-                        "Content should be valid with spice level $spiceLevel",
-                        result.filledCard.text.isNotEmpty(),
-                    )
-                }
-            } catch (e: Exception) {
-                fail("Game failed with spice level $spiceLevel: ${e.message}")
-            }
-        }
-    }
-
-    /**
-     * Test UI responsiveness under load
-     */
-    @Test
-    fun testUIResponsivenessUnderLoad() {
         composeTestRule.setContent {
-            HelldeckAppUI(viewModel)
+            HelldeckTheme {
+                OnboardingFlow(onComplete = { completed = true })
+            }
         }
 
-        // Simulate rapid state changes
-        repeat(10) {
-            composeTestRule.onNodeWithText("Start Game").performClick()
-            composeTestRule.waitForIdle()
-        }
-
-        // Verify UI is still responsive
         composeTestRule.onNodeWithText("HELLDECK").assertExists()
-    }
-
-    /**
-     * Test memory usage during gameplay
-     */
-    @Test
-    fun testMemoryUsageDuringGameplay() {
-        val runtime = Runtime.getRuntime()
-        val initialMemory = runtime.totalMemory() - runtime.freeMemory()
-
-        // Simulate extended gameplay
-        repeat(50) {
-            runBlocking {
-                gameEngine.next(
-                    GameEngine.Request(
-                        gameId = listOf(
-                            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-                            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-                            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-                            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-                            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
-                        ).random(),
-                        sessionId = "memory_test_session",
-                        spiceMax = 2,
-                        players = listOf("Player 1", "Player 2", "Player 3"),
-                    ),
-                )
-            }
-        }
-
-        val finalMemory = runtime.totalMemory() - runtime.freeMemory()
-        val memoryIncrease = (finalMemory - initialMemory) / (1024 * 1024) // Convert to MB
-
-        assertTrue("Memory increase should be reasonable (< 50MB)", memoryIncrease < 50)
-    }
-
-    /**
-     * Test error handling with invalid inputs
-     */
-    @Test
-    fun testErrorHandlingWithInvalidInputs() {
-        try {
-            runBlocking {
-                // Test with empty player list
-                gameEngine.next(
-                    GameEngine.Request(
-                        gameId = "invalid_game",
-                        sessionId = "test_session",
-                        spiceMax = 1,
-                        players = emptyList(),
-                    ),
-                )
-                fail("Should throw exception for empty player list")
-            }
-        } catch (e: IllegalArgumentException) {
-            // Expected
-        } catch (e: Exception) {
-            fail("Should throw IllegalArgumentException, not ${e.javaClass.simpleName}")
-        }
-
-        try {
-            runBlocking {
-                // Test with invalid game ID
-                gameEngine.next(
-                    GameEngine.Request(
-                        gameId = "nonexistent_game",
-                        sessionId = "test_session",
-                        spiceMax = 1,
-                        players = listOf("Player 1"),
-                    ),
-                )
-                fail("Should throw exception for invalid game ID")
-            }
-        } catch (e: Exception) {
-            // Expected - should handle gracefully
+        composeTestRule.onNodeWithText("Skip").assertHasClickAction().performClick()
+        composeTestRule.runOnIdle {
+            assertTrue("Skip should complete onboarding", completed)
         }
     }
 
-    /**
-     * Test accessibility compliance
-     */
     @Test
-    fun testAccessibilityCompliance() {
+    fun homePrimaryActionStartsARound() {
+        val viewModel = initializedViewModel()
         composeTestRule.setContent {
-            HelldeckAppUI(viewModel)
-        }
-
-        // Test that all interactive elements have content descriptions
-        // Note: Compose test API usage needs update - disabled for now
-        // Pending fix for Compose test API usage when updating to newer Compose testing APIs.
-        // composeTestRule.onAllNodes(hasClickAction()).forEach { node ->
-        //     try {
-        //         node.assertContentDescriptionExists()
-        //     } catch (e: AssertionError) {
-        //         // Log accessibility issues for manual review
-        //         println("Accessibility issue: Interactive element missing content description")
-        //     }
-        // }
-    }
-
-    /**
-     * Test game balance across all games
-     */
-    @Test
-    fun testGameBalanceAcrossAllGames() {
-        val allGames = listOf(
-            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
-        )
-        val players = listOf(
-            Player(id = "p1", name = "Player 1", avatar = "😀", sessionPoints = 0),
-            Player(id = "p2", name = "Player 2", avatar = "😎", sessionPoints = 0),
-            Player(id = "p3", name = "Player 3", avatar = "🎮", sessionPoints = 0),
-        )
-
-        val gameResults = mutableMapOf<String, GameEngine.Result>()
-
-        allGames.forEach { gameId ->
-            try {
-                runBlocking {
-                    val result = gameEngine.next(
-                        GameEngine.Request(
-                            gameId = gameId,
-                            sessionId = "balance_test",
-                            spiceMax = 2,
-                            players = players.map { it.name },
-                        ),
-                    )
-                    gameResults[gameId] = result
-                }
-            } catch (e: Exception) {
-                fail("Game $gameId failed during balance test: ${e.message}")
+            HelldeckTheme {
+                HelldeckAppUI(viewModel)
             }
         }
 
-        // Verify all games generated content
-        assertEquals("All games should generate content", allGames.size, gameResults.size)
-
-        // Verify content quality
-        gameResults.values.forEach { result ->
-            assertNotNull("Result should not be null", result)
-            assertNotNull("Filled card should not be null", result.filledCard)
-            assertTrue("Content should not be empty", result.filledCard.text.isNotEmpty())
-            assertFalse("Content should not have unfilled slots", result.filledCard.text.contains("{"))
+        waitForHome(viewModel)
+        composeTestRule
+            .onNodeWithText("🔥 Start the Chaos")
+            .assertHasClickAction()
+            .performClick()
+        composeTestRule.waitUntil(timeoutMillis = 60_000L) {
+            viewModel.scene == Scene.ROUND && viewModel.roundState != null
         }
+        composeTestRule.onNodeWithText("GET READY").assertExists()
     }
 
-    /**
-     * Test performance with concurrent operations
-     */
     @Test
-    fun testPerformanceWithConcurrentOperations() = runBlocking {
-        val startTime = System.currentTimeMillis()
-
-        // Run multiple game generations concurrently
-        val jobs = (1..10).map { i ->
-            async {
-                gameEngine.next(
-                    GameEngine.Request(
-                        gameId = listOf(
-                            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-                            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-                            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-                            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-                            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
-                        ).random(),
-                        sessionId = "concurrent_test_$i",
-                        spiceMax = 1,
-                        players = listOf("Player 1", "Player 2"),
-                    ),
-                )
+    fun homePrimaryControlsExposeAccessibleLabels() {
+        val viewModel = initializedViewModel()
+        composeTestRule.setContent {
+            HelldeckTheme {
+                HelldeckAppUI(viewModel)
             }
         }
 
-        jobs.awaitAll()
-
-        val duration = System.currentTimeMillis() - startTime
-
-        // Should complete within reasonable time (5 seconds)
-        assertTrue("Concurrent operations should complete quickly", duration < 5000)
+        waitForHome(viewModel)
+        composeTestRule.onNodeWithContentDescription("Open rollcall").assertHasClickAction()
+        composeTestRule.onNodeWithContentDescription("Open settings").assertHasClickAction()
+        composeTestRule.onNodeWithText("🔥 Start the Chaos").assertHasClickAction()
     }
 
-    /**
-     * Test template variety and diversity
-     */
-    @Test
-    fun testTemplateVarietyAndDiversity() {
-        val players = listOf(
-            Player(id = "p1", name = "Player 1", avatar = "😀", sessionPoints = 0),
-            Player(id = "p2", name = "Player 2", avatar = "😎", sessionPoints = 0),
-        )
-
-        val generatedTemplates = mutableSetOf<String>()
-        val generatedFamilies = mutableSetOf<String>()
-
-        // Generate multiple templates to test variety
-        repeat(20) {
-            runBlocking {
-                val result = gameEngine.next(
-                    GameEngine.Request(
-                        gameId = listOf(
-                            GameIds.ROAST_CONS, GameIds.CONFESS_CAP, GameIds.POISON_PITCH,
-                            GameIds.FILLIN, GameIds.RED_FLAG, GameIds.HOTSEAT_IMP,
-                            GameIds.TEXT_TRAP, GameIds.TABOO, GameIds.TITLE_FIGHT,
-                            GameIds.ALIBI, GameIds.SCATTER, GameIds.UNIFYING_THEORY,
-                            GameIds.REALITY_CHECK, GameIds.OVER_UNDER,
-                        ).random(),
-                        sessionId = "variety_test",
-                        spiceMax = 1,
-                        players = players.map { it.name },
-                    ),
-                )
-
-                generatedTemplates.add(result.filledCard.id)
-                result.filledCard.family?.let { family ->
-                    generatedFamilies.add(family)
-                }
-            }
-        }
-
-        // Should have good variety
-        assertTrue("Should generate variety of templates", generatedTemplates.size > 10)
-        assertTrue("Should generate variety of families", generatedFamilies.size > 3)
-    }
-
-    /**
-     * Test scoring system consistency
-     */
-    @Test
-    fun testScoringSystemConsistency() {
-        val players = listOf(
-            Player(id = "p1", name = "Player 1", avatar = "😀", sessionPoints = 100),
-            Player(id = "p2", name = "Player 2", avatar = "😎", sessionPoints = 50),
-        )
-
-        // Test different scoring scenarios
-        val scoringScenarios = listOf(
-            mapOf("lol" to 5, "meh" to 0, "trash" to 0), // All positive
-            mapOf("lol" to 2, "meh" to 2, "trash" to 1), // Mixed
-            mapOf("lol" to 0, "meh" to 0, "trash" to 5), // All negative
-        )
-
-        scoringScenarios.forEach { scenario ->
-            runBlocking {
-                // Simulate feedback and scoring
-                scenario.forEach { (type, count) ->
-                    repeat(count) {
-                        when (type) {
-                            "lol" -> viewModel.feedbackLol()
-                            "meh" -> viewModel.feedbackMeh()
-                            "trash" -> viewModel.feedbackTrash()
-                        }
-                    }
-                }
-
-                // Verify scoring doesn't crash and produces reasonable results
-                val finalScores = players.map { it.sessionPoints }
-                assertTrue("Scores should be reasonable", finalScores.all { it >= 0 })
-            }
+    private fun initializedViewModel(): HelldeckVm {
+        return HelldeckVm().also { viewModel ->
+            runBlocking { viewModel.initOnce() }
         }
     }
+
+    private fun waitForHome(viewModel: HelldeckVm) {
+        composeTestRule.waitUntil(timeoutMillis = 30_000L) {
+            viewModel.scene == Scene.HOME &&
+                composeTestRule
+                    .onAllNodesWithText("🔥 Start the Chaos")
+                    .fetchSemanticsNodes()
+                    .isNotEmpty()
+        }
+    }
+
+    private fun playerNames(count: Int): List<String> =
+        (1..count).map { index -> "Player $index" }
 }

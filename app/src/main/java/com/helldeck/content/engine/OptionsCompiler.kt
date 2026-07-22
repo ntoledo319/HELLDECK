@@ -112,13 +112,14 @@ class OptionsCompiler(
             ?: findSlotValue(seq, "bodily")
             ?: findSlotValue(seq, "selfish")
             ?: findSlotValue(seq, "innuendo")
-            ?: repo.wordsFor("would_you_rather_costs").random(rng.random)
+            ?: repo.wordsFor("social_disaster").random(rng.random)
         val optionB = findSlotValue(seq, "cost_b")
             ?: findSlotValue(seq, "cost")
             ?: findSlotValue(seq, "red_flag")
             ?: findSlotValue(seq, "taboo")
             ?: findSlotValue(seq, "reason")
-            ?: repo.wordsFor("gross_problem").random(rng.random)
+            ?: findSlotValue(seq, "social_disaster")
+            ?: repo.wordsFor("gross").random(rng.random)
         return GameOptions.AB(optionA, optionB)
     }
 

@@ -27,9 +27,9 @@ import kotlinx.coroutines.runBlocking
  */
 class ContentRepository(
     private val context: Context,
+    val db: HelldeckDb = HelldeckDb.get(context),
 ) {
     private val assets = context.assets
-    val db = HelldeckDb.get(context)
 
     private val lexicons = LexiconRepository(assets)
     private val templatesV2Repo = TemplateRepositoryV2(assets)

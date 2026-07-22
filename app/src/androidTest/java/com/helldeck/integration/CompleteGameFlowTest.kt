@@ -1,17 +1,21 @@
 package com.helldeck.integration
 
+import android.content.Context
+import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.helldeck.content.data.ContentRepository
+import com.helldeck.content.db.HelldeckDb
 import com.helldeck.content.engine.ContextualSelector
 import com.helldeck.content.engine.GameEngine
-import com.helldeck.content.engine.TemplateEngine
 import com.helldeck.content.engine.augment.Augmentor
 import com.helldeck.content.engine.augment.GenerationCache
 import com.helldeck.content.engine.augment.Validator
 import com.helldeck.content.model.FilledCard
 import com.helldeck.content.util.SeededRng
+import com.helldeck.content.validation.GameContractValidator
 import kotlinx.coroutines.runBlocking
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
@@ -38,34 +42,28 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class CompleteGameFlowTest {
 
-    private lateinit var context: android.content.Context
+    private lateinit var context: Context
+    private lateinit var database: HelldeckDb
     private lateinit var repo: ContentRepository
     private lateinit var engine: GameEngine
     private lateinit var selector: ContextualSelector
-    private lateinit var templateEngine: TemplateEngine
-    private lateinit var augmentor: Augmentor
-    private lateinit var cache: GenerationCache
-    private lateinit var validator: Validator
     private lateinit var rng: SeededRng
 
     @Before
     fun setup() {
         context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = ContentRepository(context)
+        database = Room.inMemoryDatabaseBuilder(
+            context,
+            HelldeckDb::class.java,
+        ).build()
+        repo = ContentRepository(context, database)
         repo.initialize()
 
         rng = SeededRng(42) // Fixed seed for reproducible tests
         selector = ContextualSelector(repo, rng.random)
-        templateEngine = TemplateEngine(repo, rng)
-
-        // Initialize validator with basic profanity list
-        validator = Validator(setOf("badword", "terrible"), maxSpice = 3)
-
-        // Initialize cache
-        cache = GenerationCache(repo.db)
-
-        // Initialize augmentor (without LLM for basic tests)
-        augmentor = Augmentor(null, cache, validator)
+        val validator = Validator(setOf("badword", "terrible"), maxSpice = 3)
+        val cache = GenerationCache(repo.db)
+        val augmentor = Augmentor(null, cache, validator)
 
         // Initialize game engine
         engine = GameEngine(
@@ -85,8 +83,13 @@ class CompleteGameFlowTest {
         selector.seed(priors)
     }
 
+    @After
+    fun teardown() {
+        database.close()
+    }
+
     @Test
-    fun `complete game flow with multiple players works correctly`() = runBlocking {
+    fun completeGameFlowWithMultiplePlayersWorksCorrectly() = runBlocking {
         val players = listOf("Alice", "Bob", "Charlie")
         val sessionId = "test_session_1"
 
@@ -104,26 +107,29 @@ class CompleteGameFlowTest {
         assertNotNull("Should have a filled card", result.filledCard)
         assertTrue("Should have valid game ID", result.filledCard.game.isNotEmpty())
         assertTrue("Should have filled text", result.filledCard.text.isNotEmpty())
-
-        // Verify the filled card contains player references
-        val filledText = result.filledCard.text
+        val contract = GameContractValidator.validate(
+            gameId = result.filledCard.game,
+            interactionType = result.interactionType,
+            options = result.options,
+            filledCard = result.filledCard,
+            playersCount = players.size,
+        )
         assertTrue(
-            "Should reference players",
-            players.any { filledText.contains(it) } ||
-                filledText.contains("someone"),
-        ) // Fallback when no players
+            "Generated card should satisfy its interaction contract: ${contract.reasons}",
+            contract.isValid,
+        )
 
-        // Test feedback recording
         val reward = 0.8 // Positive feedback
         engine.recordOutcome(result.filledCard.id, reward)
 
-        // Verify learning occurred (selector parameters updated)
-        // This is tested indirectly by ensuring no exceptions are thrown
-        assertTrue("Feedback recording should complete", true)
+        val persistedStat = repo.statsDao.get(result.filledCard.id)
+        assertNotNull("Feedback should persist template statistics", persistedStat)
+        assertEquals("Feedback should increment visits", 1, persistedStat?.visits)
+        assertEquals("Feedback reward should persist", reward, persistedStat?.rewardSum ?: 0.0, 0.0001)
     }
 
     @Test
-    fun `template selection respects spice constraints`() = runBlocking {
+    fun templateSelectionRespectsSpiceConstraints() = runBlocking {
         val players = listOf("Alice", "Bob")
         val sessionId = "test_session_2"
 
@@ -159,7 +165,7 @@ class CompleteGameFlowTest {
     }
 
     @Test
-    fun `template selection with specific game works correctly`() = runBlocking {
+    fun templateSelectionWithSpecificGameWorksCorrectly() = runBlocking {
         val players = listOf("Alice", "Bob")
         val sessionId = "test_session_3"
 
@@ -185,7 +191,7 @@ class CompleteGameFlowTest {
     }
 
     @Test
-    fun `slot filling with various lexicon types works correctly`() = runBlocking {
+    fun slotFillingWithVariousLexiconTypesWorksCorrectly() = runBlocking {
         val players = listOf("Alice", "Bob")
         val sessionId = "test_session_4"
 
@@ -212,7 +218,7 @@ class CompleteGameFlowTest {
     }
 
     @Test
-    fun `feedback loop improves selection over time`() = runBlocking {
+    fun feedbackLoopImprovesSelectionOverTime() = runBlocking {
         val players = listOf("Alice", "Bob")
         val sessionId = "test_session_5"
 
@@ -244,56 +250,46 @@ class CompleteGameFlowTest {
         val uniqueTemplates = templateIds.distinct()
         assertTrue("Should have template diversity", uniqueTemplates.size >= 3)
 
-        // Verify learning occurred (no exceptions thrown)
-        assertTrue("Learning should complete successfully", true)
+        val persistedStats = repo.statsDao.getAll()
+        assertEquals("Every outcome should persist a visit", 10, persistedStats.sumOf { it.visits })
+        assertEquals(
+            "Every outcome reward should persist",
+            5.4,
+            persistedStats.sumOf { it.rewardSum },
+            0.0001,
+        )
     }
 
     @Test
-    fun `error handling works throughout pipeline`() = runBlocking {
+    fun errorHandlingWorksThroughoutPipeline() = runBlocking {
         val players = listOf("Alice", "Bob")
         val sessionId = "test_session_6"
 
-        // Test with invalid game ID
-        try {
-            val request = GameEngine.Request(
+        val invalidGameResult = engine.next(
+            GameEngine.Request(
                 gameId = "nonexistent_game",
                 sessionId = sessionId,
                 spiceMax = 2,
                 players = players,
-            )
+            ),
+        )
+        assertEquals("Invalid games should use a gold fallback", "gold_fallback", invalidGameResult.filledCard.family)
+        assertEquals(true, invalidGameResult.filledCard.metadata["fallback"])
 
-            val result = engine.next(request)
-
-            // Should either return a result or handle gracefully
-            if (result != null) {
-                assertNotNull("Should handle invalid game gracefully", result.filledCard)
-            }
-        } catch (e: Exception) {
-            // Should handle exceptions gracefully
-            assertTrue("Should handle exceptions", e.message?.isNotEmpty() == true)
-        }
-
-        // Test with empty players list
-        try {
-            val request = GameEngine.Request(
+        val emptyPlayersResult = engine.next(
+            GameEngine.Request(
                 gameId = null,
                 sessionId = sessionId,
                 spiceMax = 2,
                 players = emptyList(),
-            )
-
-            val result = engine.next(request)
-
-            assertNotNull("Should handle empty players gracefully", result)
-            assertNotNull("Should still generate filled card", result.filledCard)
-        } catch (e: Exception) {
-            // Should handle exceptions gracefully
-            assertTrue("Should handle empty players", e.message?.isNotEmpty() == true)
-        }
+            ),
+        )
+        assertFalse("Empty-player fallback should still be playable", emptyPlayersResult.filledCard.text.isBlank())
+        assertFalse("Empty-player fallback should not leak slots", emptyPlayersResult.filledCard.text.contains("{"))
     }
 
     @Test
-    fun `template filling preserves metadata correctly`() = runBlocking {
+    fun templateFillingPreservesMetadataCorrectly() = runBlocking {
         val players = listOf("Alice", "Bob")
         val sessionId = "test_session_7"
 
@@ -323,15 +319,15 @@ class CompleteGameFlowTest {
     }
 
     @Test
-    fun `multiple concurrent sessions work correctly`() = runBlocking {
+    fun multipleSessionsMaintainDiverseResults() = runBlocking {
         val players1 = listOf("Alice", "Bob")
         val players2 = listOf("Charlie", "Dana")
 
-        // Test multiple sessions simultaneously
+        // Interleave two session request streams.
         val session1Results = mutableListOf<FilledCard>()
         val session2Results = mutableListOf<FilledCard>()
 
-        repeat(5) { round ->
+        repeat(5) {
             // Session 1
             val request1 = GameEngine.Request(
                 gameId = null,
@@ -368,7 +364,7 @@ class CompleteGameFlowTest {
     }
 
     @Test
-    fun `word count constraints are respected`() = runBlocking {
+    fun wordCountConstraintsAreRespected() = runBlocking {
         val players = listOf("Alice", "Bob")
         val sessionId = "test_session_8"
 
@@ -388,12 +384,12 @@ class CompleteGameFlowTest {
 
             // Should be reasonable word count (not too long)
             assertTrue("Should have reasonable word count", wordCount <= 50)
-            assertTrue("Should have minimum words", wordCount >= 3)
+            assertTrue("Should have minimum words", wordCount >= 4)
         }
     }
 
     @Test
-    fun `template diversity works across multiple rounds`() = runBlocking {
+    fun templateDiversityWorksAcrossMultipleRounds() = runBlocking {
         val players = listOf("Alice", "Bob", "Charlie")
         val sessionId = "test_session_9"
 

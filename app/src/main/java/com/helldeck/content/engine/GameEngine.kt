@@ -339,7 +339,7 @@ class GameEngine(
      * Each interaction type has a safe fallback.
      */
     private fun createGoldFallback(req: Request): Result {
-        val gameId = req.gameId ?: GameMetadata.getAllGameIds().random()
+        val gameId = req.gameId ?: GameMetadata.getAllGameIds().random(rng.random)
         val metadata = GameMetadata.getGameMetadata(gameId)
         val interactionType = metadata?.interactionType ?: InteractionType.NONE
         val timer = metadata?.timerSec ?: 15
@@ -349,7 +349,7 @@ class GameEngine(
                 "Would you rather have unlimited coffee or unlimited pizza?" to
                     GameOptions.AB("Unlimited Coffee", "Unlimited Pizza")
             }
-            InteractionType.VOTE_PLAYER -> {
+            InteractionType.VOTE_PLAYER, InteractionType.VOTE_SEAT -> {
                 "Who is most likely to survive a zombie apocalypse?" to
                     GameOptions.SeatVote((1..(if (req.players.isNotEmpty()) req.players.size else 3)).toList())
             }
@@ -393,7 +393,7 @@ class GameEngine(
                 "Rock-paper-scissors showdown! Best of three." to
                     GameOptions.Challenge("Duel!")
             }
-            InteractionType.TARGET_SELECT -> {
+            InteractionType.TARGET_SELECT, InteractionType.SELF_RATE -> {
                 "Pick someone to answer this: What's your secret talent?" to
                     GameOptions.SeatSelect((1..req.players.size.coerceAtLeast(2)).toList(), null)
             }
