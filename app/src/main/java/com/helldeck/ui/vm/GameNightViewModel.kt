@@ -26,11 +26,15 @@ import com.helldeck.ui.Scene
 import com.helldeck.ui.events.RoundEvent
 import com.helldeck.ui.state.RoundPhase
 import com.helldeck.ui.state.RoundState
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
+import java.util.concurrent.atomic.AtomicLong
 import kotlin.random.Random
 
 /**
@@ -158,6 +162,8 @@ class GameNightViewModel : ViewModel() {
     private lateinit var cardBuffer: com.helldeck.content.engine.CardBuffer
     private lateinit var metricsTracker: com.helldeck.analytics.MetricsTracker
     private var isInitialized = false
+    private val roundStartMutex = Mutex()
+    private val roundAttemptGeneration = AtomicLong(0L)
 
     // ========== UPGRADE STATE (NEW FOR 2.0) ==========
     var enabledHouseRules by mutableStateOf(setOf<String>())
@@ -191,7 +197,11 @@ class GameNightViewModel : ViewModel() {
         repo = ContentRepository(context)
         repo.initialize()
         engine = ContentEngineProvider.get(context)
-        cardBuffer = com.helldeck.content.engine.CardBuffer(engine, bufferSize = 3)
+        cardBuffer = com.helldeck.content.engine.CardBuffer(
+            engine = engine,
+            bufferSize = 3,
+            scope = viewModelScope,
+        )
         metricsTracker = com.helldeck.analytics.MetricsTracker(repo)
     }
 
@@ -277,6 +287,13 @@ class GameNightViewModel : ViewModel() {
     }
 
     suspend fun switchCrewBrain(brainId: String) {
+        roundAttemptGeneration.incrementAndGet()
+        roundStartMutex.withLock {
+            switchCrewBrainLocked(brainId)
+        }
+    }
+
+    private suspend fun switchCrewBrainLocked(brainId: String) {
         isLoading = true
         try {
             CrewBrainStore.setActiveBrain(brainId)
@@ -284,7 +301,7 @@ class GameNightViewModel : ViewModel() {
             activeCrewBrainId = brainId
 
             if (::cardBuffer.isInitialized) {
-                cardBuffer.stop()
+                cardBuffer.stopAndAwait()
             }
             ContentEngineProvider.reset()
             HelldeckDb.clearCache()
@@ -300,6 +317,8 @@ class GameNightViewModel : ViewModel() {
             startNewGameNight()
             navStack.clear()
             scene = Scene.HOME
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("Failed to switch crew brain", e)
         } finally {
@@ -312,6 +331,8 @@ class GameNightViewModel : ViewModel() {
             val brain = CrewBrainStore.createBrain(name, emoji)
             switchCrewBrain(brain.id)
             brain
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("Failed to create crew brain", e)
             null
@@ -343,6 +364,7 @@ class GameNightViewModel : ViewModel() {
     fun canGoBack(): Boolean = navStack.isNotEmpty()
 
     fun goBack() {
+        roundAttemptGeneration.incrementAndGet()
         if (navStack.isNotEmpty()) {
             scene = navStack.removeLast()
         } else {
@@ -351,6 +373,7 @@ class GameNightViewModel : ViewModel() {
     }
 
     fun goHome() {
+        roundAttemptGeneration.incrementAndGet()
         navStack.clear()
         scene = Scene.HOME
 
@@ -430,15 +453,28 @@ class GameNightViewModel : ViewModel() {
     // ========== ROUND MANAGEMENT ==========
 
     suspend fun startRound(gameId: String? = null) {
+        if (!roundStartMutex.tryLock()) return
+        try {
+            startRoundLocked(gameId)
+        } finally {
+            roundStartMutex.unlock()
+        }
+    }
+
+    private suspend fun startRoundLocked(gameId: String?) {
+        val roundAttempt = roundAttemptGeneration.incrementAndGet()
         if (!::engine.isInitialized) {
             try {
                 initOnce()
+            } catch (e: CancellationException) {
+                throw e
             } catch (e: Exception) {
                 com.helldeck.utils.Logger.e("startRound: initialization failed", e)
                 errorMessage = "Failed to start game: ${e.message ?: "initialization error"}"
                 scene = Scene.HOME
                 return
             }
+            ensureCurrentRoundAttempt(roundAttempt)
         }
 
         if (activePlayers.size < 2) {
@@ -450,7 +486,6 @@ class GameNightViewModel : ViewModel() {
         // Implicitly mark rollcall as done when starting a round
         didRollcall = true
 
-        scene = Scene.ROUND
         Config.spicyMode = _spiceLevel.value >= 3
 
         // Pick next game (random or selected)
@@ -485,6 +520,8 @@ class GameNightViewModel : ViewModel() {
         }
 
         val sessionId = gameNightSessionId
+        isLoading = true
+        errorMessage = null
 
         try {
             // Create request for card generation
@@ -497,18 +534,12 @@ class GameNightViewModel : ViewModel() {
                 players = playersList,
             )
 
-            // Start buffering for this game if not already started
-            if (!::cardBuffer.isInitialized || gameId != null) {
-                // New game or game change - restart buffer
-                cardBuffer.stop()
-                cardBuffer.start(request)
-            }
-
-            // Get card from buffer
-            val gameResult = cardBuffer.getNext()
+            // Supplying the request atomically prevents first-launch and stale-game buffer races.
+            val gameResult = cardBuffer.getNext(request)
+            ensureCurrentRoundAttempt(roundAttempt)
 
             // Create authoritative RoundState from engine result
-            roundState = RoundState(
+            val generatedRound = RoundState(
                 gameId = nextGame,
                 filledCard = gameResult.filledCard,
                 options = gameResult.options,
@@ -527,10 +558,6 @@ class GameNightViewModel : ViewModel() {
                 sessionId = sessionId,
             )
 
-            // Save for replay
-            lastCard = gameResult.filledCard
-            lastGameId = nextGame
-
             // Start metrics tracking for this round
             if (::metricsTracker.isInitialized) {
                 val roundId = "round_${System.currentTimeMillis()}_${kotlin.random.Random.nextInt(1000)}"
@@ -543,29 +570,25 @@ class GameNightViewModel : ViewModel() {
                     activePlayerId = activePlayer()?.id ?: "unknown",
                     spiceLevel = _spiceLevel.value,
                 )
+                ensureCurrentRoundAttempt(roundAttempt)
             }
 
-            // Track card impression for feedback system
-            try {
-                val impression = com.helldeck.data.CardImpressionEntity(
-                    sessionId = feedbackSessionId,
-                    cardId = gameResult.filledCard.id,
-                    gameId = nextGame,
-                )
-                currentImpressionId = repo.db.cardFeedback().insertImpression(impression)
-                if (!sessionCardIds.contains(gameResult.filledCard.id)) {
-                    sessionCardIds.add(gameResult.filledCard.id)
-                }
-                quickFireTriggered = false
-            } catch (e: Exception) {
-                com.helldeck.utils.Logger.e("Failed to track card impression", e)
-            }
+            trackCardImpression(gameResult.filledCard.id, nextGame)
+            ensureCurrentRoundAttempt(roundAttempt)
+            roundState = generatedRound
+            lastCard = gameResult.filledCard
+            lastGameId = nextGame
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             com.helldeck.utils.Logger.e("startRound: engine.next failed", e)
             errorMessage = "Failed to generate card: ${e.message ?: "unknown error"}. Try again."
             scene = Scene.HOME
             return
+        } finally {
+            isLoading = false
         }
+        ensureCurrentRoundAttempt(roundAttempt)
         t0 = System.currentTimeMillis()
         roundNumber++
 
@@ -573,6 +596,30 @@ class GameNightViewModel : ViewModel() {
         preChoice = null
         votesAvatar = emptyMap()
         votesAB = emptyMap()
+        scene = Scene.ROUND
+    }
+
+    private suspend fun trackCardImpression(cardId: String, gameId: String) {
+        try {
+            val impression = com.helldeck.data.CardImpressionEntity(
+                sessionId = feedbackSessionId,
+                cardId = cardId,
+                gameId = gameId,
+            )
+            currentImpressionId = repo.db.cardFeedback().insertImpression(impression)
+            if (!sessionCardIds.contains(cardId)) sessionCardIds.add(cardId)
+            quickFireTriggered = false
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            com.helldeck.utils.Logger.e("Failed to track card impression", e)
+        }
+    }
+
+    private fun ensureCurrentRoundAttempt(roundAttempt: Long) {
+        if (roundAttemptGeneration.get() != roundAttempt) {
+            throw CancellationException("Round start was superseded")
+        }
     }
 
     private fun pickNextGame(): String {
@@ -1982,4 +2029,10 @@ class GameNightViewModel : ViewModel() {
      * Gets the total number of reports submitted
      */
     fun getReportCount(): Int = reportStore.getReportCount()
+
+    override fun onCleared() {
+        roundAttemptGeneration.incrementAndGet()
+        if (::cardBuffer.isInitialized) cardBuffer.stop()
+        super.onCleared()
+    }
 }

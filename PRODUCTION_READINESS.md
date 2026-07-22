@@ -258,7 +258,7 @@ val bufferStats = cardBuffer.getStats()
 **Solutions:**
 1. Check `MemoryMonitor.getRecommendedQualitySettings()`
 2. Disable LLM temporarily: `Config.setSafeModeGoldOnly(true)`
-3. Reduce buffer size: `CardBuffer(engine, bufferSize = 1)`
+3. Reduce buffer size: `CardBuffer(engine, bufferSize = 1, scope = viewModelScope)`
 4. Clear caches: `repo.clearCaches()`
 
 ### Slow Card Generation
@@ -305,7 +305,7 @@ if (MemoryMonitor.shouldDegradeQuality()) {
     }
     
     // Reduce buffer size
-    cardBuffer = CardBuffer(engine, settings.cacheSize)
+    cardBuffer = CardBuffer(engine, settings.cacheSize, scope = viewModelScope)
     
     // Disable paraphrase
     if (!settings.enableParaphrase) {
@@ -318,7 +318,7 @@ if (MemoryMonitor.shouldDegradeQuality()) {
 
 ```kotlin
 // Increase prefetch buffer
-val cardBuffer = CardBuffer(engine, bufferSize = 5)
+val cardBuffer = CardBuffer(engine, bufferSize = 5, scope = viewModelScope)
 
 // Start buffer early (on game select)
 cardBuffer.start(request)
@@ -333,12 +333,9 @@ if (stats.hitRate < 0.8f) {
 ### For Battery Life
 
 ```kotlin
-// Reduce background generation frequency
-// In CardBuffer.kt, increase delay:
-delay(500) // instead of delay(100)
-
-// Or only generate on-demand
-val cardBuffer = CardBuffer(engine, bufferSize = 0)
+// Disable prefetch and generate only on demand.
+// Always use an owner scope so generation is cancelled with that lifecycle.
+val cardBuffer = CardBuffer(engine, bufferSize = 0, scope = viewModelScope)
 ```
 
 ---
@@ -428,7 +425,7 @@ If issues arise in production:
    - Keep new code, but configure conservatively:
      ```kotlin
      Config.setSafeModeGoldOnly(true) // Gold cards only
-     cardBuffer = CardBuffer(engine, 1) // Minimal buffer
+     cardBuffer = CardBuffer(engine, 1, scope = viewModelScope) // Minimal buffer
      ```
 
 3. **Feature Flags:**
