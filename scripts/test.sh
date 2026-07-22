@@ -5,6 +5,5 @@
 set -euo pipefail
 
 echo "🧪 Running tests..."
-./gradlew testDebugUnitTest
+./gradlew :app:testProductionDebugUnitTest
 echo "✅ Tests completed"
-

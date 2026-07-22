@@ -67,24 +67,21 @@ test/
 
 ### All Tests
 ```bash
-./gradlew test
+./gradlew :app:testProductionDebugUnitTest
 ```
 
 ### Specific Package
 ```bash
-./gradlew test --tests "com.helldeck.engine.*"
+./gradlew :app:testProductionDebugUnitTest --tests "com.helldeck.engine.*"
 ```
 
-### With Coverage
-```bash
-./gradlew testDebugUnitTestCoverage
-```
+JaCoCo instrumentation is enabled for unit tests. A dedicated coverage-report task is not currently configured.
 
 ## Test Reports
 
 After running tests, view the HTML report at:
 ```
-app/build/reports/tests/testDebugUnitTest/index.html
+app/build/reports/tests/testProductionDebugUnitTest/index.html
 ```
 
 ## Best Practices

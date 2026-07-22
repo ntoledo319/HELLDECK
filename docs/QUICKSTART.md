@@ -11,7 +11,7 @@
 
 1. **Download the APK**
    - Get the latest version from our [releases page](#)
-   - Or build from source using: `./gradlew :app:assembleRelease`
+   - Or build an internal debug APK from source using: `./gradlew :app:assembleInternalDebug`
 
 2. **Install the App**
    - Enable "Unknown Sources" in Android settings

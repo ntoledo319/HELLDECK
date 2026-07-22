@@ -158,7 +158,7 @@ export KEY_ALIAS=helldeck
 export KEY_PASSWORD=your_key_password
 
 # Build release
-./gradlew :app:assembleRelease
+./gradlew :app:assembleProductionRelease
 ```
 
 #### 3. Test on Physical Devices
@@ -187,10 +187,10 @@ MemoryMonitor.logMemoryStatus()
 ./gradlew ktlintCheck detekt
 
 # Unit tests
-./gradlew :app:testDebugUnitTest
+./gradlew :app:testProductionDebugUnitTest
 
 # Generate APK
-./gradlew :app:assembleRelease
+./gradlew :app:assembleProductionRelease
 ```
 
 ---

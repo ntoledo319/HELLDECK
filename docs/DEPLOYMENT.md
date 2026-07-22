@@ -11,10 +11,10 @@
 ### 1. Build Release APK
 ```bash
 # Clean and build release APK
-./gradlew clean :app:assembleRelease
+./gradlew clean :app:assembleProductionRelease
 
 # APK location
-ls app/build/outputs/apk/release/app-release.apk
+ls app/build/outputs/apk/production/release/app-production-release.apk
 ```
 
 ### 2. Install Using Desktop Loader
@@ -69,11 +69,11 @@ TARGET_SDK_VERSION=34
 
 ### Local Development Build
 ```bash
-# Debug build (default)
-./gradlew :app:assembleDebug
+# Internal debug build (all content unlocked)
+./gradlew :app:assembleInternalDebug
 
 # Install to connected device
-./gradlew :app:installDebug
+./gradlew :app:installInternalDebug
 ```
 
 ### Release Build
@@ -81,26 +81,26 @@ TARGET_SDK_VERSION=34
 # Clean build
 ./gradlew clean
 
-# Build release APK
-./gradlew :app:assembleRelease
+# Build the production release APK (release signing must be configured first)
+./gradlew :app:assembleProductionRelease
 
 # Build release bundle (for Play Store)
-./gradlew :app:bundleRelease
+./gradlew :app:bundleProductionRelease
 ```
 
 ### Build Verification
 ```bash
 # Run all checks
-./gradlew check
+./gradlew ktlintCheck detekt spotlessCheck
 
 # Run tests
-./gradlew test
+./gradlew :app:testProductionDebugUnitTest
 
 # Check for lint issues
-./gradlew :app:lint
+./gradlew :app:lintProductionDebug
 
 # Verify APK signature
-jarsigner -verify -verbose -certs app/build/outputs/apk/release/app-release.apk
+jarsigner -verify -verbose -certs app/build/outputs/apk/production/release/app-production-release.apk
 ```
 
 ## 📦 Distribution
@@ -115,7 +115,7 @@ jarsigner -verify -verbose -certs app/build/outputs/apk/release/app-release.apk
 2. **Create Release**
    ```bash
    # Build release bundle
-   ./gradlew :app:bundleRelease
+   ./gradlew :app:bundleProductionRelease
 
    # Upload to Play Store via Play Console
    # or use fastlane for automation
@@ -130,10 +130,10 @@ jarsigner -verify -verbose -certs app/build/outputs/apk/release/app-release.apk
 ### Sideload Distribution
 ```bash
 # Generate download link
-adb install -r app/build/outputs/apk/release/app-release.apk
+adb install -r app/build/outputs/apk/production/release/app-production-release.apk
 
 # Share APK file directly
-# APK located at: app/build/outputs/apk/release/app-release.apk
+# APK located at: app/build/outputs/apk/production/release/app-production-release.apk
 ```
 
 ## 🔒 Security Considerations
@@ -143,6 +143,9 @@ adb install -r app/build/outputs/apk/release/app-release.apk
 - Store release keystore securely (not in version control)
 - Use strong passwords (minimum 8 characters)
 - Enable APK signature verification
+- The manual GitHub release environment expects `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`,
+  `KEY_ALIAS`, and `KEY_PASSWORD` secrets. Play uploads additionally require
+  `SERVICE_ACCOUNT_JSON`.
 
 ### Permissions
 The app requests these permissions:
@@ -164,10 +167,7 @@ The app requests these permissions:
 ### Automated Tests
 ```bash
 # Run all tests
-./gradlew testDebugUnitTest connectedDebugAndroidTest
-
-# Generate test coverage report
-./gradlew :app:createDebugCoverageReport
+./gradlew :app:testProductionDebugUnitTest :app:connectedProductionDebugAndroidTest
 ```
 
 ### Manual Testing Checklist

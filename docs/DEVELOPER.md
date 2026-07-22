@@ -30,7 +30,7 @@
 
 4. **Build Project**
    ```bash
-   ./gradlew :app:assembleDebug
+   ./gradlew :app:assembleInternalDebug
    ```
 
 ## Project Architecture
@@ -60,8 +60,8 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed architecture overview.
 
 **Debug Build:**
 ```bash
-./gradlew :app:assembleDebug
-adb install -r app/build/outputs/apk/debug/app-debug.apk
+./gradlew :app:assembleInternalDebug
+adb install -r app/build/outputs/apk/internal/debug/app-internal-debug.apk
 ```
 
 **Run from Android Studio:**
@@ -72,12 +72,12 @@ adb install -r app/build/outputs/apk/debug/app-debug.apk
 
 **Unit Tests:**
 ```bash
-./gradlew :app:testDebugUnitTest
+./gradlew :app:testProductionDebugUnitTest
 ```
 
 **Instrumented Tests:**
 ```bash
-./gradlew :app:connectedAndroidTest
+./gradlew :app:connectedProductionDebugAndroidTest
 ```
 
 **Content Quality Tests:**
@@ -234,13 +234,13 @@ When modifying entities:
 
 ### Debug Build
 ```bash
-./gradlew :app:assembleDebug
+./gradlew :app:assembleInternalDebug
 ```
 
 ### Release Build
 ```bash
-./gradlew :app:assembleRelease
-# Sign APK manually or configure signing in build.gradle
+./gradlew :app:assembleProductionRelease
+# Configure release signing before distributing this artifact.
 ```
 
 ### Kiosk Setup

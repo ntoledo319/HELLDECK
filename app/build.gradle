@@ -35,17 +35,8 @@ android {
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-    // Enhanced build config
-    buildConfigField "String", "BUILD_TIME", "\"${new Date().format('yyyy-MM-dd HH:mm:ss')}\""
-    buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
     // Default UNLOCK_ALL to false (overridden by tester flavor)
     buildConfigField "boolean", "UNLOCK_ALL", "false"
-    
-    // NDK configuration for llama.cpp
-    // Only build for arm64-v8a to avoid float16 intrinsics issues on armeabi-v7a
-    ndk {
-      abiFilters 'arm64-v8a'
-    }
     
     externalNativeBuild {
       cmake {
@@ -72,12 +63,6 @@ android {
 
   // signingConfigs MUST be defined before buildTypes references them
   signingConfigs {
-    debug {
-      storeFile file('debug.keystore')
-      storePassword 'android'
-      keyAlias 'androiddebugkey'
-      keyPassword 'android'
-    }
     release {
       // Production signing configuration
       // These should be configured via environment variables or gradle.properties
@@ -94,25 +79,32 @@ android {
 
   buildTypes {
     release {
+      // Production devices are arm64; keep the release artifact lean.
+      ndk {
+        abiFilters 'arm64-v8a'
+      }
       minifyEnabled true
       shrinkResources true
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
       buildConfigField "boolean", "DEBUG_MODE", "false"
 
-      // Release signing configuration
-      // signingConfig signingConfigs.release
+      // Release tasks fail closed unless the configured keystore and credentials are valid.
+      signingConfig signingConfigs.release
 
       // Enable crash reporting for release builds
       buildConfigField "String", "CRASH_REPORTING_DSN", "\"\""
     }
     debug {
+      // x86_64 is required by the CI emulator; arm64 keeps physical-device testing representative.
+      ndk {
+        abiFilters 'arm64-v8a', 'x86_64'
+      }
       minifyEnabled false
       debuggable true
       buildConfigField "boolean", "DEBUG_MODE", "true"
       buildConfigField "String", "DEBUG_TAG", "\"HELLDECK_DEBUG\""
 
-      // Use debug signing for development
-      signingConfig signingConfigs.debug
+      // The Android Gradle plugin creates and uses the standard debug keystore.
     }
   }
 
@@ -152,14 +144,15 @@ android {
   }
 
   lint {
-    abortOnError false
+    abortOnError true
     checkReleaseBuilds false
+    baseline file('lint-baseline.xml')
   }
 }
 
 // JaCoCo configuration for code coverage
 jacoco {
-  toolVersion = "0.8.8"
+  toolVersion = "0.8.15"
 }
 
 android {
@@ -193,9 +186,8 @@ dependencies {
   implementation 'androidx.compose.material:material'
   implementation 'androidx.compose.material:material-icons-extended'
 
-  // Compose Debug
+  // Compose tooling for debug builds
   debugImplementation 'androidx.compose.ui:ui-tooling'
-  debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
   // Splash Screen
   implementation "androidx.core:core-splashscreen:1.0.1"
@@ -224,13 +216,6 @@ dependencies {
   implementation 'androidx.tracing:tracing-ktx:1.2.0'
   implementation 'androidx.profileinstaller:profileinstaller:1.3.1'
 
-  // Testing (Debug only)
-  debugImplementation 'androidx.test:core:1.6.1'
-  debugImplementation 'androidx.test.ext:junit:1.2.1'
-  debugImplementation 'androidx.test:runner:1.6.1'
-  debugImplementation 'androidx.compose.ui:ui-test-junit4'
-  debugImplementation 'androidx.compose.ui:ui-test-manifest'
-
   // Enhanced Testing Dependencies
   testImplementation 'junit:junit:4.13.2'
   testImplementation 'androidx.test.ext:junit:1.1.5'
@@ -245,8 +230,8 @@ dependencies {
   // Compose Testing
   testImplementation platform('androidx.compose:compose-bom:2024.06.00')
   testImplementation 'androidx.compose.ui:ui-test-junit4'
-  // Provide the Compose test manifest for ALL unit-test variants (debug + release flavors)
-  testImplementation 'androidx.compose.ui:ui-test-manifest'
+  // Supplies Compose's host activity to debug/test variants only.
+  debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
   // Android Instrumented Testing
   androidTestImplementation platform('androidx.compose:compose-bom:2024.06.00')
@@ -258,20 +243,6 @@ dependencies {
 
   // Optional: Enhanced animations
   implementation 'androidx.compose.animation:animation'
-}
-
-// Helper function to get git hash
-def getGitHash() {
-  try {
-    def stdout = new ByteArrayOutputStream()
-    exec {
-      commandLine 'git', 'rev-parse', '--short', 'HEAD'
-      standardOutput = stdout
-    }
-    return stdout.toString().trim()
-  } catch (Exception e) {
-    return "unknown"
-  }
 }
 
 // Flavor-aware compatibility tasks and quality audit tasks.
