@@ -6,6 +6,25 @@
 > card-preview, and UI safety seams are hardened for device testing. Human playtests and production
 > infrastructure remain open. This file is the deep historical context; `NEXT_AGENT.md` is current.
 
+> ### ✅ 2026-07-22 FINAL ANDROID/CI CLOSURE
+>
+> `main` and `origin/main` are synchronized at
+> [`0093e26`](https://github.com/ntoledo319/HELLDECK/commit/0093e2623df3a76b7c55c76278d7fb5297c34a87).
+> The legacy Android Home CTA's first-round `CardBuffer` race is repaired with lifecycle-owned,
+> request-driven generation; stale prefetch/in-flight rejection; safe engine teardown; serialized,
+> cancellation-aware round starts; and four deterministic concurrency regressions. Fresh local
+> verification passed **155 JVM tests**, production and instrumentation APK assembly through D8,
+> Ktlint, Detekt, Spotless, and zero-finding Android lint. GitHub's
+> [Quality Gates](https://github.com/ntoledo319/HELLDECK/actions/runs/29958242132) and
+> [Legacy Android CI / Release](https://github.com/ntoledo319/HELLDECK/actions/runs/29958242050)
+> are green. Their archived XML proves **155/155 JVM** and **23/23 API 29 x86_64 device tests**,
+> zero failures/errors/skips, including `homePrimaryActionStartsARound`.
+>
+> Automated release readiness has no known first-round or CI blocker. Real human/device playtests
+> and live Stripe/Workers/domain/Play/signing credentials remain owner gates. Room TTL/expiry,
+> crew-memory persistence, and inherited legacy deprecation/compiler warnings remain explicit
+> roadmap debt.
+
 # ⛔ HELLDECK 2.0 — SESSION HANDOFF. READ THIS FIRST, IN FULL, BEFORE ANY ACTION.
 
 **You are inheriting a large, multi-day, mid-flight project.** The previous session (Claude Fable 5, ultracode on) designed and began building "HELLDECK 2.0 — The Descent." You (the next agent, on Opus 4.8) must **finish it in the same spirit and to the same standard.** The owner's explicit instruction for this handoff: _"force the next agent to not just READ but LEARN it all."_ So this is not a summary you skim — it is an onboarding protocol you complete.
@@ -77,7 +96,19 @@ local bot night reaches JUDGMENT. Do not treat it as a sketch—or as human-play
 
 ## 3. CURRENT STATE (factual)
 
-> **LATEST UPDATE — 2026-07-22 (Codex completion pass).** The prior session's final live-night task
+> **LATEST UPDATE — 2026-07-22 (Android/device closure, commit `0093e26`).** The root Android app's
+> formerly failing Home-to-round path is fixed and fully exercised in CI. `CardBuffer.getNext`
+> installs its request atomically, invalidates stale work on game changes, and is owned by the
+> ViewModel lifecycle; engine teardown awaits active generation, duplicate starts are debounced,
+> abandoned attempts cannot commit `ROUND`, and cancellation remains structured. Local and GitHub
+> verification agree on **155/155 JVM tests**. The KVM-backed API 29 x86_64 job passes **23/23
+> instrumentation tests**, including the exact prior failure. Production/instrumentation APK
+> assembly, D8, lint, Ktlint, Detekt, and Spotless are green. Evidence:
+> [commit](https://github.com/ntoledo319/HELLDECK/commit/0093e2623df3a76b7c55c76278d7fb5297c34a87),
+> [Quality Gates](https://github.com/ntoledo319/HELLDECK/actions/runs/29958242132), and
+> [Legacy Android CI / Release](https://github.com/ntoledo319/HELLDECK/actions/runs/29958242050).
+
+> **DESCENT COMPLETION UPDATE — 2026-07-22 (Codex completion pass).** The prior session's final live-night task
 > is resolved and the build is confidently device-testable:
 > - A strict five-client depth-5 `wrangler dev` night completed every circle and all Scatter
 >   BOMB/BOOM loops, reaching **JUDGMENT in 419.3s with a warning-free Worker log**. The pinned
@@ -98,7 +129,8 @@ local bot night reaches JUDGMENT. Do not treat it as a sketch—or as human-play
 >   defaults production-safe; DO migrations are v1 RoomDO / v2 LedgerDO.
 > - Legacy workflows are path-scoped; Play/GitHub release actions are manual, main-only,
 >   confirmation/environment-gated; exact flavor tasks, dual-ABI debug builds, fail-closed signing,
->   and baseline-enforced Android lint are now verified locally under JDK 17 (148 unit tests).
+>   and baseline-enforced Android lint are now verified locally and in CI under JDK 17
+>   (**155 JVM tests plus 23 API 29 device tests**).
 >   Descent Dependabot and environment-secret ignores are present.
 > - **Verification:** engine **342** + server **67** + client **131** = **540 tests**, recursive strict
 >   build, production JS **61.15 KB gzip**, all 1,024 content gates, workflow YAML/actionlint, and
