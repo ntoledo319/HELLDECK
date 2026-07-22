@@ -1,5 +1,13 @@
 # ⛔ NEXT AGENT — READ THIS FIRST, THEN `HELLDECK2_HANDOFF.md`
 
+> **✅ 2026-07-22 COMPLETION UPDATE:** the `HANDOFF_2026-07-22.md` live-night/timer task is resolved.
+> The hardened five-bot depth-5 run completed every circle and all three Scatter BOMB/BOOM loops,
+> reaching JUDGMENT in **419.3s with a warning-free Worker log**. Guarded physical alarms, strict
+> logical deadlines, alarm-independent heartbeats, serialized room mutations, atomic
+> state+timer persistence, crash-safe free-night claims, fail-safe dev unlock, and CI/release
+> guardrails landed with **540 tests green**. The remaining gates are human/device playtests, room
+> TTL/crew memory, and owner-controlled deploy/live-payment/store work—not another alarm chase.
+
 Originally written 2026-07-20 and updated after the UI/UX hardening pass.
 Active branch **`main`**. The Descent import and trust/safety baseline are published to
 `origin/main`; do not assume the older `descent`-only/no-push notes are still current.
@@ -7,8 +15,8 @@ Active branch **`main`**. The Descent import and trust/safety baseline are publi
 > **⚡ 2026-07-21 UPDATE (Opus 4.8) — MONETIZATION (D-412/413) IS DONE in test mode, plus `descent/`
 > CI landed.** The "biggest gap" below (§2 item 1, "MONETIZATION IS 0%") is CLOSED end-to-end and
 > taste-approved. Read the authoritative account in `HELLDECK2_HANDOFF.md` §3 (2026-07-21 paragraph)
-> and the checked D-412/D-413 in `DESCENT_BUILD_SPEC.md` Part 12. Uncommitted on `main` as of this
-> writing — the owner commits when they choose. What's still open (see §2, revised): real human
+> and the checked D-412/D-413 in `DESCENT_BUILD_SPEC.md` Part 12. The 2026-07-22 completion pass
+> hardened that vertical and prepared it for publication on `main`. What's still open (see §2): real human
 > playtests (owner-gated), `STRIPE_SECRET` live key (owner-gated), deploy/domain/Android/store
 > (owner-gated), and the remaining autonomous ops — **room TTL/expiry** (the `ROOM_EXPIRED` protocol
 > code is still unwired) and **crew-memory persistence**. The §4 OpenArt asset directive is unchanged
@@ -41,19 +49,19 @@ phone (host included) is a thin renderer over WebSocket. Code lives in `descent/
 | layer | state |
 |---|---|
 | Engine (pure TS, deterministic) | **342 tests.** Adversarial bot-fuzz plus core-owned, burnable spotlight and card-preview ceremonies |
-| Server (Worker + RoomDO) | **34 tests.** Snapshotting, alarms, per-socket redaction, CLAIM, private spotlight/card replay |
-| Client (Preact, hand-rolled CSS) | **123 tests.** All 9 games + acknowledgement-safe private UI + Stage privacy gating |
+| Server (Worker + RoomDO) | **67 tests.** Atomic persistence/claims, guarded alarm recovery, redaction, entitlement routes, private replay |
+| Client (Preact, hand-rolled CSS) | **131 tests.** All 9 games + heartbeat lifecycle + acknowledgement-safe private UI + Stage privacy gating |
 | Content | **1024 cards / 9 decks**, all funnel-clean, council-reviewed and remediated |
 | Consent + fairness | heat ceilings, volunteer valve, 20s fixed-timing spotlight burns/replacements, typecast governor |
-| Live runtime | **Verified locally 2026-07-20.** Five WebSocket bots completed a real depth-5 Wrangler/RoomDO night to JUDGMENT in 360.1s |
+| Live runtime | **Verified locally 2026-07-22.** Five strict WebSocket bots completed a real depth-5 Wrangler/RoomDO night, all Scatter loops, and JUDGMENT in 419.3s with zero Worker warnings |
 
-**499 tests green. `pnpm -r build` clean.** All 9 games play end-to-end against the real corpus.
+**540 tests green. `pnpm -r build` clean.** All 9 games play end-to-end against the real corpus.
 
 ### REAL REMAINING WORK — this is your actual work list
 
 1. ~~**MONETIZATION IS 0%.**~~ **DONE 2026-07-21 (test mode).** The hardcode is gone: entitlement
-   is re-resolved against the host DEVICE at every BEGIN; per-device `LedgerDO` holds the one free
-   night; the paid path is a stateless device-bound HMAC unlock in localStorage; `worker.ts` serves
+   is re-resolved against the host DEVICE at every lobby BEGIN; per-device `LedgerDO` atomically holds
+   one crash-replayable `room:epoch` claim; the paid path is a stateless device-bound HMAC unlock in localStorage; `worker.ts` serves
    `/api/entitle/{status,checkout,verify,dev-unlock}` with real Stripe test-mode Checkout + verify;
    the UNHINGED paywall overlay (`screens/paywall.tsx`, taste-approved) opens on `NO_ENTITLEMENT`.
    **Only owner-gated tail left: set `STRIPE_SECRET` to a live key.** (test mode + non-prod dev-unlock
@@ -62,7 +70,8 @@ phone (host included) is a thin renderer over WebSocket. Code lives in `descent/
    usability evidence. D-128/D-138 remain the most important product gate. See §5.
 3. **Operational lifecycle is partly done.** `descent/` CI now exists (`.github/workflows/descent-ci.yml`
    — build+test+content-funnel, with `allowBuilds` committed to `pnpm-workspace.yaml` so a fresh
-   install is non-interactive). **Still open (autonomous):** room TTL/expiry (the `ROOM_EXPIRED`
+   install is non-interactive). Legacy Android workflows are path-scoped and releases are manual,
+   main-only, confirmation-gated drafts/internal uploads. **Still open (autonomous):** room TTL/expiry (the `ROOM_EXPIRED`
    protocol code is defined but never emitted — rooms live forever in DO storage; wire a TTL check in
    the RoomDO + an alarm-driven cleanup, and mind the delicate alarm-multiplexing in `room-do.ts`),
    and crew-memory persistence.

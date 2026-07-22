@@ -5,6 +5,7 @@ import { median } from '../logic';
 import { FireCoalescer } from './coalesce';
 
 export type ConnStatus = 'connecting' | 'open' | 'closed';
+export const HEARTBEAT_MS = 15_000;
 
 export interface NetHandlers {
   onState(view: unknown, epoch: number): void;
@@ -26,6 +27,7 @@ export class Net {
   private closed = false;
   private fires: FireCoalescer;
   private fireTimer: ReturnType<typeof setTimeout> | null = null;
+  private heartbeatTimer: ReturnType<typeof setInterval> | null = null;
   private readonly onVisible = (): void => {
     if (document.visibilityState === 'visible') this.send({ t: 'RESYNC' });
   };
@@ -50,6 +52,7 @@ export class Net {
 
   connect(): void {
     this.closed = false;
+    this.stopHeartbeat();
     this.h.onStatus('connecting');
     const proto = location.protocol === 'https:' ? 'wss' : 'ws';
     // The host's device + unlock tokens ride this phone's OWN socket so the server can resolve
@@ -60,9 +63,11 @@ export class Net {
     this.ws = new WebSocket(`${proto}://${location.host}/ws/${this.code}?${params}`);
     this.ws.onopen = () => {
       this.backoff = 500;
+      this.startHeartbeat();
       this.h.onStatus('open');
     };
     this.ws.onclose = () => {
+      this.stopHeartbeat();
       this.h.onStatus('closed');
       if (!this.closed) {
         setTimeout(() => {
@@ -76,9 +81,21 @@ export class Net {
 
   close(): void {
     this.closed = true;
+    this.stopHeartbeat();
     document.removeEventListener('visibilitychange', this.onVisible);
     if (this.fireTimer) clearTimeout(this.fireTimer);
     this.ws?.close();
+  }
+
+  private startHeartbeat(): void {
+    this.stopHeartbeat();
+    this.heartbeatTimer = setInterval(() => this.send({ t: 'HEARTBEAT' }), HEARTBEAT_MS);
+  }
+
+  private stopHeartbeat(): void {
+    if (this.heartbeatTimer === null) return;
+    clearInterval(this.heartbeatTimer);
+    this.heartbeatTimer = null;
   }
 
   send(msg: Record<string, unknown>): boolean {

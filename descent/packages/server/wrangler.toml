@@ -15,14 +15,19 @@ class_name = "LedgerDO"
 
 [[migrations]]
 tag = "v1"
-new_sqlite_classes = ["RoomDO", "LedgerDO"]
+new_sqlite_classes = ["RoomDO"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["LedgerDO"]
 
 [assets]
 directory = "../client/dist"
 binding = "ASSETS"
 
 [vars]
-ENV = "dev"
+ENV = "production"
 # Secrets are set via `wrangler secret put <NAME>` (task D-412):
 #   UNLOCK_SECRET — HMAC key that signs the device-bound $9.99 unlock token (required in prod)
-#   STRIPE_SECRET — sk_test_… now, sk_live_… at launch (owner-gated). Absent => dev-unlock only.
+#   STRIPE_SECRET — sk_test_… now, sk_live_… at launch (owner-gated). Absent => checkout unavailable;
+#                   explicit `wrangler dev --var ENV:dev` may expose the local unlock escape hatch.

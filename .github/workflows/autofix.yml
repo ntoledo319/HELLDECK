@@ -3,6 +3,25 @@ name: Autofix
 on:
   pull_request:
     branches: [main, develop]
+    paths:
+      - '.editorconfig'
+      - '.github/workflows/autofix.yml'
+      - '.gitmodules'
+      - 'CMakeLists.txt'
+      - 'app/**'
+      - 'build.gradle'
+      - 'config/**'
+      - 'gradle/**'
+      - 'gradle.properties'
+      - 'gradlew'
+      - 'gradlew.bat'
+      - 'loader/**'
+      - 'macrobenchmark/**'
+      - 'pyproject.toml'
+      - 'settings.gradle'
+      - 'third_party/llama.cpp'
+      - 'third_party/llama.cpp/**'
+      - 'tools/**'
 
 permissions:
   contents: write
@@ -44,7 +63,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install ruff
-        run: pip install ruff>=0.1.9
+        run: pip install 'ruff>=0.1.9'
 
       - name: Configure Git
         run: |
@@ -67,9 +86,9 @@ jobs:
         id: verify-changed-files
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "changed=true" >> "$GITHUB_OUTPUT"
           else
-            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "changed=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Commit autofixes
@@ -84,4 +103,3 @@ jobs:
 
           [skip ci]"
           git push
-

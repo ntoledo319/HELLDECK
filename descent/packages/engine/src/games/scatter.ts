@@ -210,7 +210,14 @@ function openBomb(ctx: GameCtx, st: ScatterState): GameStep {
   };
   return {
     gameState,
-    effects: [{ k: 'SCHEDULE', timerId: fuseTimer(ctx.circleIdx, st.loop), atMs: ctx.now + fuseMs(ctx, st.loop) }],
+    effects: [
+      {
+        k: 'SCHEDULE',
+        timerId: fuseTimer(ctx.circleIdx, st.loop),
+        atMs: ctx.now + fuseMs(ctx, st.loop),
+        announce: false,
+      },
+    ],
   };
 }
 

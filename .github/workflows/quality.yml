@@ -3,8 +3,49 @@ name: Quality Gates
 on:
   pull_request:
     branches: [main, develop]
+    paths:
+      - '.editorconfig'
+      - '.github/workflows/quality.yml'
+      - '.gitmodules'
+      - 'CMakeLists.txt'
+      - 'app/**'
+      - 'build.gradle'
+      - 'config/**'
+      - 'gradle/**'
+      - 'gradle.properties'
+      - 'gradlew'
+      - 'gradlew.bat'
+      - 'loader/**'
+      - 'macrobenchmark/**'
+      - 'pyproject.toml'
+      - 'settings.gradle'
+      - 'third_party/llama.cpp'
+      - 'third_party/llama.cpp/**'
+      - 'tools/**'
   push:
     branches: [main, develop]
+    paths:
+      - '.editorconfig'
+      - '.github/workflows/quality.yml'
+      - '.gitmodules'
+      - 'CMakeLists.txt'
+      - 'app/**'
+      - 'build.gradle'
+      - 'config/**'
+      - 'gradle/**'
+      - 'gradle.properties'
+      - 'gradlew'
+      - 'gradlew.bat'
+      - 'loader/**'
+      - 'macrobenchmark/**'
+      - 'pyproject.toml'
+      - 'settings.gradle'
+      - 'third_party/llama.cpp'
+      - 'third_party/llama.cpp/**'
+      - 'tools/**'
+
+permissions:
+  contents: read
 
 env:
   GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.parallel=true -Dkotlin.incremental=false
@@ -69,7 +110,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install ruff
-        run: pip install ruff>=0.1.9
+        run: pip install 'ruff>=0.1.9'
 
       - name: Check Python formatting
         run: ruff format --check loader/ tools/ --exclude third_party
@@ -115,4 +156,3 @@ jobs:
         with:
           name: test-results
           path: app/build/test-results/
-

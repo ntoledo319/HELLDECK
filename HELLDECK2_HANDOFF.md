@@ -1,10 +1,10 @@
 > ### 👉 NEW AGENT: READ **[`NEXT_AGENT.md`](NEXT_AGENT.md)** FIRST, THEN THIS FILE.
 > It carries the owner's current mandate for your session (fully functional app, GUI pass with
 > **OpenArt-API-only** assets, ready-for-testing), the three conflicts in that directive you must
-> resolve **before** generating assets, and the real remaining work. **Correction 2026-07-20:**
-> local live runtime is verified; the card-preview safety seam and granular UI/UX hardening pass are
-> complete and published on `main`; monetization and human playtests are still absent. This file is
-> the deep historical context; `NEXT_AGENT.md` is the current brief.
+> resolve **before** generating assets, and the real remaining work. **Correction 2026-07-22:**
+> local live runtime and Stripe test-mode monetization are verified; the timer, entitlement,
+> card-preview, and UI safety seams are hardened for device testing. Human playtests and production
+> infrastructure remain open. This file is the deep historical context; `NEXT_AGENT.md` is current.
 
 # ⛔ HELLDECK 2.0 — SESSION HANDOFF. READ THIS FIRST, IN FULL, BEFORE ANY ACTION.
 
@@ -50,7 +50,7 @@ Create `descent/handoff/ONBOARDING_PROOF.md` and, **from memory (no re-opening d
 14. What is a private heat ceiling, and why is its value NEVER rendered anywhere?
 15. What is the Fresh Meat protocol and Imp citizenship?
 16. What is the monetization model and where exactly does the paywall sit? (§4)
-17. What are the current git HEAD, the ONE known-failing test, and why it fails?
+17. What are the current git HEAD/test counts, and what live run proves the timer path reaches JUDGMENT?
 18. What is the exact next task (§6)?
 19. What are the owner's cross-project hard rules and the HELLDECK taste law?
 20. What is the workflow-resume pattern when a run dies on usage limits?
@@ -77,8 +77,36 @@ local bot night reaches JUDGMENT. Do not treat it as a sketch—or as human-play
 
 ## 3. CURRENT STATE (factual)
 
-> **LATEST UPDATE — 2026-07-21 (Opus 4.8). MONETIZATION (D-412/413) IS LANDED in test mode — this
-> paragraph is now authoritative over the 2026-07-20 one below.** The biggest gap ("monetization is
+> **LATEST UPDATE — 2026-07-22 (Codex completion pass).** The prior session's final live-night task
+> is resolved and the build is confidently device-testable:
+> - A strict five-client depth-5 `wrangler dev` night completed every circle and all Scatter
+>   BOMB/BOOM loops, reaching **JUDGMENT in 419.3s with a warning-free Worker log**. The pinned
+>   `pnpm smoke:live` harness now has
+>   a 900s cap, 60/65/70s BOMB watchdogs, strict frame/socket failure handling, exact circle/loop
+>   pass invariants, elapsed phase logs, timeouts, clean shutdown, and per-run valid device ids.
+> - RoomDO mutations are serialized across socket/alarm/external-ledger awaits. Phones and bots send
+>   an independent 15s `HEARTBEAT`; overdue timers self-heal even if the runtime loses its alarm.
+>   Engine state and its SCHEDULE/CANCEL index persist in one atomic batch, legacy missing module
+>   timers reconcile on wake, and Scatter's variable fuse is durable but never emits public `AT`.
+>   Logical deadlines are strict, physical wakes carry a 50ms early-admission guard, an already
+>   armed earlier wake is never churned later by ordinary mutations, and each pump force-arms one
+>   final successor; regressions cover early wake, cancel-to-later, move-earlier, and lost-alarm chains.
+> - Free-night claims are atomic and crash-idempotent per `roomCode:lobbyEpoch`; concurrent rooms and
+>   later epochs are denied, rejected BEGIN never claims, duplicate mid-night BEGIN is harmless,
+>   invalid devices lock, and a 3s ledger timeout returns retryable `ENTITLEMENT_UNAVAILABLE` rather
+>   than minting an unrecorded night. Dev unlock requires exact `ENV=dev` + signing secret; Wrangler
+>   defaults production-safe; DO migrations are v1 RoomDO / v2 LedgerDO.
+> - Legacy workflows are path-scoped; Play/GitHub release actions are manual, main-only,
+>   confirmation/environment-gated; Descent Dependabot and environment-secret ignores are present.
+> - **Verification:** engine **342** + server **67** + client **131** = **540 tests**, recursive strict
+>   build, production JS **61.15 KB gzip**, all 1,024 content gates, workflow YAML/actionlint, and
+>   `git diff --check` green. Frozen install and peer checks are clean; patched Vitest/Sharp remove
+>   every full and production dependency-audit finding. Still open: real human/device playtests,
+>   room TTL/crew memory, live
+>   Stripe/Workers/domain/Play work, and Android signing—all honestly owner- or product-gated.
+
+> **PRIOR UPDATE — 2026-07-21 (Opus 4.8). MONETIZATION (D-412/413) IS LANDED in test mode — this
+> paragraph was authoritative over the 2026-07-20 one below.** The biggest gap ("monetization is
 > 0%") is closed end-to-end, autonomously. What's real:
 > - **Enforcement is no longer hardcoded.** `room-do.ts` no longer pins `entitled: true`; entitlement
 >   is **re-resolved against the host's DEVICE at every BEGIN** — so the paywall lands on the device's

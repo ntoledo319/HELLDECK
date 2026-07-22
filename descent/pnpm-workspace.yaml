@@ -1,6 +1,11 @@
 packages:
   - packages/*
 
+# Wrangler/Miniflare currently pins sharp 0.34.x; 0.35.0 carries the patched libvips build for
+# GHSA-f88m-g3jw-g9cj and is API-compatible with the local asset pipeline.
+overrides:
+  sharp: 0.35.0
+
 # Native deps whose install scripts we trust (pnpm 11 blocks build scripts by default and, left
 # unset, writes this exact stub with `set this to true or false` placeholders on every install).
 # Committing the decision keeps a fresh CI install non-interactive (task: descent CI) and stops the

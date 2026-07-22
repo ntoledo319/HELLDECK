@@ -88,3 +88,10 @@ export function resolveEntitlement({ unlocked, freeNightUsed }: EntitlementInput
   if (!freeNightUsed) return { entitled: true, reason: 'free-night' };
   return { entitled: false, reason: 'locked' };
 }
+
+/** Fail-safe policy for the local-only unlock escape hatch. An absent, misspelled, or
+ * unfamiliar environment is production-like; development must be explicitly selected
+ * and have a signing secret capable of minting the device-bound token. */
+export function devUnlockAvailable(environment: string | undefined, unlockSecret: string | undefined): boolean {
+  return environment === 'dev' && Boolean(unlockSecret);
+}

@@ -2,7 +2,7 @@
 // Node env — Net's browser touchpoints are shimmed to exactly what the constructor needs.
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { receivePreviewMessage, type PreviewAssigned } from '../screens/preview.logic';
-import { Net, type NetHandlers } from './ws';
+import { HEARTBEAT_MS, Net, type NetHandlers } from './ws';
 
 // ===== minimal browser shims (constructor + send path only; connect() is never called) =====
 const g = globalThis as Record<string, unknown>;
@@ -98,6 +98,91 @@ describe('PING → PONG + clock offset (spec 3.3)', () => {
     expect(sent).toHaveLength(3);
     expect(JSON.parse(sent[0]!)).toEqual({ t: 'PONG', id: 7, cl: now });
     expect(net.serverNow()).toBe(now + 100); // median of {100,120,90}
+  });
+});
+
+describe('transport heartbeat', () => {
+  it('sends phase-agnostic liveness frames without multiplying intervals', () => {
+    const { net, sent } = makeNet();
+    const controls = net as unknown as { startHeartbeat(): void; stopHeartbeat(): void };
+
+    controls.startHeartbeat();
+    vi.advanceTimersByTime(HEARTBEAT_MS);
+    expect(sent.map((frame) => JSON.parse(frame))).toEqual([{ t: 'HEARTBEAT' }]);
+
+    controls.startHeartbeat(); // reconnect/open races replace the prior interval
+    vi.advanceTimersByTime(HEARTBEAT_MS);
+    expect(sent.map((frame) => JSON.parse(frame))).toEqual([{ t: 'HEARTBEAT' }, { t: 'HEARTBEAT' }]);
+
+    controls.stopHeartbeat();
+    vi.advanceTimersByTime(HEARTBEAT_MS * 2);
+    expect(sent).toHaveLength(2);
+  });
+
+  it('starts on socket open and stops across close/reconnect lifecycle', () => {
+    const originalWebSocket = g['WebSocket'];
+    const originalLocation = g['location'];
+    const originalStorage = g['localStorage'];
+    const sockets: LifecycleSocket[] = [];
+
+    class LifecycleSocket {
+      static readonly OPEN = 1;
+      static readonly CLOSED = 3;
+      readyState = 0;
+      sent: string[] = [];
+      onopen: (() => void) | null = null;
+      onclose: (() => void) | null = null;
+      onmessage: ((event: { data: string }) => void) | null = null;
+
+      constructor(readonly url: string) {
+        sockets.push(this);
+      }
+
+      send(frame: string): void {
+        this.sent.push(frame);
+      }
+
+      open(): void {
+        this.readyState = LifecycleSocket.OPEN;
+        this.onopen?.();
+      }
+
+      close(): void {
+        this.readyState = LifecycleSocket.CLOSED;
+        this.onclose?.();
+      }
+    }
+
+    const values = new Map<string, string>();
+    g['WebSocket'] = LifecycleSocket;
+    g['location'] = { protocol: 'http:', host: '127.0.0.1:8787' };
+    g['localStorage'] = {
+      getItem: (key: string): string | null => values.get(key) ?? null,
+      setItem: (key: string, value: string): void => {
+        values.set(key, value);
+      },
+    };
+
+    let net: Net | null = null;
+    try {
+      net = makeNet().net;
+      net.connect();
+      const first = sockets[0]!;
+      expect(first.url).toMatch(/^ws:\/\/127\.0\.0\.1:8787\/ws\/HRLM\?token=.*&v=1&dev=[a-z0-9]{16,64}$/);
+      first.open();
+      vi.advanceTimersByTime(HEARTBEAT_MS);
+      expect(first.sent.map((frame) => JSON.parse(frame))).toEqual([{ t: 'HEARTBEAT' }]);
+
+      first.close();
+      vi.advanceTimersByTime(HEARTBEAT_MS);
+      expect(first.sent).toHaveLength(1);
+      expect(sockets).toHaveLength(2); // reconnect was created, but cannot heartbeat before open
+    } finally {
+      net?.close();
+      g['WebSocket'] = originalWebSocket;
+      g['location'] = originalLocation;
+      g['localStorage'] = originalStorage;
+    }
   });
 });
 

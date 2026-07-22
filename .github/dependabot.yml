@@ -24,6 +24,18 @@ updates:
       - "dependencies"
       - "python"
 
+  # Descent pnpm workspace
+  - package-ecosystem: "npm"
+    directory: "/descent"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "helldeck-maintainers"
+    labels:
+      - "dependencies"
+      - "descent"
+
   # GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -35,4 +47,3 @@ updates:
     labels:
       - "dependencies"
       - "github-actions"
-

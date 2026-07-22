@@ -2,7 +2,7 @@
 // $9.99 unlock), static assets. DESCENT_BUILD_SPEC.md Part 1.1, 4.1, Part 11. Tasks D-102, D-412.
 import { CODE_ALPHABET } from '@helldeck/engine';
 import { loadContent } from './content.js';
-import { resolveEntitlement, signUnlock, validDevice, verifyUnlock } from './entitle.js';
+import { devUnlockAvailable, resolveEntitlement, signUnlock, validDevice, verifyUnlock } from './entitle.js';
 import { createCheckout, sessionUnlocksDevice } from './stripe.js';
 
 // D-127: inject the real corpus into every game module once, at isolate load — before any
@@ -61,7 +61,10 @@ async function entitle(req: Request, env: Env, url: URL): Promise<Response> {
     const device = body.device ?? '';
     if (!validDevice(device)) return badDevice();
     if (!env.STRIPE_SECRET) {
-      return Response.json({ error: 'NO_STRIPE', devUnlock: env.ENV !== 'production' }, { status: 501 });
+      return Response.json(
+        { error: 'NO_STRIPE', devUnlock: devUnlockAvailable(env.ENV, env.UNLOCK_SECRET) },
+        { status: 501 },
+      );
     }
     // Only bounce back to a same-origin room path (/ABCD); never an attacker-supplied absolute URL.
     const returnPath = /^\/[A-Z]{4}$/.test(body.returnPath ?? '') ? body.returnPath! : '/';
@@ -88,10 +91,10 @@ async function entitle(req: Request, env: Env, url: URL): Promise<Response> {
   // POST /api/entitle/dev-unlock?dev= — NON-PROD ESCAPE HATCH so the whole vertical is
   // playable and testable without any Stripe key. Refuses in production.
   if (req.method === 'POST' && url.pathname === '/api/entitle/dev-unlock') {
-    if (env.ENV === 'production' || !env.UNLOCK_SECRET) return new Response('not found', { status: 404 });
+    if (!devUnlockAvailable(env.ENV, env.UNLOCK_SECRET)) return new Response('not found', { status: 404 });
     const device = url.searchParams.get('dev') ?? '';
     if (!validDevice(device)) return badDevice();
-    return Response.json({ unlock: await signUnlock(env.UNLOCK_SECRET, device) });
+    return Response.json({ unlock: await signUnlock(env.UNLOCK_SECRET!, device) });
   }
 
   return new Response('not found', { status: 404 });

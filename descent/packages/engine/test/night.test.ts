@@ -13,7 +13,7 @@
 // two cross-check each module's view()/input() surface from both directions.
 import { describe, expect, it } from 'vitest';
 import type { GameCtx } from '../src/games/module.js';
-import type { GameEvent, Player, RoomState } from '../src/types.js';
+import type { Effect, GameEvent, Player, RoomState } from '../src/types.js';
 import { computeJudgment, getModule, initialRoom } from '../src/engine.js';
 import { GAMES } from '../src/arc.js';
 import { rng } from '../src/rng.js';
@@ -250,6 +250,14 @@ describe('full night integration (M2-INT: registered games never skipped)', () =
     expect(topScore).toBeGreaterThan(0); // games award points; a night of pure skips would be 0-0
     expect(played.size).toBe(arc.length); // nothing skipped
     expect(revealDecks.has('scatter')).toBe(true); // the mid-spike now actually plays
+    const fuseSchedules = d.log
+      .flatMap(({ effects }) => effects)
+      .filter(
+        (effect): effect is Extract<Effect, { k: 'SCHEDULE' }> =>
+          effect.k === 'SCHEDULE' && effect.timerId.startsWith('scatter:fuse:'),
+      );
+    expect(fuseSchedules.length).toBeGreaterThan(0);
+    expect(fuseSchedules.every((effect) => effect.announce === false)).toBe(true); // the fuse deadline is secret
   });
 
   it('D-134: spotlight assignments bump spotlightCount, feed MOST WANTED, and stay deterministic', () => {
