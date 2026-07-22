@@ -338,7 +338,7 @@ export type GameEvent =
 
 // ===== effects (engine asks; DO executes) =====
 export type Effect =
-  | { k: 'SCHEDULE'; timerId: string; atMs: number }
+  | { k: 'SCHEDULE'; timerId: string; atMs: number; announce?: boolean }
   | { k: 'CANCEL'; timerId: string }
   | { k: 'BROADCAST' } // DO re-serializes redacted state/patch per socket
   | { k: 'SEND'; to: PlayerId; kind: 'preview'; payload: CardPreviewPrivatePayload }

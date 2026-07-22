@@ -239,7 +239,8 @@ export type GameEvent =
 
 export interface Effect {                 // engine returns effects; DO executes them
   k: 'SCHEDULE' | 'CANCEL' | 'BROADCAST' | 'SEND' | 'SNAPSHOT' | 'AUDIO';
-  // SCHEDULE {timerId, atMs} -> DO Alarm; SEND {to: PlayerId, msg}; AUDIO {sting: string}
+  // SCHEDULE {timerId, atMs, announce?} -> DO Alarm; announce:false keeps a secret deadline off-wire
+  // SEND {to: PlayerId, msg}; AUDIO {sting: string}
 }
 export function reduce(s: RoomState, e: GameEvent, seed: string): { state: RoomState; effects: Effect[] };
 ```
@@ -252,12 +253,14 @@ export function reduce(s: RoomState, e: GameEvent, seed: string): { state: RoomS
 
 ## 3.1 Connection lifecycle
 
-1. Client opens `wss://<host>/ws/<CODE>?token=<playerToken>&name=<urlenc>&v=1`.
+1. Client opens `wss://<host>/ws/<CODE>?token=<playerToken>&v=1&dev=<deviceToken>[&unlock=<token>]`.
    - No token → server issues one in `WELCOME` (client stores in `localStorage["hd:<CODE>:token"]`).
    - Existing token + same room → silent reseat (reconnect), full state push.
 2. Server sends `WELCOME`, then `STATE` (full redacted snapshot), then deltas.
 3. Client answers every `PING` immediately (clock sync, 3.3).
 4. On tab hide/show: client sets `epochLocal++`, discards queued renders, sends `{t:"RESYNC"}` on visible → server replies with full `STATE`.
+5. While open, client sends `{t:"HEARTBEAT"}` every 15s. It has no response; it is an alarm-independent
+   wake-up that lets the RoomDO deliver any overdue durable timer.
 
 ## 3.2 Messages (complete list — anything not here does not exist)
 
@@ -277,6 +280,7 @@ export function reduce(s: RoomState, e: GameEvent, seed: string): { state: RoomS
 {"t":"SKIPEM"}                         // during a live performance
 {"t":"REST"}                           // performer only
 {"t":"FIRE","n":4}                     // coalesced: max 1 msg / 500ms, n = taps since last
+{"t":"HEARTBEAT"}                       // transport liveness; no response
 {"t":"PONG","id":17,"cl":1720900000000}
 {"t":"RESYNC"}
 ```
@@ -291,7 +295,7 @@ export function reduce(s: RoomState, e: GameEvent, seed: string): { state: RoomS
 {"t":"AT","timerId":"input:c3","at":1720900012000}  // deadline in SERVER time; client maps via offset
 {"t":"AUDIO","sting":"boom"|"bell"|"burn"|"descend"|"judgment"}  // host phone honors, others ignore
 {"t":"HEAT","n":37}                        // fire-tap buckets, ≤4Hz
-{"t":"ERR","code":"ROOM_FULL"|"BAD_INPUT"|"NOT_HOST"|"NO_ENTITLEMENT"|"ROOM_EXPIRED","msg":"..."}
+{"t":"ERR","code":"ROOM_FULL"|"BAD_INPUT"|"NOT_HOST"|"NO_ENTITLEMENT"|"ENTITLEMENT_UNAVAILABLE"|"ROOM_EXPIRED","msg":"..."}
 ```
 
 ## 3.3 Clock sync (the reveal-simultaneity mechanism)
@@ -300,7 +304,8 @@ export function reduce(s: RoomState, e: GameEvent, seed: string): { state: RoomS
   discard a live private safety window; the ping batch below refines that first estimate.
 - On connect and every 60s: server sends 5 `PING`s 200ms apart; client `PONG`s with its clock.
 - Server computes per-client offset = median of 5 samples; stores on socket.
-- Every deadline is broadcast as **server time** (`AT`). Client renders countdowns from `serverTime - offset`.
+- Every **public** deadline is broadcast as server time (`AT`). Hidden mechanics (notably Scatter's
+  variable fuse) are durable schedules with `announce:false` and never reveal their time or timer id.
 - Reveals: server schedules `AT` ≥ 1000ms in the future → all phones flip within ~30–80ms of each other (target: p95 ≤ 150ms skew).
 - Countdown ticks are NEVER individual messages — clients derive them from the single deadline.
 
@@ -640,11 +645,18 @@ Monthly: telemetry cull (bottom-decile fire rates flagged) + new cards written p
 
 ## 9.1 States
 
-`entitled = ownedUnlock || freeNightAvailable`. Free night: `localStorage["hd:freeNightUsed"]` + server-side count keyed by a device token issued at first room-create (soft enforcement is ACCEPTED v1 risk — a wiped browser gets another free night; do not build more).
+`entitled = ownedUnlock || freeNightAvailable`. The client mints one valid device token into
+`localStorage["hd:device"]`; a per-device `LedgerDO` atomically grants one free lobby attempt. The
+claim is keyed by `roomCode:lobbyEpoch`, so a crash can replay that exact start without granting a
+later night in the same room. Missing/malformed devices fail closed; a wiped browser can mint a new
+device (soft enforcement is an ACCEPTED v1 risk — do not build accounts just to harden it).
 
 ## 9.2 Purchase flows
 
-- **Web:** Judgment/paywall → Stripe Payment Link (prod mode, $9.99, product `descent-host-unlock`) with `client_reference_id = deviceToken` → success URL `/unlocked?session={CHECKOUT_SESSION_ID}` → Worker `GET /api/entitle/verify?session=` calls Stripe API, validates paid + matching reference → signs an **unlock token** (HMAC, `env.UNLOCK_SECRET`) → client stores `localStorage["hd:unlock"]`. Room-create and BEGIN verify the token signature server-side.
+- **Web:** the paywall creates a Stripe Checkout Session (inline $9.99 SKU) bound to the device token.
+  The Worker verifies the paid session and matching reference, signs a device-bound **unlock token**
+  (HMAC, `env.UNLOCK_SECRET`), and the client stores `localStorage["hd:unlock"]`. Each lobby BEGIN
+  verifies that signature server-side. Stripe test mode works now; live keys remain owner-gated.
 - **Android shell:** Play Billing purchase → `HDShell.getEntitlement()` → client posts receipt to `/api/entitle/play` → same unlock token issued (server-side receipt check against Play Developer API is task D-411; until then TRUST-CLIENT flagged risk).
 - Paywall copy at the second Night's BEGIN: lobby stays assembled behind it; purchase completes in ≤30s or falls back to "start anyway" ONLY during beta.
 
@@ -682,17 +694,22 @@ Judgment share card PNG carries `helldeck.<domain>/?crew=<crewId-short>` — lan
 
 Rules: a task is checked ONLY when its acceptance criteria (AC) pass. Order within a milestone is the build order. `[dep: X]` = don't start before X.
 
-> **STATUS 2026-07-20 (see `NEXT_AGENT.md` for the concise live head).** M0–M3 software is
+> **STATUS 2026-07-22 (see `NEXT_AGENT.md` for the concise live head).** M0–M3 software is
 > implemented: all nine games use the real 1,024-card corpus; the unregistered-game skip path is
 > retired; CLAIM is wired end-to-end; Stage private overlays are lift-gated and auto-flatten after
 > the viewer's decision acknowledgement; all six burnable performer games use the core-owned
 > two-window spotlight ceremony above; and card-preview burns now have the same correlated private
 > acknowledgement/reconnect guarantees. The granular UI pass added the binding self-hosted condensed
 > font, accessible contrast/focus/touch/modal states, honest pending errors, reduced motion, safe-area
-> responsiveness, and small-phone/landscape smoke coverage. Verification is green: engine **342**,
-> server **34**, client **123** = **499 tests**; strict build; all content gates; and
-> a five-client depth-5 night against real `wrangler dev`/Durable Object/WebSockets reached JUDGMENT
-> in 360.1s. The tracker checkboxes below remain acceptance-criterion-specific: real-device skew,
+> responsiveness, and small-phone/landscape smoke coverage. Timer delivery now has an independent
+> heartbeat, atomic state+timer persistence, hidden Scatter fuses, and crash recovery; free-night
+> claims are concurrent- and crash-safe. Logical timers now use strict deadlines, 50ms guarded
+> physical wakes, preserved earlier sentinel alarms, and one forced successor per pump. Verification
+> is green: engine **342**, server **67**, client **131** = **540 tests**; strict build; all content
+> gates; and a five-client depth-5 night against real `wrangler dev`/Durable Object/WebSockets
+> reached JUDGMENT in 419.3s with every Scatter loop and zero Worker warnings. Frozen install,
+> peer dependency checks, and full/production dependency audits are also clean.
+> The tracker checkboxes below remain acceptance-criterion-specific: real-device skew,
 > human playtests, the 500-night CI target, payments, shell, and deploy are not implied complete.
 
 ## M0 — Skeleton (goal: two phones see the same tick)
@@ -734,7 +751,7 @@ Rules: a task is checked ONLY when its acceptance criteria (AC) pass. Order with
 ## M4 — Android shell + money
 - [ ] **D-411** Shell per Part 7 (WebView, bridge, billing, stage audio, lift-to-sin sensor). AC: bridge contract tests; purchase in internal testing track.
 - [x] **D-412** Entitlements per 9.1–9.2 web path (Stripe test-mode Checkout + verify + HMAC token). DONE 2026-07-21: `server/src/entitle.ts` (device-bound HMAC, `UNLOCK_SECRET`) + `stripe.ts` (test-mode Checkout/verify) + `worker.ts` `/api/entitle/{status,checkout,verify,dev-unlock}`; client stores `localStorage["hd:unlock"]`, resent on WS connect. AC met — paywall on 2nd night's BEGIN (see D-413); unlock is stateless HMAC in localStorage so it survives a browser restart. **Owner-gated tail:** set `STRIPE_SECRET` live key (test mode + a non-prod `dev-unlock` escape hatch work now).
-- [x] **D-413** Free-night device tokens + paywall UI at BEGIN. DONE 2026-07-21: per-device `LedgerDO` (`env.LEDGER`) holds the one free night (idempotent `/consume-free`); entitlement is re-resolved against the host device at EVERY BEGIN and the free night is charged only when a night actually starts (a rejected BEGIN never burns it). UNHINGED paywall overlay `client/src/screens/paywall.tsx` opens on `NO_ENTITLEMENT` and returns the host to their room after payment. Server tests: `entitle.test.ts` + entitlement-at-BEGIN block in `protocol.test.ts` (free-night cross-room, paid-always-plays, forged-token-rejected, rejected-BEGIN-doesn't-burn).
+- [x] **D-413** Free-night device tokens + paywall UI at BEGIN. DONE 2026-07-22: per-device `LedgerDO` (`env.LEDGER`) atomically stores one `roomCode:lobbyEpoch` claim; the same attempt replays after a RoomDO crash, while concurrent/different/later attempts are denied. Entitlement is re-resolved only for lobby BEGIN; rejected starts never claim, duplicate mid-night BEGIN never opens a paywall, missing devices lock, and ledger uncertainty times out to retryable `ENTITLEMENT_UNAVAILABLE`. UNHINGED paywall overlay `client/src/screens/paywall.tsx` opens on definitive `NO_ENTITLEMENT` and returns the host to their room after payment. Server coverage includes concurrency, crash replay, delayed/unavailable ledger, paid/forged tokens, and rejected BEGIN.
 - [ ] **D-414** Play listing: Mature 17+ IARC, Data Safety (10.4), screenshots in brand.
 
 ## M5 — Beta

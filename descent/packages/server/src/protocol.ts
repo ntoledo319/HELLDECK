@@ -1,10 +1,17 @@
 // Wire law: the COMPLETE client→server message table from spec Part 3.2. Anything not
 // here does not exist. Pure — the DO supplies identity/time/authority in ParseCtx, this
-// file turns a frame into exactly one of: engine event, clock pong, resync, fire, error.
+// file turns a frame into exactly one of: engine event, heartbeat, clock pong, resync,
+// fire, error.
 // Tasks D-104/D-105.
 import type { GameEvent } from '@helldeck/engine';
 
-export type ErrCode = 'ROOM_FULL' | 'BAD_INPUT' | 'NOT_HOST' | 'NO_ENTITLEMENT' | 'ROOM_EXPIRED';
+export type ErrCode =
+  | 'ROOM_FULL'
+  | 'BAD_INPUT'
+  | 'NOT_HOST'
+  | 'NO_ENTITLEMENT'
+  | 'ENTITLEMENT_UNAVAILABLE'
+  | 'ROOM_EXPIRED';
 
 export interface ParseCtx {
   id: string; // playerId from the socket attachment (token = identity)
@@ -17,6 +24,7 @@ export interface ParseCtx {
 
 export type Parsed =
   | { kind: 'event'; event: GameEvent }
+  | { kind: 'heartbeat' }
   | { kind: 'pong'; pingId: number; clientClock: number }
   | { kind: 'resync' }
   | { kind: 'fire'; n: number }
@@ -95,6 +103,10 @@ export function parseClientMessage(msg: { t: string; [k: string]: unknown }, ctx
     case 'FIRE':
       // Raw tap count; the DO applies the 10/s budget (clock.ts clampFire) before dispatch.
       return { kind: 'fire', n: clampInt(msg['n'], 1, 100, 1) };
+    case 'HEARTBEAT':
+      // Transport liveness only. The trailing overdue-timer pump uses this frame to
+      // recover from a runtime alarm that was accepted but never delivered.
+      return { kind: 'heartbeat' };
     case 'PONG': {
       const pingId = Number(msg['id']);
       const clientClock = Number(msg['cl']);

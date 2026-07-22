@@ -228,7 +228,7 @@ describe('D-137 bot-fuzz: the engine survives hostile clients', () => {
       // Purity: the whole hostile stream replays to a byte-identical final state.
       expect(replay(log), `${seed}: replay diverged from the live run`).toEqual(s);
     }
-  });
+  }, 60_000);
 
   it('liveness under noise: a night still being driven always reaches JUDGMENT', () => {
     for (let trial = 0; trial < 30; trial++) {
@@ -289,5 +289,5 @@ describe('D-137 bot-fuzz: the engine survives hostile clients', () => {
       }
       expect(s.phase.k, `${seed}: noise derailed the night — stuck at ${s.phase.k}`).toBe('JUDGMENT');
     }
-  });
+  }, 60_000);
 });

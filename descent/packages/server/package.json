@@ -4,17 +4,19 @@
   "type": "module",
   "scripts": {
     "build": "tsc --noEmit",
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --var ENV:dev",
     "deploy": "wrangler deploy",
+    "smoke:live": "tsx test/bots.ts",
     "test": "vitest run"
   },
   "dependencies": {
     "@helldeck/engine": "workspace:*"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20250700.0",
+    "@cloudflare/workers-types": "^5.20260710.1",
+    "tsx": "4.23.1",
     "typescript": "^5.5.0",
-    "vitest": "^2.0.0",
+    "vitest": "^3.2.6",
     "wrangler": "^4.0.0"
   }
 }

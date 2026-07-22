@@ -79,3 +79,55 @@ Deltas from the handoff's stated snapshot:
 3. **Secrets die at one door.** `redact.ts` is the sole path to the wire, per-socket; any new secret is added to `NEVER_SERIALIZE` and asserted absent by a frame test. Consent (ceilings) is invisible by construction — that invisibility is a game-design feature, not just privacy.
 4. **Content is a law, not a vibe.** Every card is E/C-rated with C≥3, filmed-scene-not-verdict, room-answers-not-card, deduped by skeleton, run through lint/dedup/stats. The autopsy is the proof that breaking the law kills the game; the CONTENT_BIBLE is the law.
 5. **The doctrine is settled — build, don't relitigate.** Server-authoritative, browser joiners, one web UI, $9.99 at 2nd BEGIN, E/C over spice, 8 deep decks. Ship against the Part 12 tracker; parallelize with workflows using disjoint file ownership + an integrator pass; resume-from-cache when a run dies on credits.
+
+---
+
+## 2026-07-22 Codex refresh — latest-handoff corrections
+
+I repeated the LEARN read in the required order before running builds or changing product code:
+all five canonical documents, the complete 2,452-line readable transcript, and the current durable
+memory. I then answered the same 20 questions from memory before consulting this prior proof.
+There were no doctrinal corrections. The following chronological corrections supersede the
+2026-07-19 snapshot above:
+
+- **Branch/HEAD:** `main` at `7a533be`, equal to `origin/main` at onboarding time. The current
+  user-owned worktree additions are the 2026-07-22 handoff and its pointer in `NEXT_AGENT.md`.
+- **Build/test state expected by the latest handoff:** engine 342 + server 48 + client 129 =
+  **519 deterministic tests**, with strict recursive build and content funnel green. This must be
+  independently reverified; it is not accepted merely because the handoff says so.
+- **The historical known failing protocol test is fixed.** The current unclosed proof is runtime:
+  two 480-second depth-5 Wrangler bot nights timed out during Scatter's hidden-fuse sequence.
+- **Immediate task:** establish the clean baseline, run a full live depth-5 night with a sufficient
+  timeout, distinguish legitimate Scatter pacing from a missing module-timer alarm, repair and test
+  the alarm path only if necessary, rerun every gate without warnings, update the handoff, then
+  commit and push the explicitly authorized `main` branch.
+- **Already landed since the old proof:** all nine games/screens and private Stage hardening, the
+  1,024-card corpus, consent valves, deterministic fuzzing, host-unlock monetization in Stripe test
+  mode, per-device free-night enforcement, and Descent CI. Do not redo them.
+- **Durable memory is stale:** it still reports 427 tests and says the autonomous roadmap is
+  exhausted. Current repository docs and verified code outrank it.
+- **Still human/owner-gated:** real D-128/D-138 playtests, live Stripe credentials, Workers Paid
+  deployment, domain purchase, Android/Play signing and release. A live bot night is infrastructure
+  evidence, never a claim that humans found the game fun.
+
+---
+
+## 2026-07-22 completion correction — handoff closed
+
+The unclosed proof above is now resolved, not merely reclassified:
+
+- A final isolated depth-5 `pnpm smoke:live` run connected five real WebSocket clients to local
+  Wrangler/RoomDO, observed all five circles and all three Scatter BOMB/BOOM loops, and reached
+  **JUDGMENT in 419.3 seconds**. The complete Worker log had zero alarm diagnostics, protocol
+  errors, or runtime warnings.
+- The timer system now distinguishes strict logical deadlines from 50ms-guarded physical wakes,
+  preserves earlier sentinel alarms across ordinary cancel-to-later mutations, suppresses nested
+  re-arms during a pump, and force-arms exactly one successor after every runtime- or
+  heartbeat-driven pump. Tests cover early admission, cancel-to-later, move-earlier, and lost-alarm
+  successor recovery.
+- Current verified test inventory is **342 engine + 67 server + 131 client = 540 passing tests**,
+  alongside the recursive strict build and the 1,024-card lint/dedup/stats funnel.
+- The historical `7a533be` onboarding HEAD remains the correct starting point for this pass; the
+  completion changes and this proof are published together by the final handoff commit.
+- The remaining human/owner gates listed above stay open. No bot run is evidence of fun, device
+  usability, payment-production readiness, or store approval.

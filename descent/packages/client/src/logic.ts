@@ -35,6 +35,8 @@ export function serverErrorMessage(code: string, message: string): string {
       return 'THE PIT REJECTED THAT — check your choice and try again.';
     case 'NO_ENTITLEMENT':
       return 'THIS NIGHT IS LOCKED — the host needs to unlock it.';
+    case 'ENTITLEMENT_UNAVAILABLE':
+      return 'THE TOLLKEEPER BLINKED — try BEGIN again.';
     default:
       return 'THE PIT REJECTED THAT — try again.';
   }

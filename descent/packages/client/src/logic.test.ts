@@ -53,6 +53,7 @@ describe('serverErrorMessage', () => {
     expect(serverErrorMessage('BAD_INPUT', 'That ballot is closed.')).toBe('That ballot is closed.');
     expect(serverErrorMessage('BAD_INPUT', '')).toMatch(/check your choice/i);
     expect(serverErrorMessage('NO_ENTITLEMENT', '')).toMatch(/host needs to unlock/i);
+    expect(serverErrorMessage('ENTITLEMENT_UNAVAILABLE', '')).toMatch(/try BEGIN again/i);
     expect(serverErrorMessage('UNKNOWN', '')).toMatch(/try again/i);
   });
 

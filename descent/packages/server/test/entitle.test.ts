@@ -1,7 +1,7 @@
 // The $9.99 unlock, at unit scale (spec Part 11 / D-412): the stateless HMAC token
 // (entitle.ts), the entitlement decision, and the per-device free-night ledger (ledger-do.ts).
 import { describe, expect, it } from 'vitest';
-import { resolveEntitlement, signUnlock, validDevice, verifyUnlock } from '../src/entitle.js';
+import { devUnlockAvailable, resolveEntitlement, signUnlock, validDevice, verifyUnlock } from '../src/entitle.js';
 import { LedgerDO } from '../src/ledger-do.js';
 
 const SECRET = 'test-unlock-secret';
@@ -65,6 +65,17 @@ describe('entitlement decision', () => {
   });
 });
 
+describe('development unlock policy', () => {
+  it('requires the exact dev environment and a signing secret', () => {
+    expect(devUnlockAvailable('dev', SECRET)).toBe(true);
+    expect(devUnlockAvailable('production', SECRET)).toBe(false);
+    expect(devUnlockAvailable('staging', SECRET)).toBe(false);
+    expect(devUnlockAvailable('', SECRET)).toBe(false);
+    expect(devUnlockAvailable(undefined, SECRET)).toBe(false);
+    expect(devUnlockAvailable('dev', undefined)).toBe(false);
+  });
+});
+
 // ===== LedgerDO: the one stateful bit =====
 class FakeStorage {
   data = new Map<string, unknown>();
@@ -81,18 +92,35 @@ const call = (l: LedgerDO, method: string, path: string): Promise<Response> =>
   l.fetch(new Request(`https://ledger${path}`, { method }));
 
 describe('LedgerDO free-night', () => {
-  it('reports unspent, grants once, then reports spent — idempotent', async () => {
+  it('reports unspent, replays one lobby-attempt claim, and rejects every other attempt', async () => {
     const l = makeLedger();
-    expect(await (await call(l, 'GET', '/status')).json()).toEqual({ freeNightUsed: false });
+    expect(await (await call(l, 'GET', '/status')).json()).toEqual({ freeNightUsed: false, claimMatches: false });
 
-    const first = (await (await call(l, 'POST', '/consume-free')).json()) as { granted: boolean };
+    const first = (await (await call(l, 'POST', '/consume-free?claim=HELL:0')).json()) as { granted: boolean };
     expect(first.granted).toBe(true);
 
-    // A second consume (retry, double BEGIN) never mints a second free night.
-    const second = (await (await call(l, 'POST', '/consume-free')).json()) as { granted: boolean };
+    const replay = (await (await call(l, 'POST', '/consume-free?claim=HELL:0')).json()) as {
+      granted: boolean;
+      replayed: boolean;
+    };
+    expect(replay).toMatchObject({ granted: true, replayed: true });
+
+    // A later lobby epoch (or a different room) never reuses the first device grant.
+    const second = (await (await call(l, 'POST', '/consume-free?claim=HELL:1')).json()) as { granted: boolean };
     expect(second.granted).toBe(false);
 
-    expect(await (await call(l, 'GET', '/status')).json()).toEqual({ freeNightUsed: true });
+    expect(await (await call(l, 'GET', '/status?claim=HELL:0')).json()).toEqual({
+      freeNightUsed: true,
+      claimMatches: true,
+    });
+    expect(await (await call(l, 'GET', '/status?claim=FIRE:0')).json()).toEqual({
+      freeNightUsed: true,
+      claimMatches: false,
+    });
+  });
+
+  it('rejects a consume without a valid internal lobby-attempt claim', async () => {
+    expect((await call(makeLedger(), 'POST', '/consume-free')).status).toBe(400);
   });
 
   it('rejects unknown routes', async () => {

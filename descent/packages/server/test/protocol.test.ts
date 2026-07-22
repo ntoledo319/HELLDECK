@@ -7,7 +7,7 @@
 //   3.4 redaction (no secret fields in any frame)
 //   FIRE 10/s budget + HEAT <= 4Hz, SCHEDULE -> Alarm -> TIMER event, seat-hold delivery.
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { reduce, type Effect, type GameEvent } from '@helldeck/engine';
+import { reduce, type Effect, type GameEvent, type ReduceResult, type RoomState } from '@helldeck/engine';
 import {
   clampFire,
   emptyClock,
@@ -26,7 +26,7 @@ import { signUnlock } from '../src/entitle.js';
 import { LedgerDO } from '../src/ledger-do.js';
 import { crewId, parseClientMessage, type ParseCtx } from '../src/protocol.js';
 import { assertNoSecrets, redactFor } from '../src/redact.js';
-import { RoomDO } from '../src/room-do.js';
+import { ALARM_RECOVERY_GRACE_MS, ALARM_WAKE_GUARD_MS, RoomDO } from '../src/room-do.js';
 import { botMoves, deckOf, subOf } from './botlogic.js';
 
 // Spy on reduce so every wire message can be asserted as the exact engine event it maps
@@ -42,14 +42,25 @@ const engineEvents = (): GameEvent[] => reduceSpy.mock.calls.map((c) => c[1]);
 class FakeStorage {
   data = new Map<string, unknown>();
   alarm: number | null = null;
+  writes: string[][] = [];
   async get(k: string): Promise<unknown> {
     return this.data.get(k);
   }
-  async put(k: string, v: unknown): Promise<void> {
-    this.data.set(k, structuredClone(v));
+  async put(k: string | Record<string, unknown>, v?: unknown): Promise<void> {
+    if (typeof k === 'string') {
+      this.writes.push([k]);
+      this.data.set(k, structuredClone(v));
+      return;
+    }
+    const keys = Object.keys(k);
+    this.writes.push(keys);
+    for (const [key, value] of Object.entries(k)) this.data.set(key, structuredClone(value));
   }
   async setAlarm(at: number): Promise<void> {
     this.alarm = at;
+  }
+  async getAlarm(): Promise<number | null> {
+    return this.alarm;
   }
   async deleteAlarm(): Promise<void> {
     this.alarm = null;
@@ -91,14 +102,31 @@ class FakeCtx {
 }
 
 interface DOInternals {
-  handleOpen(ws: unknown, token: string, now: number): Promise<void>;
+  handleOpen(ws: unknown, token: string, now: number, dev?: string, unlock?: string): Promise<void>;
+  commitResult(prev: RoomState, result: ReduceResult): Promise<void>;
   runEffects(effects: Effect[]): Promise<void>;
 }
 const internals = (d: RoomDO): DOInternals => d as unknown as DOInternals;
+const TEST_DEVICE = 'protocoltestdevice0001';
+const TEST_LEDGER = {
+  idFromName: (name: string): { name: string } => ({ name }),
+  get: (): { fetch(req: Request): Promise<Response> } => ({
+    fetch: async (req: Request): Promise<Response> => {
+      const url = new URL(req.url);
+      if (req.method === 'GET' && url.pathname === '/status') {
+        return Response.json({ freeNightUsed: false, claimMatches: false });
+      }
+      if (req.method === 'POST' && url.pathname === '/consume-free') {
+        return Response.json({ granted: true, freeNightUsed: true });
+      }
+      return new Response('bad request', { status: 400 });
+    },
+  }),
+};
 
 async function makeRoom(): Promise<{ room: RoomDO; ctx: FakeCtx }> {
   const ctx = new FakeCtx();
-  const room = new RoomDO(ctx as unknown as DurableObjectState, {});
+  const room = new RoomDO(ctx as unknown as DurableObjectState, { LEDGER: TEST_LEDGER });
   await room.fetch(new Request('https://do/init?code=HELL', { method: 'POST' }));
   return { room, ctx };
 }
@@ -106,7 +134,7 @@ async function makeRoom(): Promise<{ room: RoomDO; ctx: FakeCtx }> {
 async function connect(room: RoomDO, ctx: FakeCtx, token: string): Promise<FakeWS> {
   const ws = new FakeWS();
   ctx.acceptWebSocket(ws);
-  await internals(room).handleOpen(ws, token, Date.now());
+  await internals(room).handleOpen(ws, token, Date.now(), TEST_DEVICE);
   return ws;
 }
 
@@ -234,8 +262,9 @@ describe('parseClientMessage (Part 3.2 — the whole table)', () => {
     expect(evt({ t: 'CLAIM', id: 'spoofed-player', at: 0 }, host)).toEqual({ t: 'CLAIM', id: 'p1', at: T0 });
   });
 
-  it('FIRE / PONG / RESYNC route to DO-side handlers, not the engine', () => {
+  it('FIRE / HEARTBEAT / PONG / RESYNC route to DO-side handlers, not the engine', () => {
     expect(parseClientMessage({ t: 'FIRE', n: 4 }, base)).toEqual({ kind: 'fire', n: 4 });
+    expect(parseClientMessage({ t: 'HEARTBEAT' }, base)).toEqual({ kind: 'heartbeat' });
     expect(parseClientMessage({ t: 'PONG', id: 17, cl: 123 }, base)).toEqual({
       kind: 'pong',
       pingId: 17,
@@ -584,7 +613,7 @@ describe('RoomDO clock sync', () => {
     const { room, ctx } = await makeRoom();
     const ws = await connect(room, ctx, 'tok1');
     const storage = ctx.storage;
-    expect(storage.alarm).toBe(T0 + 1); // first ping due now; re-arm clamps strictly future
+    expect(storage.alarm).toBe(T0 + ALARM_WAKE_GUARD_MS); // physical wake follows the logical ping deadline
 
     const CLIENT_BEHIND = 700; // client clock lags the server by 700ms
     for (let k = 0; k < PING_BATCH_SIZE; k++) {
@@ -601,6 +630,19 @@ describe('RoomDO clock sync', () => {
     const timers = storage.data.get('timers') as Record<string, number>;
     expect(timers['do:clock:refresh']).toBe(T0 + PING_REFRESH_MS);
   });
+
+  it('rapid joins share one pending alarm batch and receive an immediate personal sample', async () => {
+    const { room, ctx } = await makeRoom();
+    await connect(room, ctx, 'tok1');
+    const firstAlarm = ctx.storage.alarm;
+    ctx.storage.writes = [];
+
+    const second = await connect(room, ctx, 'tok2');
+
+    expect(second.last('PING')).toMatchObject({ sv: T0 });
+    expect(ctx.storage.alarm).toBe(firstAlarm);
+    expect(ctx.storage.writes).toEqual([]); // no alarm cancel/re-arm during the join burst
+  });
 });
 
 // ===== FIRE budget + HEAT <= 4Hz =====
@@ -611,7 +653,7 @@ describe('RoomDO fire/heat', () => {
     await send(room, ws, { t: 'JOIN', name: 'sam', avatar: 0 });
     reduceSpy.mockClear();
 
-    // First flush is immediate (message-path pump): the opening FIRE lands as HEAT now.
+    // First flush is immediate: the opening FIRE lands as HEAT without an alarm round-trip.
     await send(room, ws, { t: 'FIRE', n: 8 });
     expect(ws.last('HEAT')).toMatchObject({ n: 8 });
     ws.clear();
@@ -655,6 +697,140 @@ describe('RoomDO timer delivery (engine owns rules; DO delivers)', () => {
     expect(timerEvents.map((e) => e.timerId)).toContain('seat:tok1');
     const timers = ctx.storage.data.get('timers') as Record<string, number>;
     expect(timers['seat:tok1']).toBeUndefined(); // consumed
+  });
+
+  it('keeps an unannounced module timer durable without exposing its deadline', async () => {
+    const { room, ctx } = await makeRoom();
+    const ws = await connect(room, ctx, 'tok1');
+    ws.clear();
+    const fuseAt = Date.now() + 45_000;
+
+    await internals(room).runEffects([
+      { k: 'SCHEDULE', timerId: 'scatter:fuse:2:0', atMs: fuseAt, announce: false },
+    ]);
+
+    expect(ws.last('AT')).toBeUndefined();
+    expect((ctx.storage.data.get('timers') as Record<string, number>)['scatter:fuse:2:0']).toBe(fuseAt);
+    expect(ctx.storage.alarm).not.toBeNull();
+  });
+
+  it('places the physical wake after the logical deadline and never dispatches early', async () => {
+    const { room, ctx } = await makeRoom();
+    const dueAt = Date.now() + 500;
+    await internals(room).runEffects([{ k: 'SCHEDULE', timerId: 'guarded', atMs: dueAt, announce: false }]);
+    expect(ctx.storage.alarm).toBe(dueAt + ALARM_WAKE_GUARD_MS);
+    reduceSpy.mockClear();
+
+    vi.setSystemTime(dueAt - 1);
+    await room.alarm();
+    expect(engineEvents()).not.toContainEqual(expect.objectContaining({ t: 'TIMER', timerId: 'guarded' }));
+    expect((ctx.storage.data.get('timers') as Record<string, number>)['guarded']).toBe(dueAt);
+    expect(ctx.storage.alarm).toBe(dueAt + ALARM_WAKE_GUARD_MS);
+
+    // Even a physical wake admitted 14ms early is safely after the logical deadline.
+    vi.setSystemTime(dueAt + ALARM_WAKE_GUARD_MS - 14);
+    await room.alarm();
+    expect(engineEvents().filter((e) => e.t === 'TIMER' && e.timerId === 'guarded')).toEqual([
+      { t: 'TIMER', timerId: 'guarded', at: dueAt + ALARM_WAKE_GUARD_MS - 14 },
+    ]);
+    expect(ctx.storage.alarm).toBeNull();
+  });
+
+  it('keeps an earlier sentinel wake when cancellation moves the logical deadline later', async () => {
+    const { room, ctx } = await makeRoom();
+    const earlyAt = Date.now() + 500;
+    const laterAt = Date.now() + 5_000;
+    await internals(room).runEffects([
+      { k: 'SCHEDULE', timerId: 'early', atMs: earlyAt, announce: false },
+      { k: 'SCHEDULE', timerId: 'later', atMs: laterAt, announce: false },
+    ]);
+    expect(ctx.storage.alarm).toBe(earlyAt + ALARM_WAKE_GUARD_MS);
+
+    await internals(room).runEffects([{ k: 'CANCEL', timerId: 'early' }]);
+    expect(ctx.storage.alarm).toBe(earlyAt + ALARM_WAKE_GUARD_MS);
+    reduceSpy.mockClear();
+
+    vi.setSystemTime(earlyAt + ALARM_WAKE_GUARD_MS);
+    await room.alarm();
+    expect(engineEvents()).not.toContainEqual(expect.objectContaining({ t: 'TIMER', timerId: 'early' }));
+    expect(ctx.storage.alarm).toBe(laterAt + ALARM_WAKE_GUARD_MS);
+  });
+
+  it('moves the physical alarm immediately when a new logical deadline is earlier', async () => {
+    const { room, ctx } = await makeRoom();
+    const laterAt = Date.now() + 5_000;
+    const earlierAt = Date.now() + 500;
+    await internals(room).runEffects([{ k: 'SCHEDULE', timerId: 'later', atMs: laterAt, announce: false }]);
+    expect(ctx.storage.alarm).toBe(laterAt + ALARM_WAKE_GUARD_MS);
+
+    await internals(room).runEffects([{ k: 'SCHEDULE', timerId: 'earlier', atMs: earlierAt, announce: false }]);
+    expect(ctx.storage.alarm).toBe(earlierAt + ALARM_WAKE_GUARD_MS);
+  });
+
+  it('HEARTBEAT gives a live alarm time to enter, then recovers a lost overdue timer', async () => {
+    const { room, ctx } = await makeRoom();
+    const ws = await connect(room, ctx, 'tok1');
+    const dueAt = Date.now() + 500;
+    await internals(room).runEffects([{ k: 'SCHEDULE', timerId: 'seat:ghost', atMs: dueAt, announce: false }]);
+    ws.clear();
+    reduceSpy.mockClear();
+
+    vi.setSystemTime(dueAt + 1);
+    await send(room, ws, { t: 'HEARTBEAT' });
+    expect(engineEvents()).not.toContainEqual(expect.objectContaining({ t: 'TIMER', timerId: 'seat:ghost' }));
+    expect((ctx.storage.data.get('timers') as Record<string, number>)['seat:ghost']).toBe(dueAt);
+
+    vi.setSystemTime(dueAt + ALARM_RECOVERY_GRACE_MS + 1);
+    await send(room, ws, { t: 'HEARTBEAT' });
+
+    expect(engineEvents()).toContainEqual({
+      t: 'TIMER',
+      timerId: 'seat:ghost',
+      at: dueAt + ALARM_RECOVERY_GRACE_MS + 1,
+    });
+    expect((ctx.storage.data.get('timers') as Record<string, number>)['seat:ghost']).toBeUndefined();
+    expect(ctx.storage.alarm).toBe(T0 + PING_REFRESH_MS + ALARM_WAKE_GUARD_MS);
+    expect(ws.last('ERR')).toBeUndefined();
+  });
+
+  it('restores a module timer missing from the delivery index after a split persistence write', async () => {
+    const { ctx } = await makeRoom();
+    const persisted = structuredClone(ctx.storage.data.get('room')) as {
+      moduleTimers: Record<string, { atMs: number; setAt: number }>;
+    };
+    const fuseAt = Date.now() + 45_000;
+    persisted.moduleTimers['scatter:fuse:2:0'] = { atMs: fuseAt, setAt: Date.now() };
+    ctx.storage.data.set('room', persisted);
+    ctx.storage.data.set('timers', {});
+    ctx.storage.alarm = null;
+
+    const restored = new RoomDO(ctx as unknown as DurableObjectState, {});
+    await restored.alarm(); // load() reconciles before the ordinary alarm pump
+
+    expect((ctx.storage.data.get('timers') as Record<string, number>)['scatter:fuse:2:0']).toBe(fuseAt);
+    expect(ctx.storage.alarm).toBe(fuseAt + ALARM_WAKE_GUARD_MS);
+  });
+
+  it('commits a phase and its advancing core timer in one atomic storage write', async () => {
+    const { room, ctx } = await makeRoom();
+    const prev = structuredClone(ctx.storage.data.get('room')) as RoomState;
+    const next: RoomState = {
+      ...prev,
+      epoch: prev.epoch + 1,
+      phase: { k: 'CIRCLE_INTRO', circle: 0 },
+    };
+    const introAt = Date.now() + 8_000;
+    ctx.storage.writes = [];
+
+    await internals(room).commitResult(prev, {
+      state: next,
+      effects: [{ k: 'SCHEDULE', timerId: `intro:${next.epoch}`, atMs: introAt }],
+    });
+
+    expect(ctx.storage.writes).toEqual([['room', 'timers']]);
+    expect((ctx.storage.data.get('room') as RoomState).phase).toEqual(next.phase);
+    expect((ctx.storage.data.get('timers') as Record<string, number>)[`intro:${next.epoch}`]).toBe(introAt);
+    expect(ctx.storage.alarm).toBe(introAt + ALARM_WAKE_GUARD_MS);
   });
 
   it('CANCEL removes a scheduled timer before it fires', async () => {
@@ -736,7 +912,9 @@ describe('RoomDO game view (module view() per viewer)', () => {
   }
 
   it('full mixed night: every registered game plays, blocking truth resolves, no ballot ever leaks', async () => {
-    const { room, ctx } = await makeRoom(); // code "HELL" -> arc [overunder, roast, scatter, fillin, roast]
+    const made = await makeRoom(); // code "HELL" -> arc [overunder, roast, scatter, fillin, roast]
+    let room = made.room;
+    const { ctx } = made;
     const tokens = ['tok1', 'tok2', 'tok3', 'tok4', 'tok5']; // N=5 -> roast anonymous-spread mode
     const roster = tokens.map((id, i) => ({ id, role: i === 0 ? 'host' : 'player' }));
     const socks: FakeWS[] = [];
@@ -769,10 +947,27 @@ describe('RoomDO game view (module view() per viewer)', () => {
     let sawRoastVote = false;
     let sawRoastReveal = false;
     let sawOverUnderTruth = false; // the blocking truth number resolved a real reveal (4.7/D-115)
+    let recoveredScatterFuse = false;
     const revealDecks = new Set<string>();
     for (let step = 0; step < 4000 && phase() !== 'JUDGMENT'; step++) {
       // --- inspect current per-socket views BEFORE acting (the host DESCENDs reveals) ---
       const v0 = gv(socks[0]!);
+      if (!recoveredScatterFuse && deckOf(v0) === 'scatter' && subOf(v0) === 'BOMB') {
+        const durable = ctx.storage.data.get('room') as RoomState;
+        const fuse = Object.entries(durable.moduleTimers).find(([timerId]) => timerId.startsWith('scatter:fuse:'));
+        expect(fuse).toBeDefined();
+        const [fuseId, fuseTimer] = fuse!;
+        const timerIndex = ctx.storage.data.get('timers') as Record<string, number>;
+        const { [fuseId]: _lostAlarm, ...withoutFuse } = timerIndex;
+        ctx.storage.data.set('timers', withoutFuse); // crash between state and timer-index persistence
+
+        room = new RoomDO(ctx as unknown as DurableObjectState, { LEDGER: TEST_LEDGER });
+        vi.setSystemTime(fuseTimer.atMs + 1);
+        await send(room, socks[0]!, { t: 'HEARTBEAT' });
+        expect(subOf(gv(socks[0]!))).toBe('BOOM');
+        recoveredScatterFuse = true;
+        continue;
+      }
       const freshRoastVote = deckOf(v0) === 'roast' && subOf(v0) === 'VOTE' && v0!['votedCount'] === 0;
       if (freshRoastVote) {
         expect(phase()).toBe('INPUT'); // the client's screen switch rides Phase.k (6.1)
@@ -818,6 +1013,7 @@ describe('RoomDO game view (module view() per viewer)', () => {
     expect(sawRoastVote).toBe(true);
     expect(sawRoastReveal).toBe(true);
     expect(sawOverUnderTruth).toBe(true);
+    expect(recoveredScatterFuse).toBe(true);
     expect(revealDecks.has('overunder')).toBe(true);
     expect(revealDecks.has('roast')).toBe(true);
     expect(revealDecks.has('fillin')).toBe(true);
@@ -869,6 +1065,7 @@ describe('entitlement at BEGIN', () => {
   // free-night ledger is shared across every room the same device hosts (the whole point).
   class FakeLedger {
     private ledgers = new Map<string, LedgerDO>();
+    private tails = new Map<string, Promise<void>>();
     idFromName(name: string): { name: string } {
       return { name };
     }
@@ -879,21 +1076,67 @@ describe('entitlement at BEGIN', () => {
         this.ledgers.set(id.name, l);
       }
       const ledger = l;
-      return { fetch: (req: Request) => ledger.fetch(req) };
+      return {
+        fetch: (req: Request): Promise<Response> => {
+          // Model the per-object request serialization that the real Durable Object
+          // runtime provides; this makes concurrent room BEGINs a faithful race test.
+          const prior = this.tails.get(id.name) ?? Promise.resolve();
+          const result = prior.then(() => ledger.fetch(req));
+          this.tails.set(
+            id.name,
+            result.then(
+              () => undefined,
+              () => undefined,
+            ),
+          );
+          return result;
+        },
+      };
     }
     async used(dev: string): Promise<boolean> {
       const res = await this.get(this.idFromName(dev)).fetch(new Request('https://ledger/status'));
       return ((await res.json()) as { freeNightUsed: boolean }).freeNightUsed;
     }
     async spend(dev: string): Promise<void> {
-      await this.get(this.idFromName(dev)).fetch(new Request('https://ledger/consume-free', { method: 'POST' }));
+      await this.get(this.idFromName(dev)).fetch(
+        new Request('https://ledger/consume-free?claim=USED:0', { method: 'POST' }),
+      );
     }
   }
 
-  async function makeRoomWithEnv(env: unknown): Promise<{ room: RoomDO; ctx: FakeCtx }> {
+  class DelayedLedger extends FakeLedger {
+    private signalClaim: () => void = () => undefined;
+    private releaseClaim: () => void = () => undefined;
+    readonly claimStarted = new Promise<void>((resolve) => {
+      this.signalClaim = resolve;
+    });
+    private readonly claimGate = new Promise<void>((resolve) => {
+      this.releaseClaim = resolve;
+    });
+
+    override get(id: { name: string }): { fetch(req: Request): Promise<Response> } {
+      const base = super.get(id);
+      return {
+        fetch: async (req: Request): Promise<Response> => {
+          const url = new URL(req.url);
+          if (req.method === 'POST' && url.pathname === '/consume-free') {
+            this.signalClaim();
+            await this.claimGate;
+          }
+          return base.fetch(req);
+        },
+      };
+    }
+
+    release(): void {
+      this.releaseClaim();
+    }
+  }
+
+  async function makeRoomWithEnv(env: unknown, code = 'HELL'): Promise<{ room: RoomDO; ctx: FakeCtx }> {
     const ctx = new FakeCtx();
     const room = new RoomDO(ctx as unknown as DurableObjectState, env);
-    await room.fetch(new Request('https://do/init?code=HELL', { method: 'POST' }));
+    await room.fetch(new Request(`https://do/init?code=${code}`, { method: 'POST' }));
     return { room, ctx };
   }
 
@@ -947,7 +1190,7 @@ describe('entitlement at BEGIN', () => {
     expect(await ledger.used(DEVICE)).toBe(true);
 
     // Same device, a brand-new room: the free night is already spent -> locked at BEGIN.
-    const r2 = await makeRoomWithEnv(env);
+    const r2 = await makeRoomWithEnv(env, 'FIRE');
     const s2 = await lobby(r2.room, r2.ctx, 3, DEVICE);
     await send(r2.room, s2[0]!, { t: 'BEGIN' });
     expect(s2[0]!.last('ERR')).toMatchObject({ code: 'NO_ENTITLEMENT' });
@@ -974,6 +1217,113 @@ describe('entitlement at BEGIN', () => {
     await send(room, socks[0]!, { t: 'BEGIN' });
     expect(socks[0]!.last('ERR')).toMatchObject({ code: 'NO_ENTITLEMENT' });
     expect(roomPhase(ctx)).toBe('LOBBY');
+  });
+
+  it('missing or malformed device identity cannot mint a fresh free night', async () => {
+    for (const device of [undefined, 'not-valid']) {
+      const ledger = new FakeLedger();
+      const { room, ctx } = await makeRoomWithEnv({ LEDGER: ledger, UNLOCK_SECRET: SECRET });
+      const socks = await lobby(room, ctx, 3, device);
+      await send(room, socks[0]!, { t: 'BEGIN' });
+      expect(socks[0]!.last('ERR')).toMatchObject({ code: 'NO_ENTITLEMENT' });
+      expect(roomPhase(ctx)).toBe('LOBBY');
+    }
+  });
+
+  it('atomically grants one concurrent BEGIN across two rooms for the same free device', async () => {
+    const ledger = new FakeLedger();
+    const env = { LEDGER: ledger, UNLOCK_SECRET: SECRET };
+    const r1 = await makeRoomWithEnv(env, 'HELL');
+    const r2 = await makeRoomWithEnv(env, 'FIRE');
+    const s1 = await lobby(r1.room, r1.ctx, 3, DEVICE);
+    const s2 = await lobby(r2.room, r2.ctx, 3, DEVICE);
+
+    await Promise.all([send(r1.room, s1[0]!, { t: 'BEGIN' }), send(r2.room, s2[0]!, { t: 'BEGIN' })]);
+
+    expect([roomPhase(r1.ctx), roomPhase(r2.ctx)].sort()).toEqual(['CIRCLE_INTRO', 'LOBBY']);
+    expect([s1[0]!.last('ERR'), s2[0]!.last('ERR')].filter(Boolean)).toHaveLength(1);
+    expect(await ledger.used(DEVICE)).toBe(true);
+  });
+
+  it('ignores a duplicate BEGIN after a free night starts instead of opening a mid-party paywall', async () => {
+    const ledger = new FakeLedger();
+    const { room, ctx } = await makeRoomWithEnv({ LEDGER: ledger, UNLOCK_SECRET: SECRET });
+    const socks = await lobby(room, ctx, 3, DEVICE);
+    await send(room, socks[0]!, { t: 'BEGIN' });
+    expect(roomPhase(ctx)).toBe('CIRCLE_INTRO');
+    socks[0]!.clear();
+
+    await send(room, socks[0]!, { t: 'BEGIN' });
+
+    expect(socks[0]!.last('ERR')).toBeUndefined();
+    expect(roomPhase(ctx)).toBe('CIRCLE_INTRO');
+    expect((ctx.storage.data.get('room') as { entitled: boolean }).entitled).toBe(true);
+  });
+
+  it('serializes room mutations while the external free-night claim is in flight', async () => {
+    const ledger = new DelayedLedger();
+    const { room, ctx } = await makeRoomWithEnv({ LEDGER: ledger, UNLOCK_SECRET: SECRET });
+    const socks = await lobby(room, ctx, 3, DEVICE);
+
+    const begin = send(room, socks[0]!, { t: 'BEGIN' });
+    await ledger.claimStarted;
+    ctx.sockets = ctx.sockets.filter((socket) => socket !== socks[2]);
+    const close = room.webSocketClose(socks[2] as unknown as WebSocket);
+    ledger.release();
+    await Promise.all([begin, close]);
+
+    const state = ctx.storage.data.get('room') as { phase: { k: string }; players: Array<{ id: string; connected: boolean }> };
+    expect(state.phase.k).toBe('CIRCLE_INTRO');
+    expect(state.players.find((player) => player.id === 'tok3')?.connected).toBe(false);
+  });
+
+  it('replays the same free-night claim after a RoomDO crash without unlocking another attempt', async () => {
+    const ledger = new FakeLedger();
+    const env = { LEDGER: ledger, UNLOCK_SECRET: SECRET };
+    const { room, ctx } = await makeRoomWithEnv(env);
+    const socks = await lobby(room, ctx, 3, DEVICE);
+    const roomBeforeBegin = structuredClone(ctx.storage.data.get('room'));
+    const timersBeforeBegin = structuredClone(ctx.storage.data.get('timers'));
+    const alarmBeforeBegin = ctx.storage.alarm;
+
+    await send(room, socks[0]!, { t: 'BEGIN' });
+    expect(roomPhase(ctx)).toBe('CIRCLE_INTRO');
+    expect(await ledger.used(DEVICE)).toBe(true);
+
+    // Simulate the exact crash boundary: Ledger committed, RoomDO's start did not.
+    ctx.storage.data.set('room', roomBeforeBegin);
+    ctx.storage.data.set('timers', timersBeforeBegin);
+    ctx.storage.alarm = alarmBeforeBegin;
+    const retriedRoom = new RoomDO(ctx as unknown as DurableObjectState, env);
+    socks[0]!.clear();
+    await send(retriedRoom, socks[0]!, { t: 'BEGIN' });
+    expect(socks[0]!.last('ERR')).toBeUndefined();
+    expect(roomPhase(ctx)).toBe('CIRCLE_INTRO');
+
+    const other = await makeRoomWithEnv(env, 'FIRE');
+    const otherSocks = await lobby(other.room, other.ctx, 3, DEVICE);
+    await send(other.room, otherSocks[0]!, { t: 'BEGIN' });
+    expect(otherSocks[0]!.last('ERR')).toMatchObject({ code: 'NO_ENTITLEMENT' });
+    expect(roomPhase(other.ctx)).toBe('LOBBY');
+  });
+
+  it('fails closed and retryably when the unpaid-device ledger is unavailable', async () => {
+    const hungLedger = {
+      idFromName: (name: string): { name: string } => ({ name }),
+      get: (): { fetch(req: Request): Promise<Response> } => ({
+        fetch: async (): Promise<Response> => new Promise<Response>(() => undefined),
+      }),
+    };
+    const { room, ctx } = await makeRoomWithEnv({ LEDGER: hungLedger, UNLOCK_SECRET: SECRET });
+    const socks = await lobby(room, ctx, 3, DEVICE);
+    const begin = send(room, socks[0]!, { t: 'BEGIN' });
+
+    await vi.advanceTimersByTimeAsync(3_001);
+    await begin;
+
+    expect(socks[0]!.last('ERR')).toMatchObject({ code: 'ENTITLEMENT_UNAVAILABLE' });
+    expect(roomPhase(ctx)).toBe('LOBBY');
+    expect((ctx.storage.data.get('room') as { entitled: boolean }).entitled).toBe(false);
   });
 
   it('a BEGIN the engine rejects (too few sinners) never burns the free night', async () => {
