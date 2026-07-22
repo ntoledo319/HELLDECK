@@ -1,19 +1,32 @@
 # ⛔ NEXT AGENT — READ THIS FIRST, THEN `HELLDECK2_HANDOFF.md`
 
-> **✅ 2026-07-22 COMPLETION UPDATE:** the `HANDOFF_2026-07-22.md` live-night/timer task is resolved.
+> **✅ 2026-07-22 FINAL RELEASE-READINESS UPDATE:** `main` and `origin/main` are synchronized at
+> [`0093e26`](https://github.com/ntoledo319/HELLDECK/commit/0093e2623df3a76b7c55c76278d7fb5297c34a87).
+> The `HANDOFF_2026-07-22.md` live-night/timer task is resolved.
 > The hardened five-bot depth-5 run completed every circle and all three Scatter BOMB/BOOM loops,
 > reaching JUDGMENT in **419.3s with a warning-free Worker log**. Guarded physical alarms, strict
 > logical deadlines, alarm-independent heartbeats, serialized room mutations, atomic
 > state+timer persistence, crash-safe free-night claims, fail-safe dev unlock, and CI/release
-> guardrails landed with **540 tests green**. The remaining gates are human/device playtests, room
-> TTL/crew memory, and owner-controlled deploy/live-payment/store work—not another alarm chase.
+> guardrails landed with **540 Descent tests green**.
 >
-> **Legacy Android CI follow-up:** GitHub's first post-completion run exposed flavor-ambiguous
+> **Legacy Android is also closed at the automated/device boundary.** GitHub's first
+> post-completion run exposed flavor-ambiguous
 > Gradle tasks and a Compose manifest collision in the frozen root app. Those seams are repaired:
 > exact production variants, dual arm64/x86_64 debug builds, generated debug signing, fail-closed
 > release signing, CMake submodule detection, current JaCoCo, and a checked-in lint baseline that
-> makes new findings fatal. The local JDK 17 matrix passes 148 Android unit tests plus APK, lint,
-> Detekt, Ktlint, and Spotless gates. Play still requires owner-provisioned signing/service secrets.
+> makes new findings fatal. The normal Home CTA's first-round `CardBuffer` race is fixed with
+> lifecycle-owned generation, stale-request rejection, safe teardown, serialized round starts,
+> and four deterministic concurrency regressions. Fresh local verification passed **155 JVM tests**,
+> production and instrumentation APK assembly/D8, lint, Detekt, Ktlint, and Spotless. GitHub's
+> [Quality Gates](https://github.com/ntoledo319/HELLDECK/actions/runs/29958242132) and
+> [Legacy Android CI / Release](https://github.com/ntoledo319/HELLDECK/actions/runs/29958242050)
+> are green; archived reports prove **155/155 JVM** and **23/23 API 29 x86_64 device tests**, with
+> zero failures, errors, or skips.
+>
+> There is no known automated first-round or CI release blocker. Remaining owner gates are real
+> human/device playtests and live Stripe/Workers/domain/Play/signing credentials. Separate roadmap
+> work remains room TTL/expiry and crew-memory persistence; inherited legacy deprecation/compiler
+> warnings are documented debt, not silently claimed away.
 
 Originally written 2026-07-20 and updated after the UI/UX hardening pass.
 Active branch **`main`**. The Descent import and trust/safety baseline are published to
@@ -61,6 +74,7 @@ phone (host included) is a thin renderer over WebSocket. Code lives in `descent/
 | Content | **1024 cards / 9 decks**, all funnel-clean, council-reviewed and remediated |
 | Consent + fairness | heat ceilings, volunteer valve, 20s fixed-timing spotlight burns/replacements, typecast governor |
 | Live runtime | **Verified locally 2026-07-22.** Five strict WebSocket bots completed a real depth-5 Wrangler/RoomDO night, all Scatter loops, and JUDGMENT in 419.3s with zero Worker warnings |
+| Legacy Android | **155 JVM + 23 API 29 device tests.** Production/instrumentation APKs, D8, lint, Ktlint, Detekt, and Spotless green locally and in GitHub Actions |
 
 **540 tests green. `pnpm -r build` clean.** All 9 games play end-to-end against the real corpus.
 
