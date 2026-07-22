@@ -60,7 +60,9 @@ restore_and_fix*
 fix_all_compilation_errors*
 
 # GitHub (but keep workflows and dependabot)
-.github/
+# NOTE: use `.github/*` not `.github/` — a trailing-slash dir exclusion can't be undone by a
+# child negation, which silently kept new workflow files (ci.yml, descent-ci.yml) untracked.
+.github/*
 !.github/workflows/
 !.github/dependabot.yml
 

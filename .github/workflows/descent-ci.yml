@@ -1,0 +1,52 @@
+# CI for the Descent monorepo (descent/) — the LIVE product. The other workflows in this dir
+# (ci.yml, quality.yml) build the FROZEN Android game at the repo root; this one guards the
+# phones-only Cloudflare build so a regression in the engine/server/client or the card corpus
+# can't land green. Recipe mirrors descent's HANDOFF §6.
+name: Descent CI
+
+on:
+  push:
+    paths:
+      - 'descent/**'
+      - '.github/workflows/descent-ci.yml'
+  pull_request:
+    paths:
+      - 'descent/**'
+      - '.github/workflows/descent-ci.yml'
+
+defaults:
+  run:
+    working-directory: descent
+
+jobs:
+  build-test:
+    name: build + test (engine · server · client)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: descent/pnpm-lock.yaml
+      # esbuild/sharp/workerd build scripts are pre-approved in pnpm-workspace.yaml (allowBuilds),
+      # so a frozen install runs them without the interactive approve-builds prompt.
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -r build
+      - run: pnpm -r test
+
+  content-funnel:
+    name: content funnel (lint · cross-deck dedup · stats)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      # The three gates every card change must pass; dedup is authoritative across ALL decks.
+      - run: python3 content/tools/lint_deck.py content/decks/*.json
+      - run: python3 content/tools/dedup_skeletons.py content/decks/*.json
+      - run: python3 content/tools/deck_stats.py content/decks/*.json

@@ -1,2 +1,11 @@
 packages:
   - packages/*
+
+# Native deps whose install scripts we trust (pnpm 11 blocks build scripts by default and, left
+# unset, writes this exact stub with `set this to true or false` placeholders on every install).
+# Committing the decision keeps a fresh CI install non-interactive (task: descent CI) and stops the
+# stub churn locally. esbuild/sharp compile the client bundle; workerd is the Worker runtime.
+allowBuilds:
+  esbuild: true
+  sharp: true
+  workerd: true

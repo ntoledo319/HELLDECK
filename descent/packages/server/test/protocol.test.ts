@@ -22,6 +22,8 @@ import {
   recordPong,
   sampleOffset,
 } from '../src/clock.js';
+import { signUnlock } from '../src/entitle.js';
+import { LedgerDO } from '../src/ledger-do.js';
 import { crewId, parseClientMessage, type ParseCtx } from '../src/protocol.js';
 import { assertNoSecrets, redactFor } from '../src/redact.js';
 import { RoomDO } from '../src/room-do.js';
@@ -855,5 +857,141 @@ describe('RoomDO persistence', () => {
     await send(room2, ws, { t: 'RESYNC' });
     const s = ws.last('STATE')!['s'] as { players: Array<Record<string, unknown>> };
     expect(s.players.map((p) => p['name'])).toEqual(['SAM']);
+  });
+});
+
+// ===== D-412: monetization — the free night is per DEVICE and charged only on a real start =====
+describe('entitlement at BEGIN', () => {
+  const SECRET = 'test-unlock-secret';
+  const DEVICE = 'a1b2c3d4e5f6a7b8c9d0e1f2';
+
+  // A LEDGER namespace backed by real LedgerDO instances, one per device name — so the
+  // free-night ledger is shared across every room the same device hosts (the whole point).
+  class FakeLedger {
+    private ledgers = new Map<string, LedgerDO>();
+    idFromName(name: string): { name: string } {
+      return { name };
+    }
+    get(id: { name: string }): { fetch(req: Request): Promise<Response> } {
+      let l = this.ledgers.get(id.name);
+      if (!l) {
+        l = new LedgerDO({ storage: new FakeStorage() } as unknown as DurableObjectState, {});
+        this.ledgers.set(id.name, l);
+      }
+      const ledger = l;
+      return { fetch: (req: Request) => ledger.fetch(req) };
+    }
+    async used(dev: string): Promise<boolean> {
+      const res = await this.get(this.idFromName(dev)).fetch(new Request('https://ledger/status'));
+      return ((await res.json()) as { freeNightUsed: boolean }).freeNightUsed;
+    }
+    async spend(dev: string): Promise<void> {
+      await this.get(this.idFromName(dev)).fetch(new Request('https://ledger/consume-free', { method: 'POST' }));
+    }
+  }
+
+  async function makeRoomWithEnv(env: unknown): Promise<{ room: RoomDO; ctx: FakeCtx }> {
+    const ctx = new FakeCtx();
+    const room = new RoomDO(ctx as unknown as DurableObjectState, env);
+    await room.fetch(new Request('https://do/init?code=HELL', { method: 'POST' }));
+    return { room, ctx };
+  }
+
+  interface OpenWithDev {
+    handleOpen(ws: unknown, token: string, now: number, dev?: string, unlock?: string): Promise<void>;
+  }
+  async function connectDev(
+    room: RoomDO,
+    ctx: FakeCtx,
+    token: string,
+    dev?: string,
+    unlock?: string,
+  ): Promise<FakeWS> {
+    const ws = new FakeWS();
+    ctx.acceptWebSocket(ws);
+    await (room as unknown as OpenWithDev).handleOpen(ws, token, Date.now(), dev, unlock);
+    return ws;
+  }
+
+  // Fill a lobby to `n` sinners with the host on `hostDev`/`hostUnlock`, config set, ready to BEGIN.
+  async function lobby(
+    room: RoomDO,
+    ctx: FakeCtx,
+    n: number,
+    hostDev?: string,
+    hostUnlock?: string,
+  ): Promise<FakeWS[]> {
+    const socks: FakeWS[] = [];
+    for (let i = 0; i < n; i++) {
+      const ws = i === 0 ? await connectDev(room, ctx, `tok${i + 1}`, hostDev, hostUnlock) : await connect(room, ctx, `tok${i + 1}`);
+      await send(room, ws, { t: 'JOIN', name: `B${i}`, avatar: i });
+      await send(room, ws, { t: 'CEILING', v: 3 });
+      await send(room, ws, { t: 'ATTEST18' });
+      socks.push(ws);
+    }
+    await send(room, socks[0]!, { t: 'CONFIG', depth: 5, vibe: 'warm', stage: false });
+    return socks;
+  }
+
+  const roomPhase = (ctx: FakeCtx): string => (ctx.storage.data.get('room') as { phase: { k: string } }).phase.k;
+
+  it('a device gets exactly one free night: the first begins, a second room for the same device is locked', async () => {
+    const ledger = new FakeLedger();
+    const env = { LEDGER: ledger, UNLOCK_SECRET: SECRET };
+
+    const r1 = await makeRoomWithEnv(env);
+    const s1 = await lobby(r1.room, r1.ctx, 3, DEVICE);
+    await send(r1.room, s1[0]!, { t: 'BEGIN' });
+    expect(s1[0]!.last('ERR')).toBeUndefined();
+    expect(roomPhase(r1.ctx)).toBe('CIRCLE_INTRO');
+    expect(await ledger.used(DEVICE)).toBe(true);
+
+    // Same device, a brand-new room: the free night is already spent -> locked at BEGIN.
+    const r2 = await makeRoomWithEnv(env);
+    const s2 = await lobby(r2.room, r2.ctx, 3, DEVICE);
+    await send(r2.room, s2[0]!, { t: 'BEGIN' });
+    expect(s2[0]!.last('ERR')).toMatchObject({ code: 'NO_ENTITLEMENT' });
+    expect(roomPhase(r2.ctx)).toBe('LOBBY');
+  });
+
+  it('a paid device plays even after its free night is gone, and unlocking never burns a free night', async () => {
+    const ledger = new FakeLedger();
+    await ledger.spend(DEVICE); // this device already used its free night
+    const unlock = await signUnlock(SECRET, DEVICE);
+
+    const { room, ctx } = await makeRoomWithEnv({ LEDGER: ledger, UNLOCK_SECRET: SECRET });
+    const socks = await lobby(room, ctx, 3, DEVICE, unlock);
+    await send(room, socks[0]!, { t: 'BEGIN' });
+    expect(socks[0]!.last('ERR')).toBeUndefined();
+    expect(roomPhase(ctx)).toBe('CIRCLE_INTRO');
+  });
+
+  it('a stale/forged unlock token does NOT entitle — it falls through to the free-night rule', async () => {
+    const ledger = new FakeLedger();
+    await ledger.spend(DEVICE); // no free night left
+    const { room, ctx } = await makeRoomWithEnv({ LEDGER: ledger, UNLOCK_SECRET: SECRET });
+    const socks = await lobby(room, ctx, 3, DEVICE, 'v1.deadbeef'); // forged token
+    await send(room, socks[0]!, { t: 'BEGIN' });
+    expect(socks[0]!.last('ERR')).toMatchObject({ code: 'NO_ENTITLEMENT' });
+    expect(roomPhase(ctx)).toBe('LOBBY');
+  });
+
+  it('a BEGIN the engine rejects (too few sinners) never burns the free night', async () => {
+    const ledger = new FakeLedger();
+    const { room, ctx } = await makeRoomWithEnv({ LEDGER: ledger, UNLOCK_SECRET: SECRET });
+    const socks = await lobby(room, ctx, 2, DEVICE); // only 2 sinners: below the 3 minimum
+    await send(room, socks[0]!, { t: 'BEGIN' });
+    expect(socks[0]!.last('ERR')).toBeUndefined(); // entitled, so parse passes; the engine simply noops
+    expect(roomPhase(ctx)).toBe('LOBBY');
+    expect(await ledger.used(DEVICE)).toBe(false); // free night intact — nothing started
+
+    // Add the third sinner; now it actually starts and the free night is charged exactly once.
+    const third = await connect(room, ctx, 'tok3');
+    await send(room, third, { t: 'JOIN', name: 'B2', avatar: 2 });
+    await send(room, third, { t: 'CEILING', v: 3 });
+    await send(room, third, { t: 'ATTEST18' });
+    await send(room, socks[0]!, { t: 'BEGIN' });
+    expect(roomPhase(ctx)).toBe('CIRCLE_INTRO');
+    expect(await ledger.used(DEVICE)).toBe(true);
   });
 });

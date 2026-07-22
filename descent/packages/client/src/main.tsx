@@ -4,6 +4,7 @@ import { render, type JSX } from 'preact';
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { playSting, unlockAudio } from './audio';
 import { ConnectionGeneration } from './connection';
+import { deviceToken, parseUnlockReturn, verifyAndStore } from './entitle';
 import { cleanCodeInput, serverErrorMessage, validCode } from './logic';
 import { Net, type ConnStatus } from './net/ws';
 import { Overlay, Toast } from './screens/bits';
@@ -36,6 +37,7 @@ import {
   requestSpotlightBurn,
   type SpotlightClientState,
 } from './screens/spotlight.logic';
+import { Paywall } from './screens/paywall';
 import { InputFallback, RoastVote, WaitingOn } from './screens/roast';
 import { ConfessionReveal, ConfessionScreen } from './screens/confession';
 import { FillinReveal, FillinScreen } from './screens/fillin';
@@ -195,6 +197,11 @@ function Room({ code }: { code: string }) {
   const [toast, setToast] = useState<string | null>(null);
   const [impAck, setImpAck] = useState(false);
   const [connectionGeneration, setConnectionGeneration] = useState(0);
+  const [paywall, setPaywall] = useState(false);
+  // The host returns here from Stripe with ?session_id=… — hold the room until the pact is sealed.
+  const [unlockReturn, setUnlockReturn] = useState<'verifying' | null>(() =>
+    parseUnlockReturn(location.search).kind === 'verify' ? 'verifying' : null,
+  );
 
   const netRef = useRef<Net | null>(null);
   const viewRef = useRef<RoomView | null>(null);
@@ -205,6 +212,27 @@ function Room({ code }: { code: string }) {
   const closeFailsRef = useRef(0);
   const errorIdRef = useRef(0);
   const privateIdRef = useRef(0);
+
+  // Finish the Stripe round-trip. On success we reload clean so the socket reconnects carrying
+  // the freshly-stored unlock (the host is entitled now); on cancel/failure we just clean the URL.
+  useEffect(() => {
+    const ret = parseUnlockReturn(location.search);
+    if (ret.kind === 'verify') {
+      void verifyAndStore(ret.sessionId, ret.dev).then((ok) => {
+        if (ok) {
+          location.replace(`/${code}`);
+        } else {
+          history.replaceState(null, '', `/${code}`);
+          setUnlockReturn(null);
+          setToast('THE PACT DIDN’T TAKE — the pit saw no coin. Try the toll again.');
+        }
+      });
+    } else if (ret.kind === 'cancel') {
+      history.replaceState(null, '', `/${code}`);
+      setToast('YOU BACKED OFF THE LEDGE. The toll’s still there when you are.');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!profile) return;
@@ -279,6 +307,12 @@ function Room({ code }: { code: string }) {
       onError: (c, m) => {
         setPreview((current) => rejectPreviewBurn(current));
         setSpotlight((current) => rejectSpotlightBurn(current));
+        // A locked second night is a decision, not a transient tap failure: open the toll
+        // instead of flashing a banner. Only the host can trigger BEGIN, so only they see it.
+        if (c === 'NO_ENTITLEMENT') {
+          setPaywall(true);
+          return;
+        }
         setErr({ id: ++errorIdRef.current, message: serverErrorMessage(c, m) });
       },
     });
@@ -349,6 +383,10 @@ function Room({ code }: { code: string }) {
     }
     return undefined;
   }, [me?.role]);
+
+  if (unlockReturn === 'verifying') {
+    return <Overlay title="SEALING THE PACT…" sub="The pit is counting your coin. Don’t close this." />;
+  }
 
   if (!profile) {
     return (
@@ -566,6 +604,9 @@ function Room({ code }: { code: string }) {
             UNDERSTOOD
           </button>
         </Overlay>
+      )}
+      {paywall && (
+        <Paywall device={deviceToken()} returnPath={`/${code}`} onDismiss={() => setPaywall(false)} />
       )}
       {conn === 'open' && err && (
         <RoomErrorNotice

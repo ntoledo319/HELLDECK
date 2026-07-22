@@ -25,14 +25,23 @@ import {
   type ClockState,
   type FireWindow,
 } from './clock.js';
+import { resolveEntitlement, verifyUnlock, type EntReason } from './entitle.js';
 import { parseClientMessage } from './protocol.js';
 import { redactFor } from './redact.js';
+
+// Only the fields the RoomDO reads off the environment for entitlement (spec Part 11 / D-412).
+interface ServerEnv {
+  LEDGER?: DurableObjectNamespace;
+  UNLOCK_SECRET?: string;
+}
 
 interface Attachment {
   playerId: string; // token = stable identity across reconnects (spec 3.1)
   clockOffset: number; // serverTime - clientTime, median of last 5 samples (spec 3.3)
   clock: ClockState;
   fire: FireWindow; // rolling 10/s FIRE budget
+  dev?: string; // host device token (this phone) — entitlement identity; never leaves this socket
+  unlock?: string; // device-bound HMAC unlock token, if this phone has paid
 }
 
 const CLOCK_PREFIX = 'do:clock:';
@@ -87,11 +96,15 @@ export class RoomDO implements DurableObject {
     if (req.headers.get('Upgrade') === 'websocket') {
       if (!this.state) return new Response('NO SUCH PIT', { status: 404 });
       const token = url.searchParams.get('token') || newToken(); // no token -> server issues one (3.1)
+      // The host phone rides its device + unlock token on its OWN socket so entitlement is
+      // resolved at BEGIN without ever putting either on the wire to other players (Part 11).
+      const dev = url.searchParams.get('dev') ?? undefined;
+      const unlock = url.searchParams.get('unlock') ?? undefined;
       const pair = new WebSocketPair();
       const [client, server] = Object.values(pair) as [WebSocket, WebSocket];
       // Hibernation API: survives DO eviction; attachment carries identity + clock state.
       this.ctx.acceptWebSocket(server);
-      await this.handleOpen(server, token, Date.now());
+      await this.handleOpen(server, token, Date.now(), dev, unlock);
       return new Response(null, { status: 101, webSocket: client });
     }
 
@@ -99,9 +112,16 @@ export class RoomDO implements DurableObject {
   }
 
   /** Spec 3.1: WELCOME (with token) -> STATE; known token = silent reseat, else JOIN msg follows. */
-  private async handleOpen(ws: WebSocket, token: string, now: number): Promise<void> {
+  private async handleOpen(ws: WebSocket, token: string, now: number, dev?: string, unlock?: string): Promise<void> {
     if (!this.state) return;
-    const att: Attachment = { playerId: token, clockOffset: 0, clock: emptyClock(), fire: { start: 0, used: 0 } };
+    const att: Attachment = {
+      playerId: token,
+      clockOffset: 0,
+      clock: emptyClock(),
+      fire: { start: 0, used: 0 },
+      dev,
+      unlock,
+    };
     ws.serializeAttachment(att);
     // Seed client/server clock alignment before STATE or any absolute-deadline
     // PRIVATE payload. The follow-up ping batch refines this one-way sample.
@@ -131,6 +151,20 @@ export class RoomDO implements DurableObject {
     const id = att?.playerId ?? '';
     const now = Date.now();
     const me = this.state.players.find((p) => p.id === id);
+
+    // Entitlement is re-resolved against the host's DEVICE ledger at EVERY BEGIN — never
+    // cached at room init — so the paywall lands on the device's SECOND night whether that
+    // is a reset of this room (resetNight -> LOBBY) or a brand-new room (spec Part 11 / D-412).
+    let beginReason: EntReason | null = null;
+    if (msg.t === 'BEGIN' && me?.role === 'host' && att) {
+      const ent = await this.resolveEntitlement(att);
+      beginReason = ent.reason;
+      if (this.state.entitled !== ent.entitled) {
+        this.state = { ...this.state, entitled: ent.entitled };
+        await this.persist();
+      }
+    }
+
     const parsed = parseClientMessage(msg as { t: string; [k: string]: unknown }, {
       id,
       at: now,
@@ -153,9 +187,16 @@ export class RoomDO implements DurableObject {
       case 'fire':
         await this.handleFire(ws, parsed.n, now);
         break;
-      case 'event':
+      case 'event': {
+        const wasLobby = this.state.phase.k === 'LOBBY';
         await this.dispatch(parsed.event);
+        // Charge the free night only once a night truly STARTS on the free tier — a BEGIN the
+        // engine rejects (too few sinners, unset ceilings) must never burn the one free descent.
+        if (parsed.event.t === 'BEGIN' && beginReason === 'free-night' && wasLobby && this.state.phase.k !== 'LOBBY' && att) {
+          await this.consumeFreeNight(att);
+        }
         break;
+      }
     }
 
     // Self-healing: if the runtime lost an alarm (workerd AlarmManager races), any
@@ -206,6 +247,39 @@ export class RoomDO implements DurableObject {
     }
     await this.persistTimers();
     await this.armAlarm(now);
+  }
+
+  // ===== entitlement (spec Part 11 / D-412) =====
+  /** Peek — never charge — the host device's entitlement: a valid unlock always plays; else
+   *  the device's free night if unspent; else locked. The ledger is consulted only when there
+   *  is no unlock to check. */
+  private async resolveEntitlement(att: Attachment): Promise<{ entitled: boolean; reason: EntReason }> {
+    const env = this.env as ServerEnv;
+    const unlocked = await verifyUnlock(env.UNLOCK_SECRET, att.dev, att.unlock);
+    let freeNightUsed = false;
+    if (!unlocked) {
+      const status = await this.ledgerFetch(att.dev, 'GET', '/status');
+      freeNightUsed = (status as { freeNightUsed?: boolean } | null)?.freeNightUsed === true;
+    }
+    return resolveEntitlement({ unlocked, freeNightUsed });
+  }
+
+  private async consumeFreeNight(att: Attachment): Promise<void> {
+    await this.ledgerFetch(att.dev, 'POST', '/consume-free');
+  }
+
+  /** Call the per-device LedgerDO. Any failure resolves to null so entitlement biases open —
+   *  a ledger blip must never lock a paying host out of a live party (fail-open, Part 11). */
+  private async ledgerFetch(dev: string | undefined, method: string, path: string): Promise<unknown> {
+    const env = this.env as ServerEnv;
+    if (!dev || !env.LEDGER) return null;
+    try {
+      const stub = env.LEDGER.get(env.LEDGER.idFromName(dev));
+      const res = await stub.fetch(new Request(`https://ledger${path}`, { method }));
+      return await res.json();
+    } catch {
+      return null;
+    }
   }
 
   // ===== engine wiring =====

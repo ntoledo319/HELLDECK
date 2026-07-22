@@ -650,6 +650,38 @@ button:is(.picked, .sel, .lit):disabled { opacity: 1; }
 .preview-actions { display: flex; gap: 10px; width: 100%; max-width: 420px; }
 .preview-actions > button { flex: 1; }
 .preview-note { font-size: 12px; color: var(--smoke); max-width: 42ch; line-height: 1.45; }
+
+/* ===== paywall — the toll (spec Part 11) ===== */
+.paywall { gap: 12px; }
+.paywall > * { max-width: 34ch; }
+/* The sigil brands the toll as the pit's price, not a checkout badge. Struck in blood, lit from within. */
+.paywall-toll {
+  color: var(--blood);
+  line-height: 0;
+}
+.paywall-toll .sigil {
+  width: clamp(60px, 19vw, 88px);
+  height: auto;
+  filter: drop-shadow(0 0 16px rgba(142, 27, 27, 0.55));
+}
+.paywall .overlay-title { font-size: clamp(26px, 7.5vw, 40px); line-height: 0.95; }
+.paywall-pitch { color: var(--bone); font-size: 16px; line-height: 1.5; }
+.paywall-pitch strong { color: var(--ember); font-weight: 700; }
+/* Terms as a receipt line, not a fine-print apology: display face, wide track, one hard row. */
+.paywall-terms {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--smoke);
+  border-block: 1px solid var(--ash);
+  padding-block: 8px;
+}
+.paywall-error { color: var(--ember); font-size: 14px; font-weight: 600; }
+.paywall .btn-blood { width: 100%; max-width: 360px; }
+.paywall-dismiss { width: 100%; max-width: 360px; }
+.paywall-fineprint { color: var(--smoke); font-size: 12px; line-height: 1.45; opacity: 0.85; }
+
 .room-error {
   --snap-transform: translateX(-50%);
   position: fixed;
