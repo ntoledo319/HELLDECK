@@ -66,6 +66,19 @@ All games sourced from **[HDRealRules.md](HDRealRules.md)** - the canonical game
 
 ### Build & Run
 
+**Verified tester APK**
+
+The current sideloadable Android test build is published as a GitHub prerelease:
+
+- [HELLDECK Android 1.0.1 — Tested Debug Build](https://github.com/ntoledo319/HELLDECK/releases/tag/android-test-v1.0.1-0093e26)
+- [Direct APK download](https://github.com/ntoledo319/HELLDECK/releases/download/android-test-v1.0.1-0093e26/helldeck-1.0.1-code2-production-debug-0093e26.apk)
+- SHA-256: `3c84d4d441b7559b680882351b28c4160d97d008a52296c278d31248bf0af338`
+
+This is a debug-signed, all-games-unlocked test build from commit `0093e26`. Its source/variant
+passed 155 JVM tests and 23 API 29 instrumentation tests. It is not Play-signed; install it fresh,
+and read the prerelease notes before testing because uninstalling a differently signed
+`com.helldeck` build removes its local data.
+
 **Method 1: Android Studio (Recommended)**
 ```bash
 # Clone repository

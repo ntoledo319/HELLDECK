@@ -105,6 +105,13 @@ jarsigner -verify -verbose -certs app/build/outputs/apk/production/release/app-p
 
 ## 📦 Distribution
 
+### Prebuilt Tester APK
+
+A CI-verified, debug-signed Android test build is available from the
+[HELLDECK Android 1.0.1 prerelease](https://github.com/ntoledo319/HELLDECK/releases/tag/android-test-v1.0.1-0093e26).
+It is intended for fresh-install exploratory testing only. The release page includes the APK,
+checksum, automated-test evidence, installation steps, and signing/model limitations.
+
 ### Play Store Deployment
 1. **Prepare Assets**
    - Store listing screenshots (minimum 2, maximum 8)
